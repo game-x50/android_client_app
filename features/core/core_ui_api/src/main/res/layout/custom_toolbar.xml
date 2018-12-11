@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/customToolbar_mainLinear"
+    android:layout_width="match_parent"
+    android:layout_height="?android:attr/actionBarSize"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/customToolbar_leftImage"
+        android:layout_width="56dp"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:foreground="?selectableItemBackgroundBorderless"
+        tools:ignore="ContentDescription,UnusedAttribute" />
+
+    <TextView
+        android:id="@+id/customToolbar_label"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:paddingStart="@dimen/default_padding"
+        android:paddingLeft="@dimen/default_padding"
+        android:paddingEnd="@dimen/default_padding"
+        android:paddingRight="@dimen/default_padding"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:textColor="@android:color/white" />
+
+    <ImageView
+        android:id="@+id/customToolbar_rightImage"
+        android:layout_width="56dp"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:foreground="?selectableItemBackgroundBorderless"
+        tools:ignore="ContentDescription,UnusedAttribute" />
+
+</LinearLayout>

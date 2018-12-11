@@ -1,0 +1,20 @@
+apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
+apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
+
+def networkImplStagingToolsLibraryVersionName = "1"
+def networkImplStagingToolsLibraryVersionCode = 1
+
+android {
+    defaultConfig {
+        versionCode = networkImplStagingToolsLibraryVersionCode
+        versionName = networkImplStagingToolsLibraryVersionName
+    }
+
+    resourcePrefix("network_impl_staging_tools_")
+}
+
+dependencies {
+    compileOnly(project(LocalGradleProjects.networkApi))
+
+    compileOnly(Deps.chucker)
+}

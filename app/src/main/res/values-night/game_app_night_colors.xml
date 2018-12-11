@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="game_app_colorOnPrimary">@color/color_black</color>
+    <color name="game_app_colorOnSecondary">@color/color_black</color>
+    <color name="game_app_colorOnError">@color/color_black</color>
+    <color name="game_app_colorSurface">@color/color_black</color>
+    <color name="game_app_colorOnSurface">@color/color_white</color>
+    <color name="game_app_background">@color/color_black</color>
+    <color name="game_app_colorOnBackground">@color/color_white</color>
+</resources>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/default_3_2_padding"
+        android:paddingEnd="@dimen/default_3_2_padding">
+
+        <com.ruslan.hlushan.core.ui.api.view.MenuItemLayout
+            android:id="@+id/settings_menu_screen_app_lang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintTextColor="?attr/colorPrimaryVariant"
+            app:item_icon="@drawable/game_settings_ui_ic_language_white_24dp"
+            app:item_title="@string/game_settings_ui_app_language"
+            app:titleTextColor="?attr/colorSecondary" />
+
+        <com.ruslan.hlushan.core.ui.api.view.MenuItemLayout
+            android:id="@+id/settings_menu_screen_app_theme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintTextColor="?attr/colorPrimaryVariant"
+            app:item_icon="@drawable/game_settings_ui_ic_language_white_24dp"
+            app:item_title="@string/game_settings_ui_app_theme"
+            app:titleTextColor="?attr/colorSecondary" />
+
+        <com.ruslan.hlushan.core.ui.api.view.MenuItemLayout
+            android:id="@+id/settings_menu_screen_user_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_icon="@drawable/game_settings_ui_ic_person_white_24dp"
+            app:item_title="@string/game_settings_ui_my_profile"
+            app:titleTextColor="?attr/colorSecondary" />
+
+        <com.ruslan.hlushan.core.ui.api.view.MenuItemLayout
+            android:id="@+id/settings_menu_screen_game_instruction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_icon="@drawable/game_settings_ui_ic_functions_white_24dp"
+            app:item_title="@string/game_settings_ui_game_instruction"
+            app:titleTextColor="?attr/colorSecondary" />
+
+        <com.ruslan.hlushan.core.ui.api.view.MenuItemLayout
+            android:id="@+id/settings_menu_screen_game_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_icon="@drawable/game_settings_ui_ic_functions_white_24dp"
+            app:item_title="@string/game_settings_ui_top"
+            app:titleTextColor="?attr/colorSecondary" />
+
+        <com.ruslan.hlushan.core.ui.api.view.MenuItemLayout
+            android:id="@+id/settings_menu_screen_about_app"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_icon="@drawable/game_settings_ui_ic_info_outline_white_24dp"
+            app:item_title="@string/game_settings_ui_about_app"
+            app:titleTextColor="?attr/colorSecondary" />
+
+    </LinearLayout>
+
+</ScrollView>

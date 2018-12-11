@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="game_storage_impl_sync_notification_channel_name">Syncing with remote</string>
+    <string name="game_storage_impl_sync_notification_channel_description">Syncing with remote</string>
+    <string name="game_storage_impl_sync_notification_title">Syncing with remote</string>
+    <string name="game_storage_impl_sync_notification_message">Syncing with remote</string>
+    <string name="game_storage_impl_cancel_sync">Cancel</string>
+</resources>

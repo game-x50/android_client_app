@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
+
+    <style name="Game.PlayUi.PlayScreen.Texts" parent="">
+        <item name="android:layout_height">@dimen/default_2_padding</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">2</item>
+        <item name="autoSizeTextType">uniform</item>
+    </style>
+
+    <style name="Game.PlayUi.PlayScreen.Texts.Big" parent="Game.PlayUi.PlayScreen.Texts">
+        <item name="autoSizeMinTextSize">14sp</item>
+        <item name="autoSizeMaxTextSize">24sp</item>
+    </style>
+
+    <style name="Game.PlayUi.PlayScreen.Texts.Small" parent="Game.PlayUi.PlayScreen.Texts">
+        <item name="autoSizeMinTextSize">10sp</item>
+        <item name="autoSizeMaxTextSize">16sp</item>
+    </style>
+
+</resources>

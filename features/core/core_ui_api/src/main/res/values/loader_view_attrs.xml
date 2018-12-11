@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LoaderView">
+        <attr name="availableLine" format="dimension"/>
+        <attr name="circlesRadius" format="dimension"/>
+        <attr name="circlesCount" format="integer"/>
+        <attr name="circlesColor" format="color|reference"/>
+        <attr name="stepPerInterval" format="dimension"/>
+        <attr name="updateIntervalMillis" format="integer"/>
+        <attr name="angleDegrees" format="integer"/>
+        <attr name="content_gravity">
+            <flag name="bottom" value="80"/>
+            <flag name="center" value="17"/>
+            <flag name="center_horizontal" value="1"/>
+            <flag name="center_vertical" value="16"/>
+            <flag name="left" value="3"/>
+            <flag name="right" value="5"/>/>
+            <flag name="top" value="48"/>
+        </attr>
+        <attr name="textSize" format="dimension"/>
+        <attr name="textColor" format="color|reference"/>
+        <attr name="text" format="string"/>
+    </declare-styleable>
+</resources>

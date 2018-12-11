@@ -1,0 +1,45 @@
+apply plugin: Plugins.kotlinAndroid
+
+//todo: investigate why not works:
+// apply from: rootProject.ext[GradleExtraArgs.baseKotlin]
+apply from: rootProject.ext[GradleExtraArgs.androidLinters]
+
+android {
+
+    compileSdkVersion = ApplicationConfigs.compileSdkVersion
+    buildToolsVersion = ApplicationConfigs.buildToolsVersion
+
+    defaultConfig {
+        targetSdkVersion(ApplicationConfigs.targetSdkVersion)
+        minSdkVersion(ApplicationConfigs.minSdkVersion)
+
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    packagingOptions {
+        exclude "META-INF/DEPENDENCIES.txt"
+        exclude "META-INF/DEPENDENCIES"
+        exclude "META-INF/dependencies.txt"
+        exclude "META-INF/LICENSE.txt"
+        exclude "META-INF/LICENSE"
+        exclude "META-INF/license.txt"
+        exclude "META-INF/LGPL2.1"
+        exclude "META-INF/NOTICE.txt"
+        exclude "META-INF/NOTICE"
+        exclude "META-INF/notice.txt"
+        exclude "META-INF/rxjava.properties"
+    }
+
+    dexOptions {
+        javaMaxHeapSize = "4g"
+    }
+}

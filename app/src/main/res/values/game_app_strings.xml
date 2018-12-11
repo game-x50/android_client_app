@@ -1,0 +1,4 @@
+<resources>
+    <string name="game_app_play_tab_title">Play</string>
+    <string name="game_app_settings_tab_title">Settings</string>
+</resources>

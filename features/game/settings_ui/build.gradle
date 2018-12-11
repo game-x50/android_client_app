@@ -1,0 +1,44 @@
+apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
+apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
+
+apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
+apply from: rootProject.ext[GradleExtraArgs.viewBinding]
+
+def localizationFolder = rootProject.ext[GradleExtraArgs.localizationFolder]
+
+def gameSettingsUiLibraryVersionName = "1"
+def gameSettingsUiLibraryVersionCode = 1
+
+def languagesResDirectory = "$localizationFolder/res-languages"
+
+android {
+    defaultConfig {
+        versionCode = gameSettingsUiLibraryVersionCode
+        versionName = gameSettingsUiLibraryVersionName
+    }
+
+    sourceSets {
+        main.res.srcDirs += languagesResDirectory
+        test.resources.srcDirs += "$languagesResDirectory/raw"
+    }
+
+    resourcePrefix("game_settings_ui_")
+}
+
+dependencies {
+    compileOnly(project(LocalGradleProjects.coreApi))
+    compileOnly(project(LocalGradleProjects.extensions))
+    compileOnly(project(LocalGradleProjects.androidExtensions))
+    compileOnly(project(LocalGradleProjects.coreUiApi))
+
+    compileOnly(Deps.threeTenBp)
+
+    compileOnly(Deps.rxJava2)
+
+    compileOnly(Deps.supportAppCompat)
+    compileOnly(Deps.supportDesign)
+    compileOnly(Deps.constraintLayout)
+    compileOnly(Deps.recyclerView)
+
+    compileOnly(Deps.cicerone)
+}

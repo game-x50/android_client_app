@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.ruslan.hlushan.game.play.ui.view.GameView
+        android:id="@+id/play_screen_game_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/play_screen_played_time_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/play_screen_center_guideline"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/play_screen_played_time_text"
+        style="@style/Game.PlayUi.PlayScreen.Texts.Big"
+        android:layout_width="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/play_screen_show_available_numbers_btn"
+        app:layout_constraintEnd_toStartOf="@+id/play_screen_center_guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="1:00" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/play_screen_total_score_text"
+        style="@style/Game.PlayUi.PlayScreen.Texts.Big"
+        android:layout_width="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/play_screen_played_time_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/play_screen_center_guideline"
+        tools:text="Total score 123456" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/play_screen_show_available_numbers_btn"
+        style="@style/Game.PlayUi.PlayScreen.Texts.Small"
+        android:layout_width="0dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:text="@string/game_play_ui_show_available_numbers"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/play_screen_center_guideline"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/play_screen_show_combo_sums_btn"
+        style="@style/Game.PlayUi.PlayScreen.Texts.Small"
+        android:layout_width="0dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:text="@string/game_play_ui_show_combo_sums"
+        app:layout_constraintBottom_toBottomOf="@+id/play_screen_show_available_numbers_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/play_screen_center_guideline" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

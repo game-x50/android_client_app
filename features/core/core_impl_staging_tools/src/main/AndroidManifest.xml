@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ruslan.hlushan.core.impl.tools">
+
+    <application>
+        <activity android:name="com.github.pedrovgs.lynx.LynxActivity" />
+    </application>
+</manifest>

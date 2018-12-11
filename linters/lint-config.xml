@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="MissingTranslation" severity="ignore" /><!-- TODO: temp and should be removed -->
+    <issue id="ObsoleteLintCustomCheck" severity="ignore" /><!-- TODO: temp and should be removed, false posite checks; run it time to time-->
+    <issue id="IconMissingDensityFolder" severity="ignore" /><!-- TODO: temp and should be removed, false posite checks; run it time to time-->
+
+    <issue id="RtlEnabled" severity="warning">
+        <ignore path="src/main/AndroidManifest.xml" />
+    </issue>
+
+    <issue id="ResourceName">
+        <ignore regexp="ic_launcher.png" />
+        <ignore regexp="ic_launcher_round.png" />
+
+        <ignore regexp="keep.xml" />
+
+        <ignore regexp="ic_belarus.xml" />
+        <ignore regexp="ic_france.xml" />
+        <ignore regexp="ic_germany.xml" />
+        <ignore regexp="ic_italy.xml" />
+        <ignore regexp="ic_poland.xml" />
+        <ignore regexp="ic_portugal.xml" />
+        <ignore regexp="ic_russia.xml" />
+        <ignore regexp="ic_spain.xml" />
+        <ignore regexp="ic_united_kingdom.xml" />
+
+        <ignore regexp="languages.json" />
+    </issue>
+</lint>

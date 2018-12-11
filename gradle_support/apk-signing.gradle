@@ -1,0 +1,20 @@
+apply from: rootProject.ext[GradleExtraArgs.projectPropertiesRead]
+
+android {
+    signingConfigs {
+
+        debug {
+            storeFile = file("${project.rootDir}/keystore/debug_game.jks")
+            storePassword = DEBUG_STORE_PASSWORD
+            keyAlias = DEBUG_KEY_ALIAS
+            keyPassword = DEBUG_KEY_PASSWORD
+        }
+
+        release {
+            storeFile = file("${project.rootDir}/app/release_game.jks")
+            storePassword = getProjectProperty("RELEASE_STORE_PASSWORD")
+            keyAlias = getProjectProperty("RELEASE_KEY_ALIAS")
+            keyPassword = getProjectProperty("RELEASE_KEY_PASSWORD")
+        }
+    }
+}

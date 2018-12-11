@@ -1,0 +1,53 @@
+apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
+apply from: rootProject.ext[GradleExtraArgs.androidAllBuildVariants]
+
+apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
+apply from: rootProject.ext[GradleExtraArgs.kotlinxSerilization]
+
+def coreImplLibraryVersionName = '1'
+def coreImplLibraryVersionCode = 1
+
+def proguardRulesFile = "proguard-rules-core_impl.pro"
+
+android {
+
+    defaultConfig {
+        versionCode = coreImplLibraryVersionCode
+        versionName = coreImplLibraryVersionName
+
+        consumerProguardFiles(proguardRulesFile)
+    }
+
+    sourceSets {
+        debug {
+            java.srcDirs += "src/debug_tools/java"
+        }
+        staging {
+            java.srcDirs += "src/staging_tools/java"
+        }
+        release {
+            java.srcDirs += "src/release_tools/java"
+        }
+    }
+
+    resourcePrefix("core_impl_")
+}
+
+dependencies {
+    compileOnly(project(LocalGradleProjects.extensions))
+    compileOnly(project(LocalGradleProjects.androidExtensions))
+    compileOnly(project(LocalGradleProjects.coreApi))
+    compileOnly(project(LocalGradleProjects.androidCoreApi))
+    compileOnly(project(LocalGradleProjects.storage))
+
+    debugApi(project(LocalGradleProjects.coreApiDebugTools))
+    stagingApi(project(LocalGradleProjects.coreApiStagingTools))
+
+    debugImplementation(project(LocalGradleProjects.coreImplDebugTools))
+    stagingImplementation(project(LocalGradleProjects.coreImplStagingTools))
+
+    implementation(Deps.rxJava2)
+    implementation(Deps.rxJava2Android)
+
+    compileOnly(Deps.supportAppCompat)
+}

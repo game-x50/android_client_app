@@ -1,0 +1,17 @@
+def lintersConfigFolder = rootProject.ext[GradleExtraArgs.lintersConfigFolder]
+
+android {
+
+    lintOptions {
+        lintConfig = file("${lintersConfigFolder}lint-config.xml")
+
+        checkDependencies = true
+        checkTestSources = true
+//        checkGeneratedSources = true
+
+        warningsAsErrors = true
+        abortOnError = true
+
+        checkReleaseBuilds = false
+    }
+}

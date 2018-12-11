@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="MenuItemLayout">
+        <attr name="item_hint" format="reference"/>
+        <attr name="item_title" format="reference"/>
+        <attr name="item_icon" format="reference"/>
+        <attr name="titleTextColor" format="color|reference"/>
+        <attr name="arrowColor" format="color|reference"/>
+        <attr name="hintTextColor" format="color|reference"/>
+        <attr name="backgroundImageDrawable" format="reference"/>
+        <attr name="enableTitleAnimation" format="boolean"/>
+    </declare-styleable>
+
+</resources>

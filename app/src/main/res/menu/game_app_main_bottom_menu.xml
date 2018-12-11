@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/tab_play"
+        android:icon="@drawable/game_app_ic_extension_white_24dp"
+        android:title="@string/game_app_play_tab_title"/>
+
+    <item
+        android:id="@+id/tab_settings"
+        android:icon="@drawable/game_app_ic_settings_white_24dp"
+        android:title="@string/game_app_settings_tab_title"/>
+</menu>

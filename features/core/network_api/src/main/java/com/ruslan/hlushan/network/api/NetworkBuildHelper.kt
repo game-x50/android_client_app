@@ -1,0 +1,22 @@
+package com.ruslan.hlushan.network.api
+
+import android.content.Context
+import com.ruslan.hlushan.core.api.log.AppLogger
+import com.ruslan.hlushan.core.api.utils.InitAppConfig
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+
+interface NetworkBuildHelper {
+
+    fun provideRetrofitBuilder(okHttpClient: OkHttpClient): Retrofit.Builder
+
+    @SuppressWarnings("LongParameterList")
+    fun provideOkHttpClientBuilder(
+            initAppConfig: InitAppConfig,
+            networkConfig: NetworkConfig,
+            baseUrl: String,
+            cacheFolderName: String,
+            appLogger: AppLogger,
+            context: Context
+    ): OkHttpClient.Builder
+}

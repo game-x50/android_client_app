@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.ruslan.hlushan.core.ui.api.view.SquareRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/item_language_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/item_language_name"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/ic_portugal" />
+
+        <TextView
+            android:id="@+id/item_language_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:padding="@dimen/default_padding"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            tools:text="Portugal'skii" />
+
+    </com.ruslan.hlushan.core.ui.api.view.SquareRelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,129 @@
+apply from: rootProject.ext[GradleExtraArgs.baseAndroidApp]
+
+apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
+apply from: rootProject.ext[GradleExtraArgs.viewBinding]
+apply from: rootProject.ext[GradleExtraArgs.applicationLeakCanaryTool]
+
+apply from: rootProject.ext[GradleExtraArgs.apkSigning]
+
+apply from: rootProject.ext[GradleExtraArgs.projectPropertiesRead]
+
+apply plugin: Plugins.crashlytics
+
+android {
+
+    buildFeatures {
+        buildConfig = true
+    }
+
+    defaultConfig {
+        applicationId = "com.ruslan.hlushan.game"
+        versionCode = 1
+        versionName = "1.0"
+
+        buildConfigField("String", "DEFAULT_LANGUAGE_NON_FULL_CODE", "\"${ApplicationConfigs.defaultLanguageNonFullCode}\"")
+        buildConfigField("String[]", "AVAILABLE_LANGUAGES_FULL_CODES", "{" + ApplicationConfigs.availableLanguagesFullCodes.collect {
+            "\"${it}\""
+        }.join(",") + "}")
+
+        buildConfigField("String", "BASE_API_URL", getProjectProperty("BASE_API_URL"))
+
+        resConfigs(ApplicationConfigs.applicationLanguagesNonFullCodes)
+
+        multiDexEnabled = true
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField("String", "APP_TAG", "\"GAME_APP_DEBUG\"")
+            buildConfigField("boolean", "IS_LOGCAT_ENABLED", "true")
+            buildConfigField("boolean", "IS_CRASHLYTICS_ENABLED", "false")
+
+            firebaseCrashlytics.mappingFileUploadEnabled = false
+
+            versionNameSuffix = "-${BuildTypes.debug}"
+            applicationIdSuffix = ".${BuildTypes.debug}"
+
+            signingConfig = signingConfigs.debug
+        }
+
+        release {
+            proguardFiles(getDefaultProguardFile(ApplicationConfigs.defaultProguardFile))
+            proguardFiles(fileTree(rootProject.ext[GradleExtraArgs.proguardConfigsFolder]).asList().toArray())
+
+            buildConfigField("String", "APP_TAG", "\"GAME_APP_RELEASE\"")
+            buildConfigField("boolean", "IS_LOGCAT_ENABLED", "false")
+            buildConfigField("boolean", "IS_CRASHLYTICS_ENABLED", "true")
+
+            firebaseCrashlytics.mappingFileUploadEnabled = true
+
+            signingConfig = signingConfigs.release
+        }
+
+        staging {
+            initWith(buildTypes.release)
+
+            versionNameSuffix = "-${BuildTypes.staging}"
+            applicationIdSuffix = ".${BuildTypes.staging}"
+
+            signingConfig = signingConfigs.debug
+        }
+    }
+
+    resourcePrefix("game_app_")
+}
+
+dependencies {
+    implementation(project(LocalGradleProjects.extensions))
+    implementation(project(LocalGradleProjects.androidExtensions))
+    implementation(project(LocalGradleProjects.coreApi))
+    implementation(project(LocalGradleProjects.androidCoreApi))
+    implementation(project(LocalGradleProjects.coreImpl))
+
+    implementation(project(LocalGradleProjects.parsingImpl))
+
+    implementation(project(LocalGradleProjects.coreUiApi))
+    implementation(project(LocalGradleProjects.coreUiImpl))
+
+    compileOnly(project(LocalGradleProjects.networkApi))
+    implementation(project(LocalGradleProjects.networkImpl))
+
+    implementation(project(LocalGradleProjects.storage))
+
+    implementation(project(LocalGradleProjects.workManagerExtensions))
+
+    implementation(project(LocalGradleProjects.gameCoreApi))
+
+    implementation(project(LocalGradleProjects.gameAuthImpl))
+    implementation(project(LocalGradleProjects.gameStorageImpl))
+    implementation(project(LocalGradleProjects.gameTopImpl))
+
+    implementation(project(LocalGradleProjects.gameAuthUi))
+    implementation(project(LocalGradleProjects.gamePlayUi))
+    implementation(project(LocalGradleProjects.gameSettingsUi))
+    implementation(project(LocalGradleProjects.gameTopUi))
+
+    compileOnly(Deps.rxJava2)
+    implementation(project(LocalGradleProjects.rxjava2Extensions))
+
+    compileOnly(Deps.threeTenBp)
+    implementation(project(LocalGradleProjects.threeTenExtensions))
+    implementation(Deps.threeTenBpAndroid)
+
+    implementation(Deps.supportAppCompat)
+    implementation(Deps.supportDesign)
+    implementation(Deps.swipeRefreshLayout)
+    implementation(Deps.constraintLayout)
+
+    implementation(Deps.edgeToEdgeDecorator)
+
+    implementation(Deps.dagger2)
+
+    implementation(Deps.cicerone)
+
+    implementation platform(Deps.firebaseBom)
+    implementation(Deps.firebaseAnalytics)//todo because of firebaseAuth, crashlytics require
+    implementation(Deps.crashlytics)
+}
+
+apply plugin: Plugins.googleServices

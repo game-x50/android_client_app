@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="game_settings_ui_app_language">Application language</string>
+    <string name="game_settings_ui_app_theme">Application theme</string>
+    <string name="game_settings_ui_my_profile">My profile</string>
+    <string name="game_settings_ui_game_instruction">Game instruction</string>
+    <string name="game_settings_ui_top">Top</string>
+    <string name="game_settings_ui_about_app">About app</string>
+    <string name="game_settings_ui_theme_dark">Dark</string>
+    <string name="game_settings_ui_theme_light">Light</string>
+    <string name="game_settings_ui_theme_save_battery">Save battery</string>
+    <string name="game_settings_ui_theme_system_default">System default</string>
+</resources>

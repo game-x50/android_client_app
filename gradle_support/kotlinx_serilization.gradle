@@ -1,0 +1,5 @@
+apply plugin: Plugins.kotlinxSerilization
+
+dependencies {
+    compileOnly(project(LocalGradleProjects.parsingImpl))
+}

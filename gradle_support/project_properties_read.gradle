@@ -1,0 +1,9 @@
+Properties localProperties = new Properties()
+
+if (project.rootProject.file('local.properties').canRead()) {
+    localProperties.load(project.rootProject.file("local.properties").newDataInputStream())
+}
+
+ext.getProjectProperty = { propertyName ->
+    return (localProperties.getProperty(propertyName) ?: System.getenv(propertyName))
+}

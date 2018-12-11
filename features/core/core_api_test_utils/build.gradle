@@ -1,0 +1,6 @@
+apply from: rootProject.ext[GradleExtraArgs.baseKotlinLibrary]
+
+dependencies {
+    compileOnly(project(LocalGradleProjects.coreApi))
+    compileOnly(Deps.rxJava2)
+}

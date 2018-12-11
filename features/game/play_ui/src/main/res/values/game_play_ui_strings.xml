@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="game_play_ui_save_result_question_template">Save result with total score %1$d?</string>
+    <string name="game_play_ui_result_can_be_lose">Result can be lose.</string>
+    <string name="game_play_ui_delete_game_question">Delete game?</string>
+    <string name="game_play_ui_game_with_total_score_will_be_deleted_template" tools:ignore="PluralsCandidate">Game with total score = %1$d will be deleted.</string>
+    <string name="game_play_ui_order_type_switch_text_asc">Ascending</string>
+    <string name="game_play_ui_order_type_switch_text_desc">Descending</string>
+    <string name="game_play_ui_game_records_order_variant_by_total_sum">by_total_sum</string><!--TODO-->
+    <string name="game_play_ui_game_records_order_variant_by_last_modified">by_last_modified</string><!--TODO-->
+    <string name="game_play_ui_apply_filters">Apply</string>
+    <string name="game_play_ui_total_score_template">Total score %1$d</string>
+    <string name="game_play_ui_show_available_numbers">Show available numbers</string>
+    <string name="game_play_ui_show_combo_sums">Show combo sums</string>
+</resources>

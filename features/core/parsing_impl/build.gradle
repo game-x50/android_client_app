@@ -1,0 +1,9 @@
+apply from: rootProject.ext[GradleExtraArgs.baseKotlinLibrary]
+
+dependencies {
+    api(Deps.kotlinxSerializationCore)
+
+    compileOnly(Deps.threeTenBp)
+
+    implementation(Deps.kotlinxSerializationJson)
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="game_auth_ui_email">E-mail</string>
+    <string name="game_auth_ui_nick_name">Nickname</string>
+    <string name="game_auth_ui_login">LogIn</string>
+    <string name="game_auth_ui_logout">LogOut</string>
+    <string name="game_auth_ui_register">Register</string>
+    <string name="game_auth_ui_password">Password</string>
+    <string name="game_auth_ui_confirm_password">Confirm password</string>
+    <string name="game_auth_ui_old_password">Old password</string>
+    <string name="game_auth_ui_new_password">New password</string>
+    <string name="game_auth_ui_confirm_new_password">Confirm new password</string>
+    <string name="game_auth_ui_forgot_password">Forgot password</string>
+    <string name="game_auth_ui_send_reset_password_email">Send reset password</string>
+    <string name="game_auth_ui_reset_password_email_sent_dialog_title">Send reset password</string>
+    <string name="game_auth_ui_reset_password_email_sent_dialog_message">Send reset password %1$s</string>
+    <string name="game_auth_ui_reset_password_email_sent_dialog_button">Got it</string>
+    <string name="game_auth_ui_update_user_profile">Update profile</string>
+    <string name="game_auth_ui_user_with_such_credentials_already_exists">User with such credentials already exists.</string>
+    <string name="game_auth_ui_invalid_user_credentials">Invalid user credentials.</string>
+    <string name="game_auth_ui_nick_name_input_error">nick_name_input_error</string><!--TODO-->
+    <string name="game_auth_ui_email_input_error">email_input_error</string><!--TODO-->
+    <string name="game_auth_ui_password_input_error">password_input_error</string><!--TODO-->
+    <string name="game_auth_ui_password_confirm_input_error">password_confirm_input_error</string><!--TODO-->
+    <string name="game_auth_ui_confirm_logout_title">confirm_logout_title</string><!--TODO-->
+    <string name="game_auth_ui_confirm_logout_message_question">Are sure?</string><!--TODO-->
+    <string name="game_auth_ui_confirm_logout_with_not_synched_records_message_template">Are sure: %1$d?. BlaBlaBlaBla</string><!--TODO-->
+</resources>

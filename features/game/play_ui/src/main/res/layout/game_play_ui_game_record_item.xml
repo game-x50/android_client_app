@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?attr/selectableItemBackground"
+    tools:ignore="UnusedAttribute">
+
+    <TextView
+        android:id="@+id/game_record_item_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/default_1_2_padding"
+        android:textAppearance="?attr/textAppearanceBody2"
+        app:layout_constraintEnd_toStartOf="@+id/game_record_item_delete_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="1234" />
+
+    <ImageView
+        android:id="@+id/game_record_item_delete_btn"
+        android:layout_width="@dimen/default_4_padding"
+        android:layout_height="@dimen/default_4_padding"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/game_play_ui_ic_delete_forever_white_24dp"
+        app:tint="?attr/colorSecondary"
+        tools:ignore="ContentDescription,VectorDrawableCompat" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

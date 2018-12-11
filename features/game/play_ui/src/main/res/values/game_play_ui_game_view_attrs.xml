@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <declare-styleable name="GameView" tools:ignore="ResourceName">
+        <attr name="textColorOnTransparent" format="color|reference" />
+        <attr name="gridColor" format="color|reference" />
+        <attr name="gameSize">
+            <flag name="small" value="9"/>
+            <flag name="medium" value="16"/>
+            <flag name="big" value="25"/>
+        </attr>
+    </declare-styleable>
+
+</resources>

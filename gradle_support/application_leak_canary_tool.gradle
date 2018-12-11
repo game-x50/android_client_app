@@ -1,0 +1,8 @@
+apply plugin: Plugins.leakCanaryDeobfuscation
+
+leakCanary {
+    // LeakCanary needs to know which variants have obfuscation turned on
+    filterObfuscatedVariants { variant ->
+        variant.buildType.name == BuildTypes.staging
+    }
+}

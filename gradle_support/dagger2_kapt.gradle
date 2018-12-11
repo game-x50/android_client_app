@@ -1,0 +1,6 @@
+apply from: rootProject.ext[GradleExtraArgs.kapt]
+
+dependencies {
+    kapt(Deps.dagger2Compiler)
+    compileOnly(Deps.dagger2)
+}

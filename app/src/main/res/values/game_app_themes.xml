@@ -1,0 +1,50 @@
+<resources>
+
+    <style name="game_app_Theme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/game_app_colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/game_app_colorPrimaryVariant</item>
+        <item name="colorOnPrimary">@color/game_app_colorOnPrimary</item>
+        <item name="colorSecondary">@color/game_app_colorSecondary</item>
+        <item name="colorSecondaryVariant">@color/game_app_colorSecondaryVariant</item>
+        <item name="colorOnSecondary">@color/game_app_colorOnSecondary</item>
+        <item name="colorError">@color/game_app_colorError</item>
+        <item name="colorOnError">@color/game_app_colorOnError</item>
+        <item name="colorSurface">@color/game_app_colorSurface</item>
+        <item name="colorOnSurface">@color/game_app_colorOnSurface</item>
+        <item name="android:colorBackground">@color/game_app_background</item>
+        <item name="colorOnBackground">@color/game_app_colorOnBackground</item>
+
+        <item name="materialButtonStyle">@style/game_app_Theme.MaterialButton</item>
+
+        <item name="textInputStyle">@style/game_app_Theme.TextInput</item>
+
+        <item name="materialCardViewStyle">@style/game_app_Theme.MaterialCard</item>
+
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:textColorHint">@color/game_app_textColorHint</item>
+
+        <item name="textAppearanceButton">@style/game_app_Theme.TextAppearance.Button</item>
+
+        <item name="textAppearanceHeadline1">@style/game_app_Theme.TextAppearance.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/game_app_Theme.TextAppearance.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/game_app_Theme.TextAppearance.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/game_app_Theme.TextAppearance.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/game_app_Theme.TextAppearance.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/game_app_Theme.TextAppearance.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/game_app_Theme.TextAppearance.Subtitle1</item>
+        <item name="textAppearanceBody1">@style/game_app_Theme.TextAppearance.Body1</item>
+        <item name="textAppearanceBody2">@style/game_app_Theme.TextAppearance.Body2</item>
+        <item name="textAppearanceCaption">@style/game_app_Theme.TextAppearance.Caption</item>
+    </style>
+
+    <style name="game_app_Theme.Splash" parent="game_app_Theme">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowBackground">@drawable/game_app_bg_splash_screen</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+</resources>

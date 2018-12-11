@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/v_root_activity_file_logs"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="HardcodedText">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/activity_file_logs_swipe_refresh"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/activity_file_logs_copy_logs_as_single_external_storage_file_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/activity_file_logs_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            tools:listitem="@layout/core_ui_impl_staging_tools_file_log_item" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <Button
+        android:id="@+id/activity_file_logs_copy_logs_as_single_external_storage_file_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Copy logs as single external storage file"
+        app:layout_constraintBottom_toTopOf="@+id/activity_file_logs_delete_log_files_btn"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/activity_file_logs_single_file_logs_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="File name"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/activity_file_logs_copy_logs_as_single_external_storage_file_btn"
+        app:layout_constraintTop_toTopOf="@+id/activity_file_logs_copy_logs_as_single_external_storage_file_btn" />
+
+    <Button
+        android:id="@+id/activity_file_logs_delete_log_files_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Delete Log Files"
+        app:layout_constraintBottom_toTopOf="@+id/activity_file_logs_big_log_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/activity_file_logs_big_log_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Big LOG"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

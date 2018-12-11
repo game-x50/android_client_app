@@ -1,0 +1,39 @@
+<resources>
+
+    <style name="game_app_Theme.MaterialButton" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="backgroundTint">?attr/colorPrimary</item>
+        <item name="android:padding">@dimen/default_3_4_padding</item>
+        <item name="shapeAppearance">@style/game_app_Theme.ShapeAppearance.Button</item>
+    </style>
+
+    <style name="game_app_Theme.ShapeAppearance.Button" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/default_padding</item>
+    </style>
+
+    <style name="game_app_Theme.TextInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">@dimen/default_3_4_padding</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/default_3_4_padding</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/default_3_4_padding</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/default_3_4_padding</item>
+        <item name="materialThemeOverlay">@style/game_app_Theme.MaterialThemeOverlay.TextInput</item>
+    </style>
+
+    <style name="game_app_Theme.MaterialThemeOverlay.TextInput" parent="">
+        <item name="editTextStyle">@style/game_app_Theme.TextInput.EditText</item>
+    </style>
+
+    <style name="game_app_Theme.TextInput.EditText" parent="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="android:paddingTop">@dimen/default_3_4_padding</item>
+        <item name="android:paddingBottom">@dimen/default_3_4_padding</item>
+    </style>
+
+    <style name="game_app_Theme.MaterialCard" parent="Widget.MaterialComponents.CardView">
+        <item name="android:foreground">?attr/selectableItemBackgroundBorderless</item>
+        <item name="cardCornerRadius">@dimen/default_1_4_padding</item>
+        <item name="cardElevation">@dimen/default_1_2_padding</item>
+        <item name="cardPreventCornerOverlap">false</item>
+        <item name="cardUseCompatPadding">true</item>
+    </style>
+
+</resources>

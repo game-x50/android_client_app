@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/select_order_game_records_dialog_apply_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="@string/game_play_ui_apply_filters" />
+
+        <RadioGroup
+            android:id="@+id/select_order_game_records_dialog_order_type_radio_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/select_order_game_records_dialog_order_type_asc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/game_play_ui_order_type_switch_text_asc" />
+
+            <RadioButton
+                android:id="@+id/select_order_game_records_dialog_order_type_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/game_play_ui_order_type_switch_text_desc" />
+
+        </RadioGroup>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/select_order_game_records_dialog_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:itemCount="3"
+            tools:layout_gravity="center"
+            tools:listitem="@layout/game_play_ui_game_records_order_variant_item" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

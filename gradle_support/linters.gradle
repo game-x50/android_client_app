@@ -1,0 +1,42 @@
+apply plugin: Plugins.detekt
+
+def lintersConfigFolder = rootProject.ext[GradleExtraArgs.lintersConfigFolder]
+def reportsFolder = "build/reports/"
+
+detekt {
+    parallel = true
+    failFast = false
+    buildUponDefaultConfig = true
+
+    config = files("${lintersConfigFolder}detekt-config.yml")
+
+    reports {
+        xml {
+            enabled = false
+        }
+        html {
+            enabled = false
+        }
+        txt {
+            enabled = true
+            destination = file("${reportsFolder}detekt.txt")
+        }
+    }
+
+    input = files(
+            subprojects
+                    .collect { pr -> pr.projectDir }
+                    .collectMany { dir ->
+                        [
+                                "${dir}/src/main/java",
+                                "${dir}/src/main/kotlin",
+                                "${dir}/src/test/java",
+                                "${dir}/src/androidTest/java"
+                        ]
+                    }
+    )
+}
+
+dependencies {
+    detektPlugins(Plugins.detektFormattingPlugin)
+}

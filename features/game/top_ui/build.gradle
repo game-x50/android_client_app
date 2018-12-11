@@ -1,0 +1,36 @@
+apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
+apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
+
+apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
+apply from: rootProject.ext[GradleExtraArgs.viewBinding]
+
+def gameTopUiLibraryVersionName = "1"
+def gameTopUiLibraryVersionCode = 1
+
+android {
+    defaultConfig {
+        versionCode = gameTopUiLibraryVersionCode
+        versionName = gameTopUiLibraryVersionName
+    }
+
+    resourcePrefix("game_top_ui_")
+}
+
+dependencies {
+    compileOnly(project(LocalGradleProjects.coreApi))
+    compileOnly(project(LocalGradleProjects.extensions))
+    compileOnly(project(LocalGradleProjects.androidExtensions))
+    compileOnly(project(LocalGradleProjects.coreUiApi))
+    compileOnly(project(LocalGradleProjects.gameCoreApi))
+
+    compileOnly(Deps.threeTenBp)
+
+    compileOnly(Deps.rxJava2)
+
+    compileOnly(Deps.supportAppCompat)
+    compileOnly(Deps.supportDesign)
+    compileOnly(Deps.constraintLayout)
+    compileOnly(Deps.swipeRefreshLayout)
+
+    compileOnly(Deps.cicerone)
+}

@@ -1,0 +1,219 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "5cd1123407e4da36b040e97e07ed6ad2",
+    "entities": [
+      {
+        "tableName": "game_records",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`record_id` INTEGER PRIMARY KEY AUTOINCREMENT, `gameSize` INTEGER NOT NULL, `total_sum` INTEGER NOT NULL, `totalPlayed` INTEGER NOT NULL, `remote_record_id` TEXT, `remote_action_id` TEXT, `remote_created_timestamp` INTEGER, `last_remote_synced_timestamp` INTEGER, `local_action_type` TEXT, `last_local_modified_timestamp` INTEGER NOT NULL, `local_action_id` TEXT, `local_create_id` TEXT, `modifying_now` INTEGER NOT NULL, `sync_status` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "recordId",
+            "columnName": "record_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "gameSize",
+            "columnName": "gameSize",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalSum",
+            "columnName": "total_sum",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalPlayed",
+            "columnName": "totalPlayed",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "remoteId",
+            "columnName": "remote_record_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "remoteActionId",
+            "columnName": "remote_action_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "remoteCreatedTimestamp",
+            "columnName": "remote_created_timestamp",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "lastRemoteSyncedTimestamp",
+            "columnName": "last_remote_synced_timestamp",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "localActionType",
+            "columnName": "local_action_type",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "lastLocalModifiedTimestamp",
+            "columnName": "last_local_modified_timestamp",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "localActionId",
+            "columnName": "local_action_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "localCreateId",
+            "columnName": "local_create_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "modifyingNow",
+            "columnName": "modifying_now",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "syncStatus",
+            "columnName": "sync_status",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "record_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "GameStateDbLastRemoteCreatedTimestampIndex",
+            "unique": false,
+            "columnNames": [
+              "remote_created_timestamp"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `GameStateDbLastRemoteCreatedTimestampIndex` ON `${TABLE_NAME}` (`remote_created_timestamp`)"
+          },
+          {
+            "name": "GameStateDbLastRemoteSyncedTimestampIndex",
+            "unique": false,
+            "columnNames": [
+              "last_remote_synced_timestamp"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `GameStateDbLastRemoteSyncedTimestampIndex` ON `${TABLE_NAME}` (`last_remote_synced_timestamp`)"
+          },
+          {
+            "name": "GameStateDbLastLocalModifiedTimestampIndex",
+            "unique": false,
+            "columnNames": [
+              "last_local_modified_timestamp"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `GameStateDbLastLocalModifiedTimestampIndex` ON `${TABLE_NAME}` (`last_local_modified_timestamp`)"
+          },
+          {
+            "name": "GameStateDbSyncStatusTimestampIndex",
+            "unique": false,
+            "columnNames": [
+              "sync_status"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `GameStateDbSyncStatusTimestampIndex` ON `${TABLE_NAME}` (`sync_status`)"
+          },
+          {
+            "name": "GameStateDbTotalSumIndex",
+            "unique": false,
+            "columnNames": [
+              "total_sum"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `GameStateDbTotalSumIndex` ON `${TABLE_NAME}` (`total_sum`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "matrix_and_new_items_state",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`record_id` INTEGER NOT NULL, `matrix_index` INTEGER NOT NULL, `matrix` TEXT NOT NULL, `newItems` TEXT NOT NULL, `totalSum` INTEGER NOT NULL, PRIMARY KEY(`record_id`, `matrix_index`), FOREIGN KEY(`record_id`) REFERENCES `game_records`(`record_id`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "recordId",
+            "columnName": "record_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "matrixIndex",
+            "columnName": "matrix_index",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "matrix",
+            "columnName": "matrix",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "newItems",
+            "columnName": "newItems",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalSum",
+            "columnName": "totalSum",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "record_id",
+            "matrix_index"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "MatrixAndNewItemsStateTableRecordIdIndex",
+            "unique": false,
+            "columnNames": [
+              "record_id"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `MatrixAndNewItemsStateTableRecordIdIndex` ON `${TABLE_NAME}` (`record_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "game_records",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "record_id"
+            ],
+            "referencedColumns": [
+              "record_id"
+            ]
+          }
+        ]
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5cd1123407e4da36b040e97e07ed6ad2')"
+    ]
+  }
+}

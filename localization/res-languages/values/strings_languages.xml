@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName,UnusedResources">
+    <string name="en_GB">English</string>
+    <string name="ru_RU">Русский</string>
+    <string name="fr_FR">Français</string>
+    <string name="es_ES">Español</string>
+    <string name="it_IT">Italiano</string>
+    <string name="pt_PT">Portuguesa</string>
+    <string name="de_DE">Deutsch</string>
+    <string name="pl_PL">Polski</string>
+    <string name="be_BY">Беларуская</string>
+</resources>

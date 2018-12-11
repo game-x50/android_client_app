@@ -1,0 +1,84 @@
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/menu_item_height">
+
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="@dimen/menu_item_icon_size"
+            android:layout_height="@dimen/menu_item_icon_size"
+            android:layout_marginStart="@dimen/default_padding"
+            android:padding="@dimen/default_1_4_padding"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="start"
+            android:maxLines="3"
+            android:paddingStart="@dimen/default_padding"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_right_icon"
+            app:layout_constraintStart_toEndOf="@+id/iv_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlSymmetry"
+            tools:text="title_text" />
+
+        <ImageView
+            android:id="@+id/iv_right_icon"
+            android:layout_width="@dimen/menu_item_icon_size"
+            android:layout_height="@dimen/menu_item_icon_size"
+            android:layout_marginStart="@dimen/default_1_2_padding"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/iv_arrow_next"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_hint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center_vertical|end"
+            android:maxLines="2"
+            android:paddingStart="@dimen/default_padding"
+            android:textAppearance="?attr/textAppearanceBody1"
+            app:layout_constraintEnd_toStartOf="@+id/iv_arrow_next"
+            app:layout_constraintStart_toEndOf="@+id/iv_icon"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            tools:ignore="RtlSymmetry"
+            tools:text="hint_text" />
+
+        <ImageView
+            android:id="@+id/iv_arrow_next"
+            android:layout_width="@dimen/menu_item_icon_size"
+            android:layout_height="@dimen/menu_item_icon_size"
+            android:layout_marginStart="@dimen/default_1_2_padding"
+            android:layout_marginLeft="@dimen/default_1_2_padding"
+            android:layout_marginEnd="@dimen/default_1_2_padding"
+            android:layout_marginRight="@dimen/default_1_2_padding"
+            android:background="@color/color_transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_keyboard_arrow_right_white_24dp"
+            tools:ignore="ContentDescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

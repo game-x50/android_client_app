@@ -1,0 +1,3 @@
+android.buildTypes.all { valiant ->
+    valiant.minifyEnabled = false
+}

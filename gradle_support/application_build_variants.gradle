@@ -1,0 +1,46 @@
+apply from: rootProject.ext[GradleExtraArgs.androidAllBuildVariants]
+
+android {
+
+    buildTypes {
+
+        debug {
+
+            splits.abi.enable = false
+            splits.density.enable = false
+            aaptOptions.cruncherEnabled = false
+
+            minifyEnabled = false
+            debuggable = true
+        }
+
+        release {
+            minifyEnabled = true
+            debuggable = false
+
+            shrinkResources = true
+        }
+
+        staging {
+            minifyEnabled = true
+            debuggable = false
+
+            shrinkResources = true
+        }
+    }
+
+//    variantFilter { variant ->
+//        def flavorsNames = variant.flavors*.name
+//
+//        def isDebugBuildType = (variant.buildType.name == BuildTypes.debug)
+//        def isDevFlavor = (flavorsNames.contains(ProductFlavors.dev))
+//
+//        setIgnore(isDebugBuildType ^ isDevFlavor)
+//    }
+
+    applicationVariants.all { variant ->
+        if (variant.buildType.name == BuildTypes.debug) {
+            variant.mergedFlavor.resourceConfigurations.add("xxhdpi")
+        }
+    }
+}

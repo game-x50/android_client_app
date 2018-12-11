@@ -1,0 +1,109 @@
+package com.ruslan.hlushan.game.auth.ui.profile
+
+import android.os.Bundle
+import android.view.View
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentFactory
+import com.github.terrakok.cicerone.androidx.FragmentScreen
+import com.ruslan.hlushan.android.extensions.addSystemPadding
+import com.ruslan.hlushan.android.extensions.getTrimmedText
+import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
+import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.ui.api.dialog.showSimpleProgress
+import com.ruslan.hlushan.core.ui.api.extensions.bindBaseViewModel
+import com.ruslan.hlushan.core.ui.api.extensions.bindViewBinding
+import com.ruslan.hlushan.core.ui.api.presentation.command.handleCommandQueue
+import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.BaseFragment
+import com.ruslan.hlushan.game.auth.ui.R
+import com.ruslan.hlushan.game.auth.ui.databinding.GameAuthUiUserProfileScreenBinding
+import com.ruslan.hlushan.game.auth.ui.di.getGameAuthUiComponent
+import com.ruslan.hlushan.game.auth.ui.observeConfirmPasswordInput
+import com.ruslan.hlushan.game.auth.ui.showAuthError
+import com.ruslan.hlushan.game.auth.ui.showNickNameInputError
+import com.ruslan.hlushan.game.auth.ui.showPasswordInputError
+import com.ruslan.hlushan.game.core.api.auth.dto.User
+
+/**
+ * @author Ruslan Hlushan on 2019-07-10
+ */
+internal class UserProfileFragment : BaseFragment(
+        layoutResId = R.layout.game_auth_ui_user_profile_screen
+), ConfirmLogOutDialog.LogOutConfirmedListener {
+
+    private val binding by bindViewBinding(GameAuthUiUserProfileScreenBinding::bind)
+
+    private val viewModel: UserProfileViewModel by bindBaseViewModel {
+        getGameAuthUiComponent().userProfileViewModelFactory().create(parentRouter)
+    }
+
+    @UiMainThread
+    override fun injectDagger2() = getGameAuthUiComponent().inject(this)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        view.addSystemPadding(top = true)
+
+        binding?.userProfileScreenConfirmNewPasswordInput?.observeConfirmPasswordInput(this::getNewPasswordTrimmedString)
+
+        binding?.userProfileScreenUpdateUserProfileBtn?.setThrottledOnClickListener {
+            viewModel.updateUserProfileWith(
+                    newNickname = binding?.userProfileScreenNickNameInput.getTrimmedText(),
+                    oldPassword = binding?.userProfileScreenOldPasswordInput.getTrimmedText(),
+                    newPassword = getNewPasswordTrimmedString(),
+            )
+        }
+
+        binding?.userProfileScreenLogoutBtn?.setThrottledOnClickListener { viewModel.checkForLogOut() }
+
+        this.handleCommandQueue(commandQueue = viewModel.commandsQueue, handler = this::handleCommand)
+    }
+
+    @UiMainThread
+    override fun oLogOutConfirmed() = viewModel.logOutConfirmed()
+
+    @UiMainThread
+    private fun handleCommand(command: UserProfileViewModel.Command) =
+            when (command) {
+                is UserProfileViewModel.Command.ShowSimpleProgress        -> showSimpleProgress(command.show)
+                is UserProfileViewModel.Command.ShowCurrentUser           -> showCurrentUser(command.currentUser)
+                is UserProfileViewModel.Command.ShowNickNameInputError    -> showNickNameInputError()
+                is UserProfileViewModel.Command.ShowNewPasswordInputError -> showNewPasswordInputError()
+                is UserProfileViewModel.Command.ShowOldPasswordInputError -> showOldPasswordInputError()
+                is UserProfileViewModel.Command.ShowConfirmLogOutDialog   -> showConfirmLogOutDialog(command.countNotSynchedRecords)
+                is UserProfileViewModel.Command.ShowAuthError             -> showAuthError(command.error)
+                is UserProfileViewModel.Command.ShowError                 -> showError(command.error)
+            }
+
+    @UiMainThread
+    private fun showCurrentUser(currentUser: User) {
+        binding?.userProfileScreenEmail?.text = currentUser.email
+        binding?.userProfileScreenNickNameInput?.editText?.setText(currentUser.nickname)
+    }
+
+    @UiMainThread
+    private fun showNickNameInputError() {
+        binding?.userProfileScreenNickNameInput?.showNickNameInputError()
+    }
+
+    @UiMainThread
+    private fun showNewPasswordInputError() {
+        binding?.userProfileScreenNewPasswordInput?.showPasswordInputError()
+    }
+
+    @UiMainThread
+    private fun showOldPasswordInputError() {
+        binding?.userProfileScreenOldPasswordInput?.showPasswordInputError()
+    }
+
+    @UiMainThread
+    private fun getNewPasswordTrimmedString(): String =
+            binding?.userProfileScreenNewPasswordInput.getTrimmedText()
+}
+
+internal class UserProfileScreen : FragmentScreen {
+
+    override val screenKey: String get() = "UserProfileScreen"
+
+    override fun createFragment(factory: FragmentFactory): Fragment = UserProfileFragment()
+}

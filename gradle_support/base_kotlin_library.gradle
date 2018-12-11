@@ -1,0 +1,3 @@
+apply plugin: Plugins.kotlin
+
+apply from: rootProject.ext[GradleExtraArgs.baseKotlin]

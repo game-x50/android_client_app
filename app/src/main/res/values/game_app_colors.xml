@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="game_app_colorPrimary">#02A593</color>
+    <color name="game_app_colorPrimaryVariant">#007C5E</color>
+    <color name="game_app_colorSecondary">#E91E63</color>
+    <color name="game_app_colorSecondaryVariant">#AC1148</color>
+    <color name="game_app_colorError">#FA1000</color>
+    <color name="game_app_statusBarColor">#662C2C2C</color>
+    <color name="game_app_textColorHint">#A8A8A8</color>
+</resources>

@@ -1,0 +1,10 @@
+android {
+    buildTypes {
+        single {
+        }
+    }
+
+    variantFilter { variant ->
+        setIgnore(variant.buildType.name != BuildTypes.single)
+    }
+}

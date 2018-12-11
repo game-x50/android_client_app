@@ -1,0 +1,23 @@
+apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
+apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
+
+def androidCoreApiLibraryVersionName = "1"
+def androidCoreApiLibraryVersionCode = 1
+
+android {
+    defaultConfig {
+        versionCode = androidCoreApiLibraryVersionCode
+        versionName = androidCoreApiLibraryVersionName
+    }
+}
+
+dependencies {
+    compileOnly(project(LocalGradleProjects.extensions))
+
+    api(Deps.androidCoreKtx)
+
+    compileOnly(Deps.supportAppCompat)
+    compileOnly(Deps.supportDesign)
+    compileOnly(Deps.recyclerView)
+    compileOnly(Deps.supportAnnotations)
+}

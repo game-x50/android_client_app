@@ -1,0 +1,18 @@
+apply from: rootProject.ext[GradleExtraArgs.kapt]
+
+android {
+    kapt {
+        arguments {
+            arg("room.incremental", "true")
+            arg("room.expandProjection", "true")
+            arg("room.schemaLocation", "$projectDir/room_db_schemas".toString())
+        }
+    }
+}
+
+dependencies {
+    implementation(Deps.room)
+    kapt(Deps.roomCompiler)
+    implementation(Deps.roomRxJava2)
+    implementation(Deps.rxJava2)//TODO: because of Deps.roomRxJava2 transitively depends on older rxJava version
+}

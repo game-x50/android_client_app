@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomToolbar">
+        <attr name="toolbarBackgroundDrawRes" format="integer"/>
+        <attr name="labelPosition">
+            <flag name="bottom" value="80"/>
+            <flag name="center" value="17"/>
+            <flag name="center_horizontal" value="1"/>
+            <flag name="center_vertical" value="16"/>
+            <flag name="left" value="3"/>
+            <flag name="right" value="5"/>/>
+            <flag name="top" value="48"/>
+        </attr>
+        <attr name="labelText" format="string"/>
+        <attr name="labelTextSize" format="dimension"/>
+        <attr name="labelTextAllCaps" format="boolean"/>
+        <attr name="labelTextStyle">
+            <flag name="normal" value="0"/>
+            <flag name="bold" value="1"/>
+            <flag name="italic" value="2"/>
+            <flag name="bold_italic" value="3"/>
+        </attr>
+        <attr name="labelTextColor" format="color|reference"/>
+        <attr name="leftDrawRes" format="integer"/>
+        <attr name="rightDrawRes" format="integer"/>
+        <attr name="leftImagePadding" format="dimension"/>
+        <attr name="rightImagePadding" format="dimension"/>
+        <attr name="imagesPadding" format="dimension"/>
+    </declare-styleable>
+</resources>

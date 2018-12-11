@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@drawable/ic_belarus,
+                @drawable/ic_france,
+                @drawable/ic_germany,
+                @drawable/ic_italy,
+                @drawable/ic_poland,
+                @drawable/ic_portugal,
+                @drawable/ic_russia,
+                @drawable/ic_spain,
+                @drawable/ic_united_kingdom,
+                @values/string_languages.xml" />
