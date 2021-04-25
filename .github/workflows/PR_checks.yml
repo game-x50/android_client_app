@@ -30,7 +30,7 @@ jobs:
       - uses: actions/setup-java@v1
         with: {java-version: 1.8}
 
-      - name: Detekt
+      - name: Dependency Check Analyze
         run: ./gradlew dependencyCheckAnalyze
 
   android_lint:
@@ -48,7 +48,7 @@ jobs:
           path: app
 
       - name: Android Lint
-        run: ./gradlew app:lint
+        run: ./gradlew lint
 
   unit_tests:
     runs-on: ubuntu-latest
@@ -83,7 +83,7 @@ jobs:
           path: app
 
       - name: Build Release APK
-        run: ./gradlew app:assembleRelease
+        run: ./gradlew assembleRelease
 
   build_staging_apk:
     needs: [ detekt, android_lint, unit_tests, dependency_check ]
@@ -101,4 +101,4 @@ jobs:
           path: app
 
       - name: Build Staging APK
-        run: ./gradlew app:assembleStaging
+        run: ./gradlew assembleStaging
