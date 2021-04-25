@@ -33,5 +33,4 @@ jobs:
           ./gradlew detekt
           ./gradlew app:lint
           ./gradlew test
-#          ./gradlew app:assembleStaging
           ./gradlew app:assembleRelease
