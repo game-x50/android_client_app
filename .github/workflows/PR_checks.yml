@@ -23,6 +23,16 @@ jobs:
       - name: Detekt
         run: ./gradlew detekt
 
+  dependency_check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with: {java-version: 1.8}
+
+      - name: Detekt
+        run: ./gradlew dependencyCheckAnalyze
+
   android_lint:
     runs-on: ubuntu-latest
     steps:
@@ -38,7 +48,7 @@ jobs:
           path: app
 
       - name: Android Lint
-        run: ./gradlew lint
+        run: ./gradlew app:lint
 
   unit_tests:
     runs-on: ubuntu-latest
@@ -58,7 +68,7 @@ jobs:
         run: ./gradlew test
 
   build_release_apk:
-    needs: [ detekt, android_lint, unit_tests ]
+    needs: [ detekt, android_lint, unit_tests, dependency_check ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -73,10 +83,10 @@ jobs:
           path: app
 
       - name: Build Release APK
-        run: ./gradlew assembleRelease
+        run: ./gradlew app:assembleRelease
 
   build_staging_apk:
-    needs: [ detekt, android_lint, unit_tests ]
+    needs: [ detekt, android_lint, unit_tests, dependency_check ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -90,5 +100,5 @@ jobs:
           token: ${{ secrets.SECRET_FILES_GIT_ACCESS_TOKEN }}
           path: app
 
-      - name: Build Release APK
-        run: ./gradlew assembleStaging
+      - name: Build Staging APK
+        run: ./gradlew app:assembleStaging
