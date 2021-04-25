@@ -37,10 +37,10 @@ jobs:
         run: ./gradlew lint
 
       - name: Unit tests
-          run: ./gradlew test
+        run: ./gradlew test
 
       - name: Build Release APK
-          run: ./gradlew assembleRelease
+        run: ./gradlew assembleRelease
 
       - name: Build Staging APK
         run: ./gradlew assembleStaging
