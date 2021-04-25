@@ -17,25 +17,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+          with: {java-version: 1.8}
 
       - name: Detekt
-        run: ./gradlew detekt -XX:+UseParallelGC
+        run: ./gradlew detekt
 
   android_lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+          with: {java-version: 1.8}
 
       - name: Android Lint
-        run: ./gradlew lint -XX:+UseParallelGC
+        run: ./gradlew lint
 
   unit_tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+          with: {java-version: 1.8}
 
       - name: Unit tests
-        run: ./gradlew test -XX:+UseParallelGC
+        run: ./gradlew test
 
   download_secret_files:
     needs: [ detekt, android_lint, unit_tests ]
@@ -55,15 +61,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+          with: {java-version: 1.8}
 
       - name: Build Release APK
-        run: ./gradlew assembleRelease -XX:+UseParallelGC
+        run: ./gradlew assembleRelease
 
   build_staging_apk:
     needs: [ detekt, android_lint, unit_tests, download_secret_files ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+          with: {java-version: 1.8}
 
       - name: Build Release APK
-        run: ./gradlew assembleStaging -XX:+UseParallelGC
+        run: ./gradlew assembleStaging
