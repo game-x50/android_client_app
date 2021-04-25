@@ -45,8 +45,6 @@ android {
             applicationIdSuffix = ".${BuildTypes.debug}"
 
             signingConfig = signingConfigs.debug
-
-            testCoverageEnabled = true //because of failing on CI
         }
 
         release {
