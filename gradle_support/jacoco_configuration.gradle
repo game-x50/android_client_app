@@ -13,8 +13,6 @@ private static boolean isKotlinLibraryModule(final Project project) {
 }
 
 afterEvaluate { project ->
-    System.out.println("TEMP_TEMP_TEMP -> ${project.name}\n${project.plugins.collect()}")
-
     if (isAndroidModule(project)) {
         setupAndroidReporting()
     } else if (isKotlinLibraryModule(project)) {
