@@ -27,11 +27,11 @@ jobs:
         run: ./gradlew dependencyCheckAnalyze
 
       - name: Download secret files repo
-          uses: actions/checkout@v2
-          with:
-            repository: ${{ secrets.SECRET_FILES_GIT_REPOSITORY }}
-            token: ${{ secrets.SECRET_FILES_GIT_ACCESS_TOKEN }}
-            path: app
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ secrets.SECRET_FILES_GIT_REPOSITORY }}
+          token: ${{ secrets.SECRET_FILES_GIT_ACCESS_TOKEN }}
+          path: app
 
       - name: Android Lint
         run: ./gradlew lint
