@@ -9,11 +9,11 @@ private static boolean isAndroidModule(Project project) {
 }
 
 afterEvaluate { project ->
-//    if (isAndroidModule(project)) {
-//        setupAndroidReporting()
-//    } else {
-//        setupKotlinReporting()
-//    }
+    if (isAndroidModule(project)) {
+        setupAndroidReporting()
+    } else {
+        setupKotlinReporting()
+    }
 }
 
 def setupKotlinReporting() {
