@@ -23,10 +23,12 @@ jobs:
       - name: Detekt
         run: ./gradlew detekt
 
-  download_secret_files:
+  android_lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with: {java-version: 1.8}
 
       - name: Download secret files repo
         uses: actions/checkout@v2
@@ -35,13 +37,6 @@ jobs:
           token: ${{ secrets.SECRET_FILES_GIT_ACCESS_TOKEN }}
           path: app
 
-  android_lint:
-    needs: [ download_secret_files ]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/setup-java@v1
-        with: {java-version: 1.8}
-
       - name: Android Lint
         run: ./gradlew lint
 
@@ -49,8 +44,16 @@ jobs:
     needs: [ download_secret_files ]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
         with: {java-version: 1.8}
+
+      - name: Download secret files repo
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ secrets.SECRET_FILES_GIT_REPOSITORY }}
+          token: ${{ secrets.SECRET_FILES_GIT_ACCESS_TOKEN }}
+          path: app
 
       - name: Unit tests
         run: ./gradlew test
@@ -59,8 +62,16 @@ jobs:
     needs: [ detekt, android_lint, unit_tests, download_secret_files ]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
         with: {java-version: 1.8}
+
+      - name: Download secret files repo
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ secrets.SECRET_FILES_GIT_REPOSITORY }}
+          token: ${{ secrets.SECRET_FILES_GIT_ACCESS_TOKEN }}
+          path: app
 
       - name: Build Release APK
         run: ./gradlew assembleRelease
@@ -69,8 +80,16 @@ jobs:
     needs: [ detekt, android_lint, unit_tests, download_secret_files ]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
         with: {java-version: 1.8}
+
+      - name: Download secret files repo
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ secrets.SECRET_FILES_GIT_REPOSITORY }}
+          token: ${{ secrets.SECRET_FILES_GIT_ACCESS_TOKEN }}
+          path: app
 
       - name: Build Release APK
         run: ./gradlew assembleStaging
