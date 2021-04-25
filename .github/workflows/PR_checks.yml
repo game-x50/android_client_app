@@ -31,6 +31,5 @@ jobs:
       - name: Run tests, lints and build release apk
         run: |
           ./gradlew detekt
-          ./gradlew app:lint
           ./gradlew test
           ./gradlew app:assembleRelease
