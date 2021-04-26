@@ -2,16 +2,20 @@
 
 apply plugin : Plugins.jacoco
 
-private static boolean isAndroidModule(Project project) {
+private static boolean isAndroidModule(final Project project) {
     final boolean isAndroidLibrary = project.plugins.hasPlugin(Plugins.androidLibrary)
     final boolean isAndroidApp = project.plugins.hasPlugin(Plugins.androidApp)
     return (isAndroidLibrary || isAndroidApp)
 }
 
+private static boolean isKotlinLibraryModule(final Project project) {
+    return project.plugins.hasPlugin(Plugins.kotlin)
+}
+
 afterEvaluate { project ->
     if (isAndroidModule(project)) {
         setupAndroidReporting()
-    } else {
+    } else if (isKotlinLibraryModule(project)) {
         setupKotlinReporting()
     }
 }

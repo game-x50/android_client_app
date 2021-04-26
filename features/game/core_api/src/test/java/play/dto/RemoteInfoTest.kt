@@ -9,11 +9,12 @@ class RemoteInfoTest {
 
     @Test(expected = IllegalRemoteTimestampsException::class)
     fun `constructor not valid - remoteCreatedTimestamp can't be grater then lastRemoteSyncedTimestamp`() {
+        val nowTimestamp = Instant.now()
         RemoteInfo(
                 remoteId = "",
                 remoteActionId = "",
-                remoteCreatedTimestamp = Instant.now(),
-                lastRemoteSyncedTimestamp = Instant.now().minusMillis(10)
+                remoteCreatedTimestamp = nowTimestamp,
+                lastRemoteSyncedTimestamp = nowTimestamp.minusMillis(10)
         )
     }
 }

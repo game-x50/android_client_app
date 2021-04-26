@@ -25,7 +25,7 @@ dependencies {
     compileOnly(project(LocalGradleProjects.androidCoreApi))
     compileOnly(project(LocalGradleProjects.coreApi))
 
-    compileOnly(project(LocalGradleProjects.coreApiDebugTools))
+    compileOnly(project(LocalGradleProjects.coreApiStagingTools))
 
     implementation(Deps.blockCanary)
     implementation(Deps.tinyDancer)

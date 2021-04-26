@@ -21,9 +21,10 @@ dependencies {
     compileOnly(project(LocalGradleProjects.extensions))
     compileOnly(project(LocalGradleProjects.androidExtensions))
     compileOnly(project(LocalGradleProjects.coreApi))
-    compileOnly(project(LocalGradleProjects.coreUiApi))
+    // todo implementation instead of compileOnly because of task ./gradlew assembleStaging failing
+    implementation(project(LocalGradleProjects.coreUiApi))
 
-    compileOnly(project(LocalGradleProjects.coreApiDebugTools))
+    compileOnly(project(LocalGradleProjects.coreApiStagingTools))
 
     compileOnly(Deps.rxJava2)
 

@@ -387,4 +387,4 @@ private fun `assert many frames in many periods with same frame`(frameTime: Long
 }
 
 fun assertFps(expected: Double, actual: Double, message: String? = null) =
-        assertEquals(message, expected, actual, 0.01)
+        assertEquals(message, expected, actual, 0.05)
