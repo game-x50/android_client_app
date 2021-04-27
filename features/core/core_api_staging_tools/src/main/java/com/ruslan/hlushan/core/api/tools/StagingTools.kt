@@ -33,3 +33,7 @@ interface LeakCanaryTool {
     var enabled: Boolean
     fun openScreen()
 }
+
+interface RxDisposableWatcherTool {
+    fun showReport()
+}

@@ -5,6 +5,7 @@ import com.ruslan.hlushan.core.api.tools.ChuckTool
 import com.ruslan.hlushan.core.api.tools.DatabaseViewerTool
 import com.ruslan.hlushan.core.api.tools.LeakCanaryTool
 import com.ruslan.hlushan.core.api.tools.LynxTool
+import com.ruslan.hlushan.core.api.tools.RxDisposableWatcherTool
 import com.ruslan.hlushan.core.api.tools.TaktTool
 import com.ruslan.hlushan.core.api.tools.TinyDancerTool
 
@@ -18,7 +19,8 @@ interface StagingToolsProvider : BlockCanaryToolProvider,
                                  LynxToolProvider,
                                  DatabaseViewerToolProvider,
                                  ChuckToolProvider,
-                                 LeakCanaryToolProvider
+                                 LeakCanaryToolProvider,
+                                 RxDisposableWatcherToolProvider
 
 interface BlockCanaryToolProvider {
     fun provideBlockCanaryTool(): BlockCanaryTool
@@ -46,4 +48,8 @@ interface ChuckToolProvider {
 
 interface LeakCanaryToolProvider {
     fun provideLeakCanaryTool(): LeakCanaryTool
+}
+
+interface RxDisposableWatcherToolProvider {
+    fun provideRxDisposableWatcherTool(): RxDisposableWatcherTool
 }

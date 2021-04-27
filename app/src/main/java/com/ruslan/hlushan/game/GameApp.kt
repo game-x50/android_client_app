@@ -9,6 +9,7 @@ import com.ruslan.hlushan.extensions.lazyUnsafe
 import com.ruslan.hlushan.game.di.GameAppComponent
 import com.ruslan.hlushan.game.error.ErrorLoggerImpl
 import com.ruslan.hlushan.work.manager.extensions.CompositeWorkerFactory
+import java.io.File
 import javax.inject.Inject
 
 /**
@@ -27,7 +28,7 @@ internal class GameApp : BaseApplication(), Configuration.Provider {
                 versionCode = BuildConfig.VERSION_CODE,
                 versionName = BuildConfig.VERSION_NAME,
                 isLogcatEnabled = BuildConfig.IS_LOGCAT_ENABLED,
-                fileLogsFolder = this.applicationContext.cacheDir,
+                fileLogsFolder = File(this.applicationContext.cacheDir, "fileLogs"),
                 languagesJsonRawResId = R.raw.languages,
                 defaultLanguageFullCode = BuildConfig.DEFAULT_LANGUAGE_NON_FULL_CODE,
                 availableLanguagesFullCodes = BuildConfig.AVAILABLE_LANGUAGES_FULL_CODES.toList()

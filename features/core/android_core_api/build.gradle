@@ -10,5 +10,9 @@ android {
         versionName = coreApiLibraryVersionName
     }
 
-    resourcePrefix("core_api_")
+    resourcePrefix("android_core_api_")
+}
+
+dependencies {
+    compileOnly(Deps.supportAppCompat)
 }

@@ -71,6 +71,7 @@ object Versions {
     const val lynxVersion = "1.6"
     const val chuckerVersion = "3.4.0"
     const val roomExplorerVersion = "0.0.2"
+    const val rxDisposableWatcherVersion = "1.0.0"
 
     const val jacocoPluginVersion = "0.8.6"
     const val jUnitVersion = "4.13.2"
