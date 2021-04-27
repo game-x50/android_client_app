@@ -13,43 +13,6 @@ env:
 
 jobs:
 
-  detekt:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-java@v1
-        with: {java-version: 1.8}
-
-      - name: Detekt
-        run: ./gradlew detekt
-
-  dependency_check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-java@v1
-        with: {java-version: 1.8}
-
-      - name: Dependency Check Analyze
-        run: ./gradlew dependencyCheckAnalyze
-
-  android_lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-java@v1
-        with: {java-version: 1.8}
-
-      - name: Download secret files repo
-        uses: actions/checkout@v2
-        with:
-          repository: ${{ secrets.SECRET_FILES_GIT_REPOSITORY }}
-          token: ${{ secrets.SECRET_FILES_GIT_ACCESS_TOKEN }}
-          path: app
-
-      - name: Android Lint
-        run: ./gradlew lint
-
   unit_tests:
     runs-on: ubuntu-latest
     steps:
@@ -67,44 +30,11 @@ jobs:
       - name: Unit tests
         run: ./gradlew test
 
-      - name: Create Tests Coverage report
-        run: ./gradlew jacocoTestReport
+      - name: Test application
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 30
+          script: ./gradlew jacocoTestReport
 
       - name: Upload Tests Coverage report
-        run: bash <(curl -s https://codecov.io/bash)
-
-  build_release_apk:
-    needs: [ detekt, android_lint, unit_tests, dependency_check ]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-java@v1
-        with: {java-version: 1.8}
-
-      - name: Download secret files repo
-        uses: actions/checkout@v2
-        with:
-          repository: ${{ secrets.SECRET_FILES_GIT_REPOSITORY }}
-          token: ${{ secrets.SECRET_FILES_GIT_ACCESS_TOKEN }}
-          path: app
-
-      - name: Build Release APK
-        run: ./gradlew assembleRelease
-
-  build_staging_apk:
-    needs: [ detekt, android_lint, unit_tests, dependency_check ]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-java@v1
-        with: {java-version: 1.8}
-
-      - name: Download secret files repo
-        uses: actions/checkout@v2
-        with:
-          repository: ${{ secrets.SECRET_FILES_GIT_REPOSITORY }}
-          token: ${{ secrets.SECRET_FILES_GIT_ACCESS_TOKEN }}
-          path: app
-
-      - name: Build Staging APK
-        run: ./gradlew assembleStaging
+        uses: codecov/codecov-action@v1
