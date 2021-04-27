@@ -27,6 +27,8 @@ dependencies {
 
     compileOnly(project(LocalGradleProjects.coreApiStagingTools))
 
+    compileOnly(Deps.supportAppCompat)
+
     implementation(Deps.blockCanary)
     implementation(Deps.tinyDancer)
     implementation(Deps.takt)
@@ -34,4 +36,5 @@ dependencies {
     implementation(Deps.roomExplorer)
     implementation(Deps.chucker)
     implementation(Deps.leakCanary)
+    implementation(Deps.rxDisposableWatcher)
 }

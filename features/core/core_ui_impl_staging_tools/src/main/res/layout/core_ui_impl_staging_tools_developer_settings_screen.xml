@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#88000000"
-    android:fillViewport="true"
     tools:ignore="HardcodedText,Overdraw">
 
     <LinearLayout
@@ -12,9 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingLeft="@dimen/default_padding"
-        android:paddingTop="@dimen/default_padding"
-        android:paddingRight="@dimen/default_padding"
-        android:paddingBottom="@dimen/default_padding">
+        android:paddingRight="@dimen/default_padding">
 
         <TextView
             style="@style/DeveloperSettingsCategoryTitle"
@@ -171,6 +168,19 @@
                 android:id="@+id/fragment_dev_settings_open_chuck_btn"
                 style="@style/DeveloperSettingsButton"
                 android:text="Open" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/DeveloperSettingsItemContainer">
+
+            <TextView
+                style="@style/DeveloperSettingsItemTitle"
+                android:text="RxDisposableWatcher" />
+
+            <Button
+                android:id="@+id/fragment_dev_settings_rx_disposable_watcher_report_btn"
+                style="@style/DeveloperSettingsButton"
+                android:text="Report" />
 
         </LinearLayout>
 

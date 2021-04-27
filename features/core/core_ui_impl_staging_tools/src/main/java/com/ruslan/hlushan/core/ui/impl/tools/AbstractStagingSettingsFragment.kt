@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
+import com.ruslan.hlushan.android.extensions.addSystemPadding
 import com.ruslan.hlushan.android.extensions.applyDrawableOverlay
 import com.ruslan.hlushan.android.extensions.clearOverlay
 import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
@@ -15,6 +16,7 @@ import com.ruslan.hlushan.core.api.tools.ChuckTool
 import com.ruslan.hlushan.core.api.tools.DatabaseViewerTool
 import com.ruslan.hlushan.core.api.tools.LeakCanaryTool
 import com.ruslan.hlushan.core.api.tools.LynxTool
+import com.ruslan.hlushan.core.api.tools.RxDisposableWatcherTool
 import com.ruslan.hlushan.core.api.tools.TaktTool
 import com.ruslan.hlushan.core.api.tools.TinyDancerTool
 import com.ruslan.hlushan.core.api.utils.InitAppConfig
@@ -42,6 +44,7 @@ abstract class AbstractStagingSettingsFragment : BaseFragment(R.layout.core_ui_i
     @Inject lateinit var lynxTool: LynxTool
     @Inject lateinit var databaseViewerTool: DatabaseViewerTool
     @Inject lateinit var chuckTool: ChuckTool
+    @Inject lateinit var rxDisposableWatcherTool: RxDisposableWatcherTool
 
     @Inject lateinit var databases: List<DatabaseViewInfo>
 
@@ -53,6 +56,8 @@ abstract class AbstractStagingSettingsFragment : BaseFragment(R.layout.core_ui_i
         super.onViewCreated(view, savedInstanceState)
 
         needRecreateOverlay = (savedInstanceState != null)
+
+        view.addSystemPadding(top = true, bottom = true)
 
         setUpViews()
         setUpViewListeners()
@@ -89,6 +94,7 @@ abstract class AbstractStagingSettingsFragment : BaseFragment(R.layout.core_ui_i
         binding?.fragmentDevSettingsStopBlockCanaryBtn?.setThrottledOnClickListener { blockCanaryTool.stop() }
 
         binding?.fragmentDevSettingsOpenChuckBtn?.setThrottledOnClickListener { chuckTool.openScreen() }
+        binding?.fragmentDevSettingsRxDisposableWatcherReportBtn?.setThrottledOnClickListener { rxDisposableWatcherTool.showReport() }
         binding?.fragmentDevSettingsOpenLeakCanaryBtn?.setThrottledOnClickListener { leakCanaryTool.openScreen() }
         binding?.fragmentDevSettingsOpenBlockCanaryBtn?.setThrottledOnClickListener { blockCanaryTool.openScreen() }
         binding?.fragmentDevSettingsOpenLynxBtn?.setThrottledOnClickListener { lynxTool.openScreen() }

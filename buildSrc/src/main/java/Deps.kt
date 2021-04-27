@@ -67,6 +67,7 @@ object Deps {
     const val lynx = "com.github.pedrovgs:lynx:${Versions.lynxVersion}"
     const val chucker = "com.github.ChuckerTeam.Chucker:library:${Versions.chuckerVersion}"
     const val roomExplorer = "com.wajahatkarim3:roomexplorer:${Versions.roomExplorerVersion}"
+    const val rxDisposableWatcher = "ru.fomenkov:rx-disposable-watcher:${Versions.rxDisposableWatcherVersion}"
 
     const val jUnit = "junit:junit:${Versions.jUnitVersion}"
 }
