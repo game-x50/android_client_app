@@ -69,6 +69,8 @@ jobs:
 
       - name: Upload Tests Coverage report
         uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   build_release_apk:
     needs: [ detekt, android_lint, unit_tests, dependency_check ]
