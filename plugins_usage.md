@@ -15,14 +15,7 @@ run
 and check ../build/reports/dependency-check-report.html
 -----------------------------------------------------------------------------------
 for full project run
-    ./gradlew testDebugUnitTestCoverage
-
-for some specific module run
-    ./gradlew some_module_name:testDebugUnitTestCoverage
-
-for some specific module and specific flavor run
-    ./gradlew some_module_name:testFlavornameDebugUnitTestCoverage
-where Flavorname - flavor name
+    ./gradlew jacocoTestReport
 
 and check ../build/coverage-report/index.html FOR EACH MODULE
 -----------------------------------------------------------------------------------

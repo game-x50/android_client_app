@@ -30,11 +30,8 @@ jobs:
       - name: Unit tests
         run: ./gradlew test
 
-      - name: Test application
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 29
-          script: ./gradlew jacocoTestReport
+      - name: Create Tests Coverage report
+        run: ./gradlew jacocoTestReport
 
       - name: Upload Tests Coverage report
         uses: codecov/codecov-action@v1

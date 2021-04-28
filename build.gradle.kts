@@ -30,7 +30,8 @@ plugins {
 }
 extra["androidJar"] = androidjar.find(ApplicationConfigs.targetSdkVersion)
 
-fun getGradleSupportFolder(project: Project): String = "${project.rootProject.projectDir.path}/gradle_support/"
+val gradleSupportFolderName: String = "gradle_support"
+fun getGradleSupportFolder(project: Project): String = "${project.rootProject.projectDir.path}/${gradleSupportFolderName}/"
 
 allprojects {
     val rootProjectPath = project.rootProject.projectDir.path
@@ -75,14 +76,14 @@ allprojects {
 subprojects {
     val gradleSupportFolder = getGradleSupportFolder(this)
 
-    apply(from = "${gradleSupportFolder}jacoco_configuration.gradle")
+    apply(from = "${gradleSupportFolder}jacoco_subprojects_configuration.gradle")
 }
 
 tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
 }
 
-apply(from = "${project.rootProject.projectDir.path}/gradle_support/linters.gradle")
+apply(from = "${project.rootProject.projectDir.path}/${gradleSupportFolderName}/linters.gradle")
 
 tasks.named(
         "dependencyUpdates",
