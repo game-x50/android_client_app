@@ -24,6 +24,13 @@ fun RecyclerView.getAllViewHolders(): List<RecyclerView.ViewHolder> =
         (0 until this.childCount)
                 .map { index -> this.getChildViewHolder(this.getChildAt(index)) }
 
+val RecyclerView.firstVisibleItemPosition: Int
+    get() = when (val manager = layoutManager) {
+        is LinearLayoutManager        -> manager.findFirstVisibleItemPosition()
+        is StaggeredGridLayoutManager -> (manager.findFirstVisibleItemPositions(null).minOrNull() ?: 0)
+        else                          -> 0
+    }
+
 val RecyclerView.lastVisibleItemPosition: Int
     get() = when (val manager = layoutManager) {
         is LinearLayoutManager        -> manager.findLastVisibleItemPosition()
@@ -31,7 +38,9 @@ val RecyclerView.lastVisibleItemPosition: Int
         else                          -> 0
     }
 
-private class PaginationScrollListener(private val onPaginationScrollListener: OnPaginationScrollListener) : RecyclerView.OnScrollListener() {
+private class PaginationScrollListener(
+        private val onPaginationScrollListener: OnPaginationScrollListener
+) : RecyclerView.OnScrollListener() {
 
     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
         if (dy > 0) {
