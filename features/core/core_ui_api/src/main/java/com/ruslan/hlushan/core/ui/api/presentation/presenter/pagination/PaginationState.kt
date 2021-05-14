@@ -8,8 +8,8 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
 
     abstract val filter: F
 
-    abstract val previousPages: List<PageId?>
     abstract val currentPages: List<PageRelation<ItemId, PageId>>
+    abstract val previousId: PageId?
     abstract val nextId: PageId?
 
     abstract val additional: Additional?
@@ -18,8 +18,8 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
             override val filter: F
     ) : PaginationState<F, ItemId, RI, PageId>() {
         override val items: List<RI> get() = emptyList()
-        override val previousPages:  List<PageId?> get() = emptyList()
         override val currentPages: List<PageRelation<ItemId, PageId>> get() = emptyList()
+        override val previousId: PageId? get() = null
         override val nextId: PageId? get() = null
         override val additional: Additional? get() = null
     }
@@ -28,8 +28,8 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
             override val filter: F
     ) : PaginationState<F, ItemId, RI, PageId>() {
         override val items: List<RI> get() = emptyList()
-        override val previousPages:  List<PageId?> get() = emptyList()
         override val currentPages: List<PageRelation<ItemId, PageId>> get() = emptyList()
+        override val previousId: PageId? get() = null
         override val nextId: PageId? get() = null
         override val additional: Additional = Additional.Loading()
     }
@@ -49,17 +49,18 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
         )
 
         override val items: List<RI> get() = emptyList()
-        override val previousPages:  List<PageId?> get() = emptyList()
         override val currentPages: List<PageRelation<ItemId, PageId>> get() = emptyList()
+        override val previousId: PageId? get() = null
         override val nextId: PageId? get() = null
     }
 
     data class PartiallyLoaded<out F : Any, ItemId : Any, out RI : RecyclerItem<ItemId>, out PageId : Any> private constructor(
             override val items: List<RI>,
             override val filter: F,
-            override val previousPages:  List<PageId?>,
             override val currentPages: List<PageRelation<ItemId, PageId>>,
-            override val nextId: PageId?
+            override val previousId: PageId?,
+            override val nextId: PageId?,
+            val hasItemsBefore: Boolean
     ) : PaginationState<F, ItemId, RI, PageId>() {
 
         override val additional: Additional? get() = null
@@ -68,15 +69,16 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
             fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, PageId : Any> withItemsBefore(
                     items: List<RI>,
                     filter: F,
-                    previousPages:  List<PageId?>,
+                    previousId: PageId?,
                     currentPages: List<PageRelation<ItemId, PageId>>
             ): PartiallyLoaded<F, ItemId, RI, PageId> =
                     PartiallyLoaded(
                             items = items,
                             filter = filter,
-                            previousPages = previousPages,
+                            previousId = previousId,
                             currentPages = currentPages,
-                            nextId = null
+                            nextId = null,
+                            hasItemsBefore = true
                     )
 
             fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, PageId : Any> withItemsAfter(
@@ -88,24 +90,26 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
                     PartiallyLoaded(
                             items = items,
                             filter = filter,
-                            previousPages = emptyList(),
+                            previousId = null,
                             currentPages = currentPages,
-                            nextId = nextId
+                            nextId = nextId,
+                            hasItemsBefore = false
                     )
 
             fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, PageId : Any> withItemsBeforeAndAfter(
                     items: List<RI>,
                     filter: F,
-                    previousPages:  List<PageId?>,
+                    previousId: PageId?,
                     currentPages: List<PageRelation<ItemId, PageId>>,
                     nextId: PageId
             ): PartiallyLoaded<F, ItemId, RI, PageId> =
                     PartiallyLoaded(
                             items = items,
                             filter = filter,
-                            previousPages = previousPages,
+                            previousId = previousId,
                             currentPages = currentPages,
-                            nextId = nextId
+                            nextId = nextId,
+                            hasItemsBefore = true
                     )
         }
     }
@@ -113,10 +117,11 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
     data class PartiallyLoadedAndLoading<out F : Any, ItemId : Any, out RI : RecyclerItem<ItemId>, out PageId : Any>(
             override val items: List<RI>,
             override val filter: F,
-            override val previousPages:  List<PageId?>,
             override val currentPages: List<PageRelation<ItemId, PageId>>,
+            override val previousId: PageId?,
             override val nextId: PageId?,
-            val direction: LoadDirection
+            val direction: LoadDirection,
+            val hasItemsBefore: Boolean
     ) : PaginationState<F, ItemId, RI, PageId>() {
 
         override val additional: Additional = Additional.Loading()
@@ -130,27 +135,30 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
     data class PartiallyLoadedWithError<out F : Any, ItemId : Any, out RI : RecyclerItem<ItemId>, out PageId : Any> private constructor(
             override val items: List<RI>,
             override val filter: F,
-            override val previousPages:  List<PageId?>,
             override val currentPages: List<PageRelation<ItemId, PageId>>,
+            override val previousId: PageId?,
             override val nextId: PageId?,
-            override val additional: Additional.Error
+            override val additional: Additional.Error,
+            val hasItemsBefore: Boolean
     ) : PaginationState<F, ItemId, RI, PageId>() {
 
         constructor(
                 items: List<RI>,
                 filter: F,
-                previousPages:  List<PageId?>,
                 currentPages: List<PageRelation<ItemId, PageId>>,
+                previousId: PageId?,
                 nextId: PageId?,
                 direction: LoadDirection,
-                error: Throwable
+                error: Throwable,
+                hasItemsBefore: Boolean
         ) : this(
                 items = items,
                 filter = filter,
-                previousPages = previousPages,
                 currentPages = currentPages,
+                previousId = previousId,
                 nextId = nextId,
-                additional = Additional.Error(value = error, direction = direction)
+                additional = Additional.Error(value = error, direction = direction),
+                hasItemsBefore = hasItemsBefore
         ) {
             checkPartiallyLoadedLoadingState(hasItemsBefore = hasItemsBefore, hasItemsAfter = hasItemsAfter, direction = direction)
         }
@@ -161,7 +169,7 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
             override val filter: F,
             override val currentPages: List<PageRelation<ItemId, PageId>>
     ) : PaginationState<F, ItemId, RI, PageId>() {
-        override val previousPages: List<PageId?> get() = emptyList()
+        override val previousId: PageId? get() = null
         override val nextId: PageId? get() = null
         override val additional: Additional.Empty? = if (items.isEmpty()) {
             Additional.Empty()
@@ -191,15 +199,12 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
     }
 }
 
-fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, PageId : Any> PaginationState<F, ItemId, RI, PageId>.loadPageIdFor(
+fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, PageId : Any> PaginationState<F, ItemId, RI, PageId>.pageIdFor(
         direction: PaginationState.LoadDirection
 ): PageId? = when (direction) {
     PaginationState.LoadDirection.NEXT     -> this.nextId
-    PaginationState.LoadDirection.PREVIOUS -> this.previousPages.lastOrNull()
+    PaginationState.LoadDirection.PREVIOUS -> this.previousId
 }
-
-val <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, PageId : Any> PaginationState<F, ItemId, RI, PageId>.hasItemsBefore: Boolean
-    get() = this.previousPages.isNotEmpty()
 
 val <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, PageId : Any> PaginationState<F, ItemId, RI, PageId>.hasItemsAfter: Boolean
     get() = (this.nextId != null)
@@ -211,6 +216,6 @@ private fun checkPartiallyLoadedLoadingState(
 ) {
     if ((!hasItemsBefore && (direction == PaginationState.LoadDirection.PREVIOUS))
         || (!hasItemsAfter && (direction == PaginationState.LoadDirection.NEXT))) {
-        throw IllegalArgumentException("No sense to load new items in direction that has no items")
+        throw IllegalArgumentException("No sense to load new items in direction that has no more items")
     }
 }
