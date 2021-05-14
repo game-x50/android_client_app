@@ -59,6 +59,9 @@ comments:
     active: false
   CommentOverPrivateProperty:
     active: false
+#    todo
+#  DeprecatedBlockTag:
+#    active: true
   EndOfSentenceFormat:
     active: false
     endOfSentenceFormat: '([.?!][ \t\n\r\f<])|([.?!:]$)'
@@ -257,6 +260,8 @@ formatting:
   ArgumentListWrapping:
     active: false
     autoCorrect: true
+    indentSize: 4
+    maxLineLength: 120
   ChainWrapping:
     active: false
     autoCorrect: true
@@ -284,6 +289,7 @@ formatting:
   MaximumLineLength:
     active: false
     maxLineLength: 150
+    ignoreBackTickedIdentifier: false
   ModifierOrdering:
     active: true
     autoCorrect: true
@@ -333,6 +339,7 @@ formatting:
     active: false
     autoCorrect: true
     indentSize: 4
+    maxLineLength: 120
   SpacingAroundAngleBrackets:
     active: true
     autoCorrect: true
@@ -486,6 +493,9 @@ potential-bugs:
     active: true
   DontDowncastCollectionTypes:
     active: true
+#    todo
+#  DoubleMutabilityForCollection:
+#    active: true
   DuplicateCaseInWhenExpression:
     active: true
   EqualsAlwaysReturnsTrueOrFalse:

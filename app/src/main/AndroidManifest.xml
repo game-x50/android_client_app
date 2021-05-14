@@ -15,6 +15,7 @@
 
         <activity
             android:name=".GameAppActivity"
+            android:exported="true"
             android:launchMode="singleInstance"
             android:theme="@style/game_app_Theme.Splash"
             android:windowSoftInputMode="adjustResize">

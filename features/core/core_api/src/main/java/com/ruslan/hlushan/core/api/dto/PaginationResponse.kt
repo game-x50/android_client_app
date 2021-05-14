@@ -1,11 +1,37 @@
 package com.ruslan.hlushan.core.api.dto
 
-data class PaginationResponse<out T : Any, out Id : Any>(
-        val result: List<T>,
-        val previousId: Id?,
-        val nextId: Id?
-)
+sealed class PaginationResponse<out T : Any, out Id : Any> {
 
-val <T : Any, Id : Any> PaginationResponse<T, Id>.isFirstPage: Boolean get() = (this.previousId == null)
+    abstract val result: List<T>
+    abstract val previousId: Id?
 
-val <T : Any, Id : Any> PaginationResponse<T, Id>.isLastPage: Boolean get() = (this.nextId == null)
+    data class LastPage<out T : Any, out Id : Any >(
+            override val result: List<T>,
+            override val previousId: Id?
+    ) : PaginationResponse<T, Id>()
+
+    data class MiddlePage<out T : Any, out Id : Any>(
+            override val result: List<T>,
+            override val previousId: Id?,
+            val nextId: Id
+    ) : PaginationResponse<T, Id>()
+}
+
+val <T : Any, Id : Any> PaginationResponse<T, Id>.nextIdOrNull: Id?
+    get() = when (this) {
+            is PaginationResponse.MiddlePage -> this.nextId
+            is PaginationResponse.LastPage -> null
+        }
+
+fun <T : Any, Id : Any, R : Any> PaginationResponse<T, Id>.map(transform: (T) -> R): PaginationResponse<R, Id> =
+        when (this) {
+            is PaginationResponse.MiddlePage -> PaginationResponse.MiddlePage(
+                    result = this.result.map(transform),
+                    previousId = this.previousId,
+                    nextId = this.nextId
+            )
+            is PaginationResponse.LastPage   -> PaginationResponse.LastPage(
+                    result = this.result.map(transform),
+                    previousId = this.previousId
+            )
+        }

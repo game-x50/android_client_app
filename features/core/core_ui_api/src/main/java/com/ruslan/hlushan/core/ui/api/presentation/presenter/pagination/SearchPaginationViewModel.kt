@@ -1,8 +1,9 @@
-package com.ruslan.hlushan.core.ui.api.presentation.presenter
+package com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination
 
 import com.ruslan.hlushan.core.api.log.AppLogger
 import com.ruslan.hlushan.core.api.managers.SchedulersManager
 import com.ruslan.hlushan.core.api.utils.thread.ThreadChecker
+import com.ruslan.hlushan.core.ui.api.presentation.presenter.PaginationViewModel
 import com.ruslan.hlushan.core.ui.api.recycler.RecyclerItem
 
 /**

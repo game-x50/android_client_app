@@ -13,8 +13,8 @@ import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.AddToEndSing
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.HandleStrategy
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.OneExecutionStateStrategy
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.StrategyCommand
-import com.ruslan.hlushan.core.ui.api.presentation.presenter.PaginationState
 import com.ruslan.hlushan.core.ui.api.presentation.presenter.PaginationViewModel
+import com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination.PaginationState
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import io.reactivex.Single

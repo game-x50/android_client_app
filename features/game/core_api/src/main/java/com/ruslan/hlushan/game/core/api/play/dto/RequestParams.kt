@@ -67,7 +67,10 @@ fun createPaginationResponseFor(
         limit: Int
 ): PaginationResponse<GameRecordWithSyncState, RequestParams> =
         if (pageResult.size < limit) {
-            PaginationResponse.LastPage(result = pageResult)
+            PaginationResponse.LastPage(
+                    result = pageResult,
+                    previousId =
+            )
         } else {
             val nextParams = when (previousRequestParams) {
                 is RequestParams.OrderTotalSum     -> createPaginationResponseForOrderTotalSum(pageResult, previousRequestParams)
@@ -75,6 +78,7 @@ fun createPaginationResponseFor(
             }
             PaginationResponse.MiddlePage(
                     result = pageResult,
+                    previousId = ,
                     nextId = nextParams
             )
         }

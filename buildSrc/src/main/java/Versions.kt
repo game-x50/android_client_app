@@ -73,6 +73,6 @@ object Versions {
     const val roomExplorerVersion = "0.0.2"
     const val rxDisposableWatcherVersion = "1.0.0"
 
-    const val jacocoPluginVersion = "0.8.6"
+    const val jacocoPluginVersion = "0.8.7"
     const val jUnitVersion = "4.13.2"
 }
