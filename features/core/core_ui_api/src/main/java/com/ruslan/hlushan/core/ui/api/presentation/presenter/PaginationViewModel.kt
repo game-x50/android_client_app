@@ -1,5 +1,6 @@
 package com.ruslan.hlushan.core.ui.api.presentation.presenter
 
+import com.ruslan.hlushan.core.api.dto.PaginationPagesRequest
 import com.ruslan.hlushan.core.api.dto.PaginationResponse
 import com.ruslan.hlushan.core.api.log.AppLogger
 import com.ruslan.hlushan.core.api.managers.SchedulersManager
@@ -10,8 +11,7 @@ import com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination.PageRela
 import com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination.PaginationLimits
 import com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination.PaginationSideEffect
 import com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination.PaginationState
-import com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination.hasItemsAfter
-import com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination.pageIdFor
+import com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination.hasSenseForLoading
 import com.ruslan.hlushan.core.ui.api.recycler.RecyclerItem
 import com.ruslan.hlushan.extensions.addAsFirstTo
 import com.ruslan.hlushan.extensions.exhaustive
@@ -69,8 +69,7 @@ abstract class PaginationViewModel<F : Any, ItemId : Any, RI : RecyclerItem<Item
 
     @UiMainThread
     protected abstract fun loadData(
-            direction: PaginationState.LoadDirection,
-            pageId: PageId?,
+            paginationPagesRequest: PaginationPagesRequest<PageId>,
             filter: F
     ): Single<PaginationResponse<RI, PageId>>
 
@@ -81,7 +80,7 @@ abstract class PaginationViewModel<F : Any, ItemId : Any, RI : RecyclerItem<Item
     fun retryIfError() {
         val additional = state.additional
         if (additional is PaginationState.Additional.Error) {
-            loadMoreAction(direction = additional.direction)
+            loadMoreAction(direction = additional.loadDirection)
         }
     }
 
@@ -91,7 +90,7 @@ abstract class PaginationViewModel<F : Any, ItemId : Any, RI : RecyclerItem<Item
     @UiMainThread
     fun onScrolled(lastVisibleItemPosition: Int) {
         if ((totalItemCount - limits.itemsOffsetToBorder) <= lastVisibleItemPosition) {
-            loadMoreAction(direction = PaginationState.LoadDirection.NEXT)
+            loadMoreAction(direction = PaginationPagesRequest.Direction.NEXT)
         }
     }
 
@@ -111,7 +110,7 @@ abstract class PaginationViewModel<F : Any, ItemId : Any, RI : RecyclerItem<Item
             handleAction(action = Action.UI.Refresh(newFilter))
 
     @UiMainThread
-    private fun loadMoreAction(direction: PaginationState.LoadDirection) =
+    private fun loadMoreAction(direction: PaginationPagesRequest.Direction) =
             handleAction(action = Action.UI.LoadMore(direction = direction))
 
     @UiMainThread
@@ -142,7 +141,7 @@ abstract class PaginationViewModel<F : Any, ItemId : Any, RI : RecyclerItem<Item
     private fun loadMore(params: PaginationSideEffect.LoadMore<PageId>, filter: F) {
         requestDisposable?.safetyDispose()
 
-        requestDisposable = loadData(direction = params.direction, pageId = params.pageId, filter = filter)
+        requestDisposable = loadData(paginationPagesRequest = params.paginationPagesRequest, filter = filter)
                 .map<Action<F, ItemId, RI, PageId>> { response -> Action.Response.Success(response) }
                 .onErrorReturn { error -> Action.Response.Error(error) }
                 .observeOn(schedulersManager.ui)
@@ -260,7 +259,7 @@ private fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, PageId : Any> red
                 reduceActionRefresh(action)
             }
             is Action.UI.LoadMore    -> {
-                reduceActionLoadMoreForPartiallyLoadedOrWithError(action = action, state = state, hasItemsBefore = state.hasItemsBefore)
+                reduceActionLoadMoreForPartiallyLoadedOrWithError(action = action, state = state)
             }
             is Action.Change         -> {
                 reduceActionChangeForNonEmptyList(
@@ -305,8 +304,7 @@ private fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, PageId : Any> red
                                 previousId = state.previousId,
                                 nextId = state.nextId,
                                 direction = state.direction,
-                                error = action.error,
-                                hasItemsBefore = state.hasItemsBefore
+                                error = action.error
                         )
                 )
             }
@@ -330,7 +328,7 @@ private fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, PageId : Any> red
                 reduceActionRefresh(action)
             }
             is Action.UI.LoadMore    -> {
-                reduceActionLoadMoreForPartiallyLoadedOrWithError(action = action, state = state, hasItemsBefore = state.hasItemsBefore)
+                reduceActionLoadMoreForPartiallyLoadedOrWithError(action = action, state = state)
             }
             is Action.Change         -> {
                 reduceActionChangeForNonEmptyList(
@@ -355,7 +353,7 @@ private fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, PageId : Any> red
             is Action.UI.Refresh     -> {
                 reduceActionRefresh(action)
             }
-            is Action.Change -> {
+            is Action.Change         -> {
                 reduceActionChangeForNonEmptyList(
                         state = state,
                         copyStateWithNewItems = { updatedItems, updatedCurrentPages ->
@@ -373,11 +371,18 @@ private fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, PageId : Any> red
 
 private fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, PageId : Any> reduceActionRefresh(
         action: Action.UI.Refresh<F, ItemId, RI, PageId>
-): ReduceResult<F, ItemId, RI, PageId> =
-        ReduceResult(
-                PaginationState.EmptyLoading(filter = action.filter),
-                PaginationSideEffect.LoadMore(direction = PaginationState.LoadDirection.NEXT, pageId = null)
-        )
+): ReduceResult<F, ItemId, RI, PageId> {
+    val newState = PaginationState.EmptyLoading<F, ItemId, RI, PageId>(filter = action.filter)
+    return ReduceResult(
+            newState,
+            PaginationSideEffect.LoadMore(
+                    paginationPagesRequest = PaginationPagesRequest.Next(
+                            lastLoadedPageId = null,
+                            nextPageId = newState.nextId
+                    )
+            )
+    )
+}
 
 private fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, PageId : Any> reduceActionLoadMoreForEmptyOrWithError(
         action: Action.UI.LoadMore<F, ItemId, RI, PageId>,
@@ -426,19 +431,19 @@ private fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, PageId : Any> red
     val itemsExceedsLimit = ((action.response.result.size + state.items.size) > limits.maxStoredItemsCount)
     val newState = if (itemsExceedsLimit) {
         when(state.direction) {
-            PaginationState.LoadDirection.PREVIOUS -> {
+            PaginationPagesRequest.Direction.PREVIOUS -> {
                 reduceActionResponseSuccessForPartiallyLoadedAndLoadingLimitExceedDirectionPrevious(state = state, action = action, limits = limits)
             }
-            PaginationState.LoadDirection.NEXT     -> {
+            PaginationPagesRequest.Direction.NEXT     -> {
                 reduceActionResponseSuccessForPartiallyLoadedAndLoadingLimitExceedDirectionNext(state = state, action = action, limits = limits)
             }
         }
     } else {
         when(state.direction) {
-            PaginationState.LoadDirection.PREVIOUS -> {
+            PaginationPagesRequest.Direction.PREVIOUS -> {
                 reduceActionResponseSuccessForPartiallyLoadedAndLoadingLimitNotExceedDirectionPrevious(state = state, action = action)
             }
-            PaginationState.LoadDirection.NEXT     -> {
+            PaginationPagesRequest.Direction.NEXT     -> {
                 reduceActionResponseSuccessForPartiallyLoadedAndLoadingLimitNotExceedDirectionNext(state = state, action = action)
             }
         }
@@ -475,14 +480,7 @@ private fun <F : Any, ItemId : Any, PageId : Any, RI : RecyclerItem<ItemId>> red
             }
         }
         is PaginationResponse.MiddlePage -> {
-            val limitedItems = ;//(action.response.result + state.items).take(limits.maxStoredItemsCount)
-            PaginationState.PartiallyLoaded.withItemsBeforeAndAfter(
-                    items = limitedItems,
-                    filter = state.filter,
-                    previousId = action.response.previousId,
-                    nextId =,
-                    currentPages =
-            )
+            reduceMiddlePageForExceedLimitLoadDirectionPrevious(state = state, response = action.response, limits = limits)
         }
     }
 }
@@ -492,26 +490,93 @@ private fun <F : Any, ItemId : Any, PageId : Any, RI : RecyclerItem<ItemId>> red
         action: Action.Response.Success<F, ItemId, RI, PageId>,
         limits: PaginationLimits
 ): PaginationState<F, ItemId, RI, PageId> {
-    val limitedItems = (state.items + action.response.result).takeLast(limits.maxStoredItemsCount)
+
+    val allCombinedItems = (state.items + action.response.result)
+
+    val firstlyLimitedItems = allCombinedItems.takeLast(limits.maxStoredItemsCount)
+    val lastDroppedItemIndex = ((allCombinedItems.size - limits.maxStoredItemsCount) - 1)
+    val lastDroppedItem = allCombinedItems[lastDroppedItemIndex]
+
+    val currentPages = mutableListOf<PageRelation<ItemId, PageId>>()
+
+    var lastDroppedPage: PageRelation<ItemId, PageId>? = null
+
+    for (index in state.currentPages.lastIndex downTo 0) {
+        val page = state.currentPages[index]
+
+        if (page.itemsIds.contains(lastDroppedItem.id)) {
+            lastDroppedPage = page
+            break
+        } else {
+            currentPages.add(0, page)
+        }
+    }
+
+    val newReceivedPageRelation = action.response.toPageRelation()
+    currentPages.add(newReceivedPageRelation)
+
+    val finalLimitedItems = firstlyLimitedItems.dropWhile { singleItem ->
+        lastDroppedPage!!.itemsIds.contains(singleItem.id)
+    }
+
     return when (action.response) {
         is PaginationResponse.LastPage   -> {
             PaginationState.PartiallyLoaded.withItemsBefore(
-                    items = limitedItems,
+                    items = finalLimitedItems,
                     filter = state.filter,
-                    previousId = ,
-                    currentPages =
+                    previousId = lastDroppedPage?.pageId,
+                    currentPages = currentPages
             )
         }
         is PaginationResponse.MiddlePage -> {
             PaginationState.PartiallyLoaded.withItemsBeforeAndAfter(
-                    items = limitedItems,
+                    items = finalLimitedItems,
                     filter = state.filter,
-                    previousId = ,
+                    previousId = lastDroppedPage?.pageId,
                     nextId = action.response.nextId,
-                    currentPages =
+                    currentPages = currentPages
             )
         }
     }
+}
+
+private fun <F : Any, ItemId : Any, PageId : Any, RI : RecyclerItem<ItemId>> reduceMiddlePageForExceedLimitLoadDirectionPrevious(
+        state: PaginationState.PartiallyLoadedAndLoading<F, ItemId, RI, PageId>,
+        response: PaginationResponse.MiddlePage<RI, PageId>,
+        limits: PaginationLimits
+): PaginationState.PartiallyLoaded<F, ItemId, RI, PageId> {
+
+    val allCombinedItems = (response.result + state.items)
+
+    val firstlyLimitedItems = allCombinedItems.take(limits.maxStoredItemsCount)
+    val firstlyDroppedItem = allCombinedItems[limits.maxStoredItemsCount]
+
+    val currentPages = mutableListOf<PageRelation<ItemId, PageId>>()
+    val newReceivedPageRelation = response.toPageRelation()
+    currentPages.add(newReceivedPageRelation)
+
+    var firstDroppedPage: PageRelation<ItemId, PageId>? = null
+
+    for (page in state.currentPages) {
+        if (page.itemsIds.contains(firstlyDroppedItem.id)) {
+            firstDroppedPage = page
+            break
+        } else {
+            currentPages.add(page)
+        }
+    }
+
+    val finalLimitedItems = firstlyLimitedItems.dropLastWhile { singleItem ->
+        firstDroppedPage!!.itemsIds.contains(singleItem.id)
+    }
+
+    return PaginationState.PartiallyLoaded.withItemsBeforeAndAfter(
+            items = finalLimitedItems,
+            filter = state.filter,
+            previousId = response.previousId,
+            nextId = firstDroppedPage?.pageId!!,
+            currentPages = currentPages
+    )
 }
 
 private fun <F : Any, ItemId : Any, PageId : Any, RI : RecyclerItem<ItemId>> reduceActionResponseSuccessForPartiallyLoadedAndLoadingLimitNotExceedDirectionPrevious(
@@ -519,10 +584,7 @@ private fun <F : Any, ItemId : Any, PageId : Any, RI : RecyclerItem<ItemId>> red
         action: Action.Response.Success<F, ItemId, RI, PageId>
 ): PaginationState<F, ItemId, RI, PageId> {
     val responseIsFirstPage = responseIsFirstPage(state = state, action = action)
-    val responsePageRelation = PageRelation(
-            pageId = state.previousId,
-            itemsIds = action.response.result.map { singleItem -> singleItem.id }
-    )
+    val responsePageRelation = action.response.toPageRelation()
     return when (action.response) {
         is PaginationResponse.LastPage   -> {
             val updatedCurrentPages = listOf(responsePageRelation)
@@ -588,10 +650,7 @@ private fun <F : Any, ItemId : Any, PageId : Any, RI : RecyclerItem<ItemId>> red
         action: Action.Response.Success<F, ItemId, RI, PageId>
 ): PaginationState<F, ItemId, RI, PageId> {
     val updatedItems = (state.items + action.response.result)
-    val responsePageRelation = PageRelation(
-            pageId = state.nextId,
-            itemsIds = action.response.result.map { singleItem -> singleItem.id }
-    )
+    val responsePageRelation = action.response.toPageRelation()
     val updatedCurrentPages = (state.currentPages + responsePageRelation)
     return when (action.response) {
         is PaginationResponse.LastPage   -> {
@@ -633,13 +692,9 @@ private fun <F : Any, ItemId : Any, PageId : Any, RI : RecyclerItem<ItemId>> red
 
 private fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, PageId : Any> reduceActionLoadMoreForPartiallyLoadedOrWithError(
         action: Action.UI.LoadMore<F, ItemId, RI, PageId>,
-        state: PaginationState<F, ItemId, RI, PageId>,
-        hasItemsBefore: Boolean
+        state: PaginationState<F, ItemId, RI, PageId>
 ): ReduceResult<F, ItemId, RI, PageId> =
-        if (((action.direction == PaginationState.LoadDirection.NEXT) && !state.hasItemsAfter)
-            || ((action.direction == PaginationState.LoadDirection.PREVIOUS) && !hasItemsBefore)) {
-            ReduceResult(state)
-        } else {
+        if (state.hasSenseForLoading(action.direction)) {
             ReduceResult(
                     PaginationState.PartiallyLoadedAndLoading(
                             items = state.items,
@@ -647,21 +702,34 @@ private fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, PageId : Any> red
                             currentPages = state.currentPages,
                             previousId = state.previousId,
                             nextId = state.nextId,
-                            direction = action.direction,
-                            hasItemsBefore = hasItemsBefore
+                            direction = action.direction
                     ),
                     createLoadMoreSideEffect(action = action, state = state)
             )
+        } else {
+            ReduceResult(state)
         }
 
 private fun <F : Any, ItemId : Any, PageId : Any, RI : RecyclerItem<ItemId>> createLoadMoreSideEffect(
         action: Action.UI.LoadMore<F, ItemId, RI, PageId>,
         state: PaginationState<F, ItemId, RI, PageId>
-): PaginationSideEffect.LoadMore<PageId> =
-        PaginationSideEffect.LoadMore(
-                direction = action.direction,
-                pageId = state.pageIdFor(action.direction)
-        )
+): PaginationSideEffect.LoadMore<PageId> {
+    val paginationPagesRequest = when (action.direction) {
+        PaginationPagesRequest.Direction.NEXT     -> {
+            PaginationPagesRequest.Next(
+                    lastLoadedPageId = state.currentPages.lastOrNull()?.pageId,
+                    nextPageId = state.nextId
+            )
+        }
+        PaginationPagesRequest.Direction.PREVIOUS -> {
+            PaginationPagesRequest.Previous(
+                    previousPageId = state.previousId,
+                    firstLoadedPageId = state.currentPages.firstOrNull()?.pageId
+            )
+        }
+    }
+    return PaginationSideEffect.LoadMore(paginationPagesRequest = paginationPagesRequest)
+}
 
 private inline fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, PageId : Any> reduceActionChangeForNonEmptyList(
         state: PaginationState<F, ItemId, RI, PageId>,
@@ -695,8 +763,8 @@ private inline fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, PageId : A
             }
         }
 
-private fun <F : Any, ItemId : Any, PageId : Any, RI : RecyclerItem<ItemId>> responseIsFirstPage(
-        state: PaginationState.PartiallyLoadedAndLoading<F, ItemId, RI, PageId>,
-        action: Action.Response.Success<F, ItemId, RI, PageId>
-): Boolean =
-        ((state.previousId == null) && (action.response.previousId == null))
+private fun <ItemId : Any, PageId : Any, RI : RecyclerItem<ItemId>> PaginationResponse<RI, PageId>.toPageRelation(): PageRelation<ItemId, PageId> =
+        PageRelation(
+                pageId = this.currentId,
+                itemsIds = this.result.map { singleItem -> singleItem.id }
+        )

@@ -1,5 +1,6 @@
 package com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination
 
+import com.ruslan.hlushan.core.api.dto.PaginationPagesRequest
 import com.ruslan.hlushan.core.api.dto.PaginationResponse
 import com.ruslan.hlushan.core.ui.api.recycler.RecyclerItem
 
@@ -9,7 +10,7 @@ internal sealed class Action<out F : Any, out ItemId : Any, out RI : RecyclerIte
     sealed class UI<out F : Any, out ItemId : Any, out RI : RecyclerItem<ItemId>, out PageId : Any> : Action<F, ItemId, RI, PageId>() {
 
         data class LoadMore<out F : Any, out ItemId : Any, out RI : RecyclerItem<ItemId>, out PageId : Any>(
-                val direction: PaginationState.LoadDirection
+                val direction: PaginationPagesRequest.Direction
         ) : UI<F, ItemId, RI, PageId>()
 
         data class Refresh<out F : Any, out ItemId : Any, out RI : RecyclerItem<ItemId>, out PageId : Any>(

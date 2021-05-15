@@ -1,37 +1,36 @@
 package com.ruslan.hlushan.core.api.dto
 
-sealed class PaginationResponse<out T : Any, out Id : Any> {
+sealed class PaginationResponse<out T : Any, out PageId : Any> {
 
     abstract val result: List<T>
-    abstract val previousId: Id?
+    abstract val previousId: PreviousPageId<PageId>//todo: rename to previousPageId
+    abstract val currentId: PageId?//todo: rename to currentPageId
 
-    data class LastPage<out T : Any, out Id : Any >(
+    data class LastPage<out T : Any, out PageId : Any >(
             override val result: List<T>,
-            override val previousId: Id?
-    ) : PaginationResponse<T, Id>()
+            override val previousId: PreviousPageId<PageId>,
+            override val currentId: PageId?
+    ) : PaginationResponse<T, PageId>()
 
-    data class MiddlePage<out T : Any, out Id : Any>(
+    data class MiddlePage<out T : Any, out PageId : Any>(
             override val result: List<T>,
-            override val previousId: Id?,
-            val nextId: Id
-    ) : PaginationResponse<T, Id>()
+            override val previousId: PreviousPageId<PageId>,
+            override val currentId: PageId?,
+            val nextId: PageId
+    ) : PaginationResponse<T, PageId>()
 }
 
-val <T : Any, Id : Any> PaginationResponse<T, Id>.nextIdOrNull: Id?
-    get() = when (this) {
-            is PaginationResponse.MiddlePage -> this.nextId
-            is PaginationResponse.LastPage -> null
-        }
-
-fun <T : Any, Id : Any, R : Any> PaginationResponse<T, Id>.map(transform: (T) -> R): PaginationResponse<R, Id> =
+fun <T : Any, PageId : Any, R : Any> PaginationResponse<T, PageId>.map(transform: (T) -> R): PaginationResponse<R, PageId> =
         when (this) {
             is PaginationResponse.MiddlePage -> PaginationResponse.MiddlePage(
                     result = this.result.map(transform),
                     previousId = this.previousId,
+                    currentId = this.currentId,
                     nextId = this.nextId
             )
             is PaginationResponse.LastPage   -> PaginationResponse.LastPage(
                     result = this.result.map(transform),
+                    currentId = this.currentId,
                     previousId = this.previousId
             )
         }
