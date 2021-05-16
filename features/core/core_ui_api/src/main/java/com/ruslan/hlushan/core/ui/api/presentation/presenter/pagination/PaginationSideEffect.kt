@@ -2,11 +2,11 @@ package com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination
 
 import com.ruslan.hlushan.core.api.dto.PaginationPagesRequest
 
-internal sealed class PaginationSideEffect<out PageId : Any> {
+internal sealed class PaginationSideEffect<out Id : Any> {
 
-    class LoadMore<PageId : Any>(
-            val paginationPagesRequest: PaginationPagesRequest<PageId>
-    ) : PaginationSideEffect<PageId>()
+    class LoadMore<Id : Any>(
+            val paginationPagesRequest: PaginationPagesRequest<Id>
+    ) : PaginationSideEffect<Id>()
 
-    class AvoidNotifyStateUpdated<PageId : Any> : PaginationSideEffect<PageId>()
+    class AvoidNotifyStateUpdated : PaginationSideEffect<Nothing>()
 }

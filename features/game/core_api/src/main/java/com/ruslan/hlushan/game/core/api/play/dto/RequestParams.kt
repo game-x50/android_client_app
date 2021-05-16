@@ -12,46 +12,42 @@ sealed class RequestParams {
 
     sealed class OrderTotalSum : RequestParams() {
 
-        abstract val boundarySum: Int?
-
         class Asc(
                 override val excludedIds: List<Long>,
                 val minTotalSum: Int?
-        ) : RequestParams.OrderTotalSum() {
-
-            override val boundarySum: Int? get() = minTotalSum
-        }
+        ) : RequestParams.OrderTotalSum()
 
         class Desc(
                 override val excludedIds: List<Long>,
                 val maxTotalSum: Int?
-        ) : RequestParams.OrderTotalSum() {
-
-            override val boundarySum: Int? get() = maxTotalSum
-        }
+        ) : RequestParams.OrderTotalSum()
     }
 
     sealed class OrderLastModified : RequestParams() {
 
-        abstract val boundaryTimestamp: Instant?
-
         class Asc(
                 override val excludedIds: List<Long>,
                 val minLastModifiedTimestamp: Instant?
-        ) : RequestParams.OrderLastModified() {
-
-            override val boundaryTimestamp: Instant? get() = minLastModifiedTimestamp
-        }
+        ) : RequestParams.OrderLastModified()
 
         class Desc(
                 override val excludedIds: List<Long>,
                 val maxLastModifiedTimestamp: Instant?
-        ) : RequestParams.OrderLastModified() {
-
-            override val boundaryTimestamp: Instant? get() = maxLastModifiedTimestamp
-        }
+        ) : RequestParams.OrderLastModified()
     }
 }
+
+private val RequestParams.OrderTotalSum.boundarySum: Int?
+    get() = when (this) {
+        is RequestParams.OrderTotalSum.Asc  -> this.minTotalSum
+        is RequestParams.OrderTotalSum.Desc -> this.maxTotalSum
+    }
+
+private val RequestParams.OrderLastModified.boundaryTimestamp: Instant?
+    get() = when (this) {
+        is RequestParams.OrderLastModified.Asc  -> this.minLastModifiedTimestamp
+        is RequestParams.OrderLastModified.Desc -> this.maxLastModifiedTimestamp
+    }
 
 //TODO: #write_unit_tests
 fun combineToRequestParams(

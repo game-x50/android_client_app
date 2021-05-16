@@ -1,6 +1,8 @@
 package com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination
 
-data class PageRelation<out ItemId : Any, out PageId : Any>(
-        val pageId: PageId?,
+import com.ruslan.hlushan.core.api.dto.PageId
+
+data class PageRelation<out Id : Any, out ItemId : Any>(
+        val pageId: PageId<Id>,
         val itemsIds: List<ItemId>
 )

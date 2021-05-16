@@ -1,36 +1,85 @@
 package com.ruslan.hlushan.core.api.dto
 
-sealed class PaginationResponse<out T : Any, out PageId : Any> {
+sealed class PaginationResponse<out T : Any, out Id : Any> {
 
     abstract val result: List<T>
-    abstract val previousId: PreviousPageId<PageId>//todo: rename to previousPageId
-    abstract val currentId: PageId?//todo: rename to currentPageId
+    abstract val currentPageId: PageId<Id>
 
-    data class LastPage<out T : Any, out PageId : Any >(
+    //has pages after
+    data class FirstPage<out T : Any, out Id : Any>(
             override val result: List<T>,
-            override val previousId: PreviousPageId<PageId>,
-            override val currentId: PageId?
-    ) : PaginationResponse<T, PageId>()
+            val nextPageId: NextPageId.Existing<Id>
+    ) : PaginationResponse<T, Id>() {
+        override val currentPageId: PageId<Id> get() = PageId.First
+    }
 
-    data class MiddlePage<out T : Any, out PageId : Any>(
+    //has pages before and after
+    data class MiddlePage<out T : Any, out Id : Any> private constructor(
             override val result: List<T>,
-            override val previousId: PreviousPageId<PageId>,
-            override val currentId: PageId?,
-            val nextId: PageId
-    ) : PaginationResponse<T, PageId>()
+            val previousPageId: PreviousPageId.Existing<Id>,
+            override val currentPageId: PageId.SecondOrMore<Id>,
+            val nextPageId: NextPageId.Existing<Id>
+    ) : PaginationResponse<T, Id>() {
+
+        constructor(
+                result: List<T>,
+                previousPageId: PreviousPageId.Existing<Id>,
+                currentPageId: Id,
+                nextPageId: NextPageId.Existing<Id>
+        ) : this(
+                result = result,
+                previousPageId = previousPageId,
+                currentPageId = PageId.SecondOrMore(value = currentPageId),
+                nextPageId = nextPageId
+        )
+    }
+
+    //has pages before
+    data class LastPage<out T : Any, out Id : Any> private constructor(
+            override val result: List<T>,
+            val previousPageId: PreviousPageId.Existing<Id>,
+            override val currentPageId: PageId.SecondOrMore<Id>
+    ) : PaginationResponse<T, Id>() {
+
+        constructor(
+                result: List<T>,
+                previousPageId: PreviousPageId.Existing<Id>,
+                currentPageId: Id
+        ) : this(
+                result = result,
+                previousPageId = previousPageId,
+                currentPageId = PageId.SecondOrMore(value = currentPageId)
+        )
+    }
+
+    data class SinglePage<out T : Any, out Id : Any>(
+            override val result: List<T>
+    ) : PaginationResponse<T, Id>() {
+        override val currentPageId: PageId<Id> get() = PageId.First
+    }
 }
 
-fun <T : Any, PageId : Any, R : Any> PaginationResponse<T, PageId>.map(transform: (T) -> R): PaginationResponse<R, PageId> =
-        when (this) {
-            is PaginationResponse.MiddlePage -> PaginationResponse.MiddlePage(
-                    result = this.result.map(transform),
-                    previousId = this.previousId,
-                    currentId = this.currentId,
-                    nextId = this.nextId
-            )
-            is PaginationResponse.LastPage   -> PaginationResponse.LastPage(
-                    result = this.result.map(transform),
-                    currentId = this.currentId,
-                    previousId = this.previousId
-            )
-        }
+fun <T : Any, Id : Any, R : Any> PaginationResponse<T, Id>.map(transform: (T) -> R): PaginationResponse<R, Id> {
+    val transformedResult = this.result.map(transform)
+
+    return when (this) {
+        is PaginationResponse.FirstPage -> PaginationResponse.FirstPage(
+                result = transformedResult,
+                nextPageId = this.nextPageId
+        )
+        is PaginationResponse.MiddlePage -> PaginationResponse.MiddlePage(
+                result = transformedResult,
+                previousPageId = this.previousPageId,
+                currentPageId = this.currentPageId.value,
+                nextPageId = this.nextPageId
+        )
+        is PaginationResponse.LastPage -> PaginationResponse.LastPage(
+                result = transformedResult,
+                previousPageId = this.previousPageId,
+                currentPageId = this.currentPageId.value,
+        )
+        is PaginationResponse.SinglePage -> PaginationResponse.SinglePage(
+                result = transformedResult,
+        )
+    }
+}

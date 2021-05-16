@@ -1,16 +1,18 @@
 package com.ruslan.hlushan.core.api.dto
 
-sealed class PaginationPagesRequest<out PageId : Any> {
+sealed class PaginationPagesRequest<out Id : Any> {
 
-    data class Previous<out PageId : Any>(
-            val previousPageId: PreviousPageId<PageId>,
-            val firstLoadedPageId: PageId?
-    ) : PaginationPagesRequest<PageId>()
+    class Init : PaginationPagesRequest<Nothing>()
 
-    data class Next<out PageId : Any>(
-            val lastLoadedPageId: PageId?,
-            val nextPageId: NextPageId<PageId>
-    ) : PaginationPagesRequest<PageId>()
+    data class Previous<out Id : Any>(
+            val previousPageId: PageId<Id>,
+            val firstLoadedPageId: Id
+    ) : PaginationPagesRequest<Id>()
+
+    data class Next<out Id : Any>(
+            val lastLoadedPageId: PageId<Id>,
+            val nextPageId: Id
+    ) : PaginationPagesRequest<Id>()
 
     enum class Direction {
         NEXT,

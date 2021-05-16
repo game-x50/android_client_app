@@ -5,39 +5,39 @@ import com.ruslan.hlushan.core.api.dto.PaginationResponse
 import com.ruslan.hlushan.core.ui.api.recycler.RecyclerItem
 
 //todo: rename to PaginationAction
-internal sealed class Action<out F : Any, out ItemId : Any, out RI : RecyclerItem<ItemId>, out PageId : Any> {
+internal sealed class Action<out F : Any, out ItemId : Any, out RI : RecyclerItem<ItemId>, out Id : Any> {
 
-    sealed class UI<out F : Any, out ItemId : Any, out RI : RecyclerItem<ItemId>, out PageId : Any> : Action<F, ItemId, RI, PageId>() {
+    sealed class UI<out F : Any> : Action<F, Nothing, Nothing, Nothing>() {
 
-        data class LoadMore<out F : Any, out ItemId : Any, out RI : RecyclerItem<ItemId>, out PageId : Any>(
+        data class LoadMore(
                 val direction: PaginationPagesRequest.Direction
-        ) : UI<F, ItemId, RI, PageId>()
+        ) : UI<Nothing>()
 
-        data class Refresh<out F : Any, out ItemId : Any, out RI : RecyclerItem<ItemId>, out PageId : Any>(
+        data class Refresh<out F : Any>(
                 val filter: F
-        ) : UI<F, ItemId, RI, PageId>()
+        ) : UI<F>()
     }
 
-    sealed class Response<out F : Any, out ItemId : Any, out RI : RecyclerItem<ItemId>, out PageId : Any> : Action<F, ItemId, RI, PageId>() {
+    sealed class Response<out ItemId : Any, out RI : RecyclerItem<ItemId>, out Id : Any> : Action<Nothing, ItemId, RI, Id>() {
 
-        class Success<out F : Any, out ItemId : Any, out RI : RecyclerItem<ItemId>, out PageId : Any>(
-                val response: PaginationResponse<RI, PageId>
-        ) : Response<F, ItemId, RI, PageId>()
+        class Success<out ItemId : Any, out RI : RecyclerItem<ItemId>, out Id : Any>(
+                val response: PaginationResponse<RI, Id>
+        ) : Response<ItemId, RI, Id>()
 
-        class Error<out F : Any, out ItemId : Any, out RI : RecyclerItem<ItemId>, out PageId : Any>(
+        class Error(
                 val error: Throwable
-        ) : Response<F, ItemId, RI, PageId>()
+        ) : Response<Nothing, Nothing, Nothing>()
     }
 
-    sealed class Change<out F : Any, out ItemId : Any, out RI : RecyclerItem<ItemId>, out PageId : Any> : Action<F, ItemId, RI, PageId>() {
+    sealed class Change<out ItemId : Any, out RI : RecyclerItem<ItemId>> : Action<Nothing, ItemId, RI, Nothing>() {
 
-        class SingleItemUpdated<out F : Any, out ItemId : Any, out RI : RecyclerItem<ItemId>, out PageId : Any>(
+        class SingleItemUpdated<out ItemId : Any, out RI : RecyclerItem<ItemId>>(
                 val updatedItem: RI,
                 val notifyStateUpdated: Boolean
-        ) : Change<F, ItemId, RI, PageId>()
+        ) : Change<ItemId, RI>()
 
-        class SingleItemDeleted<out F : Any, out ItemId : Any, out RI : RecyclerItem<ItemId>, out PageId : Any>(
+        class SingleItemDeleted<out ItemId : Any>(
                 val deletedItemId: ItemId
-        ) : Change<F, ItemId, RI, PageId>()
+        ) : Change<ItemId, Nothing>()
     }
 }
