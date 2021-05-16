@@ -8,24 +8,24 @@ sealed class PaginationResponse<out T : Any, out Id : Any> {
     //has pages after
     data class FirstPage<out T : Any, out Id : Any>(
             override val result: List<T>,
-            val nextPageId: NextPageId.Existing<Id>
+            val nextPageId: Id
     ) : PaginationResponse<T, Id>() {
-        override val currentPageId: PageId<Id> get() = PageId.First
+        override val currentPageId: PageId.First get() = PageId.First
     }
 
     //has pages before and after
     data class MiddlePage<out T : Any, out Id : Any> private constructor(
             override val result: List<T>,
-            val previousPageId: PreviousPageId.Existing<Id>,
+            val previousPageId: PageId<Id>,
             override val currentPageId: PageId.SecondOrMore<Id>,
-            val nextPageId: NextPageId.Existing<Id>
+            val nextPageId: Id
     ) : PaginationResponse<T, Id>() {
 
         constructor(
                 result: List<T>,
-                previousPageId: PreviousPageId.Existing<Id>,
+                previousPageId: PageId<Id>,
                 currentPageId: Id,
-                nextPageId: NextPageId.Existing<Id>
+                nextPageId: Id
         ) : this(
                 result = result,
                 previousPageId = previousPageId,
@@ -37,13 +37,13 @@ sealed class PaginationResponse<out T : Any, out Id : Any> {
     //has pages before
     data class LastPage<out T : Any, out Id : Any> private constructor(
             override val result: List<T>,
-            val previousPageId: PreviousPageId.Existing<Id>,
+            val previousPageId: PageId<Id>,
             override val currentPageId: PageId.SecondOrMore<Id>
     ) : PaginationResponse<T, Id>() {
 
         constructor(
                 result: List<T>,
-                previousPageId: PreviousPageId.Existing<Id>,
+                previousPageId: PageId<Id>,
                 currentPageId: Id
         ) : this(
                 result = result,
@@ -55,7 +55,7 @@ sealed class PaginationResponse<out T : Any, out Id : Any> {
     data class SinglePage<out T : Any, out Id : Any>(
             override val result: List<T>
     ) : PaginationResponse<T, Id>() {
-        override val currentPageId: PageId<Id> get() = PageId.First
+        override val currentPageId: PageId.First get() = PageId.First
     }
 }
 

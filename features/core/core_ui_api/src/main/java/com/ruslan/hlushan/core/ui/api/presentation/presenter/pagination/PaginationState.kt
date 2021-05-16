@@ -2,6 +2,7 @@ package com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination
 
 import com.ruslan.hlushan.core.api.dto.NextPageId
 import com.ruslan.hlushan.core.api.dto.PageId
+import com.ruslan.hlushan.core.api.dto.PageRelationsList
 import com.ruslan.hlushan.core.api.dto.PaginationPagesRequest
 import com.ruslan.hlushan.core.api.dto.PreviousPageId
 import com.ruslan.hlushan.core.ui.api.recycler.RecyclerItem
@@ -45,45 +46,27 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
             }
         }
 
-        sealed class PartiallyLoaded<out F : Any, ItemId : Any, out RI : RecyclerItem<ItemId>, out Id : Any>(
-                previousPageId: PreviousPageId<Id>,
-                currentPages: List<PageRelation<Id, ItemId>>
-        ) : PaginationState.Active<F, ItemId, RI, Id>(), PaginationState.WithItems<ItemId, RI, Id> {
+        sealed class PartiallyLoaded<out F : Any, ItemId : Any, out RI : RecyclerItem<ItemId>, out Id : Any>
+            : PaginationState.Active<F, ItemId, RI, Id>(), PaginationState.WithItems<ItemId, RI, Id> {
 
-            abstract val previousPageId: PreviousPageId<Id>
-            abstract val nextPageId: NextPageId<Id>
-
-            init {
-                if ((previousPageId is PreviousPageId.Existing)
-                    && (currentPages.first().pageId !is PageId.SecondOrMore)) {
-                    throw IllegalArgumentException("For not first page pageId should be ${PageId.SecondOrMore::class}")
-                }
-            }
+            abstract val nextPageId: Id?
 
             data class Default<out F : Any, ItemId : Any, out RI : RecyclerItem<ItemId>, out Id : Any>(
                     override val items: List<RI>,
                     override val filter: F,
-                    override val currentPages: List<PageRelation<Id, ItemId>>,
-                    override val previousPageId: PreviousPageId<Id>,
-                    override val nextPageId: NextPageId<Id>
-            ) : PaginationState.Active.PartiallyLoaded<F, ItemId, RI, Id>(
-                    previousPageId = previousPageId,
-                    currentPages = currentPages
-            ) {
+                    override val pageRelationsList: PageRelationsList<Id, ItemId>,
+                    override val nextPageId: Id?
+            ) : PaginationState.Active.PartiallyLoaded<F, ItemId, RI, Id>() {
                 override val additional: Additional.WaitingForLoadMore = Additional.WaitingForLoadMore()
             }
 
             data class AndLoading<out F : Any, ItemId : Any, out RI : RecyclerItem<ItemId>, out Id : Any>(
                     override val items: List<RI>,
                     override val filter: F,
-                    override val currentPages: List<PageRelation<Id, ItemId>>,
-                    override val previousPageId: PreviousPageId<Id>,
-                    override val nextPageId: NextPageId<Id>,
+                    override val pageRelationsList: PageRelationsList<Id, ItemId>,
+                    override val nextPageId: Id?,
                     val direction: PaginationPagesRequest.Direction
-            ) : PaginationState.Active.PartiallyLoaded<F, ItemId, RI, Id>(
-                    previousPageId = previousPageId,
-                    currentPages = currentPages
-            ) {
+            ) : PaginationState.Active.PartiallyLoaded<F, ItemId, RI, Id>() {
 
                 override val additional: Additional.Loading = Additional.Loading()
 
@@ -96,28 +79,22 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
             data class WithError<out F : Any, ItemId : Any, out RI : RecyclerItem<ItemId>, out Id : Any> private constructor(
                     override val items: List<RI>,
                     override val filter: F,
-                    override val currentPages: List<PageRelation<Id, ItemId>>,
-                    override val previousPageId: PreviousPageId<Id>,
-                    override val nextPageId: NextPageId<Id>,
+                    override val pageRelationsList: PageRelationsList<Id, ItemId>,
+                    override val nextPageId: Id?,
                     override val additional: Additional.Error
-            ) : PaginationState.Active.PartiallyLoaded<F, ItemId, RI, Id>(
-                    previousPageId = previousPageId,
-                    currentPages = currentPages
-            ), PaginationState.WithError {
+            ) : PaginationState.Active.PartiallyLoaded<F, ItemId, RI, Id>(), PaginationState.WithError {
 
                 constructor(
                         items: List<RI>,
                         filter: F,
-                        currentPages: List<PageRelation<Id, ItemId>>,
-                        previousPageId: PreviousPageId<Id>,
-                        nextPageId: NextPageId<Id>,
+                        pageRelationsList: PageRelationsList<Id, ItemId>,
+                        nextPageId: Id?,
                         direction: PaginationPagesRequest.Direction,
                         error: Throwable
                 ) : this(
                         items = items,
                         filter = filter,
-                        currentPages = currentPages,
-                        previousPageId = previousPageId,
+                        pageRelationsList = pageRelationsList,
                         nextPageId = nextPageId,
                         additional = Additional.Error(value = error, loadDirection = direction)
                 ) {
@@ -131,7 +108,7 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
 
         data class WithResults<out F : Any, ItemId : Any, out RI : RecyclerItem<ItemId>, out Id : Any>(
                 override val items: List<RI>,
-                override val currentPages: List<PageRelation<Id, ItemId>>,
+                override val pageRelationsList: PageRelationsList.IncludingFirst<Id, ItemId>,
                 override val filter: F
         ) : PaginationState.Finished<F, ItemId, RI, Id>(), PaginationState.WithItems<ItemId, RI, Id>
 
@@ -163,7 +140,7 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
 
     interface WithItems<out ItemId : Any, out RI : RecyclerItem<ItemId>, out Id : Any> {
         val items: List<RI>
-        val currentPages: List<PageRelation<Id, ItemId>>
+        val pageRelationsList: PageRelationsList<Id, ItemId>
     }
 }
 
