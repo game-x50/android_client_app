@@ -59,9 +59,8 @@ comments:
     active: false
   CommentOverPrivateProperty:
     active: false
-#    todo
-#  DeprecatedBlockTag:
-#    active: true
+  DeprecatedBlockTag:
+    active: true
   EndOfSentenceFormat:
     active: false
     endOfSentenceFormat: '([.?!][ \t\n\r\f<])|([.?!:]$)'
@@ -493,9 +492,8 @@ potential-bugs:
     active: true
   DontDowncastCollectionTypes:
     active: true
-#    todo
-#  DoubleMutabilityForCollection:
-#    active: true
+  DoubleMutabilityForCollection:
+    active: true
   DuplicateCaseInWhenExpression:
     active: true
   EqualsAlwaysReturnsTrueOrFalse:

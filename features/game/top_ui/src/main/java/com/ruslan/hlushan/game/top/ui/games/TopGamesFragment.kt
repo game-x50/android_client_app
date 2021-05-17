@@ -10,7 +10,7 @@ import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.api.extensions.bindBaseViewModel
 import com.ruslan.hlushan.core.ui.api.extensions.bindViewBinding
 import com.ruslan.hlushan.core.ui.api.presentation.command.handleCommandQueue
-import com.ruslan.hlushan.core.ui.api.presentation.presenter.PaginationState
+import com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination.PaginationState
 import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.BaseFragment
 import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.setUpPagination
 import com.ruslan.hlushan.core.ui.api.recycler.DelegatesRecyclerAdapter
@@ -73,7 +73,7 @@ internal class TopGamesFragment : BaseFragment(
         binding?.gameTopUiTopGamesListScreenSwipeRefresh?.isRefreshing = (command.additional is PaginationState.Additional.Loading)
 
         when (command.additional) {
-            is PaginationState.Additional.Empty -> {
+            is PaginationState.Additional.WaitingForLoadMore -> {
                 //TODO
             }
             is PaginationState.Additional.Error -> {

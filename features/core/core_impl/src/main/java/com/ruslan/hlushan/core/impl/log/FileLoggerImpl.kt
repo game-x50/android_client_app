@@ -1,7 +1,12 @@
 package com.ruslan.hlushan.core.impl.log
 
 import android.content.SharedPreferences
-import com.ruslan.hlushan.core.api.dto.PaginationResponse
+import com.ruslan.hlushan.core.api.dto.pagination.NextPageId
+import com.ruslan.hlushan.core.api.dto.pagination.PageId
+import com.ruslan.hlushan.core.api.dto.pagination.PaginationPagesRequest
+import com.ruslan.hlushan.core.api.dto.pagination.PaginationResponse
+import com.ruslan.hlushan.core.api.dto.pagination.PreviousPageId
+import com.ruslan.hlushan.core.api.dto.pagination.createPaginationResponseByLimits
 import com.ruslan.hlushan.core.api.log.FileLogger
 import com.ruslan.hlushan.core.api.utils.InitAppConfig
 import com.ruslan.hlushan.core.api.utils.thread.ThreadPoolSpecification
@@ -19,6 +24,7 @@ import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicReference
 import javax.inject.Inject
+import kotlin.math.max
 import kotlin.math.min
 
 /**
@@ -68,12 +74,13 @@ constructor(
     }
 
     override fun readNextFileLogs(
-            lastFileNameWithoutExtension: String?,
+            pagesRequest: PaginationPagesRequest<String>,
             limitFiles: Int
     ): Single<PaginationResponse<String, String>> =
             Single.fromCallable {
                 readNextFileLogsSync(
-                        lastFileNameWithoutExtension = lastFileNameWithoutExtension,
+                        sorterFilesList = getLogsFiles(logsFolder, sorted = true),
+                        pagesRequest = pagesRequest,
                         limitFiles = limitFiles
                 )
             }.subscribeOn(fileLoggerScheduler)
@@ -97,44 +104,6 @@ constructor(
             writeToFile(writeFile, logMessage)
         } catch (e: IOException) {
             e.printStackTrace()
-        }
-    }
-
-    @ThreadPoolSpecification(ThreadPoolType.IO)
-    private fun readNextFileLogsSync(
-            lastFileNameWithoutExtension: String?,
-            limitFiles: Int
-    ): PaginationResponse<String, String> {
-        val sorterFilesList: List<File> = getLogsFiles(logsFolder, sorted = true)
-
-        return if (sorterFilesList.isEmpty()) {
-            PaginationResponse.LastPage(result = emptyList())
-        } else {
-            val positionOfLast: Int = if (lastFileNameWithoutExtension != null) {
-                sorterFilesList.indexOfFirst { file -> file.nameWithoutExtension == lastFileNameWithoutExtension }
-            } else {
-                -1
-            }
-
-            val positionOfNext = (positionOfLast + 1)
-
-            if (positionOfNext > sorterFilesList.lastIndex) {
-                PaginationResponse.LastPage(result = emptyList())
-            } else {
-                val endPosition: Int = min((positionOfNext + limitFiles), sorterFilesList.lastIndex)
-                val hasMore: Boolean = (endPosition != sorterFilesList.lastIndex)
-
-                val resultFilesList: List<File> = sorterFilesList.subList(positionOfNext, endPosition + 1)
-
-                val result = readLogsFromFiles(resultFilesList)
-
-                if (hasMore) {
-                    val nextPageId = resultFilesList.last().nameWithoutExtension
-                    PaginationResponse.MiddlePage(result = result, nextId = nextPageId)
-                } else {
-                    PaginationResponse.LastPage(result = result)
-                }
-            }
         }
     }
 
@@ -175,6 +144,125 @@ constructor(
     private fun createLogsFileForNameWithoutExtension(
             nameWithoutExtension: String
     ): File = File(logsFolder, "$nameWithoutExtension.$FILES_EXTENSION")
+}
+
+@ThreadPoolSpecification(ThreadPoolType.IO)
+private fun readNextFileLogsSync(
+        sorterFilesList: List<File>,
+        pagesRequest: PaginationPagesRequest<String>,
+        limitFiles: Int
+): PaginationResponse<String, String> {
+
+    val (items: List<String>, requestPageId: String?) = when (pagesRequest) {
+        is PaginationPagesRequest.Init     -> {
+            val pageId = null
+            getItemsForNextDirection(
+                    sorterFilesList = sorterFilesList,
+                    firstFileNameInNextPageWithoutExtension = pageId,
+                    limitFiles = limitFiles
+            ) to pageId
+        }
+        is PaginationPagesRequest.Next     -> {
+            val pageId = pagesRequest.nextPageId.value.value
+            getItemsForNextDirection(
+                    sorterFilesList = sorterFilesList,
+                    firstFileNameInNextPageWithoutExtension = pageId,
+                    limitFiles = limitFiles
+            ) to pageId
+        }
+        is PaginationPagesRequest.Previous -> {
+            val previousPageId = pagesRequest.previousPageId
+            val pageId = when (previousPageId) {
+                is PageId.First        -> null
+                is PageId.SecondOrMore -> previousPageId.value
+            }
+            getItemsForPreviousDirection(
+                    sorterFilesList = sorterFilesList,
+                    lastFileNameInPreviousPageWithoutExtension = pageId,
+                    limitFiles = limitFiles
+            ) to pageId
+        }
+    }
+
+    return createPaginationResponseByLimits(
+            pageResult = items,
+            pagesRequest = pagesRequest,
+            requestPageId = requestPageId,
+            limit = limitFiles,
+            createNextPageIdFor = { requestId, pageResult -> createNextPageIdFor(sorterFilesList, pageResult) },
+            createPreviousPageIdFor = { requestId, pageResult -> createPreviousPageIdFor(sorterFilesList, pageResult) },
+    )
+}
+
+private fun getItemsForNextDirection(
+        sorterFilesList: List<File>,
+        firstFileNameInNextPageWithoutExtension: String?,
+        limitFiles: Int
+): List<String> {
+    val positionOfNext: Int = if (firstFileNameInNextPageWithoutExtension != null) {
+        sorterFilesList.indexOfFirst { file -> (file.nameWithoutExtension == firstFileNameInNextPageWithoutExtension) }
+    } else {
+        0
+    }
+
+    return if (positionOfNext > sorterFilesList.lastIndex) {
+        emptyList()
+    } else {
+        val endPosition: Int = min((positionOfNext + limitFiles), sorterFilesList.lastIndex)
+        val resultFilesList: List<File> = sorterFilesList.subList(positionOfNext, (endPosition + 1))
+        readLogsFromFiles(resultFilesList)
+    }
+}
+
+private fun getItemsForPreviousDirection(
+        sorterFilesList: List<File>,
+        lastFileNameInPreviousPageWithoutExtension: String?,
+        limitFiles: Int
+): List<String> {
+    val positionOfPrevious: Int = if (lastFileNameInPreviousPageWithoutExtension != null) {
+        sorterFilesList.indexOfFirst { file -> (file.nameWithoutExtension == lastFileNameInPreviousPageWithoutExtension) }
+    } else {
+        1
+    }
+
+    return if (sorterFilesList.indices.contains(positionOfPrevious)) {
+        val startPosition: Int = max((positionOfPrevious - limitFiles), 0)
+        val resultFilesList: List<File> = sorterFilesList.subList(startPosition, (positionOfPrevious + 1))
+        readLogsFromFiles(resultFilesList)
+    } else {
+        emptyList()
+    }
+}
+
+private fun createPreviousPageIdFor(
+        sorterFilesList: List<File>,
+        pageResult: List<String>
+): PreviousPageId.Existing<String> {
+    val firstPresentedItem = pageResult.first()
+    val positionOfFirst: Int = sorterFilesList.indexOfFirst { file -> file.nameWithoutExtension == firstPresentedItem }
+
+    val positionOfPrevious = (positionOfFirst - 1)
+    val previousPageId = if (positionOfPrevious == 0) {
+        PageId.First
+    } else {
+        val nextNameWithoutExtension = sorterFilesList[positionOfPrevious].nameWithoutExtension
+        PageId.SecondOrMore(value = nextNameWithoutExtension)
+    }
+
+    return PreviousPageId.Existing(previousPageId)
+}
+
+private fun createNextPageIdFor(
+        sorterFilesList: List<File>,
+        pageResult: List<String>
+): NextPageId.Existing<String> {
+    val lastPresentedItem = pageResult.last()
+    val positionOfLast: Int = sorterFilesList.indexOfFirst { file -> file.nameWithoutExtension == lastPresentedItem }
+
+    val positionOfNext = (positionOfLast + 1)
+    val nextNameWithoutExtension = sorterFilesList[positionOfNext].nameWithoutExtension
+
+    return NextPageId.Existing(PageId.SecondOrMore(value = nextNameWithoutExtension))
 }
 
 @ThreadPoolSpecification(ThreadPoolType.IO)

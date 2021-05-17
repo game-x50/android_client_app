@@ -1,8 +1,9 @@
 package com.ruslan.hlushan.game.storage.impl.local
 
 import androidx.annotation.IntRange
-import com.ruslan.hlushan.core.api.dto.PaginationResponse
 import com.ruslan.hlushan.core.api.dto.ValueHolder
+import com.ruslan.hlushan.core.api.dto.pagination.PaginationPagesRequest
+import com.ruslan.hlushan.core.api.dto.pagination.PaginationResponse
 import com.ruslan.hlushan.core.api.log.AppLogger
 import com.ruslan.hlushan.core.api.managers.SchedulersManager
 import com.ruslan.hlushan.game.core.api.play.dto.GameRecord
@@ -10,6 +11,7 @@ import com.ruslan.hlushan.game.core.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.core.api.play.dto.RecordSyncState
 import com.ruslan.hlushan.game.core.api.play.dto.RequestParams
 import com.ruslan.hlushan.game.core.api.play.dto.SyncStatus
+import com.ruslan.hlushan.game.core.api.play.dto.combineToRequestParams
 import com.ruslan.hlushan.game.core.api.play.dto.createPaginationResponseFor
 import com.ruslan.hlushan.game.storage.impl.local.db.dao.GameRecordsDAO
 import com.ruslan.hlushan.game.storage.impl.local.db.entities.GameRecordDb
@@ -38,12 +40,13 @@ constructor(
     }
 
     override fun getAvailableRecords(
-            requestParams: RequestParams,
+            pagesRequest: PaginationPagesRequest<RequestParams>,
+            filter: GameRecordWithSyncState.Order.Params,
             limit: Int
     ): Single<PaginationResponse<GameRecordWithSyncState, RequestParams>> =
-            Single.just(requestParams)
-                    .flatMap {
-                        when (requestParams) {
+            Single.fromCallable { combineToRequestParams(pagesRequest, filter) }
+                    .flatMap { requestParams ->
+                       when (requestParams) {
                             is RequestParams.OrderTotalSum.Asc      -> {
                                 gameRecordsDAO.getRecordsExcludeOrderByTotalSumAsc(
                                         localActionType = LocalActionTypeDb.DELETE,
@@ -76,10 +79,10 @@ constructor(
                                         limit = limit
                                 )
                             }
-                        }
+                        }.map { dbRecords -> Pair(requestParams, dbRecords) }
                     }
-                    .map { dbRecords -> dbRecords.map(GameRecordDb::fromDbRecord) }
-                    .map { pageResult -> createPaginationResponseFor(pageResult, previousRequestParams = requestParams, limit = limit) }
+                    .map { (requestParams, dbRecords) -> requestParams to dbRecords.map(GameRecordDb::fromDbRecord) }
+                    .map { (requestParams, pageResult) -> createPaginationResponseFor(pageResult, pagesRequest, requestParams, limit = limit) }
                     .subscribeOn(schedulersManager.io)
 
     override fun observeGameRecord(id: Long): Observable<ValueHolder<GameRecordWithSyncState?>> =

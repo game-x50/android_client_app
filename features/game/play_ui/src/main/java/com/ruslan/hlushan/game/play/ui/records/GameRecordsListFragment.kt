@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentFactory
 import androidx.recyclerview.widget.RecyclerView
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.ruslan.hlushan.android.extensions.addSystemPadding
-import com.ruslan.hlushan.android.extensions.provideScrollDataToCallback
+import com.ruslan.hlushan.android.extensions.notifyOnScrolledBottom
 import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
 import com.ruslan.hlushan.android.extensions.show
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
@@ -15,7 +15,7 @@ import com.ruslan.hlushan.core.ui.api.dialog.showSimpleProgress
 import com.ruslan.hlushan.core.ui.api.extensions.bindBaseViewModel
 import com.ruslan.hlushan.core.ui.api.extensions.bindViewBinding
 import com.ruslan.hlushan.core.ui.api.presentation.command.handleCommandQueue
-import com.ruslan.hlushan.core.ui.api.presentation.presenter.PaginationState
+import com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination.PaginationState
 import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.BaseFragment
 import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.setUpPagination
 import com.ruslan.hlushan.core.ui.api.recycler.DelegatesRecyclerAdapter
@@ -182,17 +182,21 @@ internal class GameRecordsListFragment :
 
     @UiMainThread
     private fun notifyFakeScroll() {
-        binding?.gameRecordsListScreenList?.provideScrollDataToCallback(viewModel::onScrolled)
+        viewsHandler.post {
+            binding?.gameRecordsListScreenList?.notifyOnScrolledBottom(viewModel::onScrolled)
+        }
     }
 
     @UiMainThread
     private fun setState(command: GameRecordsListViewModel.Command.SetState) {
-        gameRecordsRecyclerAdapter.submitList(command.gameRecords)
+        gameRecordsRecyclerAdapter.submitList(command.gameRecords) {
+            notifyFakeScroll()
+        }
 
         binding?.gameRecordsListScreenSwipeRefresh?.isRefreshing = (command.additional is PaginationState.Additional.Loading)
 
         when (command.additional) {
-            is PaginationState.Additional.Empty -> {
+            is PaginationState.Additional.WaitingForLoadMore -> {
                 //TODO
             }
             is PaginationState.Additional.Error -> {
@@ -201,8 +205,6 @@ internal class GameRecordsListFragment :
             is PaginationState.Additional.Loading,
             null                                -> Unit
         }.exhaustive
-
-        notifyFakeScroll()
     }
 
     @UiMainThread

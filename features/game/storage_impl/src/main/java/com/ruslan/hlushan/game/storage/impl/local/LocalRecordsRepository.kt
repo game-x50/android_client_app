@@ -1,8 +1,9 @@
 package com.ruslan.hlushan.game.storage.impl.local
 
 import androidx.annotation.IntRange
-import com.ruslan.hlushan.core.api.dto.PaginationResponse
 import com.ruslan.hlushan.core.api.dto.ValueHolder
+import com.ruslan.hlushan.core.api.dto.pagination.PaginationPagesRequest
+import com.ruslan.hlushan.core.api.dto.pagination.PaginationResponse
 import com.ruslan.hlushan.game.core.api.play.dto.GameRecord
 import com.ruslan.hlushan.game.core.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.core.api.play.dto.GameState
@@ -18,7 +19,8 @@ import org.threeten.bp.Instant
 internal interface LocalRecordsRepository {
 
     fun getAvailableRecords(
-            requestParams: RequestParams,
+            pagesRequest: PaginationPagesRequest<RequestParams>,
+            filter: GameRecordWithSyncState.Order.Params,
             limit: Int
     ): Single<PaginationResponse<GameRecordWithSyncState, RequestParams>>
 

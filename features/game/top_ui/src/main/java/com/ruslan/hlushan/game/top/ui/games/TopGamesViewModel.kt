@@ -1,6 +1,7 @@
 package com.ruslan.hlushan.game.top.ui.games
 
-import com.ruslan.hlushan.core.api.dto.PaginationResponse
+import com.ruslan.hlushan.core.api.dto.pagination.PaginationPagesRequest
+import com.ruslan.hlushan.core.api.dto.pagination.PaginationResponse
 import com.ruslan.hlushan.core.api.log.AppLogger
 import com.ruslan.hlushan.core.api.managers.SchedulersManager
 import com.ruslan.hlushan.core.api.utils.thread.ThreadChecker
@@ -12,6 +13,7 @@ import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.HandleStrate
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.StrategyCommand
 import com.ruslan.hlushan.core.ui.api.presentation.presenter.PaginationViewModel
 import com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination.PaginationState
+import com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination.itemsOrEmpty
 import com.ruslan.hlushan.game.core.api.auth.AuthInteractor
 import com.ruslan.hlushan.game.core.api.play.dto.GameSize
 import com.ruslan.hlushan.game.core.api.top.TopInteractor
@@ -44,7 +46,10 @@ constructor(
     }
 
     @UiMainThread
-    override fun loadData(nextId: String?, filter: GameSize): Single<PaginationResponse<TopGameRecyclerItem, String>> =
+    override fun loadData(
+            pagesRequest: PaginationPagesRequest<String>,
+            filter: GameSize
+    ): Single<PaginationResponse<TopGameRecyclerItem, String>> =
             topInteractor.getTopGamesFor(size = filter)
                     .map<PaginationResponse<TopGameRecyclerItem, String>> { games ->
                         val currentUser = authInteractor.getUser()
@@ -54,11 +59,15 @@ constructor(
                                     previewWithUserDetails = previewWithUserDetails
                             )
                         }
-                        PaginationResponse.LastPage(recyclerItems)
+                        PaginationResponse.SinglePage(recyclerItems)
                     }
 
     @UiMainThread
-    override fun onStateUpdated() = mutableCommandsQueue.add(Command.SetState(state.items, state.additional))
+    override fun onStateUpdated() =
+            mutableCommandsQueue.add(Command.SetState(
+                    items = state.itemsOrEmpty(),
+                    additional = (state as? PaginationState.Active)?.additional)
+            )
 
     sealed class Command : StrategyCommand {
 

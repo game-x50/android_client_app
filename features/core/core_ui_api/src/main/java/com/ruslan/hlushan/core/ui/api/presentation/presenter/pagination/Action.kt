@@ -1,7 +1,7 @@
 package com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination
 
-import com.ruslan.hlushan.core.api.dto.PaginationPagesRequest
-import com.ruslan.hlushan.core.api.dto.PaginationResponse
+import com.ruslan.hlushan.core.api.dto.pagination.PaginationPagesRequest
+import com.ruslan.hlushan.core.api.dto.pagination.PaginationResponse
 import com.ruslan.hlushan.core.ui.api.recycler.RecyclerItem
 
 //todo: rename to PaginationAction

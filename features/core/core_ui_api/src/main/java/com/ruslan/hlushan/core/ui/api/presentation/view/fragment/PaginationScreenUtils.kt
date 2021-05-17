@@ -7,7 +7,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.ruslan.hlushan.android.extensions.addPaginationScrollListener
 import com.ruslan.hlushan.android.extensions.colorAttributeValue
 import com.ruslan.hlushan.android.extensions.setUpDefaults
-import com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination.PaginationViewModel
+import com.ruslan.hlushan.core.ui.api.presentation.presenter.PaginationViewModel
 import com.ruslan.hlushan.core.ui.api.recycler.DelegatesRecyclerAdapter
 import com.ruslan.hlushan.core.ui.api.recycler.RecyclerItem
 

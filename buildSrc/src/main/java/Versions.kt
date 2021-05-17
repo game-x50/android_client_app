@@ -12,7 +12,7 @@ object Versions {
 
     const val crashlyticsPluginVersion = "2.5.2"
 
-    const val detektVersion = "1.16.0"
+    const val detektVersion = "1.17.0"
     const val androidJarPluginVersion = "0.1"
 
     const val dependencyAnalysisPluginVersion = "0.70.0"

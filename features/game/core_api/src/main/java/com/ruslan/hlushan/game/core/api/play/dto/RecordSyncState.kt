@@ -191,8 +191,8 @@ fun RecordSyncState.toLocalDeletedOrThrow(newLocalActionId: String): RecordSyncS
     )
 }
 
-@SuppressWarnings("ComplexMethod")
 //null if delete, same copy if change non needed
+@SuppressWarnings("ComplexMethod")
 fun RecordSyncState.createNewStateToStoreAfterUnknownSyncResult(): RecordSyncState? =
         when {
             ((this.syncStatus == SyncStatus.SYNCHRONIZING) && (this.localAction == null)) -> {
