@@ -1,4 +1,4 @@
-package com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination
+package com.ruslan.hlushan.core.api.dto.pagination
 
 import androidx.annotation.IntRange
 

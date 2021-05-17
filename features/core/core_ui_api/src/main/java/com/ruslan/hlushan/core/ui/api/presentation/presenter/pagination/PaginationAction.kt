@@ -4,10 +4,9 @@ import com.ruslan.hlushan.core.api.dto.pagination.PaginationPagesRequest
 import com.ruslan.hlushan.core.api.dto.pagination.PaginationResponse
 import com.ruslan.hlushan.core.ui.api.recycler.RecyclerItem
 
-//todo: rename to PaginationAction
-internal sealed class Action<out F : Any, out ItemId : Any, out RI : RecyclerItem<ItemId>, out Id : Any> {
+internal sealed class PaginationAction<out F : Any, out ItemId : Any, out RI : RecyclerItem<ItemId>, out Id : Any> {
 
-    sealed class UI<out F : Any> : Action<F, Nothing, Nothing, Nothing>() {
+    sealed class UI<out F : Any> : PaginationAction<F, Nothing, Nothing, Nothing>() {
 
         data class LoadMore(
                 val direction: PaginationPagesRequest.Direction
@@ -18,7 +17,7 @@ internal sealed class Action<out F : Any, out ItemId : Any, out RI : RecyclerIte
         ) : UI<F>()
     }
 
-    sealed class Response<out ItemId : Any, out RI : RecyclerItem<ItemId>, out Id : Any> : Action<Nothing, ItemId, RI, Id>() {
+    sealed class Response<out ItemId : Any, out RI : RecyclerItem<ItemId>, out Id : Any> : PaginationAction<Nothing, ItemId, RI, Id>() {
 
         class Success<out ItemId : Any, out RI : RecyclerItem<ItemId>, out Id : Any>(
                 val response: PaginationResponse<RI, Id>
@@ -29,7 +28,7 @@ internal sealed class Action<out F : Any, out ItemId : Any, out RI : RecyclerIte
         ) : Response<Nothing, Nothing, Nothing>()
     }
 
-    sealed class Change<out ItemId : Any, out RI : RecyclerItem<ItemId>> : Action<Nothing, ItemId, RI, Nothing>() {
+    sealed class Change<out ItemId : Any, out RI : RecyclerItem<ItemId>> : PaginationAction<Nothing, ItemId, RI, Nothing>() {
 
         class SingleItemUpdated<out ItemId : Any, out RI : RecyclerItem<ItemId>>(
                 val updatedItem: RI,

@@ -20,13 +20,13 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
             data class Default<out F : Any>(
                     override val filter: F
             ) : PaginationState.Active.Empty<F>() {
-                override val additional: Additional.WaitingForLoadMore = Additional.WaitingForLoadMore()
+                override val additional: Additional.WaitingForLoadMore get() = Additional.WaitingForLoadMore
             }
 
             data class Loading<out F : Any>(
                     override val filter: F
             ) : PaginationState.Active.Empty<F>() {
-                override val additional: Additional.Loading = Additional.Loading()
+                override val additional: Additional.Loading get() = Additional.Loading
             }
 
             @Suppress("DataClassPrivateConstructor", "ClassOrdering")
@@ -82,7 +82,7 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
                     previousPageId = previousPageId,
                     currentPages = currentPages
             ) {
-                override val additional: Additional.WaitingForLoadMore = Additional.WaitingForLoadMore()
+                override val additional: Additional.WaitingForLoadMore get() = Additional.WaitingForLoadMore
             }
 
             data class AndLoading<out F : Any, ItemId : Any, out RI : RecyclerItem<ItemId>, out Id : Any>(
@@ -97,7 +97,7 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
                     currentPages = currentPages
             ) {
 
-                override val additional: Additional.Loading = Additional.Loading()
+                override val additional: Additional.Loading get() = Additional.Loading
 
                 init {
                     this.checkPartiallyLoadedLoadingState(direction = direction)
@@ -155,19 +155,16 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
 
     sealed class Additional {
 
-        //todo: redo to object and remove equals and hashCode; redo get()= in states above
-        class Loading : Additional()
+        // object for equals and hashCode
+        object Loading : Additional()
 
-        //todo: redo to object and remove equals and hashCode; redo get()= in states above
-        class WaitingForLoadMore : Additional()
+        // object for equals and hashCode
+        object WaitingForLoadMore : Additional()
 
         data class Error(
                 val value: Throwable,
                 val loadDirection: PaginationPagesRequest.Direction
         ) : Additional()
-
-        override fun equals(other: Any?): Boolean = (this.javaClass == other?.javaClass)
-        override fun hashCode(): Int = this.javaClass.hashCode()
     }
 
     interface WithError {
