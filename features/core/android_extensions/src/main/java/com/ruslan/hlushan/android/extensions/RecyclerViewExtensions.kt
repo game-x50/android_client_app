@@ -44,15 +44,11 @@ private class PaginationScrollListener(
 
     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
         when {
-            (dy > 0) -> {
-                if (recyclerView.lastVisibleItemPosition >= 0) {
-                    recyclerView.notifyOnScrolledBottom(onPaginationScrollListener)
-                }
+            ((dy > 0) && (recyclerView.lastVisibleItemPosition >= 0)) -> {
+                recyclerView.notifyOnScrolledBottom(onPaginationScrollListener)
             }
-            (dy < 0) -> {
-                if (recyclerView.lastVisibleItemPosition >= 0) {
-                    recyclerView.notifyOnScrolledTop(onPaginationScrollListener)
-                }
+            ((dy < 0) && (recyclerView.firstVisibleItemPosition >= 0)) -> {
+                recyclerView.notifyOnScrolledTop(onPaginationScrollListener)
             }
         }
     }
