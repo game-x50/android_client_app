@@ -4,13 +4,13 @@
 
 object Versions {
 
-    const val gradleVersion = "4.1.2"
+    const val gradleVersion = "4.2.1"
 
     const val kotlinVersion = "1.4.32"
 
-    const val googlePluginServicesVersion = "4.3.5"
+    const val googlePluginServicesVersion = "4.3.8"
 
-    const val crashlyticsPluginVersion = "2.5.2"
+    const val crashlyticsPluginVersion = "2.6.1"
 
     const val detektVersion = "1.17.0"
     const val androidJarPluginVersion = "0.1"
@@ -23,13 +23,13 @@ object Versions {
     const val rxJava2Version = "2.2.21"
     const val rxJava2AndroidVersion = "2.1.1"
 
-    const val dagger2Version = "2.34"
+    const val dagger2Version = "2.35"
 
-    const val firebaseBomVersion = "27.0.0"
+    const val firebaseBomVersion = "28.0.1"
 
     const val supportAppCompatVersion = "1.2.0"
     const val supportDesignVersion = "1.3.0"
-    const val supportAnnotationsVersion = "1.1.0"
+    const val supportAnnotationsVersion = "1.2.0"
     const val swipeRefreshLayoutVersion = "1.1.0"
     const val cardViewVersion = "1.0.0"
     const val recyclerViewVersion = "1.2.0"
@@ -51,10 +51,10 @@ object Versions {
 
     const val certificateTransparencyAndroidVersion = "0.3.0"
 
-    const val kotlinxSerializationVersion = "1.0.1"
+    const val kotlinxSerializationVersion = "1.2.1"
     const val retrofit2KotlinxSerializationJsonConverterVersion = "0.8.0"
 
-    const val roomVersion = "2.2.6"
+    const val roomVersion = "2.3.0"
 
     const val threeTenBpVersion = "1.5.0:no-tzdb"
     const val threeTenBpAndroidVersion = "1.3.0"
@@ -71,7 +71,7 @@ object Versions {
     const val lynxVersion = "1.6"
     const val chuckerVersion = "3.4.0"
     const val roomExplorerVersion = "0.0.2"
-    const val rxDisposableWatcherVersion = "1.0.0"
+    const val rxDisposableWatcherVersion = "1.0.0"//version 2.0.0 id for rxjava3
 
     const val jacocoPluginVersion = "0.8.7"
     const val jUnitVersion = "4.13.2"
