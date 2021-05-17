@@ -12,7 +12,7 @@ object Versions {
 
     const val crashlyticsPluginVersion = "2.5.2"
 
-    const val detektVersion = "1.16.0"
+    const val detektVersion = "1.17.0"
     const val androidJarPluginVersion = "0.1"
 
     const val dependencyAnalysisPluginVersion = "0.70.0"
@@ -73,6 +73,6 @@ object Versions {
     const val roomExplorerVersion = "0.0.2"
     const val rxDisposableWatcherVersion = "1.0.0"
 
-    const val jacocoPluginVersion = "0.8.6"
+    const val jacocoPluginVersion = "0.8.7"
     const val jUnitVersion = "4.13.2"
 }

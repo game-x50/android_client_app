@@ -1,7 +1,8 @@
 package com.ruslan.hlushan.core.ui.impl.tools.file
 
-import com.ruslan.hlushan.core.api.dto.PaginationResponse
-import com.ruslan.hlushan.core.api.dto.map
+import com.ruslan.hlushan.core.api.dto.pagination.PaginationPagesRequest
+import com.ruslan.hlushan.core.api.dto.pagination.PaginationResponse
+import com.ruslan.hlushan.core.api.dto.pagination.map
 import com.ruslan.hlushan.core.api.log.AppLogger
 import com.ruslan.hlushan.core.api.log.FileLogger
 import com.ruslan.hlushan.core.api.managers.SchedulersManager
@@ -13,8 +14,9 @@ import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.AddToEndSing
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.HandleStrategy
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.OneExecutionStateStrategy
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.StrategyCommand
-import com.ruslan.hlushan.core.ui.api.presentation.presenter.PaginationState
 import com.ruslan.hlushan.core.ui.api.presentation.presenter.PaginationViewModel
+import com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination.PaginationState
+import com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination.itemsOrEmpty
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import io.reactivex.Single
@@ -49,8 +51,11 @@ constructor(
     }
 
     @UiMainThread
-    override fun loadData(nextId: String?, filter: Unit): Single<PaginationResponse<LogRecyclerItem, String>> =
-            fileLogger.readNextFileLogs(lastFileNameWithoutExtension = nextId, limitFiles = FILES_COUNT_LIMIT)
+    override fun loadData(
+            pagesRequest: PaginationPagesRequest<String>,
+            filter: Unit
+    ): Single<PaginationResponse<LogRecyclerItem, String>> =
+            fileLogger.readNextFileLogs(pagesRequest, limitFiles = FILES_COUNT_LIMIT)
                     .map<PaginationResponse<LogRecyclerItem, String>> { response ->
                         response.map { logStringItem ->
                             LogRecyclerItem(
@@ -61,7 +66,11 @@ constructor(
                     }
 
     @UiMainThread
-    override fun onStateUpdated() = mutableCommandsQueue.add(Command.SetState(state.items, state.additional))
+    override fun onStateUpdated() =
+            mutableCommandsQueue.add(Command.SetState(
+                    logs = state.itemsOrEmpty(),
+                    additional = (state as? PaginationState.Active)?.additional
+            ))
 
     @UiMainThread
     fun bigLog() {

@@ -29,6 +29,19 @@ android {
         }
     }
 
+//    flavorDimensions "version"
+//
+//    productFlavors {
+//        development {
+//            dimension "version"
+//            versionNameSuffix ".dev"
+//        }
+//        production {
+//            dimension "version"
+//            versionNameSuffix ".prod"
+//        }
+//    }
+//
 //    variantFilter { variant ->
 //        def flavorsNames = variant.flavors*.name
 //

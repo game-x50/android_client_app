@@ -1,6 +1,7 @@
 package com.ruslan.hlushan.core.api.log
 
-import com.ruslan.hlushan.core.api.dto.PaginationResponse
+import com.ruslan.hlushan.core.api.dto.pagination.PaginationPagesRequest
+import com.ruslan.hlushan.core.api.dto.pagination.PaginationResponse
 import io.reactivex.Completable
 import io.reactivex.Single
 import java.io.File
@@ -17,7 +18,7 @@ interface FileLogger {
     fun deleteLogFiles(): Single<Boolean>
 
     fun readNextFileLogs(
-            lastFileNameWithoutExtension: String?,
+            pagesRequest: PaginationPagesRequest<String>,
             limitFiles: Int
     ): Single<PaginationResponse<String, String>>
 

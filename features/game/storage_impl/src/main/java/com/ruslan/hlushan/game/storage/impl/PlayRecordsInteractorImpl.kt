@@ -1,8 +1,9 @@
 package com.ruslan.hlushan.game.storage.impl
 
 import android.annotation.SuppressLint
-import com.ruslan.hlushan.core.api.dto.PaginationResponse
 import com.ruslan.hlushan.core.api.dto.ValueHolder
+import com.ruslan.hlushan.core.api.dto.pagination.PaginationPagesRequest
+import com.ruslan.hlushan.core.api.dto.pagination.PaginationResponse
 import com.ruslan.hlushan.core.api.log.AppLogger
 import com.ruslan.hlushan.game.core.api.play.PlayRecordsInteractor
 import com.ruslan.hlushan.game.core.api.play.dto.GameRecord
@@ -31,10 +32,11 @@ constructor(
 ) : PlayRecordsInteractor {
 
     override fun getAvailableRecords(
-            requestParams: RequestParams,
+            pagesRequest: PaginationPagesRequest<RequestParams>,
+            filter: GameRecordWithSyncState.Order.Params,
             limit: Int
     ): Single<PaginationResponse<GameRecordWithSyncState, RequestParams>> =
-            localRepository.getAvailableRecords(requestParams, limit)
+            localRepository.getAvailableRecords(pagesRequest, filter, limit)
 
     override fun observeGameRecord(id: Long): Observable<ValueHolder<GameRecordWithSyncState?>> =
             localRepository.observeGameRecord(id)

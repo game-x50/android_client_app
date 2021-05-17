@@ -1,8 +1,9 @@
 package com.ruslan.hlushan.game.play.ui.records
 
 import com.github.terrakok.cicerone.Router
-import com.ruslan.hlushan.core.api.dto.PaginationResponse
-import com.ruslan.hlushan.core.api.dto.map
+import com.ruslan.hlushan.core.api.dto.pagination.PaginationPagesRequest
+import com.ruslan.hlushan.core.api.dto.pagination.PaginationResponse
+import com.ruslan.hlushan.core.api.dto.pagination.map
 import com.ruslan.hlushan.core.api.log.AppLogger
 import com.ruslan.hlushan.core.api.managers.SchedulersManager
 import com.ruslan.hlushan.core.api.utils.thread.ThreadChecker
@@ -13,8 +14,9 @@ import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.AddToEndSing
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.HandleStrategy
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.OneExecutionStateStrategy
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.StrategyCommand
-import com.ruslan.hlushan.core.ui.api.presentation.presenter.PaginationState
 import com.ruslan.hlushan.core.ui.api.presentation.presenter.PaginationViewModel
+import com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination.PaginationState
+import com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination.itemsOrEmpty
 import com.ruslan.hlushan.game.core.api.GameSettings
 import com.ruslan.hlushan.game.core.api.auth.AuthInteractor
 import com.ruslan.hlushan.game.core.api.auth.observeUserIsAuthenticated
@@ -22,7 +24,6 @@ import com.ruslan.hlushan.game.core.api.play.PlayRecordsInteractor
 import com.ruslan.hlushan.game.core.api.play.dto.GameRecord
 import com.ruslan.hlushan.game.core.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.core.api.play.dto.RequestParams
-import com.ruslan.hlushan.game.core.api.play.dto.combineToRequestParams
 import com.ruslan.hlushan.game.core.api.sync.StartSyncUseCase
 import com.ruslan.hlushan.game.core.api.sync.observeSyncFinished
 import com.ruslan.hlushan.game.play.ui.GameScopeMarkerRepository
@@ -32,6 +33,8 @@ import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import io.reactivex.Observable
 import io.reactivex.Single
+
+private const val REQUEST_ITEMS_LIMIT = 20
 
 @SuppressWarnings("LongParameterList")
 internal class GameRecordsListViewModel
@@ -76,16 +79,18 @@ constructor(
 
     @UiMainThread
     override fun loadData(
-            nextId: RequestParams?,
+            pagesRequest: PaginationPagesRequest<RequestParams>,
             filter: GameRecordWithSyncState.Order.Params
     ): Single<PaginationResponse<GameRecordRecyclerItem, RequestParams>> =
-            Single.fromCallable { combineToRequestParams(nextId, filter) }
-                    .flatMap { requestParams -> playRecordsInteractor.getAvailableRecords(requestParams, limit = itemsLimitPerPage) }
+            playRecordsInteractor.getAvailableRecords(pagesRequest, filter, limit = REQUEST_ITEMS_LIMIT)
                     .map { response -> response.map(::GameRecordRecyclerItem) }
 
     @UiMainThread
     override fun onStateUpdated() =
-            mutableCommandsQueue.add(Command.SetState(gameRecords = state.items, additional = state.additional))
+            mutableCommandsQueue.add(Command.SetState(
+                   gameRecords =  state.itemsOrEmpty(),
+                   additional = (state as? PaginationState.Active)?.additional
+            ))
 
     @UiMainThread
     override fun onAfterAttachView() {

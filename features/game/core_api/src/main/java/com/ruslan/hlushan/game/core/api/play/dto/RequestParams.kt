@@ -1,6 +1,11 @@
 package com.ruslan.hlushan.game.core.api.play.dto
 
-import com.ruslan.hlushan.core.api.dto.PaginationResponse
+import com.ruslan.hlushan.core.api.dto.pagination.NextPageId
+import com.ruslan.hlushan.core.api.dto.pagination.PageId
+import com.ruslan.hlushan.core.api.dto.pagination.PaginationPagesRequest
+import com.ruslan.hlushan.core.api.dto.pagination.PaginationResponse
+import com.ruslan.hlushan.core.api.dto.pagination.PreviousPageId
+import com.ruslan.hlushan.core.api.dto.pagination.createPaginationResponseByLimits
 import org.threeten.bp.Instant
 
 /**
@@ -12,76 +17,128 @@ sealed class RequestParams {
 
     sealed class OrderTotalSum : RequestParams() {
 
-        abstract val boundarySum: Int?
-
         class Asc(
                 override val excludedIds: List<Long>,
                 val minTotalSum: Int?
-        ) : RequestParams.OrderTotalSum() {
-
-            override val boundarySum: Int? get() = minTotalSum
-        }
+        ) : RequestParams.OrderTotalSum()
 
         class Desc(
                 override val excludedIds: List<Long>,
                 val maxTotalSum: Int?
-        ) : RequestParams.OrderTotalSum() {
-
-            override val boundarySum: Int? get() = maxTotalSum
-        }
+        ) : RequestParams.OrderTotalSum()
     }
 
     sealed class OrderLastModified : RequestParams() {
 
-        abstract val boundaryTimestamp: Instant?
-
         class Asc(
                 override val excludedIds: List<Long>,
                 val minLastModifiedTimestamp: Instant?
-        ) : RequestParams.OrderLastModified() {
-
-            override val boundaryTimestamp: Instant? get() = minLastModifiedTimestamp
-        }
+        ) : RequestParams.OrderLastModified()
 
         class Desc(
                 override val excludedIds: List<Long>,
                 val maxLastModifiedTimestamp: Instant?
-        ) : RequestParams.OrderLastModified() {
-
-            override val boundaryTimestamp: Instant? get() = maxLastModifiedTimestamp
-        }
+        ) : RequestParams.OrderLastModified()
     }
 }
 
+private val RequestParams.OrderTotalSum.boundarySum: Int?
+    get() = when (this) {
+        is RequestParams.OrderTotalSum.Asc -> this.minTotalSum
+        is RequestParams.OrderTotalSum.Desc -> this.maxTotalSum
+    }
+
+private val RequestParams.OrderLastModified.boundaryTimestamp: Instant?
+    get() = when (this) {
+        is RequestParams.OrderLastModified.Asc -> this.minLastModifiedTimestamp
+        is RequestParams.OrderLastModified.Desc -> this.maxLastModifiedTimestamp
+    }
+
 //TODO: #write_unit_tests
 fun combineToRequestParams(
-        nextId: RequestParams?,
+        pagesRequest: PaginationPagesRequest<RequestParams>,
         orderParams: GameRecordWithSyncState.Order.Params
 ): RequestParams =
-        (nextId ?: createOrderedInitParams(orderParams))
+        when (pagesRequest) {
+            is PaginationPagesRequest.Init -> {
+                createOrderedInitParams(orderParams)
+            }
+            is PaginationPagesRequest.Next -> {
+                pagesRequest.nextPageId.value.value
+            }
+            is PaginationPagesRequest.Previous -> {
+                when (val previousPageId = pagesRequest.previousPageId) {
+                    is PageId.First        -> createOrderedInitParams(orderParams)
+                    is PageId.SecondOrMore -> previousPageId.value
+                }
+            }
+        }
 
 //TODO: #write_unit_tests
 fun createPaginationResponseFor(
         pageResult: List<GameRecordWithSyncState>,
-        previousRequestParams: RequestParams,
+        pagesRequest: PaginationPagesRequest<RequestParams>,
+        requestParams: RequestParams,
         limit: Int
 ): PaginationResponse<GameRecordWithSyncState, RequestParams> =
-        if (pageResult.size < limit) {
-            PaginationResponse.LastPage(result = pageResult)
-        } else {
-            val nextParams = when (previousRequestParams) {
-                is RequestParams.OrderTotalSum     -> createPaginationResponseForOrderTotalSum(pageResult, previousRequestParams)
-                is RequestParams.OrderLastModified -> createPaginationResponseForOrderLastModified(pageResult, previousRequestParams)
+        createPaginationResponseByLimits(
+                pageResult = pageResult,
+                pagesRequest = pagesRequest,
+                requestPageId = requestParams,
+                limit = limit,
+                createNextPageIdFor = ::createNextPageIdFor,
+                createPreviousPageIdFor = ::createPreviousPageIdFor
+        )
+
+private fun createPreviousPageIdFor(
+        requestParams: RequestParams,
+        pageResult: List<GameRecordWithSyncState>
+): PreviousPageId.Existing<RequestParams> {
+
+    val idValue = createIdValueFor(
+            requestParams = requestParams,
+            pageResult = pageResult,
+            direction = PaginationPagesRequest.Direction.PREVIOUS
+    )
+
+    return PreviousPageId.Existing(PageId.SecondOrMore(idValue))
+}
+
+private fun createNextPageIdFor(
+        requestParams: RequestParams,
+        pageResult: List<GameRecordWithSyncState>
+): NextPageId.Existing<RequestParams> {
+
+    val idValue = createIdValueFor(
+            requestParams = requestParams,
+            pageResult = pageResult,
+            direction = PaginationPagesRequest.Direction.NEXT
+    )
+
+    return NextPageId.Existing(PageId.SecondOrMore(idValue))
+}
+
+private fun createIdValueFor(requestParams: RequestParams, pageResult: List<GameRecordWithSyncState>, direction: PaginationPagesRequest.Direction) =
+        when (requestParams) {
+            is RequestParams.OrderTotalSum     -> {
+                createPaginationResponseForOrderTotalSum(
+                        pageResult = pageResult,
+                        previousRequestParams = requestParams,
+                        direction = direction
+                )
             }
-            PaginationResponse.MiddlePage(
-                    result = pageResult,
-                    nextId = nextParams
-            )
+            is RequestParams.OrderLastModified -> {
+                createPaginationResponseForOrderLastModified(
+                        pageResult = pageResult,
+                        requestParams,
+                        direction
+                )
+            }
         }
 
 private fun createOrderedInitParams(orderParams: GameRecordWithSyncState.Order.Params) =
         when (orderParams.variant) {
-            GameRecordWithSyncState.Order.Variant.TOTAL_SUM               -> {
+            GameRecordWithSyncState.Order.Variant.TOTAL_SUM -> {
                 createOrderedByTotalSumRequestInitParams(orderParams.type)
             }
             GameRecordWithSyncState.Order.Variant.LAST_MODIFIED_TIMESTAMP -> {
@@ -97,7 +154,7 @@ private fun createOrderedByTotalSumRequestInitParams(
     val boundarySum: Int? = null
 
     return when (orderType) {
-        OrderType.ASC  -> RequestParams.OrderTotalSum.Asc(
+        OrderType.ASC -> RequestParams.OrderTotalSum.Asc(
                 excludedIds = excludedIds,
                 minTotalSum = boundarySum
         )
@@ -116,7 +173,7 @@ private fun createOrderedByLastModifiedRequestInitParams(
     val boundaryLastModifiedTimestamp: Instant? = null
 
     return when (orderType) {
-        OrderType.ASC  -> RequestParams.OrderLastModified.Asc(
+        OrderType.ASC -> RequestParams.OrderLastModified.Asc(
                 excludedIds = excludedIds,
                 minLastModifiedTimestamp = boundaryLastModifiedTimestamp
         )
@@ -129,54 +186,85 @@ private fun createOrderedByLastModifiedRequestInitParams(
 
 private fun createPaginationResponseForOrderTotalSum(
         pageResult: List<GameRecordWithSyncState>,
-        previousRequestParams: RequestParams.OrderTotalSum
+        previousRequestParams: RequestParams.OrderTotalSum,
+        direction: PaginationPagesRequest.Direction
 ): RequestParams.OrderTotalSum {
-    val fieldGetter: (GameRecordWithSyncState) -> Int = { item -> item.record.gameState.current.immutableNumbersMatrix.totalSum }
-    val lastItemTotalSum = fieldGetter(pageResult.last())
-    val excludedIdsForLastItemInPage = pageResult.takeLastWhile { item -> fieldGetter(item) == lastItemTotalSum }
-            .map { item -> item.record.id }
 
-    val allExcludedIds = if (previousRequestParams.boundarySum == lastItemTotalSum) {
-        (previousRequestParams.excludedIds + excludedIdsForLastItemInPage)
-    } else {
-        excludedIdsForLastItemInPage
-    }
+    val (boundaryItemTotalSum: Int, allExcludedIds: List<Long>) = createBoundaryItemValueWithAllExcludedIds(
+            pageResult = pageResult,
+            direction = direction,
+            fieldGetter = { item -> item.record.gameState.current.immutableNumbersMatrix.totalSum },
+            previousRequestParamsBoundary = previousRequestParams.boundarySum,
+            previousRequestParamsExcludedIds = previousRequestParams.excludedIds
+    )
 
     return when (previousRequestParams) {
-        is RequestParams.OrderTotalSum.Asc  -> RequestParams.OrderTotalSum.Asc(
+        is RequestParams.OrderTotalSum.Asc -> RequestParams.OrderTotalSum.Asc(
                 excludedIds = allExcludedIds,
-                minTotalSum = lastItemTotalSum
+                minTotalSum = boundaryItemTotalSum
         )
         is RequestParams.OrderTotalSum.Desc -> RequestParams.OrderTotalSum.Desc(
                 excludedIds = allExcludedIds,
-                maxTotalSum = lastItemTotalSum
+                maxTotalSum = boundaryItemTotalSum
         )
     }
 }
 
 private fun createPaginationResponseForOrderLastModified(
         pageResult: List<GameRecordWithSyncState>,
-        previousRequestParams: RequestParams.OrderLastModified
+        previousRequestParams: RequestParams.OrderLastModified,
+        direction: PaginationPagesRequest.Direction
 ): RequestParams.OrderLastModified {
-    val fieldGetter: (GameRecordWithSyncState) -> Instant = { item -> item.syncState.lastLocalModifiedTimestamp }
-    val lastItemTimestamp = fieldGetter(pageResult.last())
-    val excludedIdsForLastItemInPage = pageResult.takeLastWhile { item -> fieldGetter(item) == lastItemTimestamp }
-            .map { item -> item.record.id }
 
-    val allExcludedIds = if (previousRequestParams.boundaryTimestamp == lastItemTimestamp) {
-        (previousRequestParams.excludedIds + excludedIdsForLastItemInPage)
-    } else {
-        excludedIdsForLastItemInPage
-    }
+    val (boundaryItemTimestamp: Instant, allExcludedIds: List<Long>) = createBoundaryItemValueWithAllExcludedIds(
+            pageResult = pageResult,
+            direction = direction,
+            fieldGetter = { item -> item.syncState.lastLocalModifiedTimestamp },
+            previousRequestParamsBoundary = previousRequestParams.boundaryTimestamp,
+            previousRequestParamsExcludedIds = previousRequestParams.excludedIds
+    )
 
     return when (previousRequestParams) {
-        is RequestParams.OrderLastModified.Asc  -> RequestParams.OrderLastModified.Asc(
+        is RequestParams.OrderLastModified.Asc -> RequestParams.OrderLastModified.Asc(
                 excludedIds = allExcludedIds,
-                minLastModifiedTimestamp = lastItemTimestamp
+                minLastModifiedTimestamp = boundaryItemTimestamp
         )
         is RequestParams.OrderLastModified.Desc -> RequestParams.OrderLastModified.Desc(
                 excludedIds = allExcludedIds,
-                maxLastModifiedTimestamp = lastItemTimestamp
+                maxLastModifiedTimestamp = boundaryItemTimestamp
         )
     }
+}
+
+private fun <T : Any> createBoundaryItemValueWithAllExcludedIds(
+        pageResult: List<GameRecordWithSyncState>,
+        direction: PaginationPagesRequest.Direction,
+        fieldGetter: (GameRecordWithSyncState) -> T,
+        previousRequestParamsBoundary: T?,
+        previousRequestParamsExcludedIds: List<Long>
+): Pair<T, List<Long>> {
+    val (boundaryItemValue: T, excludedIdsForBoundaryItemInPage: List<Long>) = when (direction) {
+        PaginationPagesRequest.Direction.PREVIOUS -> {
+            val firstItemValue: T = fieldGetter(pageResult.first())
+            val excludedIdsForFirstItemInPage: List<Long> = pageResult.takeWhile { item -> fieldGetter(item) == firstItemValue }
+                    .map { item -> item.record.id }
+
+            firstItemValue to excludedIdsForFirstItemInPage
+        }
+        PaginationPagesRequest.Direction.NEXT     -> {
+            val lastItemValue: T = fieldGetter(pageResult.last())
+            val excludedIdsForLastItemInPage: List<Long> = pageResult.takeLastWhile { item -> fieldGetter(item) == lastItemValue }
+                    .map { item -> item.record.id }
+
+            lastItemValue to excludedIdsForLastItemInPage
+        }
+    }
+
+    val allExcludedIds = if (previousRequestParamsBoundary == boundaryItemValue) {
+        (previousRequestParamsExcludedIds + excludedIdsForBoundaryItemInPage)
+    } else {
+        excludedIdsForBoundaryItemInPage
+    }
+
+    return (boundaryItemValue to allExcludedIds)
 }
