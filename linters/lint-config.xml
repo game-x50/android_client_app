@@ -5,7 +5,7 @@
     <issue id="IconMissingDensityFolder" severity="ignore" /><!-- TODO: temp and should be removed, false posite checks; run it time to time-->
 
     <issue id="RtlEnabled" severity="warning">
-        <ignore path="src/main/AndroidManifest.xml" />
+        <ignore regexp="AndroidManifest.xml" />
     </issue>
 
     <issue id="ResourceName">
