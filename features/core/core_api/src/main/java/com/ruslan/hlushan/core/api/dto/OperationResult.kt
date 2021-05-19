@@ -18,22 +18,22 @@ fun OperationResultVoid(): OperationResult.Success<Unit> = OperationResult.Succe
 inline fun <S : Any?> OperationResult<S, Throwable>.getOrThrow(): S =
         when (this) {
             is OperationResult.Success -> this.result
-            is OperationResult.Error -> throw this.result
+            is OperationResult.Error   -> throw this.result
         }
 
 inline fun <S : Any?, E : Any?, R : Any?> OperationResult<S, E>.mapSuccess(block: (S) -> R): OperationResult<R, E> =
         when (this) {
             is OperationResult.Success -> OperationResult.Success(result = block(this.result))
-            is OperationResult.Error -> OperationResult.Error(result = this.result)
+            is OperationResult.Error   -> OperationResult.Error(result = this.result)
         }
 
 inline fun <S : Any?, E : Any?, R : Any?> OperationResult<S, E>.mapError(block: (E) -> R): OperationResult<S, R> =
         when (this) {
             is OperationResult.Success -> OperationResult.Success(result = this.result)
-            is OperationResult.Error -> OperationResult.Error(result = block(this.result))
+            is OperationResult.Error   -> OperationResult.Error(result = block(this.result))
         }
 
-inline fun <S : Any?, E : Any?> Single<out S>.toOperationResult(): Single<OperationResult<S, E>> =
+inline fun <S : Any, E : Any?> Single<out S>.toOperationResult(): Single<OperationResult<S, E>> =
         this.map { result -> OperationResult.Success(result) }
 
 inline fun <S : Any?, E : Any?, R : Any?> Single<out OperationResult<S, E>>.mapSuccess(
@@ -41,7 +41,7 @@ inline fun <S : Any?, E : Any?, R : Any?> Single<out OperationResult<S, E>>.mapS
 ): Single<OperationResult<R, E>> =
         this.map { value -> value.mapSuccess(block) }
 
-inline fun <S : Any?, E : Any?, R : Any?> Single<out OperationResult<S, E>>.flatMapSuccess(
+inline fun <S : Any?, E : Any?, R : Any> Single<out OperationResult<S, E>>.flatMapSuccess(
         crossinline block: (S) -> Single<R>
 ): Single<OperationResult<R, E>> =
         this.flatMap { value ->
@@ -52,7 +52,7 @@ inline fun <S : Any?, E : Any?, R : Any?> Single<out OperationResult<S, E>>.flat
                             .toOperationResult<R, E>()
                 }
 
-                is OperationResult.Error -> {
+                is OperationResult.Error   -> {
                     Single.just(OperationResult.Error(result = value.result))
                 }
             }
@@ -68,7 +68,7 @@ inline fun <S : Any?, E : Any?, R : Any?> Single<out OperationResult<S, E>>.flat
                     block(value.result)
                 }
 
-                is OperationResult.Error -> {
+                is OperationResult.Error   -> {
                     Single.just(OperationResult.Error(result = value.result))
                 }
             }
@@ -77,7 +77,16 @@ inline fun <S : Any?, E : Any?, R : Any?> Single<out OperationResult<S, E>>.flat
 inline fun <S : Any?, E : Any?> Single<out OperationResult<S, E>>.flatMapCompletableSuccess(
         crossinline block: (S) -> Completable
 ): Single<OperationResult<S, E>> =
-        this.flatMapSuccess { result ->
-            block(result)
-                    .toSingleDefault(result)
+        this.flatMap { value ->
+            when (value) {
+
+                is OperationResult.Success -> {
+                    block(value.result)
+                            .toSingleDefault(value)
+                }
+
+                is OperationResult.Error   -> {
+                    Single.just(OperationResult.Error(result = value.result))
+                }
+            }
         }
