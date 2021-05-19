@@ -15,9 +15,9 @@ object Versions {
     const val detektVersion = "1.17.0"
     const val androidJarPluginVersion = "0.1"
 
-    const val dependencyAnalysisPluginVersion = "0.70.0"
+    const val dependencyAnalysisPluginVersion = "0.73.0"
     const val dependencyUpdatesVersion = "0.38.0"
-    const val owaspDependencyCheckVersion = "6.1.1"
+    const val owaspDependencyCheckVersion = "6.1.6"
     const val gradleDoctorVersion = "0.7.0"
 
     const val rxJava2Version = "2.2.21"
@@ -27,7 +27,7 @@ object Versions {
 
     const val firebaseBomVersion = "28.0.1"
 
-    const val supportAppCompatVersion = "1.2.0"
+    const val supportAppCompatVersion = "1.3.0"
     const val supportDesignVersion = "1.3.0"
     const val supportAnnotationsVersion = "1.2.0"
     const val swipeRefreshLayoutVersion = "1.1.0"
@@ -36,13 +36,11 @@ object Versions {
 
     const val constraintLayoutVersion = "2.0.4"
 
-    const val androidCoreKtxVersion = "1.3.2"
+    const val androidCoreKtxVersion = "1.5.0"
 
-    const val workManagerVersion = "2.5.0"
+    const val workManagerVersion = "2.5.0"//please check release notes, related to expedited jobs and WorkerFactory init
 
     const val edgeToEdgeDecoratorVersion = "1.0.0"
-
-    const val lifecycleExtensionsVersion = "2.2.0"
 
     const val ciceroneVersion = "7.0"
 
@@ -61,7 +59,7 @@ object Versions {
     const val threeTenBpZonedTestVersion = "1.5.0"
 
     const val binaryPrefsVersion = "1.0.1"
-    const val tinkAndroidVersion = "1.5.0"
+    const val tinkAndroidVersion = "1.6.0"
 
     const val stethoVersion = "1.6.0"
     const val leakCanaryVersion = "2.7"

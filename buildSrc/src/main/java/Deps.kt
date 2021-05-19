@@ -28,8 +28,6 @@ object Deps {
 
     const val edgeToEdgeDecorator = "com.redmadrobot:edge-to-edge-decorator:${Versions.edgeToEdgeDecoratorVersion}"
 
-    const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycleExtensionsVersion}"
-
     const val firebaseBom = "com.google.firebase:firebase-bom:${Versions.firebaseBomVersion}"
     const val firebaseAnalytics = "com.google.firebase:firebase-analytics"
     const val firebaseAuth = "com.google.firebase:firebase-auth"

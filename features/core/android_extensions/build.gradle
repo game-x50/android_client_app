@@ -19,5 +19,5 @@ dependencies {
     compileOnly(Deps.supportAppCompat)
     compileOnly(Deps.supportDesign)
     compileOnly(Deps.recyclerView)
-    implementation(Deps.supportAnnotations)//todo: implementation instead of compileOnly because of some version conflicts; try to use compileOnly
+    compileOnly(Deps.supportAnnotations)
 }

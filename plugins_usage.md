@@ -5,7 +5,7 @@ https://github.com/autonomousapps/dependency-analysis-android-gradle-plugin
 run
     ./gradlew buildHealt
 
-and check ../build/reports/dependency-analysis/advice-holistic-pretty.json
+and check ../build/reports/dependency-analysis/advice-holistic-strict-pretty.json
 -----------------------------------------------------------------------------------
 https://github.com/jeremylong/dependency-check-gradle
 
