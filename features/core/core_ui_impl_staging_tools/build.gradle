@@ -29,7 +29,7 @@ dependencies {
 
     compileOnly(Deps.supportAppCompat)
     implementation(Deps.supportDesign)// todo: implementation instead of compileOnly because of task ./gradlew assembleStaging failing on CI, try to use compileOnly
-    compileOnly(Deps.constraintLayout)
+    implementation(Deps.constraintLayout)// todo: implementation instead of compileOnly because of task ./gradlew assembleStaging failing on CI, try to use compileOnly
     compileOnly(Deps.swipeRefreshLayout)
 
     compileOnly(Deps.cicerone)
