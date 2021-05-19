@@ -42,6 +42,8 @@ object Versions {
 
     const val edgeToEdgeDecoratorVersion = "1.0.0"
 
+    const val lifecycleExtensionsVersion = "2.2.0"
+
     const val ciceroneVersion = "7.0"
 
     const val retrofit2Version = "2.9.0"
