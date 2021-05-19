@@ -31,7 +31,7 @@ dependencies {
     compileOnly(project(LocalGradleProjects.coreApi))
     compileOnly(project(LocalGradleProjects.parsingImpl))
 
-    implementation(project(LocalGradleProjects.networkApi))
+    implementation(project(LocalGradleProjects.networkApi))//todo: implementation here instead of app module because of because ot some used extensions, try to use compileOnly here and implementation in app module
 
     debugImplementation(project(LocalGradleProjects.networkImplDebugTools))
     stagingImplementation(project(LocalGradleProjects.networkImplStagingTools))

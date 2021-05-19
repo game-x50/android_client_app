@@ -110,8 +110,7 @@ constructor(
             firebaseAuth.signInWithEmailAndPasswordRx(email, password)
                     .toOperationResult<FirebaseUser, AuthError.InvalidUserCredentials>()
                     .onErrorResumeNext { error ->
-                        if (error is FirebaseAuthInvalidCredentialsException
-                            || error is FirebaseAuthInvalidUserException) {
+                        if (error.isFirebaseInvalidUserCredentialsError()) {
                             Single.just(OperationResult.Error(AuthError.InvalidUserCredentials()))
                         } else {
                             Single.error(error)
@@ -329,6 +328,14 @@ private inline fun taskToCompletable(crossinline createTask: () -> Task<Void>): 
                     }
         }
                 .mapError { error -> mapFirebaseNetworkError(error) }
+
+private fun Throwable.isFirebaseInvalidUserCredentialsError(): Boolean =
+        when (this) {
+            is FirebaseAuthInvalidCredentialsException,
+            is FirebaseAuthInvalidUserException -> true
+
+            else                                -> false
+        }
 
 private inline fun mapFirebaseNetworkError(error: Throwable): Throwable =
         if (error is FirebaseNetworkException) {

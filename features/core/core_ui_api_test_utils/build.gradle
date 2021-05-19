@@ -16,4 +16,6 @@ android {
 dependencies {
     compileOnly(project(LocalGradleProjects.testUtils))
     compileOnly(project(LocalGradleProjects.coreUiApi))
+
+    implementation(Deps.lifecycleExtensions)
 }

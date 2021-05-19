@@ -48,6 +48,5 @@ private fun ungzipIfNeeded(response: Response): Response {
 private val Response.isGzipped: Boolean
     get() {
         val contentEncodingValue = this.header(CONTENT_ENCODING_HEADER_HEY)
-        return (contentEncodingValue != null
-                && contentEncodingValue.equals(CONTENT_ENCODING_GZIP_HEADER_VALUE, ignoreCase = true))
+        return contentEncodingValue.equals(CONTENT_ENCODING_GZIP_HEADER_VALUE, ignoreCase = true)
     }

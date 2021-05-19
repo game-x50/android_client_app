@@ -85,7 +85,7 @@ dependencies {
     implementation(project(LocalGradleProjects.coreUiApi))
     implementation(project(LocalGradleProjects.coreUiImpl))
 
-    compileOnly(project(LocalGradleProjects.networkApi))
+    compileOnly(project(LocalGradleProjects.networkApi))//todo: compileOnly here instead of network_impl module because of some used extensions in network_impl, try to use implementation here and compileOnly in network_impl module
     implementation(project(LocalGradleProjects.networkImpl))
 
     implementation(project(LocalGradleProjects.storage))
@@ -103,7 +103,7 @@ dependencies {
     implementation(project(LocalGradleProjects.gameSettingsUi))
     implementation(project(LocalGradleProjects.gameTopUi))
 
-    compileOnly(Deps.rxJava2)
+    compileOnly(Deps.rxJava2)//todo: compileOnly here instead of core_impl module of because ot some dependencies conflicts in core_impl, try to use implementation here and compileOnly in core_impl module
     implementation(project(LocalGradleProjects.rxjava2Extensions))
 
     compileOnly(Deps.threeTenBp)
@@ -114,6 +114,7 @@ dependencies {
     implementation(Deps.supportDesign)
     implementation(Deps.swipeRefreshLayout)
     implementation(Deps.constraintLayout)
+    implementation(Deps.recyclerView)
 
     implementation(Deps.edgeToEdgeDecorator)
 
@@ -123,7 +124,7 @@ dependencies {
 
     implementation platform(Deps.firebaseBom)
     implementation(Deps.firebaseAnalytics)//todo because of firebaseAuth, crashlytics require
-    implementation(Deps.crashlytics)
+    implementation(Deps.firebaseCrashlytics)
 }
 
 apply plugin: Plugins.googleServices

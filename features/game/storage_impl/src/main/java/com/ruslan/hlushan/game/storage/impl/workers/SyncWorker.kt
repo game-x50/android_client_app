@@ -51,6 +51,7 @@ internal class SyncWorker(
                     16, TimeUnit.HOURS
             )
                     .setConstraints(constraints)
+//                    .setExpedited(OutOfQuotaPolicy.RUN_AS_NON_EXPEDITED_WORK_REQUEST)
                     .build()
 
             WorkManager.getInstance(appContext)
@@ -92,7 +93,11 @@ internal class SyncWorker(
     }
 
     override fun createWork(): Single<Result> =
-            Completable.fromAction { setForegroundAsync(createForegroundInfo(applicationContext, id)) }
+            Completable.fromAction {
+//                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.R) {
+                setForegroundAsync(createForegroundInfo(applicationContext, id))
+//                }
+            }
                     .andThen(syncInteractor.sync())
                     .toSingleDefault(Result.success())
                     .onErrorReturn { error ->

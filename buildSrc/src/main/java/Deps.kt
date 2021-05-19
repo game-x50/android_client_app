@@ -20,7 +20,6 @@ object Deps {
 
     const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerViewVersion}"
     const val swipeRefreshLayout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayoutVersion}"
-    const val cardView = "androidx.cardview:cardview:${Versions.cardViewVersion}"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayoutVersion}"
 
     const val workManager = "androidx.work:work-runtime:${Versions.workManagerVersion}"
@@ -34,8 +33,7 @@ object Deps {
     const val firebaseAnalytics = "com.google.firebase:firebase-analytics"
     const val firebaseAuth = "com.google.firebase:firebase-auth"
     const val firebaseFirestore = "com.google.firebase:firebase-firestore"
-
-    const val crashlytics = "com.google.firebase:firebase-crashlytics"
+    const val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics"
 
     const val cicerone = "com.github.terrakok:cicerone:${Versions.ciceroneVersion}"
 

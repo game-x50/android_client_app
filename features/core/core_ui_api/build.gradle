@@ -26,16 +26,14 @@ dependencies {
     compileOnly(Deps.rxJava2)
     compileOnly(project(LocalGradleProjects.rxjava2Extensions))
 
-    implementation(Deps.supportAppCompat)
-    implementation(Deps.supportDesign)
+    implementation(Deps.supportAppCompat)//todo: implementation instead of compileOnly because ot some dependencies conflicts, try to use compileOnly
+    compileOnly(Deps.supportDesign)
 
-    implementation(Deps.recyclerView)
+    compileOnly(Deps.recyclerView)
     compileOnly(Deps.swipeRefreshLayout)
-    implementation(Deps.constraintLayout)//todo: because of conflicting dependencies; try to use compileOnly or totally avoid it
+    compileOnly(Deps.constraintLayout)
 
     compileOnly(Deps.cicerone)
-
-    api(Deps.lifecycleExtensions)//todo: because of conflicting dependencies; try to avoid it
 
     testImplementation(project(LocalGradleProjects.extensions))
     testImplementation(project(LocalGradleProjects.coreApi))

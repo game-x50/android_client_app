@@ -27,7 +27,7 @@ dependencies {
 
     compileOnly(project(LocalGradleProjects.coreApiStagingTools))
 
-    compileOnly(Deps.supportAppCompat)
+    implementation(Deps.supportAppCompat)//todo: implementation instead of compileOnly because ot some dependencies conflicts, try to use compileOnly
 
     implementation(Deps.blockCanary)
     implementation(Deps.tinyDancer)
