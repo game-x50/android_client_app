@@ -21,14 +21,14 @@ dependencies {
     compileOnly(project(LocalGradleProjects.extensions))
     compileOnly(project(LocalGradleProjects.androidExtensions))
     compileOnly(project(LocalGradleProjects.coreApi))
-    implementation(project(LocalGradleProjects.coreUiApi))// todo: implementation instead of compileOnly because of task ./gradlew assembleStaging failing
+    implementation(project(LocalGradleProjects.coreUiApi))// todo: implementation instead of compileOnly because of task ./gradlew assembleStaging failing, try to use compileOnly
 
     compileOnly(project(LocalGradleProjects.coreApiStagingTools))
 
     compileOnly(Deps.rxJava2)
 
     compileOnly(Deps.supportAppCompat)
-    compileOnly(Deps.supportDesign)
+    implementation(Deps.supportDesign)// todo: implementation instead of compileOnly because of task ./gradlew assembleStaging failing on CI, try to use compileOnly
     compileOnly(Deps.constraintLayout)
     compileOnly(Deps.swipeRefreshLayout)
 
