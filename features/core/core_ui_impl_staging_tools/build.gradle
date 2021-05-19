@@ -29,7 +29,7 @@ dependencies {
 
     compileOnly(Deps.supportAppCompat)
     compileOnly(Deps.supportDesign)
-    implementation(Deps.constraintLayout)//todo: because of conflicting dependencies; try to use compileOnly or totally avoid it
+    compileOnly(Deps.constraintLayout)
     compileOnly(Deps.swipeRefreshLayout)
 
     compileOnly(Deps.cicerone)
