@@ -24,11 +24,11 @@ def setupKotlinReporting() {
     jacocoTestReport {
         dependsOn test
         reports {
-            csv.enabled false // change if needed
+            html.enabled false // change if needed
             xml.enabled false // change if needed
-            html {
+            csv {
                 enabled true
-                destination file("${buildDir}/coverage-report")
+                destination file("${buildDir}/coverage-report/test_coverage.csv")
             }
         }
         afterEvaluate {
@@ -151,11 +151,11 @@ def setupAndroidReporting() {
         }
 
         reports {
-            csv.enabled false // change if needed
+            html.enabled false // change if needed
             xml.enabled false // change if needed
-            html {
+            csv {
                 enabled true
-                destination file("${buildDir}/coverage-report")
+                destination file("${buildDir}/coverage-report/test_coverage.csv")
             }
         }
     }
