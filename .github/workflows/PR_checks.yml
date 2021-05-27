@@ -28,4 +28,4 @@ jobs:
         run: ./gradlew jacocoTestReport
 
       - name: Upload Tests Coverage report
-        run: bash <(curl -s https://codecov.io/bash) -f features/game/storage_impl/build/coverage-report/index.html -F moduleA
+        run: bash <(curl -s https://codecov.io/bash) -f features/game/storage_impl/build/coverage-report/test_coverage.csv -F moduleA
