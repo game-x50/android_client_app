@@ -12,18 +12,18 @@ object Versions {
 
     const val crashlyticsPluginVersion = "2.6.1"
 
-    const val detektVersion = "1.17.0"
+    const val detektVersion = "1.17.1"
     const val androidJarPluginVersion = "0.1"
 
     const val dependencyAnalysisPluginVersion = "0.73.0"
-    const val dependencyUpdatesVersion = "0.38.0"
-    const val owaspDependencyCheckVersion = "6.1.6"
+    const val dependencyUpdatesVersion = "0.39.0"
+    const val owaspDependencyCheckVersion = "6.2.0"
     const val gradleDoctorVersion = "0.7.0"
 
     const val rxJava2Version = "2.2.21"
     const val rxJava2AndroidVersion = "2.1.1"
 
-    const val dagger2Version = "2.35"
+    const val dagger2Version = "2.36"
 
     const val firebaseBomVersion = "28.0.1"
 
@@ -31,7 +31,6 @@ object Versions {
     const val supportDesignVersion = "1.3.0"
     const val supportAnnotationsVersion = "1.2.0"
     const val swipeRefreshLayoutVersion = "1.1.0"
-    const val cardViewVersion = "1.0.0"
     const val recyclerViewVersion = "1.2.0"
 
     const val constraintLayoutVersion = "2.0.4"

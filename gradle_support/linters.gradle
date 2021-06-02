@@ -10,19 +10,6 @@ detekt {
 
     config = files("${lintersConfigFolder}detekt-config.yml")
 
-    reports {
-        xml {
-            enabled = false
-        }
-        html {
-            enabled = false
-        }
-        txt {
-            enabled = true
-            destination = file("${reportsFolder}detekt.txt")
-        }
-    }
-
     input = files(
             subprojects
                     .collect { pr -> pr.projectDir }
@@ -35,6 +22,15 @@ detekt {
                         ]
                     }
     )
+
+    reports {
+        xml.enabled = false
+        html.enabled = false
+        txt {
+            enabled = true
+            destination = file("${reportsFolder}detekt.txt")
+        }
+    }
 }
 
 dependencies {

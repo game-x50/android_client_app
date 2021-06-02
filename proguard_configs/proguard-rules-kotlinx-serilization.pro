@@ -10,4 +10,4 @@
 -keepclasseswithmembers class kotlinx.serialization.json.** {
     kotlinx.serialization.KSerializer serializer(...);
 }
-##---------------Begin: proguard configuration for kotlinx.serilization core  ----------
+##---------------End: proguard configuration for kotlinx.serilization core  ----------
