@@ -31,7 +31,7 @@ jobs:
         with: {java-version: 1.8}
 
       - name: Dependency Check Analyze
-        run: ./gradlew -Dorg.gradle.jvmargs=-Xmx6g dependencyCheckAnalyze
+        run: ./gradlew -Dorg.gradle.jvmargs=-Xmx8g dependencyCheckAnalyze
 
   android_lint:
     runs-on: ubuntu-latest
@@ -48,7 +48,7 @@ jobs:
           path: app
 
       - name: Android Lint
-        run: ./gradlew -Dorg.gradle.jvmargs=-Xmx6g lint
+        run: ./gradlew -Dorg.gradle.jvmargs=-Xmx8g lint
 
   unit_tests:
     runs-on: ubuntu-latest
@@ -65,7 +65,7 @@ jobs:
           path: app
 
       - name: Unit tests
-        run: ./gradlew -Dorg.gradle.jvmargs=-Xmx6g test
+        run: ./gradlew -Dorg.gradle.jvmargs=-Xmx8g test
 
   build_release_apk:
     needs: [ detekt, android_lint, unit_tests, dependency_check ]
@@ -83,7 +83,7 @@ jobs:
           path: app
 
       - name: Build Release APK
-        run: ./gradlew -Dorg.gradle.jvmargs=-Xmx6g assembleRelease
+        run: ./gradlew -Dorg.gradle.jvmargs=-Xmx8g assembleRelease
 
   build_staging_apk:
     needs: [ detekt, android_lint, unit_tests, dependency_check ]
@@ -101,4 +101,4 @@ jobs:
           path: app
 
       - name: Build Staging APK
-        run: ./gradlew -Dorg.gradle.jvmargs=-Xmx6g assembleStaging
+        run: ./gradlew -Dorg.gradle.jvmargs=-Xmx8g assembleStaging
