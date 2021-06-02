@@ -6,7 +6,7 @@ object Versions {
 
     const val gradleVersion = "4.2.1"
 
-    const val kotlinVersion = "1.4.32"
+    const val kotlinVersion = "1.5.10"
 
     const val googlePluginServicesVersion = "4.3.8"
 
