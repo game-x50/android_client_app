@@ -27,7 +27,7 @@ dependencies {
 
     compileOnly(Deps.rxJava2)
 
-    implementation(Deps.supportAnnotations)//todo: try to avoid it at all https://stackoverflow.com/questions/67498252/got-assertionerror-no-such-enum-entry-library-group-prefix-after-upgrading-to-a
+    runtimeOnly(Deps.supportAnnotations)//todo: try to avoid it at all https://stackoverflow.com/questions/67498252/got-assertionerror-no-such-enum-entry-library-group-prefix-after-upgrading-to-a
     compileOnly(Deps.supportAppCompat)
     compileOnly(Deps.supportDesign)
     compileOnly(Deps.constraintLayout)
