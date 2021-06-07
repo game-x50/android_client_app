@@ -104,17 +104,16 @@ dependencies {
     implementation(project(LocalGradleProjects.gameTopUi))
 
     compileOnly(Deps.rxJava2)//todo: compileOnly here instead of core_impl module of because ot some dependencies conflicts in core_impl, try to use implementation here and compileOnly in core_impl module
-    implementation(project(LocalGradleProjects.rxjava2Extensions))
+    runtimeOnly(project(LocalGradleProjects.rxjava2Extensions))
 
-    compileOnly(Deps.threeTenBp)
-    implementation(project(LocalGradleProjects.threeTenExtensions))
+    runtimeOnly(project(LocalGradleProjects.threeTenExtensions))
     implementation(Deps.threeTenBpAndroid)
 
     implementation(Deps.supportAppCompat)
     implementation(Deps.supportDesign)
-    implementation(Deps.swipeRefreshLayout)
-    implementation(Deps.constraintLayout)
-    implementation(Deps.recyclerView)
+    runtimeOnly(Deps.swipeRefreshLayout)
+    runtimeOnly(Deps.constraintLayout)
+    runtimeOnly(Deps.recyclerView)
 
     implementation(Deps.edgeToEdgeDecorator)
 
@@ -123,7 +122,7 @@ dependencies {
     implementation(Deps.cicerone)
 
     implementation platform(Deps.firebaseBom)
-    implementation(Deps.firebaseAnalytics)//todo because of firebaseAuth, crashlytics require
+    runtimeOnly(Deps.firebaseAnalytics)//todo because of firebaseAuth, crashlytics require
     implementation(Deps.firebaseCrashlytics)
 }
 
