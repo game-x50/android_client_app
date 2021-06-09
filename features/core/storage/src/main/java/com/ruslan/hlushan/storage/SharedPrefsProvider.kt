@@ -29,7 +29,7 @@ object SharedPrefsProvider {
                     .allowBuildOnBackgroundThread()
                     .build()
 
-    @SuppressWarnings("LongParameterList")
+    @SuppressWarnings("LongParameterList", "MaxLineLength")
     fun provideSecurePrefs(
             context: Context,
             prefsName: String,

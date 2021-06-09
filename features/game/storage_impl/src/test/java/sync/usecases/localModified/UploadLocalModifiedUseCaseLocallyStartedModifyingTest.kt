@@ -46,7 +46,9 @@ internal class UploadLocalModifiedUseCaseLocallyStartedModifyingTest : BaseUploa
         )
                 .toModifyingNowOrThrow()
 
-        localRepo.assertRecordsWithSyncStateInLocalRepo(listOf(GameRecordWithSyncState(original.record, expectedFinal)))
+        localRepo.assertRecordsWithSyncStateInLocalRepo(
+                listOf(GameRecordWithSyncState(original.record, expectedFinal))
+        )
     }
 
     @Test
@@ -157,7 +159,9 @@ internal class UploadLocalModifiedUseCaseLocallyStartedModifyingTest : BaseUploa
                 totalPlayed = original.record.totalPlayed
         )
 
-        localRepo.assertRecordsWithSyncStateInLocalRepo(listOf(GameRecordWithSyncState(localUpdatedRecord, expectedFinalSyncState)))
+        localRepo.assertRecordsWithSyncStateInLocalRepo(
+                listOf(GameRecordWithSyncState(localUpdatedRecord, expectedFinalSyncState))
+        )
     }
 
     @Test
@@ -188,7 +192,9 @@ internal class UploadLocalModifiedUseCaseLocallyStartedModifyingTest : BaseUploa
                 totalPlayed = original.record.totalPlayed
         )
 
-        localRepo.assertRecordsWithSyncStateInLocalRepo(listOf(GameRecordWithSyncState(localUpdatedRecord, expectedFinalSyncState)))
+        localRepo.assertRecordsWithSyncStateInLocalRepo(
+                listOf(GameRecordWithSyncState(localUpdatedRecord, expectedFinalSyncState))
+        )
     }
 
     @Test
@@ -238,7 +244,9 @@ internal class UploadLocalModifiedUseCaseLocallyStartedModifyingTest : BaseUploa
                 totalPlayed = remoteRecord.totalPlayed
         )
 
-        localRepo.assertRecordsWithSyncStateInLocalRepo(listOf(GameRecordWithSyncState(localUpdatedRecord, expectedFinalSyncState)))
+        localRepo.assertRecordsWithSyncStateInLocalRepo(
+                listOf(GameRecordWithSyncState(localUpdatedRecord, expectedFinalSyncState))
+        )
     }
 
     @Test
@@ -271,6 +279,8 @@ internal class UploadLocalModifiedUseCaseLocallyStartedModifyingTest : BaseUploa
                 totalPlayed = original.record.totalPlayed
         )
 
-        localRepo.assertRecordsWithSyncStateInLocalRepo(listOf(GameRecordWithSyncState(localUpdatedRecord, expectedFinalSyncState)))
+        localRepo.assertRecordsWithSyncStateInLocalRepo(
+                listOf(GameRecordWithSyncState(localUpdatedRecord, expectedFinalSyncState))
+        )
     }
 }

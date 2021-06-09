@@ -22,10 +22,12 @@ internal class AppExceptionHandler(
     @SuppressWarnings("ClassOrdering")
     companion object {
         fun setUp(application: Application) {
-            val systemHandler: Thread.UncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler()
+            val systemHandler = Thread.getDefaultUncaughtExceptionHandler()
             Thread.setDefaultUncaughtExceptionHandler { t, e -> }
-            val crashlyticsExceptionHandler: Thread.UncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler()
-            Thread.setDefaultUncaughtExceptionHandler(AppExceptionHandler(systemHandler, crashlyticsExceptionHandler, application))
+            val crashlyticsExceptionHandler = Thread.getDefaultUncaughtExceptionHandler()
+            Thread.setDefaultUncaughtExceptionHandler(
+                    AppExceptionHandler(systemHandler, crashlyticsExceptionHandler, application)
+            )
         }
     }
 

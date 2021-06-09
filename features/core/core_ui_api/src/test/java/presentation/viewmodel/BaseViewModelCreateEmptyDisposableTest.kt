@@ -61,6 +61,7 @@ class BaseViewModelCreateEmptyDisposableTest : AbstractBaseViewModelDisposableTe
                     this::createJoinedUntilDestroyEmptyDisposable
             )
 
+    @Suppress("MaxLineLength")
     @Test
     fun `joinedWhileViewAttachedEmptyDisposable is auto-dispose after onAfterAttachView, onBeforeDetachView, onClear`() =
             `disposable is auto-dispose after onAfterAttachView, onBeforeDetachView, onClear`(
@@ -73,6 +74,7 @@ class BaseViewModelCreateEmptyDisposableTest : AbstractBaseViewModelDisposableTe
                     this::createJoinedUntilDestroyEmptyDisposable
             )
 
+    @Suppress("MaxLineLength")
     @Test
     fun `joinedWhileViewAttachedEmptyDisposable is NOT auto-dispose after onAfterAttachView and dispose after onBeforeDetachView`() =
             `disposable is NOT auto-dispose after onAfterAttachView and dispose after onBeforeDetachView`(
@@ -80,6 +82,7 @@ class BaseViewModelCreateEmptyDisposableTest : AbstractBaseViewModelDisposableTe
                     this::createJoinedWhileViewAttachedEmptyDisposable
             )
 
+    @Suppress("MaxLineLength")
     @Test
     fun `joinedUntilDestroyEmptyDisposable is NOT auto-dispose after onAfterAttachView and NOT dispose after onBeforeDetachView`() =
             `disposable is NOT auto-dispose after onAfterAttachView and dispose after onBeforeDetachView`(
@@ -223,6 +226,7 @@ class BaseViewModelCreateEmptyDisposableTest : AbstractBaseViewModelDisposableTe
         }
     }
 
+    @Suppress("MaxLineLength")
     private fun `disposable is NOT auto-dispose after onAfterAttachView, dispose after onBeforeDetachView, dispose after onClear`(
             isDisposedAfterOnBeforeDetachView: Boolean,
             createAndJoin: () -> Disposable

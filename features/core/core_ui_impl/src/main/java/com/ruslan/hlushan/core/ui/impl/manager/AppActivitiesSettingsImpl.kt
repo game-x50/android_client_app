@@ -32,7 +32,10 @@ constructor(
 
     private val threadChecker: ThreadChecker = UiMainThreadChecker
 
-    private val activitiesSettingsPrefs: SharedPreferences = SharedPrefsProvider.providePrefs(appContext, "app_activities_settings_prefs")
+    private val activitiesSettingsPrefs: SharedPreferences = SharedPrefsProvider.providePrefs(
+            appContext,
+            "app_activities_settings_prefs"
+    )
 
     @UiMainThread
     override fun checkLocaleAndRecreateIfNeeded(activity: Activity) {
@@ -42,9 +45,11 @@ constructor(
 
         val appLangNotFullCode = settings.appLanguageNotFullCode
         val currentActivityLangNotFullCode = getActivityLanguageNonFullCode(activity)
-        appLogger.log(activity, "appLangNotFullCode = " + appLangNotFullCode
-                                + ", currentActivityLangNotFullCode = "
-                                + if (!currentActivityLangNotFullCode.isNullOrEmpty()) currentActivityLangNotFullCode else "null")
+        @Suppress("MaxLineLength")
+        val message = ("appLangNotFullCode = " + appLangNotFullCode
+                       + ", currentActivityLangNotFullCode = "
+                       + if (!currentActivityLangNotFullCode.isNullOrEmpty()) currentActivityLangNotFullCode else "null")
+        appLogger.log(activity, message)
         if (!currentActivityLangNotFullCode.isNullOrEmpty() && (appLangNotFullCode != currentActivityLangNotFullCode)) {
             appLogger.log(activity, "recreate")
             activity.recreate()
@@ -60,9 +65,10 @@ constructor(
         val resources = activity.resources
         val currentAppLangNotFullCode = settings.appLanguageNotFullCode
         val currentActivityLocaleLangCode = resources.configuration.currentLocale.language
-        appLogger.log(activity, "currentAppLangNotFullCode = " + currentAppLangNotFullCode
-                                + ", currentActivityLocaleLangCode = " +
-                                if (!currentActivityLocaleLangCode.isNullOrEmpty()) currentActivityLocaleLangCode else "null")
+        val message = ("currentAppLangNotFullCode = " + currentAppLangNotFullCode
+                       + ", currentActivityLocaleLangCode = " +
+                       if (!currentActivityLocaleLangCode.isNullOrEmpty()) currentActivityLocaleLangCode else "null")
+        appLogger.log(activity, message)
         setActivityLanguageNonFullCode(activity, currentAppLangNotFullCode)
 
         if (currentAppLangNotFullCode != currentActivityLocaleLangCode) {

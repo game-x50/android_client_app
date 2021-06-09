@@ -30,7 +30,9 @@ internal class ConfirmDeleteGameRecordDialog : BaseTwoOptionsAlert() {
 
     override val negativeOnClickListener: (() -> Unit)? get() = null
 
-    private fun extractGameRecord(): GameRecord? = arguments?.getParcelable<GameRecordParcelable>(KEY_GAME_RECORD)?.toOriginal()
+    private fun extractGameRecord(): GameRecord? =
+            arguments?.getParcelable<GameRecordParcelable>(KEY_GAME_RECORD)
+                    ?.toOriginal()
 
     override fun extractData(): TwoOptionsAlertData? = extractGameRecord()?.let { gameRecord ->
         @SuppressWarnings("StringFormatMatches")
@@ -55,7 +57,8 @@ internal class ConfirmDeleteGameRecordDialog : BaseTwoOptionsAlert() {
 @UiMainThread
 internal fun <Parent> Parent.showConfirmDeleteGameRecordDialog(
         gameRecord: GameRecord
-) where Parent : DialogCommandsHandler.Owner, Parent : ConfirmDeleteGameRecordDialog.OnDeleteGameRecordConfirmedListener =
+) where Parent : DialogCommandsHandler.Owner,
+        Parent : ConfirmDeleteGameRecordDialog.OnDeleteGameRecordConfirmedListener =
         this.dialogCommandsHandler.executeShowOrAddToQueue(ShowConfirmDeleteGameRecordDialogCommand(gameRecord))
 
 private class ShowConfirmDeleteGameRecordDialogCommand(

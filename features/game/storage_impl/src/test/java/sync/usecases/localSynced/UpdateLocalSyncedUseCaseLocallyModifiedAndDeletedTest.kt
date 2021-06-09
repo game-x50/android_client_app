@@ -55,7 +55,9 @@ internal class UpdateLocalSyncedUseCaseLocallyModifiedAndDeletedTest : BaseUpdat
                 .subscribe()
 
         val expectedFinal = RecordSyncState.forSync(
-                remoteInfo = original.syncState.remoteInfo!!.copy(lastRemoteSyncedTimestamp = lastRemoteSyncedTimestamp),
+                remoteInfo = original.syncState.remoteInfo!!.copy(
+                        lastRemoteSyncedTimestamp = lastRemoteSyncedTimestamp
+                ),
                 lastLocalModifiedTimestamp = localModifiedTimestamp,
                 modifyingNow = false
         )
@@ -63,7 +65,9 @@ internal class UpdateLocalSyncedUseCaseLocallyModifiedAndDeletedTest : BaseUpdat
 
         val expectedFinalGameRecord = GameRecord(localSyncedRecordId, updatedGameState, updatedTotalPlayed)
 
-        localRepo.assertRecordsWithSyncStateInLocalRepo(listOf(GameRecordWithSyncState(expectedFinalGameRecord, expectedFinal)))
+        localRepo.assertRecordsWithSyncStateInLocalRepo(
+                listOf(GameRecordWithSyncState(expectedFinalGameRecord, expectedFinal))
+        )
     }
 
     @Test
@@ -104,7 +108,9 @@ internal class UpdateLocalSyncedUseCaseLocallyModifiedAndDeletedTest : BaseUpdat
                 .subscribe()
 
         val expectedFinal = RecordSyncState.forSync(
-                remoteInfo = remoteRecord.remoteInfo.copy(lastRemoteSyncedTimestamp = remoteInfo.lastRemoteSyncedTimestamp),
+                remoteInfo = remoteRecord.remoteInfo.copy(
+                        lastRemoteSyncedTimestamp = remoteInfo.lastRemoteSyncedTimestamp
+                ),
                 lastLocalModifiedTimestamp = localModifiedTimestampFromRemote,
                 modifyingNow = false
         )
@@ -115,7 +121,9 @@ internal class UpdateLocalSyncedUseCaseLocallyModifiedAndDeletedTest : BaseUpdat
                 totalPlayed = remoteRecord.totalPlayed
         )
 
-        localRepo.assertRecordsWithSyncStateInLocalRepo(listOf(GameRecordWithSyncState(localUpdatedRecord, expectedFinal)))
+        localRepo.assertRecordsWithSyncStateInLocalRepo(
+                listOf(GameRecordWithSyncState(localUpdatedRecord, expectedFinal))
+        )
     }
 
     @Test
@@ -184,6 +192,8 @@ internal class UpdateLocalSyncedUseCaseLocallyModifiedAndDeletedTest : BaseUpdat
 
         val expectedFinalGameRecord = GameRecord(localSyncedRecordId, updatedGameState, updatedTotalPlayed)
 
-        localRepo.assertRecordsWithSyncStateInLocalRepo(listOf(GameRecordWithSyncState(expectedFinalGameRecord, expectedFinal)))
+        localRepo.assertRecordsWithSyncStateInLocalRepo(
+                listOf(GameRecordWithSyncState(expectedFinalGameRecord, expectedFinal))
+        )
     }
 }

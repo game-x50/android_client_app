@@ -29,8 +29,10 @@ import view.isIndexInRow
 /**
  * @author Ruslan Hlushan on 2019-09-05
  */
+@Suppress("LargeClass")
 class ItemsMatrixTest {
 
+    @Suppress("LongMethod")
     @Test
     fun initStateForDifferentTypes() {
         GameSize.values().forEach { gameSize ->
@@ -44,7 +46,12 @@ class ItemsMatrixTest {
             assertFalse(itemsMatrix.isAllItemsFilled)
             assertEquals(
                     allValuesRange.map { n ->
-                        RectangleArea.createDefault(position = n, number = 0, isFake = true, drawBackground = true)
+                        RectangleArea.createDefault(
+                                position = n,
+                                number = 0,
+                                isFake = true,
+                                drawBackground = true
+                        )
                     },
                     itemsMatrix.items
             )
@@ -55,7 +62,12 @@ class ItemsMatrixTest {
                 assertEquals(
                         countRowsAndColumnsRange.map { localRowOrColumn ->
                             val position = ((gameSize.countRowsAndColumns * localRowOrColumn) + rowOrColumn)
-                            RectangleArea.createDefault(position = position, number = 0, isFake = true, drawBackground = true)
+                            RectangleArea.createDefault(
+                                    position = position,
+                                    number = 0,
+                                    isFake = true,
+                                    drawBackground = true
+                            )
                         },
                         itemsMatrix.getColumn(rowOrColumn)
                 )
@@ -63,7 +75,12 @@ class ItemsMatrixTest {
                 assertEquals(
                         countRowsAndColumnsRange.map { localRowOrColumn ->
                             val position = ((gameSize.countRowsAndColumns * rowOrColumn) + localRowOrColumn)
-                            RectangleArea.createDefault(position = position, number = 0, isFake = true, drawBackground = true)
+                            RectangleArea.createDefault(
+                                    position = position,
+                                    number = 0,
+                                    isFake = true,
+                                    drawBackground = true
+                            )
                         },
                         itemsMatrix.getRow(rowOrColumn)
                 )
@@ -71,19 +88,34 @@ class ItemsMatrixTest {
 
             assertEquals(
                     countRowsAndColumnsRange.map { n ->
-                        RectangleArea.createDefault(position = n, number = 0, isFake = true, drawBackground = true)
+                        RectangleArea.createDefault(
+                                position = n,
+                                number = 0,
+                                isFake = true,
+                                drawBackground = true
+                        )
                     },
                     itemsMatrix.columnSums
             )
             assertEquals(
                     countRowsAndColumnsRange.map { n ->
-                        RectangleArea.createDefault(position = n, number = 0, isFake = true, drawBackground = true)
+                        RectangleArea.createDefault(
+                                position = n,
+                                number = 0,
+                                isFake = true,
+                                drawBackground = true
+                        )
                     },
                     itemsMatrix.rowSums
             )
             assertEquals(
                     countRowsAndColumnsRange.map { n ->
-                        RectangleArea.createDefault(position = n, number = 0, isFake = true, drawBackground = false)
+                        RectangleArea.createDefault(
+                                position = n,
+                                number = 0,
+                                isFake = true,
+                                drawBackground = false
+                        )
                     },
                     itemsMatrix.rectanglesSums
             )
@@ -96,7 +128,9 @@ class ItemsMatrixTest {
     }
 
     @Test
-    fun toImmutableNumbersMatrixAndUpdateFrom() = assertForImmutableMatrix { expectedImmutableMatrix, itemsMatrix, gameSize ->
+    fun toImmutableNumbersMatrixAndUpdateFrom() = assertForImmutableMatrix { expectedImmutableMatrix,
+                                                                             itemsMatrix,
+                                                                             gameSize ->
         assertEquals(expectedImmutableMatrix, itemsMatrix.toImmutableNumbersMatrix())
     }
 

@@ -63,9 +63,10 @@ inline fun <E : Any, T : Collection<E>> T?.whenNotNullNorEmpty(func: (T) -> Unit
 
 inline fun <T : Any?> Collection<T>.notContains(element: T): Boolean = !this.contains(element)
 
-inline fun <T : Any?> List<T>.indexOfOrNull(item: T): Int? = this.indexOf(item).takeIf { index -> index in this.indices }
+inline fun <T : Any?> List<T>.indexOfOrNull(item: T): Int? =
+        this.indexOf(item).takeIf { index -> index in this.indices }
 
-inline fun <T : Any?> List<T>.copy():  List<T> = this.toList()
+inline fun <T : Any?> List<T>.copy(): List<T> = this.toList()
 
 inline fun <T : Any?> MutableList<T>.replace(old: T, new: T) {
     val index = this.indexOf(old)
@@ -74,7 +75,8 @@ inline fun <T : Any?> MutableList<T>.replace(old: T, new: T) {
     }
 }
 
-inline fun <E> Collection<E>.indexOfFirstOrNull(predicate: (E) -> Boolean): Int? = this.indexOfFirst(predicate).takeIf { it >= 0 }
+inline fun <E> Collection<E>.indexOfFirstOrNull(predicate: (E) -> Boolean): Int? =
+        this.indexOfFirst(predicate).takeIf { it >= 0 }
 
 inline fun <E> Collection<E>.indexOfFirstOrElse(defaultValue: Int, predicate: (E) -> Boolean): Int =
         this.indexOfFirst(predicate).takeIf { it >= 0 } ?: defaultValue

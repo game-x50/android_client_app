@@ -67,7 +67,9 @@ internal abstract class PlayGameViewModel(
     @UiMainThread
     fun onPressedExitWithState(result: GameState) {
         if (shouldBeSaveResultQuestionDialogShown(result)) {
-            mutableCommandsQueue.add(Command.ShowSaveResultQuestionDialog(result.current.immutableNumbersMatrix.totalSum))
+            mutableCommandsQueue.add(
+                    Command.ShowSaveResultQuestionDialog(result.current.immutableNumbersMatrix.totalSum)
+            )
         } else {
             markAsNonPlayingAndExit()
         }

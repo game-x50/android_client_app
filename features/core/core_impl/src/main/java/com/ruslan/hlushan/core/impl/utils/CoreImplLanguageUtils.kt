@@ -7,7 +7,10 @@ import java.util.Locale
 private const val KEY_APP_LANGUAGE_FULL_CODE = "KEY_APP_LANGUAGE_FULL_CODE"
 
 @SuppressWarnings("TooGenericExceptionCaught")
-fun SharedPreferences.getAppLangFullCode(availableLanguagesFullCodes: List<String>, defaultLanguageFullCode: String): String {
+fun SharedPreferences.getAppLangFullCode(
+        availableLanguagesFullCodes: List<String>,
+        defaultLanguageFullCode: String
+): String {
     var lang = ""
     try {
         lang = this.getString(KEY_APP_LANGUAGE_FULL_CODE, lang) ?: lang
@@ -18,7 +21,8 @@ fun SharedPreferences.getAppLangFullCode(availableLanguagesFullCodes: List<Strin
 
         val locale: Locale? = Locale.getDefault()
         val currentLocaleLang = defIfEmpty(locale?.language, defaultLanguageFullCode)
-        val defLang: String? = availableLanguagesFullCodes.firstOrNull { aLangFullCode -> aLangFullCode.contains(currentLocaleLang) }
+        val defLang: String? = availableLanguagesFullCodes
+                .firstOrNull { aLangFullCode -> aLangFullCode.contains(currentLocaleLang) }
 
         lang = defIfEmpty(defLang, defaultLanguageFullCode)
     }

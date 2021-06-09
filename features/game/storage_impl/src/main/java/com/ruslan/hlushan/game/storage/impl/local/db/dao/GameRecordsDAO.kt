@@ -191,7 +191,11 @@ internal abstract class GameRecordsDAO {
             @IntRange(from = 1) limit: Int,
             createIdGenerator: (GameRecord) -> String
     ): List<GameRecordWithSyncState> {
-        val records = getRecordsWithSyncAndPlayingStatus(syncStatus = SyncStatus.WAITING, modifying = false, limit = limit)
+        val records = getRecordsWithSyncAndPlayingStatus(
+                syncStatus = SyncStatus.WAITING,
+                modifying = false,
+                limit = limit
+        )
 
         setSyncStatusByIds(SyncStatus.SYNCHRONIZING,
                            records.map { recordDb ->
@@ -232,7 +236,9 @@ internal abstract class GameRecordsDAO {
                            })
 
         return records
-                .map { recordDb -> recordDb.copy(stateDb = recordDb.stateDb.copy(syncStatus = SyncStatus.SYNCHRONIZING)) }
+                .map { recordDb ->
+                    recordDb.copy(stateDb = recordDb.stateDb.copy(syncStatus = SyncStatus.SYNCHRONIZING))
+                }
     }
 
     @Transaction
@@ -240,7 +246,9 @@ internal abstract class GameRecordsDAO {
         SELECT ${GameStateDb.REMOTE_RECORD_ID} FROM ${GameStateDb.GAME_RECORDS_TABLE}
         WHERE ${GameStateDb.REMOTE_CREATED_TIMESTAMP} >= :minRemoteCreatedTimestamp
         """)
-    abstract fun getRemoteIdsWhereCreatedTimestampGraterOrEqual(minRemoteCreatedTimestamp: Instant): Single<List<String>>
+    abstract fun getRemoteIdsWhereCreatedTimestampGraterOrEqual(
+            minRemoteCreatedTimestamp: Instant
+    ): Single<List<String>>
 
     fun updateSyncStateById(recordId: Long, updatedSyncState: RecordSyncState) =
             updateSyncStateById(

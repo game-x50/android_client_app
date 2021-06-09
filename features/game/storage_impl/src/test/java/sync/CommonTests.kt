@@ -137,7 +137,9 @@ class CommonTests {
         assertEquals(
                 listOf(SyncStatus.WAITING to localCreateId),
                 localRepo.getAll()
-                        .map { recordWithSyncState ->  recordWithSyncState.syncState.syncStatus to recordWithSyncState.syncState.localCreateId }
+                        .map { recordWithSyncState ->
+                            recordWithSyncState.syncState.syncStatus to recordWithSyncState.syncState.localCreateId
+                        }
         )
     }
 }

@@ -77,7 +77,11 @@ internal class NetworkBuildHelperImpl @Inject constructor() : NetworkBuildHelper
         return okBuilder
     }
 
-    private fun provideCache(initAppConfig: InitAppConfig, networkConfig: NetworkConfig, cacheFolderName: String): Cache {
+    private fun provideCache(
+            initAppConfig: InitAppConfig,
+            networkConfig: NetworkConfig,
+            cacheFolderName: String
+    ): Cache {
         val httpCacheDirectory = File(initAppConfig.fileLogsFolder, "responses/$cacheFolderName")
         return Cache(httpCacheDirectory, networkConfig.cacheSize)
     }

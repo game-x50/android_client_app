@@ -146,7 +146,8 @@ class FpsCounterTest {
         )
 
         val firstFrameTimestampNanos: Long = (FpsCounter.NANOS_IN_SEC / 4)
-        val secondFrameTimestampNanos: Long = ((firstFrameTimestampNanos + FpsCounter.NANOS_IN_SEC) + (FpsCounter.NANOS_IN_SEC / 3))
+        val secondFrameTimestampNanos: Long = ((firstFrameTimestampNanos + FpsCounter.NANOS_IN_SEC)
+                                               + (FpsCounter.NANOS_IN_SEC / 3))
 
         fpsCounter.doFrame(firstFrameTimestampNanos)
         fpsCounter.doFrame(secondFrameTimestampNanos)
@@ -342,7 +343,11 @@ class FpsCounterTest {
             )
 }
 
-private fun `assert many frames in many periods with same frame`(frameTime: Long, periodsCount: Int, testedPeriodsCount: Int) {
+private fun `assert many frames in many periods with same frame`(
+        frameTime: Long,
+        periodsCount: Int,
+        testedPeriodsCount: Int
+) {
     val fpsCounter = FpsCounter(
             maxMeasurementPeriodsCount = periodsCount,
             periodNanos = FpsCounter.NANOS_IN_SEC

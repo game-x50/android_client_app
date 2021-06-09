@@ -40,7 +40,11 @@ private class AppAnalysisResultListener(private val appLogger: AppLogger) : OnHe
 
         when (heapAnalysis) {
             is HeapAnalysisFailure -> {
-                appLogger.logClass(AppAnalysisResultListener::class.java, heapAnalysis.toString(), heapAnalysis.exception)
+                appLogger.logClass(
+                        AppAnalysisResultListener::class.java,
+                        heapAnalysis.toString(),
+                        heapAnalysis.exception
+                )
             }
             is HeapAnalysisSuccess -> {
                 appLogger.logClass(AppAnalysisResultListener::class.java, heapAnalysis.toString())

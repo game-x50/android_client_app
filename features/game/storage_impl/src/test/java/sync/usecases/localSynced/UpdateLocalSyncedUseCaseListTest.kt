@@ -235,6 +235,7 @@ internal class UpdateLocalSyncedUseCaseListTest : BaseUpdateLocalSyncedUseCaseTe
                     .map { (state, response) -> response }
                     .subList(stepCounter - 1, lastElementExcludedPosition)
 
+            @Suppress("MaxLineLength")
             val expectedBeforeRemoteReturn = (
                     allPreviousStepResponses.filter { resp -> resp !is UpdateLocalNonModifiedResponse.Deleted }.map { SyncStatus.SYNCED }
                     + (stepCounter..lastElementExcludedPosition).map { SyncStatus.SYNCHRONIZING }
@@ -297,7 +298,9 @@ internal class UpdateLocalSyncedUseCaseListTest : BaseUpdateLocalSyncedUseCaseTe
                         UpdateLocalNonModifiedResponse.Fail(remoteId = original.syncState.remoteInfo!!.remoteId)
                     } else {
                         val remoteRecord = generateFakeRemoteRecord(
-                                remoteInfo = generateFakeRemoteInfo().copy(remoteId = original.syncState.remoteInfo!!.remoteId)
+                                remoteInfo = generateFakeRemoteInfo().copy(
+                                        remoteId = original.syncState.remoteInfo!!.remoteId
+                                )
                         )
 
                         UpdateLocalNonModifiedResponse.Changed(

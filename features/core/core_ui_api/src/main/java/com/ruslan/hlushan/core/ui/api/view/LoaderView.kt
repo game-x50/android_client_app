@@ -15,6 +15,7 @@ import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
+import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.core.view.isVisible
 import com.ruslan.hlushan.android.extensions.applyGravity
@@ -40,7 +41,11 @@ private const val DEFAULT_STEP_PER_INTERVAL: Float = 50.toFloat()
 
 class LoaderView
 @JvmOverloads
-constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : FrameLayout(context, attrs, defStyleAttr) {
+constructor(
+        context: Context,
+        attrs: AttributeSet? = null,
+        @AttrRes defStyleAttr: Int = 0
+) : FrameLayout(context, attrs, defStyleAttr) {
 
     private var angleDegrees: Double = 0.toDouble()
 
@@ -134,14 +139,28 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
                 typedArray = context.obtainStyledAttributes(attrs, R.styleable.LoaderView)
                 contentGravity = typedArray.getInt(R.styleable.LoaderView_content_gravity, contentGravity)
                 availableLine = typedArray.getDimensionPixelSize(R.styleable.LoaderView_availableLine, availableLine)
-                circlesRadius = typedArray.getDimensionPixelSize(R.styleable.LoaderView_circlesRadius, circlesRadius.toInt()).toFloat()
+                circlesRadius = typedArray.getDimensionPixelSize(
+                        R.styleable.LoaderView_circlesRadius, circlesRadius.toInt()
+                ).toFloat()
                 circlesCount = typedArray.getInteger(R.styleable.LoaderView_circlesCount, circlesCount)
                 circlesColor = typedArray.getColor(R.styleable.LoaderView_circlesColor, circlesColor)
-                stepPerInterval = typedArray.getDimensionPixelSize(R.styleable.LoaderView_stepPerInterval, stepPerInterval.toInt()).toFloat()
-                updateIntervalMillis = typedArray.getInteger(R.styleable.LoaderView_updateIntervalMillis, updateIntervalMillis)
-                angleDegrees = typedArray.getInteger(R.styleable.LoaderView_angleDegrees, angleDegrees.toInt()).toDouble()
+                stepPerInterval = typedArray.getDimensionPixelSize(
+                        R.styleable.LoaderView_stepPerInterval,
+                        stepPerInterval.toInt()
+                ).toFloat()
+                updateIntervalMillis = typedArray.getInteger(
+                        R.styleable.LoaderView_updateIntervalMillis,
+                        updateIntervalMillis
+                )
+                angleDegrees = typedArray.getInteger(
+                        R.styleable.LoaderView_angleDegrees,
+                        angleDegrees.toInt()
+                ).toDouble()
 
-                textSize = typedArray.getDimensionPixelSize(R.styleable.LoaderView_textSize, textSize.toInt()).toFloat()
+                textSize = typedArray.getDimensionPixelSize(
+                        R.styleable.LoaderView_textSize,
+                        textSize.toInt()
+                ).toFloat()
                 textColor = typedArray.getColor(R.styleable.LoaderView_textColor, textColor)
                 text = typedArray.getString(R.styleable.LoaderView_text) ?: ""
             } catch (e: Exception) {
@@ -226,14 +245,22 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
     }
 
     private fun recalculateAvailableArea() {
-        val fullAvailableForDrawingArea = RectF((startLeftPadding + circlesRadius),
-                                                paddingTop.toFloat(),
-                                                (width - endRightPadding - circlesRadius),
-                                                (height - paddingBottom - circlesRadius))
+        val fullAvailableForDrawingArea = RectF(
+                (startLeftPadding + circlesRadius),
+                paddingTop.toFloat(),
+                (width - endRightPadding - circlesRadius),
+                (height - paddingBottom - circlesRadius)
+        )
 
-        val frameHeightWithCirclesRadius: Float = ((if (textView.text?.isNotEmpty() == true) textView.height else 0) + circlesRadius)
+        val frameHeightWithCirclesRadius: Float = ((if (textView.text?.isNotEmpty() == true) {
+            textView.height
+        } else {
+            0
+        }) + circlesRadius)
 
-        val fullAvailableForCirclesArea = fullAvailableForDrawingArea.copy(topY = (fullAvailableForDrawingArea.top + frameHeightWithCirclesRadius))
+        val fullAvailableForCirclesArea = fullAvailableForDrawingArea.copy(
+                topY = (fullAvailableForDrawingArea.top + frameHeightWithCirclesRadius)
+        )
 
         val tangensFloat = tan(Math.toRadians(angleDegrees)).toFloat()
 
@@ -260,10 +287,12 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
             }
         }
 
-        val availableAreaWithFrame = applyGravity(contentGravity,
+        val availableAreaWithFrame = applyGravity(
+                contentGravity,
                                                   resultWidth,
                                                   (resultHeight + frameHeightWithCirclesRadius),
-                                                  fullAvailableForDrawingArea)
+                                                  fullAvailableForDrawingArea
+        )
         availableArea = availableAreaWithFrame.copy(topY = (availableAreaWithFrame.top + frameHeightWithCirclesRadius))
 
         val bottomMargin = ((this@LoaderView.height - availableArea.top) + circlesRadius).toInt()

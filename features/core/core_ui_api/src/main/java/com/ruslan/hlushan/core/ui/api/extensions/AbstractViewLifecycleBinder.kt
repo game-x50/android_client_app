@@ -13,7 +13,10 @@ import kotlin.reflect.KProperty
  */
 
 @SingleThreadSafety
-internal abstract class AbstractViewLifecycleBinder<in Owner : LifecyclePluginObserver.Owner, out V : Any> : ReadOnlyProperty<Owner, V?> {
+internal abstract class AbstractViewLifecycleBinder<
+        in Owner : LifecyclePluginObserver.Owner,
+        out V : Any
+        > : ReadOnlyProperty<Owner, V?> {
 
     private val lifecyclePluginObserver = object : LifecyclePluginObserver {
 

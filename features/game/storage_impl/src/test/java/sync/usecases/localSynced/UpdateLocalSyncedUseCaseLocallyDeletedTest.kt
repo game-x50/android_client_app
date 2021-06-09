@@ -40,13 +40,17 @@ internal class UpdateLocalSyncedUseCaseLocallyDeletedTest : BaseUpdateLocalSynce
                 .subscribe()
 
         val expectedFinal = RecordSyncState.forSync(
-                remoteInfo = original.syncState.remoteInfo!!.copy(lastRemoteSyncedTimestamp = lastRemoteSyncedTimestamp),
+                remoteInfo = original.syncState.remoteInfo!!.copy(
+                        lastRemoteSyncedTimestamp = lastRemoteSyncedTimestamp
+                ),
                 lastLocalModifiedTimestamp = original.syncState.lastLocalModifiedTimestamp,
                 modifyingNow = false
         )
                 .toLocalDeletedOrThrow(recordAfterDeleteLocalActionId)
 
-        localRepo.assertRecordsWithSyncStateInLocalRepo(listOf(GameRecordWithSyncState(original.record, expectedFinal)))
+        localRepo.assertRecordsWithSyncStateInLocalRepo(
+                listOf(GameRecordWithSyncState(original.record, expectedFinal))
+        )
     }
 
     @Test
@@ -77,7 +81,9 @@ internal class UpdateLocalSyncedUseCaseLocallyDeletedTest : BaseUpdateLocalSynce
                 .subscribe()
 
         val expectedFinal = RecordSyncState.forSync(
-                remoteInfo = remoteRecord.remoteInfo.copy(lastRemoteSyncedTimestamp = remoteInfo.lastRemoteSyncedTimestamp),
+                remoteInfo = remoteRecord.remoteInfo.copy(
+                        lastRemoteSyncedTimestamp = remoteInfo.lastRemoteSyncedTimestamp
+                ),
                 lastLocalModifiedTimestamp = lastLocalModifiedTimestamp,
                 modifyingNow = false
         )
@@ -88,7 +94,9 @@ internal class UpdateLocalSyncedUseCaseLocallyDeletedTest : BaseUpdateLocalSynce
                 totalPlayed = remoteRecord.totalPlayed
         )
 
-        localRepo.assertRecordsWithSyncStateInLocalRepo(listOf(GameRecordWithSyncState(localUpdatedRecord, expectedFinal)))
+        localRepo.assertRecordsWithSyncStateInLocalRepo(
+                listOf(GameRecordWithSyncState(localUpdatedRecord, expectedFinal))
+        )
     }
 
     @Test
@@ -133,6 +141,8 @@ internal class UpdateLocalSyncedUseCaseLocallyDeletedTest : BaseUpdateLocalSynce
         )
                 .toLocalDeletedOrThrow(recordAfterDeleteLocalActionId)
 
-        localRepo.assertRecordsWithSyncStateInLocalRepo(listOf(GameRecordWithSyncState(original.record, expectedFinal)))
+        localRepo.assertRecordsWithSyncStateInLocalRepo(
+                listOf(GameRecordWithSyncState(original.record, expectedFinal))
+        )
     }
 }

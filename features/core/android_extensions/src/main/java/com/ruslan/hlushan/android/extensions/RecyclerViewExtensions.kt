@@ -8,6 +8,7 @@ fun RecyclerView.setUpDefaults(
         adapter: RecyclerView.Adapter<*>,
         layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this.context),
         hasFixedSize: Boolean = true,
+        @Suppress("MaxLineLength")
         stateRestorationPolicy: RecyclerView.Adapter.StateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
 ) {
     this.layoutManager = layoutManager

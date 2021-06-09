@@ -90,7 +90,9 @@ internal class GameRecordsDAOStubImpl : GameRecordsDAO() {
         records.replace(old, new)
     }
 
-    override fun getRemoteIdsWhereCreatedTimestampGraterOrEqual(minRemoteCreatedTimestamp: Instant): Single<List<String>> =
+    override fun getRemoteIdsWhereCreatedTimestampGraterOrEqual(
+            minRemoteCreatedTimestamp: Instant
+    ): Single<List<String>> =
             Single.fromCallable {
                 records.filter { rec ->
                     val recRemoteCreatedTimestamp = rec.remoteCreatedTimestamp

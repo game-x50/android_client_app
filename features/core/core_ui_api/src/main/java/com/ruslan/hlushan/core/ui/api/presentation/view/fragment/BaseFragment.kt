@@ -209,9 +209,14 @@ constructor(
     @UiMainThread
     protected open fun initLifecyclePluginObservers() {
         addLifecyclePluginObserver(LoggerLifecyclePluginObserver(owner = this, appLogger = appLogger))
-        addLifecyclePluginObserver(DialogCommandsHandlerLifecyclePluginObserver(dialogCommandsHandler = dialogCommandsHandler))
+        addLifecyclePluginObserver(DialogCommandsHandlerLifecyclePluginObserver(
+                dialogCommandsHandler = dialogCommandsHandler
+        ))
         addLifecyclePluginObserver(LockableHandlerLifecyclePluginObserver(viewsHandler = viewsHandler))
-        addLifecyclePluginObserver(AppActivitiesSettingsLifecyclePluginObserver(owner = this, appActivitiesSettings = appActivitiesSettings))
+        addLifecyclePluginObserver(AppActivitiesSettingsLifecyclePluginObserver(
+                owner = this,
+                appActivitiesSettings = appActivitiesSettings
+        ))
     }
 
     @CallSuper
@@ -273,6 +278,7 @@ constructor(
     )
 
     //This is android, baby!
+    @SuppressWarnings("MaxLineLength")
     @UiMainThread
     private fun isRealRemoving(): Boolean =
             (isRemoving && !instanceStateSaved) //because isRemoving == true for fragment in backstack on screen rotation

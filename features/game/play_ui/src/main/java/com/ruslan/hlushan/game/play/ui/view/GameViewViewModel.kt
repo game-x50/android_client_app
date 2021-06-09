@@ -115,6 +115,7 @@ internal class GameViewViewModel(
         this.parentTotalSumChangedListener = totalSumChangedListener
     }
 
+    @Suppress("MaxLineLength")
     fun onActionDown(xTouch: Float, yTouch: Float) {
         insertNewItemIntoMatrixOrReturnItToNewItems()
         ifNotNull(removeNearestNewItemForTouch(xTouch, yTouch)) { area ->
@@ -177,7 +178,10 @@ internal class GameViewViewModel(
     private fun resortNewItemsAndAddNewGenerated(movedItemPair: MovedItemPair) {
         val generatedNewItems = gameNumbersGenerator.generateNew()
 
-        newItems.add(movedItemPair.original.position, movedItemPair.original.copy(number = generatedNewItems.firstNumber))
+        newItems.add(
+                movedItemPair.original.position,
+                movedItemPair.original.copy(number = generatedNewItems.firstNumber)
+        )
 
         if (generatedNewItems is GeneratedNumbers.Double) {
             gameViewParams = GameViewParams(gameViewParams.gameSize, countNewElements = (newItems.size + 1))
@@ -206,14 +210,22 @@ internal class GameViewViewModel(
     }
 
     private fun updateMatrixAndNewItems(matrixAndNewItemsState: MatrixAndNewItemsState) {
-        gameViewParams = GameViewParams(matrixAndNewItemsState.immutableNumbersMatrix.gameSize, matrixAndNewItemsState.newItems.size)
+        gameViewParams = GameViewParams(
+                matrixAndNewItemsState.immutableNumbersMatrix.gameSize,
+                matrixAndNewItemsState.newItems.size
+        )
         itemsMatrix = createViewModelItemsMatrix()
 
         itemsMatrix.updateFrom(matrixAndNewItemsState.immutableNumbersMatrix)
 
         newItems.clear()
         matrixAndNewItemsState.newItems.forEachIndexed { index, newItemNumber ->
-            newItems.add(RectangleArea.createDefault(position = index, number = newItemNumber, isFake = false, drawBackground = true))
+            newItems.add(RectangleArea.createDefault(
+                    position = index,
+                    number = newItemNumber,
+                    isFake = false,
+                    drawBackground = true
+            ))
         }
 
         sendCommand(command = Command.RecalculateViewSizes())

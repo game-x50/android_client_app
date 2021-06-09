@@ -19,7 +19,14 @@ class RectangleAreaTest {
     private val cellTextSizeParams = CellTextSizeParams.createDefault()
 
     @Test
-    fun equality() = assertDifferentParams { rectangleArea1, leftX, topY, size, position, number, isFake, drawBackground ->
+    fun equality() = assertDifferentParams { rectangleArea1,
+                                             leftX,
+                                             topY,
+                                             size,
+                                             position,
+                                             number,
+                                             isFake,
+                                             drawBackground ->
 
         val rectangleArea2 = RectangleArea(
                 leftX = leftX,
@@ -94,7 +101,13 @@ class RectangleAreaTest {
     }
 
     @Test
-    fun rightX() = assertDifferentParams { rectangleArea, leftX, topY, size, position, number, isFake, drawBackground ->
+    fun rightX() = assertDifferentParams { rectangleArea,
+                                           leftX, topY,
+                                           size,
+                                           position,
+                                           number,
+                                           isFake,
+                                           drawBackground ->
 
         assertEquals((leftX + size), rectangleArea.rightX)
 
@@ -108,7 +121,13 @@ class RectangleAreaTest {
     }
 
     @Test
-    fun bottomY() = assertDifferentParams { rectangleArea, leftX, topY, size, position, number, isFake, drawBackground ->
+    fun bottomY() = assertDifferentParams { rectangleArea,
+                                            leftX, topY,
+                                            size,
+                                            position,
+                                            number,
+                                            isFake,
+                                            drawBackground ->
 
         assertEquals((topY + size), rectangleArea.bottomY)
 
@@ -122,7 +141,13 @@ class RectangleAreaTest {
     }
 
     @Test
-    fun centerX() = assertDifferentParams { rectangleArea, leftX, topY, size, position, number, isFake, drawBackground ->
+    fun centerX() = assertDifferentParams { rectangleArea,
+                                            leftX, topY,
+                                            size,
+                                            position,
+                                            number,
+                                            isFake,
+                                            drawBackground ->
 
         assertEquals((leftX + (size / 2)), rectangleArea.centerX)
 
@@ -136,7 +161,13 @@ class RectangleAreaTest {
     }
 
     @Test
-    fun centerY() = assertDifferentParams { rectangleArea, leftX, topY, size, position, number, isFake, drawBackground ->
+    fun centerY() = assertDifferentParams { rectangleArea,
+                                            leftX, topY,
+                                            size,
+                                            position,
+                                            number,
+                                            isFake,
+                                            drawBackground ->
 
         assertEquals((topY + (size / 2)), rectangleArea.centerY)
 
@@ -164,7 +195,13 @@ class RectangleAreaTest {
     }
 
     @Test
-    fun convertToFake() = assertDifferentParams { rectangleArea, leftX, topY, size, position, number, isFake, drawBackground ->
+    fun convertToFake() = assertDifferentParams { rectangleArea,
+                                                  leftX, topY,
+                                                  size,
+                                                  position,
+                                                  number,
+                                                  isFake,
+                                                  drawBackground ->
 
         rectangleArea.convertToFake()
 

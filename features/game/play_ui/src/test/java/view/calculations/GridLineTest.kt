@@ -34,7 +34,9 @@ class GridLineTest {
             }
 
     @SuppressWarnings("NestedBlockDepth")
-    private fun assertDifferentParams(assert: (GridLine, leftOfLine: Float, topOfLine: Float, width: Float, height: Float) -> Unit) {
+    private fun assertDifferentParams(
+            assert: (GridLine, leftOfLine: Float, topOfLine: Float, width: Float, height: Float) -> Unit
+    ) {
         for (leftOfLine in 0..100 step 10) {
             for (topOfLine in 0..100 step 10) {
                 for (width in 0..100 step 10) {

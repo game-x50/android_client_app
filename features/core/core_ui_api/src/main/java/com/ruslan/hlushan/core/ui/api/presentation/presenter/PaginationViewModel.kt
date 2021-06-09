@@ -123,7 +123,9 @@ abstract class PaginationViewModel<F : Any, ItemId : Any, RI : RecyclerItem<Item
                 limits = limits
         )
 
-        val notifyStateUpdated = !result.sideEffects.any { sideEffect -> (sideEffect is PaginationSideEffect.AvoidNotifyStateUpdated) }
+        val notifyStateUpdated = !result.sideEffects.any { sideEffect ->
+            (sideEffect is PaginationSideEffect.AvoidNotifyStateUpdated)
+        }
 
         setNewState(newState = result.newState, notifyStateUpdated = notifyStateUpdated)
 

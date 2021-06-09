@@ -183,12 +183,15 @@ class MutableCommandQueueTest {
 
     @Test
     fun `notifyAfterCommandExecute can't be called from another thread of constructing and not mutate state`() =
-            @Suppress("MaxLineLength")
-            `assert can't be called from another thread of constructing and not mutate state`(MutableCommandQueue<StrategyCommand>::notifyAfterCommandExecute)
+            `assert can't be called from another thread of constructing and not mutate state`(
+                    MutableCommandQueue<StrategyCommand>::notifyAfterCommandExecute
+            )
 
     @Test
     fun `add can't be called from another thread of constructing and not mutate state`() =
-            `assert can't be called from another thread of constructing and not mutate state`(MutableCommandQueue<StrategyCommand>::add)
+            `assert can't be called from another thread of constructing and not mutate state`(
+                    MutableCommandQueue<StrategyCommand>::add
+            )
 }
 
 private fun `assert can't be called from another thread of constructing and not mutate state`(

@@ -27,6 +27,7 @@ constructor(private val authRepository: AuthRepository) : Interceptor {
             if (response.code == UNAUTHORIZED_CODE) {
 
                 synchronized(authRepository) {
+                    @Suppress("MaxLineLength")
                     if (newRequest.header(AuthorizedNetworkApiCreator.AUTHORIZATION_HEADER_KEY) == authRepository.getUserToken()) {
                         authRepository.updateUserToken()
                     }
@@ -44,6 +45,9 @@ constructor(private val authRepository: AuthRepository) : Interceptor {
 
     private fun Request.withAuthHeader(): Request =
             this.newBuilder()
-                    .header(AuthorizedNetworkApiCreator.AUTHORIZATION_HEADER_KEY, authRepository.getUserToken().orEmpty())
+                    .header(
+                            AuthorizedNetworkApiCreator.AUTHORIZATION_HEADER_KEY,
+                            authRepository.getUserToken().orEmpty()
+                    )
                     .build()
 }

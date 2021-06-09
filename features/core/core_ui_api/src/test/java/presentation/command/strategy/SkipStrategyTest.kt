@@ -3,6 +3,7 @@ package presentation.command.strategy
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.SkipStrategy
 import org.junit.Test
 
+@SuppressWarnings("MaxLineLength")
 class SkipStrategyTest {
 
     @Test

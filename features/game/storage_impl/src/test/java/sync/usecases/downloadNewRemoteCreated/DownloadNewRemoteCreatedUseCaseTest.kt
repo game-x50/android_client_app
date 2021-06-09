@@ -28,7 +28,10 @@ internal class DownloadNewRemoteCreatedUseCaseTest : BaseDownloadNewRemoteCreate
         remoteRepo.advanceTimeToEndDelay()
 
         assertTrue(disposable.isDisposed)
-        assertEquals(newRecords.map { rec -> rec.remoteInfo.remoteCreatedTimestamp }.maxOrNull()!!, storage.lastCreatedTimestamp)
+        assertEquals(
+                newRecords.map { rec -> rec.remoteInfo.remoteCreatedTimestamp }.maxOrNull()!!,
+                storage.lastCreatedTimestamp
+        )
 
         assertEquals(
                 newRecords.map { rec -> rec.remoteInfo.remoteId to SyncStatus.SYNCED },
@@ -56,7 +59,10 @@ internal class DownloadNewRemoteCreatedUseCaseTest : BaseDownloadNewRemoteCreate
             remoteRepo.advanceTimeToEndDelay()
 
             assertFalse(disposable.isDisposed)
-            assertEquals(newRecords.map { rec -> rec.remoteInfo.remoteCreatedTimestamp }.maxOrNull()!!, storage.lastCreatedTimestamp)
+            assertEquals(
+                    newRecords.map { rec -> rec.remoteInfo.remoteCreatedTimestamp }.maxOrNull()!!,
+                    storage.lastCreatedTimestamp
+            )
 
             assertEquals(
                     allNewRecords.map { rec -> rec.remoteInfo.remoteId to SyncStatus.SYNCED },
@@ -73,7 +79,10 @@ internal class DownloadNewRemoteCreatedUseCaseTest : BaseDownloadNewRemoteCreate
         remoteRepo.advanceTimeToEndDelay()
 
         assertTrue(disposable.isDisposed)
-        assertEquals(newRecords.map { rec -> rec.remoteInfo.remoteCreatedTimestamp }.maxOrNull()!!, storage.lastCreatedTimestamp)
+        assertEquals(
+                newRecords.map { rec -> rec.remoteInfo.remoteCreatedTimestamp }.maxOrNull()!!,
+                storage.lastCreatedTimestamp
+        )
 
         assertEquals(
                 allNewRecords.map { rec -> rec.remoteInfo.remoteId to SyncStatus.SYNCED },
@@ -121,10 +130,14 @@ internal class DownloadNewRemoteCreatedUseCaseTest : BaseDownloadNewRemoteCreate
         remoteRepo.advanceTimeToEndDelay()
 
         assertTrue(disposable.isDisposed)
-        assertEquals(newRecords.map { rec -> rec.remoteInfo.remoteCreatedTimestamp }.maxOrNull()!!, storage.lastCreatedTimestamp)
+        assertEquals(
+                newRecords.map { rec -> rec.remoteInfo.remoteCreatedTimestamp }.maxOrNull()!!,
+                storage.lastCreatedTimestamp
+        )
 
         assertEquals(
-                (startDbRecords.map { rec -> rec.syncState.remoteInfo!!.remoteId } + newRecords.map { rec -> rec.remoteInfo.remoteId })
+                startDbRecords.map { rec -> rec.syncState.remoteInfo!!.remoteId }
+                        .plus(newRecords.map { rec -> rec.remoteInfo.remoteId })
                         .map { rId -> rId to SyncStatus.SYNCED },
                 localRepo.getAll().map { rec -> rec.syncState.remoteInfo!!.remoteId to rec.syncState.syncStatus }
         )

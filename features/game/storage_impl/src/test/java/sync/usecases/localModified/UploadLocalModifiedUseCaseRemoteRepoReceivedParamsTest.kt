@@ -35,7 +35,9 @@ internal class UploadLocalModifiedUseCaseRemoteRepoReceivedParamsTest : BaseUplo
 
         val stepCount = 10
 
-        val originalsDeleted = (1..stepCount).map { localRepo.generateAndAddLocalDeletedToLocalRepo(syncingNow = false) }
+        val originalsDeleted = (1..stepCount).map {
+            localRepo.generateAndAddLocalDeletedToLocalRepo(syncingNow = false)
+        }
 
         val disposable = uploadLocalModifiedUseCase.uploadAll(stepCount = stepCount)
                 .subscribe()
@@ -95,9 +97,11 @@ internal class UploadLocalModifiedUseCaseRemoteRepoReceivedParamsTest : BaseUplo
                             .first { (recordId, localCreateId) -> recordId == rec.record.id }
                             .second
 
-                    UploadLocalModifiedRequest.Created(record = rec.record,
-                                                       localCreateId = localCreateId,
-                                                       lastLocalModifiedTimestamp = rec.syncState.lastLocalModifiedTimestamp)
+                    UploadLocalModifiedRequest.Created(
+                            record = rec.record,
+                            localCreateId = localCreateId,
+                            lastLocalModifiedTimestamp = rec.syncState.lastLocalModifiedTimestamp
+                    )
                 }
 
         assertEquals(requests, remoteRepo.receivedUploadLocalModifiedRequests)

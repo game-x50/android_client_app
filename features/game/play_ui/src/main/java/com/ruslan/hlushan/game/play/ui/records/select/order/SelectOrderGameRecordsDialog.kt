@@ -43,8 +43,11 @@ internal class SelectOrderGameRecordsDialog : BaseDialogFragment() {
                  ?: (activity as? SelectOrderGameRecordsParamsListener))
 
     @UiMainThread
-    private val initOrderParams: GameRecordWithSyncState.Order.Params get() =
-            requireArguments().getParcelable<GameRecordWithSyncStateOrderParamsParcelable>(KEY_INIT_ORDER_PARAMS)!!.toOriginal()
+    private val initOrderParams: GameRecordWithSyncState.Order.Params
+        get() =
+            requireArguments()
+                    .getParcelable<GameRecordWithSyncStateOrderParamsParcelable>(KEY_INIT_ORDER_PARAMS)!!
+                    .toOriginal()
 
     private val binding by bindViewBinding(GamePlayUiSelectOrderGameRecordsDialogBinding::bind)
 
@@ -53,7 +56,9 @@ internal class SelectOrderGameRecordsDialog : BaseDialogFragment() {
         set(newValue) {
             if ((field != newValue) && (newValue != null)) {
                 field = newValue
-                gameRecordsOrderVariantRecyclerAdapter.submitList(GameRecordsOrderVariantAdapterDelegate.createRecyclerItems(newValue))
+                gameRecordsOrderVariantRecyclerAdapter.submitList(
+                        GameRecordsOrderVariantAdapterDelegate.createRecyclerItems(newValue)
+                )
             }
         }
 
@@ -68,8 +73,13 @@ internal class SelectOrderGameRecordsDialog : BaseDialogFragment() {
     @UiMainThread
     override fun initLifecyclePluginObservers() {
         super.initLifecyclePluginObservers()
-        addLifecyclePluginObserver(DialogBackgroundColorLifecyclePluginObserver(owner = this, color = Color.TRANSPARENT))
-        addLifecyclePluginObserver(RecyclerViewLifecyclePluginObserver { binding?.selectOrderGameRecordsDialogRecycler })
+        addLifecyclePluginObserver(DialogBackgroundColorLifecyclePluginObserver(
+                owner = this,
+                color = Color.TRANSPARENT
+        ))
+        addLifecyclePluginObserver(RecyclerViewLifecyclePluginObserver {
+            binding?.selectOrderGameRecordsDialogRecycler
+        })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -80,7 +90,10 @@ internal class SelectOrderGameRecordsDialog : BaseDialogFragment() {
     @UiMainThread
     private fun setUpViews() {
         selectedOrderVariant = initOrderParams.variant
-        binding?.selectOrderGameRecordsDialogRecycler?.setUpDefaults(gameRecordsOrderVariantRecyclerAdapter, hasFixedSize = false)
+        binding?.selectOrderGameRecordsDialogRecycler?.setUpDefaults(
+                gameRecordsOrderVariantRecyclerAdapter,
+                hasFixedSize = false
+        )
         binding?.selectOrderGameRecordsDialogOrderTypeRadioGroup?.check(initOrderParams.type.radioButtonViewResId)
         binding?.selectOrderGameRecordsDialogApplyBtn?.setThrottledOnClickListener {
             applySelectedVariants()
@@ -91,7 +104,10 @@ internal class SelectOrderGameRecordsDialog : BaseDialogFragment() {
     private fun applySelectedVariants() {
         val localSelectedOrderVariant = selectedOrderVariant
         val selectedOrderType: OrderType? = OrderType.values()
-                .firstOrNull { type -> type.radioButtonViewResId == binding?.selectOrderGameRecordsDialogOrderTypeRadioGroup?.checkedRadioButtonId }
+                .firstOrNull { type ->
+                    @Suppress("MaxLineLength")
+                    (type.radioButtonViewResId == binding?.selectOrderGameRecordsDialogOrderTypeRadioGroup?.checkedRadioButtonId)
+                }
 
         if ((selectedOrderType != null) && (localSelectedOrderVariant != null)) {
             val orderParams = GameRecordWithSyncState.Order.Params(localSelectedOrderVariant, selectedOrderType)
@@ -109,7 +125,8 @@ internal class SelectOrderGameRecordsDialog : BaseDialogFragment() {
 @UiMainThread
 internal fun <Parent> Parent.showSelectOrderGameRecordsDialog(
         initOrderParams: GameRecordWithSyncState.Order.Params
-) where Parent : DialogCommandsHandler.Owner, Parent : SelectOrderGameRecordsDialog.SelectOrderGameRecordsParamsListener =
+) where Parent : DialogCommandsHandler.Owner,
+        Parent : SelectOrderGameRecordsDialog.SelectOrderGameRecordsParamsListener =
         this.dialogCommandsHandler.executeShowOrAddToQueue(ShowSelectOrderGameRecordsDialogCommand(initOrderParams))
 
 private class ShowSelectOrderGameRecordsDialogCommand(
@@ -125,7 +142,9 @@ private class ShowSelectOrderGameRecordsDialogCommand(
                     .showNowSafety(fragmentManager, tag)
 }
 
-private fun createSelectOrderGameRecordsDialog(initOrderParams: GameRecordWithSyncState.Order.Params): SelectOrderGameRecordsDialog =
+private fun createSelectOrderGameRecordsDialog(
+        initOrderParams: GameRecordWithSyncState.Order.Params
+): SelectOrderGameRecordsDialog =
         SelectOrderGameRecordsDialog().apply {
             val args = Bundle(1)
             args.putParcelable(KEY_INIT_ORDER_PARAMS, initOrderParams.toParcelable())
@@ -135,6 +154,6 @@ private fun createSelectOrderGameRecordsDialog(initOrderParams: GameRecordWithSy
 @get:IdRes
 private val OrderType.radioButtonViewResId: Int
     get() = when (this) {
-        OrderType.ASC -> R.id.select_order_game_records_dialog_order_type_asc
+        OrderType.ASC  -> R.id.select_order_game_records_dialog_order_type_asc
         OrderType.DESC -> R.id.select_order_game_records_dialog_order_type_desc
     }

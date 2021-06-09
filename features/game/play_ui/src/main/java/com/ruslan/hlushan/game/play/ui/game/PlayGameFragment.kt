@@ -107,6 +107,7 @@ internal abstract class PlayGameFragment<VM : PlayGameViewModel> : BaseFragment(
         }
     }
 
+    @Suppress("MaxLineLength")
     @UiMainThread
     private fun handleCommand(command: PlayGameViewModel.Command) =
             when (command) {

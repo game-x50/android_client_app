@@ -1,4 +1,4 @@
-package com.ruslan.hlushan.storage.delegate
+package com.ruslan.hlushan.android.extensions
 
 import android.content.SharedPreferences
 import java.util.concurrent.atomic.AtomicReference

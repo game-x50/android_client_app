@@ -14,8 +14,12 @@ constructor(
 
     override fun produceUserMessage(error: Throwable): String? =
             when (error) {
-                is BaseAppException -> resourceManager.getUserMessage(error)
-                is NetworkException -> resourceManager.getString(com.ruslan.hlushan.core.ui.api.R.string.error_internet_connection)
+                is BaseAppException -> {
+                    resourceManager.getUserMessage(error)
+                }
+                is NetworkException -> {
+                    resourceManager.getString(com.ruslan.hlushan.core.ui.api.R.string.error_internet_connection)
+                }
                 else                -> null
             }
 }

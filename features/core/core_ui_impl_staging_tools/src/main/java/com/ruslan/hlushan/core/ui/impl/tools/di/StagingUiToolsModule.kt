@@ -11,5 +11,7 @@ object StagingUiToolsModule {
 
     @JvmStatic
     @Provides
-    fun provideViewModifier(): ViewModifier = DrawerViewModifierImpl(layoutResId = R.layout.core_ui_impl_staging_tools_settings_drawer_view)
+    fun provideViewModifier(): ViewModifier = DrawerViewModifierImpl(
+            layoutResId = R.layout.core_ui_impl_staging_tools_settings_drawer_view
+    )
 }

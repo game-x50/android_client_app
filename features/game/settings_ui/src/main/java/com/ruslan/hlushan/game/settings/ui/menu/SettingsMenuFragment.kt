@@ -42,7 +42,9 @@ internal class SettingsMenuFragment : BaseFragment(
         binding?.settingsMenuScreenAppLang?.setThrottledOnClickListener { parentRouter.navigateTo(LanguagesScreen()) }
         binding?.settingsMenuScreenAppTheme?.setThrottledOnClickListener { parentRouter.navigateTo(ThemesScreen()) }
         binding?.settingsMenuScreenUserProfile?.setThrottledOnClickListener { viewModel.openUserProfile() }
-        binding?.settingsMenuScreenGameInstruction?.setThrottledOnClickListener { parentRouter.navigateTo(GameInstructionScreen()) }
+        binding?.settingsMenuScreenGameInstruction?.setThrottledOnClickListener {
+            parentRouter.navigateTo(GameInstructionScreen())
+        }
         binding?.settingsMenuScreenGameTop?.setThrottledOnClickListener { viewModel.openTop() }
         binding?.settingsMenuScreenAboutApp?.setThrottledOnClickListener { parentRouter.navigateTo(AboutAppScreen()) }
 
@@ -60,7 +62,9 @@ internal class SettingsMenuFragment : BaseFragment(
     @UiMainThread
     private fun showAppLanguage(command: SettingsMenuViewModel.Command.ShowAppLanguage) {
         binding?.settingsMenuScreenAppLang?.setHint(command.appLanguage)
-        binding?.settingsMenuScreenAppLang?.setRightImageIcon(command.imageResName?.let { res -> resourceManager.getDrawableResourceIdByName(res) })
+        binding?.settingsMenuScreenAppLang?.setRightImageIcon(
+                command.imageResName?.let { res -> resourceManager.getDrawableResourceIdByName(res) }
+        )
     }
 }
 

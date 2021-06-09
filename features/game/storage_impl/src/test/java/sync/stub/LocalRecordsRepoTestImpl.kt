@@ -17,7 +17,12 @@ internal class LocalRecordsRepoTestImpl(
         localRecordsRepositoryStorage: LocalRecordsRepositoryStorage,
         schedulersManager: SchedulersManager,
         private val gameRecordsDAOStubImpl: GameRecordsDAOStubImpl = GameRecordsDAOStubImpl()
-) : LocalRecordsRepositoryImpl(localRecordsRepositoryStorage, gameRecordsDAOStubImpl, schedulersManager, EmptyAppLoggerImpl()) {
+) : LocalRecordsRepositoryImpl(
+        localRecordsRepositoryStorage,
+        gameRecordsDAOStubImpl,
+        schedulersManager,
+        EmptyAppLoggerImpl()
+) {
 
     var maxLastRemoteSyncedTimestampRequest: Instant? = null
         private set

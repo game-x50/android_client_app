@@ -44,7 +44,9 @@ internal class UserProfileFragment : BaseFragment(
 
         view.addSystemPadding(top = true)
 
-        binding?.userProfileScreenConfirmNewPasswordInput?.observeConfirmPasswordInput(this::getNewPasswordTrimmedString)
+        binding?.userProfileScreenConfirmNewPasswordInput?.observeConfirmPasswordInput(
+                this::getNewPasswordTrimmedString
+        )
 
         binding?.userProfileScreenUpdateUserProfileBtn?.setThrottledOnClickListener {
             viewModel.updateUserProfileWith(
@@ -62,6 +64,7 @@ internal class UserProfileFragment : BaseFragment(
     @UiMainThread
     override fun oLogOutConfirmed() = viewModel.logOutConfirmed()
 
+    @Suppress("MaxLineLength")
     @UiMainThread
     private fun handleCommand(command: UserProfileViewModel.Command) =
             when (command) {

@@ -70,6 +70,7 @@ internal class TopGamesFragment : BaseFragment(
     private fun setState(command: TopGamesViewModel.Command.SetState) {
         topGamesAdapter.submitList(command.items)
 
+        @Suppress("MaxLineLength")
         binding?.gameTopUiTopGamesListScreenSwipeRefresh?.isRefreshing = (command.additional is PaginationState.Additional.Loading)
 
         when (command.additional) {

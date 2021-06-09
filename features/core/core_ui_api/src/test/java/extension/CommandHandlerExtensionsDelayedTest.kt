@@ -54,6 +54,7 @@ class CommandHandlerExtensionsDelayedTest {
                     goToState = LifecyclePluginObserverOwnerFragmentStub.DetailState.AFTER_ON_AFTER_SUPER_CREATE_VIEW
             )
 
+    @SuppressWarnings("MaxLineLength")
     @Test
     fun `handleCommandQueue after finishCreateProcess but before onBeforeSuperStart will call handler in onAfterSuperStart`() =
             `handleCommandQueue after some lifecycle method will be called in onAfterSuperStart`(

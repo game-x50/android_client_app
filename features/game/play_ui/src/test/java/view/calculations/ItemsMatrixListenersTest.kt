@@ -284,6 +284,7 @@ class ItemsMatrixListenersTest {
                     comboSum = bigDifferentSumComboResult()
             )
 
+    @Suppress("MaxLineLength")
     @Test
     fun rowColumnRectangleCombo_SMALL() =
             rowColumnRectangleCombo(
@@ -297,6 +298,7 @@ class ItemsMatrixListenersTest {
                     comboSum = smallExpectedSumForMaxComboSameSum()
             )
 
+    @Suppress("MaxLineLength")
     @Test
     fun rowColumnRectangleCombo_MEDIUM() =
             rowColumnRectangleCombo(
@@ -310,6 +312,7 @@ class ItemsMatrixListenersTest {
                     comboSum = mediumExpectedSumForMaxComboSameSum()
             )
 
+    @Suppress("MaxLineLength")
     @Test
     fun rowColumnRectangleCombo_BIG() =
             rowColumnRectangleCombo(
@@ -429,7 +432,10 @@ class ItemsMatrixListenersTest {
 
         fillColumn(column = column, gameSize = gameSize, itemsMatrix = itemsMatrix, columnNumbers = columnNumbers)
 
-        totalSumChangedListener.addNumbersForCombo(numbersBeforeCombo = columnNumbers.dropLast(1), finalCombo = comboSum)
+        totalSumChangedListener.addNumbersForCombo(
+                numbersBeforeCombo = columnNumbers.dropLast(1),
+                finalCombo = comboSum
+        )
 
         assertNull(called)
         totalSumChangedListener.assert()
@@ -453,9 +459,17 @@ class ItemsMatrixListenersTest {
 
         val rectangle = (generateFakePositiveInt() % gameSize.countRowsAndColumns)
 
-        fillRectangle(rectangle = rectangle, gameSize = gameSize, itemsMatrix = itemsMatrix, rectangleNumbers = rectangleNumbers)
+        fillRectangle(
+                rectangle = rectangle,
+                gameSize = gameSize,
+                itemsMatrix = itemsMatrix,
+                rectangleNumbers = rectangleNumbers
+        )
 
-        totalSumChangedListener.addNumbersForCombo(numbersBeforeCombo = rectangleNumbers.dropLast(1), finalCombo = comboSum)
+        totalSumChangedListener.addNumbersForCombo(
+                numbersBeforeCombo = rectangleNumbers.dropLast(1),
+                finalCombo = comboSum
+        )
 
         assertNull(called)
         totalSumChangedListener.assert()
@@ -648,8 +662,11 @@ class ItemsMatrixListenersTest {
 
         @Suppress("MaxLineLength")
         totalSumChangedListener.addNumbersForCombo(
-                numbersBeforeCombo = (rowNumbersExceptFewLast + columnNumbersExceptFewLast + rectangleNumbersExceptFewLast
-                                      + intersectRowRectangleNumbersExceptLast + intersectColumnRectangleNumbersExceptLast),
+                numbersBeforeCombo = (rowNumbersExceptFewLast
+                                      + columnNumbersExceptFewLast
+                                      + rectangleNumbersExceptFewLast
+                                      + intersectRowRectangleNumbersExceptLast
+                                      + intersectColumnRectangleNumbersExceptLast),
                 finalCombo = comboSum
         )
 

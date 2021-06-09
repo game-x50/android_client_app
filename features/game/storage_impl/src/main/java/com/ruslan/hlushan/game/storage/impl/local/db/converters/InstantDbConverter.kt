@@ -6,7 +6,8 @@ import org.threeten.bp.Instant
 internal class InstantDbConverter {
 
     @TypeConverter
-    fun fromTimestampToInstant(value: Long?): Instant? = value?.let { nonNullValue -> Instant.ofEpochMilli(nonNullValue) }
+    fun fromTimestampToInstant(value: Long?): Instant? =
+            value?.let { nonNullValue -> Instant.ofEpochMilli(nonNullValue) }
 
     @TypeConverter
     fun fromInstantToTimestamp(instant: Instant?): Long? = instant?.toEpochMilli()

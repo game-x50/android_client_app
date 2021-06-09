@@ -20,6 +20,7 @@ internal fun createFakeAllItemsFilledListener(): ((matrix: ImmutableNumbersMatri
 internal fun createFakeTotalSumChangedListener(): TotalSumChangedListener =
         TotalSumChangedListener { Unit }
 
+@Suppress("MaxLineLength")
 internal fun generateFakeImmutableNumbersMatrix(
         gameSize: GameSize,
         emptyRow: Int?,
@@ -48,7 +49,14 @@ internal fun generateFakeImmutableNumbersMatrix(
 
 internal fun createEmptyRectanglesFor(gameSize: GameSize, setUpRectangleSizes: Boolean): MutableList<RectangleArea> {
     val rectangles = (0 until (gameSize.countRowsAndColumns * gameSize.countRowsAndColumns))
-            .map { position -> RectangleArea.createDefault(position = position, number = 0, isFake = true, drawBackground = true) }
+            .map { position ->
+                RectangleArea.createDefault(
+                        position = position,
+                        number = 0,
+                        isFake = true,
+                        drawBackground = true
+                )
+            }
             .toMutableList()
 
     if (setUpRectangleSizes) {

@@ -6,10 +6,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 
-fun <F> F.askPermissions(requestCode: Int, vararg permissions: String) where F : Fragment, F : PermissionResultListener =
+fun <F> F.askPermissions(
+        requestCode: Int,
+        vararg permissions: String
+) where F : Fragment, F : PermissionResultListener =
         this.childFragmentManager.askPermissions(requestCode, *permissions)
 
-fun <A> A.askPermissions(requestCode: Int, vararg permissions: String) where A : FragmentActivity, A : PermissionResultListener =
+fun <A> A.askPermissions(
+        requestCode: Int,
+        vararg permissions: String
+) where A : FragmentActivity, A : PermissionResultListener =
         this.supportFragmentManager.askPermissions(requestCode, *permissions)
 
 private fun FragmentManager.askPermissions(requestCode: Int, vararg permissions: String) {
@@ -53,27 +59,32 @@ internal class PermissionsHandlerFragment : Fragment() {
             if (askedRequestCodes.remove(element = requestCode)) {
                 requestPermissions(permissions, requestCode)
             } else when (val separated = this.separatePermissions(permissions = permissions)) {
-                    is SeparatedPermissions.AllGranted -> {
-                        notifyPermissionResult(PermissionResult.Response(requestCode = requestCode, permissions = separated))
-                    }
-                    is SeparatedPermissions.AtLeastOneTemporallyDenied -> {
-                        askedRequestCodes.add(requestCode)
-                        notifyPermissionResult(PermissionResult.ShowRationale(requestCode = requestCode, permissions = separated))
-                    }
-                    is SeparatedPermissions.DeniedJustPermanentlyAndMaybeAreGranted -> {
-                        requestPermissions(permissions, requestCode)
-                    }
+                is SeparatedPermissions.AllGranted                              -> {
+                    notifyPermissionResult(PermissionResult.Response(
+                            requestCode = requestCode,
+                            permissions = separated
+                    ))
                 }
+                is SeparatedPermissions.AtLeastOneTemporallyDenied              -> {
+                    askedRequestCodes.add(requestCode)
+                    notifyPermissionResult(PermissionResult.ShowRationale(
+                            requestCode = requestCode,
+                            permissions = separated
+                    ))
+                }
+                is SeparatedPermissions.DeniedJustPermanentlyAndMaybeAreGranted -> {
+                    requestPermissions(permissions, requestCode)
+                }
+            }
 
     private fun notifyPermissionResult(permissionResult: PermissionResult) {
         if (parentListener != null) {
             parentListener?.onPermissionResult(permissionResult)
 
             if (permissionResult.permissions is SeparatedPermissions.AllGranted) {
-                //todo: parentFragmentManager
-                fragmentManager?.beginTransaction()
-                        ?.remove(this)
-                        ?.commitNowAllowingStateLoss()
+                parentFragmentManager.beginTransaction()
+                        .remove(this)
+                        .commitNowAllowingStateLoss()
             }
         }
     }
@@ -82,12 +93,14 @@ internal class PermissionsHandlerFragment : Fragment() {
 private fun Fragment.separatePermissions(permissions: Array<out String>): SeparatedPermissions {
     val grantedPermissions = permissions
             .filter { singlePermission ->
-                (ContextCompat.checkSelfPermission(this.requireContext(), singlePermission) == PackageManager.PERMISSION_GRANTED)
+                val grantType = ContextCompat.checkSelfPermission(this.requireContext(), singlePermission)
+                (grantType == PackageManager.PERMISSION_GRANTED)
             }
 
     val allDeniedPermissions = (permissions.toList() - grantedPermissions)
 
-    val temporallyDeniedPermissions = allDeniedPermissions.filter { singlePermission -> this.shouldShowRequestPermissionRationale(singlePermission) }
+    val temporallyDeniedPermissions = allDeniedPermissions
+            .filter { singlePermission -> this.shouldShowRequestPermissionRationale(singlePermission) }
 
     val permanentlyDeniedPermissions = (allDeniedPermissions - temporallyDeniedPermissions)
 

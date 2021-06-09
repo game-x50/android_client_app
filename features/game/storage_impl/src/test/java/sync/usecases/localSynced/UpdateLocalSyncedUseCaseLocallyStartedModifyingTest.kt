@@ -35,7 +35,9 @@ internal class UpdateLocalSyncedUseCaseLocallyStartedModifyingTest : BaseUpdateL
                 .subscribe()
 
         val expectedFinal = RecordSyncState(
-                remoteInfo = original.syncState.remoteInfo!!.copy(lastRemoteSyncedTimestamp = lastRemoteSyncedTimestamp),
+                remoteInfo = original.syncState.remoteInfo!!.copy(
+                        lastRemoteSyncedTimestamp = lastRemoteSyncedTimestamp
+                ),
                 localAction = null,
                 lastLocalModifiedTimestamp = original.syncState.lastLocalModifiedTimestamp,
                 localCreateId = null,
@@ -43,7 +45,9 @@ internal class UpdateLocalSyncedUseCaseLocallyStartedModifyingTest : BaseUpdateL
                 syncStatus = SyncStatus.SYNCED
         )
 
-        localRepo.assertRecordsWithSyncStateInLocalRepo(listOf(GameRecordWithSyncState(original.record, expectedFinal)))
+        localRepo.assertRecordsWithSyncStateInLocalRepo(
+                listOf(GameRecordWithSyncState(original.record, expectedFinal))
+        )
     }
 
     @Test
@@ -88,6 +92,7 @@ internal class UpdateLocalSyncedUseCaseLocallyStartedModifyingTest : BaseUpdateL
         )
         val additional = GameRecordWithSyncState(additionalRecord, additionalSyncState)
 
+        @Suppress("MaxLineLength")
         assertEquals(listOf(expectedFinalSynced, additional),
                      localRepo.getAll()
                              .let { (first, second) ->
@@ -122,6 +127,7 @@ internal class UpdateLocalSyncedUseCaseLocallyStartedModifyingTest : BaseUpdateL
         )
         val expectedFinalSynced = GameRecordWithSyncState(original.record, expectedFinalSyncState)
 
+        @Suppress("MaxLineLength")
         assertEquals(expectedFinalSynced,
                      localRepo.getAll()
                              .let { (first) ->

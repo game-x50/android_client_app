@@ -48,7 +48,9 @@ internal class DownloadNewRemoteCreatedUseCaseRemoteRepoReceivedParamsTest : Bas
         assertEquals(
                 GetNewRemoteCreatedRequest(
                         lastCreatedTimestamp = lastCreatedTimestamp,
-                        excludedRemoteIds = originals.map { recordWithSyncState -> recordWithSyncState.syncState.remoteInfo!!.remoteId },
+                        excludedRemoteIds = originals.map { recordWithSyncState ->
+                            recordWithSyncState.syncState.remoteInfo!!.remoteId
+                        },
                         limit = stepLimit
                 ),
                 remoteRepo.receivedGetNewRemoteCreatedRequest

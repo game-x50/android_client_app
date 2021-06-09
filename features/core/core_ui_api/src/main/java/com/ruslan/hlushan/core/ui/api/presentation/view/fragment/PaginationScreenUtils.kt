@@ -38,7 +38,9 @@ fun <Id : Any, RI : RecyclerItem<Id>> Activity.setUpPagination(
         recyclerView.addPaginationScrollListener(paginationViewModel::onScrolled)
     }
 
-    swipeRefreshLayout?.setColorSchemeColors(this.colorAttributeValue(com.google.android.material.R.attr.colorSecondary))
+    swipeRefreshLayout?.setColorSchemeColors(
+            this.colorAttributeValue(com.google.android.material.R.attr.colorSecondary)
+    )
 
     swipeRefreshLayout?.setOnRefreshListener { paginationViewModel.refresh() }
 }

@@ -84,7 +84,9 @@ private fun RadioGroup.addOptionFor(themeMode: ThemeMode, currentSelected: Theme
     option.isChecked = (themeMode == currentSelected)
     option.setText(themeMode.nameResId)
 
-    val verticalPadding = this.resources.getDimensionPixelOffset(com.ruslan.hlushan.core.ui.api.R.dimen.default_1_2_padding)
+    val verticalPadding = this.resources.getDimensionPixelOffset(
+            com.ruslan.hlushan.core.ui.api.R.dimen.default_1_2_padding
+    )
     option.setPadding(verticalPadding, verticalPadding, 0, verticalPadding)
 
     this.addView(option)

@@ -33,7 +33,10 @@ internal abstract class AbstractPlayNumbersDialog : BaseDialogFragment() {
     @UiMainThread
     override fun initLifecyclePluginObservers() {
         super.initLifecyclePluginObservers()
-        addLifecyclePluginObserver(DialogBackgroundColorLifecyclePluginObserver(owner = this, color = Color.TRANSPARENT))
+        addLifecyclePluginObserver(DialogBackgroundColorLifecyclePluginObserver(
+                owner = this,
+                color = Color.TRANSPARENT
+        ))
         addLifecyclePluginObserver(DialogSizeRatioLifecyclePluginObserver(
                 owner = this,
                 widthRatio = DIALOG_WIDTH_RATIO,

@@ -14,7 +14,11 @@ data class RecordSyncState(
     @SuppressWarnings("ClassOrdering")
     companion object {
 
-        fun forLocalCreated(localActionId: String, modifyingNow: Boolean, localCreatedTimestamp: Instant): RecordSyncState =
+        fun forLocalCreated(
+                localActionId: String,
+                modifyingNow: Boolean,
+                localCreatedTimestamp: Instant
+        ): RecordSyncState =
                 RecordSyncState(
                         remoteInfo = null,
                         localAction = LocalAction.Create(actionId = localActionId),
@@ -49,7 +53,7 @@ data class RecordSyncState(
             throw IllegalLocalCreatedIdValueException(this.localAction, this.localCreateId)
         }
 
-        @SuppressWarnings("ComplexCondition")
+        @SuppressWarnings("ComplexCondition", "MaxLineLength")
         if ((((this.localAction is LocalAction.Create) && (this.syncStatus == SyncStatus.SYNCHRONIZING))
              || ((this.localAction is LocalAction.Delete) && (this.remoteInfo == null) && (this.syncStatus == SyncStatus.WAITING)))
             && (this.localCreateId == null)) {
@@ -136,20 +140,29 @@ fun RecordSyncState.toModifyingNowOrThrow(): RecordSyncState =
         }
 
 @Throws(IllegalStateException::class)
-fun RecordSyncState.toNextModifiedAfterModifyingOrThrow(newLocalActionId: String, newLastLocalModifiedTimestamp: Instant): RecordSyncState {
+fun RecordSyncState.toNextModifiedAfterModifyingOrThrow(
+        newLocalActionId: String,
+        newLastLocalModifiedTimestamp: Instant
+): RecordSyncState {
     if (!this.modifyingNow) {
         throw IllegalStateException("Can't move to next modified state that was is not modifying now: $this.")
     }
 
     val newLocalAction: LocalAction = when (this.localAction) {
-        is LocalAction.Create -> LocalAction.Create(actionId = newLocalActionId)
-        null, is LocalAction.Update -> LocalAction.Update(actionId = newLocalActionId)
-        is LocalAction.Delete -> throw IllegalStateException("Can't move to next modified state that was locally deleted: $this.")
+        is LocalAction.Create       -> {
+            LocalAction.Create(actionId = newLocalActionId)
+        }
+        null, is LocalAction.Update -> {
+            LocalAction.Update(actionId = newLocalActionId)
+        }
+        is LocalAction.Delete       -> {
+            throw IllegalStateException("Can't move to next modified state that was locally deleted: $this.")
+        }
     }
 
     val newSyncStatus: SyncStatus = when (this.syncStatus) {
         SyncStatus.SYNCED, SyncStatus.WAITING -> SyncStatus.WAITING
-        SyncStatus.SYNCHRONIZING -> SyncStatus.SYNCHRONIZING
+        SyncStatus.SYNCHRONIZING              -> SyncStatus.SYNCHRONIZING
     }
 
     return this.copy(
@@ -160,6 +173,7 @@ fun RecordSyncState.toNextModifiedAfterModifyingOrThrow(newLocalActionId: String
     )
 }
 
+@Suppress("MaxLineLength")
 fun RecordSyncState.canBeFullyDeletedOnLocalDelete(): Boolean =
         (!this.modifyingNow
          && (this.syncStatus == SyncStatus.WAITING)
@@ -177,12 +191,13 @@ fun RecordSyncState.toLocalDeletedOrThrow(newLocalActionId: String): RecordSyncS
     }
 
     if ((this.localAction is LocalAction.Create) && (this.syncStatus == SyncStatus.WAITING)) {
+        @Suppress("MaxLineLength")
         throw IllegalStateException("Local created record with syncStatus = ${SyncStatus.WAITING} should be fully deleted.")
     }
 
     val newSyncStatus: SyncStatus = when (this.syncStatus) {
         SyncStatus.SYNCED, SyncStatus.WAITING -> SyncStatus.WAITING
-        SyncStatus.SYNCHRONIZING -> SyncStatus.SYNCHRONIZING
+        SyncStatus.SYNCHRONIZING              -> SyncStatus.SYNCHRONIZING
     }
 
     return this.copy(
