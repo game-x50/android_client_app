@@ -1,77 +1,87 @@
+import org.gradle.kotlin.dsl.extra
+import kotlin.properties.ReadOnlyProperty
+
 /**
  * @author Ruslan Hlushan on 2019-08-28
  */
 
 object Versions {
 
-    const val gradleVersion = "4.2.1"
+    val gradleVersion by versionExt
 
-    const val kotlinVersion = "1.5.10"
+    val kotlinVersion by versionExt
 
-    const val googlePluginServicesVersion = "4.3.8"
+    val googlePluginServicesVersion by versionExt
 
-    const val crashlyticsPluginVersion = "2.6.1"
+    val crashlyticsPluginVersion by versionExt
 
-    const val detektVersion = "1.17.1"
-    const val androidJarPluginVersion = "0.1"
+    val detektVersion by versionExt
+    val androidJarPluginVersion by versionExt
 
-    const val dependencyAnalysisPluginVersion = "0.73.0"
-    const val dependencyUpdatesVersion = "0.39.0"
-    const val owaspDependencyCheckVersion = "6.2.0"
-    const val gradleDoctorVersion = "0.7.0"
+    val dependencyAnalysisPluginVersion by versionExt
+    val dependencyUpdatesVersion by versionExt
+    val owaspDependencyCheckVersion by versionExt
+    val gradleDoctorVersion by versionExt
 
-    const val rxJava2Version = "2.2.21"
-    const val rxJava2AndroidVersion = "2.1.1"
+    val rxJava2Version by versionExt
+    val rxJava2AndroidVersion by versionExt
 
-    const val dagger2Version = "2.36"
+    val dagger2Version by versionExt
 
-    const val firebaseBomVersion = "28.0.1"
+    val firebaseBomVersion by versionExt
 
-    const val supportAppCompatVersion = "1.3.0"
-    const val supportDesignVersion = "1.3.0"
-    const val supportAnnotationsVersion = "1.2.0"
-    const val swipeRefreshLayoutVersion = "1.1.0"
-    const val recyclerViewVersion = "1.2.0"
+    val supportAppCompatVersion by versionExt
+    val supportDesignVersion by versionExt
+    val supportAnnotationsVersion by versionExt
+    val swipeRefreshLayoutVersion by versionExt
+    val recyclerViewVersion by versionExt
 
-    const val constraintLayoutVersion = "2.0.4"
+    val raintLayoutVersion by versionExt
 
-    const val androidCoreKtxVersion = "1.5.0"
+    val androidCoreKtxVersion by versionExt
 
-    const val workManagerVersion = "2.5.0"//please check release notes, related to expedited jobs and WorkerFactory init
+    val workManagerVersion by versionExt
 
-    const val edgeToEdgeDecoratorVersion = "1.0.0"
+    val edgeToEdgeDecoratorVersion by versionExt
 
-    const val lifecycleExtensionsVersion = "2.2.0"
+    val lifecycleExtensionsVersion by versionExt
 
-    const val ciceroneVersion = "7.0"
+    val ciceroneVersion by versionExt
 
-    const val retrofit2Version = "2.9.0"
-    const val okhttp3Version = "4.9.1"
+    val retrofit2Version by versionExt
+    val okhttp3Version by versionExt
 
-    const val certificateTransparencyAndroidVersion = "0.3.0"
+    val certificateTransparencyAndroidVersion by versionExt
 
-    const val kotlinxSerializationVersion = "1.2.1"
-    const val retrofit2KotlinxSerializationJsonConverterVersion = "0.8.0"
+    val kotlinxSerializationVersion by versionExt
+    val retrofit2KotlinxSerializationJsonConverterVersion by versionExt
 
-    const val roomVersion = "2.3.0"
+    val roomVersion by versionExt
 
-    const val threeTenBpVersion = "1.5.0:no-tzdb"
-    const val threeTenBpAndroidVersion = "1.3.0"
-    const val threeTenBpZonedTestVersion = "1.5.0"
+    val threeTenBpVersion by versionExt
+    val threeTenBpAndroidVersion by versionExt
+    val threeTenBpZonedTestVersion by versionExt
 
-    const val binaryPrefsVersion = "1.0.1"
-    const val tinkAndroidVersion = "1.6.0"
+    val binaryPrefsVersion by versionExt
+    val tinkAndroidVersion by versionExt
 
-    const val stethoVersion = "1.6.0"
-    const val leakCanaryVersion = "2.7"
-    const val blockCanaryVersion = "1.5.0"
-    const val tinyDancerVersion = "0.1.2"
-    const val taktVersion = "2.1.0"
-    const val lynxVersion = "1.6"
-    const val chuckerVersion = "3.4.0"
-    const val roomExplorerVersion = "0.0.2"
-    const val rxDisposableWatcherVersion = "1.0.0"//version 2.0.0 id for rxjava3
+    val stethoVersion by versionExt
+    val leakCanaryVersion by versionExt
+    val blockCanaryVersion by versionExt
+    val tinyDancerVersion by versionExt
+    val taktVersion by versionExt
+    val lynxVersion by versionExt
+    val chuckerVersion by versionExt
+    val roomExplorerVersion by versionExt
+    val rxDisposableWatcherVersion by versionExt
 
-    const val jacocoPluginVersion = "0.8.7"
-    const val jUnitVersion = "4.13.2"
+    val jacocoPluginVersion by versionExt
+    val jUnitVersion by versionExt
 }
+
+private val versions: Map<String, String>
+    get() = (SomeUnknownConfig.rootProject.extra["versions"] as Map<String, String>)
+
+//https://vk.com/video-147415323_456239467?t=1h47m39s
+private val versionExt: ReadOnlyProperty<Any, String> =
+        ReadOnlyProperty { thisRef, property -> versions[property.name]!! }
