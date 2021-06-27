@@ -4,8 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.google.crypto.tink.Aead
 import com.google.crypto.tink.DeterministicAead
-import com.google.crypto.tink.aead.AesGcmKeyManager
-import com.google.crypto.tink.daead.AesSivKeyManager
+import com.google.crypto.tink.KeyTemplates
 import com.google.crypto.tink.daead.DeterministicAeadConfig
 import com.google.crypto.tink.hybrid.HybridConfig
 import com.google.crypto.tink.integration.android.AndroidKeysetManager
@@ -50,7 +49,7 @@ object SharedPrefsProvider {
     private fun provideAEAD(context: Context, keySetName: String, prefFileName: String, masterKeyUri: String) =
             AndroidKeysetManager.Builder()
                     .withSharedPref(context, keySetName, prefFileName)
-                    .withKeyTemplate(AesGcmKeyManager.aes256GcmTemplate())
+                    .withKeyTemplate(KeyTemplates.get("AES256_GCM"))
                     .withMasterKeyUri(AndroidKeystoreKmsClient.PREFIX + masterKeyUri)
                     .build()
                     .keysetHandle
@@ -59,7 +58,7 @@ object SharedPrefsProvider {
     private fun provideDAEAD(context: Context, dKeySetName: String, dPrefFileName: String, dMasterKeyUri: String) =
             AndroidKeysetManager.Builder()
                     .withSharedPref(context, dKeySetName, dPrefFileName)
-                    .withKeyTemplate(AesSivKeyManager.aes256SivTemplate())
+                    .withKeyTemplate(KeyTemplates.get("AES256_SIV"))
                     .withMasterKeyUri(AndroidKeystoreKmsClient.PREFIX + dMasterKeyUri)
                     .build()
                     .keysetHandle

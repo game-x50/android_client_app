@@ -42,7 +42,6 @@ allprojects {
     extra[GradleExtraArgs.localizationFolder] = "$rootProjectPath/localization"
     extra[GradleExtraArgs.proguardConfigsFolder] = "$rootProjectPath/proguard_configs"
 
-    extra[GradleExtraArgs.baseKotlin] = "${gradleSupportFolder}base_kotlin.gradle"
     extra[GradleExtraArgs.baseAndroid] = "${gradleSupportFolder}base_android.gradle"
 
     extra[GradleExtraArgs.baseKotlinLibrary] = "${gradleSupportFolder}base_kotlin_library.gradle"

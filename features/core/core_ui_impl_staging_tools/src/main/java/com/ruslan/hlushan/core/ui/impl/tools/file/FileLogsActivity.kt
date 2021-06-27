@@ -145,7 +145,7 @@ internal class FileLogsActivity : BaseActivity(), PermissionResultListener {
         val fileNameValid: Boolean = fileName.isNotBlank()
 
         if (fileNameValid) {
-            val destination = File(Environment.getExternalStorageDirectory(), "$fileName.txt")
+            val destination = File(this.getExternalFilesDir(null), "$fileName.txt")
             viewModel.copyAllExistingLogsToSingleExternalStorageFile(destination)
         } else {
             showSystemMessage(text = "Enter valid file name")

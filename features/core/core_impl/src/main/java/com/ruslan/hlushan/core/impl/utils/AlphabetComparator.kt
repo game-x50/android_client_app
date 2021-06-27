@@ -43,7 +43,7 @@ private fun compareOnAllDataPresented(
 
         return when {
             (alphabetContainsChar1 && alphabetContainsChar2) -> {
-                (nonEmptyAlphabet.indexOf(char1.toUpperCase()) - nonEmptyAlphabet.indexOf(char2.toUpperCase()))
+                (nonEmptyAlphabet.indexOf(char1.uppercaseChar()) - nonEmptyAlphabet.indexOf(char2.uppercaseChar()))
             }
             alphabetContainsChar1                            -> {
                 -1

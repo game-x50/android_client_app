@@ -1,7 +1,5 @@
 apply plugin: Plugins.kotlinAndroid
 
-//todo: investigate why not works:
-// apply from: rootProject.ext[GradleExtraArgs.baseKotlin]
 apply from: rootProject.ext[GradleExtraArgs.androidLinters]
 
 android {
@@ -21,8 +19,11 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
+    //todo: duplication in base_kotlin_library.gradle
     kotlinOptions {
         jvmTarget = '1.8'
+        useIR = true
+//        allWarningsAsErrors = true
     }
 
     packagingOptions {

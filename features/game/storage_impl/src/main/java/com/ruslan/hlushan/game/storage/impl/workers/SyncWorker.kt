@@ -75,7 +75,8 @@ internal class SyncWorker(
             val cancelAction = AndroidNotificationAction(
                     actionImageResId = android.R.drawable.ic_delete,
                     actionText = appContext.getString(R.string.game_storage_impl_cancel_sync),
-                    actionPendingIntent = cancelActionPendingIntent
+                    actionPendingIntent = cancelActionPendingIntent,
+                    authenticationRequired = true
             )
 
             val notification = AndroidNotification(

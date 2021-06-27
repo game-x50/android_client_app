@@ -140,7 +140,7 @@ internal val ItemsMatrix.notFakeItems: List<RectangleArea> get() = this.items.fi
 
 internal val ItemsMatrix.isAllItemsFilled: Boolean get() = this.items.all { area -> !area.isFake }
 
-private val ItemsMatrix.totalSum: Int get() = this.rowSums.sumBy { area -> area.number }
+private val ItemsMatrix.totalSum: Int get() = this.rowSums.sumOf { area -> area.number }
 
 internal fun ItemsMatrix.updateFrom(immutableNumbersMatrix: ImmutableNumbersMatrix) {
     immutableNumbersMatrix.numbers.forEachIndexed { index, n ->
@@ -218,13 +218,13 @@ private fun ItemsMatrix.recalculateChangedSums(wasChangedIndex: Int) {
 
 private fun ItemsMatrix.recalculateAllSums() {
     for (i in 0 until this.countRowsAndColumns) {
-        val newSumRowI: Int = getNonFakeRowElements(i).sumBy { area -> area.number }
+        val newSumRowI: Int = getNonFakeRowElements(i).sumOf { area -> area.number }
         this.rowSums[i].number = newSumRowI
 
-        val newSumColumnI: Int = getNonFakeColumnElements(i).sumBy { area -> area.number }
+        val newSumColumnI: Int = getNonFakeColumnElements(i).sumOf { area -> area.number }
         this.columnSums[i].number = newSumColumnI
 
-        val newSumRectangleI: Int = getNonFakeRectangleElements(i).sumBy { area -> area.number }
+        val newSumRectangleI: Int = getNonFakeRectangleElements(i).sumOf { area -> area.number }
         this.rectanglesSums[i].number = newSumRectangleI
     }
 }
@@ -232,7 +232,7 @@ private fun ItemsMatrix.recalculateAllSums() {
 private fun ItemsMatrix.recalculateChangedRowSum(wasChangedIndex: Int) {
     val rowToRecalculate: Int = getChangedRow(wasChangedIndex)
     if (rowToRecalculate in this.rowSums.indices) {
-        val newSum = getNonFakeRowElements(rowToRecalculate).sumBy { area -> area.number }
+        val newSum = getNonFakeRowElements(rowToRecalculate).sumOf { area -> area.number }
         this.rowSums[rowToRecalculate].number = newSum
     }
 }
@@ -240,7 +240,7 @@ private fun ItemsMatrix.recalculateChangedRowSum(wasChangedIndex: Int) {
 private fun ItemsMatrix.recalculateChangedColumnSum(wasChangedIndex: Int) {
     val columnToRecalculate: Int = getChangedColumn(wasChangedIndex)
     if (columnToRecalculate in this.columnSums.indices) {
-        val newSum = getNonFakeColumnElements(columnToRecalculate).sumBy { area -> area.number }
+        val newSum = getNonFakeColumnElements(columnToRecalculate).sumOf { area -> area.number }
         this.columnSums[columnToRecalculate].number = newSum
     }
 }
@@ -248,7 +248,7 @@ private fun ItemsMatrix.recalculateChangedColumnSum(wasChangedIndex: Int) {
 private fun ItemsMatrix.recalculateChangedRectangleSum(wasChangedIndex: Int) {
     val rectangleToRecalculate: Int = getChangedRectangle(wasChangedIndex)
     if (rectangleToRecalculate in this.rectanglesSums.indices) {
-        val newSum = getNonFakeRectangleElements(rectangleToRecalculate).sumBy { area -> area.number }
+        val newSum = getNonFakeRectangleElements(rectangleToRecalculate).sumOf { area -> area.number }
         this.rectanglesSums[rectangleToRecalculate].number = newSum
     }
 }

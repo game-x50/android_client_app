@@ -20,10 +20,11 @@ interface AndroidNotificationChannel {
     val enableSoundAndVibrate: Boolean
 }
 
-data class AndroidNotificationAction(
+class AndroidNotificationAction(
         @DrawableRes val actionImageResId: Int,
         val actionText: String,
-        val actionPendingIntent: PendingIntent
+        val actionPendingIntent: PendingIntent,
+        val authenticationRequired: Boolean
 )
 
 private val Context.defaultContentTitle: String
@@ -37,8 +38,14 @@ private val Context.defaultContentTitle: String
         }
     }
 
-fun createDefaultEmptyPendingIntent(context: Context, id: Int): PendingIntent =
-        PendingIntent.getActivity(context, id, Intent(), PendingIntent.FLAG_UPDATE_CURRENT)
+fun createDefaultEmptyPendingIntent(context: Context, id: Int): PendingIntent {
+    val flags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        (PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+    } else {
+        PendingIntent.FLAG_UPDATE_CURRENT
+    }
+    return PendingIntent.getActivity(context, id, Intent(), flags)
+}
 
 @SuppressWarnings("LongParameterList")
 class AndroidNotification(
@@ -78,7 +85,15 @@ class AndroidNotification(
         }
 
         for (action in actions) {
-            builder.addAction(action.actionImageResId, action.actionText, action.actionPendingIntent)
+            val androidAction = NotificationCompat.Action.Builder(
+                    action.actionImageResId,
+                    action.actionText,
+                    action.actionPendingIntent
+            )
+                    // todo: uncomment on compileSdk >=31
+                    //.setAuthenticationRequired(action.authenticationRequired)
+                    .build()
+            builder.addAction(androidAction)
         }
 
         val notification = builder.build()

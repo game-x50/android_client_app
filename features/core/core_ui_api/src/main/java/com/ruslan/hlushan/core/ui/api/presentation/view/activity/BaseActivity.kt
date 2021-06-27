@@ -138,12 +138,6 @@ abstract class BaseActivity : AppCompatActivity(),
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
-    @CallSuper
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        appLogger.log(this)
-        super.onActivityResult(requestCode, resultCode, data)
-    }
-
     @UiMainThread
     override fun addLifecyclePluginObserver(observer: LifecyclePluginObserver) {
         lifecyclePluginObservers.add(observer)
