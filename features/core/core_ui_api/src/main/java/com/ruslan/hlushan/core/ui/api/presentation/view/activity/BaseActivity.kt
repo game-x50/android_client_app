@@ -1,6 +1,5 @@
 package com.ruslan.hlushan.core.ui.api.presentation.view.activity
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity

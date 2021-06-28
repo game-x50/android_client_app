@@ -16,16 +16,17 @@ import androidx.core.view.WindowInsetsCompat
 
 fun Activity.applyWindowTransparencyAfterSetContentView(container: FrameLayout) {
     container.doOnApplyWindowInsets { view, insets, initialPadding ->
+        val systemBarsInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
         view.updatePadding(
-                left = (initialPadding.left + insets.systemWindowInsetLeft),
-                right = (initialPadding.right + insets.systemWindowInsetRight)
+                left = (initialPadding.left + systemBarsInsets.left),
+                right = (initialPadding.right + systemBarsInsets.right)
         )
         insets.withReplacedSystemWindowInsets(
                 Rect(
                         0,
-                        insets.systemWindowInsetTop,
+                        systemBarsInsets.top,
                         0,
-                        insets.systemWindowInsetBottom
+                        systemBarsInsets.bottom
                 )
         )
     }
@@ -39,26 +40,25 @@ fun View.addSystemPadding(
         top: Boolean = false,
         right: Boolean = false,
         bottom: Boolean = false
-) {
-    doOnApplyWindowInsets { _, insets, initialPadding ->
-        targetView.updatePadding(
-                left = (initialPadding.left + +insets.systemWindowInsetLeft).takeIf { left },
-                top = (initialPadding.top + insets.systemWindowInsetTop).takeIf { top },
-                right = (initialPadding.right + insets.systemWindowInsetRight).takeIf { right },
-                bottom = (initialPadding.bottom + insets.systemWindowInsetBottom).takeIf { bottom }
+) = doOnApplyWindowInsets { _, insets, initialPadding ->
+    val systemBarsInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+    targetView.updatePadding(
+            left = (initialPadding.left + systemBarsInsets.left).takeIf { left },
+            top = (initialPadding.top + systemBarsInsets.top).takeIf { top },
+            right = (initialPadding.right + systemBarsInsets.right).takeIf { right },
+            bottom = (initialPadding.bottom + systemBarsInsets.bottom).takeIf { bottom }
+    )
+    if (isConsumed) {
+        insets.withReplacedSystemWindowInsets(
+                Rect(
+                        if (left) 0 else systemBarsInsets.left,
+                        if (top) 0 else systemBarsInsets.top,
+                        if (right) 0 else systemBarsInsets.right,
+                        if (bottom) 0 else systemBarsInsets.bottom
+                )
         )
-        if (isConsumed) {
-            insets.withReplacedSystemWindowInsets(
-                    Rect(
-                            if (left) 0 else insets.systemWindowInsetLeft,
-                            if (top) 0 else insets.systemWindowInsetTop,
-                            if (right) 0 else insets.systemWindowInsetRight,
-                            if (bottom) 0 else insets.systemWindowInsetBottom
-                    )
-            )
-        } else {
-            insets
-        }
+    } else {
+        insets
     }
 }
 
@@ -70,25 +70,24 @@ fun View.doOnApplyWindowInsets(block: (View, insets: WindowInsetsCompat, initial
     requestApplyInsetsWhenAttached()
 }
 
-private fun recordInitialPaddingForView(view: View) =
+private fun recordInitialPaddingForView(view: View): Rect =
         Rect(view.paddingLeft, view.paddingTop, view.paddingRight, view.paddingBottom)
 
-private fun View.requestApplyInsetsWhenAttached() {
-    if (isAttachedToWindow) {
-        ViewCompat.requestApplyInsets(this)
-    } else {
-        addOnAttachStateChangeListener(object : View.OnAttachStateChangeListener {
-            override fun onViewAttachedToWindow(v: View) {
-                v.removeOnAttachStateChangeListener(this)
-                ViewCompat.requestApplyInsets(v)
-            }
+private fun View.requestApplyInsetsWhenAttached() =
+        if (isAttachedToWindow) {
+            ViewCompat.requestApplyInsets(this)
+        } else {
+            addOnAttachStateChangeListener(object : View.OnAttachStateChangeListener {
+                override fun onViewAttachedToWindow(v: View) {
+                    v.removeOnAttachStateChangeListener(this)
+                    ViewCompat.requestApplyInsets(v)
+                }
 
-            override fun onViewDetachedFromWindow(v: View) = Unit
-        })
-    }
-}
+                override fun onViewDetachedFromWindow(v: View) = Unit
+            })
+        }
 
 private fun WindowInsetsCompat.withReplacedSystemWindowInsets(rect: Rect): WindowInsetsCompat =
         WindowInsetsCompat.Builder(this)
-                .setSystemWindowInsets(Insets.of(rect))
+                .setInsets(WindowInsetsCompat.Type.systemBars(), Insets.of(rect))
                 .build()
