@@ -55,8 +55,12 @@ internal class LoginFragment : BaseFragment(
             )
         }
 
-        binding?.loginScreenRegisterBtn?.setThrottledOnClickListener { parentRouter.replaceScreen(RegisterScreen()) }
-        binding?.loginScreenForgotPasswordBtn?.setThrottledOnClickListener { parentRouter.navigateTo(ForgotPasswordScreen()) }
+        binding?.loginScreenRegisterBtn?.setThrottledOnClickListener {
+            parentRouter.replaceScreen(RegisterScreen())
+        }
+        binding?.loginScreenForgotPasswordBtn?.setThrottledOnClickListener {
+            parentRouter.navigateTo(ForgotPasswordScreen())
+        }
 
         this.handleCommandQueue(commandQueue = viewModel.commandsQueue, handler = this::handleCommand)
     }

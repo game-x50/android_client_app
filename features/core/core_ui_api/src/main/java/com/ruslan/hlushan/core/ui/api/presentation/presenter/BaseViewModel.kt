@@ -144,7 +144,8 @@ private enum class VmState {
     /**
      * Created state for a [BaseViewModel] is reached in two cases:
      *
-     * * after [BaseViewModel] instance was created by calling constructor, but before [BaseViewModel.onAfterAttachView] call;
+     * * after [BaseViewModel] instance was created by calling constructor,
+     * * but before [BaseViewModel.onAfterAttachView] call;
      * * **right inside** [BaseViewModel.onBeforeDetachView] call.
      */
     CREATED,

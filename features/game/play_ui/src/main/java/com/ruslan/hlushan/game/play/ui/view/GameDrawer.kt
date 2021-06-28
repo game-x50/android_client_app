@@ -81,12 +81,23 @@ internal class GameDrawer(
     }
 
     private fun drawText(rectangleArea: RectangleArea, canvas: Canvas, @ColorInt backgroundColor: Int) {
-        rectangleAreaTextPaint.color = calculateTextColorForBackground(backgroundColor = backgroundColor, colorOnTransparent = textColorOnTransparent)
-        rectangleAreaTextPaint.textSize = rectangleArea.cellTextSizeParams.getCellTextSizeForText(rectangleArea.number.toString())
+        rectangleAreaTextPaint.color = calculateTextColorForBackground(
+                backgroundColor = backgroundColor,
+                colorOnTransparent = textColorOnTransparent
+        )
+        rectangleAreaTextPaint.textSize = rectangleArea.cellTextSizeParams.getCellTextSizeForText(
+                rectangleArea.number.toString()
+        )
         val yPos = rectangleAreaTextPaint.getPositionYForCenterY(rectangleArea.centerY)
         canvas.drawText(rectangleArea.number.toString(), rectangleArea.centerX, yPos, rectangleAreaTextPaint)
     }
 
     private fun drawGridLine(gridLine: GridLine, canvas: Canvas) =
-            canvas.drawRect(gridLine.leftOfLine, gridLine.topOfLine, gridLine.rightOfLine, gridLine.bottomOfLine, gridPaint)
+            canvas.drawRect(
+                    gridLine.leftOfLine,
+                    gridLine.topOfLine,
+                    gridLine.rightOfLine,
+                    gridLine.bottomOfLine,
+                    gridPaint
+            )
 }

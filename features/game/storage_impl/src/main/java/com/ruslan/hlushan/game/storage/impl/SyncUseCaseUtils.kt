@@ -24,9 +24,13 @@ internal data class UnexpectedAfterUpdateException(
         val actualFromDb: RecordSyncState
 ) : Exception()
 
-internal fun Single<SyncStepResult>.repeatWhileSyncStepResultValid(@IntRange(from = 0) minSize: Int): Completable =
+internal fun Single<SyncStepResult>.repeatWhileSyncStepResultValid(
+        @IntRange(from = 0) minSize: Int
+): Completable =
         repeat()
-                .takeWhile { (allPreviousFailed, previousRecordsCount) -> ((!allPreviousFailed) && (previousRecordsCount >= minSize)) }
+                .takeWhile { (allPreviousFailed, previousRecordsCount) ->
+                    ((!allPreviousFailed) && (previousRecordsCount >= minSize))
+                }
                 .ignoreElements()
 
 internal fun generateLocalActionId(): String =
@@ -43,26 +47,45 @@ internal fun LocalRecordsRepository.updateLocalStateWithNew(
         modifyingNow: Boolean = original.modifyingNow,
         syncStatus: SyncStatus = original.syncStatus
 ): Completable =
-        this.updateRecordSyncState(id,
-                                              RecordSyncState(
-                                                      remoteInfo = remoteInfo,
-                                                      localAction = localAction,
-                                                      lastLocalModifiedTimestamp = lastLocalModifiedTimestamp,
-                                                      localCreateId = localCreateId,
-                                                      modifyingNow = modifyingNow,
-                                                      syncStatus = syncStatus
-                                              ))
+        this.updateRecordSyncState(
+                id,
+                RecordSyncState(
+                        remoteInfo = remoteInfo,
+                        localAction = localAction,
+                        lastLocalModifiedTimestamp = lastLocalModifiedTimestamp,
+                        localCreateId = localCreateId,
+                        modifyingNow = modifyingNow,
+                        syncStatus = syncStatus
+                )
+        )
 
 @SuppressLint("CheckResult")
 internal fun LocalRecordsRepository.updateSyncStatusOnSyncCloseAsynchronously(ids: List<Long>, appLogger: AppLogger) {
     this.updateSyncStatusOnSyncFail(ids)
-            .subscribe({ appLogger.log(this, "updateSyncStatusOnSyncCloseAsynchronously ids = $ids: Success") },
-                       { error -> appLogger.log(this, "updateSyncStatusOnSyncCloseAsynchronously ids = $ids: Error", error) })
+            .subscribe({
+                           appLogger.log(
+                                   this,
+                                   message = "updateSyncStatusOnSyncCloseAsynchronously ids = $ids: Success"
+                           )
+                       },
+                       { error ->
+                           appLogger.log(
+                                   this,
+                                   message = "updateSyncStatusOnSyncCloseAsynchronously ids = $ids: Error",
+                                   error = error
+                           )
+                       })
 }
 
-internal fun AppLogger.logErrorFor(any: Any, original: GameRecordWithSyncState, actualFromDb: RecordSyncState, response: Any, error: Throwable) {
+internal fun AppLogger.logErrorFor(
+        any: Any,
+        original: GameRecordWithSyncState,
+        actualFromDb: RecordSyncState,
+        response: Any,
+        error: Throwable
+) {
     this.log(any, "updateLocalRecordAfterRemoteUpdate original = $original," +
-                        " actualFromDb = $actualFromDb," +
-                        " response = $response",
-                  error)
+                  " actualFromDb = $actualFromDb," +
+                  " response = $response",
+             error)
 }

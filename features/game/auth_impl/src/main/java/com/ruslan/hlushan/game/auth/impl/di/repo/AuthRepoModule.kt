@@ -15,7 +15,9 @@ internal object AuthRepoModule {
 
     @JvmStatic
     @Provides
-    fun provideNonAuthorizedNetworkApiCreator(impl: NonAuthorizedNetworkApiCreatorImpl): NonAuthorizedNetworkApiCreator = impl
+    fun provideNonAuthorizedNetworkApiCreator(
+            impl: NonAuthorizedNetworkApiCreatorImpl
+    ): NonAuthorizedNetworkApiCreator = impl
 
     @JvmStatic
     @Provides

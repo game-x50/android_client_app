@@ -193,6 +193,7 @@ internal class GameRecordsListFragment :
             notifyFakeScroll()
         }
 
+        @Suppress("MaxLineLength")
         binding?.gameRecordsListScreenSwipeRefresh?.isRefreshing = (command.additional is PaginationState.Additional.Loading)
 
         when (command.additional) {

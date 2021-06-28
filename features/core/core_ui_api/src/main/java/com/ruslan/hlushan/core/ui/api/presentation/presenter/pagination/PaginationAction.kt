@@ -17,7 +17,11 @@ internal sealed class PaginationAction<out F : Any, out ItemId : Any, out RI : R
         ) : UI<F>()
     }
 
-    sealed class Response<out ItemId : Any, out RI : RecyclerItem<ItemId>, out Id : Any> : PaginationAction<Nothing, ItemId, RI, Id>() {
+    sealed class Response<
+            out ItemId : Any,
+            out RI : RecyclerItem<ItemId>,
+            out Id : Any
+            > : PaginationAction<Nothing, ItemId, RI, Id>() {
 
         class Success<out ItemId : Any, out RI : RecyclerItem<ItemId>, out Id : Any>(
                 val response: PaginationResponse<RI, Id>
@@ -28,7 +32,10 @@ internal sealed class PaginationAction<out F : Any, out ItemId : Any, out RI : R
         ) : Response<Nothing, Nothing, Nothing>()
     }
 
-    sealed class Change<out ItemId : Any, out RI : RecyclerItem<ItemId>> : PaginationAction<Nothing, ItemId, RI, Nothing>() {
+    sealed class Change<
+            out ItemId : Any,
+            out RI : RecyclerItem<ItemId>
+            > : PaginationAction<Nothing, ItemId, RI, Nothing>() {
 
         class SingleItemUpdated<out ItemId : Any, out RI : RecyclerItem<ItemId>>(
                 val updatedItem: RI,

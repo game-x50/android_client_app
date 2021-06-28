@@ -56,8 +56,10 @@ internal class UpdateLocalSyncedUseCaseRemoteRepoReceivedParamsTest : BaseUpdate
                 .take(stepCount)
                 .map { rec -> rec.syncState.remoteInfo!!.toUpdateLocalSyncedRequest() }
 
-        val disposable = updateLocalSyncedUseCase.updateAll(maxLastRemoteSyncedTimestamp = searchParamLastRemoteSyncedTimestamp,
-                                                            stepCount = stepCount)
+        val disposable = updateLocalSyncedUseCase.updateAll(
+                maxLastRemoteSyncedTimestamp = searchParamLastRemoteSyncedTimestamp,
+                stepCount = stepCount
+        )
                 .subscribe()
 
         assertFalse(disposable.isDisposed)

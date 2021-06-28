@@ -82,7 +82,9 @@ constructor(
     fun checkForLogOut() {
         playRecordsInteractor.getCountOfNotSynchronizedRecords()
                 .observeOn(schedulersManager.ui)
-                .doOnSuccess { countNotSynchedRecords -> mutableCommandsQueue.add(Command.ShowConfirmLogOutDialog(countNotSynchedRecords)) }
+                .doOnSuccess { countNotSynchedRecords ->
+                    mutableCommandsQueue.add(Command.ShowConfirmLogOutDialog(countNotSynchedRecords))
+                }
                 .subscribe(
                         { countNotSynchedRecords ->
                             appLogger.log(this@UserProfileViewModel,
@@ -125,7 +127,7 @@ constructor(
     private fun handleUpdateResult(result: VoidOperationResult<AuthError>) =
             when (result) {
                 is OperationResult.Success -> router.exit()
-                is OperationResult.Error -> mutableCommandsQueue.add(Command.ShowAuthError(result.result))
+                is OperationResult.Error   -> mutableCommandsQueue.add(Command.ShowAuthError(result.result))
             }
 
     sealed class Command : StrategyCommand {

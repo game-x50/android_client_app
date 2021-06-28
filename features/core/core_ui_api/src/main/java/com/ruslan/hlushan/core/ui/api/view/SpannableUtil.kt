@@ -24,7 +24,12 @@ private fun spanDifferentTypeface(str: CharSequence, start: Int, end: Int): Span
     return sBuilder
 }
 
-fun setTextWithDifferentColorsAndTypeFace(hint: String?, value: String?, textView: TextView?, @ColorRes hintColorResId: Int) {
+fun setTextWithDifferentColorsAndTypeFace(
+        hint: String?,
+        value: String?,
+        textView: TextView?,
+        @ColorRes hintColorResId: Int
+) {
     if (textView != null && textView.context != null) {
         if (value.isNullOrEmpty()) {
             textView.visibility = View.GONE

@@ -3,7 +3,9 @@ package com.ruslan.hlushan.android.extensions
 import android.os.Parcel
 import android.os.Parcelable
 
-inline fun <reified T> parcelableCreator(crossinline create: (Parcel) -> T): Parcelable.Creator<T> = object : Parcelable.Creator<T> {
+inline fun <reified T> parcelableCreator(
+        crossinline create: (Parcel) -> T
+): Parcelable.Creator<T> = object : Parcelable.Creator<T> {
     override fun createFromParcel(source: Parcel): T = create(source)
     override fun newArray(size: Int): Array<T?> = arrayOfNulls(size)
 }
@@ -17,7 +19,12 @@ inline fun <T> Parcel.writeNullable(value: T?, writer: Parcel.(T) -> Unit) {
     }
 }
 
-inline fun <T> Parcel.readNullable(reader: Parcel.() -> T): T? = if (readByte() == 1.toByte()) reader(this) else null
+inline fun <T> Parcel.readNullable(reader: Parcel.() -> T): T? =
+        if (readByte() == 1.toByte()) {
+            reader(this)
+        } else {
+            null
+        }
 
 inline fun <reified T : Parcelable> Parcel.writeParcelableCollection(collection: Collection<T>, flags: Int) {
     writeTypedArray(collection.toTypedArray(), flags)

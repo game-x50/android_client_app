@@ -29,7 +29,8 @@ class DelegatesRecyclerAdapter<
         initItems: List<RecyclerItemGeneral> = emptyList()
 ) : ListAdapter<RecyclerItemGeneral, RecyclerView.ViewHolder>(DelegatesDiffHelperItemCallback()) {
 
-    private val delegatesMap: SparseArray<AdapterDelegate<Id, RecyclerItemGeneral, out RecyclerItemGeneral>> = SparseArray(delegates.size)
+    private val delegatesMap: SparseArray<AdapterDelegate<Id, RecyclerItemGeneral, out RecyclerItemGeneral>> =
+            SparseArray(delegates.size)
 
     private var inflater: LayoutInflater? = null
     private val spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
@@ -108,7 +109,7 @@ class DelegatesRecyclerAdapter<
     @UiMainThread
     private fun setManager(manager: RecyclerView.LayoutManager) {
         when (manager) {
-            is GridLayoutManager -> {
+            is GridLayoutManager          -> {
                 manager.spanSizeLookup = spanSizeLookup
             }
             is StaggeredGridLayoutManager -> {
@@ -118,6 +119,7 @@ class DelegatesRecyclerAdapter<
     }
 }
 
+@Suppress("MaxLineLength")
 private class DelegatesDiffHelperItemCallback<out Id : Any, RI : RecyclerItem<Id>> : DiffUtil.ItemCallback<RI>() {
 
     private val payload = Any()

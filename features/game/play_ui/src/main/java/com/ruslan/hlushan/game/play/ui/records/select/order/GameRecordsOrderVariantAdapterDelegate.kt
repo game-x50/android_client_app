@@ -18,20 +18,30 @@ import com.ruslan.hlushan.game.play.ui.databinding.GamePlayUiGameRecordsOrderVar
 
 internal class GameRecordsOrderVariantAdapterDelegate(
         private val onItemClick: OnItemClickListener<GameRecordsOrderVariantRecyclerItem>
-) : AdapterDelegate<GameRecordWithSyncState.Order.Variant, GameRecordsOrderVariantRecyclerItem, GameRecordsOrderVariantRecyclerItem> {
+) : AdapterDelegate<
+        GameRecordWithSyncState.Order.Variant,
+        GameRecordsOrderVariantRecyclerItem,
+        GameRecordsOrderVariantRecyclerItem
+        > {
 
     @SuppressWarnings("ClassOrdering")
     companion object {
-        fun createRecyclerItems(selectedVariant: GameRecordWithSyncState.Order.Variant): List<GameRecordsOrderVariantRecyclerItem> =
+        fun createRecyclerItems(
+                selectedVariant: GameRecordWithSyncState.Order.Variant
+        ): List<GameRecordsOrderVariantRecyclerItem> =
                 GameRecordWithSyncState.Order.Variant.values()
-                        .map { variant -> GameRecordsOrderVariantRecyclerItem(variant, selected = (variant == selectedVariant)) }
+                        .map { variant ->
+                            GameRecordsOrderVariantRecyclerItem(variant, selected = (variant == selectedVariant))
+                        }
     }
 
     @get:LayoutRes
     override val layoutResId: Int
         get() = R.layout.game_play_ui_game_records_order_variant_item
 
-    override fun createViewHolder(itemView: View): BaseItemViewHolder<GameRecordWithSyncState.Order.Variant, GameRecordsOrderVariantRecyclerItem> =
+    override fun createViewHolder(
+            itemView: View
+    ): BaseItemViewHolder<GameRecordWithSyncState.Order.Variant, GameRecordsOrderVariantRecyclerItem> =
             GameRecordsOrderVariantViewHolder(itemView, onItemClick)
 }
 
@@ -61,10 +71,7 @@ private class GameRecordsOrderVariantViewHolder(
     @UiMainThread
     override fun onBindView(item: GameRecordsOrderVariantRecyclerItem) {
         super.onBindView(item)
-        @StringRes val textResId: Int = when (item.orderVariant) {
-            GameRecordWithSyncState.Order.Variant.TOTAL_SUM               -> R.string.game_play_ui_game_records_order_variant_by_total_sum
-            GameRecordWithSyncState.Order.Variant.LAST_MODIFIED_TIMESTAMP -> R.string.game_play_ui_game_records_order_variant_by_last_modified
-        }
+        @StringRes val textResId: Int = item.orderVariant.nameResId
         binding.gameRecordsOrderVariantItemTitle.setText(textResId)
         @AttrRes val backgroundColorAttrResId = if (item.selected) {
             com.google.android.material.R.attr.colorSecondary
@@ -89,3 +96,11 @@ internal class GameRecordsOrderVariantRecyclerItem(
              && this.orderVariant == other.orderVariant
              && this.selected == other.selected)
 }
+
+@Suppress("MaxLineLength")
+@get:StringRes
+private val GameRecordWithSyncState.Order.Variant.nameResId: Int
+    get() = when (this) {
+        GameRecordWithSyncState.Order.Variant.TOTAL_SUM               -> R.string.game_play_ui_game_records_order_variant_by_total_sum
+        GameRecordWithSyncState.Order.Variant.LAST_MODIFIED_TIMESTAMP -> R.string.game_play_ui_game_records_order_variant_by_last_modified
+    }

@@ -8,6 +8,7 @@ import android.os.Parcelable
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import com.ruslan.hlushan.android.extensions.colorAttributeValue
 import com.ruslan.hlushan.core.api.dto.MutableValueHolder
@@ -40,7 +41,7 @@ class GameView
 constructor(
         context: Context,
         attrs: AttributeSet? = null,
-        defStyleAttr: Int = 0
+        @AttrRes defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr), IGetGameViewState {
 
     private var gameViewDimensions: GameViewDimensions = GameViewDimensions.createDefault()
@@ -57,7 +58,9 @@ constructor(
     val isGameFinished: Boolean get() = viewModel.isGameFinished
 
     init {
-        @ColorInt val colorOnBackground = context.colorAttributeValue(com.google.android.material.R.attr.colorOnBackground)
+        @ColorInt val colorOnBackground = context.colorAttributeValue(
+                com.google.android.material.R.attr.colorOnBackground
+        )
         val defaultGameSize = GameSize.SMALL
 
         var ta: TypedArray? = null
@@ -66,7 +69,9 @@ constructor(
             Triple(
                     ta.getColor(R.styleable.GameView_textColorOnTransparent, colorOnBackground),
                     ta.getColor(R.styleable.GameView_gridColor, colorOnBackground),
-                    GameSize.fromCountRowsAndColumns(ta.getInt(R.styleable.GameView_gameSize, defaultGameSize.countRowsAndColumns))
+                    GameSize.fromCountRowsAndColumns(
+                            ta.getInt(R.styleable.GameView_gameSize, defaultGameSize.countRowsAndColumns)
+                    )
             )
         } catch (e: Exception) {
             e.printStackTrace()
@@ -107,7 +112,12 @@ constructor(
         val viewWidth = GameViewDrawingCalculator.calculateGameViewWith(widthMeasureSpec, viewModel.gameViewParams)
         val viewHeight = GameViewDrawingCalculator.calculateGameViewHeight(heightMeasureSpec)
 
-        gameViewDimensions = GameViewDrawingCalculator.measureViewSize(viewHeight, viewWidth, viewModel.gameViewParams, gameDrawer)
+        gameViewDimensions = GameViewDrawingCalculator.measureViewSize(
+                viewHeight,
+                viewWidth,
+                viewModel.gameViewParams,
+                gameDrawer
+        )
 
         setMeasuredDimension(viewWidth, viewHeight)
     }
@@ -115,8 +125,18 @@ constructor(
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
 
-        GameViewDrawingCalculator.fillGameViewTable(viewModel.itemsMatrix, gameViewDimensions, viewModel.gameViewParams, gameGrid.tableGridLines)
-        GameViewDrawingCalculator.fillGameViewNewItems(viewModel.newItemsSet, gameViewDimensions, viewModel.gameViewParams, gameGrid.newElementsGrid)
+        GameViewDrawingCalculator.fillGameViewTable(
+                itemsMatrix = viewModel.itemsMatrix,
+                gameViewDimensions = gameViewDimensions,
+                gameViewParams = viewModel.gameViewParams,
+                tableGridLines = gameGrid.tableGridLines
+        )
+        GameViewDrawingCalculator.fillGameViewNewItems(
+                newItemsSet = viewModel.newItemsSet,
+                gameViewDimensions = gameViewDimensions,
+                gameViewParams = viewModel.gameViewParams,
+                newElementsGrid = gameGrid.newElementsGrid
+        )
         GameViewDrawingCalculator.fillUndoButton(gameViewDimensions, undoButtonHolder)
         gameDrawer.onLayout(undoButtonHolder.value)
     }

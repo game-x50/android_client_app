@@ -34,7 +34,10 @@ internal class ClearAllLocalGamesInfoUseCaseTest {
         localRecordsRepositoryStorage = LocalRecordsRepositoryStorageMockImpl()
         localRepo = LocalRecordsRepoTestImpl(localRecordsRepositoryStorage, scheduler)
         startSyncUseCase = StartSyncUseCaseStubImpl()
-        clearAllLocalGamesInfoUseCase = ClearAllLocalGamesInfoUseCaseImpl(startSyncUseCase = startSyncUseCase, localRecordsRepository = localRepo)
+        clearAllLocalGamesInfoUseCase = ClearAllLocalGamesInfoUseCaseImpl(
+                startSyncUseCase = startSyncUseCase,
+                localRecordsRepository = localRepo
+        )
     }
 
     @After

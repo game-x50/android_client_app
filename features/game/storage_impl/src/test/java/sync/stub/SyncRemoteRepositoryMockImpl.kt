@@ -40,17 +40,23 @@ internal class SyncRemoteRepositoryMockImpl : SyncRemoteRepository {
             createDelay()
                     .map { returnTimestampResult.getOrThrow() }
 
-    override fun uploadLocalModified(requests: List<UploadLocalModifiedRequest>): Single<List<LocalModifiedResponse>> =
+    override fun uploadLocalModified(
+            requests: List<UploadLocalModifiedRequest>
+    ): Single<List<LocalModifiedResponse>> =
             Completable.fromAction { receivedUploadLocalModifiedRequests = requests }
                     .andThen(createDelay())
                     .map { returnListLocalModifiedResponses }
 
-    override fun updateLocalSynced(requests: List<UpdateLocalSyncedRequest>): Single<List<UpdateLocalNonModifiedResponse>> =
+    override fun updateLocalSynced(
+            requests: List<UpdateLocalSyncedRequest>
+    ): Single<List<UpdateLocalNonModifiedResponse>> =
             Completable.fromAction { receivedUpdateLocalSyncedRequest = requests }
                     .andThen(createDelay())
                     .map { returnListUpdateLocalNonModifiedResponses }
 
-    override fun getNewRemoteCreated(request: GetNewRemoteCreatedRequest): Single<List<RemoteRecord>> =
+    override fun getNewRemoteCreated(
+            request: GetNewRemoteCreatedRequest
+    ): Single<List<RemoteRecord>> =
             Completable.fromAction { receivedGetNewRemoteCreatedRequest = request }
                     .andThen(createDelay())
                     .map { returnListRemoteRecords }

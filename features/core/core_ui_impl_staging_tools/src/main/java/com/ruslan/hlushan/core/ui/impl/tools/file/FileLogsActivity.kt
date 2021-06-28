@@ -41,7 +41,10 @@ internal class FileLogsActivity : BaseActivity(), PermissionResultListener {
 
     private val logsAdapter = DelegatesRecyclerAdapter(LogsAdapterDelegate())
 
-    private val binding by bindViewBinding(CoreUiImplStagingToolsFileLogsScreenBinding::bind, R.id.v_root_activity_file_logs)
+    private val binding by bindViewBinding(
+            CoreUiImplStagingToolsFileLogsScreenBinding::bind,
+            R.id.v_root_activity_file_logs
+    )
 
     private val viewModel: FileLogsViewModel by bindBaseViewModel {
         this.getUiCoreImplStagingHelpersComponent().fileLogsViewModelFactory().create()
@@ -121,17 +124,18 @@ internal class FileLogsActivity : BaseActivity(), PermissionResultListener {
     private fun setState(command: FileLogsViewModel.Command.SetState) {
         logsAdapter.submitList(command.logs)
 
+        @Suppress("MaxLineLength")
         binding?.activityFileLogsSwipeRefresh?.isRefreshing = (command.additional is PaginationState.Additional.Loading)
 
         when (command.additional) {
             is PaginationState.Additional.WaitingForLoadMore -> {
                 //TODO
             }
-            is PaginationState.Additional.Error -> {
+            is PaginationState.Additional.Error              -> {
                 //TODO
             }
             is PaginationState.Additional.Loading,
-            null                                -> Unit
+            null                                             -> Unit
         }.exhaustive
     }
 

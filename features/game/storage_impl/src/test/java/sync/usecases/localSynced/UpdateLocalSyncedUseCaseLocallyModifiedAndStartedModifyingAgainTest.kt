@@ -16,6 +16,7 @@ import generateFakeRemoteRecord
 import org.junit.Test
 import org.threeten.bp.Instant
 
+@SuppressWarnings("MaxLineLength")
 internal class UpdateLocalSyncedUseCaseLocallyModifiedAndStartedModifyingAgainTest : BaseUpdateLocalSyncedUseCaseTest() {
 
     @Test
@@ -56,7 +57,9 @@ internal class UpdateLocalSyncedUseCaseLocallyModifiedAndStartedModifyingAgainTe
                 .subscribe()
 
         val expectedFinal = RecordSyncState(
-                remoteInfo = original.syncState.remoteInfo!!.copy(lastRemoteSyncedTimestamp = lastRemoteSyncedTimestamp),
+                remoteInfo = original.syncState.remoteInfo!!.copy(
+                        lastRemoteSyncedTimestamp = lastRemoteSyncedTimestamp
+                ),
                 localAction = LocalAction.Update(actionId = recordAfterPlayingLocalActionId),
                 lastLocalModifiedTimestamp = updatedLastLocalModifiedTimestamp,
                 localCreateId = null,
@@ -65,7 +68,9 @@ internal class UpdateLocalSyncedUseCaseLocallyModifiedAndStartedModifyingAgainTe
 
         val expectedRecord = GameRecord(localSyncedRecordId, updatedGameState, updatedTotalPlayed)
 
-        localRepo.assertRecordsWithSyncStateInLocalRepo(listOf(GameRecordWithSyncState(expectedRecord, expectedFinal)))
+        localRepo.assertRecordsWithSyncStateInLocalRepo(
+                listOf(GameRecordWithSyncState(expectedRecord, expectedFinal))
+        )
     }
 
     @Test

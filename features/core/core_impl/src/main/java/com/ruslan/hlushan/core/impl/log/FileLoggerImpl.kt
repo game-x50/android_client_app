@@ -189,8 +189,12 @@ private fun readNextFileLogsSync(
             pagesRequest = pagesRequest,
             requestPageId = requestPageId,
             limit = limitFiles,
-            createNextPageIdFor = { requestId, pageResult -> createNextPageIdFor(sorterFilesList, pageResult) },
-            createPreviousPageIdFor = { requestId, pageResult -> createPreviousPageIdFor(sorterFilesList, pageResult) },
+            createNextPageIdFor = { requestId, pageResult ->
+                createNextPageIdFor(sorterFilesList, pageResult)
+            },
+            createPreviousPageIdFor = { requestId, pageResult ->
+                createPreviousPageIdFor(sorterFilesList, pageResult)
+            },
     )
 }
 
@@ -220,7 +224,9 @@ private fun getItemsForPreviousDirection(
         limitFiles: Int
 ): List<String> {
     val positionOfPrevious: Int = if (lastFileNameInPreviousPageWithoutExtension != null) {
-        sorterFilesList.indexOfFirst { file -> (file.nameWithoutExtension == lastFileNameInPreviousPageWithoutExtension) }
+        sorterFilesList.indexOfFirst { file ->
+            (file.nameWithoutExtension == lastFileNameInPreviousPageWithoutExtension)
+        }
     } else {
         1
     }
@@ -257,7 +263,8 @@ private fun createNextPageIdFor(
         pageResult: List<String>
 ): NextPageId.Existing<String> {
     val lastPresentedItem = pageResult.last()
-    val positionOfLast: Int = sorterFilesList.indexOfFirst { file -> file.nameWithoutExtension == lastPresentedItem }
+    val positionOfLast: Int = sorterFilesList
+            .indexOfFirst { file -> file.nameWithoutExtension == lastPresentedItem }
 
     val positionOfNext = (positionOfLast + 1)
     val nextNameWithoutExtension = sorterFilesList[positionOfNext].nameWithoutExtension

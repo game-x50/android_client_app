@@ -5,9 +5,7 @@ import androidx.annotation.CallSuper
 import androidx.recyclerview.widget.RecyclerView
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 
-/**
- * Created by User on 21.09.2017.
- */
+@Suppress("MaxLineLength")
 abstract class BaseItemViewHolder<out Id : Any, RI : RecyclerItem<Id>>(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     @UiMainThread

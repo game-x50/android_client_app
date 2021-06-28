@@ -1,4 +1,4 @@
-@file:Suppress("TooManyFunctions", "MatchingDeclarationName")
+@file:Suppress("TooManyFunctions", "MatchingDeclarationName", "MaxLineLength")
 
 package com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination
 

@@ -25,22 +25,30 @@ internal class ItemsMatrix(
 
     val items: List<RectangleArea> =
             (0 until (countRowsAndColumns * countRowsAndColumns))
-                    .map { pos -> RectangleArea.createDefault(position = pos, number = 0, isFake = true, drawBackground = true) }
+                    .map { pos ->
+                        RectangleArea.createDefault(position = pos, number = 0, isFake = true, drawBackground = true)
+                    }
                     .toMutableList()
 
     val rowSums: List<RectangleArea> =
             (0 until countRowsAndColumns)
-                    .map { pos -> RectangleArea.createDefault(position = pos, number = 0, isFake = true, drawBackground = true) }
+                    .map { pos ->
+                        RectangleArea.createDefault(position = pos, number = 0, isFake = true, drawBackground = true)
+                    }
                     .toMutableList()
 
     val columnSums: List<RectangleArea> =
             (0 until countRowsAndColumns)
-                    .map { pos -> RectangleArea.createDefault(position = pos, number = 0, isFake = true, drawBackground = true) }
+                    .map { pos ->
+                        RectangleArea.createDefault(position = pos, number = 0, isFake = true, drawBackground = true)
+                    }
                     .toMutableList()
 
     val rectanglesSums: MutableList<RectangleArea> =
             (0 until countRowsAndColumns)
-                    .map { pos -> RectangleArea.createDefault(position = pos, number = 0, isFake = true, drawBackground = false) }
+                    .map { pos ->
+                        RectangleArea.createDefault(position = pos, number = 0, isFake = true, drawBackground = false)
+                    }
                     .toMutableList()
 
     fun replaceFakeWith(rectangleArea: RectangleArea): Boolean {
@@ -88,6 +96,7 @@ internal class ItemsMatrix(
 
         val changedRectangleIndex: Int = getChangedRectangle(wasChangedIndex)
         val changedRectangleSum: Int = rectanglesSums[changedRectangleIndex].number
+        @Suppress("MaxLineLength")
         val wasRectangleCombo: Boolean = (COMBO_SUMS.contains(changedRectangleSum)
                                           && (getNonFakeRectangleElements(changedRectangleIndex).size == countRowsAndColumns))
         if (wasRectangleCombo) {

@@ -17,8 +17,12 @@ class AlphabetComparator(private val alphabet: String?) : Comparator<String?> {
                 (o1.isNullOrEmpty() && o2.isNullOrEmpty()) -> 0
                 o1.isNullOrEmpty()                         -> 1
                 o2.isNullOrEmpty()                         -> -1
-                alphabet.isNullOrBlank()                   -> o1.compareTo(o2)
-                else                                       -> compareOnAllDataPresented(nonEmptyString1 = o1, nonEmptyString2 = o2, nonEmptyAlphabet = alphabet)
+                alphabet.isNullOrBlank()                   -> {
+                    o1.compareTo(o2)
+                }
+                else                                       -> {
+                    compareOnAllDataPresented(nonEmptyString1 = o1, nonEmptyString2 = o2, nonEmptyAlphabet = alphabet)
+                }
             }
 }
 
@@ -53,5 +57,9 @@ private fun compareOnAllDataPresented(
         }
     }
 
-    throw IllegalArgumentException("nonEmptyString1 = $nonEmptyString1, nonEmptyString2 = $nonEmptyString2, nonEmptyAlphabet = $nonEmptyAlphabet")
+    throw IllegalArgumentException(
+            "nonEmptyString1 = $nonEmptyString1," +
+            " nonEmptyString2 = $nonEmptyString2," +
+            " nonEmptyAlphabet = $nonEmptyAlphabet"
+    )
 }

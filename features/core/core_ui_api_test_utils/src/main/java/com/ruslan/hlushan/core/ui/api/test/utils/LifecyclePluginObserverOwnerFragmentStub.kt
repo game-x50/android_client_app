@@ -268,12 +268,16 @@ open class LifecyclePluginObserverOwnerFragmentStub : LifecyclePluginObserver.Ow
     }
 }
 
-fun LifecyclePluginObserverOwnerFragmentStub.from_init_go_to(detailState: LifecyclePluginObserverOwnerFragmentStub.DetailState) {
+fun LifecyclePluginObserverOwnerFragmentStub.from_init_go_to(
+        detailState: LifecyclePluginObserverOwnerFragmentStub.DetailState
+) {
     assertNull(this.currentState)
     this.go_to(detailState)
 }
 
-fun LifecyclePluginObserverOwnerFragmentStub.go_to(newState: LifecyclePluginObserverOwnerFragmentStub.DetailState) {
+fun LifecyclePluginObserverOwnerFragmentStub.go_to(
+        newState: LifecyclePluginObserverOwnerFragmentStub.DetailState
+) {
     when {
         (this.detailState > newState) -> fail()
         (this.detailState < newState) -> {

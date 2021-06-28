@@ -19,9 +19,7 @@ import generateFakeRemoteRecord
 import org.junit.Test
 import org.threeten.bp.Instant
 
-/**
- * @author Ruslan Hlushan on 2019-05-31
- */
+@Suppress("MaxLineLength")
 internal class UploadLocalModifiedUseCaseLocallyModifiedAndStartedModifyingAgainTest : BaseUploadLocalModifiedUseCaseTest() {
 
     @Test
@@ -74,7 +72,9 @@ internal class UploadLocalModifiedUseCaseLocallyModifiedAndStartedModifyingAgain
                 totalPlayed = updatedTotalPlayed
         )
 
-        localRepo.assertRecordsWithSyncStateInLocalRepo(listOf(GameRecordWithSyncState(expectedFinalCreatedRecord, expectedFinal)))
+        localRepo.assertRecordsWithSyncStateInLocalRepo(
+                listOf(GameRecordWithSyncState(expectedFinalCreatedRecord, expectedFinal))
+        )
     }
 
     @Test
@@ -247,7 +247,9 @@ internal class UploadLocalModifiedUseCaseLocallyModifiedAndStartedModifyingAgain
                 totalPlayed = updatedTotalPlayed
         )
 
-        localRepo.assertRecordsWithSyncStateInLocalRepo(listOf(GameRecordWithSyncState(localUpdatedRecord, expectedFinalSyncState)))
+        localRepo.assertRecordsWithSyncStateInLocalRepo(
+                listOf(GameRecordWithSyncState(localUpdatedRecord, expectedFinalSyncState))
+        )
     }
 
     @Test
@@ -297,6 +299,8 @@ internal class UploadLocalModifiedUseCaseLocallyModifiedAndStartedModifyingAgain
                 totalPlayed = updatedTotalPlayed
         )
 
-        localRepo.assertRecordsWithSyncStateInLocalRepo(listOf(GameRecordWithSyncState(localUpdatedRecord, expectedFinalSyncState)))
+        localRepo.assertRecordsWithSyncStateInLocalRepo(
+                listOf(GameRecordWithSyncState(localUpdatedRecord, expectedFinalSyncState))
+        )
     }
 }

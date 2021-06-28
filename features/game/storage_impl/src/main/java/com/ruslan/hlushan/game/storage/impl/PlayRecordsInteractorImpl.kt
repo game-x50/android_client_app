@@ -43,12 +43,16 @@ constructor(
 
     override fun updateAndGetRecordForPlaying(id: Long): Single<GameRecord> =
             localRepository.getFullRecordData(id)
-                    .map { recordWithSyncState -> recordWithSyncState.record to recordWithSyncState.syncState.toModifyingNowOrThrow() }
+                    .map { recordWithSyncState ->
+                        recordWithSyncState.record to recordWithSyncState.syncState.toModifyingNowOrThrow()
+                    }
                     .flatMap { (record, newSyncState) ->
                         localRepository.updateRecordSyncState(record.id, newSyncState)
                                 .toSingle { record }
                     }
-                    .doOnError { error -> appLogger.log(this, "updateAndGetRecordForPlaying id = $id", error) }
+                    .doOnError { error ->
+                        appLogger.log(this, "updateAndGetRecordForPlaying id = $id", error)
+                    }
 
     override fun markAsNonPlaying(id: Long): Completable =
             localRepository.setPlayingById(id = id, playing = false)
@@ -57,8 +61,19 @@ constructor(
     override fun markAsNonPlayingAsynchronously(id: Long) {
         markAsNonPlaying(id = id)
                 .subscribe(
-                        { appLogger.log(this, "markAsNonPlayingAsynchronously id = $id: Success") },
-                        { error -> appLogger.log(this, "markAsNonPlayingAsynchronously id = $id: Error", error) }
+                        {
+                            appLogger.log(
+                                    this,
+                                    message = "markAsNonPlayingAsynchronously id = $id: Success"
+                            )
+                        },
+                        { error ->
+                            appLogger.log(
+                                    this,
+                                    message = "markAsNonPlayingAsynchronously id = $id: Error",
+                                    error = error
+                            )
+                        }
                 )
     }
 
@@ -70,7 +85,9 @@ constructor(
                             localRepository.removeRecordById(id)
                         } else {
                             Single.fromCallable { syncState.toLocalDeletedOrThrow(generateLocalActionId()) }
-                                    .flatMapCompletable { newSyncState -> localRepository.updateRecordSyncState(id, newSyncState) }
+                                    .flatMapCompletable { newSyncState ->
+                                        localRepository.updateRecordSyncState(id, newSyncState)
+                                    }
                         }
                     }
                     .doOnError { error -> appLogger.log(this, "removeRecordById id = $id", error) }

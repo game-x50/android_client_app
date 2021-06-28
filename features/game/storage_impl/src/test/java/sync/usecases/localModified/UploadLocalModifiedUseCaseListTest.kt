@@ -47,7 +47,10 @@ internal class UploadLocalModifiedUseCaseListTest : BaseUploadLocalModifiedUseCa
     fun testUploadAllPartiallyFail() {
         val count = 10
 
-        val partiallyFailToResponses = generateAndAddToLocalRepoFakesAndCreateResponses(count = count, failType = FailType.PARTIALLY)
+        val partiallyFailToResponses = generateAndAddToLocalRepoFakesAndCreateResponses(
+                count = count,
+                failType = FailType.PARTIALLY
+        )
 
         assertEquals((1..count).map { SyncStatus.WAITING },
                      localRepo.getAll().map { item -> item.syncState.syncStatus })
@@ -96,7 +99,10 @@ internal class UploadLocalModifiedUseCaseListTest : BaseUploadLocalModifiedUseCa
     fun testUploadAllFailAll() {
         val count = 10
 
-        val fullFailedToResponses = generateAndAddToLocalRepoFakesAndCreateResponses(count = count, failType = FailType.ALL)
+        val fullFailedToResponses = generateAndAddToLocalRepoFakesAndCreateResponses(
+                count = count,
+                failType = FailType.ALL
+        )
 
         assertEquals(
                 (1..count).map { SyncStatus.WAITING },
@@ -214,6 +220,7 @@ internal class UploadLocalModifiedUseCaseListTest : BaseUploadLocalModifiedUseCa
                     .map { (state, response) -> response }
                     .subList(stepCounter - 1, lastElementExcludedPosition)
 
+            @Suppress("MaxLineLength")
             val expectedBeforeRemoteReturn = (
                     allPreviousStepResponses.filter { resp -> resp !is LocalModifiedResponse.Delete }.map { SyncStatus.SYNCED }
                     + (stepCounter..lastElementExcludedPosition).map { SyncStatus.SYNCHRONIZING }
@@ -258,7 +265,10 @@ internal class UploadLocalModifiedUseCaseListTest : BaseUploadLocalModifiedUseCa
 
                 when {
                     (index % 3 == 0) -> {
-                        val original = localRepo.generateAndAddLocalCreatedToLocalRepo(syncingNow = false, modifyingNow = false)
+                        val original = localRepo.generateAndAddLocalCreatedToLocalRepo(
+                                syncingNow = false,
+                                modifyingNow = false
+                        )
 
                         val response = if (shouldFail) {
                             LocalModifiedResponse.Fail(id = original.record.id)
@@ -269,7 +279,10 @@ internal class UploadLocalModifiedUseCaseListTest : BaseUploadLocalModifiedUseCa
                         original to response
                     }
                     (index % 3 == 1) -> {
-                        val original = localRepo.generateAndAddLocalUpdatedToLocalRepo(syncingNow = false, modifyingNow = false)
+                        val original = localRepo.generateAndAddLocalUpdatedToLocalRepo(
+                                syncingNow = false,
+                                modifyingNow = false
+                        )
 
                         val response = if (shouldFail) {
                             LocalModifiedResponse.Fail(id = original.record.id)
@@ -292,7 +305,9 @@ internal class UploadLocalModifiedUseCaseListTest : BaseUploadLocalModifiedUseCa
                 }
             }
 
-    private fun generateFakeResponseForLocalModified(recordWithSyncState: GameRecordWithSyncState): LocalModifiedResponse {
+    private fun generateFakeResponseForLocalModified(
+            recordWithSyncState: GameRecordWithSyncState
+    ): LocalModifiedResponse {
         val remoteCreatedTimestamp = Instant.now()
         val lastRemoteSyncedTimestamp = Instant.now()
 

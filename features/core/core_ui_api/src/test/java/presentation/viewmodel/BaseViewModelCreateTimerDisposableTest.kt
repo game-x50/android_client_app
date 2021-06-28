@@ -7,6 +7,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 import java.util.concurrent.TimeUnit
 
+@Suppress("MaxLineLength")
 class BaseViewModelCreateTimerDisposableTest : AbstractBaseViewModelDisposableTest() {
 
     @SuppressWarnings("ClassOrdering")

@@ -28,8 +28,12 @@ internal fun calculateTextColorForBackground(
             colorOnTransparent
         } else {
 
-            val whiteContrast = ColorUtils.calculateContrast(Color.WHITE, ColorUtils.setAlphaComponent(backgroundColor, MAX_ALPHA))
-            val blackContrast = ColorUtils.calculateContrast(Color.BLACK, ColorUtils.setAlphaComponent(backgroundColor, MAX_ALPHA))
+            val whiteContrast = ColorUtils.calculateContrast(
+                    Color.WHITE, ColorUtils.setAlphaComponent(backgroundColor, MAX_ALPHA)
+            )
+            val blackContrast = ColorUtils.calculateContrast(
+                    Color.BLACK, ColorUtils.setAlphaComponent(backgroundColor, MAX_ALPHA)
+            )
 
             if (whiteContrast > blackContrast) {
                 Color.WHITE

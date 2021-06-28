@@ -64,7 +64,9 @@ internal class UpdateLocalSyncedUseCaseLocallyModifiedAndModifiedTest : BaseUpda
                 .subscribe()
 
         val expectedFinal = RecordSyncState(
-                remoteInfo = original.syncState.remoteInfo!!.copy(lastRemoteSyncedTimestamp = lastRemoteSyncedTimestamp),
+                remoteInfo = original.syncState.remoteInfo!!.copy(
+                        lastRemoteSyncedTimestamp = lastRemoteSyncedTimestamp
+                ),
                 localAction = LocalAction.Update(actionId = recordAfterPlayingLocalActionId),
                 lastLocalModifiedTimestamp = updatedLastLocalModifiedTimestamp2,
                 localCreateId = null,

@@ -72,7 +72,9 @@ class AndroidNotification(
                 )
 
         if (channel.enableSoundAndVibrate) {
-            builder.setDefaults(Notification.DEFAULT_SOUND or Notification.DEFAULT_VIBRATE or Notification.DEFAULT_LIGHTS)
+            builder.setDefaults(
+                    Notification.DEFAULT_SOUND or Notification.DEFAULT_VIBRATE or Notification.DEFAULT_LIGHTS
+            )
         }
 
         for (action in actions) {
@@ -105,7 +107,11 @@ class AndroidNotification(
                     NotificationManager.IMPORTANCE_DEFAULT
                 }
 
-                val notificationChannel = NotificationChannel(channel.channelId, context.getString(channel.channelNameResId), importance)
+                val notificationChannel = NotificationChannel(
+                        channel.channelId,
+                        context.getString(channel.channelNameResId),
+                        importance
+                )
                 notificationChannel.description = context.getString(channel.channelDescriptionResId)
                 notificationChannel.enableLights(true)
                 notificationChannel.lightColor = Color.BLUE

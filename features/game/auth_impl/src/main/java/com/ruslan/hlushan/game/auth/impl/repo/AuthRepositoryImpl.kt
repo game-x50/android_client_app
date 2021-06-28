@@ -56,9 +56,14 @@ constructor(
 ) : AuthRepository {
 
     private val authPrefs: SharedPreferences = SharedPrefsProvider.provideSecurePrefs(
-            context = context.applicationContext, prefsName = "app_auth_prefs",
-            keySetName = "auth_master_keyset", prefFileName = "auth_master_key_preference", masterKeyUri = "auth_master_key",
-            dKeySetName = "auth_dmaster_keyset", dPrefFileName = "auth_dmaster_key_preference", dMasterKeyUri = "auth_dmaster_key"
+            context = context.applicationContext,
+            prefsName = "app_auth_prefs",
+            keySetName = "auth_master_keyset",
+            prefFileName = "auth_master_key_preference",
+            masterKeyUri = "auth_master_key",
+            dKeySetName = "auth_dmaster_keyset",
+            dPrefFileName = "auth_dmaster_key_preference",
+            dMasterKeyUri = "auth_dmaster_key"
     )
 
     private val userSubject: BehaviorSubject<ValueHolder<User?>>
@@ -134,7 +139,9 @@ constructor(
                 getUser() ?: throw IllegalStateException("User is null")
             }.flatMap { currentUser ->
                 logIn(email = currentUser.email, password = oldPassword)
-                        .flatMapCompletableSuccess<Unit, AuthError> { updateUserPassword(oldPassword = oldPassword, newPassword = newPassword) }
+                        .flatMapCompletableSuccess<Unit, AuthError> {
+                            updateUserPassword(oldPassword = oldPassword, newPassword = newPassword)
+                        }
                         .flatMapNestedSuccess<Unit, AuthError, Unit> {
                             val updatedUser = currentUser.copy(nickname = newNickname)
                             updateUser(currentUser, updatedUser)
@@ -146,7 +153,9 @@ constructor(
                     .andThen(storeUserLocal(null))
                     .andThen(storeUserTokenLocal(null))
 
-    private fun provideErrorIfUserNameExists(nickname: String): Single<OperationResult<Unit, AuthError.UserWithSuchCredentialsExists>> =
+    private fun provideErrorIfUserNameExists(
+            nickname: String
+    ): Single<OperationResult<Unit, AuthError.UserWithSuchCredentialsExists>> =
             Single.fromCallable { UserNameRequest(userName = nickname) }
                     .flatMap { request -> authHttpsApi.checkUniqueUserName(request) }
                     .subscribeOn(schedulersManager.io)

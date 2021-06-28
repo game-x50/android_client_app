@@ -10,6 +10,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -22,7 +23,11 @@ private const val INVALID_RESOURCE_ID = 0
 
 class MenuItemLayout
 @JvmOverloads
-constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : RelativeLayout(context, attrs, defStyleAttr) {
+constructor(
+        context: Context,
+        attrs: AttributeSet? = null,
+        @AttrRes defStyleAttr: Int = 0
+) : RelativeLayout(context, attrs, defStyleAttr) {
 
     private var mTitleTextView: TextView? = null
     private var mHintTextView: TextView? = null
@@ -77,20 +82,28 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
             @ColorInt var arrowColor: Int = INVALID_RESOURCE_ID
             @DrawableRes var backgroundImageDrawableResId: Int = INVALID_RESOURCE_ID
 
-            @ColorInt val colorSecondary = context.colorAttributeValue(com.google.android.material.R.attr.colorSecondary)
+            @ColorInt val colorSecondary = context.colorAttributeValue(
+                    com.google.android.material.R.attr.colorSecondary
+            )
             @ColorInt val textColor = context.colorAttributeValue(android.R.attr.textColor)
 
             var typedArray: TypedArray? = null
             try {
                 typedArray = context.obtainStyledAttributes(attrs, R.styleable.MenuItemLayout)
-                hintResId = typedArray.getResourceId(R.styleable.MenuItemLayout_item_hint, 0)
-                titleResId = typedArray.getResourceId(R.styleable.MenuItemLayout_item_title, 0)
-                iconResId = typedArray.getResourceId(R.styleable.MenuItemLayout_item_icon, 0)
+                hintResId = typedArray.getResourceId(R.styleable.MenuItemLayout_item_hint, hintResId)
+                titleResId = typedArray.getResourceId(R.styleable.MenuItemLayout_item_title, titleResId)
+                iconResId = typedArray.getResourceId(R.styleable.MenuItemLayout_item_icon, iconResId)
                 titleTextColor = typedArray.getColor(R.styleable.MenuItemLayout_titleTextColor, textColor)
                 hintTextColor = typedArray.getColor(R.styleable.MenuItemLayout_hintTextColor, textColor)
                 arrowColor = typedArray.getColor(R.styleable.MenuItemLayout_arrowColor, colorSecondary)
-                backgroundImageDrawableResId = typedArray.getResourceId(R.styleable.MenuItemLayout_backgroundImageDrawable, 0)
-                mEnableTitleAnimation = typedArray.getBoolean(R.styleable.MenuItemLayout_enableTitleAnimation, false)
+                backgroundImageDrawableResId = typedArray.getResourceId(
+                        R.styleable.MenuItemLayout_backgroundImageDrawable,
+                        backgroundImageDrawableResId
+                )
+                mEnableTitleAnimation = typedArray.getBoolean(
+                        R.styleable.MenuItemLayout_enableTitleAnimation,
+                        false
+                )
             } catch (e: Exception) {
                 e.printStackTrace()
             } finally {

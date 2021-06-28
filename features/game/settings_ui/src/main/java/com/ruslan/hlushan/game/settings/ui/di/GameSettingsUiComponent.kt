@@ -57,7 +57,7 @@ internal interface GameSettingsUiComponent {
     }
 }
 
-@SuppressWarnings("UnsafeCast")
+@SuppressWarnings("UnsafeCast", "MaxLineLength")
 internal fun BaseFragment.getGameSettingsUiComponent(): GameSettingsUiComponent {
     val injectorHolder = (activity?.application as InjectorHolder)
     val components = injectorHolder.components

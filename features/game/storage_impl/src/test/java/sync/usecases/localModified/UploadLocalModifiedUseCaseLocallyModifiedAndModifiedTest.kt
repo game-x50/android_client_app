@@ -77,7 +77,9 @@ internal class UploadLocalModifiedUseCaseLocallyModifiedAndModifiedTest : BaseUp
                 totalPlayed = updatedTotalPlayed2
         )
 
-        localRepo.assertRecordsWithSyncStateInLocalRepo(listOf(GameRecordWithSyncState(expectedFinalCreatedRecord, expectedFinalSyncState)))
+        localRepo.assertRecordsWithSyncStateInLocalRepo(
+                listOf(GameRecordWithSyncState(expectedFinalCreatedRecord, expectedFinalSyncState))
+        )
     }
 
     @SuppressWarnings("LongMethod")
@@ -274,7 +276,9 @@ internal class UploadLocalModifiedUseCaseLocallyModifiedAndModifiedTest : BaseUp
                 totalPlayed = updatedTotalPlayed2
         )
 
-        localRepo.assertRecordsWithSyncStateInLocalRepo(listOf(GameRecordWithSyncState(localUpdatedRecord, expectedFinalSyncState)))
+        localRepo.assertRecordsWithSyncStateInLocalRepo(
+                listOf(GameRecordWithSyncState(localUpdatedRecord, expectedFinalSyncState))
+        )
     }
 
     @Test
@@ -332,6 +336,8 @@ internal class UploadLocalModifiedUseCaseLocallyModifiedAndModifiedTest : BaseUp
                 totalPlayed = updatedTotalPlayed2
         )
 
-        localRepo.assertRecordsWithSyncStateInLocalRepo(listOf(GameRecordWithSyncState(localUpdatedRecord, expectedFinalSyncState)))
+        localRepo.assertRecordsWithSyncStateInLocalRepo(
+                listOf(GameRecordWithSyncState(localUpdatedRecord, expectedFinalSyncState))
+        )
     }
 }

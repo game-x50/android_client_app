@@ -32,7 +32,9 @@ import javax.inject.Inject
 
 private const val DEFAULT_GRID_DISTANCE_DP: Int = 16
 
-abstract class AbstractStagingSettingsFragment : BaseFragment(R.layout.core_ui_impl_staging_tools_developer_settings_screen) {
+abstract class AbstractStagingSettingsFragment : BaseFragment(
+        layoutResId = R.layout.core_ui_impl_staging_tools_developer_settings_screen
+) {
 
     private val binding by bindViewBinding(CoreUiImplStagingToolsDeveloperSettingsScreenBinding::bind)
 
@@ -84,17 +86,29 @@ abstract class AbstractStagingSettingsFragment : BaseFragment(R.layout.core_ui_i
 
     @UiMainThread
     private fun setUpViewListeners() {
-        binding?.fragmentDevSettingsTinyDancerSwitch?.setOnCheckedChangeListener { buttonView, isChecked -> tinyDancerTool.show = isChecked }
-        binding?.fragmentDevSettingsTaktSwitch?.setOnCheckedChangeListener { buttonView, isChecked -> taktTool.show = isChecked }
-        binding?.fragmentDevSettingsLeakCanarySwitch?.setOnCheckedChangeListener { buttonView, isChecked -> leakCanaryTool.enabled = isChecked }
-        binding?.fragmentDevSettingsFileLogsEnabledSwitch?.setOnCheckedChangeListener { buttonView, isChecked -> fileLogger.enabled = isChecked }
-        binding?.fragmentDevSettingsDrawGridSwitch?.setOnCheckedChangeListener { buttonView, isChecked -> setUpDrawGrid(isChecked) }
+        binding?.fragmentDevSettingsTinyDancerSwitch?.setOnCheckedChangeListener { buttonView, isChecked ->
+            tinyDancerTool.show = isChecked
+        }
+        binding?.fragmentDevSettingsTaktSwitch?.setOnCheckedChangeListener { buttonView, isChecked ->
+            taktTool.show = isChecked
+        }
+        binding?.fragmentDevSettingsLeakCanarySwitch?.setOnCheckedChangeListener { buttonView, isChecked ->
+            leakCanaryTool.enabled = isChecked
+        }
+        binding?.fragmentDevSettingsFileLogsEnabledSwitch?.setOnCheckedChangeListener { buttonView, isChecked ->
+            fileLogger.enabled = isChecked
+        }
+        binding?.fragmentDevSettingsDrawGridSwitch?.setOnCheckedChangeListener { buttonView, isChecked ->
+            setUpDrawGrid(isChecked)
+        }
 
         binding?.fragmentDevSettingsStartBlockCanaryBtn?.setThrottledOnClickListener { blockCanaryTool.start() }
         binding?.fragmentDevSettingsStopBlockCanaryBtn?.setThrottledOnClickListener { blockCanaryTool.stop() }
 
         binding?.fragmentDevSettingsOpenChuckBtn?.setThrottledOnClickListener { chuckTool.openScreen() }
-        binding?.fragmentDevSettingsRxDisposableWatcherReportBtn?.setThrottledOnClickListener { rxDisposableWatcherTool.showReport() }
+        binding?.fragmentDevSettingsRxDisposableWatcherReportBtn?.setThrottledOnClickListener {
+            rxDisposableWatcherTool.showReport()
+        }
         binding?.fragmentDevSettingsOpenLeakCanaryBtn?.setThrottledOnClickListener { leakCanaryTool.openScreen() }
         binding?.fragmentDevSettingsOpenBlockCanaryBtn?.setThrottledOnClickListener { blockCanaryTool.openScreen() }
         binding?.fragmentDevSettingsOpenLynxBtn?.setThrottledOnClickListener { lynxTool.openScreen() }
@@ -123,8 +137,9 @@ abstract class AbstractStagingSettingsFragment : BaseFragment(R.layout.core_ui_i
     private fun setUpDrawGrid(draw: Boolean) {
         if (isResumed) {
             if (draw) {
-                val distancePx = (binding?.fragmentDevSettingsDrawGridDistanceInput?.text?.toString()?.toIntOrNull() ?: DEFAULT_GRID_DISTANCE_DP)
-                        .toFloat().toPx().toInt()
+                val distance = (binding?.fragmentDevSettingsDrawGridDistanceInput?.text?.toString()?.toIntOrNull()
+                                ?: DEFAULT_GRID_DISTANCE_DP)
+                val distancePx = distance.toFloat().toPx().toInt()
 
                 activity?.applyDrawableOverlay(GridDrawable(
                         linesColor = Color.BLACK,

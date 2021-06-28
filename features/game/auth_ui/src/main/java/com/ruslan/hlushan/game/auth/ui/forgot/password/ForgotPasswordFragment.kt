@@ -47,6 +47,7 @@ internal class ForgotPasswordFragment : BaseFragment(
     @UiMainThread
     override fun onCancel() = parentRouter.exit()
 
+    @Suppress("MaxLineLength")
     @UiMainThread
     private fun handleCommand(command: ForgotPasswordViewModel.Command) =
             when (command) {

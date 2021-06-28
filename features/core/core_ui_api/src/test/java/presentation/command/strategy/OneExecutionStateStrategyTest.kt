@@ -5,6 +5,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Test
 
+@SuppressWarnings("MaxLineLength")
 class OneExecutionStateStrategyTest {
 
     @Test
@@ -195,7 +196,10 @@ class OneExecutionStateStrategyTest {
 private fun `assert beforeApply not mutate state and adds incoming command`(
         oldStateWithIncomingCommand: OldStateWithIncomingCommand
 ) {
-    val newState = OneExecutionStateStrategy().beforeApply(oldStateWithIncomingCommand.oldState, oldStateWithIncomingCommand.incomingCommand)
+    val newState = OneExecutionStateStrategy().beforeApply(
+            oldStateWithIncomingCommand.oldState,
+            oldStateWithIncomingCommand.incomingCommand
+    )
     val expectedNewState = oldStateWithIncomingCommand.oldState.plus(oldStateWithIncomingCommand.incomingCommand)
     assertNotEquals(oldStateWithIncomingCommand.oldState, newState)
     assertEquals(expectedNewState, newState)
@@ -205,7 +209,10 @@ private fun `assert afterApply not mutate state and removes incoming command`(
         oldStateWithIncomingCommand: OldStateWithIncomingCommand,
         isOldStateEqualToNew: Boolean
 ) {
-    val newState = OneExecutionStateStrategy().afterApply(oldStateWithIncomingCommand.oldState, oldStateWithIncomingCommand.incomingCommand)
+    val newState = OneExecutionStateStrategy().afterApply(
+            oldStateWithIncomingCommand.oldState,
+            oldStateWithIncomingCommand.incomingCommand
+    )
     val expectedNewState = oldStateWithIncomingCommand.oldState.minus(oldStateWithIncomingCommand.incomingCommand)
     assertEquals(isOldStateEqualToNew, (oldStateWithIncomingCommand.oldState == newState))
     assertEquals(expectedNewState, newState)

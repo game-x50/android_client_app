@@ -2,9 +2,9 @@ package com.ruslan.hlushan.game.storage.impl.local
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.ruslan.hlushan.android.extensions.ReferencePreferencesDelegate
 import com.ruslan.hlushan.core.api.managers.SchedulersManager
 import com.ruslan.hlushan.storage.SharedPrefsProvider
-import com.ruslan.hlushan.storage.delegate.ReferencePreferencesDelegate
 import io.reactivex.Completable
 import org.threeten.bp.Instant
 import javax.inject.Inject

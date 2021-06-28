@@ -88,8 +88,8 @@ constructor(
     @UiMainThread
     override fun onStateUpdated() =
             mutableCommandsQueue.add(Command.SetState(
-                   gameRecords =  state.itemsOrEmpty(),
-                   additional = (state as? PaginationState.Active)?.additional
+                    gameRecords = state.itemsOrEmpty(),
+                    additional = (state as? PaginationState.Active)?.additional
             ))
 
     @UiMainThread
@@ -110,7 +110,9 @@ constructor(
                         val game = gameHolder.value
                         if (game != null) {
                             Observable.just(GameRecordRecyclerItem(game))
-                                    .doOnNext { updatedItem -> onSingleItemUpdated(updatedItem = updatedItem, notifyStateUpdated = false) }
+                                    .doOnNext { updatedItem ->
+                                        onSingleItemUpdated(updatedItem = updatedItem, notifyStateUpdated = false)
+                                    }
                         } else {
                             onSingleItemDeleted(deletedItemId = recyclerItem.gameRecord.record.id)
                             Observable.empty()
@@ -181,7 +183,10 @@ constructor(
             override fun produceStrategy(): HandleStrategy = AddToEndSingleStrategy()
         }
 
-        class SetState(val gameRecords: List<GameRecordRecyclerItem>, val additional: PaginationState.Additional?) : Command() {
+        class SetState(
+                val gameRecords: List<GameRecordRecyclerItem>,
+                val additional: PaginationState.Additional?
+        ) : Command() {
             override fun produceStrategy(): HandleStrategy = AddToEndSingleStrategy()
         }
 

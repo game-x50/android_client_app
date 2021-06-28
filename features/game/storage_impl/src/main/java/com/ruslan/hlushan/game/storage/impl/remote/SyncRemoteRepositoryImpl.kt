@@ -31,25 +31,55 @@ constructor(
     override fun getRemoteTimestamp(): Single<Instant> =
             syncRemoteHttpApi.getRemoteTimestamp()
                     .map(CurrentTimestampResponse::nowTimestamp)
-                    .doOnError { error -> appLogger.log(this@SyncRemoteRepositoryImpl, "getRemoteTimestamp: ERROR", error) }
+                    .doOnError { error ->
+                        appLogger.log(
+                                this@SyncRemoteRepositoryImpl,
+                                message = "getRemoteTimestamp: ERROR",
+                                error = error
+                        )
+                    }
                     .subscribeOn(schedulersManager.io)
 
-    override fun uploadLocalModified(requests: List<UploadLocalModifiedRequest>): Single<List<LocalModifiedResponse>> =
+    override fun uploadLocalModified(
+            requests: List<UploadLocalModifiedRequest>
+    ): Single<List<LocalModifiedResponse>> =
             Single.fromCallable { requests.map(UploadModifiedApiRequest::from) }
                     .flatMap { apiRequests -> syncRemoteHttpApi.uploadLocalModified(apiRequests) }
                     .map { list -> list.map(LocalModifiedApiResponse::toLocalModifiedResponse) }
-                    .doOnError { error -> appLogger.log(this@SyncRemoteRepositoryImpl, "uploadLocalModified: ERROR: requests = $requests", error) }
+                    .doOnError { error ->
+                        appLogger.log(
+                                this@SyncRemoteRepositoryImpl,
+                                message = "uploadLocalModified: ERROR: requests = $requests",
+                                error = error
+                        )
+                    }
                     .subscribeOn(schedulersManager.io)
 
-    override fun updateLocalSynced(requests: List<UpdateLocalSyncedRequest>): Single<List<UpdateLocalNonModifiedResponse>> =
+    override fun updateLocalSynced(
+            requests: List<UpdateLocalSyncedRequest>
+    ): Single<List<UpdateLocalNonModifiedResponse>> =
             syncRemoteHttpApi.updateLocalSynced(requests)
                     .map { list -> list.map(UpdateLocalNonModifiedApiResponse::toUpdateLocalNonModifiedResponse) }
-                    .doOnError { error -> appLogger.log(this@SyncRemoteRepositoryImpl, "updateLocalSynced: ERROR: requests = $requests", error) }
+                    .doOnError { error ->
+                        appLogger.log(
+                                this@SyncRemoteRepositoryImpl,
+                                message = "updateLocalSynced: ERROR: requests = $requests",
+                                error = error
+                        )
+                    }
                     .subscribeOn(schedulersManager.io)
 
-    override fun getNewRemoteCreated(request: GetNewRemoteCreatedRequest): Single<List<RemoteRecord>> =
+    override fun getNewRemoteCreated(
+            request: GetNewRemoteCreatedRequest
+    ): Single<List<RemoteRecord>> =
             syncRemoteHttpApi.getNewRemoteCreated(request)
                     .map { list -> list.map(RemoteApiGame::toRemoteRecord) }
-                    .doOnError { error -> appLogger.log(this@SyncRemoteRepositoryImpl, "getNewRemoteCreated: ERROR: request = $request", error) }
+                    .doOnError { error ->
+                        appLogger.log(
+                                this@SyncRemoteRepositoryImpl,
+                                message = "getNewRemoteCreated: ERROR: request = $request",
+                                error = error
+                        )
+                    }
                     .subscribeOn(schedulersManager.io)
 }

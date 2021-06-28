@@ -66,7 +66,8 @@ constructor(
     }
 
     @DrawableRes
-    override fun getDrawableResourceIdByName(drawableResName: String): Int? = appContext.getDrawableResourceIdByName(drawableResName)
+    override fun getDrawableResourceIdByName(drawableResName: String): Int? =
+            appContext.getDrawableResourceIdByName(drawableResName)
 
     @ThreadPoolSpecification(ThreadPoolType.IO)
     override fun readRawTextFile(@RawRes rawResId: Int): Single<ValueHolder<String?>> =

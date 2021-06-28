@@ -1,6 +1,5 @@
 package com.ruslan.hlushan.game.top.ui.games
 
-import android.annotation.SuppressLint
 import android.view.View
 import androidx.annotation.LayoutRes
 import com.ruslan.hlushan.core.ui.api.recycler.AdapterDelegate
@@ -28,7 +27,7 @@ private class TopGameViewHolder(itemView: View) : BaseItemViewHolder<String, Top
     override fun onBindView(item: TopGameRecyclerItem) {
         super.onBindView(item)
 
-        @SuppressLint("SetTextI18n")
+        @Suppress("SetTextI18n", "MaxLineLength")
         binding.gameTopUiTopGameItemDescription.text =
                 "user: ${item.previewWithUserDetails.userNickname}" +
                 "\n" + "${item.previewWithUserDetails.gamePreview.totalPlayed.seconds} seconds" +

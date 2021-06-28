@@ -10,6 +10,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 
+@SuppressWarnings("MaxLineLength")
 class AbstractViewLifecycleBinderThreadTest {
 
     private lateinit var fragmentStubWithBinder: FragmentStubWithBinder

@@ -24,13 +24,13 @@ private fun String?.createMessage(): String = " :-${toDefaultMessageIfEmpty()}"
 
 private fun String.createMessageForFileLogger(): String = "${dateFormatter.format(Date())} : $this"
 
-private fun Throwable?.createMessage(): String {
-    return this?.let {
-        "${it::class.java.name}(${it.message.toDefaultMessageIfEmpty()}) \n ${Log.getStackTraceString(it)}"
-    } ?: "unknown_throwable"
-}
+private fun Throwable?.createMessage(): String =
+        (this?.let { err ->
+            "${err::class.java.name}(${err.message.toDefaultMessageIfEmpty()}) \n ${Log.getStackTraceString(err)}"
+        } ?: "unknown_throwable")
 
-private fun String?.createMessage(throwable: Throwable?): String = " :-${toDefaultMessageIfEmpty()} : ${throwable.createMessage()}"
+private fun String?.createMessage(throwable: Throwable?): String =
+        " :-${toDefaultMessageIfEmpty()} : ${throwable.createMessage()}"
 
 internal class AppLoggerImpl
 @Inject

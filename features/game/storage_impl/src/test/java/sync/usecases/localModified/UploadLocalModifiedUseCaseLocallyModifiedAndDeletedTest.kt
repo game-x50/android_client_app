@@ -66,7 +66,9 @@ internal class UploadLocalModifiedUseCaseLocallyModifiedAndDeletedTest : BaseUpl
 
         val expectedFinalGameRecord = GameRecord(localCreatedRecordId, updatedGameState, updatedTotalPlayed)
 
-        localRepo.assertRecordsWithSyncStateInLocalRepo(listOf(GameRecordWithSyncState(expectedFinalGameRecord, expectedFinalState)))
+        localRepo.assertRecordsWithSyncStateInLocalRepo(
+                listOf(GameRecordWithSyncState(expectedFinalGameRecord, expectedFinalState))
+        )
     }
 
     @Test
@@ -109,7 +111,9 @@ internal class UploadLocalModifiedUseCaseLocallyModifiedAndDeletedTest : BaseUpl
                 totalPlayed = remoteRecord.totalPlayed
         )
 
-        localRepo.assertRecordsWithSyncStateInLocalRepo(listOf(GameRecordWithSyncState(localUpdatedRecord, expectedFinalSyncState)))
+        localRepo.assertRecordsWithSyncStateInLocalRepo(
+                listOf(GameRecordWithSyncState(localUpdatedRecord, expectedFinalSyncState))
+        )
     }
 
     @Test
@@ -196,7 +200,9 @@ internal class UploadLocalModifiedUseCaseLocallyModifiedAndDeletedTest : BaseUpl
                 totalPlayed = updatedTotalPlayed
         )
 
-        localRepo.assertRecordsWithSyncStateInLocalRepo(listOf(GameRecordWithSyncState(localUpdatedRecord, expectedFinalSyncState)))
+        localRepo.assertRecordsWithSyncStateInLocalRepo(
+                listOf(GameRecordWithSyncState(localUpdatedRecord, expectedFinalSyncState))
+        )
     }
 
     @Test
@@ -246,6 +252,8 @@ internal class UploadLocalModifiedUseCaseLocallyModifiedAndDeletedTest : BaseUpl
                 totalPlayed = updatedTotalPlayed
         )
 
-        localRepo.assertRecordsWithSyncStateInLocalRepo(listOf(GameRecordWithSyncState(localUpdatedRecord, expectedFinalSyncState)))
+        localRepo.assertRecordsWithSyncStateInLocalRepo(
+                listOf(GameRecordWithSyncState(localUpdatedRecord, expectedFinalSyncState))
+        )
     }
 }

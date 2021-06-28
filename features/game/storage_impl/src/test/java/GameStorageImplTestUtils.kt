@@ -132,7 +132,9 @@ internal fun LocalRecordsRepoTestImpl.generateAndAddLocalUpdatedToLocalRepo(
     )
 }
 
-internal fun LocalRecordsRepoTestImpl.generateAndAddLocalDeletedToLocalRepo(syncingNow: Boolean): GameRecordWithSyncState {
+internal fun LocalRecordsRepoTestImpl.generateAndAddLocalDeletedToLocalRepo(
+        syncingNow: Boolean
+): GameRecordWithSyncState {
     val localActionId1 = generateFakeStringId()
 
     var localDeletedState = createLocalUpdatedState()

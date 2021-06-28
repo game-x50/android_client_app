@@ -28,12 +28,16 @@ internal class UpdateLocalSyncedUseCaseLocallyNonChangedTest : BaseUpdateLocalSy
                 .subscribe()
 
         val expectedFinal = RecordSyncState.forSync(
-                remoteInfo = original.syncState.remoteInfo!!.copy(lastRemoteSyncedTimestamp = lastRemoteSyncedTimestamp),
+                remoteInfo = original.syncState.remoteInfo!!.copy(
+                        lastRemoteSyncedTimestamp = lastRemoteSyncedTimestamp
+                ),
                 lastLocalModifiedTimestamp = original.syncState.lastLocalModifiedTimestamp,
                 modifyingNow = false
         )
 
-        localRepo.assertRecordsWithSyncStateInLocalRepo(listOf(GameRecordWithSyncState(original.record, expectedFinal)))
+        localRepo.assertRecordsWithSyncStateInLocalRepo(
+                listOf(GameRecordWithSyncState(original.record, expectedFinal))
+        )
     }
 
     @Test
@@ -65,7 +69,9 @@ internal class UpdateLocalSyncedUseCaseLocallyNonChangedTest : BaseUpdateLocalSy
                 totalPlayed = remoteRecord.totalPlayed
         )
 
-        localRepo.assertRecordsWithSyncStateInLocalRepo(listOf(GameRecordWithSyncState(localUpdatedRecord, expectedFinal)))
+        localRepo.assertRecordsWithSyncStateInLocalRepo(
+                listOf(GameRecordWithSyncState(localUpdatedRecord, expectedFinal))
+        )
     }
 
     @Test
@@ -95,6 +101,8 @@ internal class UpdateLocalSyncedUseCaseLocallyNonChangedTest : BaseUpdateLocalSy
                 modifyingNow = false
         )
 
-        localRepo.assertRecordsWithSyncStateInLocalRepo(listOf(GameRecordWithSyncState(original.record, expectedFinal)))
+        localRepo.assertRecordsWithSyncStateInLocalRepo(
+                listOf(GameRecordWithSyncState(original.record, expectedFinal))
+        )
     }
 }

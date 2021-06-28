@@ -49,7 +49,10 @@ abstract class BaseAppActivity : BaseActivity() {
     @UiMainThread
     override fun initLifecyclePluginObservers() {
         super.initLifecyclePluginObservers()
-        addLifecyclePluginObserver(FlowFragmentLifecyclePluginObserver(flowCicerone = appCicerone, createFlowNavigator = this::createNavigator))
+        addLifecyclePluginObserver(FlowFragmentLifecyclePluginObserver(
+                flowCicerone = appCicerone,
+                createFlowNavigator = this::createNavigator
+        ))
     }
 
     @CallSuper

@@ -17,5 +17,9 @@ internal fun initSkippedFramesWarning(appLogger: AppLogger) =
             @Suppress("MagicNumber")
             field.set(null, 5)
         } catch (error: Throwable) {
-            appLogger.logClass(Choreographer::class.java, "failed to change choreographer's skipped frames threshold:", error)
+            appLogger.logClass(
+                    Choreographer::class.java,
+                    message = "failed to change choreographer's skipped frames threshold:",
+                    error = error
+            )
         }

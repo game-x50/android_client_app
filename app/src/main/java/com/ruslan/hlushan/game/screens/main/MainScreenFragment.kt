@@ -139,7 +139,8 @@ internal class MainScreenFragment : BaseFlowFragment(
         transaction.commit()
     }
 
-    private fun createTabFragment(screen: FragmentScreen): Fragment = screen.createFragment(this.childFragmentManager.fragmentFactory)
+    private fun createTabFragment(screen: FragmentScreen): Fragment =
+            screen.createFragment(this.childFragmentManager.fragmentFactory)
 }
 
 internal class MainScreen : FragmentScreen {

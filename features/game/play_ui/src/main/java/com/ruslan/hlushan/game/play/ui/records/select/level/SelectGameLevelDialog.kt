@@ -44,8 +44,14 @@ internal class SelectGameLevelDialog : BaseDialogFragment() {
     @UiMainThread
     override fun initLifecyclePluginObservers() {
         super.initLifecyclePluginObservers()
-        addLifecyclePluginObserver(DialogBackgroundColorLifecyclePluginObserver(owner = this, color = Color.TRANSPARENT))
-        addLifecyclePluginObserver(DialogSizeRatioLifecyclePluginObserver(owner = this, widthRatio = DIALOG_WIDTH_RATIO))
+        addLifecyclePluginObserver(DialogBackgroundColorLifecyclePluginObserver(
+                owner = this,
+                color = Color.TRANSPARENT
+        ))
+        addLifecyclePluginObserver(DialogSizeRatioLifecyclePluginObserver(
+                owner = this,
+                widthRatio = DIALOG_WIDTH_RATIO
+        ))
         addLifecyclePluginObserver(RecyclerViewLifecyclePluginObserver { binding?.selectGameLevelDialogRecycler })
     }
 

@@ -14,7 +14,12 @@ class GameViewParamsTest {
 
     @Test
     fun equality() =
-            assertForDifferentParams { params1, gameSize, countNewElements, tinyLine, boldLine, marginInCellsBetweenTableAndNewElementsLine ->
+            assertForDifferentParams { params1,
+                                       gameSize,
+                                       countNewElements,
+                                       tinyLine,
+                                       boldLine,
+                                       marginInCellsBetweenTableAndNewElementsLine ->
 
                 val params2 = GameViewParams(
                         gameSize = gameSize,
@@ -65,15 +70,21 @@ class GameViewParamsTest {
     @Test
     fun countRowsAndColumnsIncludeSums() =
             assertForGameSizesAndCountNewElements { gameSize, countNewElements ->
+                val params = GameViewParams(gameSize = gameSize, countNewElements = countNewElements)
                 assertEquals(
                         (gameSize.countRowsAndColumns + 1),
-                        GameViewParams(gameSize = gameSize, countNewElements = countNewElements).countRowsAndColumnsIncludeSums
+                        params.countRowsAndColumnsIncludeSums
                 )
             }
 
     @Test
     fun totalGameLinesSize() =
-            assertForDifferentParams { params, gameSize, countNewElements, tinyLine, boldLine, marginInCellsBetweenTableAndNewElementsLine ->
+            assertForDifferentParams { params,
+                                       gameSize,
+                                       countNewElements,
+                                       tinyLine,
+                                       boldLine,
+                                       marginInCellsBetweenTableAndNewElementsLine ->
 
                 val countOfAllLines: Int = (params.countRowsAndColumnsIncludeSums + 1)
                 val countOfBoldLines: Int = (params.countBigRowsAndColumns + 1)
@@ -105,6 +116,7 @@ class GameViewParamsTest {
                                 .map { margin -> margin.toDouble() / 2 }
                                 .forEach { marginInCellsBetweenTableAndNewElementsLine ->
 
+                                    @Suppress("MaxLineLength")
                                     val params = GameViewParams(
                                             gameSize = gameSize,
                                             countNewElements = countNewElements,
@@ -113,7 +125,14 @@ class GameViewParamsTest {
                                             marginInCellsBetweenTableAndNewElementsLine = marginInCellsBetweenTableAndNewElementsLine
                                     )
 
-                                    assert(params, gameSize, countNewElements, tinyLine, boldLine, marginInCellsBetweenTableAndNewElementsLine)
+                                    assert(
+                                            params,
+                                            gameSize,
+                                            countNewElements,
+                                            tinyLine,
+                                            boldLine,
+                                            marginInCellsBetweenTableAndNewElementsLine
+                                    )
                                 }
                     }
                 }

@@ -29,7 +29,10 @@ abstract class BaseFlowFragment(
     @UiMainThread
     override fun initLifecyclePluginObservers() {
         super.initLifecyclePluginObservers()
-        addLifecyclePluginObserver(FlowFragmentLifecyclePluginObserver(flowCicerone = flowCicerone, createFlowNavigator = this::createFlowNavigator))
+        addLifecyclePluginObserver(FlowFragmentLifecyclePluginObserver(
+                flowCicerone = flowCicerone,
+                createFlowNavigator = this::createFlowNavigator
+        ))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

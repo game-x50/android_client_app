@@ -45,10 +45,14 @@ constructor(
         languagesInteractor.getCurrentLanguage()
                 .observeOn(schedulersManager.ui)
                 .doOnSubscribe { mutableCommandsQueue.add(Command.ShowSimpleProgress(show = true)) }
-                .doOnSuccess { currentLanguage -> mutableCommandsQueue.add(Command.ShowAppLanguage(currentLanguage.name, currentLanguage.imageUrl)) }
+                .doOnSuccess { currentLanguage ->
+                    mutableCommandsQueue.add(Command.ShowAppLanguage(currentLanguage.name, currentLanguage.imageUrl))
+                }
                 .doFinally { mutableCommandsQueue.add(Command.ShowSimpleProgress(show = false)) }
                 .subscribe(
-                        { currentLanguage -> appLogger.log(this@SettingsMenuViewModel, "currentLanguage = $currentLanguage") },
+                        { currentLanguage ->
+                            appLogger.log(this@SettingsMenuViewModel, "currentLanguage = $currentLanguage")
+                        },
                         { error -> mutableCommandsQueue.add(Command.ShowError(error)) }
                 )
                 .joinWhileViewAttached()

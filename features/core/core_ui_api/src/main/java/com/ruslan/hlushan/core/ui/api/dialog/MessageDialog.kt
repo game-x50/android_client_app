@@ -78,8 +78,12 @@ internal class MessageDialog : BaseDialogFragment() {
             return if (messageDialog != null && messageDialog.styleResId == styleResId) {
                 messageDialog.updateViews(title, message, buttonText)
             } else {
-                createMessageDialog(styleResId = styleResId, title = title, message = message, buttonText = buttonText)
-                        .showNowSafety(fragmentManager, tag)
+                createMessageDialog(
+                        styleResId = styleResId,
+                        title = title,
+                        message = message,
+                        buttonText = buttonText
+                ).showNowSafety(fragmentManager, tag)
             }
         }
 
@@ -88,7 +92,12 @@ internal class MessageDialog : BaseDialogFragment() {
     }
 }
 
-private fun createMessageDialog(@StyleRes styleResId: Int, title: String, message: String, buttonText: String): MessageDialog =
+private fun createMessageDialog(
+        @StyleRes styleResId: Int,
+        title: String,
+        message: String,
+        buttonText: String
+): MessageDialog =
         MessageDialog().apply {
             @SuppressWarnings("MagicNumber")
             val args = Bundle(4)

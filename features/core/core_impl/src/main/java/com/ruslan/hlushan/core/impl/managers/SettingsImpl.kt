@@ -26,7 +26,10 @@ constructor(
         private val initAppConfig: InitAppConfig
 ) : Settings {
 
-    private val langFullCodeReference = AtomicReference(sharedPreferences.getAppLangFullCode(availableLanguagesFullCodes, defaultLanguageFullCode))
+    private val langFullCodeReference = AtomicReference(
+            sharedPreferences.getAppLangFullCode(availableLanguagesFullCodes, defaultLanguageFullCode)
+    )
+
     private val themeModeReference = AtomicReference(sharedPreferences.getAppThemeMode())
 
     override val defaultLanguageFullCode: String get() = initAppConfig.defaultLanguageFullCode

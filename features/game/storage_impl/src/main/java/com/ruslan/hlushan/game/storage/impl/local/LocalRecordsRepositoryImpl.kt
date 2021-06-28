@@ -46,7 +46,7 @@ constructor(
     ): Single<PaginationResponse<GameRecordWithSyncState, RequestParams>> =
             Single.fromCallable { combineToRequestParams(pagesRequest, filter) }
                     .flatMap { requestParams ->
-                       when (requestParams) {
+                        when (requestParams) {
                             is RequestParams.OrderTotalSum.Asc      -> {
                                 gameRecordsDAO.getRecordsExcludeOrderByTotalSumAsc(
                                         localActionType = LocalActionTypeDb.DELETE,
@@ -81,8 +81,12 @@ constructor(
                             }
                         }.map { dbRecords -> Pair(requestParams, dbRecords) }
                     }
-                    .map { (requestParams, dbRecords) -> requestParams to dbRecords.map(GameRecordDb::fromDbRecord) }
-                    .map { (requestParams, pageResult) -> createPaginationResponseFor(pageResult, pagesRequest, requestParams, limit = limit) }
+                    .map { (requestParams, dbRecords) ->
+                        requestParams to dbRecords.map(GameRecordDb::fromDbRecord)
+                    }
+                    .map { (requestParams, pageResult) ->
+                        createPaginationResponseFor(pageResult, pagesRequest, requestParams, limit = limit)
+                    }
                     .subscribeOn(schedulersManager.io)
 
     override fun observeGameRecord(id: Long): Observable<ValueHolder<GameRecordWithSyncState?>> =
@@ -145,7 +149,12 @@ constructor(
             maxLastRemoteSyncedTimestamp: Instant,
             @IntRange(from = 1) limit: Int
     ): Single<List<GameRecordWithSyncState>> =
-            Single.fromCallable { gameRecordsDAO.markAsSyncingAndGetSyncedWhereLastRemoteSyncSmallerThen(maxLastRemoteSyncedTimestamp, limit) }
+            Single.fromCallable {
+                gameRecordsDAO.markAsSyncingAndGetSyncedWhereLastRemoteSyncSmallerThen(
+                        maxLastRemoteSyncedTimestamp = maxLastRemoteSyncedTimestamp,
+                        limit = limit
+                )
+            }
                     .map { dbRecords -> dbRecords.map(GameRecordDb::fromDbRecord) }
                     .subscribeOn(schedulersManager.io)
 
@@ -153,7 +162,9 @@ constructor(
             Single.fromCallable { localRecordsRepositoryStorage.lastCreatedTimestamp }
                     .flatMap { lastCreatedTimestamp ->
                         gameRecordsDAO.getRemoteIdsWhereCreatedTimestampGraterOrEqual(lastCreatedTimestamp)
-                                .map { excludedRemoteIds -> LastCreatedTimestampWithExcludedRemoteIds(lastCreatedTimestamp, excludedRemoteIds) }
+                                .map { excludedRemoteIds ->
+                                    LastCreatedTimestampWithExcludedRemoteIds(lastCreatedTimestamp, excludedRemoteIds)
+                                }
                     }
                     .subscribeOn(schedulersManager.io)
 

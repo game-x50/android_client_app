@@ -158,7 +158,9 @@ abstract class BaseActivity : AppCompatActivity(),
     @UiMainThread
     protected open fun initLifecyclePluginObservers() {
         addLifecyclePluginObserver(LoggerLifecyclePluginObserver(owner = this, appLogger = appLogger))
-        addLifecyclePluginObserver(DialogCommandsHandlerLifecyclePluginObserver(dialogCommandsHandler = dialogCommandsHandler))
+        addLifecyclePluginObserver(DialogCommandsHandlerLifecyclePluginObserver(
+                dialogCommandsHandler = dialogCommandsHandler
+        ))
     }
 
     @UiMainThread

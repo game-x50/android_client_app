@@ -11,7 +11,12 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
 
     abstract val filter: F
 
-    sealed class Active<out F : Any, ItemId : Any, out RI : RecyclerItem<ItemId>, out Id : Any> : PaginationState<F, ItemId, RI, Id>() {
+    sealed class Active<
+            out F : Any,
+            ItemId : Any,
+            out RI : RecyclerItem<ItemId>,
+            out Id : Any
+            > : PaginationState<F, ItemId, RI, Id>() {
 
         abstract val additional: Additional
 
@@ -40,7 +45,10 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
                         error: Throwable
                 ) : this(
                         filter = filter,
-                        additional = Additional.Error(value = error, loadDirection = PaginationPagesRequest.Direction.NEXT)
+                        additional = Additional.Error(
+                                value = error,
+                                loadDirection = PaginationPagesRequest.Direction.NEXT
+                        )
                 )
             }
         }
@@ -62,6 +70,7 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
                     }
                     is PreviousPageId.Existing -> {
                         if (currentPages.first().pageId !is PageId.SecondOrMore) {
+                            @Suppress("MaxLineLength")
                             throw IllegalArgumentException("For not first page pageId should be ${PageId.SecondOrMore::class}")
                         }
                     }
@@ -105,7 +114,12 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
             }
 
             @Suppress("DataClassPrivateConstructor")
-            data class WithError<out F : Any, ItemId : Any, out RI : RecyclerItem<ItemId>, out Id : Any> private constructor(
+            data class WithError<
+                    out F : Any,
+                    ItemId : Any,
+                    out RI : RecyclerItem<ItemId>,
+                    out Id : Any
+                    > private constructor(
                     override val items: List<RI>,
                     override val filter: F,
                     override val currentPages: List<PageRelation<Id, ItemId>>,
@@ -140,7 +154,12 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
         }
     }
 
-    sealed class Finished<out F : Any, ItemId : Any, out RI : RecyclerItem<ItemId>, out Id : Any> : PaginationState<F, ItemId, RI, Id>() {
+    sealed class Finished<
+            out F : Any,
+            ItemId : Any,
+            out RI : RecyclerItem<ItemId>,
+            out Id : Any
+            > : PaginationState<F, ItemId, RI, Id>() {
 
         data class WithResults<out F : Any, ItemId : Any, out RI : RecyclerItem<ItemId>, out Id : Any>(
                 override val items: List<RI>,
@@ -177,6 +196,7 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
     }
 }
 
+@Suppress("MaxLineLength")
 fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, Id : Any> PaginationState<F, ItemId, RI, Id>.itemsOrEmpty(): List<RI> =
         when (this) {
             is PaginationState.Active.Empty,
@@ -189,6 +209,7 @@ fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, Id : Any> PaginationState
 fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, Id : Any> PaginationState<F, ItemId, RI, Id>.itemsCount(): Int =
         itemsOrEmpty().size
 
+@Suppress("MaxLineLength")
 fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, Id : Any>
         PaginationState.Active.PartiallyLoaded<F, ItemId, RI, Id>.createPaginationRequestFor(
         direction: PaginationPagesRequest.Direction

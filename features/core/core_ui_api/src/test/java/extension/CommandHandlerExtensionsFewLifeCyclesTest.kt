@@ -1,3 +1,5 @@
+@file:SuppressWarnings("MaxLineLength")
+
 package extension
 
 import com.ruslan.hlushan.core.ui.api.presentation.command.MutableCommandQueue
