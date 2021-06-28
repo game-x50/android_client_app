@@ -15,7 +15,7 @@ fun DialogFragment.showNowSafety(parentFragmentManager: FragmentManager, tag: St
 }
 
 fun DialogFragment.dismissNowSafety() {
-    ifNotNull(fragmentManager) { fm ->
+    ifNotNull(parentFragmentManager) { fm ->
         dismissAllowingStateLoss()
         fm.executePendingTransactions()
     }

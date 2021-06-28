@@ -219,18 +219,6 @@ constructor(
         ))
     }
 
-    @CallSuper
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        appLogger.log(this)
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-    }
-
-    @CallSuper
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        appLogger.log(this)
-        super.onActivityResult(requestCode, resultCode, data)
-    }
-
     @UiMainThread
     override fun addLifecyclePluginObserver(observer: LifecyclePluginObserver) {
         lifecyclePluginObservers.add(observer)

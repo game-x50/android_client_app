@@ -1,6 +1,7 @@
 package com.ruslan.hlushan.android.extensions.permissions
 
 import android.content.pm.PackageManager
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -38,44 +39,65 @@ private fun FragmentManager.askPermissions(requestCode: Int, vararg permissions:
 
 internal class PermissionsHandlerFragment : Fragment() {
 
-    private val askedRequestCodes = mutableListOf<Int>()
+    private val activityResultLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+    ) { permissionsLauncherResult ->
+        val askedPermissionsList = permissionsLauncherResult.map { (singlePermission, granted) -> singlePermission }
+        val askedPermissionsSet = askedPermissionsList.toSet()
+        val requestCode = askedRequestCodes
+                .entries
+                .firstOrNull { (key, value) -> value.permissions == askedPermissionsSet }
+                ?.key
+        if (requestCode != null) {
+            val separated = this.separatePermissions(permissions = askedPermissionsList)
+            val result = PermissionResult.Response(requestCode = requestCode, permissions = separated)
+            notifyPermissionResult(result)
+        }
+    }
+
+    private val askedRequestCodes = mutableMapOf<Int, RequestCodeWithPermissions>()
 
     private val parentListener: PermissionResultListener?
         get() = ((parentFragment as? PermissionResultListener)
                  ?: (activity as? PermissionResultListener))
 
-    override fun onRequestPermissionsResult(
-            requestCode: Int,
-            askedPermissions: Array<out String>,
-            grantResults: IntArray
-    ) {
-        val separated = this.separatePermissions(permissions = askedPermissions)
-        val result = PermissionResult.Response(requestCode = requestCode, permissions = separated)
-        notifyPermissionResult(result)
-    }
-
     @Suppress("MandatoryBracesIfStatements")
-    fun askPermissions(requestCode: Int, vararg permissions: String) =
-            if (askedRequestCodes.remove(element = requestCode)) {
-                requestPermissions(permissions, requestCode)
-            } else when (val separated = this.separatePermissions(permissions = permissions)) {
-                is SeparatedPermissions.AllGranted                              -> {
-                    notifyPermissionResult(PermissionResult.Response(
-                            requestCode = requestCode,
-                            permissions = separated
-                    ))
-                }
-                is SeparatedPermissions.AtLeastOneTemporallyDenied              -> {
-                    askedRequestCodes.add(requestCode)
-                    notifyPermissionResult(PermissionResult.ShowRationale(
-                            requestCode = requestCode,
-                            permissions = separated
-                    ))
-                }
-                is SeparatedPermissions.DeniedJustPermanentlyAndMaybeAreGranted -> {
-                    requestPermissions(permissions, requestCode)
-                }
+    fun askPermissions(requestCode: Int, vararg permissions: String) {
+        val alreadyAsked = askedRequestCodes[requestCode]
+
+        return if ((alreadyAsked != null) && alreadyAsked.isPending) {
+            alreadyAsked.isPending = false
+            activityResultLauncher.launch(permissions)
+        } else when (val separated = this.separatePermissions(permissions = permissions.toList())) {
+            is SeparatedPermissions.AllGranted                              -> {
+                notifyPermissionResult(
+                        PermissionResult.Response(
+                                requestCode = requestCode,
+                                permissions = separated
+                        )
+                )
             }
+            is SeparatedPermissions.AtLeastOneTemporallyDenied              -> {
+                askedRequestCodes[requestCode] = RequestCodeWithPermissions(
+                        isPending = true,
+                        permissions = permissions.toSet()
+                )
+                notifyPermissionResult(
+                        PermissionResult.ShowRationale(
+                                requestCode = requestCode,
+                                permissions = separated
+                        )
+                )
+            }
+            is SeparatedPermissions.DeniedJustPermanentlyAndMaybeAreGranted -> {
+                askedRequestCodes[requestCode] = RequestCodeWithPermissions(
+                        isPending = false,
+                        permissions = permissions.toSet()
+                )
+                activityResultLauncher.launch(permissions)
+            }
+        }
+    }
 
     private fun notifyPermissionResult(permissionResult: PermissionResult) {
         if (parentListener != null) {
@@ -90,7 +112,7 @@ internal class PermissionsHandlerFragment : Fragment() {
     }
 }
 
-private fun Fragment.separatePermissions(permissions: Array<out String>): SeparatedPermissions {
+private fun Fragment.separatePermissions(permissions: List<String>): SeparatedPermissions {
     val grantedPermissions = permissions
             .filter { singlePermission ->
                 val grantType = ContextCompat.checkSelfPermission(this.requireContext(), singlePermission)
@@ -125,3 +147,8 @@ private fun Fragment.separatePermissions(permissions: Array<out String>): Separa
         }
     }
 }
+
+private class RequestCodeWithPermissions(
+        val permissions: Set<String>,
+        var isPending: Boolean
+)

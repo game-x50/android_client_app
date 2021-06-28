@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Environment
 import com.ruslan.hlushan.android.extensions.permissions.PermissionResult
 import com.ruslan.hlushan.android.extensions.permissions.PermissionResultListener
 import com.ruslan.hlushan.android.extensions.permissions.SeparatedPermissions
@@ -32,7 +31,7 @@ internal class FileLogsActivity : BaseActivity(), PermissionResultListener {
     @SuppressWarnings("ClassOrdering")
     companion object {
 
-        private const val PERMISSIONS_REQUEST_CODE = 1123
+        private const val PERMISSIONS_REQUEST_CODE = 1
 
         fun newIntent(context: Context): Intent =
                 Intent(context, FileLogsActivity::class.java)
@@ -96,7 +95,7 @@ internal class FileLogsActivity : BaseActivity(), PermissionResultListener {
                 }
                 is SeparatedPermissions.AtLeastOneTemporallyDenied,
                 is SeparatedPermissions.DeniedJustPermanentlyAndMaybeAreGranted -> {
-                    showSystemMessage(text = "Grant All Permissions")
+                    showSystemMessage(text = "Grant All Permissions ${permissionResult.permissions}")
                 }
             }
 
@@ -145,7 +144,7 @@ internal class FileLogsActivity : BaseActivity(), PermissionResultListener {
         val fileNameValid: Boolean = fileName.isNotBlank()
 
         if (fileNameValid) {
-            val destination = File(Environment.getExternalStorageDirectory(), "$fileName.txt")
+            val destination = File(this.getExternalFilesDir(null), "$fileName.txt")
             viewModel.copyAllExistingLogsToSingleExternalStorageFile(destination)
         } else {
             showSystemMessage(text = "Enter valid file name")

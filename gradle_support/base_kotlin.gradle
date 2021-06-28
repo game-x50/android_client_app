@@ -1,4 +1,0 @@
-//todo: experimental feature for kotlin version 1.4.30
-compileKotlin {
-    kotlinOptions.useIR = true
-}

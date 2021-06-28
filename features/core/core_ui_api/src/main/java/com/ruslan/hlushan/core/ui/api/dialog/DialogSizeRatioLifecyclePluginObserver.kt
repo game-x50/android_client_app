@@ -18,16 +18,16 @@ class DialogSizeRatioLifecyclePluginObserver(
 
     @UiMainThread
     override fun onAfterSuperStart() {
-        ifNotNull(ownerDialogReference.get()?.context?.applicationScreenDimension()) { displayMetrics ->
+        ifNotNull(ownerDialogReference.get()?.activity?.applicationScreenDimension()) { screenSizePx ->
 
             val width = if (widthRatio != null) {
-                (displayMetrics.widthPixels * widthRatio).toInt()
+                (screenSizePx.width * widthRatio).toInt()
             } else {
                 ViewGroup.LayoutParams.WRAP_CONTENT
             }
 
             val height = if (heightRatio != null) {
-                (displayMetrics.heightPixels * heightRatio).toInt()
+                (screenSizePx.height * heightRatio).toInt()
             } else {
                 ViewGroup.LayoutParams.WRAP_CONTENT
             }

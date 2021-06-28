@@ -1,6 +1,5 @@
 package com.ruslan.hlushan.core.ui.api.presentation.view.activity
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
@@ -136,12 +135,6 @@ abstract class BaseActivity : AppCompatActivity(),
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         appLogger.log(this)
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-    }
-
-    @CallSuper
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        appLogger.log(this)
-        super.onActivityResult(requestCode, resultCode, data)
     }
 
     @UiMainThread

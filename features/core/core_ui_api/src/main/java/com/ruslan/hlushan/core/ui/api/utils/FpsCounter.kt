@@ -51,7 +51,7 @@ class FpsCounter(
     }
 
     private fun recalculateFullPeriodFps(frameTimestampNanos: Long) {
-        val totalFramesCount = periods.sumBy { p -> p.countFrames }
+        val totalFramesCount = periods.sumOf { p -> p.countFrames }
         if (totalFramesCount > 0) {
             fullObservedPeriodNanos = (frameTimestampNanos - periods.first().startNanos)
             val averageFrameTimePerPeriod = (fullObservedPeriodNanos.toDouble() / totalFramesCount)
