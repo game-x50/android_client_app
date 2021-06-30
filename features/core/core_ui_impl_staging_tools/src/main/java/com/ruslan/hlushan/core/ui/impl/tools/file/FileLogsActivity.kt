@@ -1,13 +1,8 @@
 package com.ruslan.hlushan.core.ui.impl.tools.file
 
-import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import com.ruslan.hlushan.android.extensions.permissions.PermissionResult
-import com.ruslan.hlushan.android.extensions.permissions.PermissionResultListener
-import com.ruslan.hlushan.android.extensions.permissions.SeparatedPermissions
-import com.ruslan.hlushan.android.extensions.permissions.askPermissions
 import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
 import com.ruslan.hlushan.android.extensions.showSystemMessage
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
@@ -26,12 +21,10 @@ import com.ruslan.hlushan.core.ui.impl.tools.di.getUiCoreImplStagingHelpersCompo
 import com.ruslan.hlushan.extensions.exhaustive
 import java.io.File
 
-internal class FileLogsActivity : BaseActivity(), PermissionResultListener {
+internal class FileLogsActivity : BaseActivity() {
 
     @SuppressWarnings("ClassOrdering")
     companion object {
-
-        private const val PERMISSIONS_REQUEST_CODE = 1
 
         fun newIntent(context: Context): Intent =
                 Intent(context, FileLogsActivity::class.java)
@@ -78,34 +71,9 @@ internal class FileLogsActivity : BaseActivity(), PermissionResultListener {
             setContentView(R.layout.core_ui_impl_staging_tools_file_logs_screen)
 
     @UiMainThread
-    override fun onPermissionResult(permissionResult: PermissionResult) {
-        if (permissionResult.requestCode == PERMISSIONS_REQUEST_CODE) {
-            when (permissionResult) {
-                is PermissionResult.ShowRationale -> showSystemMessage(text = "Grant Permission")
-                is PermissionResult.Response      -> handlePermissionResultResponse(permissionResult)
-            }.exhaustive
-        }
-    }
-
-    @UiMainThread
-    private fun handlePermissionResultResponse(permissionResult: PermissionResult.Response) =
-            when (permissionResult.permissions) {
-                is SeparatedPermissions.AllGranted                              -> {
-                    validateFileNameAndCopyAllExistingLogsToSingleExternalStorageFileOnPermissionGranted()
-                }
-                is SeparatedPermissions.AtLeastOneTemporallyDenied,
-                is SeparatedPermissions.DeniedJustPermanentlyAndMaybeAreGranted -> {
-                    showSystemMessage(text = "Grant All Permissions ${permissionResult.permissions}")
-                }
-            }
-
-    @UiMainThread
     private fun initViewListeners() {
         binding?.activityFileLogsCopyLogsAsSingleExternalStorageFileBtn?.setThrottledOnClickListener {
-            this.askPermissions(
-                    requestCode = PERMISSIONS_REQUEST_CODE,
-                    permissions = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            )
+            validateFileNameAndCopyAllExistingLogsToSingleExternalStorageFile()
         }
         binding?.activityFileLogsDeleteLogFilesBtn?.setThrottledOnClickListener { viewModel.deleteLogFiles() }
         binding?.activityFileLogsBigLogBtn?.setThrottledOnClickListener { viewModel.bigLog() }
@@ -139,7 +107,7 @@ internal class FileLogsActivity : BaseActivity(), PermissionResultListener {
     }
 
     @UiMainThread
-    private fun validateFileNameAndCopyAllExistingLogsToSingleExternalStorageFileOnPermissionGranted() {
+    private fun validateFileNameAndCopyAllExistingLogsToSingleExternalStorageFile() {
         val fileName: String = binding?.activityFileLogsSingleFileLogsName?.text.toString()
         val fileNameValid: Boolean = fileName.isNotBlank()
 
