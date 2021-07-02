@@ -78,9 +78,6 @@ abstract class BaseViewModel(
     }
 
     @VisibleForTesting
-    fun callOnCleared() = this.onCleared()
-
-    @VisibleForTesting
     fun cleanUpAll() {
         if (this.vmState == VmState.ATTACHED) {
             this.onBeforeDetachView()
