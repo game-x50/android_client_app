@@ -9,12 +9,13 @@ import generateAndAddLocalCreatedToLocalRepo
 import generateAndAddLocalDeletedToLocalRepo
 import generateAndAddLocalSyncedToLocalRepo
 import generateAndAddLocalUpdatedToLocalRepo
-import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.threeten.bp.Instant
+import sync.rule.TestLocalRecordsRepoCleanUpRule
 import sync.stub.LocalRecordsRepoTestImpl
 import sync.stub.LocalRecordsRepositoryStorageMockImpl
 import sync.stub.StartSyncUseCaseStubImpl
@@ -27,6 +28,10 @@ internal class ClearAllLocalGamesInfoUseCaseTest {
 
     private lateinit var clearAllLocalGamesInfoUseCase: ClearAllLocalGamesInfoUseCase
 
+    @Rule
+    @JvmField
+    val testLocalRecordsRepoCleanUpRule = TestLocalRecordsRepoCleanUpRule { localRepo }
+
     @Before
     fun before() {
         val scheduler = CurrentThreadSchedulersManager()
@@ -38,11 +43,6 @@ internal class ClearAllLocalGamesInfoUseCaseTest {
                 startSyncUseCase = startSyncUseCase,
                 localRecordsRepository = localRepo
         )
-    }
-
-    @After
-    fun after() {
-        localRepo.deleteAllGames()
     }
 
     @Test

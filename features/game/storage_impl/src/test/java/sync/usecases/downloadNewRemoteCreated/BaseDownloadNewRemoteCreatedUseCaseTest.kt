@@ -3,8 +3,10 @@ package sync.usecases.downloadNewRemoteCreated
 import com.ruslan.hlushan.core.api.test.utils.log.EmptyAppLoggerImpl
 import com.ruslan.hlushan.core.api.test.utils.managers.CurrentThreadSchedulersManager
 import com.ruslan.hlushan.game.storage.impl.DownloadNewRemoteCreatedUseCase
-import org.junit.After
 import org.junit.Before
+import org.junit.Rule
+import sync.rule.TestLocalRecordsRepoCleanUpRule
+import sync.rule.TestSyncRemoteRepositoryMockCleanUpRule
 import sync.stub.LocalRecordsRepoTestImpl
 import sync.stub.LocalRecordsRepositoryStorageMockImpl
 import sync.stub.SyncRemoteRepositoryMockImpl
@@ -16,6 +18,14 @@ internal abstract class BaseDownloadNewRemoteCreatedUseCaseTest {
     protected lateinit var remoteRepo: SyncRemoteRepositoryMockImpl
 
     protected lateinit var downloadNewRemoteCreatedUseCase: DownloadNewRemoteCreatedUseCase
+
+    @Rule
+    @JvmField
+    val testLocalRecordsRepoCleanUpRule = TestLocalRecordsRepoCleanUpRule { localRepo }
+
+    @Rule
+    @JvmField
+    val testSyncRemoteRepositoryMockCleanUpRule = TestSyncRemoteRepositoryMockCleanUpRule { remoteRepo }
 
     @Before
     fun before() {
@@ -30,11 +40,5 @@ internal abstract class BaseDownloadNewRemoteCreatedUseCaseTest {
                 localRepository = localRepo,
                 appLogger = logger
         )
-    }
-
-    @After
-    fun after() {
-        remoteRepo.cleanUp()
-        localRepo.deleteAllGames()
     }
 }

@@ -14,12 +14,14 @@ import com.ruslan.hlushan.game.storage.impl.remote.dto.LocalModifiedResponse
 import com.ruslan.hlushan.test.utils.generateFakeDuration
 import com.ruslan.hlushan.test.utils.generateFakeInstantTimestamp
 import com.ruslan.hlushan.test.utils.generateFakeStringId
-import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
+import sync.rule.TestLocalRecordsRepoCleanUpRule
+import sync.rule.TestSyncRemoteRepositoryMockCleanUpRule
 import sync.stub.LocalRecordsRepoTestImpl
 import sync.stub.LocalRecordsRepositoryStorageMockImpl
 import sync.stub.SyncRemoteRepositoryMockImpl
@@ -27,12 +29,20 @@ import sync.stub.SyncRemoteRepositoryMockImpl
 /**
  * @author Ruslan Hlushan on 2019-05-31
  */
-class CommonTests {
+internal class CommonTests {
 
     private lateinit var localRepo: LocalRecordsRepoTestImpl
     private lateinit var remoteRepo: SyncRemoteRepositoryMockImpl
 
     private lateinit var uploadLocalModifiedUseCase: UploadLocalModifiedUseCase
+
+    @Rule
+    @JvmField
+    val testLocalRecordsRepoCleanUpRule = TestLocalRecordsRepoCleanUpRule { localRepo }
+
+    @Rule
+    @JvmField
+    val testSyncRemoteRepositoryMockCleanUpRule = TestSyncRemoteRepositoryMockCleanUpRule { remoteRepo }
 
     @Before
     fun before() {
@@ -46,12 +56,6 @@ class CommonTests {
                 localRepository = localRepo,
                 appLogger = logger
         )
-    }
-
-    @After
-    fun after() {
-        localRepo.deleteAllGames()
-        remoteRepo.cleanUp()
     }
 
     @SuppressWarnings("LongMethod")

@@ -24,21 +24,31 @@ import com.ruslan.hlushan.test.utils.generateFakeInstantTimestamp
 import generateAndAddLocalCreatedToLocalRepo
 import generateAndAddLocalSyncedToLocalRepo
 import generateFakeRemoteRecord
-import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
+import sync.rule.TestLocalRecordsRepoCleanUpRule
+import sync.rule.TestSyncRemoteRepositoryMockCleanUpRule
 import sync.stub.LocalRecordsRepoTestImpl
 import sync.stub.LocalRecordsRepositoryStorageMockImpl
 import sync.stub.SyncRemoteRepositoryMockImpl
 
-class SyncInteractorImplTest {
+internal class SyncInteractorImplTest {
 
     private lateinit var localRepo: LocalRecordsRepoTestImpl
     private lateinit var localRecordsRepositoryStorage: LocalRecordsRepositoryStorageMockImpl
     private lateinit var remoteRepo: SyncRemoteRepositoryMockImpl
 
     private lateinit var syncInteractor: SyncInteractorImpl
+
+    @Rule
+    @JvmField
+    val testLocalRecordsRepoCleanUpRule = TestLocalRecordsRepoCleanUpRule { localRepo }
+
+    @Rule
+    @JvmField
+    val testSyncRemoteRepositoryMockCleanUpRule = TestSyncRemoteRepositoryMockCleanUpRule { remoteRepo }
 
     @Before
     fun before() {
@@ -75,12 +85,6 @@ class SyncInteractorImplTest {
                 remoteRepo,
                 logger
         )
-    }
-
-    @After
-    fun after() {
-        localRepo.deleteAllGames()
-        remoteRepo.cleanUp()
     }
 
     @SuppressWarnings("MaxLineLength", "LongMethod")
