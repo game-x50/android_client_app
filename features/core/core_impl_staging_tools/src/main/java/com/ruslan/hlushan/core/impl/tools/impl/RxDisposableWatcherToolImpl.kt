@@ -1,10 +1,9 @@
 package com.ruslan.hlushan.core.impl.tools.impl
 
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
-import com.ruslan.hlushan.android.core.api.di.createExternalReportsFile
-import com.ruslan.hlushan.android.core.api.di.getUriForFile
+import com.ruslan.hlushan.android.core.api.di.createExternalReportsFileWithReadPermissionsForOtherApps
+import com.ruslan.hlushan.android.core.api.di.createOpenFileWithReadPermissionForOtherApps
 import com.ruslan.hlushan.core.api.tools.RxDisposableWatcherTool
 import ru.fomenkov.rxdisposablewatcher.RxDisposableWatcher
 import ru.fomenkov.rxdisposablewatcher.report.HtmlReportBuilder
@@ -26,12 +25,10 @@ constructor(
 
     override fun showReport() {
         val reportUri = createReport()
-
-        val originalIntent = Intent(Intent.ACTION_VIEW)
-                .setDataAndType(reportUri, appContext.contentResolver.getType(reportUri))
-                .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-        val chooserIntent = Intent.createChooser(originalIntent, "Select app")
-        chooserIntent.flags = (Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        val chooserIntent = createOpenFileWithReadPermissionForOtherApps(
+                contentResolver = appContext.contentResolver,
+                uri = reportUri
+        )
         appContext.startActivity(chooserIntent)
     }
 
@@ -44,13 +41,11 @@ constructor(
                         + SimpleDateFormat("yyyy-MM-dd HH:mm:ssZ", Locale.US).format(Date())
                         + ".html")
 
-        val file = appContext.createExternalReportsFile(fileName)
-        val reportUri = appContext.getUriForFile(file)
-        appContext.grantUriPermission(appContext.packageName, reportUri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        val fileWithUri = appContext.createExternalReportsFileWithReadPermissionsForOtherApps(fileName)
 
-        val stream = FileOutputStream(file)
+        val stream = FileOutputStream(fileWithUri.file)
         stream.use { s -> s.write(report.toByteArray()) }
 
-        return reportUri
+        return fileWithUri.uri
     }
 }

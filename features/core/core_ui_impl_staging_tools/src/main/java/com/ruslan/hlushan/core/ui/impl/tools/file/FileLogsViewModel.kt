@@ -113,7 +113,7 @@ constructor(
         fileLogger.copyAllExistingLogsToSingleFile(destination)
                 .observeOn(schedulersManager.ui)
                 .doOnSubscribe { mutableCommandsQueue.add(Command.ShowSimpleProgress(show = true)) }
-                .doOnComplete { mutableCommandsQueue.add(Command.ShowMessage(message = "Saved to : $destination")) }
+                .doOnComplete { mutableCommandsQueue.add(Command.OpenFile(file = destination)) }
                 .doOnError { mutableCommandsQueue.add(Command.ShowMessage(message = "collectAndSend FAIL")) }
                 .doFinally { mutableCommandsQueue.add(Command.ShowSimpleProgress(show = false)) }
                 .subscribe({ }, { })
@@ -131,6 +131,10 @@ constructor(
         }
 
         class SetState(val logs: List<LogRecyclerItem>, val additional: PaginationState.Additional?) : Command() {
+            override fun produceStrategy(): HandleStrategy = OneExecutionStateStrategy()
+        }
+
+        class OpenFile(val file: File) : Command() {
             override fun produceStrategy(): HandleStrategy = OneExecutionStateStrategy()
         }
     }

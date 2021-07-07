@@ -3,6 +3,9 @@ package com.ruslan.hlushan.core.ui.impl.tools.file
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import com.ruslan.hlushan.android.core.api.di.createExternalReportsFileWithReadPermissionsForOtherApps
+import com.ruslan.hlushan.android.core.api.di.createOpenFileWithReadPermissionForOtherApps
+import com.ruslan.hlushan.android.core.api.di.getUriForFile
 import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
 import com.ruslan.hlushan.android.extensions.showSystemMessage
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
@@ -85,6 +88,7 @@ internal class FileLogsActivity : BaseActivity() {
                 is FileLogsViewModel.Command.ShowSimpleProgress -> showSimpleProgress(show = command.show)
                 is FileLogsViewModel.Command.ShowMessage        -> showSystemMessage(text = command.message)
                 is FileLogsViewModel.Command.SetState           -> setState(command)
+                is FileLogsViewModel.Command.OpenFile           -> openFile(file = command.file)
             }
 
     @UiMainThread
@@ -112,10 +116,22 @@ internal class FileLogsActivity : BaseActivity() {
         val fileNameValid: Boolean = fileName.isNotBlank()
 
         if (fileNameValid) {
-            val destination = File(this.getExternalFilesDir(null), "$fileName.txt")
-            viewModel.copyAllExistingLogsToSingleExternalStorageFile(destination)
+            val destination = this.createExternalReportsFileWithReadPermissionsForOtherApps(
+                    fileName = "$fileName.txt"
+            )
+            viewModel.copyAllExistingLogsToSingleExternalStorageFile(destination = destination.file)
         } else {
             showSystemMessage(text = "Enter valid file name")
         }
+    }
+
+    @UiMainThread
+    private fun openFile(file: File) {
+        val fileUri = this.getUriForFile(file)
+        val chooserIntent = createOpenFileWithReadPermissionForOtherApps(
+                contentResolver = this.contentResolver,
+                uri = fileUri
+        )
+        this.startActivity(chooserIntent)
     }
 }
