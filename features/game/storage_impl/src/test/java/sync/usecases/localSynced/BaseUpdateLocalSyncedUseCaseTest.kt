@@ -4,8 +4,10 @@ import com.ruslan.hlushan.core.api.test.utils.log.EmptyAppLoggerImpl
 import com.ruslan.hlushan.core.api.test.utils.managers.CurrentThreadSchedulersManager
 import com.ruslan.hlushan.game.storage.impl.PlayRecordsInteractorImpl
 import com.ruslan.hlushan.game.storage.impl.UpdateLocalSyncedUseCase
-import org.junit.After
 import org.junit.Before
+import org.junit.Rule
+import sync.rule.TestLocalRecordsRepoCleanUpRule
+import sync.rule.TestSyncRemoteRepositoryMockCleanUpRule
 import sync.stub.LocalRecordsRepoTestImpl
 import sync.stub.LocalRecordsRepositoryStorageMockImpl
 import sync.stub.SyncRemoteRepositoryMockImpl
@@ -18,6 +20,14 @@ internal abstract class BaseUpdateLocalSyncedUseCaseTest {
     protected lateinit var updateLocalSyncedUseCase: UpdateLocalSyncedUseCase
 
     protected lateinit var playRecordsInteractor: PlayRecordsInteractorImpl
+
+    @Rule
+    @JvmField
+    val testLocalRecordsRepoCleanUpRule = TestLocalRecordsRepoCleanUpRule { localRepo }
+
+    @Rule
+    @JvmField
+    val testSyncRemoteRepositoryMockCleanUpRule = TestSyncRemoteRepositoryMockCleanUpRule { remoteRepo }
 
     @Before
     fun before() {
@@ -32,11 +42,5 @@ internal abstract class BaseUpdateLocalSyncedUseCaseTest {
                 appLogger = logger
         )
         playRecordsInteractor = PlayRecordsInteractorImpl(localRepo, logger)
-    }
-
-    @After
-    fun after() {
-        localRepo.deleteAllGames()
-        remoteRepo.cleanUp()
     }
 }

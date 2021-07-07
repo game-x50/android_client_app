@@ -3,8 +3,9 @@ package sync.play.base
 import com.ruslan.hlushan.core.api.test.utils.log.EmptyAppLoggerImpl
 import com.ruslan.hlushan.core.api.test.utils.managers.CurrentThreadSchedulersManager
 import com.ruslan.hlushan.game.storage.impl.PlayRecordsInteractorImpl
-import org.junit.After
 import org.junit.Before
+import org.junit.Rule
+import sync.rule.TestLocalRecordsRepoCleanUpRule
 import sync.stub.LocalRecordsRepoTestImpl
 import sync.stub.LocalRecordsRepositoryStorageMockImpl
 
@@ -16,6 +17,10 @@ internal abstract class BasePlayRecordsInteractorImplTest {
     protected lateinit var localRepo: LocalRecordsRepoTestImpl
     protected lateinit var playRecordsInteractor: PlayRecordsInteractorImpl
 
+    @Rule
+    @JvmField
+    val testLocalRecordsRepoCleanUpRule = TestLocalRecordsRepoCleanUpRule { localRepo }
+
     @Before
     fun before() {
         val scheduler = CurrentThreadSchedulersManager()
@@ -23,10 +28,5 @@ internal abstract class BasePlayRecordsInteractorImplTest {
 
         localRepo = LocalRecordsRepoTestImpl(LocalRecordsRepositoryStorageMockImpl(), scheduler)
         playRecordsInteractor = PlayRecordsInteractorImpl(localRepo, logger)
-    }
-
-    @After
-    fun after() {
-        localRepo.deleteAllGames()
     }
 }

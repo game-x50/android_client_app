@@ -1,5 +1,6 @@
 package presentation.viewmodel
 
+import com.ruslan.hlushan.core.ui.api.test.utils.callOnCleared
 import com.ruslan.hlushan.rxjava2.extensions.isActive
 import io.reactivex.disposables.Disposable
 import io.reactivex.disposables.Disposables

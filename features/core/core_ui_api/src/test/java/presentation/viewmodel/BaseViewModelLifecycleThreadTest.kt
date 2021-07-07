@@ -1,6 +1,7 @@
 package presentation.viewmodel
 
 import com.ruslan.hlushan.core.api.test.utils.utils.thread.ThreadCheckerMock
+import com.ruslan.hlushan.core.ui.api.test.utils.callOnCleared
 import com.ruslan.hlushan.test.utils.assertThrows
 import org.junit.Before
 import org.junit.Test
