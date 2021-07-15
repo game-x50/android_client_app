@@ -28,18 +28,19 @@ constructor(
 ) : AuthInteractor {
 
     override fun createNewUser(
-            nickname: String, email: String,
-            password: String
+            nickname: User.Nickname,
+            email: User.Email,
+            password: User.Password
     ): Single<VoidOperationResult<AuthError.UserWithSuchCredentialsExists>> =
             waitUntilTokenChangeAndStartSyncUseCase(authRepository.createNewUser(nickname, email, password))
 
     override fun logIn(
-            email: String,
-            password: String
+            email: User.Email,
+            password: User.Password
     ): Single<VoidOperationResult<AuthError.InvalidUserCredentials>> =
             waitUntilTokenChangeAndStartSyncUseCase(authRepository.logIn(email, password))
 
-    override fun sendPasswordResetEmail(email: String): Completable =
+    override fun sendPasswordResetEmail(email: User.Email): Completable =
             authRepository.sendPasswordResetEmail(email)
 
     override fun logOut(): Completable =
@@ -52,9 +53,9 @@ constructor(
             authRepository.observeCurrentUser()
 
     override fun updateUserWith(
-            newNickname: String,
-            newPassword: String,
-            oldPassword: String
+            newNickname: User.Nickname,
+            newPassword: User.Password,
+            oldPassword: User.Password
     ): Single<VoidOperationResult<AuthError>> =
             authRepository.updateUserWith(newNickname, newPassword, oldPassword)
 

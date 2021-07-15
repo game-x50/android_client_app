@@ -80,8 +80,8 @@ internal class UserProfileFragment : BaseFragment(
 
     @UiMainThread
     private fun showCurrentUser(currentUser: User) {
-        binding?.userProfileScreenEmail?.text = currentUser.email
-        binding?.userProfileScreenNickNameInput?.editText?.setText(currentUser.nickname)
+        binding?.userProfileScreenEmail?.text = currentUser.email.value
+        binding?.userProfileScreenNickNameInput?.editText?.setText(currentUser.nickname.value)
     }
 
     @UiMainThread

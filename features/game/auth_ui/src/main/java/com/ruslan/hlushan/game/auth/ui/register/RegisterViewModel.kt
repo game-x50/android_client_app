@@ -15,12 +15,10 @@ import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.OneExecution
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.SkipStrategy
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.StrategyCommand
 import com.ruslan.hlushan.core.ui.api.presentation.presenter.BaseViewModel
-import com.ruslan.hlushan.game.auth.ui.isEmailValid
-import com.ruslan.hlushan.game.auth.ui.isNickNameValid
-import com.ruslan.hlushan.game.auth.ui.isPasswordValid
 import com.ruslan.hlushan.game.auth.ui.profile.UserProfileScreen
 import com.ruslan.hlushan.game.core.api.auth.AuthInteractor
 import com.ruslan.hlushan.game.core.api.auth.dto.AuthError
+import com.ruslan.hlushan.game.core.api.auth.dto.User
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -46,30 +44,34 @@ constructor(
     @UiMainThread
     fun register(nickname: String, email: String, password: String) {
 
-        val isNickNameValid = nickname.isNickNameValid()
-        if (!isNickNameValid) {
+        val validatedNickname = User.Nickname.createIfValid(nickname)
+        if (validatedNickname == null) {
             mutableCommandsQueue.add(Command.ShowNickNameInputError())
         }
 
-        val isEmailValid = email.isEmailValid()
-        if (!isEmailValid) {
+        val validatedEmail = User.Email.createIfValid(email)
+        if (validatedEmail == null) {
             mutableCommandsQueue.add(Command.ShowEmailInputError())
         }
 
-        val isPasswordValid = password.isPasswordValid()
-        if (!isPasswordValid) {
+        val validatedPassword = User.Password.createIfValid(password)
+        if (validatedPassword == null) {
             mutableCommandsQueue.add(Command.ShowPasswordInputError())
         }
 
-        val allInputsValid = (isNickNameValid && isEmailValid && isPasswordValid)
-
-        if (allInputsValid) {
-            executeRegisterRequest(nickname, email, password)
+        if ((validatedNickname != null)
+            && (validatedEmail != null)
+            && (validatedPassword != null)) {
+            executeRegisterRequest(validatedNickname, validatedEmail, validatedPassword)
         }
     }
 
     @UiMainThread
-    private fun executeRegisterRequest(nickname: String, email: String, password: String) {
+    private fun executeRegisterRequest(
+            nickname: User.Nickname,
+            email: User.Email,
+            password: User.Password
+    ) {
         authInteractor.createNewUser(nickname, email, password)
                 .observeOn(schedulersManager.ui)
                 .doOnSubscribe { mutableCommandsQueue.add(Command.ShowSimpleProgress(show = true)) }
@@ -86,7 +88,7 @@ constructor(
     private fun handleRegisterResult(result: VoidOperationResult<AuthError.UserWithSuchCredentialsExists>) =
             when (result) {
                 is OperationResult.Success -> router.replaceScreen(UserProfileScreen())
-                is OperationResult.Error -> mutableCommandsQueue.add(Command.ShowAuthError(result.result))
+                is OperationResult.Error   -> mutableCommandsQueue.add(Command.ShowAuthError(result.result))
             }
 
     sealed class Command : StrategyCommand {

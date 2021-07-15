@@ -21,7 +21,7 @@ android {
 
     //todo: duplication in base_kotlin_library.gradle
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
         useIR = true
 //        allWarningsAsErrors = true
     }

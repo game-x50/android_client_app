@@ -15,8 +15,6 @@ import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.OneExecution
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.SkipStrategy
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.StrategyCommand
 import com.ruslan.hlushan.core.ui.api.presentation.presenter.BaseViewModel
-import com.ruslan.hlushan.game.auth.ui.isNickNameValid
-import com.ruslan.hlushan.game.auth.ui.isPasswordValid
 import com.ruslan.hlushan.game.core.api.auth.AuthInteractor
 import com.ruslan.hlushan.game.core.api.auth.dto.AuthError
 import com.ruslan.hlushan.game.core.api.auth.dto.User
@@ -56,25 +54,30 @@ constructor(
 
     @UiMainThread
     fun updateUserProfileWith(newNickname: String, oldPassword: String, newPassword: String) {
-        val isNickNameValid = newNickname.isNickNameValid()
-        if (!isNickNameValid) {
+
+        val validatedNewNickname = User.Nickname.createIfValid(newNickname)
+        if (validatedNewNickname == null) {
             mutableCommandsQueue.add(Command.ShowNickNameInputError())
         }
 
-        val isOldPasswordValid = oldPassword.isPasswordValid()
-        if (!isOldPasswordValid) {
+        val validatedOldPassword = User.Password.createIfValid(oldPassword)
+        if (validatedOldPassword == null) {
             mutableCommandsQueue.add(Command.ShowOldPasswordInputError())
         }
 
-        val isNewPasswordValid = newPassword.isPasswordValid()
-        if (!isNewPasswordValid) {
+        val validatedNewPassword = User.Password.createIfValid(newPassword)
+        if (validatedNewPassword == null) {
             mutableCommandsQueue.add(Command.ShowNewPasswordInputError())
         }
 
-        val allInputsValid = (isNickNameValid && isOldPasswordValid && isNewPasswordValid)
-
-        if (allInputsValid) {
-            executeUpdateRequest(newNickname, newPassword, oldPassword)
+        if ((validatedNewNickname != null)
+            && (validatedOldPassword != null)
+            && (validatedNewPassword != null)) {
+            executeUpdateRequest(
+                    newNickname = validatedNewNickname,
+                    newPassword = validatedNewPassword,
+                    oldPassword = validatedOldPassword
+            )
         }
     }
 
@@ -110,8 +113,16 @@ constructor(
     }
 
     @UiMainThread
-    private fun executeUpdateRequest(newNickname: String, newPassword: String, oldPassword: String) {
-        authInteractor.updateUserWith(newNickname = newNickname, newPassword = newPassword, oldPassword = oldPassword)
+    private fun executeUpdateRequest(
+            newNickname: User.Nickname,
+            newPassword: User.Password,
+            oldPassword: User.Password
+    ) {
+        authInteractor.updateUserWith(
+                newNickname = newNickname,
+                newPassword = newPassword,
+                oldPassword = oldPassword
+        )
                 .observeOn(schedulersManager.ui)
                 .doOnSubscribe { mutableCommandsQueue.add(Command.ShowSimpleProgress(show = true)) }
                 .doOnSuccess { result -> handleUpdateResult(result) }

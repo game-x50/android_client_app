@@ -74,13 +74,17 @@ constructor(
     private val firebaseFirestore: FirebaseFirestore get() = FirebaseFirestore.getInstance()
 
     init {
-        val userId: String? = authPrefs.getString(KEY_USER_ID, null)
-        val userEmail: String? = authPrefs.getString(KEY_USER_EMAIL, null)
-        val userNickname: String? = authPrefs.getString(KEY_USER_NICKNAME, null)
-        val user: User? = if (userId != null && userEmail != null && userNickname != null) {
-            User(userId, userEmail, userNickname)
-        } else {
-            null
+        val userId: User.Id? = authPrefs.getString(KEY_USER_ID, null)
+                ?.let(User::Id)
+        val userEmail: User.Email? = authPrefs.getString(KEY_USER_EMAIL, null)
+                ?.let(User.Email::createIfValid)
+        val userNickname: User.Nickname? = authPrefs.getString(KEY_USER_NICKNAME, null)
+                ?.let(User.Nickname::createIfValid)
+
+        val user: User? = ifNotNull(userId, userEmail, userNickname) { nonNullUserId,
+                                                                       nonNullUserEmail,
+                                                                       nonNullUserNickname ->
+            User(nonNullUserId, nonNullUserEmail, nonNullUserNickname)
         }
 
         userSubject = BehaviorSubject.createDefault(ValueHolder(user))
@@ -99,18 +103,21 @@ constructor(
     override fun updateUserToken() = updateUserTokenAsync().blockingAwait()
 
     override fun createNewUser(
-            nickname: String, email: String,
-            password: String
+            nickname: User.Nickname,
+            email: User.Email,
+            password: User.Password
     ): Single<VoidOperationResult<AuthError.UserWithSuchCredentialsExists>> =
             provideErrorIfUserNameExists(nickname)
                     .flatMapNestedSuccess { createNewUserAndReturnUid(email, password) }
-                    .mapSuccess { userUid -> User(userUid, email, nickname) }
+                    .mapSuccess { userUid ->
+                        User(id = User.Id(userUid), email = email, nickname = nickname)
+                    }
                     .flatMapCompletableSuccess { user -> storeNewUserRemoteAndLocal(user) }
                     .mapSuccess { Unit }
 
     override fun logIn(
-            email: String,
-            password: String
+            email: User.Email,
+            password: User.Password
     ): Single<VoidOperationResult<AuthError.InvalidUserCredentials>> =
             firebaseAuth.signInWithEmailAndPasswordRx(email, password)
                     .toOperationResult<FirebaseUser, AuthError.InvalidUserCredentials>()
@@ -125,15 +132,15 @@ constructor(
                     .flatMapCompletableSuccess { firebaseUser -> updateCurrentUserFromRemote(firebaseUser) }
                     .mapSuccess { Unit }
 
-    override fun sendPasswordResetEmail(email: String): Completable =
-            firebaseAuth.sendPasswordResetEmailRx(email)
+    override fun sendPasswordResetEmail(email: User.Email): Completable =
+            firebaseAuth.sendPasswordResetEmailRx(email.value)
                     .onErrorComplete { error -> error is FirebaseAuthInvalidUserException }
                     .subscribeOn(schedulersManager.io)
 
     override fun updateUserWith(
-            newNickname: String,
-            newPassword: String,
-            oldPassword: String
+            newNickname: User.Nickname,
+            newPassword: User.Password,
+            oldPassword: User.Password
     ): Single<VoidOperationResult<AuthError>> =
             Single.fromCallable {
                 getUser() ?: throw IllegalStateException("User is null")
@@ -154,9 +161,9 @@ constructor(
                     .andThen(storeUserTokenLocal(null))
 
     private fun provideErrorIfUserNameExists(
-            nickname: String
+            nickname: User.Nickname
     ): Single<OperationResult<Unit, AuthError.UserWithSuchCredentialsExists>> =
-            Single.fromCallable { UserNameRequest(userName = nickname) }
+            Single.fromCallable { UserNameRequest(userName = nickname.value) }
                     .flatMap { request -> authHttpsApi.checkUniqueUserName(request) }
                     .subscribeOn(schedulersManager.io)
                     .map { response ->
@@ -168,10 +175,10 @@ constructor(
                     }
 
     private fun createNewUserAndReturnUid(
-            email: String,
-            password: String
+            email: User.Email,
+            password: User.Password
     ): Single<OperationResult<String, AuthError.UserWithSuchCredentialsExists>> =
-            firebaseAuth.createUserWithEmailAndPasswordRx(email, password)
+            firebaseAuth.createUserWithEmailAndPasswordRx(email.value, password.value)
                     .subscribeOn(schedulersManager.io)
                     .map<OperationResult<String, AuthError.UserWithSuchCredentialsExists>> { firebaseUser ->
                         OperationResult.Success(firebaseUser.uid)
@@ -186,7 +193,7 @@ constructor(
 
     private fun storeNewUserRemoteAndLocal(user: User): Completable =
             firebaseFirestore.collection(USERS_COLLECTION)
-                    .document(user.id)
+                    .document(user.id.value)
                     .setRx(mapOf(USER_NICKNAME to user.nickname))
                     .subscribeOn(schedulersManager.io)
                     .andThen(storeUserLocal(user))
@@ -197,7 +204,11 @@ constructor(
                     .getRx()
                     .map { documentSnapshot ->
                         @Suppress("UnsafeCallOnNullableType")
-                        User(documentSnapshot.id, currentUser.email!!, documentSnapshot[USER_NICKNAME].toString())
+                        User(
+                                id = User.Id(documentSnapshot.id),
+                                email = User.Email.createIfValid(currentUser.email)!!,
+                                nickname = User.Nickname.createIfValid(documentSnapshot[USER_NICKNAME].toString())!!
+                        )
                     }
                     .subscribeOn(schedulersManager.io)
                     .flatMapCompletable { user -> storeUserLocal(user) }
@@ -210,9 +221,9 @@ constructor(
 
                         if (user != null) {
                             authPrefs.edit()
-                                    .putString(KEY_USER_ID, user.id)
-                                    .putString(KEY_USER_EMAIL, user.email)
-                                    .putString(KEY_USER_NICKNAME, user.nickname)
+                                    .putString(KEY_USER_ID, user.id.value)
+                                    .putString(KEY_USER_EMAIL, user.email.value)
+                                    .putString(KEY_USER_NICKNAME, user.nickname.value)
                                     .apply()
                         } else {
                             authPrefs.edit()
@@ -249,7 +260,7 @@ constructor(
         }
     }
 
-    private fun updateUserPassword(oldPassword: String, newPassword: String): Completable =
+    private fun updateUserPassword(oldPassword: User.Password, newPassword: User.Password): Completable =
             Single.fromCallable { oldPassword != newPassword }
                     .flatMapCompletable { wasChanged ->
                         if (wasChanged) {
@@ -289,8 +300,11 @@ private fun FirebaseAuth.createUserWithEmailAndPasswordRx(email: String, passwor
                 .map { result -> result.user!! }
 
 @Suppress("UnsafeCallOnNullableType")
-private fun FirebaseAuth.signInWithEmailAndPasswordRx(email: String, password: String): Single<FirebaseUser> =
-        taskToSingle { this.signInWithEmailAndPassword(email, password) }
+private fun FirebaseAuth.signInWithEmailAndPasswordRx(
+        email: User.Email,
+        password: User.Password
+): Single<FirebaseUser> =
+        taskToSingle { this.signInWithEmailAndPassword(email.value, password.value) }
                 .map { result -> result.user!! }
 
 private fun FirebaseAuth.sendPasswordResetEmailRx(email: String): Completable =
@@ -301,8 +315,8 @@ private fun FirebaseUser.getIdTokenRx(forceUpdate: Boolean): Single<String> =
         taskToSingle { this.getIdToken(forceUpdate) }
                 .map { result -> result.token!! }
 
-private fun FirebaseUser.updatePasswordRx(password: String): Completable =
-        taskToCompletable { this.updatePassword(password) }
+private fun FirebaseUser.updatePasswordRx(password: User.Password): Completable =
+        taskToCompletable { this.updatePassword(password.value) }
 
 private fun DocumentReference.setRx(any: Any): Completable =
         taskToCompletable { this.set(any) }

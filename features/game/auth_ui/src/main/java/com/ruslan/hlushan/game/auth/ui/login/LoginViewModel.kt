@@ -15,11 +15,10 @@ import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.OneExecution
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.SkipStrategy
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.StrategyCommand
 import com.ruslan.hlushan.core.ui.api.presentation.presenter.BaseViewModel
-import com.ruslan.hlushan.game.auth.ui.isEmailValid
-import com.ruslan.hlushan.game.auth.ui.isPasswordValid
 import com.ruslan.hlushan.game.auth.ui.profile.UserProfileScreen
 import com.ruslan.hlushan.game.core.api.auth.AuthInteractor
 import com.ruslan.hlushan.game.core.api.auth.dto.AuthError
+import com.ruslan.hlushan.game.core.api.auth.dto.User
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -44,25 +43,23 @@ constructor(
 
     @UiMainThread
     fun logIn(email: String, password: String) {
-        val isEmailValid = email.isEmailValid()
-        if (!isEmailValid) {
+        val validatedEmail = User.Email.createIfValid(email)
+        if (validatedEmail == null) {
             mutableCommandsQueue.add(Command.ShowEmailInputError())
         }
 
-        val isPasswordValid = password.isPasswordValid()
-        if (!isPasswordValid) {
+        val validatedPassword = User.Password.createIfValid(password)
+        if (validatedPassword == null) {
             mutableCommandsQueue.add(Command.ShowPasswordInputError())
         }
 
-        val allInputsValid = (isEmailValid && isPasswordValid)
-
-        if (allInputsValid) {
-            executeLoginRequest(email, password)
+        if ((validatedEmail != null) && (validatedPassword != null)) {
+            executeLoginRequest(validatedEmail, validatedPassword)
         }
     }
 
     @UiMainThread
-    private fun executeLoginRequest(email: String, password: String) {
+    private fun executeLoginRequest(email: User.Email, password: User.Password) {
         authInteractor.logIn(email, password)
                 .observeOn(schedulersManager.ui)
                 .doOnSubscribe { mutableCommandsQueue.add(Command.ShowSimpleProgress(show = true)) }
