@@ -41,8 +41,6 @@ import javax.inject.Inject
 private const val USERS_COLLECTION = "users"
 private const val USER_NICKNAME = "nickname"
 
-private const val KEY_USER_ID = "KEY_USER_ID"
-private const val KEY_USER_EMAIL = "KEY_USER_EMAIL"
 private const val KEY_USER_NICKNAME = "KEY_USER_NICKNAME"
 
 @SuppressWarnings("TooManyFunctions")
@@ -74,16 +72,14 @@ constructor(
     private val firebaseFirestore: FirebaseFirestore get() = FirebaseFirestore.getInstance()
 
     init {
-        val userId: User.Id? = authPrefs.getString(KEY_USER_ID, null)
-                ?.let(User::Id)
-        val userEmail: User.Email? = authPrefs.getString(KEY_USER_EMAIL, null)
-                ?.let(User.Email::createIfValid)
         val userNickname: User.Nickname? = authPrefs.getString(KEY_USER_NICKNAME, null)
                 ?.let(User.Nickname::createIfValid)
 
-        val user: User? = ifNotNull(userId, userEmail, userNickname) { nonNullUserId,
-                                                                       nonNullUserEmail,
-                                                                       nonNullUserNickname ->
+        val user: User? = ifNotNull(
+                firebaseAuth.currentUser?.uid?.let(User::Id),
+                firebaseAuth.currentUser?.email?.let(User.Email::createIfValid),
+                userNickname
+        ) { nonNullUserId, nonNullUserEmail, nonNullUserNickname ->
             User(nonNullUserId, nonNullUserEmail, nonNullUserNickname)
         }
 
@@ -219,19 +215,9 @@ constructor(
                     .map {
                         userSubject.onNext(ValueHolder((user)))
 
-                        if (user != null) {
-                            authPrefs.edit()
-                                    .putString(KEY_USER_ID, user.id.value)
-                                    .putString(KEY_USER_EMAIL, user.email.value)
-                                    .putString(KEY_USER_NICKNAME, user.nickname.value)
-                                    .apply()
-                        } else {
-                            authPrefs.edit()
-                                    .remove(KEY_USER_ID)
-                                    .remove(KEY_USER_EMAIL)
-                                    .remove(KEY_USER_NICKNAME)
-                                    .apply()
-                        }
+                        authPrefs.edit()
+                                .putString(KEY_USER_NICKNAME, user?.nickname?.value)
+                                .apply()
                     }
                     .ignoreElement()
 
