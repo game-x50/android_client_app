@@ -1,3 +1,5 @@
+apply from: rootProject.ext[GradleExtraArgs.addJcenterRepositories]
+
 apply from: rootProject.ext[GradleExtraArgs.baseAndroidApp]
 
 apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
@@ -7,8 +9,6 @@ apply from: rootProject.ext[GradleExtraArgs.applicationLeakCanaryTool]
 apply from: rootProject.ext[GradleExtraArgs.apkSigning]
 
 apply from: rootProject.ext[GradleExtraArgs.projectPropertiesRead]
-
-apply plugin: Plugins.crashlytics
 
 android {
 
@@ -39,8 +39,6 @@ android {
             buildConfigField("boolean", "IS_LOGCAT_ENABLED", "true")
             buildConfigField("boolean", "IS_CRASHLYTICS_ENABLED", "false")
 
-            firebaseCrashlytics.mappingFileUploadEnabled = false
-
             versionNameSuffix = "-${BuildTypes.debug}"
             applicationIdSuffix = ".${BuildTypes.debug}"
 
@@ -54,8 +52,6 @@ android {
             buildConfigField("String", "APP_TAG", "\"GAME_APP_RELEASE\"")
             buildConfigField("boolean", "IS_LOGCAT_ENABLED", "false")
             buildConfigField("boolean", "IS_CRASHLYTICS_ENABLED", "true")
-
-            firebaseCrashlytics.mappingFileUploadEnabled = true
 
             signingConfig = signingConfigs.release
         }
@@ -127,3 +123,15 @@ dependencies {
 }
 
 apply plugin: Plugins.googleServices
+
+apply plugin: Plugins.crashlytics
+android {
+    buildTypes {
+        debug {
+            firebaseCrashlytics.mappingFileUploadEnabled = false
+        }
+        release {
+            firebaseCrashlytics.mappingFileUploadEnabled = true
+        }
+    }
+}

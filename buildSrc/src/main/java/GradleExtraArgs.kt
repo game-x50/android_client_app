@@ -30,4 +30,7 @@ object GradleExtraArgs {
     const val applicationLeakCanaryTool = "gradle_support_application_leak_canary_tool"
 
     const val projectPropertiesRead = "gradle_support_project_properties_read"
+
+    @Deprecated("try to avoid")
+    const val addJcenterRepositories = "gradle_support_add_jcenter_repositories"
 }
