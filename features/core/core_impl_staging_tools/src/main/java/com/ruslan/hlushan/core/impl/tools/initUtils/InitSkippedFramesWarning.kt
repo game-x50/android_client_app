@@ -7,7 +7,7 @@ import java.lang.reflect.Field
 import java.lang.reflect.Modifier
 
 //https://www.techyourchance.com/android-application-skips-frames/
-@SuppressWarnings("TooGenericExceptionCaught")
+@Suppress("TooGenericExceptionCaught", "SoonBlockedPrivateApi")
 @UiMainThread
 internal fun initSkippedFramesWarning(appLogger: AppLogger) =
         try {

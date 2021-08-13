@@ -25,6 +25,13 @@
             </intent-filter>
         </activity>
 
+        <!--todo: duplicated in work_manager_extensions gradle module; https://issuetracker.google.com/issues/196577686-->
+        <provider
+            android:name="androidx.work.impl.WorkManagerInitializer"
+            android:authorities="${applicationId}.workmanager-init"
+            android:exported="false"
+            tools:node="remove" />
+
     </application>
 
 </manifest>

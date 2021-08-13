@@ -20,10 +20,6 @@ android {
     resourcePrefix("core_impl_staging_tools_")
 }
 
-repositories {
-    jcenter()
-}
-
 dependencies {
     compileOnly(project(LocalGradleProjects.extensions))
     compileOnly(project(LocalGradleProjects.androidCoreApi))

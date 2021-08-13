@@ -2,6 +2,7 @@ buildscript {
 
     repositories {
         google()
+        jcenter()
         mavenCentral()
     }
 
@@ -60,13 +61,13 @@ allprojects {
     extra[GradleExtraArgs.kotlinxSerilization] = "${gradleSupportFolder}kotlinx_serilization.gradle"
     extra[GradleExtraArgs.applicationLeakCanaryTool] = "${gradleSupportFolder}application_leak_canary_tool.gradle"
     extra[GradleExtraArgs.projectPropertiesRead] = "${gradleSupportFolder}project_properties_read.gradle"
-    extra[GradleExtraArgs.addJcenterRepositories] = "${gradleSupportFolder}add_jcenter_repositories.gradle"
 
     repositories {
         google()
         mavenCentral()
         maven(url = "https://jitpack.io")
         maven(url = "https://maven.google.com")
+        jcenter()
     }
 
     apply(plugin = Plugins.owaspDependencyCheck)

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="color_transparent">#00000000</color>
-    <color name="color_white">#ffffff</color>
-    <color name="color_black">#000000</color>
+    <!--tools:ignore="UnusedResources" is because resource is used just once in another gradle module-->
+    <color name="color_white" tools:ignore="UnusedResources">#ffffff</color>
+    <color name="color_black" tools:ignore="UnusedResources">#000000</color>
 </resources>

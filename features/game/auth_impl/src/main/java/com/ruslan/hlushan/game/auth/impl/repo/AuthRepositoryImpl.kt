@@ -232,13 +232,14 @@ constructor(
         }
     }
 
+    @Suppress("CheckResult")
     private fun observeUserToken() {
-        @Suppress("CheckResult")
         updateUserTokenAsync()
                 .subscribe({ appLogger.log(this, "getIdTokenRx : received") },
                            { error -> appLogger.log(this, "getIdTokenRx : ERROR!", error) })
 
         firebaseAuth.addIdTokenListener { internalTokenResult: InternalTokenResult ->
+            //TODO: validate if this callback is called when login/logout/login
             storeUserTokenLocal(internalTokenResult.token)
                     .doOnComplete { updateUserFromRemote() }
                     .subscribe({ appLogger.log(this, "observeUserToken : received  new") },

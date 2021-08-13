@@ -1,5 +1,3 @@
-apply from: rootProject.ext[GradleExtraArgs.addJcenterRepositories]
-
 apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
 apply from: rootProject.ext[GradleExtraArgs.androidAllBuildVariants]
 

@@ -1,5 +1,3 @@
-apply from: rootProject.ext[GradleExtraArgs.addJcenterRepositories]
-
 apply from: rootProject.ext[GradleExtraArgs.baseAndroidApp]
 
 apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]

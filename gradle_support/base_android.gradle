@@ -15,13 +15,13 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = ApplicationConfigs.JAVA_VERSION
+        targetCompatibility = ApplicationConfigs.JAVA_VERSION
     }
 
     //todo: duplication in base_kotlin_library.gradle
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = ApplicationConfigs.JAVA_VERSION.toString()
         useIR = true
 //        allWarningsAsErrors = true
     }
