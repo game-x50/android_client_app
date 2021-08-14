@@ -10,6 +10,7 @@
 /.idea/assetWizardSettings.xml
 /.idea/jarRepositories.xml
 /.idea/deploymentTargetDropDown.xml
+/.idea/gradle.properties
 .DS_Store
 /build
 /captures

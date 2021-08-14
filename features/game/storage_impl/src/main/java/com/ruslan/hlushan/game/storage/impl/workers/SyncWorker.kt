@@ -37,7 +37,7 @@ internal class SyncWorker(
 
         private const val SYNC_SERVICE_NOTIFICATION_ID = 8812
 
-        private const val PERIODIC_SYNC_WORK_NAME = "PERIODIC_SYNC_WORK_NAME"
+        private const val PERIODIC_SYNC_WORK_NAME = "PERIODIC_SYNC_GAME_RECORDS_WORK"
 
         fun start(appContext: Context) {
 
