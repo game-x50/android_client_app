@@ -4,7 +4,7 @@
 
 object Versions {
 
-    const val gradleVersion = "4.2.2"
+    const val gradleVersion = "7.0.0"
 
     const val kotlinVersion = "1.5.10"
 
@@ -37,7 +37,7 @@ object Versions {
 
     const val androidCoreKtxVersion = "1.6.0"
 
-    const val workManagerVersion = "2.6.0-rc01"
+    const val workManagerVersion = "2.5.0"//please check release notes, related to expedited jobs and WorkerFactory init
 
     const val edgeToEdgeDecoratorVersion = "1.0.0"
 

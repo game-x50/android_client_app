@@ -31,14 +31,31 @@ plugins {
 extra["androidJar"] = androidjar.find(ApplicationConfigs.targetSdkVersion)
 
 val gradleSupportFolderName: String = "gradle_support"
-fun getGradleSupportFolder(project: Project): String = "${project.rootProject.projectDir.path}/${gradleSupportFolderName}/"
+fun getRootProjectPath(project: Project): String = project.rootProject.projectDir.path
+fun getGradleSupportFolder(project: Project): String = "${getRootProjectPath(project)}/${gradleSupportFolderName}/"
 
 allprojects {
-    val rootProjectPath = project.rootProject.projectDir.path
+
+    val rootProjectPath = getRootProjectPath(this)
+
+    extra[GradleExtraArgs.lintersConfigFolder] = "$rootProjectPath/linters/"
+
+    repositories {
+        google()
+        mavenCentral()
+        maven(url = "https://jitpack.io")
+        maven(url = "https://maven.google.com")
+        jcenter()
+    }
+
+    apply(plugin = Plugins.owaspDependencyCheck)
+}
+
+afterEvaluate {
+    val rootProjectPath = getRootProjectPath(this)
 
     val gradleSupportFolder = getGradleSupportFolder(this)
 
-    extra[GradleExtraArgs.lintersConfigFolder] = "$rootProjectPath/linters/"
     extra[GradleExtraArgs.localizationFolder] = "$rootProjectPath/localization"
     extra[GradleExtraArgs.proguardConfigsFolder] = "$rootProjectPath/proguard_configs"
 
@@ -61,16 +78,6 @@ allprojects {
     extra[GradleExtraArgs.kotlinxSerilization] = "${gradleSupportFolder}kotlinx_serilization.gradle"
     extra[GradleExtraArgs.applicationLeakCanaryTool] = "${gradleSupportFolder}application_leak_canary_tool.gradle"
     extra[GradleExtraArgs.projectPropertiesRead] = "${gradleSupportFolder}project_properties_read.gradle"
-
-    repositories {
-        google()
-        mavenCentral()
-        maven(url = "https://jitpack.io")
-        maven(url = "https://maven.google.com")
-        jcenter()
-    }
-
-    apply(plugin = Plugins.owaspDependencyCheck)
 }
 
 subprojects {
@@ -83,7 +90,7 @@ tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
 }
 
-apply(from = "${project.rootProject.projectDir.path}/${gradleSupportFolderName}/linters.gradle")
+apply(from = "${getGradleSupportFolder(project)}linters.gradle")
 
 tasks.named(
         "dependencyUpdates",
