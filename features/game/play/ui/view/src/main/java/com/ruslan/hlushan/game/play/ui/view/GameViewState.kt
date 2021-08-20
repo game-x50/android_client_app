@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import android.view.View
 import com.ruslan.hlushan.android.extensions.parcelableCreator
-import com.ruslan.hlushan.android.extensions.readParcelable
+import com.ruslan.hlushan.android.extensions.readParcelableSafety
 import com.ruslan.hlushan.game.play.ui.view.dto.GameStateParcelable
 
 internal class GameViewState : View.BaseSavedState {
@@ -16,7 +16,7 @@ internal class GameViewState : View.BaseSavedState {
     }
 
     constructor(source: Parcel) : super(source) {
-        gameState = source.readParcelable()!!
+        gameState = source.readParcelableSafety()!!
     }
 
     override fun writeToParcel(out: Parcel, flags: Int) {

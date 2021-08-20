@@ -36,4 +36,4 @@ inline fun <reified T : Parcelable> Parcel.readParcelableCollection(creator: Par
 fun Parcel.writeBooleanSafety(value: Boolean) = writeByte(if (value) 1.toByte() else 0.toByte())
 fun Parcel.readBooleanSafety(): Boolean = readByte() == 1.toByte()
 
-inline fun <reified T : Parcelable> Parcel.readParcelable(): T? = readParcelable(T::class.java.classLoader)
+inline fun <reified T : Parcelable> Parcel.readParcelableSafety(): T? = readParcelable(T::class.java.classLoader)

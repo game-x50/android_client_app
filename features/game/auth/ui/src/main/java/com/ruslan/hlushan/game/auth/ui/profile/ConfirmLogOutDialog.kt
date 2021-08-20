@@ -26,7 +26,7 @@ internal class ConfirmLogOutDialog : BaseTwoOptionsAlert() {
     override val negativeOnClickListener: (() -> Unit)? get() = null
 
     override fun extractData(): TwoOptionsAlertData? =
-            arguments?.getIntOrNull(KEY_COUNT_NOT_SYNCHED_RECORDS)?.let { countNotSynchedRecords ->
+            arguments?.getIntOrNull(KEY_COUNT_NOT_SYNCHED_RECORDS)?.let { countNotSynchedRecords: Int ->
                 val message: String = if (countNotSynchedRecords > 0) {
                     getString(
                             R.string.game_auth_ui_confirm_logout_with_not_synched_records_message_template,

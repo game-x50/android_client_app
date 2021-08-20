@@ -3,6 +3,7 @@
     <issue id="MissingTranslation" severity="ignore" /><!-- TODO: temp and should be removed -->
     <issue id="ObsoleteLintCustomCheck" severity="ignore" /><!-- TODO: temp and should be removed, false posite checks; run it time to time-->
     <issue id="IconMissingDensityFolder" severity="ignore" /><!-- TODO: temp and should be removed, false posite checks; run it time to time-->
+    <issue id="TrustAllX509TrustManager" severity="ignore" /><!-- TODO: temp and should be removed, false posite checks; run it time to time-->
 
     <issue id="RtlEnabled" severity="warning">
         <ignore regexp="AndroidManifest.xml" />

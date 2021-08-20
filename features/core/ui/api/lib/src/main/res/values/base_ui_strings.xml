@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="cancel">Cancel</string>
-    <string name="error_internet_connection">Check your internet connection</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--tools:ignore="UnusedResources" is because resource is used just once in another gradle module-->
+    <string name="cancel" tools:ignore="UnusedResources">Cancel</string>
+    <string name="error_internet_connection" tools:ignore="UnusedResources">Check your internet connection</string>
 </resources>

@@ -28,7 +28,7 @@ internal class SaveResultQuestionDialog : BaseTwoOptionsAlert() {
     }
 
     override fun extractData(): TwoOptionsAlertData? =
-            arguments?.getIntOrNull(KEY_DEFAULT_TOTAL_SCORE)?.let { totalScore ->
+            arguments?.getIntOrNull(KEY_DEFAULT_TOTAL_SCORE)?.let { totalScore: Int ->
                 TwoOptionsAlertData(
                         title = getString(R.string.game_play_ui_save_result_question_template, totalScore),
                         message = getString(R.string.game_play_ui_result_can_be_lose),
