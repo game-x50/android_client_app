@@ -50,6 +50,11 @@ top menu: File -> Project Structure -> Suggestions
 -----------------------------------------------------------------------------------
 
 Think about:
+
+-----------------------------------------------------------------------------------
+https://appsweep.guardsquare.com/
+
+Guardsquare tool for scanning apps to find security issues.
 -----------------------------------------------------------------------------------
 https://github.com/ismaeldivita/change-tracker-plugin
 

@@ -47,6 +47,7 @@
         <item name="android:windowFullscreen">true</item>
 
 <!-- todo: https://joebirch.co/android/exploring-android-12-splash-screen/ -->
+<!-- todo: https://dev.to/tkuenneth/a-peek-inside-jetpack-core-splashscreen-odo?utm_source=android_broadcast_te&utm_medium=post&utm_campaign=jetpack-android12-a- -->
 <!--        <item name="android:windowSplashScreenBackground">#000000</item>-->
 <!--        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>-->
 <!--        <item name="android:windowSplashScreenIconBackgroundColor">@color/black</item>-->

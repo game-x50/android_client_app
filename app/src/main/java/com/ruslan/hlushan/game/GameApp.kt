@@ -29,7 +29,7 @@ internal class GameApp : BaseApplication(), Configuration.Provider {
                 versionName = BuildConfig.VERSION_NAME,
                 isLogcatEnabled = BuildConfig.IS_LOGCAT_ENABLED,
                 fileLogsFolder = File(this.applicationContext.cacheDir, "fileLogs"),
-                languagesJsonRawResId = R.raw.languages,
+                languagesJsonRawResId = com.ruslan.hlushan.game.settings.ui.R.raw.languages,
                 defaultLanguageFullCode = BuildConfig.DEFAULT_LANGUAGE_NON_FULL_CODE,
                 availableLanguagesFullCodes = BuildConfig.AVAILABLE_LANGUAGES_FULL_CODES.toList()
         )
