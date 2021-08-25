@@ -11,22 +11,22 @@ import io.reactivex.Single
 internal interface AuthRepository {
 
     fun createNewUser(
-            nickname: String,
-            email: String,
-            password: String
+            nickname: User.Nickname,
+            email: User.Email,
+            password: User.Password
     ): Single<VoidOperationResult<AuthError.UserWithSuchCredentialsExists>>
 
     fun logIn(
-            email: String,
-            password: String
+            email: User.Email,
+            password: User.Password
     ): Single<VoidOperationResult<AuthError.InvalidUserCredentials>>
 
-    fun sendPasswordResetEmail(email: String): Completable
+    fun sendPasswordResetEmail(email: User.Email): Completable
 
     fun updateUserWith(
-            newNickname: String,
-            newPassword: String,
-            oldPassword: String
+            newNickname: User.Nickname,
+            newPassword: User.Password,
+            oldPassword: User.Password
     ): Single<VoidOperationResult<AuthError>>
 
     fun getUser(): User?
