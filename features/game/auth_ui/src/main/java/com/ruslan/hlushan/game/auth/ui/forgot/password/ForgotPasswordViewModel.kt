@@ -12,8 +12,8 @@ import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.OneExecution
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.SkipStrategy
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.StrategyCommand
 import com.ruslan.hlushan.core.ui.api.presentation.presenter.BaseViewModel
-import com.ruslan.hlushan.game.auth.ui.isEmailValid
 import com.ruslan.hlushan.game.core.api.auth.AuthInteractor
+import com.ruslan.hlushan.game.core.api.auth.dto.User
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 
@@ -33,16 +33,16 @@ constructor(
 
     @UiMainThread
     fun sendPasswordResetEmail(email: String) {
-        val isEmailValid = email.isEmailValid()
-        if (isEmailValid) {
-            executeSendPasswordResetEmailRequest(email)
+        val validatedEmail = User.Email.createIfValid(email)
+        if (validatedEmail != null) {
+            executeSendPasswordResetEmailRequest(validatedEmail)
         } else {
             mutableCommandsQueue.add(Command.ShowEmailInputError())
         }
     }
 
     @UiMainThread
-    private fun executeSendPasswordResetEmailRequest(email: String) {
+    private fun executeSendPasswordResetEmailRequest(email: User.Email) {
         authInteractor.sendPasswordResetEmail(email)
                 .observeOn(schedulersManager.ui)
                 .doOnSubscribe { mutableCommandsQueue.add(Command.ShowSimpleProgress(show = true)) }
@@ -65,7 +65,7 @@ constructor(
             override fun produceStrategy(): HandleStrategy = SkipStrategy()
         }
 
-        class ShowPasswordSentDialog(val email: String) : Command() {
+        class ShowPasswordSentDialog(val email: User.Email) : Command() {
             override fun produceStrategy(): HandleStrategy = OneExecutionStateStrategy()
         }
 

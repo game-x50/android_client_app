@@ -11,6 +11,7 @@ import com.ruslan.hlushan.core.ui.api.dialog.BaseDialogFragment
 import com.ruslan.hlushan.core.ui.api.dialog.command.DialogCommand
 import com.ruslan.hlushan.core.ui.api.dialog.command.DialogCommandsHandler
 import com.ruslan.hlushan.game.auth.ui.R
+import com.ruslan.hlushan.game.core.api.auth.dto.User
 
 private const val KEY_RESET_PASSWORD_EMAIL = "KEY_RESET_PASSWORD_EMAIL"
 
@@ -50,11 +51,11 @@ internal class ResetPasswordEmailSentDialog : BaseDialogFragment() {
 
 @UiMainThread
 internal fun <Parent> Parent.showResetPasswordEmailSentDialog(
-        email: String
+        email: User.Email
 ) where Parent : DialogCommandsHandler.Owner, Parent : ResetPasswordEmailSentDialog.CancelDialogListener =
         this.dialogCommandsHandler.executeShowOrAddToQueue(ShowResetPasswordEmailSentDialogCommand(email))
 
-private class ShowResetPasswordEmailSentDialogCommand(private val email: String) : DialogCommand() {
+private class ShowResetPasswordEmailSentDialogCommand(private val email: User.Email) : DialogCommand() {
 
     override val tag: String get() = "TAG_RESET_PASSWORD_EMAIL_SENT_DIALOG"
 
@@ -65,9 +66,9 @@ private class ShowResetPasswordEmailSentDialogCommand(private val email: String)
                     .showNowSafety(fragmentManager, tag)
 }
 
-private fun createResetPasswordEmailSentDialog(email: String): ResetPasswordEmailSentDialog =
+private fun createResetPasswordEmailSentDialog(email: User.Email): ResetPasswordEmailSentDialog =
         ResetPasswordEmailSentDialog().apply {
             val args = Bundle(1)
-            args.putString(KEY_RESET_PASSWORD_EMAIL, email)
+            args.putString(KEY_RESET_PASSWORD_EMAIL, email.value)
             arguments = args
         }
