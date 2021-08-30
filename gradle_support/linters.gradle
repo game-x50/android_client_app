@@ -10,7 +10,7 @@ detekt {
 
     config = files("${lintersConfigFolder}detekt-config.yml")
 
-    input = files(
+    source = files(
             subprojects
                     .collect { pr -> pr.projectDir }
                     .collectMany { dir ->

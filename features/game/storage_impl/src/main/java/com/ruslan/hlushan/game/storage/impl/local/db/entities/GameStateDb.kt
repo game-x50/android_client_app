@@ -54,27 +54,6 @@ internal data class GameStateDb(
         @ColumnInfo(name = SYNC_STATUS) val syncStatus: SyncStatus
 ) {
 
-    @SuppressWarnings("ClassOrdering")
-    companion object {
-        const val GAME_RECORDS_TABLE = "game_records"
-
-        const val RECORD_ID = "record_id"
-        const val TOTAL_SUM = "total_sum"
-
-        const val REMOTE_RECORD_ID = "remote_record_id"
-        const val REMOTE_ACTION_ID = "remote_action_id"
-        const val REMOTE_CREATED_TIMESTAMP = "remote_created_timestamp"
-        const val LAST_REMOTE_SYNCED_TIMESTAMP = "last_remote_synced_timestamp"
-        const val LAST_LOCAL_MODIFIED_TIMESTAMP = "last_local_modified_timestamp"
-
-        const val LOCAL_ACTION_TYPE = "local_action_type"
-        const val LOCAL_ACTION_ID = "local_action_id"
-        const val LOCAL_CREATE_ID = "local_create_id"
-
-        const val SYNC_STATUS = "sync_status"
-        const val MODIFYING_NOW = "modifying_now"
-    }
-
     fun toSyncState(): RecordSyncState {
         @SuppressWarnings("ComplexCondition")
         val remoteInfo = if ((this.remoteId != null)
@@ -105,5 +84,25 @@ internal data class GameStateDb(
                 modifyingNow = this.modifyingNow,
                 syncStatus = this.syncStatus
         )
+    }
+
+    companion object {
+        const val GAME_RECORDS_TABLE = "game_records"
+
+        const val RECORD_ID = "record_id"
+        const val TOTAL_SUM = "total_sum"
+
+        const val REMOTE_RECORD_ID = "remote_record_id"
+        const val REMOTE_ACTION_ID = "remote_action_id"
+        const val REMOTE_CREATED_TIMESTAMP = "remote_created_timestamp"
+        const val LAST_REMOTE_SYNCED_TIMESTAMP = "last_remote_synced_timestamp"
+        const val LAST_LOCAL_MODIFIED_TIMESTAMP = "last_local_modified_timestamp"
+
+        const val LOCAL_ACTION_TYPE = "local_action_type"
+        const val LOCAL_ACTION_ID = "local_action_id"
+        const val LOCAL_CREATE_ID = "local_create_id"
+
+        const val SYNC_STATUS = "sync_status"
+        const val MODIFYING_NOW = "modifying_now"
     }
 }

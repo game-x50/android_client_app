@@ -8,20 +8,9 @@ import android.os.Bundle
 
 //https://gist.github.com//jankovd/a210460b814c04d500eb12025902d60d
 
-internal class SemEmergencyManagerLeakingActivity
-private constructor(private val application: Application) : Application.ActivityLifecycleCallbacks {
-
-    @SuppressWarnings("ClassOrdering")
-    companion object {
-        fun applyFix(application: Application) {
-            @SuppressLint("ObsoleteSdkInt")
-            if ((Build.MANUFACTURER == "samsung")
-                && (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
-                && (Build.VERSION.SDK_INT <= Build.VERSION_CODES.N)) {
-                application.registerActivityLifecycleCallbacks(SemEmergencyManagerLeakingActivity(application))
-            }
-        }
-    }
+internal class SemEmergencyManagerLeakingActivity private constructor(
+        private val application: Application
+) : Application.ActivityLifecycleCallbacks {
 
     override fun onActivityDestroyed(activity: Activity) {
         try {
@@ -49,5 +38,16 @@ private constructor(private val application: Application) : Application.Activity
         val mContextField = semEmergencyManagerClass.getDeclaredField("mContext")
         mContextField.isAccessible = true
         mContextField.set(sInstance, application)
+    }
+
+    companion object {
+        fun applyFix(application: Application) {
+            @SuppressLint("ObsoleteSdkInt")
+            if ((Build.MANUFACTURER == "samsung")
+                && (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
+                && (Build.VERSION.SDK_INT <= Build.VERSION_CODES.N)) {
+                application.registerActivityLifecycleCallbacks(SemEmergencyManagerLeakingActivity(application))
+            }
+        }
     }
 }

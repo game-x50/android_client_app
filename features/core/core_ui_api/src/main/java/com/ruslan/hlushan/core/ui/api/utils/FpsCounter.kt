@@ -9,11 +9,6 @@ class FpsCounter(
         @IntRange(from = 1) private val periodNanos: Long
 ) {
 
-    @SuppressWarnings("ClassOrdering")
-    companion object {
-        const val NANOS_IN_SEC: Long = (1_000 * 1000)
-    }
-
     private val periods = LinkedList<PeriodInfo>()
 
     var fullObservedPeriodNanos: Long = 0
@@ -57,6 +52,10 @@ class FpsCounter(
             val averageFrameTimePerPeriod = (fullObservedPeriodNanos.toDouble() / totalFramesCount)
             fullObservedPeriodFps = frameTimeToFps(averageFrameTimePerPeriod)
         }
+    }
+
+    companion object {
+        const val NANOS_IN_SEC: Long = (1_000 * 1000)
     }
 }
 

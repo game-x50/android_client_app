@@ -10,7 +10,14 @@ internal data class UndoButton(
         val bottomY: Float
 ) {
 
-    @SuppressWarnings("ClassOrdering")
+    val centerX: Float = ((leftX + rightX) / 2)
+
+    val centerY: Float = ((topY + bottomY) / 2)
+
+    val drawingHeight: Float = ((bottomY - topY) * ALLOWED_DRAWING_PERCENT)
+
+    val drawingWidth: Float = ((rightX - leftX) * ALLOWED_DRAWING_PERCENT)
+
     companion object {
 
         @VisibleForTesting
@@ -21,14 +28,6 @@ internal data class UndoButton(
         fun createDefault(): UndoButton =
                 UndoButton(leftX = 0f, topY = 0f, rightX = 0f, bottomY = 0f)
     }
-
-    val centerX: Float = ((leftX + rightX) / 2)
-
-    val centerY: Float = ((topY + bottomY) / 2)
-
-    val drawingHeight: Float = ((bottomY - topY) * ALLOWED_DRAWING_PERCENT)
-
-    val drawingWidth: Float = ((rightX - leftX) * ALLOWED_DRAWING_PERCENT)
 }
 
 internal fun UndoButton.contains(x: Float, y: Float): Boolean =

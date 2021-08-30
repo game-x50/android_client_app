@@ -8,12 +8,6 @@ import com.ruslan.hlushan.game.core.api.play.dto.MatrixAndNewItemsState
 
 class GameStack(@IntRange(from = 1) limit: Int = DEFAULT_LIMIT) {
 
-    @SuppressWarnings("ClassOrdering")
-    companion object {
-        const val DEFAULT_LIMIT = 10
-        fun empty() = GameStack()
-    }
-
     @IntRange(from = 1)
     @VisibleForTesting
     val limit: Int = maxOf(1, limit)
@@ -37,4 +31,9 @@ class GameStack(@IntRange(from = 1) limit: Int = DEFAULT_LIMIT) {
     }
 
     fun copyAsList(): List<MatrixAndNewItemsState> = stack.toList()
+
+    companion object {
+        const val DEFAULT_LIMIT = 10
+        fun empty() = GameStack()
+    }
 }

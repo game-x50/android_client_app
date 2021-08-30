@@ -11,38 +11,6 @@ data class RecordSyncState(
         val syncStatus: SyncStatus
 ) {
 
-    @SuppressWarnings("ClassOrdering")
-    companion object {
-
-        fun forLocalCreated(
-                localActionId: String,
-                modifyingNow: Boolean,
-                localCreatedTimestamp: Instant
-        ): RecordSyncState =
-                RecordSyncState(
-                        remoteInfo = null,
-                        localAction = LocalAction.Create(actionId = localActionId),
-                        lastLocalModifiedTimestamp = localCreatedTimestamp,
-                        localCreateId = null,
-                        modifyingNow = modifyingNow,
-                        syncStatus = SyncStatus.WAITING
-                )
-
-        fun forSync(
-                remoteInfo: RemoteInfo,
-                lastLocalModifiedTimestamp: Instant,
-                modifyingNow: Boolean
-        ): RecordSyncState =
-                RecordSyncState(
-                        remoteInfo = remoteInfo,
-                        localAction = null,
-                        localCreateId = null,
-                        lastLocalModifiedTimestamp = lastLocalModifiedTimestamp,
-                        modifyingNow = modifyingNow,
-                        syncStatus = SyncStatus.SYNCED
-                )
-    }
-
     init {
         if ((this.localAction is LocalAction.Create) && (this.remoteInfo != null)) {
             throw IllegalCreateStatusAndRemoteActionsException(this.localAction, this.remoteInfo)
@@ -73,6 +41,37 @@ data class RecordSyncState(
             || ((this.localAction == null) && (this.syncStatus == SyncStatus.WAITING))) {
             throw IllegalSyncStatusException(this.localAction, this.syncStatus)
         }
+    }
+
+    companion object {
+
+        fun forLocalCreated(
+                localActionId: String,
+                modifyingNow: Boolean,
+                localCreatedTimestamp: Instant
+        ): RecordSyncState =
+                RecordSyncState(
+                        remoteInfo = null,
+                        localAction = LocalAction.Create(actionId = localActionId),
+                        lastLocalModifiedTimestamp = localCreatedTimestamp,
+                        localCreateId = null,
+                        modifyingNow = modifyingNow,
+                        syncStatus = SyncStatus.WAITING
+                )
+
+        fun forSync(
+                remoteInfo: RemoteInfo,
+                lastLocalModifiedTimestamp: Instant,
+                modifyingNow: Boolean
+        ): RecordSyncState =
+                RecordSyncState(
+                        remoteInfo = remoteInfo,
+                        localAction = null,
+                        localCreateId = null,
+                        lastLocalModifiedTimestamp = lastLocalModifiedTimestamp,
+                        modifyingNow = modifyingNow,
+                        syncStatus = SyncStatus.SYNCED
+                )
     }
 }
 

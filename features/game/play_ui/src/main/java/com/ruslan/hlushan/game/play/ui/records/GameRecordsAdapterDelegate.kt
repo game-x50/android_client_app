@@ -26,7 +26,13 @@ internal class GameRecordsAdapterDelegate(
         private val observeUpdates: (GameRecordRecyclerItem) -> Observable<GameRecordRecyclerItem>
 ) : AdapterDelegate<Long, GameRecordRecyclerItem, GameRecordRecyclerItem> {
 
-    @SuppressWarnings("ClassOrdering")
+    @get:LayoutRes
+    override val layoutResId: Int
+        get() = R.layout.game_play_ui_game_record_item
+
+    override fun createViewHolder(itemView: View): BaseItemViewHolder<Long, GameRecordRecyclerItem> =
+            GameRecordViewHolder(itemView, onItemClick, onDeleteClick, observeUpdates)
+
     companion object {
 
         @UiMainThread
@@ -41,13 +47,6 @@ internal class GameRecordsAdapterDelegate(
                         .mapNotNull { viewHolder -> viewHolder as? GameRecordViewHolder }
                         .forEach { viewHolder -> viewHolder.subscribeIfNeeded() }
     }
-
-    @get:LayoutRes
-    override val layoutResId: Int
-        get() = R.layout.game_play_ui_game_record_item
-
-    override fun createViewHolder(itemView: View): BaseItemViewHolder<Long, GameRecordRecyclerItem> =
-            GameRecordViewHolder(itemView, onItemClick, onDeleteClick, observeUpdates)
 }
 
 private class GameRecordViewHolder(

@@ -17,18 +17,17 @@ internal class GameLevelAdapterDelegate(
         private val onItemClick: OnItemClickListener<GameSize>
 ) : AdapterDelegate<GameSize, GameLevelRecyclerItem, GameLevelRecyclerItem> {
 
-    @SuppressWarnings("ClassOrdering")
-    companion object {
-        fun initItems(): List<GameLevelRecyclerItem> = GameSize.values()
-                .map(::GameLevelRecyclerItem)
-    }
-
     @get:LayoutRes
     override val layoutResId: Int
         get() = R.layout.game_play_ui_game_level_item
 
     override fun createViewHolder(itemView: View): BaseItemViewHolder<GameSize, GameLevelRecyclerItem> =
             GameLevelViewHolder(itemView, onItemClick)
+
+    companion object {
+        fun initItems(): List<GameLevelRecyclerItem> = GameSize.values()
+                .map(::GameLevelRecyclerItem)
+    }
 }
 
 private class GameLevelViewHolder(

@@ -6,10 +6,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Process
 
-/**
- * Created by User on 11.09.2017.
- */
-
 private const val RESTARTED = "appExceptionHandler_restarted"
 private const val LAST_EXCEPTION = "appExceptionHandler_lastException"
 
@@ -18,18 +14,6 @@ internal class AppExceptionHandler(
         private val crashlyticsHandler: Thread.UncaughtExceptionHandler,
         private val application: Application
 ) : Thread.UncaughtExceptionHandler {
-
-    @SuppressWarnings("ClassOrdering")
-    companion object {
-        fun setUp(application: Application) {
-            val systemHandler = Thread.getDefaultUncaughtExceptionHandler()
-            Thread.setDefaultUncaughtExceptionHandler { t, e -> }
-            val crashlyticsExceptionHandler = Thread.getDefaultUncaughtExceptionHandler()
-            Thread.setDefaultUncaughtExceptionHandler(
-                    AppExceptionHandler(systemHandler, crashlyticsExceptionHandler, application)
-            )
-        }
-    }
 
     private var lastStartedActivity: Activity? = null
     private var startCount = 0
@@ -108,5 +92,16 @@ internal class AppExceptionHandler(
         @SuppressWarnings("MagicNumber")
         val exitStatus = 10
         System.exit(exitStatus)
+    }
+
+    companion object {
+        fun setUp(application: Application) {
+            val systemHandler = Thread.getDefaultUncaughtExceptionHandler()
+            Thread.setDefaultUncaughtExceptionHandler { t, e -> }
+            val crashlyticsExceptionHandler = Thread.getDefaultUncaughtExceptionHandler()
+            Thread.setDefaultUncaughtExceptionHandler(
+                    AppExceptionHandler(systemHandler, crashlyticsExceptionHandler, application)
+            )
+        }
     }
 }
