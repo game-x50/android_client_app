@@ -26,14 +26,6 @@ import java.io.File
 
 internal class FileLogsActivity : BaseActivity() {
 
-    @SuppressWarnings("ClassOrdering")
-    companion object {
-
-        fun newIntent(context: Context): Intent =
-                Intent(context, FileLogsActivity::class.java)
-                        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-    }
-
     private val logsAdapter = DelegatesRecyclerAdapter(LogsAdapterDelegate())
 
     private val binding by bindViewBinding(
@@ -133,5 +125,11 @@ internal class FileLogsActivity : BaseActivity() {
                 uri = fileUri
         )
         this.startActivity(chooserIntent)
+    }
+
+    companion object {
+        fun newIntent(context: Context): Intent =
+                Intent(context, FileLogsActivity::class.java)
+                        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     }
 }

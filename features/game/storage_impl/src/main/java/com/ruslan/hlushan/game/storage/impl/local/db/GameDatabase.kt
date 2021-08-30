@@ -37,7 +37,8 @@ import com.ruslan.hlushan.game.storage.impl.local.db.entities.MatrixAndNewItemsS
 )
 internal abstract class GameDatabase : RoomDatabase() {
 
-    @SuppressWarnings("ClassOrdering")
+    abstract fun gameRecordsDAO(): GameRecordsDAO
+
     companion object {
 
         private const val DB_NAME = "GameDatabase.db"
@@ -53,6 +54,4 @@ internal abstract class GameDatabase : RoomDatabase() {
                         name = DB_NAME
                 )
     }
-
-    abstract fun gameRecordsDAO(): GameRecordsDAO
 }

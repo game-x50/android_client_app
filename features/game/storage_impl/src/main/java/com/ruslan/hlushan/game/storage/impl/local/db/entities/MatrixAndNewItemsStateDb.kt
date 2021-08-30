@@ -43,12 +43,6 @@ internal data class MatrixAndNewItemsStateDb(
         val totalSum: Int
 ) {
 
-    @SuppressWarnings("ClassOrdering")
-    companion object {
-        const val TABLE_NAME = "matrix_and_new_items_state"
-        const val MATRIX_INDEX = "matrix_index"
-    }
-
     fun fromDbModel(gameSize: GameSize): MatrixAndNewItemsState {
         val numbers = this.matrix.map { number ->
             if (number != EMPTY_VALUE) {
@@ -68,6 +62,11 @@ internal data class MatrixAndNewItemsStateDb(
                 immutableNumbersMatrix = immutableNumbersMatrix,
                 newItems = this.newItems
         )
+    }
+
+    companion object {
+        const val TABLE_NAME = "matrix_and_new_items_state"
+        const val MATRIX_INDEX = "matrix_index"
     }
 }
 

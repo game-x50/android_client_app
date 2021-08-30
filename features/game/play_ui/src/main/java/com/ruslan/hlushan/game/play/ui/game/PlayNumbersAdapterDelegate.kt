@@ -11,7 +11,13 @@ import com.ruslan.hlushan.game.play.ui.databinding.GamePlayUiPlayNumbersItemBind
 
 internal class PlayNumbersAdapterDelegate : AdapterDelegate<String, PlayNumbersRecyclerItem, PlayNumbersRecyclerItem> {
 
-    @SuppressWarnings("ClassOrdering")
+    @get:LayoutRes
+    override val layoutResId: Int
+        get() = R.layout.game_play_ui_play_numbers_item
+
+    override fun createViewHolder(itemView: View): BaseItemViewHolder<String, PlayNumbersRecyclerItem> =
+            PlayNumbersViewHolder(itemView)
+
     companion object {
         fun initItems(numbers: IntArray) = numbers
                 .groupBy { n ->
@@ -24,13 +30,6 @@ internal class PlayNumbersAdapterDelegate : AdapterDelegate<String, PlayNumbersR
                     )
                 }
     }
-
-    @get:LayoutRes
-    override val layoutResId: Int
-        get() = R.layout.game_play_ui_play_numbers_item
-
-    override fun createViewHolder(itemView: View): BaseItemViewHolder<String, PlayNumbersRecyclerItem> =
-            PlayNumbersViewHolder(itemView)
 }
 
 private class PlayNumbersViewHolder(

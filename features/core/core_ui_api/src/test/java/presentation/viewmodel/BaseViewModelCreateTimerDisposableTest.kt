@@ -11,12 +11,6 @@ import java.util.concurrent.TimeUnit
 @Suppress("MaxLineLength")
 class BaseViewModelCreateTimerDisposableTest : AbstractBaseViewModelDisposableTest() {
 
-    @SuppressWarnings("ClassOrdering")
-    companion object {
-        const val DELAY = 1_000L
-        val TIME_UNIT = TimeUnit.MILLISECONDS
-    }
-
     @Test
     fun `timer joinedWhileViewAttachedDisposable launched after onAfterAttachView with self dispose before onBeforeDetachView`() {
         viewModel.onAfterAttachView()
@@ -223,5 +217,10 @@ class BaseViewModelCreateTimerDisposableTest : AbstractBaseViewModelDisposableTe
         val disposable = createTimerDisposable()
         viewModel.callJoinUntilDestroy(disposable)
         return disposable
+    }
+
+    companion object {
+        const val DELAY = 1_000L
+        val TIME_UNIT = TimeUnit.MILLISECONDS
     }
 }

@@ -34,7 +34,7 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
                 override val additional: Additional.Loading get() = Additional.Loading
             }
 
-            @Suppress("DataClassPrivateConstructor", "ClassOrdering")
+            @Suppress("DataClassPrivateConstructor")
             data class WithError<out F : Any> private constructor(
                     override val filter: F,
                     override val additional: Additional.Error

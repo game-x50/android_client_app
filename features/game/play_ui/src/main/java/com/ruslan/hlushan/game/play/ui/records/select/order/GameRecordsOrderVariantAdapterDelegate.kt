@@ -24,7 +24,15 @@ internal class GameRecordsOrderVariantAdapterDelegate(
         GameRecordsOrderVariantRecyclerItem
         > {
 
-    @SuppressWarnings("ClassOrdering")
+    @get:LayoutRes
+    override val layoutResId: Int
+        get() = R.layout.game_play_ui_game_records_order_variant_item
+
+    override fun createViewHolder(
+            itemView: View
+    ): BaseItemViewHolder<GameRecordWithSyncState.Order.Variant, GameRecordsOrderVariantRecyclerItem> =
+            GameRecordsOrderVariantViewHolder(itemView, onItemClick)
+
     companion object {
         fun createRecyclerItems(
                 selectedVariant: GameRecordWithSyncState.Order.Variant
@@ -34,15 +42,6 @@ internal class GameRecordsOrderVariantAdapterDelegate(
                             GameRecordsOrderVariantRecyclerItem(variant, selected = (variant == selectedVariant))
                         }
     }
-
-    @get:LayoutRes
-    override val layoutResId: Int
-        get() = R.layout.game_play_ui_game_records_order_variant_item
-
-    override fun createViewHolder(
-            itemView: View
-    ): BaseItemViewHolder<GameRecordWithSyncState.Order.Variant, GameRecordsOrderVariantRecyclerItem> =
-            GameRecordsOrderVariantViewHolder(itemView, onItemClick)
 }
 
 private class GameRecordsOrderVariantViewHolder(

@@ -50,7 +50,6 @@ output-reports:
 
 comments:
   active: true
-  excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
   AbsentOrWrongFileLicense:
     active: false
     licenseTemplateFile: 'license.template'
@@ -102,6 +101,7 @@ complexity:
   LongMethod:
     active: true
     threshold: 60
+    ignoreAnnotated: []
   LongParameterList:
     active: true
     functionThreshold: 6
@@ -219,9 +219,15 @@ exceptions:
   ThrowingExceptionsWithoutMessageOrCause:
     active: true
     exceptions:
+      - ArrayIndexOutOfBoundsException
+      - Exception
       - IllegalArgumentException
+      - IllegalMonitorStateException
       - IllegalStateException
-      - IOException
+      - IndexOutOfBoundsException
+      - NullPointerException
+      - RuntimeException
+      - Throwable
   ThrowingNewInstanceOfSameException:
     active: true
   TooGenericExceptionCaught:
@@ -279,7 +285,7 @@ formatting:
   ImportOrdering:
     active: true
     autoCorrect: true
-    layout: 'idea'
+    layout: '*,java.**,javax.**,kotlin.**,^'
   Indentation:
     active: false
     autoCorrect: true
@@ -384,6 +390,10 @@ formatting:
 
 naming:
   active: true
+  BooleanPropertyNaming:
+    active: true
+#    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
+    allowedPattern: '^(is|has|are)'
   ClassNaming:
     active: true
 #    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
@@ -417,7 +427,8 @@ naming:
     functionPattern: '([a-z][a-zA-Z0-9]*)|(`.*`)'
     excludeClassPattern: '$^'
     ignoreOverridden: true
-    ignoreAnnotated: ['Composable']
+    ignoreAnnotated:
+      - Composable
   FunctionParameterNaming:
     active: true
 #    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
@@ -426,7 +437,7 @@ naming:
     ignoreOverridden: true
   InvalidPackageDeclaration:
     active: true
-    excludes: ['*.kts']
+    excludes: ['**/*.kts']
     rootPackage: ''
   MatchingDeclarationName:
     active: true
@@ -486,6 +497,10 @@ performance:
 
 potential-bugs:
   active: true
+  AvoidReferentialEquality:
+    active: true
+    forbiddenTypePatterns:
+      - 'kotlin.String'
   CastToNullableType:
     active: true
   Deprecation:
@@ -509,7 +524,11 @@ potential-bugs:
   IgnoredReturnValue:
     active: true
     restrictToAnnotatedMethods: true
-    returnValueAnnotations: ['*.CheckReturnValue', '*.CheckResult']
+    returnValueAnnotations:
+      - '*.CheckResult'
+      - '*.CheckReturnValue'
+    ignoreReturnValueAnnotations:
+      - '*.CanIgnoreReturnValue'
   ImplicitDefaultLocale:
     active: true
   ImplicitUnitReturnType:
@@ -593,18 +612,20 @@ style:
     forbiddenPatterns: ''
   ForbiddenMethodCall:
     active: true
-    methods: [
-      'kotlin.io.println',
-      'kotlin.io.print',
-      'java.io.PrintStream.println',
-      'java.lang.System.gc',
-      'io.reactivex.disposables.Disposable.dispose',
-      'androidx.fragment.app.DialogFragment.show(androidx.fragment.app.FragmentManager, java.lang.String)'
-    ]
+    methods:
+      - 'kotlin.io.print'
+      - 'kotlin.io.println'
+      - 'java.io.PrintStream.println'
+      - 'java.lang.System.gc'
+      - 'io.reactivex.disposables.Disposable.dispose'
+      - 'androidx.fragment.app.DialogFragment.show(androidx.fragment.app.FragmentManager, java.lang.String)'
+
   ForbiddenPublicDataClass:
     active: true
 #    excludes: ['**']
-    ignorePackages: ['*.internal', '*.internal.*']
+    ignorePackages:
+      - '*.internal'
+      - '*.internal.*'
   ForbiddenVoid:
     active: false
     ignoreOverridden: false
@@ -615,7 +636,8 @@ style:
     ignoreOverridableFunction: true
     ignoreActualFunction: true
     excludedFunctions: 'describeContents'
-    excludeAnnotatedFunction: ['dagger.Provides']
+    excludeAnnotatedFunction:
+      - 'dagger.Provides'
   LibraryCodeMustSpecifyReturnType:
     active: true
 #    excludes: ['**']
@@ -628,7 +650,13 @@ style:
   MagicNumber:
     active: true
     excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
-    ignoreNumbers: ['0', '-1', '1', '-0.5', '0.5' , '2']
+    ignoreNumbers:
+      - '-1'
+      - '-0.5'
+      - '0'
+      - '0.5'
+      - '1'
+      - '2'
     ignoreHashCodeFunction: true
     ignorePropertyDeclaration: false
     ignoreLocalVariableDeclaration: false
@@ -661,6 +689,8 @@ style:
     active: false
   NoTabs:
     active: false
+  ObjectLiteralToLambda:
+    active: true
   OptionalAbstractKeyword:
     active: true
   OptionalUnit:
@@ -694,6 +724,7 @@ style:
     active: true
     excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
     max: 2
+    excludeGuardClauses: false
   TrailingWhitespace:
     active: false
   UnderscoresInNumericLiterals:

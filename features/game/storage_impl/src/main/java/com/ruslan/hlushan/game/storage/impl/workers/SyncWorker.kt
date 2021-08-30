@@ -30,7 +30,40 @@ internal class SyncWorker(
         private val syncInteractor: SyncInteractor
 ) : RxWorker(context, params) {
 
-    @SuppressWarnings("ClassOrdering")
+    override fun createWork(): Single<Result> =
+            Completable.fromAction {
+//                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.R) {
+                setForegroundAsync(createForegroundInfo(applicationContext, id))
+//                }
+            }
+                    .andThen(syncInteractor.sync())
+                    .toSingleDefault(Result.success())
+                    .onErrorReturn { error ->
+                        if (runAttemptCount < MAX_NUMBER_OF_RETRY_FOR_INIT_WORKER) {
+                            Result.retry()
+                        } else {
+                            Result.failure()
+                        }
+                    }
+
+    class Factory
+    @Inject
+    constructor(
+            private val syncInteractorProvider: Provider<SyncInteractor>
+    ) : WorkerFactory() {
+
+        override fun createWorker(
+                appContext: Context,
+                workerClassName: String,
+                workerParameters: WorkerParameters
+        ): ListenableWorker? =
+                if (workerClassName == SyncWorker::class.java.name) {
+                    SyncWorker(appContext, workerParameters, syncInteractorProvider.get())
+                } else {
+                    null
+                }
+    }
+
     companion object {
 
         private const val MAX_NUMBER_OF_RETRY_FOR_INIT_WORKER = 3
@@ -91,40 +124,6 @@ internal class SyncWorker(
 
             return ForegroundInfo(SYNC_SERVICE_NOTIFICATION_ID, notification.build(appContext))
         }
-    }
-
-    override fun createWork(): Single<Result> =
-            Completable.fromAction {
-//                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.R) {
-                setForegroundAsync(createForegroundInfo(applicationContext, id))
-//                }
-            }
-                    .andThen(syncInteractor.sync())
-                    .toSingleDefault(Result.success())
-                    .onErrorReturn { error ->
-                        if (runAttemptCount < MAX_NUMBER_OF_RETRY_FOR_INIT_WORKER) {
-                            Result.retry()
-                        } else {
-                            Result.failure()
-                        }
-                    }
-
-    class Factory
-    @Inject
-    constructor(
-            private val syncInteractorProvider: Provider<SyncInteractor>
-    ) : WorkerFactory() {
-
-        override fun createWorker(
-                appContext: Context,
-                workerClassName: String,
-                workerParameters: WorkerParameters
-        ): ListenableWorker? =
-                if (workerClassName == SyncWorker::class.java.name) {
-                    SyncWorker(appContext, workerParameters, syncInteractorProvider.get())
-                } else {
-                    null
-                }
     }
 }
 
