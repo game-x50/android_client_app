@@ -22,7 +22,7 @@ plugins {
     id(Plugins.detekt).version(Versions.detektVersion)
     id(Plugins.dependencyAnalysis).version(Versions.dependencyAnalysisPluginVersion)
     id(Plugins.owaspDependencyCheck).version(Versions.owaspDependencyCheckVersion)
-//    id(Plugins.gradleDoctor).version(Versions.gradleDoctorVersion)
+    id(Plugins.gradleDoctor).version(Versions.gradleDoctorVersion)
     id(Plugins.dependencyUpdates).version(Versions.dependencyUpdatesVersion)
 
     kotlin(Plugins.kotlinxSerilizationPluginPath).version(Versions.kotlinVersion)

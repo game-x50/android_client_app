@@ -16,10 +16,6 @@ import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.BaseFragment
 import com.ruslan.hlushan.core.ui.api.utils.ViewModifier
 import javax.inject.Inject
 
-/**
- * Created by Ruslan on 03.09.2017.
- */
-
 abstract class BaseAppActivity : BaseActivity() {
 
     @Inject
@@ -73,10 +69,6 @@ abstract class BaseAppActivity : BaseActivity() {
 
     @UiMainThread
     protected abstract fun setUpFirstAppScreen()
-
-    override fun onBackPressed() {
-        currentFragment?.onBackPressed() ?: super.onBackPressed()
-    }
 
     @CallSuper
     override fun onNewIntent(intent: Intent?) {

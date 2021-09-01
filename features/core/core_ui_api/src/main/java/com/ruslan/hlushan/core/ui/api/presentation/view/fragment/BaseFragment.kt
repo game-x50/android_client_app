@@ -31,15 +31,12 @@ import com.ruslan.hlushan.core.ui.api.presentation.lifecycle.DialogCommandsHandl
 import com.ruslan.hlushan.core.ui.api.presentation.lifecycle.LifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.api.presentation.lifecycle.LockableHandlerLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.api.presentation.lifecycle.LoggerLifecyclePluginObserver
+import com.ruslan.hlushan.core.ui.api.presentation.lifecycle.OnBackPressedCallbackLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.api.presentation.lifecycle.dispatchEventForAll
 import com.ruslan.hlushan.core.ui.api.presentation.view.activity.BaseAppActivity
 import com.ruslan.hlushan.core.ui.api.utils.LockableHandler
 import com.ruslan.hlushan.extensions.ifNotNull
 import javax.inject.Inject
-
-/**
- * Created by User on 23.02.2018.
- */
 
 @SuppressWarnings("TooManyFunctions")
 abstract class BaseFragment
@@ -216,6 +213,10 @@ constructor(
         addLifecyclePluginObserver(AppActivitiesSettingsLifecyclePluginObserver(
                 owner = this,
                 appActivitiesSettings = appActivitiesSettings
+        ))
+        addLifecyclePluginObserver(OnBackPressedCallbackLifecyclePluginObserver(
+                owner = this,
+                onBackPressed = ::onBackPressed
         ))
     }
 
