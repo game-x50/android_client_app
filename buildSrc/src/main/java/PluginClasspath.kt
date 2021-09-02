@@ -1,7 +1,3 @@
-/**
- * @author Ruslan Hlushan on 2019-08-28
- */
-
 object PluginClasspath {
 
     const val androidGradle = "com.android.tools.build:gradle:${Versions.gradleVersion}"

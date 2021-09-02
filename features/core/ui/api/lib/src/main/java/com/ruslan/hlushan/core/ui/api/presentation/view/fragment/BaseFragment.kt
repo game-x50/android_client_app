@@ -197,7 +197,7 @@ constructor(
     }
 
     @UiMainThread
-    open fun onBackPressed() = parentRouter.exit()
+    protected open fun onBackPressed() = parentRouter.exit()
 
     @UiMainThread
     protected open fun onCloseScope() = Unit

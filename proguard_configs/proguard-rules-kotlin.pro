@@ -6,6 +6,7 @@
 
 # Kotlin: The consolidated rule for Kotlin android project.
 -keep class kotlin.** { *; }
+#TODO: try to remove next line and test
 -keep class kotlin.Metadata { *; }
 -keepclassmembers class **$WhenMappings {
     <fields>;
@@ -13,10 +14,10 @@
 -keepclassmembers class kotlin.Metadata {
     public <methods>;
 }
+
 -assumenosideeffects class kotlin.jvm.internal.Intrinsics {
     static void checkParameterIsNotNull(java.lang.Object, java.lang.String);
 }
-
 #TODO: #PROGUARD_TAG: https://proandroiddev.com/kotlin-cleaning-java-bytecode-before-release-9567d4c63911
 #-assumenosideeffects class kotlin.jvm.internal.Intrinsics {
 #    public static void checkExpressionValueIsNotNull(...);

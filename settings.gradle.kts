@@ -1,3 +1,5 @@
+//not forgot about LocalGradleProjects.kt
+
 include(":extensions")
 project(":extensions").projectDir = File(rootDir, "features/core/extensions")
 

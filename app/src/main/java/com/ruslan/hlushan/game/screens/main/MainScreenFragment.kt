@@ -118,11 +118,6 @@ internal class MainScreenFragment : BaseFlowFragment(
         }
     }
 
-    @UiMainThread
-    override fun onBackPressed() {
-        currentTabFragment?.onBackPressed()
-    }
-
     private fun initTabs(firstShownTab: FragmentScreen, vararg other: FragmentScreen) {
 
         val transaction = childFragmentManager.beginTransaction()
