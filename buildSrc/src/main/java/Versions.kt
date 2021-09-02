@@ -1,7 +1,3 @@
-/**
- * @author Ruslan Hlushan on 2019-08-28
- */
-
 object Versions {
 
     const val gradleVersion = "4.2.1"
@@ -66,11 +62,11 @@ object Versions {
     const val leakCanaryVersion = "2.7"
     const val blockCanaryVersion = "1.5.0"
     const val tinyDancerVersion = "0.1.2"
-    const val taktVersion = "2.1.0"
+    const val taktVersion = "2.1.1"
     const val lynxVersion = "1.6"
     const val chuckerVersion = "3.4.0"
     const val roomExplorerVersion = "0.0.2"
-    const val rxDisposableWatcherVersion = "1.0.0"//version 2.0.0 id for rxjava3
+    const val rxDisposableWatcherVersion = "1.0.0"//version 2.0.0 is for rxjava3
 
     const val jacocoPluginVersion = "0.8.7"
     const val jUnitVersion = "4.13.2"

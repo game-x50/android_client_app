@@ -1,7 +1,3 @@
-/**
- * @author Ruslan Hlushan on 2019-08-28
- */
-
 object Plugins {
     const val kotlin = "kotlin"
     const val kotlinAndroid = "kotlin-android"
