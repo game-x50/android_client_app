@@ -4,9 +4,9 @@ import com.ruslan.hlushan.android.core.api.di.AppContextProvider
 import com.ruslan.hlushan.core.api.di.LoggersProvider
 import com.ruslan.hlushan.core.api.di.SchedulersProvider
 import com.ruslan.hlushan.core.api.utils.InitAppConfig
-import com.ruslan.hlushan.game.auth.impl.repo.AuthRepository
 import com.ruslan.hlushan.game.api.di.providers.NonAuthorizedNetworkApiCreatorProvider
 import com.ruslan.hlushan.game.api.network.GameNetworkParams
+import com.ruslan.hlushan.game.auth.impl.repo.AuthRepository
 import com.ruslan.hlushan.network.api.NetworkConfig
 import com.ruslan.hlushan.network.api.di.NetworkBuildHelperProvider
 import dagger.BindsInstance

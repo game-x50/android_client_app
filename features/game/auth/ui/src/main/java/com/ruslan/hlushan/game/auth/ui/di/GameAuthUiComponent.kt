@@ -7,6 +7,8 @@ import com.ruslan.hlushan.core.api.di.SchedulersProvider
 import com.ruslan.hlushan.core.api.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
 import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.BaseFragment
+import com.ruslan.hlushan.game.api.di.providers.AuthInteractorProvider
+import com.ruslan.hlushan.game.api.di.providers.PlayRecordsInteractorProvider
 import com.ruslan.hlushan.game.auth.ui.forgot.password.ForgotPasswordFragment
 import com.ruslan.hlushan.game.auth.ui.forgot.password.ForgotPasswordViewModel
 import com.ruslan.hlushan.game.auth.ui.login.LoginFragment
@@ -15,8 +17,6 @@ import com.ruslan.hlushan.game.auth.ui.profile.UserProfileFragment
 import com.ruslan.hlushan.game.auth.ui.profile.UserProfileViewModel
 import com.ruslan.hlushan.game.auth.ui.register.RegisterFragment
 import com.ruslan.hlushan.game.auth.ui.register.RegisterViewModel
-import com.ruslan.hlushan.game.api.di.providers.AuthInteractorProvider
-import com.ruslan.hlushan.game.api.di.providers.PlayRecordsInteractorProvider
 import dagger.Component
 
 @Component(

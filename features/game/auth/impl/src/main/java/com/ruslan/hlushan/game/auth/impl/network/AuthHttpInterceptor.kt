@@ -1,7 +1,7 @@
 package com.ruslan.hlushan.game.auth.impl.network
 
-import com.ruslan.hlushan.game.auth.impl.repo.AuthRepository
 import com.ruslan.hlushan.game.api.network.AuthorizedNetworkApiCreator
+import com.ruslan.hlushan.game.auth.impl.repo.AuthRepository
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response

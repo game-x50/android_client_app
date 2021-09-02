@@ -1,9 +1,9 @@
 package com.ruslan.hlushan.game.auth.impl.di.interactor
 
 import com.ruslan.hlushan.core.api.di.SchedulersProvider
-import com.ruslan.hlushan.game.auth.impl.di.repo.AuthRepoHolder
 import com.ruslan.hlushan.game.api.di.providers.AuthInteractorProvider
 import com.ruslan.hlushan.game.api.di.providers.RecordsUseCasesProvider
+import com.ruslan.hlushan.game.auth.impl.di.repo.AuthRepoHolder
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton

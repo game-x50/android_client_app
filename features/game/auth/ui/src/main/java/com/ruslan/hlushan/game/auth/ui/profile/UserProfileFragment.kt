@@ -14,6 +14,7 @@ import com.ruslan.hlushan.core.ui.api.extensions.bindBaseViewModel
 import com.ruslan.hlushan.core.ui.api.extensions.bindViewBinding
 import com.ruslan.hlushan.core.ui.api.presentation.command.handleCommandQueue
 import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.BaseFragment
+import com.ruslan.hlushan.game.api.auth.dto.User
 import com.ruslan.hlushan.game.auth.ui.R
 import com.ruslan.hlushan.game.auth.ui.databinding.GameAuthUiUserProfileScreenBinding
 import com.ruslan.hlushan.game.auth.ui.di.getGameAuthUiComponent
@@ -21,7 +22,6 @@ import com.ruslan.hlushan.game.auth.ui.observeConfirmPasswordInput
 import com.ruslan.hlushan.game.auth.ui.showAuthError
 import com.ruslan.hlushan.game.auth.ui.showNickNameInputError
 import com.ruslan.hlushan.game.auth.ui.showPasswordInputError
-import com.ruslan.hlushan.game.api.auth.dto.User
 
 internal class UserProfileFragment : BaseFragment(
         layoutResId = R.layout.game_auth_ui_user_profile_screen

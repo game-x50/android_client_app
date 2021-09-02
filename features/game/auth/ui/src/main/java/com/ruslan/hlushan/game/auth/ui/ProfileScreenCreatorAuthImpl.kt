@@ -1,9 +1,9 @@
 package com.ruslan.hlushan.game.auth.ui
 
 import com.github.terrakok.cicerone.Screen
+import com.ruslan.hlushan.game.api.auth.AuthInteractor
 import com.ruslan.hlushan.game.auth.ui.login.LoginScreen
 import com.ruslan.hlushan.game.auth.ui.profile.UserProfileScreen
-import com.ruslan.hlushan.game.api.auth.AuthInteractor
 
 object ProfileScreenCreatorAuthImpl {
 

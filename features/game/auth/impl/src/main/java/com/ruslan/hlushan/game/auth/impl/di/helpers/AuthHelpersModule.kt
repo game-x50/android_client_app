@@ -1,9 +1,9 @@
 package com.ruslan.hlushan.game.auth.impl.di.helpers
 
+import com.ruslan.hlushan.game.api.network.AuthorizedNetworkApiCreator
 import com.ruslan.hlushan.game.auth.impl.di.repo.AuthRepoHolder
 import com.ruslan.hlushan.game.auth.impl.network.AuthorizedNetworkApiCreatorImpl
 import com.ruslan.hlushan.game.auth.impl.repo.AuthRepository
-import com.ruslan.hlushan.game.api.network.AuthorizedNetworkApiCreator
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
