@@ -4,15 +4,12 @@ apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
 apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
 apply from: rootProject.ext[GradleExtraArgs.kotlinxSerilization]
 
-def gameTopImplLibraryVersionName = "1"
-def gameTopImplLibraryVersionCode = 1
-
 def proguardRulesFile = "proguard-rules-game_top_impl.pro"
 
 android {
     defaultConfig {
-        versionCode = gameTopImplLibraryVersionCode
-        versionName = gameTopImplLibraryVersionName
+        versionCode = 1
+        versionName = "1.0"
 
         consumerProguardFiles(proguardRulesFile)
     }

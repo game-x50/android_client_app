@@ -3,14 +3,11 @@ apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
 
 apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
 
-def coreImplDebugToolsLibraryVersionName = "1"
-def coreImplDebugToolsLibraryVersionCode = 1
-
 android {
 
     defaultConfig {
-        versionCode = coreImplDebugToolsLibraryVersionCode
-        versionName = coreImplDebugToolsLibraryVersionName
+        versionCode = 1
+        versionName = "1.0"
     }
 
     resourcePrefix("core_impl_debug_tools_")

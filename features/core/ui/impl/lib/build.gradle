@@ -3,14 +3,11 @@ apply from: rootProject.ext[GradleExtraArgs.androidAllBuildVariants]
 
 apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
 
-def coreUiImplLibraryVersionName = "1"
-def coreUiImplLibraryVersionCode = 1
-
 android {
 
     defaultConfig {
-        versionCode = coreUiImplLibraryVersionCode
-        versionName = coreUiImplLibraryVersionName
+        versionCode = 1
+        versionName = "1.0"
     }
 
     sourceSets {

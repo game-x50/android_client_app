@@ -4,14 +4,11 @@ apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
 apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
 apply from: rootProject.ext[GradleExtraArgs.viewBinding]
 
-def coreUiImplDebugToolsLibraryVersionName = "1"
-def coreUiImplDebugToolsLibraryVersionCode = 1
-
 android {
 
     defaultConfig {
-        versionCode = coreUiImplDebugToolsLibraryVersionCode
-        versionName = coreUiImplDebugToolsLibraryVersionName
+        versionCode = 1
+        versionName = "1.0"
     }
 
     resourcePrefix("core_ui_impl_staging_tools_")

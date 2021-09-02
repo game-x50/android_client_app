@@ -4,15 +4,12 @@ apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
 apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
 apply from: rootProject.ext[GradleExtraArgs.kotlinxSerilization]
 
-def gameAuthImplLibraryVersionName = "1"
-def gameAuthImplLibraryVersionCode = 1
-
 def proguardRulesFile = "proguard-rules-game_auth_impl.pro"
 
 android {
     defaultConfig {
-        versionCode = gameAuthImplLibraryVersionCode
-        versionName = gameAuthImplLibraryVersionName
+        versionCode = 1
+        versionName = "1.0"
 
         consumerProguardFiles(proguardRulesFile)
     }

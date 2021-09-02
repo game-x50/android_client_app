@@ -5,15 +5,12 @@ apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
 apply from: rootProject.ext[GradleExtraArgs.room]
 apply from: rootProject.ext[GradleExtraArgs.kotlinxSerilization]
 
-def gameStorageImplLibraryVersionName = "1"
-def gameStorageImplLibraryVersionCode = 1
-
 def proguardRulesFile = "proguard-rules-game_storage_impl.pro"
 
 android {
     defaultConfig {
-        versionCode = gameStorageImplLibraryVersionCode
-        versionName = gameStorageImplLibraryVersionName
+        versionCode = 1
+        versionName = "1.0"
 
         consumerProguardFiles(proguardRulesFile)
     }

@@ -1,13 +1,10 @@
 apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
 apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
 
-def androidCoreUiApiTestUtilsLibraryVersionName = "1"
-def androidCoreUiApiTestUtilsLibraryVersionCode = 1
-
 android {
     defaultConfig {
-        versionCode = androidCoreUiApiTestUtilsLibraryVersionCode
-        versionName = androidCoreUiApiTestUtilsLibraryVersionName
+        versionCode = 1
+        versionName = "1.0"
     }
 
     resourcePrefix("core_ui_api_test_utils")

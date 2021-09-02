@@ -5,13 +5,10 @@ apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
 apply from: rootProject.ext[GradleExtraArgs.viewBinding]
 apply plugin: Plugins.kotlinParcelize
 
-def gamePlayUiLibraryVersionName = "1"
-def gamePlayUiLibraryVersionCode = 1
-
 android {
     defaultConfig {
-        versionCode = gamePlayUiLibraryVersionCode
-        versionName = gamePlayUiLibraryVersionName
+        versionCode = 1
+        versionName = "1.0"
     }
 
     resourcePrefix("game_play_ui_")

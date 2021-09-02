@@ -3,13 +3,10 @@ apply from: rootProject.ext[GradleExtraArgs.androidAllBuildVariants]
 
 apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
 
-def networkImplLibraryVersionName = "1"
-def networkImplLibraryVersionCode = 1
-
 android {
     defaultConfig {
-        versionCode networkImplLibraryVersionCode
-        versionName networkImplLibraryVersionName
+        versionCode = 1
+        versionName = "1.0"
     }
 
     sourceSets {

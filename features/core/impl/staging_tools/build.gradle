@@ -3,16 +3,13 @@ apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
 
 apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
 
-def coreImplStagingToolsLibraryVersionName = "1"
-def coreImplStagingToolsLibraryVersionCode = 1
-
 def proguardRulesFile = "proguard-rules-core_impl_staging_tools.pro"
 
 android {
 
     defaultConfig {
-        versionCode = coreImplStagingToolsLibraryVersionCode
-        versionName = coreImplStagingToolsLibraryVersionName
+        versionCode = 1
+        versionName = "1.0"
 
         consumerProguardFiles(proguardRulesFile)
     }

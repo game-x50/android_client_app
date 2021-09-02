@@ -1,13 +1,10 @@
 apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
 apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
 
-def networkApiLibraryVersionName = "1"
-def networkApiLibraryVersionCode = 1
-
 android {
     defaultConfig {
-        versionCode = networkApiLibraryVersionCode
-        versionName = networkApiLibraryVersionName
+        versionCode = 1
+        versionName = "1.0"
     }
 
     resourcePrefix("network_api_")

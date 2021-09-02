@@ -1,13 +1,10 @@
 apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
 apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
 
-def workManagerExtensionsLibraryVersionName = "1"
-def workManagerExtensionsLibraryVersionCode = 1
-
 android {
     defaultConfig {
-        versionCode = workManagerExtensionsLibraryVersionCode
-        versionName = workManagerExtensionsLibraryVersionName
+        versionCode = 1
+        versionName = "1.0"
     }
 
     resourcePrefix("work_manager_extensions_")

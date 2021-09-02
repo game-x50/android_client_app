@@ -5,14 +5,11 @@ apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
 apply from: rootProject.ext[GradleExtraArgs.viewBinding]
 apply plugin: Plugins.kotlinParcelize
 
-def coreUiApiLibraryVersionName = "1"
-def coreUiApiLibraryVersionCode = 1
-
 android {
 
     defaultConfig {
-        versionCode = coreUiApiLibraryVersionCode
-        versionName = coreUiApiLibraryVersionName
+        versionCode = 1
+        versionName = "1.0"
     }
 
 //    resourcePrefix("core_ui_api_")

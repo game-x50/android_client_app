@@ -1,13 +1,10 @@
 apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
 apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
 
-def networkImplStagingToolsLibraryVersionName = "1"
-def networkImplStagingToolsLibraryVersionCode = 1
-
 android {
     defaultConfig {
-        versionCode = networkImplStagingToolsLibraryVersionCode
-        versionName = networkImplStagingToolsLibraryVersionName
+        versionCode = 1
+        versionName = "1.0"
     }
 
     resourcePrefix("network_impl_staging_tools_")

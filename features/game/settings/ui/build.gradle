@@ -6,15 +6,12 @@ apply from: rootProject.ext[GradleExtraArgs.viewBinding]
 
 def localizationFolder = rootProject.ext[GradleExtraArgs.localizationFolder]
 
-def gameSettingsUiLibraryVersionName = "1"
-def gameSettingsUiLibraryVersionCode = 1
-
 def languagesResDirectory = "$localizationFolder/res-languages"
 
 android {
     defaultConfig {
-        versionCode = gameSettingsUiLibraryVersionCode
-        versionName = gameSettingsUiLibraryVersionName
+        versionCode = 1
+        versionName = "1.0"
     }
 
     sourceSets {
