@@ -2,7 +2,6 @@ apply from: rootProject.ext[GradleExtraArgs.baseKotlinLibrary]
 
 dependencies {
     api(Deps.jUnit)
-    implementation(Deps.rxJava2)
     implementation(Deps.threeTenBpZonedTest) {
         exclude group: "com.jakewharton.threetenabp", module: "threetenabp"
     }

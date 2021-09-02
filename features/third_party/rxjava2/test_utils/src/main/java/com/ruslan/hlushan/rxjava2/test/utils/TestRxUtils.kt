@@ -1,4 +1,4 @@
-package com.ruslan.hlushan.test.utils
+package com.ruslan.hlushan.rxjava2.test.utils
 
 import io.reactivex.observers.TestObserver
 

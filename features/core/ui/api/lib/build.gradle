@@ -39,6 +39,7 @@ dependencies {
     testImplementation(project(LocalGradleProjects.coreApi))
     testImplementation(Deps.rxJava2)
     testImplementation(project(LocalGradleProjects.rxjava2Extensions))
+    testImplementation(project(LocalGradleProjects.rxjava2TestUtils))
     testImplementation(project(LocalGradleProjects.testUtils))
     testImplementation(project(LocalGradleProjects.coreApiTestUtils))
     testImplementation(project(LocalGradleProjects.coreUiApiTestUtils))

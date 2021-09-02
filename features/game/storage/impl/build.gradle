@@ -44,6 +44,7 @@ dependencies {
     testImplementation(Deps.threeTenBp)
     testImplementation(project(LocalGradleProjects.parsingImpl))
     testImplementation(project(LocalGradleProjects.testUtils))
+    testImplementation(project(LocalGradleProjects.rxjava2TestUtils))
     testImplementation(project(LocalGradleProjects.coreApiTestUtils))
     testImplementation(project(LocalGradleProjects.gameCoreApiTestUtils))
 }

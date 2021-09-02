@@ -6,6 +6,7 @@ object LocalGradleProjects {
     const val threeTenExtensions = ":three_ten_extensions"
 
     const val rxjava2Extensions = ":rxjava2_extensions"
+    const val rxjava2TestUtils = ":rxjava2_test_utils"
 
     const val workManagerExtensions = ":work_manager_extensions"
 

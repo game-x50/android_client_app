@@ -3,7 +3,7 @@ package presentation.command
 import com.ruslan.hlushan.core.ui.api.presentation.command.MutableCommandQueue
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.StrategyCommand
 import com.ruslan.hlushan.extensions.copy
-import com.ruslan.hlushan.test.utils.assertNotCompleteNoErrorsNoValues
+import com.ruslan.hlushan.rxjava2.test.utils.assertNotCompleteNoErrorsNoValues
 import com.ruslan.hlushan.test.utils.assertThrows
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
