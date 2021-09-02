@@ -8,13 +8,10 @@ import com.ruslan.hlushan.core.impl.BaseApplication
 import com.ruslan.hlushan.extensions.lazyUnsafe
 import com.ruslan.hlushan.game.di.GameAppComponent
 import com.ruslan.hlushan.game.error.ErrorLoggerImpl
-import com.ruslan.hlushan.work.manager.extensions.CompositeWorkerFactory
+import com.ruslan.hlushan.work.manager.utils.CompositeWorkerFactory
 import java.io.File
 import javax.inject.Inject
 
-/**
- * @author Ruslan Hlushan on 1/23/19.
- */
 internal class GameApp : BaseApplication(), Configuration.Provider {
 
     @Inject

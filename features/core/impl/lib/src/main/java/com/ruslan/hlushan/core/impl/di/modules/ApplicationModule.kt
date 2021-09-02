@@ -4,18 +4,14 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import com.ruslan.hlushan.android.extensions.wrapContextWithNewLanguage
+import com.ruslan.hlushan.android.storage.SharedPrefsProvider
 import com.ruslan.hlushan.core.api.utils.InitAppConfig
 import com.ruslan.hlushan.core.impl.di.annotations.SettingsPrefs
 import com.ruslan.hlushan.core.impl.utils.getAppLangFullCode
 import com.ruslan.hlushan.extensions.fullLangCodeToNotFull
-import com.ruslan.hlushan.storage.SharedPrefsProvider
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
-
-/**
- * Created by User on 01.02.2018.
- */
 
 @Module
 internal object ApplicationModule {

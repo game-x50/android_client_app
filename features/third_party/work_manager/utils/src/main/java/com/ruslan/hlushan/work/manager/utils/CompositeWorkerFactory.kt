@@ -1,10 +1,10 @@
-package com.ruslan.hlushan.work.manager.extensions
+package com.ruslan.hlushan.work.manager.utils
 
 import android.content.Context
 import androidx.work.ListenableWorker
 import androidx.work.WorkerFactory
 import androidx.work.WorkerParameters
-import com.ruslan.hlushan.work.manager.extensions.di.WorkerFactoryProvider
+import com.ruslan.hlushan.work.manager.utils.di.WorkerFactoryProvider
 
 class CompositeWorkerFactory(
         private val factoryProviders: List<WorkerFactoryProvider>

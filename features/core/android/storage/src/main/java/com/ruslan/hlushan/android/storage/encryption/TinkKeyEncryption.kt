@@ -1,4 +1,4 @@
-package com.ruslan.hlushan.storage.encryption
+package com.ruslan.hlushan.android.storage.encryption
 
 import android.content.Context
 import android.util.Base64

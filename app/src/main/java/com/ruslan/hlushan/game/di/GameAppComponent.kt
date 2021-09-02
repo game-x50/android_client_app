@@ -29,14 +29,10 @@ import com.ruslan.hlushan.game.storage.impl.di.RecordsExportComponentProvider
 import com.ruslan.hlushan.game.top.impl.di.TopInteractorExportComponentProvider
 import com.ruslan.hlushan.network.api.NetworkConfig
 import com.ruslan.hlushan.network.impl.di.NetworkImplExportComponent
-import com.ruslan.hlushan.work.manager.extensions.CompositeWorkerFactory
+import com.ruslan.hlushan.work.manager.utils.CompositeWorkerFactory
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
-
-/**
- * @author Ruslan Hlushan on 1/23/19.
- */
 
 @Singleton
 @Component(

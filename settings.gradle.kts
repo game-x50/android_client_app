@@ -4,8 +4,8 @@ project(":extensions").projectDir = File(rootDir, "features/core/extensions")
 include(":android_extensions")
 project(":android_extensions").projectDir = File(rootDir, "features/core/android/extensions")
 
-include(":storage")
-project(":storage").projectDir = File(rootDir, "features/core/android/storage")
+include(":android_storage")
+project(":android_storage").projectDir = File(rootDir, "features/core/android/storage")
 
 include(":test_utils")
 project(":test_utils").projectDir = File(rootDir, "features/core/test_utils")
@@ -100,7 +100,7 @@ project(":rxjava2_extensions").projectDir = File(rootDir, "features/third_party/
 include(":rxjava2_test_utils")
 project(":rxjava2_test_utils").projectDir = File(rootDir, "features/third_party/rxjava2/test_utils")
 
-include(":work_manager_extensions")
-project(":work_manager_extensions").projectDir = File(rootDir, "features/third_party/work_manager/extensions")
+include(":work_manager_utils")
+project(":work_manager_utils").projectDir = File(rootDir, "features/third_party/work_manager/utils")
 
 include(":app")

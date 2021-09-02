@@ -28,8 +28,8 @@ dependencies {
     compileOnly(project(LocalGradleProjects.androidExtensions))
     compileOnly(project(LocalGradleProjects.gameCoreApi))
     compileOnly(project(LocalGradleProjects.networkApi))
-    compileOnly(project(LocalGradleProjects.storage))
-    compileOnly(project(LocalGradleProjects.workManagerExtensions))
+    compileOnly(project(LocalGradleProjects.androidStorage))
+    compileOnly(project(LocalGradleProjects.workManagerUtils))
 
     implementation(Deps.workManagerRxJava2)
 

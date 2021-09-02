@@ -1,4 +1,4 @@
-package com.ruslan.hlushan.storage
+package com.ruslan.hlushan.android.storage
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -10,8 +10,8 @@ import com.google.crypto.tink.hybrid.HybridConfig
 import com.google.crypto.tink.integration.android.AndroidKeysetManager
 import com.google.crypto.tink.integration.android.AndroidKeystoreKmsClient
 import com.ironz.binaryprefs.BinaryPreferencesBuilder
-import com.ruslan.hlushan.storage.encryption.TinkKeyEncryption
-import com.ruslan.hlushan.storage.encryption.TinkValueEncryption
+import com.ruslan.hlushan.android.storage.encryption.TinkKeyEncryption
+import com.ruslan.hlushan.android.storage.encryption.TinkValueEncryption
 
 //https://github.com/Fi5t/advanced-tink
 

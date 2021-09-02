@@ -3,10 +3,10 @@ package com.ruslan.hlushan.game.storage.impl
 import android.content.Context
 import android.content.SharedPreferences
 import com.ruslan.hlushan.android.extensions.ReferencePreferencesDelegate
+import com.ruslan.hlushan.android.storage.SharedPrefsProvider
 import com.ruslan.hlushan.game.core.api.GameSettings
 import com.ruslan.hlushan.game.core.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.core.api.play.dto.OrderType
-import com.ruslan.hlushan.storage.SharedPrefsProvider
 import javax.inject.Inject
 
 private const val KEY_GAME_RECORDS_ORDER_VARIANT = "KEY_GAME_RECORDS_ORDER_VARIANT"

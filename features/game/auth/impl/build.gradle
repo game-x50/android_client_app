@@ -26,7 +26,7 @@ dependencies {
     compileOnly(project(LocalGradleProjects.extensions))
     compileOnly(project(LocalGradleProjects.gameCoreApi))
     compileOnly(project(LocalGradleProjects.networkApi))
-    compileOnly(project(LocalGradleProjects.storage))
+    compileOnly(project(LocalGradleProjects.androidStorage))
 
     compileOnly(Deps.rxJava2)
     compileOnly(project(LocalGradleProjects.rxjava2Extensions))

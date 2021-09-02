@@ -3,6 +3,7 @@ package com.ruslan.hlushan.core.impl
 import android.app.Application
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
+import com.ruslan.hlushan.android.storage.SharedPrefsProvider
 import com.ruslan.hlushan.core.api.di.IBaseInjector
 import com.ruslan.hlushan.core.api.di.InjectorHolder
 import com.ruslan.hlushan.core.api.log.AppLogger
@@ -13,12 +14,7 @@ import com.ruslan.hlushan.core.impl.tools.initTools
 import com.ruslan.hlushan.core.impl.utils.SemEmergencyManagerLeakingActivity
 import com.ruslan.hlushan.core.impl.utils.exceptions.RxErrorHandlingUtil
 import com.ruslan.hlushan.core.impl.utils.getWrappedOrUpdateContext
-import com.ruslan.hlushan.storage.SharedPrefsProvider
 import javax.inject.Inject
-
-/**
- * @author Ruslan Hlushan on 10/18/18.
- */
 
 private const val APP_INITIALIZATION_TAG: String = "APP_INITIALIZATION"
 

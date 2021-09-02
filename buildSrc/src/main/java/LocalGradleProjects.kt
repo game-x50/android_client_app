@@ -8,7 +8,7 @@ object LocalGradleProjects {
     const val rxjava2Extensions = ":rxjava2_extensions"
     const val rxjava2TestUtils = ":rxjava2_test_utils"
 
-    const val workManagerExtensions = ":work_manager_extensions"
+    const val workManagerUtils = ":work_manager_utils"
 
     const val coreApi = ":core_api"
     const val coreApiDebugTools = ":core_api_debug_tools"
@@ -27,7 +27,7 @@ object LocalGradleProjects {
     const val networkImplDebugTools = ":network_impl_debug_tools"
     const val networkImplStagingTools = ":network_impl_staging_tools"
 
-    const val storage = ":storage"
+    const val androidStorage = ":android_storage"
 
     const val coreImpl = ":core_impl"
     const val coreImplDebugTools = ":core_impl_debug_tools"

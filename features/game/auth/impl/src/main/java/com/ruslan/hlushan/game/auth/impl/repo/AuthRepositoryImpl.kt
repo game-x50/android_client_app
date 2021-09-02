@@ -13,6 +13,7 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.internal.InternalTokenResult
+import com.ruslan.hlushan.android.storage.SharedPrefsProvider
 import com.ruslan.hlushan.core.api.dto.OperationResult
 import com.ruslan.hlushan.core.api.dto.OperationResultVoid
 import com.ruslan.hlushan.core.api.dto.ValueHolder
@@ -30,7 +31,6 @@ import com.ruslan.hlushan.game.auth.impl.repo.dto.server.UserNameRequest
 import com.ruslan.hlushan.game.core.api.auth.dto.AuthError
 import com.ruslan.hlushan.game.core.api.auth.dto.User
 import com.ruslan.hlushan.rxjava2.extensions.tryEmitOrProvideError
-import com.ruslan.hlushan.storage.SharedPrefsProvider
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single

@@ -32,7 +32,7 @@ dependencies {
     compileOnly(project(LocalGradleProjects.androidExtensions))
     compileOnly(project(LocalGradleProjects.coreApi))
     compileOnly(project(LocalGradleProjects.androidCoreApi))
-    compileOnly(project(LocalGradleProjects.storage))
+    compileOnly(project(LocalGradleProjects.androidStorage))
 
     compileOnly(project(LocalGradleProjects.coreUiApi))
 

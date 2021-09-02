@@ -1,4 +1,4 @@
-package com.ruslan.hlushan.work.manager.extensions.di
+package com.ruslan.hlushan.work.manager.utils.di
 
 import androidx.work.WorkerFactory
 
