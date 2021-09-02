@@ -2,7 +2,7 @@ package com.ruslan.hlushan.game.screens.routing
 
 import com.github.terrakok.cicerone.Screen
 import com.ruslan.hlushan.game.auth.ui.ProfileScreenCreatorAuthImpl
-import com.ruslan.hlushan.game.core.api.auth.AuthInteractor
+import com.ruslan.hlushan.game.api.auth.AuthInteractor
 import com.ruslan.hlushan.game.settings.ui.di.SettingsOutScreenCreator
 import com.ruslan.hlushan.game.top.ui.games.TopGamesScreen
 import javax.inject.Inject

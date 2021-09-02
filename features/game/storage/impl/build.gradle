@@ -26,7 +26,7 @@ dependencies {
     compileOnly(project(LocalGradleProjects.androidCoreApi))
     compileOnly(project(LocalGradleProjects.extensions))
     compileOnly(project(LocalGradleProjects.androidExtensions))
-    compileOnly(project(LocalGradleProjects.gameCoreApi))
+    compileOnly(project(LocalGradleProjects.gameApi))
     compileOnly(project(LocalGradleProjects.networkApi))
     compileOnly(project(LocalGradleProjects.androidStorage))
     compileOnly(project(LocalGradleProjects.workManagerUtils))
@@ -40,11 +40,11 @@ dependencies {
 
     testImplementation(project(LocalGradleProjects.coreApi))
     testImplementation(project(LocalGradleProjects.extensions))
-    testImplementation(project(LocalGradleProjects.gameCoreApi))
+    testImplementation(project(LocalGradleProjects.gameApi))
     testImplementation(Deps.threeTenBp)
     testImplementation(project(LocalGradleProjects.parsingImpl))
     testImplementation(project(LocalGradleProjects.testUtils))
     testImplementation(project(LocalGradleProjects.rxjava2TestUtils))
     testImplementation(project(LocalGradleProjects.coreApiTestUtils))
-    testImplementation(project(LocalGradleProjects.gameCoreApiTestUtils))
+    testImplementation(project(LocalGradleProjects.gameApiTestUtils))
 }

@@ -1,8 +1,8 @@
 package com.ruslan.hlushan.game.storage.impl.remote.dto
 
-import com.ruslan.hlushan.game.core.api.play.dto.GameState
-import com.ruslan.hlushan.game.core.api.play.dto.RecordSyncState
-import com.ruslan.hlushan.game.core.api.play.dto.RemoteInfo
+import com.ruslan.hlushan.game.api.play.dto.GameState
+import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
+import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
 import com.ruslan.hlushan.game.storage.impl.local.LocalUpdateRequest
 import org.threeten.bp.Duration
 import org.threeten.bp.Instant

@@ -1,8 +1,8 @@
 package com.ruslan.hlushan.game.top.impl
 
-import com.ruslan.hlushan.game.core.api.play.dto.GameSize
-import com.ruslan.hlushan.game.core.api.top.TopInteractor
-import com.ruslan.hlushan.game.core.api.top.dto.GamePreviewWithUserDetails
+import com.ruslan.hlushan.game.api.play.dto.GameSize
+import com.ruslan.hlushan.game.api.top.TopInteractor
+import com.ruslan.hlushan.game.api.top.dto.GamePreviewWithUserDetails
 import com.ruslan.hlushan.game.top.impl.remote.TopRepository
 import io.reactivex.Single
 import javax.inject.Inject

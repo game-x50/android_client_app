@@ -23,7 +23,7 @@ android {
 dependencies {
     compileOnly(project(LocalGradleProjects.coreApi))
     compileOnly(project(LocalGradleProjects.extensions))
-    compileOnly(project(LocalGradleProjects.gameCoreApi))
+    compileOnly(project(LocalGradleProjects.gameApi))
     compileOnly(project(LocalGradleProjects.networkApi))
 
     compileOnly(Deps.threeTenBp)

@@ -12,7 +12,7 @@ import com.ruslan.hlushan.core.ui.api.recycler.BaseItemViewHolder
 import com.ruslan.hlushan.core.ui.api.recycler.OnItemClickListener
 import com.ruslan.hlushan.core.ui.api.recycler.RecyclerItem
 import com.ruslan.hlushan.extensions.ifNotNull
-import com.ruslan.hlushan.game.core.api.play.dto.GameRecordWithSyncState
+import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.play.ui.R
 import com.ruslan.hlushan.game.play.ui.databinding.GamePlayUiGameRecordsOrderVariantItemBinding
 

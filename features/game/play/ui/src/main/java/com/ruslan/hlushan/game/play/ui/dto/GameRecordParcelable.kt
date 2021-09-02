@@ -1,7 +1,7 @@
 package com.ruslan.hlushan.game.play.ui.dto
 
 import android.os.Parcelable
-import com.ruslan.hlushan.game.core.api.play.dto.GameRecord
+import com.ruslan.hlushan.game.api.play.dto.GameRecord
 import kotlinx.parcelize.Parcelize
 import org.threeten.bp.Duration
 

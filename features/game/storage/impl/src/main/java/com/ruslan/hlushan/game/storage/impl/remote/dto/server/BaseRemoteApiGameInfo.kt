@@ -1,7 +1,7 @@
 package com.ruslan.hlushan.game.storage.impl.remote.dto.server
 
-import com.ruslan.hlushan.game.core.api.play.dto.GameRecord
-import com.ruslan.hlushan.game.core.api.play.dto.MatrixAndNewItemsState
+import com.ruslan.hlushan.game.api.play.dto.GameRecord
+import com.ruslan.hlushan.game.api.play.dto.MatrixAndNewItemsState
 import com.ruslan.hlushan.parsing.impl.utils.parsing.DurationAsSecondsSerializer
 import kotlinx.serialization.Serializable
 import org.threeten.bp.Duration

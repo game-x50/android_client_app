@@ -14,8 +14,8 @@ import com.ruslan.hlushan.android.extensions.colorAttributeValue
 import com.ruslan.hlushan.core.api.dto.MutableValueHolder
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.extensions.ifNotNull
-import com.ruslan.hlushan.game.core.api.play.dto.GameSize
-import com.ruslan.hlushan.game.core.api.play.dto.GameState
+import com.ruslan.hlushan.game.api.play.dto.GameSize
+import com.ruslan.hlushan.game.api.play.dto.GameState
 import com.ruslan.hlushan.game.play.ui.R
 import com.ruslan.hlushan.game.play.ui.dto.toParcelable
 import com.ruslan.hlushan.game.play.ui.view.calculations.GameGrid

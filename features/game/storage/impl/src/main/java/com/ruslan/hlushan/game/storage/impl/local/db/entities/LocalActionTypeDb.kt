@@ -1,6 +1,6 @@
 package com.ruslan.hlushan.game.storage.impl.local.db.entities
 
-import com.ruslan.hlushan.game.core.api.play.dto.LocalAction
+import com.ruslan.hlushan.game.api.play.dto.LocalAction
 
 internal enum class LocalActionTypeDb {
     CREATE,

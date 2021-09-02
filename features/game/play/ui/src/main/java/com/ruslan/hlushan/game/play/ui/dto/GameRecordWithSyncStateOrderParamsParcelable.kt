@@ -1,8 +1,8 @@
 package com.ruslan.hlushan.game.play.ui.dto
 
 import android.os.Parcelable
-import com.ruslan.hlushan.game.core.api.play.dto.GameRecordWithSyncState
-import com.ruslan.hlushan.game.core.api.play.dto.OrderType
+import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
+import com.ruslan.hlushan.game.api.play.dto.OrderType
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

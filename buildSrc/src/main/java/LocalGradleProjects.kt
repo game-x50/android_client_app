@@ -2,6 +2,7 @@
 object LocalGradleProjects {
     const val extensions = ":extensions"
     const val androidExtensions = ":android_extensions"
+    const val androidPermissions = ":android_permissions"
 
     const val threeTenExtensions = ":three_ten_extensions"
 
@@ -41,9 +42,9 @@ object LocalGradleProjects {
     const val coreUiImplDebugTools = ":core_ui_impl_debug_tools"
     const val coreUiImplStagingTools = ":core_ui_impl_staging_tools"
 
-    const val gameCoreApi = ":game_core_api"
+    const val gameApi = ":game_api"
 
-    const val gameCoreApiTestUtils = ":game_core_api_test_utils"
+    const val gameApiTestUtils = ":game_api_test_utils"
 
     const val gameAuthImpl = ":game_auth_impl"
     const val gameAuthUi = ":game_auth_ui"

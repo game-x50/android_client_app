@@ -7,8 +7,8 @@ import com.ruslan.hlushan.core.api.di.SchedulersProvider
 import com.ruslan.hlushan.core.api.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
 import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.BaseFragment
-import com.ruslan.hlushan.game.core.api.di.providers.AuthInteractorProvider
-import com.ruslan.hlushan.game.core.api.di.providers.TopInteractorProvider
+import com.ruslan.hlushan.game.api.di.providers.AuthInteractorProvider
+import com.ruslan.hlushan.game.api.di.providers.TopInteractorProvider
 import com.ruslan.hlushan.game.top.ui.games.TopGamesFragment
 import com.ruslan.hlushan.game.top.ui.games.TopGamesViewModel
 import dagger.Component

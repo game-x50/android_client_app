@@ -2,8 +2,8 @@ package com.ruslan.hlushan.game.top.impl.remote
 
 import com.ruslan.hlushan.core.api.log.AppLogger
 import com.ruslan.hlushan.core.api.managers.SchedulersManager
-import com.ruslan.hlushan.game.core.api.play.dto.GameSize
-import com.ruslan.hlushan.game.core.api.top.dto.GamePreviewWithUserDetails
+import com.ruslan.hlushan.game.api.play.dto.GameSize
+import com.ruslan.hlushan.game.api.top.dto.GamePreviewWithUserDetails
 import com.ruslan.hlushan.game.top.impl.remote.dto.RemoteApiGamePreviewWithUserDetails
 import com.ruslan.hlushan.game.top.impl.remote.dto.toEntity
 import io.reactivex.Single

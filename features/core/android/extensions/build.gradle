@@ -1,13 +1,10 @@
 apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
 apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
 
-def androidCoreApiLibraryVersionName = "1"
-def androidCoreApiLibraryVersionCode = 1
-
 android {
     defaultConfig {
-        versionCode = androidCoreApiLibraryVersionCode
-        versionName = androidCoreApiLibraryVersionName
+        versionCode = "1"
+        versionName = 1
     }
 }
 

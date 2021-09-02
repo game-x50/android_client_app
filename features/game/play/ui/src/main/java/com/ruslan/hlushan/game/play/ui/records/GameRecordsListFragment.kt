@@ -23,9 +23,9 @@ import com.ruslan.hlushan.core.ui.api.recycler.RecyclerViewLifecyclePluginObserv
 import com.ruslan.hlushan.extensions.exhaustive
 import com.ruslan.hlushan.extensions.ifNotNull
 import com.ruslan.hlushan.extensions.lazyUnsafe
-import com.ruslan.hlushan.game.core.api.play.dto.GameRecord
-import com.ruslan.hlushan.game.core.api.play.dto.GameRecordWithSyncState
-import com.ruslan.hlushan.game.core.api.play.dto.GameSize
+import com.ruslan.hlushan.game.api.play.dto.GameRecord
+import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
+import com.ruslan.hlushan.game.api.play.dto.GameSize
 import com.ruslan.hlushan.game.play.ui.R
 import com.ruslan.hlushan.game.play.ui.databinding.GamePlayUiGameRecordsListScreenBinding
 import com.ruslan.hlushan.game.play.ui.di.getGamePlayUiComponent

@@ -3,7 +3,7 @@ package sync.stub
 import androidx.annotation.IntRange
 import com.ruslan.hlushan.extensions.clearAndAddAll
 import com.ruslan.hlushan.extensions.replace
-import com.ruslan.hlushan.game.core.api.play.dto.SyncStatus
+import com.ruslan.hlushan.game.api.play.dto.SyncStatus
 import com.ruslan.hlushan.game.storage.impl.local.db.dao.GameRecordsDAO
 import com.ruslan.hlushan.game.storage.impl.local.db.entities.GameRecordDb
 import com.ruslan.hlushan.game.storage.impl.local.db.entities.GameStateDb

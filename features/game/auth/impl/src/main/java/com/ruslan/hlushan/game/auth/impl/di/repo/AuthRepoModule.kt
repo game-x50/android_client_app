@@ -4,8 +4,8 @@ import com.ruslan.hlushan.game.auth.impl.network.NonAuthorizedNetworkApiCreatorI
 import com.ruslan.hlushan.game.auth.impl.repo.AuthHttpsApi
 import com.ruslan.hlushan.game.auth.impl.repo.AuthRepository
 import com.ruslan.hlushan.game.auth.impl.repo.AuthRepositoryImpl
-import com.ruslan.hlushan.game.core.api.network.GameNetworkParams
-import com.ruslan.hlushan.game.core.api.network.NonAuthorizedNetworkApiCreator
+import com.ruslan.hlushan.game.api.network.GameNetworkParams
+import com.ruslan.hlushan.game.api.network.NonAuthorizedNetworkApiCreator
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

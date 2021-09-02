@@ -1,7 +1,7 @@
 package view
 
-import com.ruslan.hlushan.game.core.api.play.dto.MatrixAndNewItemsState
-import com.ruslan.hlushan.game.core.api.test.utils.generateFakeMatrixAndNewItemsState
+import com.ruslan.hlushan.game.api.play.dto.MatrixAndNewItemsState
+import com.ruslan.hlushan.game.api.test.utils.generateFakeMatrixAndNewItemsState
 import com.ruslan.hlushan.game.play.ui.view.GameStack
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse

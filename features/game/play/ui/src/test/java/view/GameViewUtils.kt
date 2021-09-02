@@ -1,7 +1,7 @@
 package view
 
-import com.ruslan.hlushan.game.core.api.play.dto.GameSize
-import com.ruslan.hlushan.game.core.api.play.dto.ImmutableNumbersMatrix
+import com.ruslan.hlushan.game.api.play.dto.GameSize
+import com.ruslan.hlushan.game.api.play.dto.ImmutableNumbersMatrix
 import com.ruslan.hlushan.game.play.ui.view.RectangleArea
 import com.ruslan.hlushan.game.play.ui.view.calculations.ItemsMatrix
 import com.ruslan.hlushan.game.play.ui.view.calculations.updateFrom

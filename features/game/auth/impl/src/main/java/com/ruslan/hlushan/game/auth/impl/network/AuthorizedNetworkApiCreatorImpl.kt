@@ -3,7 +3,7 @@ package com.ruslan.hlushan.game.auth.impl.network
 import android.content.Context
 import com.ruslan.hlushan.core.api.log.AppLogger
 import com.ruslan.hlushan.core.api.utils.InitAppConfig
-import com.ruslan.hlushan.game.core.api.network.AuthorizedNetworkApiCreator
+import com.ruslan.hlushan.game.api.network.AuthorizedNetworkApiCreator
 import com.ruslan.hlushan.network.api.NetworkBuildHelper
 import com.ruslan.hlushan.network.api.NetworkConfig
 import okhttp3.OkHttpClient

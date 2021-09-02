@@ -22,7 +22,7 @@ dependencies {
     compileOnly(project(LocalGradleProjects.extensions))
     compileOnly(project(LocalGradleProjects.androidExtensions))
     compileOnly(project(LocalGradleProjects.coreUiApi))
-    compileOnly(project(LocalGradleProjects.gameCoreApi))
+    compileOnly(project(LocalGradleProjects.gameApi))
 
     compileOnly(Deps.threeTenBp)
     compileOnly(project(LocalGradleProjects.threeTenExtensions))
@@ -41,6 +41,6 @@ dependencies {
 
     testImplementation(project(LocalGradleProjects.testUtils))
     testImplementation(project(LocalGradleProjects.extensions))
-    testImplementation(project(LocalGradleProjects.gameCoreApi))
-    testImplementation(project(LocalGradleProjects.gameCoreApiTestUtils))
+    testImplementation(project(LocalGradleProjects.gameApi))
+    testImplementation(project(LocalGradleProjects.gameApiTestUtils))
 }

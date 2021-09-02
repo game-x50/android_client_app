@@ -1,7 +1,7 @@
 package view.calculations
 
 import com.ruslan.hlushan.extensions.removeFirst
-import com.ruslan.hlushan.game.core.api.play.dto.GameSize
+import com.ruslan.hlushan.game.api.play.dto.GameSize
 import com.ruslan.hlushan.game.play.ui.view.calculations.ItemsMatrix
 import com.ruslan.hlushan.test.utils.generateFakePositiveInt
 import view.getIndexForRowColumn

@@ -3,7 +3,7 @@ package com.ruslan.hlushan.game.auth.impl.di.interactor
 import com.ruslan.hlushan.game.auth.impl.di.repo.AuthRepoHolder
 import com.ruslan.hlushan.game.auth.impl.interactor.AuthInteractorImpl
 import com.ruslan.hlushan.game.auth.impl.repo.AuthRepository
-import com.ruslan.hlushan.game.core.api.auth.AuthInteractor
+import com.ruslan.hlushan.game.api.auth.AuthInteractor
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable

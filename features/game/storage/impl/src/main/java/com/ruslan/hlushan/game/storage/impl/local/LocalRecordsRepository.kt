@@ -4,11 +4,11 @@ import androidx.annotation.IntRange
 import com.ruslan.hlushan.core.api.dto.ValueHolder
 import com.ruslan.hlushan.core.api.dto.pagination.PaginationPagesRequest
 import com.ruslan.hlushan.core.api.dto.pagination.PaginationResponse
-import com.ruslan.hlushan.game.core.api.play.dto.GameRecord
-import com.ruslan.hlushan.game.core.api.play.dto.GameRecordWithSyncState
-import com.ruslan.hlushan.game.core.api.play.dto.GameState
-import com.ruslan.hlushan.game.core.api.play.dto.RecordSyncState
-import com.ruslan.hlushan.game.core.api.play.dto.RequestParams
+import com.ruslan.hlushan.game.api.play.dto.GameRecord
+import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
+import com.ruslan.hlushan.game.api.play.dto.GameState
+import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
+import com.ruslan.hlushan.game.api.play.dto.RequestParams
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single

@@ -1,7 +1,7 @@
 package sync.usecases.localModified
 
 import assertRecordsWithSyncStateInLocalRepo
-import com.ruslan.hlushan.game.core.api.play.dto.LocalAction
+import com.ruslan.hlushan.game.api.play.dto.LocalAction
 import com.ruslan.hlushan.game.storage.impl.remote.dto.UploadLocalModifiedRequest
 import generateAndAddLocalCreatedToLocalRepo
 import generateAndAddLocalDeletedToLocalRepo

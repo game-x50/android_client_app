@@ -92,7 +92,7 @@ dependencies {
 
     implementation(project(LocalGradleProjects.workManagerUtils))
 
-    implementation(project(LocalGradleProjects.gameCoreApi))
+    implementation(project(LocalGradleProjects.gameApi))
 
     implementation(project(LocalGradleProjects.gameAuthImpl))
     implementation(project(LocalGradleProjects.gameStorageImpl))

@@ -2,7 +2,7 @@ package sync.usecases
 
 import com.ruslan.hlushan.core.api.test.utils.managers.CurrentThreadSchedulersManager
 import com.ruslan.hlushan.extensions.addAsFirstTo
-import com.ruslan.hlushan.game.core.api.play.ClearAllLocalGamesInfoUseCase
+import com.ruslan.hlushan.game.api.play.ClearAllLocalGamesInfoUseCase
 import com.ruslan.hlushan.game.storage.impl.ClearAllLocalGamesInfoUseCaseImpl
 import com.ruslan.hlushan.test.utils.generateFakeInstantTimestamp
 import generateAndAddLocalCreatedToLocalRepo

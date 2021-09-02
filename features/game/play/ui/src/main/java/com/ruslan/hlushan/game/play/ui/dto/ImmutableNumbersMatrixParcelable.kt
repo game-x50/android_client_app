@@ -1,8 +1,8 @@
 package com.ruslan.hlushan.game.play.ui.dto
 
 import android.os.Parcelable
-import com.ruslan.hlushan.game.core.api.play.dto.GameSize
-import com.ruslan.hlushan.game.core.api.play.dto.ImmutableNumbersMatrix
+import com.ruslan.hlushan.game.api.play.dto.GameSize
+import com.ruslan.hlushan.game.api.play.dto.ImmutableNumbersMatrix
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

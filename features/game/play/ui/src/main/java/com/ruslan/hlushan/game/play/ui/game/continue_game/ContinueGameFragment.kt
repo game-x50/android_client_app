@@ -10,7 +10,7 @@ import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.api.extensions.bindBaseViewModel
 import com.ruslan.hlushan.extensions.ifNotNull
-import com.ruslan.hlushan.game.core.api.play.dto.GameRecord
+import com.ruslan.hlushan.game.api.play.dto.GameRecord
 import com.ruslan.hlushan.game.play.ui.di.getGamePlayUiComponent
 import com.ruslan.hlushan.game.play.ui.dto.GameRecordParcelable
 import com.ruslan.hlushan.game.play.ui.dto.toParcelable

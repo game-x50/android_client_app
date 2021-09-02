@@ -1,7 +1,7 @@
 package view.calculations
 
-import com.ruslan.hlushan.game.core.api.play.dto.GameSize
-import com.ruslan.hlushan.game.core.api.play.dto.ImmutableNumbersMatrix
+import com.ruslan.hlushan.game.api.play.dto.GameSize
+import com.ruslan.hlushan.game.api.play.dto.ImmutableNumbersMatrix
 import com.ruslan.hlushan.game.play.ui.view.RectangleArea
 import com.ruslan.hlushan.game.play.ui.view.bottomY
 import com.ruslan.hlushan.game.play.ui.view.calculations.CellTextSizeParams

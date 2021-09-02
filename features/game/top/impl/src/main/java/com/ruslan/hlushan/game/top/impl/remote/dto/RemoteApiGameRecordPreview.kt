@@ -1,7 +1,7 @@
 package com.ruslan.hlushan.game.top.impl.remote.dto
 
-import com.ruslan.hlushan.game.core.api.play.dto.GameSize
-import com.ruslan.hlushan.game.core.api.top.dto.GameRecordPreview
+import com.ruslan.hlushan.game.api.play.dto.GameSize
+import com.ruslan.hlushan.game.api.top.dto.GameRecordPreview
 import com.ruslan.hlushan.parsing.impl.utils.parsing.InstantAsEpochMillisSerializer
 import kotlinx.serialization.Serializable
 import org.threeten.bp.Duration

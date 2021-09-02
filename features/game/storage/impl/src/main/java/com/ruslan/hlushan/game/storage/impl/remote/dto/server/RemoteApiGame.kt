@@ -1,9 +1,9 @@
 package com.ruslan.hlushan.game.storage.impl.remote.dto.server
 
-import com.ruslan.hlushan.game.core.api.play.dto.GameSize
-import com.ruslan.hlushan.game.core.api.play.dto.GameState
-import com.ruslan.hlushan.game.core.api.play.dto.MatrixAndNewItemsState
-import com.ruslan.hlushan.game.core.api.play.dto.RemoteInfo
+import com.ruslan.hlushan.game.api.play.dto.GameSize
+import com.ruslan.hlushan.game.api.play.dto.GameState
+import com.ruslan.hlushan.game.api.play.dto.MatrixAndNewItemsState
+import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
 import com.ruslan.hlushan.game.storage.impl.remote.dto.RemoteRecord
 import com.ruslan.hlushan.parsing.impl.utils.parsing.DurationAsSecondsSerializer
 import com.ruslan.hlushan.parsing.impl.utils.parsing.InstantAsEpochMillisSerializer

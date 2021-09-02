@@ -7,10 +7,10 @@ import com.ruslan.hlushan.core.api.di.SchedulersProvider
 import com.ruslan.hlushan.core.api.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
 import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.BaseFragment
-import com.ruslan.hlushan.game.core.api.di.providers.AuthInteractorProvider
-import com.ruslan.hlushan.game.core.api.di.providers.GameSettingsProvider
-import com.ruslan.hlushan.game.core.api.di.providers.PlayRecordsInteractorProvider
-import com.ruslan.hlushan.game.core.api.di.providers.RecordsUseCasesProvider
+import com.ruslan.hlushan.game.api.di.providers.AuthInteractorProvider
+import com.ruslan.hlushan.game.api.di.providers.GameSettingsProvider
+import com.ruslan.hlushan.game.api.di.providers.PlayRecordsInteractorProvider
+import com.ruslan.hlushan.game.api.di.providers.RecordsUseCasesProvider
 import com.ruslan.hlushan.game.play.ui.GameScopeMarkerRepository
 import com.ruslan.hlushan.game.play.ui.flow.PlayFlowFragment
 import com.ruslan.hlushan.game.play.ui.game.continue_game.ContinueGameFragment

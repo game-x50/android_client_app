@@ -2,12 +2,12 @@ package com.ruslan.hlushan.game.storage.impl.local.db.entities
 
 import androidx.room.Embedded
 import androidx.room.Relation
-import com.ruslan.hlushan.game.core.api.play.dto.GameRecord
-import com.ruslan.hlushan.game.core.api.play.dto.GameRecordWithSyncState
-import com.ruslan.hlushan.game.core.api.play.dto.GameSize
-import com.ruslan.hlushan.game.core.api.play.dto.GameState
-import com.ruslan.hlushan.game.core.api.play.dto.MatrixAndNewItemsState
-import com.ruslan.hlushan.game.core.api.play.dto.SyncStatus
+import com.ruslan.hlushan.game.api.play.dto.GameRecord
+import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
+import com.ruslan.hlushan.game.api.play.dto.GameSize
+import com.ruslan.hlushan.game.api.play.dto.GameState
+import com.ruslan.hlushan.game.api.play.dto.MatrixAndNewItemsState
+import com.ruslan.hlushan.game.api.play.dto.SyncStatus
 import com.ruslan.hlushan.game.storage.impl.local.LocalUpdateRequest
 import org.threeten.bp.Duration
 import org.threeten.bp.Instant

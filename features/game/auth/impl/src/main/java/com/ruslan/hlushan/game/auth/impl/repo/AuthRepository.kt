@@ -2,8 +2,8 @@ package com.ruslan.hlushan.game.auth.impl.repo
 
 import com.ruslan.hlushan.core.api.dto.ValueHolder
 import com.ruslan.hlushan.core.api.dto.VoidOperationResult
-import com.ruslan.hlushan.game.core.api.auth.dto.AuthError
-import com.ruslan.hlushan.game.core.api.auth.dto.User
+import com.ruslan.hlushan.game.api.auth.dto.AuthError
+import com.ruslan.hlushan.game.api.auth.dto.User
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single

@@ -1,7 +1,7 @@
 
 package view.calculations
 
-import com.ruslan.hlushan.game.core.api.play.dto.GameSize
+import com.ruslan.hlushan.game.api.play.dto.GameSize
 import com.ruslan.hlushan.game.play.ui.view.RectangleArea
 import com.ruslan.hlushan.game.play.ui.view.calculations.updateFrom
 import com.ruslan.hlushan.test.utils.generateFakePositiveInt

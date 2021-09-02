@@ -2,12 +2,12 @@ package sync
 
 import com.ruslan.hlushan.core.api.test.utils.log.EmptyAppLoggerImpl
 import com.ruslan.hlushan.core.api.test.utils.managers.CurrentThreadSchedulersManager
-import com.ruslan.hlushan.game.core.api.play.dto.GameSize
-import com.ruslan.hlushan.game.core.api.play.dto.GameState
-import com.ruslan.hlushan.game.core.api.play.dto.ImmutableNumbersMatrix
-import com.ruslan.hlushan.game.core.api.play.dto.MatrixAndNewItemsState
-import com.ruslan.hlushan.game.core.api.play.dto.RecordSyncState
-import com.ruslan.hlushan.game.core.api.play.dto.SyncStatus
+import com.ruslan.hlushan.game.api.play.dto.GameSize
+import com.ruslan.hlushan.game.api.play.dto.GameState
+import com.ruslan.hlushan.game.api.play.dto.ImmutableNumbersMatrix
+import com.ruslan.hlushan.game.api.play.dto.MatrixAndNewItemsState
+import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
+import com.ruslan.hlushan.game.api.play.dto.SyncStatus
 import com.ruslan.hlushan.game.storage.impl.UploadLocalModifiedUseCase
 import com.ruslan.hlushan.game.storage.impl.local.LocalUpdateRequest
 import com.ruslan.hlushan.game.storage.impl.remote.dto.LocalModifiedResponse

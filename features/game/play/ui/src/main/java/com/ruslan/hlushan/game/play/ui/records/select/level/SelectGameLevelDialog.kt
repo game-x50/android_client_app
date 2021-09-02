@@ -18,7 +18,7 @@ import com.ruslan.hlushan.core.ui.api.extensions.bindViewBinding
 import com.ruslan.hlushan.core.ui.api.recycler.DelegatesRecyclerAdapter
 import com.ruslan.hlushan.core.ui.api.recycler.OnItemClickListener
 import com.ruslan.hlushan.core.ui.api.recycler.RecyclerViewLifecyclePluginObserver
-import com.ruslan.hlushan.game.core.api.play.dto.GameSize
+import com.ruslan.hlushan.game.api.play.dto.GameSize
 import com.ruslan.hlushan.game.play.ui.R
 import com.ruslan.hlushan.game.play.ui.databinding.GamePlayUiSelectGameLevelDialogBinding
 

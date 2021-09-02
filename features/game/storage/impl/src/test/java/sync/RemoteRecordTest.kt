@@ -1,6 +1,6 @@
 package sync
 
-import com.ruslan.hlushan.game.core.api.play.dto.RecordSyncState
+import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
 import com.ruslan.hlushan.game.storage.impl.local.LocalUpdateRequest
 import com.ruslan.hlushan.game.storage.impl.remote.dto.toSyncLocalUpdateRequest
 import generateFakeRemoteRecord

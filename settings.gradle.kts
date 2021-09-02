@@ -4,6 +4,9 @@ project(":extensions").projectDir = File(rootDir, "features/core/extensions")
 include(":android_extensions")
 project(":android_extensions").projectDir = File(rootDir, "features/core/android/extensions")
 
+include(":android_permissions")
+project(":android_permissions").projectDir = File(rootDir, "features/core/android/permissions")
+
 include(":android_storage")
 project(":android_storage").projectDir = File(rootDir, "features/core/android/storage")
 
@@ -64,11 +67,11 @@ project(":core_ui_impl_debug_tools").projectDir = File(rootDir, "features/core/u
 include(":core_ui_impl_staging_tools")
 project(":core_ui_impl_staging_tools").projectDir = File(rootDir, "features/core/ui/impl/staging_tools")
 
-include(":game_core_api")
-project(":game_core_api").projectDir = File(rootDir, "features/game/core/api/lib")
+include(":game_api")
+project(":game_api").projectDir = File(rootDir, "features/game/api/lib")
 
-include(":game_core_api_test_utils")
-project(":game_core_api_test_utils").projectDir = File(rootDir, "features/game/core/api/test_utils")
+include(":game_api_test_utils")
+project(":game_api_test_utils").projectDir = File(rootDir, "features/game/api/test_utils")
 
 include(":game_auth_impl")
 project(":game_auth_impl").projectDir = File(rootDir, "features/game/auth/impl")

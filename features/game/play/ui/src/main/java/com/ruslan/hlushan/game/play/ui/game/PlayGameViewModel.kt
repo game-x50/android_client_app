@@ -14,8 +14,8 @@ import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.OneExecution
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.SkipStrategy
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.StrategyCommand
 import com.ruslan.hlushan.core.ui.api.presentation.presenter.BaseViewModel
-import com.ruslan.hlushan.game.core.api.play.PlayRecordsInteractor
-import com.ruslan.hlushan.game.core.api.play.dto.GameState
+import com.ruslan.hlushan.game.api.play.PlayRecordsInteractor
+import com.ruslan.hlushan.game.api.play.dto.GameState
 import com.ruslan.hlushan.game.play.ui.GameScopeMarkerRepository
 import com.ruslan.hlushan.rxjava2.extensions.safetyDispose
 import io.reactivex.Completable

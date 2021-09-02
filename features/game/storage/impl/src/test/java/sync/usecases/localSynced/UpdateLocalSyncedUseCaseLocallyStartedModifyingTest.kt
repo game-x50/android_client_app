@@ -1,12 +1,12 @@
 package sync.usecases.localSynced
 
 import assertRecordsWithSyncStateInLocalRepo
-import com.ruslan.hlushan.game.core.api.play.dto.GameRecord
-import com.ruslan.hlushan.game.core.api.play.dto.GameRecordWithSyncState
-import com.ruslan.hlushan.game.core.api.play.dto.RecordSyncState
-import com.ruslan.hlushan.game.core.api.play.dto.SyncStatus
-import com.ruslan.hlushan.game.core.api.test.utils.copyWithNewId
-import com.ruslan.hlushan.game.core.api.test.utils.generateFakeRemoteInfo
+import com.ruslan.hlushan.game.api.play.dto.GameRecord
+import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
+import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
+import com.ruslan.hlushan.game.api.play.dto.SyncStatus
+import com.ruslan.hlushan.game.api.test.utils.copyWithNewId
+import com.ruslan.hlushan.game.api.test.utils.generateFakeRemoteInfo
 import com.ruslan.hlushan.game.storage.impl.remote.dto.UpdateLocalNonModifiedResponse
 import generateAndAddLocalSyncedToLocalRepo
 import generateFakeRemoteRecord

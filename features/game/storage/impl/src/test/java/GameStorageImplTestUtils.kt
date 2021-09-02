@@ -1,15 +1,15 @@
 @file:Suppress("InvalidPackageDeclaration")
 
-import com.ruslan.hlushan.game.core.api.play.dto.GameRecord
-import com.ruslan.hlushan.game.core.api.play.dto.GameRecordWithSyncState
-import com.ruslan.hlushan.game.core.api.play.dto.GameState
-import com.ruslan.hlushan.game.core.api.play.dto.RecordSyncState
-import com.ruslan.hlushan.game.core.api.play.dto.RemoteInfo
-import com.ruslan.hlushan.game.core.api.play.dto.SyncStatus
-import com.ruslan.hlushan.game.core.api.play.dto.toLocalDeletedOrThrow
-import com.ruslan.hlushan.game.core.api.test.utils.createLocalUpdatedState
-import com.ruslan.hlushan.game.core.api.test.utils.generateFakeGameState
-import com.ruslan.hlushan.game.core.api.test.utils.generateFakeRemoteInfo
+import com.ruslan.hlushan.game.api.play.dto.GameRecord
+import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
+import com.ruslan.hlushan.game.api.play.dto.GameState
+import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
+import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
+import com.ruslan.hlushan.game.api.play.dto.SyncStatus
+import com.ruslan.hlushan.game.api.play.dto.toLocalDeletedOrThrow
+import com.ruslan.hlushan.game.api.test.utils.createLocalUpdatedState
+import com.ruslan.hlushan.game.api.test.utils.generateFakeGameState
+import com.ruslan.hlushan.game.api.test.utils.generateFakeRemoteInfo
 import com.ruslan.hlushan.game.storage.impl.local.LocalUpdateRequest
 import com.ruslan.hlushan.game.storage.impl.remote.dto.RemoteRecord
 import com.ruslan.hlushan.test.utils.generateFakeDuration

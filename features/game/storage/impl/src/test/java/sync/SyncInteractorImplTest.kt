@@ -4,11 +4,11 @@ import assertRecordsWithSyncStateInLocalRepo
 import com.ruslan.hlushan.core.api.dto.OperationResult
 import com.ruslan.hlushan.core.api.test.utils.log.EmptyAppLoggerImpl
 import com.ruslan.hlushan.core.api.test.utils.managers.CurrentThreadSchedulersManager
-import com.ruslan.hlushan.game.core.api.play.dto.GameRecord
-import com.ruslan.hlushan.game.core.api.play.dto.GameRecordWithSyncState
-import com.ruslan.hlushan.game.core.api.play.dto.RecordSyncState
-import com.ruslan.hlushan.game.core.api.play.dto.SyncStatus
-import com.ruslan.hlushan.game.core.api.test.utils.generateFakeRemoteInfo
+import com.ruslan.hlushan.game.api.play.dto.GameRecord
+import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
+import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
+import com.ruslan.hlushan.game.api.play.dto.SyncStatus
+import com.ruslan.hlushan.game.api.test.utils.generateFakeRemoteInfo
 import com.ruslan.hlushan.game.storage.impl.DownloadNewRemoteCreatedUseCase
 import com.ruslan.hlushan.game.storage.impl.SyncInteractorImpl
 import com.ruslan.hlushan.game.storage.impl.UpdateLocalSyncedUseCase

@@ -7,9 +7,9 @@ import com.ruslan.hlushan.core.api.log.AppLogger
 import com.ruslan.hlushan.core.api.managers.SchedulersManager
 import com.ruslan.hlushan.core.api.utils.thread.ThreadChecker
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
-import com.ruslan.hlushan.game.core.api.play.PlayRecordsInteractor
-import com.ruslan.hlushan.game.core.api.play.dto.GameState
-import com.ruslan.hlushan.game.core.api.play.dto.wasPlayed
+import com.ruslan.hlushan.game.api.play.PlayRecordsInteractor
+import com.ruslan.hlushan.game.api.play.dto.GameState
+import com.ruslan.hlushan.game.api.play.dto.wasPlayed
 import com.ruslan.hlushan.game.play.ui.GameScopeMarkerRepository
 import com.ruslan.hlushan.game.play.ui.game.PlayGameViewModel
 import dagger.assisted.Assisted

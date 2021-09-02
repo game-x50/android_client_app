@@ -1,9 +1,9 @@
 package sync.usecases.localModified
 
-import com.ruslan.hlushan.game.core.api.play.dto.GameRecordWithSyncState
-import com.ruslan.hlushan.game.core.api.play.dto.LocalAction
-import com.ruslan.hlushan.game.core.api.play.dto.RemoteInfo
-import com.ruslan.hlushan.game.core.api.play.dto.SyncStatus
+import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
+import com.ruslan.hlushan.game.api.play.dto.LocalAction
+import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
+import com.ruslan.hlushan.game.api.play.dto.SyncStatus
 import com.ruslan.hlushan.game.storage.impl.remote.dto.LocalModifiedResponse
 import com.ruslan.hlushan.test.utils.generateFakeStringId
 import generateAndAddLocalCreatedToLocalRepo

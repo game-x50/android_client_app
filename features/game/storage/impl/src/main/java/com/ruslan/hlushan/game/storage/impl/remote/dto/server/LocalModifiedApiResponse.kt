@@ -1,6 +1,6 @@
 package com.ruslan.hlushan.game.storage.impl.remote.dto.server
 
-import com.ruslan.hlushan.game.core.api.play.dto.RemoteInfo
+import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
 import com.ruslan.hlushan.game.storage.impl.remote.dto.LocalModifiedResponse
 import com.ruslan.hlushan.parsing.impl.utils.parsing.InstantAsEpochMillisSerializer
 import kotlinx.serialization.Serializable

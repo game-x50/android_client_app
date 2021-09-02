@@ -15,8 +15,8 @@ import com.ruslan.hlushan.game.auth.ui.profile.UserProfileFragment
 import com.ruslan.hlushan.game.auth.ui.profile.UserProfileViewModel
 import com.ruslan.hlushan.game.auth.ui.register.RegisterFragment
 import com.ruslan.hlushan.game.auth.ui.register.RegisterViewModel
-import com.ruslan.hlushan.game.core.api.di.providers.AuthInteractorProvider
-import com.ruslan.hlushan.game.core.api.di.providers.PlayRecordsInteractorProvider
+import com.ruslan.hlushan.game.api.di.providers.AuthInteractorProvider
+import com.ruslan.hlushan.game.api.di.providers.PlayRecordsInteractorProvider
 import dagger.Component
 
 @Component(

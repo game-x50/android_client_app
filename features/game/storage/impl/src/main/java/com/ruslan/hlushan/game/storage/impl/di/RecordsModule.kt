@@ -1,9 +1,9 @@
 package com.ruslan.hlushan.game.storage.impl.di
 
-import com.ruslan.hlushan.game.core.api.GameSettings
-import com.ruslan.hlushan.game.core.api.play.ClearAllLocalGamesInfoUseCase
-import com.ruslan.hlushan.game.core.api.play.PlayRecordsInteractor
-import com.ruslan.hlushan.game.core.api.sync.StartSyncUseCase
+import com.ruslan.hlushan.game.api.GameSettings
+import com.ruslan.hlushan.game.api.play.ClearAllLocalGamesInfoUseCase
+import com.ruslan.hlushan.game.api.play.PlayRecordsInteractor
+import com.ruslan.hlushan.game.api.sync.StartSyncUseCase
 import com.ruslan.hlushan.game.storage.impl.ClearAllLocalGamesInfoUseCaseImpl
 import com.ruslan.hlushan.game.storage.impl.GameSettingsImpl
 import com.ruslan.hlushan.game.storage.impl.PlayRecordsInteractorImpl

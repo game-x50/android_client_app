@@ -1,6 +1,6 @@
 package com.ruslan.hlushan.game.play.ui.view.listeners
 
-import com.ruslan.hlushan.game.core.api.play.dto.GameState
+import com.ruslan.hlushan.game.api.play.dto.GameState
 
 /**
  * @author Ruslan Hlushan on 10/15/18.

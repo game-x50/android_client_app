@@ -1,6 +1,6 @@
 package com.ruslan.hlushan.game.storage.impl.remote.dto
 
-import com.ruslan.hlushan.game.core.api.play.dto.GameRecord
+import com.ruslan.hlushan.game.api.play.dto.GameRecord
 import org.threeten.bp.Instant
 
 internal sealed class UploadLocalModifiedRequest {

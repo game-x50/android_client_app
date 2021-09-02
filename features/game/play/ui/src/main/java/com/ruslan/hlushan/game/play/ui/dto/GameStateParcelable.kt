@@ -1,8 +1,8 @@
 package com.ruslan.hlushan.game.play.ui.dto
 
 import android.os.Parcelable
-import com.ruslan.hlushan.game.core.api.play.dto.GameState
-import com.ruslan.hlushan.game.core.api.play.dto.MatrixAndNewItemsState
+import com.ruslan.hlushan.game.api.play.dto.GameState
+import com.ruslan.hlushan.game.api.play.dto.MatrixAndNewItemsState
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

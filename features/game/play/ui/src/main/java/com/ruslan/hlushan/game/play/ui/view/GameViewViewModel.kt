@@ -3,10 +3,10 @@ package com.ruslan.hlushan.game.play.ui.view
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.extensions.ifNotNull
 import com.ruslan.hlushan.extensions.indexOfFirstOrNull
-import com.ruslan.hlushan.game.core.api.play.dto.GameSize
-import com.ruslan.hlushan.game.core.api.play.dto.GameState
-import com.ruslan.hlushan.game.core.api.play.dto.ImmutableNumbersMatrix
-import com.ruslan.hlushan.game.core.api.play.dto.MatrixAndNewItemsState
+import com.ruslan.hlushan.game.api.play.dto.GameSize
+import com.ruslan.hlushan.game.api.play.dto.GameState
+import com.ruslan.hlushan.game.api.play.dto.ImmutableNumbersMatrix
+import com.ruslan.hlushan.game.api.play.dto.MatrixAndNewItemsState
 import com.ruslan.hlushan.game.play.ui.view.calculations.GameViewDrawingCalculator
 import com.ruslan.hlushan.game.play.ui.view.calculations.GameViewParams
 import com.ruslan.hlushan.game.play.ui.view.calculations.ItemsMatrix

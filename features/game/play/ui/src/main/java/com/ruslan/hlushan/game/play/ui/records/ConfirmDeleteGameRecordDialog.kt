@@ -9,7 +9,7 @@ import com.ruslan.hlushan.core.ui.api.dialog.TwoOptionsAlertData
 import com.ruslan.hlushan.core.ui.api.dialog.command.DialogCommand
 import com.ruslan.hlushan.core.ui.api.dialog.command.DialogCommandsHandler
 import com.ruslan.hlushan.extensions.ifNotNull
-import com.ruslan.hlushan.game.core.api.play.dto.GameRecord
+import com.ruslan.hlushan.game.api.play.dto.GameRecord
 import com.ruslan.hlushan.game.play.ui.R
 import com.ruslan.hlushan.game.play.ui.dto.GameRecordParcelable
 import com.ruslan.hlushan.game.play.ui.dto.toParcelable

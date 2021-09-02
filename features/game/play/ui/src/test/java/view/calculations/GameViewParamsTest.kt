@@ -1,6 +1,6 @@
 package view.calculations
 
-import com.ruslan.hlushan.game.core.api.play.dto.GameSize
+import com.ruslan.hlushan.game.api.play.dto.GameSize
 import com.ruslan.hlushan.game.play.ui.view.calculations.GameViewParams
 import com.ruslan.hlushan.game.play.ui.view.calculations.countRowsAndColumns
 import org.junit.Assert.assertEquals

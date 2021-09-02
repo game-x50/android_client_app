@@ -1,8 +1,8 @@
 package com.ruslan.hlushan.game.storage.impl.remote.dto.server
 
-import com.ruslan.hlushan.game.core.api.play.dto.GameSize
-import com.ruslan.hlushan.game.core.api.play.dto.ImmutableNumbersMatrix
-import com.ruslan.hlushan.game.core.api.play.dto.MatrixAndNewItemsState
+import com.ruslan.hlushan.game.api.play.dto.GameSize
+import com.ruslan.hlushan.game.api.play.dto.ImmutableNumbersMatrix
+import com.ruslan.hlushan.game.api.play.dto.MatrixAndNewItemsState
 import kotlinx.serialization.Serializable
 
 private const val EMPTY_NUMBER = -1

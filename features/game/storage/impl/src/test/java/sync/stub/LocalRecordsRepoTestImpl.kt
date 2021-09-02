@@ -2,7 +2,7 @@ package sync.stub
 
 import com.ruslan.hlushan.core.api.managers.SchedulersManager
 import com.ruslan.hlushan.core.api.test.utils.log.EmptyAppLoggerImpl
-import com.ruslan.hlushan.game.core.api.play.dto.GameRecordWithSyncState
+import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.storage.impl.local.LocalRecordsRepositoryImpl
 import com.ruslan.hlushan.game.storage.impl.local.LocalRecordsRepositoryStorage
 import com.ruslan.hlushan.game.storage.impl.local.db.entities.GameRecordDb

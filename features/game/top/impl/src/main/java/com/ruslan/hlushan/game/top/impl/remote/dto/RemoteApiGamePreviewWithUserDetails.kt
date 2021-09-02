@@ -1,7 +1,7 @@
 package com.ruslan.hlushan.game.top.impl.remote.dto
 
-import com.ruslan.hlushan.game.core.api.auth.dto.User
-import com.ruslan.hlushan.game.core.api.top.dto.GamePreviewWithUserDetails
+import com.ruslan.hlushan.game.api.auth.dto.User
+import com.ruslan.hlushan.game.api.top.dto.GamePreviewWithUserDetails
 import kotlinx.serialization.Serializable
 
 @Serializable

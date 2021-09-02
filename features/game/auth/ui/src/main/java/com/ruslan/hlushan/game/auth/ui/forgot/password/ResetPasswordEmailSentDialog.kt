@@ -11,7 +11,7 @@ import com.ruslan.hlushan.core.ui.api.dialog.BaseDialogFragment
 import com.ruslan.hlushan.core.ui.api.dialog.command.DialogCommand
 import com.ruslan.hlushan.core.ui.api.dialog.command.DialogCommandsHandler
 import com.ruslan.hlushan.game.auth.ui.R
-import com.ruslan.hlushan.game.core.api.auth.dto.User
+import com.ruslan.hlushan.game.api.auth.dto.User
 
 private const val KEY_RESET_PASSWORD_EMAIL = "KEY_RESET_PASSWORD_EMAIL"
 

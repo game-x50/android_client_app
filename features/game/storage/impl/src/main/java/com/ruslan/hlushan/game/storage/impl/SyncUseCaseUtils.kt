@@ -3,11 +3,11 @@ package com.ruslan.hlushan.game.storage.impl
 import android.annotation.SuppressLint
 import androidx.annotation.IntRange
 import com.ruslan.hlushan.core.api.log.AppLogger
-import com.ruslan.hlushan.game.core.api.play.dto.GameRecordWithSyncState
-import com.ruslan.hlushan.game.core.api.play.dto.LocalAction
-import com.ruslan.hlushan.game.core.api.play.dto.RecordSyncState
-import com.ruslan.hlushan.game.core.api.play.dto.RemoteInfo
-import com.ruslan.hlushan.game.core.api.play.dto.SyncStatus
+import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
+import com.ruslan.hlushan.game.api.play.dto.LocalAction
+import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
+import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
+import com.ruslan.hlushan.game.api.play.dto.SyncStatus
 import com.ruslan.hlushan.game.storage.impl.local.LocalRecordsRepository
 import io.reactivex.Completable
 import io.reactivex.Single

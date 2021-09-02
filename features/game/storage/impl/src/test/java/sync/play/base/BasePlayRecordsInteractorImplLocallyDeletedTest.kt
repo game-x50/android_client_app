@@ -1,7 +1,7 @@
 package sync.play.base
 
 import assertRecordsWithSyncStateInLocalRepo
-import com.ruslan.hlushan.game.core.api.test.utils.generateFakeGameState
+import com.ruslan.hlushan.game.api.test.utils.generateFakeGameState
 import com.ruslan.hlushan.test.utils.generateFakeDuration
 import com.ruslan.hlushan.test.utils.generateFakeInstantTimestamp
 import generateAndAddLocalDeletedToLocalRepo

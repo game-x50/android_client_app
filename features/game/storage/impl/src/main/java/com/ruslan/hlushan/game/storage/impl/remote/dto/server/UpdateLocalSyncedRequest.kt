@@ -1,6 +1,6 @@
 package com.ruslan.hlushan.game.storage.impl.remote.dto.server
 
-import com.ruslan.hlushan.game.core.api.play.dto.RemoteInfo
+import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
 import kotlinx.serialization.Serializable
 
 @Serializable

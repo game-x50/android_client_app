@@ -1,7 +1,7 @@
 package com.ruslan.hlushan.game.storage.impl.di
 
-import com.ruslan.hlushan.game.core.api.network.AuthorizedNetworkApiCreator
-import com.ruslan.hlushan.game.core.api.network.GameNetworkParams
+import com.ruslan.hlushan.game.api.network.AuthorizedNetworkApiCreator
+import com.ruslan.hlushan.game.api.network.GameNetworkParams
 import com.ruslan.hlushan.game.storage.impl.remote.SyncRemoteHttpApi
 import dagger.Module
 import dagger.Provides

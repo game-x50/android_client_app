@@ -21,7 +21,7 @@ import com.ruslan.hlushan.game.auth.ui.observeConfirmPasswordInput
 import com.ruslan.hlushan.game.auth.ui.showAuthError
 import com.ruslan.hlushan.game.auth.ui.showNickNameInputError
 import com.ruslan.hlushan.game.auth.ui.showPasswordInputError
-import com.ruslan.hlushan.game.core.api.auth.dto.User
+import com.ruslan.hlushan.game.api.auth.dto.User
 
 internal class UserProfileFragment : BaseFragment(
         layoutResId = R.layout.game_auth_ui_user_profile_screen

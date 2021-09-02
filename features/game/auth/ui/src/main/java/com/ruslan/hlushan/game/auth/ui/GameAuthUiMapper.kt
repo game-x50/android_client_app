@@ -1,7 +1,7 @@
 package com.ruslan.hlushan.game.auth.ui
 
 import androidx.annotation.StringRes
-import com.ruslan.hlushan.game.core.api.auth.dto.AuthError
+import com.ruslan.hlushan.game.api.auth.dto.AuthError
 
 @get:StringRes
 internal val AuthError.descriptionStringResId: Int

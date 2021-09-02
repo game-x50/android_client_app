@@ -1,14 +1,14 @@
 package sync.usecases.localModified
 
 import assertRecordsWithSyncStateInLocalRepo
-import com.ruslan.hlushan.game.core.api.play.dto.GameRecord
-import com.ruslan.hlushan.game.core.api.play.dto.GameRecordWithSyncState
-import com.ruslan.hlushan.game.core.api.play.dto.LocalAction
-import com.ruslan.hlushan.game.core.api.play.dto.RecordSyncState
-import com.ruslan.hlushan.game.core.api.play.dto.RemoteInfo
-import com.ruslan.hlushan.game.core.api.play.dto.SyncStatus
-import com.ruslan.hlushan.game.core.api.test.utils.createLocalUpdatedState
-import com.ruslan.hlushan.game.core.api.test.utils.generateFakeRemoteInfo
+import com.ruslan.hlushan.game.api.play.dto.GameRecord
+import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
+import com.ruslan.hlushan.game.api.play.dto.LocalAction
+import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
+import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
+import com.ruslan.hlushan.game.api.play.dto.SyncStatus
+import com.ruslan.hlushan.game.api.test.utils.createLocalUpdatedState
+import com.ruslan.hlushan.game.api.test.utils.generateFakeRemoteInfo
 import com.ruslan.hlushan.game.storage.impl.remote.dto.LocalModifiedResponse
 import com.ruslan.hlushan.test.utils.generateFakeDuration
 import com.ruslan.hlushan.test.utils.generateFakeInstantTimestamp
@@ -18,7 +18,7 @@ import generateAndAddLocalUpdatedToLocalRepo
 import generateFakeRemoteRecord
 import org.junit.Test
 import org.threeten.bp.Instant
-import com.ruslan.hlushan.game.core.api.test.utils.generateFakeGameState as generateFakeGameState1
+import com.ruslan.hlushan.game.api.test.utils.generateFakeGameState as generateFakeGameState1
 
 /**
  * @author Ruslan Hlushan on 2019-05-31

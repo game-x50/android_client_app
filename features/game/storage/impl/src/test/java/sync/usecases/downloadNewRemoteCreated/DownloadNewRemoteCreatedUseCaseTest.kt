@@ -1,7 +1,7 @@
 package sync.usecases.downloadNewRemoteCreated
 
 import assertRecordsWithSyncStateInLocalRepo
-import com.ruslan.hlushan.game.core.api.play.dto.SyncStatus
+import com.ruslan.hlushan.game.api.play.dto.SyncStatus
 import com.ruslan.hlushan.game.storage.impl.local.LastCreatedTimestampWithExcludedRemoteIds
 import com.ruslan.hlushan.game.storage.impl.remote.dto.RemoteRecord
 import generateAndAddLocalSyncedToLocalRepo

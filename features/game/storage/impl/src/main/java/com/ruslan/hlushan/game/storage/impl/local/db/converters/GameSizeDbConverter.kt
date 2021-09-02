@@ -1,7 +1,7 @@
 package com.ruslan.hlushan.game.storage.impl.local.db.converters
 
 import androidx.room.TypeConverter
-import com.ruslan.hlushan.game.core.api.play.dto.GameSize
+import com.ruslan.hlushan.game.api.play.dto.GameSize
 
 internal class GameSizeDbConverter {
 

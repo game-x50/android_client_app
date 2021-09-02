@@ -28,8 +28,8 @@ import com.ruslan.hlushan.core.api.log.AppLogger
 import com.ruslan.hlushan.core.api.managers.SchedulersManager
 import com.ruslan.hlushan.extensions.ifNotNull
 import com.ruslan.hlushan.game.auth.impl.repo.dto.server.UserNameRequest
-import com.ruslan.hlushan.game.core.api.auth.dto.AuthError
-import com.ruslan.hlushan.game.core.api.auth.dto.User
+import com.ruslan.hlushan.game.api.auth.dto.AuthError
+import com.ruslan.hlushan.game.api.auth.dto.User
 import com.ruslan.hlushan.rxjava2.extensions.tryEmitOrProvideError
 import io.reactivex.Completable
 import io.reactivex.Observable
