@@ -2,12 +2,14 @@
 object LocalGradleProjects {
     const val extensions = ":extensions"
     const val androidExtensions = ":android_extensions"
+    const val androidPermissions = ":android_permissions"
 
     const val threeTenExtensions = ":three_ten_extensions"
 
     const val rxjava2Extensions = ":rxjava2_extensions"
+    const val rxjava2TestUtils = ":rxjava2_test_utils"
 
-    const val workManagerExtensions = ":work_manager_extensions"
+    const val workManagerUtils = ":work_manager_utils"
 
     const val coreApi = ":core_api"
     const val coreApiDebugTools = ":core_api_debug_tools"
@@ -26,7 +28,7 @@ object LocalGradleProjects {
     const val networkImplDebugTools = ":network_impl_debug_tools"
     const val networkImplStagingTools = ":network_impl_staging_tools"
 
-    const val storage = ":storage"
+    const val androidStorage = ":android_storage"
 
     const val coreImpl = ":core_impl"
     const val coreImplDebugTools = ":core_impl_debug_tools"
@@ -40,9 +42,9 @@ object LocalGradleProjects {
     const val coreUiImplDebugTools = ":core_ui_impl_debug_tools"
     const val coreUiImplStagingTools = ":core_ui_impl_staging_tools"
 
-    const val gameCoreApi = ":game_core_api"
+    const val gameApi = ":game_api"
 
-    const val gameCoreApiTestUtils = ":game_core_api_test_utils"
+    const val gameApiTestUtils = ":game_api_test_utils"
 
     const val gameAuthImpl = ":game_auth_impl"
     const val gameAuthUi = ":game_auth_ui"

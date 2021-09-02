@@ -88,11 +88,11 @@ dependencies {
     compileOnly(project(LocalGradleProjects.networkApi))//todo: compileOnly here instead of network_impl module because of some used extensions in network_impl, try to use implementation here and compileOnly in network_impl module
     implementation(project(LocalGradleProjects.networkImpl))
 
-    implementation(project(LocalGradleProjects.storage))
+    implementation(project(LocalGradleProjects.androidStorage))
 
-    implementation(project(LocalGradleProjects.workManagerExtensions))
+    implementation(project(LocalGradleProjects.workManagerUtils))
 
-    implementation(project(LocalGradleProjects.gameCoreApi))
+    implementation(project(LocalGradleProjects.gameApi))
 
     implementation(project(LocalGradleProjects.gameAuthImpl))
     implementation(project(LocalGradleProjects.gameStorageImpl))

@@ -14,29 +14,25 @@ import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
 import com.ruslan.hlushan.core.ui.impl.di.UiCoreImplExportComponent
 import com.ruslan.hlushan.game.BuildConfig
 import com.ruslan.hlushan.game.GameApp
+import com.ruslan.hlushan.game.api.di.providers.AuthInteractorProvider
+import com.ruslan.hlushan.game.api.di.providers.GameSettingsProvider
+import com.ruslan.hlushan.game.api.di.providers.PlayRecordsInteractorProvider
+import com.ruslan.hlushan.game.api.di.providers.RecordsUseCasesProvider
+import com.ruslan.hlushan.game.api.di.providers.TopInteractorProvider
+import com.ruslan.hlushan.game.api.network.GameNetworkParams
 import com.ruslan.hlushan.game.auth.impl.di.helpers.AuthHelpersExportComponentProvider
 import com.ruslan.hlushan.game.auth.impl.di.interactor.AuthInteractorExportComponentProvider
 import com.ruslan.hlushan.game.auth.impl.di.repo.AuthRepoExportComponentProvider
-import com.ruslan.hlushan.game.core.api.di.providers.AuthInteractorProvider
-import com.ruslan.hlushan.game.core.api.di.providers.GameSettingsProvider
-import com.ruslan.hlushan.game.core.api.di.providers.PlayRecordsInteractorProvider
-import com.ruslan.hlushan.game.core.api.di.providers.RecordsUseCasesProvider
-import com.ruslan.hlushan.game.core.api.di.providers.TopInteractorProvider
-import com.ruslan.hlushan.game.core.api.network.GameNetworkParams
 import com.ruslan.hlushan.game.error.ErrorLoggerImpl
 import com.ruslan.hlushan.game.settings.ui.di.SettingsOutScreenCreatorProvider
 import com.ruslan.hlushan.game.storage.impl.di.RecordsExportComponentProvider
 import com.ruslan.hlushan.game.top.impl.di.TopInteractorExportComponentProvider
 import com.ruslan.hlushan.network.api.NetworkConfig
 import com.ruslan.hlushan.network.impl.di.NetworkImplExportComponent
-import com.ruslan.hlushan.work.manager.extensions.CompositeWorkerFactory
+import com.ruslan.hlushan.work.manager.utils.CompositeWorkerFactory
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
-
-/**
- * @author Ruslan Hlushan on 1/23/19.
- */
 
 @Singleton
 @Component(

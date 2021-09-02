@@ -1,8 +1,0 @@
-apply from: rootProject.ext[GradleExtraArgs.baseKotlinLibrary]
-
-dependencies {
-    compileOnly(project(LocalGradleProjects.gameCoreApi))
-    compileOnly(project(LocalGradleProjects.testUtils))
-
-    compileOnly(Deps.threeTenBp)
-}

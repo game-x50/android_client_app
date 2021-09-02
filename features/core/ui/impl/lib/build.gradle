@@ -1,0 +1,42 @@
+apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
+apply from: rootProject.ext[GradleExtraArgs.androidAllBuildVariants]
+
+apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
+
+android {
+
+    defaultConfig {
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    sourceSets {
+        debug {
+            java.srcDirs += "src/debug_tools/java"
+        }
+        staging {
+            java.srcDirs += "src/staging_tools/java"
+        }
+        release {
+            java.srcDirs += "src/release_tools/java"
+        }
+    }
+
+    resourcePrefix("core_ui_impl_")
+}
+
+dependencies {
+    compileOnly(project(LocalGradleProjects.androidExtensions))
+    compileOnly(project(LocalGradleProjects.coreApi))
+    compileOnly(project(LocalGradleProjects.androidCoreApi))
+    compileOnly(project(LocalGradleProjects.androidStorage))
+
+    compileOnly(project(LocalGradleProjects.coreUiApi))
+
+    debugApi(project(LocalGradleProjects.coreUiImplDebugTools))
+    stagingApi(project(LocalGradleProjects.coreUiImplStagingTools))
+
+    compileOnly(Deps.rxJava2)
+
+    compileOnly(Deps.cicerone)
+}

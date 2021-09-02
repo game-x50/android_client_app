@@ -1,0 +1,47 @@
+apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
+apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
+
+apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
+apply from: rootProject.ext[GradleExtraArgs.room]
+apply from: rootProject.ext[GradleExtraArgs.kotlinxSerilization]
+
+def proguardRulesFile = "proguard-rules-game_storage_impl.pro"
+
+android {
+    defaultConfig {
+        versionCode = 1
+        versionName = "1.0"
+
+        consumerProguardFiles(proguardRulesFile)
+    }
+
+    resourcePrefix("game_storage_impl_")
+}
+
+dependencies {
+    compileOnly(project(LocalGradleProjects.coreApi))
+    compileOnly(project(LocalGradleProjects.androidCoreApi))
+    compileOnly(project(LocalGradleProjects.extensions))
+    compileOnly(project(LocalGradleProjects.androidExtensions))
+    compileOnly(project(LocalGradleProjects.gameApi))
+    compileOnly(project(LocalGradleProjects.networkApi))
+    compileOnly(project(LocalGradleProjects.androidStorage))
+    compileOnly(project(LocalGradleProjects.workManagerUtils))
+
+    implementation(Deps.workManagerRxJava2)
+
+    compileOnly(Deps.rxJava2)
+    compileOnly(project(LocalGradleProjects.rxjava2Extensions))
+
+    compileOnly(Deps.threeTenBp)
+
+    testImplementation(project(LocalGradleProjects.coreApi))
+    testImplementation(project(LocalGradleProjects.extensions))
+    testImplementation(project(LocalGradleProjects.gameApi))
+    testImplementation(Deps.threeTenBp)
+    testImplementation(project(LocalGradleProjects.parsingImpl))
+    testImplementation(project(LocalGradleProjects.testUtils))
+    testImplementation(project(LocalGradleProjects.rxjava2TestUtils))
+    testImplementation(project(LocalGradleProjects.coreApiTestUtils))
+    testImplementation(project(LocalGradleProjects.gameApiTestUtils))
+}

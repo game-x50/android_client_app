@@ -1,0 +1,29 @@
+apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
+apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
+
+apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
+apply from: rootProject.ext[GradleExtraArgs.kotlinxSerilization]
+
+def proguardRulesFile = "proguard-rules-game_top_impl.pro"
+
+android {
+    defaultConfig {
+        versionCode = 1
+        versionName = "1.0"
+
+        consumerProguardFiles(proguardRulesFile)
+    }
+
+    resourcePrefix("game_top_impl_")
+}
+
+dependencies {
+    compileOnly(project(LocalGradleProjects.coreApi))
+    compileOnly(project(LocalGradleProjects.extensions))
+    compileOnly(project(LocalGradleProjects.gameApi))
+    compileOnly(project(LocalGradleProjects.networkApi))
+
+    compileOnly(Deps.threeTenBp)
+
+    compileOnly(Deps.rxJava2)
+}

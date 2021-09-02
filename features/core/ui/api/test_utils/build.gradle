@@ -1,0 +1,18 @@
+apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
+apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
+
+android {
+    defaultConfig {
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    resourcePrefix("core_ui_api_test_utils")
+}
+
+dependencies {
+    compileOnly(project(LocalGradleProjects.testUtils))
+    compileOnly(project(LocalGradleProjects.coreUiApi))
+
+    implementation(Deps.lifecycleExtensions)
+}

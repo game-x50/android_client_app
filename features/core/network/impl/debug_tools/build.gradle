@@ -1,0 +1,19 @@
+apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
+apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
+
+android {
+    defaultConfig {
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    resourcePrefix("network_impl_debug_tools_")
+}
+
+dependencies {
+    compileOnly(project(LocalGradleProjects.coreApi))
+    compileOnly(project(LocalGradleProjects.networkApi))
+    implementation(project(LocalGradleProjects.networkImplStagingTools))
+
+    implementation(Deps.okHttp3Logging)
+}

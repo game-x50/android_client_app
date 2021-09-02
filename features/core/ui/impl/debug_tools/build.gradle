@@ -1,0 +1,32 @@
+apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
+apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
+
+apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
+apply from: rootProject.ext[GradleExtraArgs.viewBinding]
+
+android {
+
+    defaultConfig {
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    resourcePrefix("core_ui_impl_debug_tools_")
+}
+
+dependencies {
+    compileOnly(project(LocalGradleProjects.extensions))
+    compileOnly(project(LocalGradleProjects.androidExtensions))
+    compileOnly(project(LocalGradleProjects.coreApi))
+    compileOnly(project(LocalGradleProjects.coreUiApi))
+
+    compileOnly(project(LocalGradleProjects.coreApiDebugTools))
+
+    implementation(project(LocalGradleProjects.coreUiImplStagingTools))
+
+    compileOnly(Deps.rxJava2)
+
+    compileOnly(Deps.supportDesign)
+
+    compileOnly(Deps.cicerone)
+}

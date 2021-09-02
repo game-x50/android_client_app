@@ -1,0 +1,34 @@
+apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
+apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
+
+apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
+apply from: rootProject.ext[GradleExtraArgs.viewBinding]
+
+android {
+
+    defaultConfig {
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    resourcePrefix("core_ui_impl_staging_tools_")
+}
+
+dependencies {
+    compileOnly(project(LocalGradleProjects.extensions))
+    compileOnly(project(LocalGradleProjects.androidExtensions))
+    compileOnly(project(LocalGradleProjects.coreApi))
+    compileOnly(project(LocalGradleProjects.androidCoreApi))
+    implementation(project(LocalGradleProjects.coreUiApi))// todo: implementation instead of compileOnly because of task ./gradlew assembleStaging failing, try to use compileOnly
+
+    compileOnly(project(LocalGradleProjects.coreApiStagingTools))
+
+    compileOnly(Deps.rxJava2)
+
+    compileOnly(Deps.supportAppCompat)
+    implementation(Deps.supportDesign)// todo: implementation instead of compileOnly because of task ./gradlew assembleStaging failing on CI, try to use compileOnly
+    implementation(Deps.constraintLayout)// todo: implementation instead of compileOnly because of task ./gradlew assembleStaging failing on CI, try to use compileOnly
+    compileOnly(Deps.swipeRefreshLayout)
+
+    compileOnly(Deps.cicerone)
+}

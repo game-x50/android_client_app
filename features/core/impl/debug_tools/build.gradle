@@ -1,0 +1,25 @@
+apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
+apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
+
+apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
+
+android {
+
+    defaultConfig {
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    resourcePrefix("core_impl_debug_tools_")
+}
+
+dependencies {
+    compileOnly(project(LocalGradleProjects.extensions))
+    compileOnly(project(LocalGradleProjects.androidCoreApi))
+    compileOnly(project(LocalGradleProjects.coreApi))
+
+    compileOnly(project(LocalGradleProjects.coreApiDebugTools))
+    api(project(LocalGradleProjects.coreImplStagingTools))
+
+    implementation(Deps.stetho)
+}

@@ -1,0 +1,15 @@
+apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
+apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
+
+android {
+    defaultConfig {
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    resourcePrefix("android_core_api_")
+}
+
+dependencies {
+    compileOnly(Deps.supportAppCompat)
+}
