@@ -37,7 +37,7 @@ object Versions {
 
     const val androidCoreKtxVersion = "1.5.0"
 
-    const val workManagerVersion = "2.5.0"//please check release notes, related to expedited jobs and WorkerFactory init
+    const val workManagerVersion = "2.6.0"//please check release notes, related to expedited jobs and WorkerFactory init
 
     const val edgeToEdgeDecoratorVersion = "1.0.0"
 
