@@ -3,6 +3,7 @@ package com.ruslan.hlushan.game.auth.ui.profile
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import com.ruslan.hlushan.android.extensions.getIntOrNull
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.dialog.BaseTwoOptionsAlert
 import com.ruslan.hlushan.core.ui.dialog.TwoOptionsAlertData
@@ -12,7 +13,7 @@ import com.ruslan.hlushan.game.auth.ui.R
 
 private const val KEY_COUNT_NOT_SYNCHED_RECORDS = "KEY_COUNT_NOT_SYNCHED_RECORDS"
 
-internal class ConfirmLogOutDialog : com.ruslan.hlushan.core.ui.dialog.BaseTwoOptionsAlert() {
+internal class ConfirmLogOutDialog : BaseTwoOptionsAlert() {
 
     private val parentLogOutConfirmedListener: LogOutConfirmedListener?
         get() = ((parentFragment as? LogOutConfirmedListener)
@@ -24,7 +25,7 @@ internal class ConfirmLogOutDialog : com.ruslan.hlushan.core.ui.dialog.BaseTwoOp
 
     override val negativeOnClickListener: (() -> Unit)? get() = null
 
-    override fun extractData(): com.ruslan.hlushan.core.ui.dialog.TwoOptionsAlertData? =
+    override fun extractData(): TwoOptionsAlertData? =
             arguments?.getIntOrNull(KEY_COUNT_NOT_SYNCHED_RECORDS)?.let { countNotSynchedRecords ->
                 val message: String = if (countNotSynchedRecords > 0) {
                     getString(
@@ -52,12 +53,12 @@ internal class ConfirmLogOutDialog : com.ruslan.hlushan.core.ui.dialog.BaseTwoOp
 @UiMainThread
 internal fun <Parent> Parent.showConfirmLogOutDialog(
         countNotSynchedRecords: Int
-) where Parent : com.ruslan.hlushan.core.ui.dialog.command.DialogCommandsHandler.Owner, Parent : ConfirmLogOutDialog.LogOutConfirmedListener =
+) where Parent : DialogCommandsHandler.Owner, Parent : ConfirmLogOutDialog.LogOutConfirmedListener =
         this.dialogCommandsHandler.executeShowOrAddToQueue(ShowConfirmLogOutDialogCommand(countNotSynchedRecords))
 
 private class ShowConfirmLogOutDialogCommand(
         private val countNotSynchedRecords: Int
-) : com.ruslan.hlushan.core.ui.dialog.command.ShowDialogCommand() {
+) : ShowDialogCommand() {
 
     override val tag: String get() = "TAG_CONFIRM_LOG_OUT_DIALOG"
 

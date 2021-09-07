@@ -23,13 +23,14 @@ import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.api.R
 import com.ruslan.hlushan.core.ui.dialog.showDialogMessage
 import com.ruslan.hlushan.core.ui.api.manager.AppActivitiesSettings
-import com.ruslan.hlushan.core.ui.api.presentation.lifecycle.LifecyclePluginObserver
-import com.ruslan.hlushan.core.ui.api.presentation.lifecycle.LockableHandlerLifecyclePluginObserver
-import com.ruslan.hlushan.core.ui.api.presentation.lifecycle.LoggerLifecyclePluginObserver
-import com.ruslan.hlushan.core.ui.api.presentation.lifecycle.dispatchEventForAll
+import com.ruslan.hlushan.core.ui.lifecycle.utils.LockableHandlerLifecyclePluginObserver
+import com.ruslan.hlushan.core.ui.lifecycle.utils.LoggerLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.api.utils.LockableHandler
 import com.ruslan.hlushan.core.ui.api.utils.NewIntentHandler
+import com.ruslan.hlushan.core.ui.dialog.DialogCommandsHandlerLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.dialog.command.DialogCommandsHandler
+import com.ruslan.hlushan.core.ui.lifecycle.LifecyclePluginObserver
+import com.ruslan.hlushan.core.ui.lifecycle.dispatchEventForAll
 import com.ruslan.hlushan.core.ui.routing.CiceroneOwner
 import com.ruslan.hlushan.extensions.ifNotNull
 import com.ruslan.hlushan.third_party.androidx.material.extensions.showSnackBar
@@ -205,7 +206,7 @@ constructor(
     @UiMainThread
     protected open fun initLifecyclePluginObservers() {
         addLifecyclePluginObserver(LoggerLifecyclePluginObserver(owner = this, appLogger = appLogger))
-        addLifecyclePluginObserver(com.ruslan.hlushan.core.ui.dialog.DialogCommandsHandlerLifecyclePluginObserver(
+        addLifecyclePluginObserver(DialogCommandsHandlerLifecyclePluginObserver(
                 dialogCommandsHandler = dialogCommandsHandler
         ))
         addLifecyclePluginObserver(LockableHandlerLifecyclePluginObserver(viewsHandler = viewsHandler))

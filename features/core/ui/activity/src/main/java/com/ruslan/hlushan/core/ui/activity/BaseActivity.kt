@@ -8,10 +8,10 @@ import com.ruslan.hlushan.core.api.log.AppLogger
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.dialog.command.DialogCommandsHandler
 import com.ruslan.hlushan.core.ui.api.manager.AppActivitiesSettings
-import com.ruslan.hlushan.core.ui.api.presentation.lifecycle.LifecyclePluginObserver
-import com.ruslan.hlushan.core.ui.api.presentation.lifecycle.LoggerLifecyclePluginObserver
-import com.ruslan.hlushan.core.ui.api.presentation.lifecycle.dispatchEventForAll
+import com.ruslan.hlushan.core.ui.lifecycle.utils.LoggerLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.dialog.DialogCommandsHandlerLifecyclePluginObserver
+import com.ruslan.hlushan.core.ui.lifecycle.LifecyclePluginObserver
+import com.ruslan.hlushan.core.ui.lifecycle.dispatchEventForAll
 import javax.inject.Inject
 
 abstract class BaseActivity : AppCompatActivity(),
@@ -31,7 +31,7 @@ abstract class BaseActivity : AppCompatActivity(),
 
     @Suppress("LeakingThis")
     @UiMainThread
-    override val dialogCommandsHandler: com.ruslan.hlushan.core.ui.dialog.command.DialogCommandsHandler = com.ruslan.hlushan.core.ui.dialog.command.ActivityDialogCommandsHandler(this)
+    override val dialogCommandsHandler: DialogCommandsHandler =ActivityDialogCommandsHandler(this)
 
     @UiMainThread
     internal var instanceStateSaved: Boolean = false

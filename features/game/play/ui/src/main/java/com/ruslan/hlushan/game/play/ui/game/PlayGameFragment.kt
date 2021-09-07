@@ -3,10 +3,13 @@ package com.ruslan.hlushan.game.play.ui.game
 import android.os.Bundle
 import android.view.View
 import com.ruslan.hlushan.android.extensions.getLongOrNull
+import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.dialog.showSimpleProgress
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.core.ui.api.utils.BottomMenuHolder
+import com.ruslan.hlushan.core.ui.viewbinding.extensions.bindViewBinding
+import com.ruslan.hlushan.core.ui.viewmodel.extensions.handleCommandQueue
 import com.ruslan.hlushan.extensions.formatWithLeadingZerosString
 import com.ruslan.hlushan.game.play.ui.R
 import com.ruslan.hlushan.game.play.ui.databinding.GamePlayUiPlayScreenBinding
@@ -20,7 +23,7 @@ import org.threeten.bp.Duration
 
 private const val KEY_PLAYED_SECONDS = "KEY_PLAYED_SECONDS"
 
-internal abstract class PlayGameFragment<VM : PlayGameViewModel> : com.ruslan.hlushan.core.ui.fragment.BaseFragment(
+internal abstract class PlayGameFragment<VM : PlayGameViewModel> : BaseFragment(
         layoutResId = R.layout.game_play_ui_play_screen
 ), SaveResultQuestionDialog.AnswerSaveResultQuestionListener {
 

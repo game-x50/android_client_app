@@ -14,5 +14,5 @@ dependencies {
     compileOnly(projects.features.core.testUtils)
     compileOnly(projects.features.core.ui.api.lib)
 
-    implementation(Deps.lifecycleExtensions)
+    implementation(Deps.androidxLifecycleExtensions)
 }

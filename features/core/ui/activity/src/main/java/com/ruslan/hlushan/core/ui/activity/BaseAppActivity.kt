@@ -30,11 +30,11 @@ abstract class BaseAppActivity : BaseActivity(), CiceroneOwner {
 
     @get:LayoutRes
     protected open val layoutResId: Int
-        get() = R.layout.app_layout_container
+        get() = com.ruslan.hlushan.core.ui.layout.container.R.layout.app_layout_container
 
     @get:IdRes
     protected open val appContainerResId: Int
-        get() = R.id.app_container
+        get() = com.ruslan.hlushan.core.ui.layout.container.R.id.app_container
 
     @UiMainThread
     protected abstract fun createNavigator(): Navigator

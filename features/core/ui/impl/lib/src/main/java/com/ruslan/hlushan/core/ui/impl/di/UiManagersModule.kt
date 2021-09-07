@@ -6,10 +6,6 @@ import dagger.Binds
 import dagger.Module
 import javax.inject.Singleton
 
-/**
- * Created by User on 01.02.2018.
- */
-
 @Module
 internal interface UiManagersModule {
 

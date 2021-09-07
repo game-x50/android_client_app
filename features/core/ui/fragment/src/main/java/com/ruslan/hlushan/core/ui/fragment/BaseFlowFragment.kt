@@ -6,7 +6,6 @@ import androidx.annotation.LayoutRes
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Navigator
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
-import com.ruslan.hlushan.core.ui.api.R
 import com.ruslan.hlushan.core.ui.routing.CiceroneOwner
 import com.ruslan.hlushan.core.ui.routing.FlowCiceronesHolder
 import com.ruslan.hlushan.core.ui.routing.FlowFragmentLifecyclePluginObserver
@@ -17,7 +16,7 @@ import javax.inject.Inject
 abstract class BaseFlowFragment
 @ContentView
 constructor(
-        @LayoutRes layoutResId: Int = R.layout.app_layout_container
+        @LayoutRes layoutResId: Int = com.ruslan.hlushan.core.ui.layout.container.R.layout.app_layout_container
 ) : BaseFragment(layoutResId), CiceroneOwner {
 
     @Inject

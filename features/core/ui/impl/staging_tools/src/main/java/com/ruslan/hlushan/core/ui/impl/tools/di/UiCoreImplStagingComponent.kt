@@ -13,13 +13,10 @@ import com.ruslan.hlushan.core.ui.impl.tools.StagingSettingsFragment
 import dagger.BindsInstance
 import dagger.Component
 
-/**
- * @author Ruslan Hlushan on 10/22/18.
- */
-
 @Component(
         dependencies = [
             UiCoreProvider::class,
+            UiRoutingProvider::class,
             UserErrorMapperProvider::class,
             ManagersProvider::class,
             LoggersProvider::class,
@@ -37,6 +34,7 @@ internal interface UiCoreImplStagingComponent {
         fun create(
                 @BindsInstance initAppConfig: InitAppConfig,
                 uiCoreProvider: UiCoreProvider,
+                uiRoutingProvider: UiRoutingProvider,
                 userErrorMapperProvider: UserErrorMapperProvider,
                 managersProvider: ManagersProvider,
                 loggersProvider: LoggersProvider,

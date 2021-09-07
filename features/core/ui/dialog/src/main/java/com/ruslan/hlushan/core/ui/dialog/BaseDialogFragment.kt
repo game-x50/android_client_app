@@ -10,10 +10,10 @@ import androidx.annotation.LayoutRes
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Lifecycle
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
-import com.ruslan.hlushan.core.ui.api.presentation.lifecycle.LifecyclePluginObserver
-import com.ruslan.hlushan.core.ui.api.presentation.lifecycle.LockableHandlerLifecyclePluginObserver
-import com.ruslan.hlushan.core.ui.api.presentation.lifecycle.dispatchEventForAll
+import com.ruslan.hlushan.core.ui.lifecycle.utils.LockableHandlerLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.api.utils.LockableHandler
+import com.ruslan.hlushan.core.ui.lifecycle.LifecyclePluginObserver
+import com.ruslan.hlushan.core.ui.lifecycle.dispatchEventForAll
 
 abstract class BaseDialogFragment : DialogFragment(), LifecyclePluginObserver.Owner {
 

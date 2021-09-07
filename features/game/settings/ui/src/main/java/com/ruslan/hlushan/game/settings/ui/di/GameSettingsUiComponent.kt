@@ -8,6 +8,7 @@ import com.ruslan.hlushan.core.api.di.SchedulersProvider
 import com.ruslan.hlushan.core.api.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
+import com.ruslan.hlushan.core.ui.routing.di.UiRoutingProvider
 import com.ruslan.hlushan.game.settings.ui.about.AboutAppFragment
 import com.ruslan.hlushan.game.settings.ui.flow.SettingsFlowFragment
 import com.ruslan.hlushan.game.settings.ui.instruction.GameInstructionFragment
@@ -22,6 +23,7 @@ import dagger.Component
 @Component(
         dependencies = [
             UiCoreProvider::class,
+            UiRoutingProvider::class,
             UserErrorMapperProvider::class,
             ManagersProvider::class,
             LoggersProvider::class,
@@ -47,6 +49,7 @@ internal interface GameSettingsUiComponent {
         @SuppressWarnings("LongParameterList")
         fun create(
                 uiCoreProvider: UiCoreProvider,
+                uiRoutingProvider: UiRoutingProvider,
                 userErrorMapperProvider: UserErrorMapperProvider,
                 managersProvider: ManagersProvider,
                 loggersProvider: LoggersProvider,
@@ -58,13 +61,14 @@ internal interface GameSettingsUiComponent {
 }
 
 @SuppressWarnings("UnsafeCast", "MaxLineLength")
-internal fun com.ruslan.hlushan.core.ui.fragment.BaseFragment.getGameSettingsUiComponent(): GameSettingsUiComponent {
+internal fun BaseFragment.getGameSettingsUiComponent(): GameSettingsUiComponent {
     val injectorHolder = (activity?.application as InjectorHolder)
     val components = injectorHolder.components
     return components.getOrPut(GameSettingsUiComponent::class) {
         DaggerGameSettingsUiComponent.factory()
                 .create(
                         uiCoreProvider = (injectorHolder.iBaseInjector as UiCoreProvider),
+                        uiRoutingProvider = (injectorHolder.iBaseInjector as UiRoutingProvider),
                         userErrorMapperProvider = (injectorHolder.iBaseInjector as UserErrorMapperProvider),
                         managersProvider = (injectorHolder.iBaseInjector as ManagersProvider),
                         loggersProvider = (injectorHolder.iBaseInjector as LoggersProvider),

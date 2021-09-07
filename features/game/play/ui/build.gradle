@@ -19,31 +19,20 @@ dependencies {
     compileOnly(projects.features.core.extensions)
     compileOnly(projects.features.core.android.extensions)
     compileOnly(projects.features.thirdParty.androidx.insets)
-    compileOnly(projects.features.core.ui.api.lib)
+    compileOnly(projects.features.core.ui.pagination.view)
+    compileOnly(projects.features.core.ui.viewmodel.extensions)
+    compileOnly(projects.features.core.ui.viewbinding.extensions)
     compileOnly(projects.features.game.api.lib)
 
-    compileOnly(Deps.threeTenBp)
     compileOnly(projects.features.thirdParty.threeTen.extensions)
 
-    compileOnly(Deps.rxJava2)
     compileOnly(projects.features.thirdParty.rxjava2.extensions)
 
-    runtimeOnly(Deps.androidxAnnotations)//todo: try to avoid it at all https://stackoverflow.com/questions/67498252/got-assertionerror-no-such-enum-entry-library-group-prefix-after-upgrading-to-a
-    compileOnly(Deps.androidxAppCompat)
-
-    compileOnly(Deps.androidMaterial)
     compileOnly(projects.features.thirdParty.androidx.material.extensions)
 
     compileOnly(Deps.constraintLayout)
-    compileOnly(Deps.swipeRefreshLayout)
 
-    compileOnly(Deps.recyclerView)
-    compileOnly(projects.features.thirdParty.androidx.recyclerview.extensions)
-
-    compileOnly(Deps.androidxFragment)
     compileOnly(projects.features.thirdParty.androidx.fragment.extensions)
-
-    compileOnly(Deps.cicerone)
 
     testImplementation(projects.features.core.testUtils)
     testImplementation(projects.features.core.extensions)

@@ -9,8 +9,9 @@ import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.dialog.BaseDialogFragment
 import com.ruslan.hlushan.core.ui.dialog.DialogBackgroundColorLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.dialog.DialogSizeRatioLifecyclePluginObserver
-import com.ruslan.hlushan.core.ui.api.recycler.DelegatesRecyclerAdapter
-import com.ruslan.hlushan.core.ui.api.recycler.RecyclerViewLifecyclePluginObserver
+import com.ruslan.hlushan.core.ui.recycler.adapter.DelegatesRecyclerAdapter
+import com.ruslan.hlushan.core.ui.recycler.adapter.RecyclerViewLifecyclePluginObserver
+import com.ruslan.hlushan.core.ui.viewbinding.extensions.bindViewBinding
 import com.ruslan.hlushan.extensions.ifNotNull
 import com.ruslan.hlushan.game.play.ui.R
 import com.ruslan.hlushan.game.play.ui.databinding.GamePlayUiPlayNumbersDialogBinding
@@ -19,7 +20,7 @@ import com.ruslan.hlushan.third_party.androidx.recyclerview.extensions.setUpDefa
 private const val DIALOG_WIDTH_RATIO = 0.6
 private const val DIALOG_HEIGHT_RATIO = 0.4
 
-internal abstract class AbstractPlayNumbersDialog : com.ruslan.hlushan.core.ui.dialog.BaseDialogFragment() {
+internal abstract class AbstractPlayNumbersDialog : BaseDialogFragment() {
 
     @get:LayoutRes
     override val layoutResId: Int
@@ -32,11 +33,11 @@ internal abstract class AbstractPlayNumbersDialog : com.ruslan.hlushan.core.ui.d
     @UiMainThread
     override fun initLifecyclePluginObservers() {
         super.initLifecyclePluginObservers()
-        addLifecyclePluginObserver(com.ruslan.hlushan.core.ui.dialog.DialogBackgroundColorLifecyclePluginObserver(
+        addLifecyclePluginObserver(DialogBackgroundColorLifecyclePluginObserver(
                 owner = this,
                 color = Color.TRANSPARENT
         ))
-        addLifecyclePluginObserver(com.ruslan.hlushan.core.ui.dialog.DialogSizeRatioLifecyclePluginObserver(
+        addLifecyclePluginObserver(DialogSizeRatioLifecyclePluginObserver(
                 owner = this,
                 widthRatio = DIALOG_WIDTH_RATIO,
                 heightRatio = DIALOG_HEIGHT_RATIO

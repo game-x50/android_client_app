@@ -20,7 +20,10 @@ dependencies {
     compileOnly(projects.features.thirdParty.androidx.insets)
     compileOnly(projects.features.core.api.lib)
     compileOnly(projects.features.core.android.api)
-    implementation(projects.features.core.ui.api.lib)// todo: implementation instead of compileOnly because of task ./gradlew assembleStaging failing, try to use compileOnly
+    compileOnly(projects.features.core.ui.activity)
+    compileOnly(projects.features.core.ui.fragment)
+    compileOnly(projects.features.core.ui.recycler.adapter)
+    compileOnly(projects.features.core.ui.viewbinding.extensions)
 
     compileOnly(projects.features.core.api.stagingTools)
 
@@ -30,6 +33,4 @@ dependencies {
     implementation(Deps.androidMaterial)// todo: implementation instead of compileOnly because of task ./gradlew assembleStaging failing on CI, try to use compileOnly
     implementation(Deps.constraintLayout)// todo: implementation instead of compileOnly because of task ./gradlew assembleStaging failing on CI, try to use compileOnly
     compileOnly(Deps.swipeRefreshLayout)
-
-    compileOnly(Deps.cicerone)
 }

@@ -11,7 +11,7 @@ internal class ShowComboSumsDialog : AbstractPlayNumbersDialog() {
     override val numbers: IntArray
         get() = COMBO_SUMS
 
-    class ShowCommand : com.ruslan.hlushan.core.ui.dialog.command.ShowDialogCommand() {
+    class ShowCommand : ShowDialogCommand() {
 
         override val tag: String get() = "TAG_SHOW_COMBO_SUMS_DIALOG"
 

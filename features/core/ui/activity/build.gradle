@@ -15,11 +15,15 @@ android {
 
 dependencies {
     compileOnly(projects.features.core.api.lib)
-    compileOnly(projects.features.core.ui.api.lib)
-    compileOnly(projects.features.core.ui.dialog)
-    compileOnly(projects.features.core.ui.routing)
+    compileOnly(projects.features.core.ui.lifecycle.utils)
+    compileOnly(projects.features.core.ui.layout.container)
 
-    compileOnly(Deps.androidxAnnotations)
-    compileOnly(Deps.androidxActivity)
+    api(projects.features.core.ui.api.lib)
+    api(projects.features.core.ui.dialog)
+    api(projects.features.core.ui.routing)
+    api(projects.features.core.ui.lifecycle.lib)
+
+    api(Deps.androidxActivity)
+
     compileOnly(Deps.androidMaterial)
 }

@@ -1,10 +1,9 @@
 package extension
 
-import com.ruslan.hlushan.core.ui.api.presentation.command.handleCommandQueue
+import com.ruslan.hlushan.core.ui.viewmodel.command.handleCommandQueue
 import com.ruslan.hlushan.core.ui.api.test.utils.LifecyclePluginObserverOwnerFragmentStub
 import com.ruslan.hlushan.core.ui.api.test.utils.from_init_go_to
 import com.ruslan.hlushan.core.ui.api.test.utils.go_to
-import com.ruslan.hlushan.extensions.copy
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test

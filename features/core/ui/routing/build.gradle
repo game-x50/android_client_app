@@ -1,9 +1,6 @@
 apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
 apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
 
-apply from: rootProject.ext[GradleExtraArgs.kapt]
-apply plugin: Plugins.kotlinParcelize
-
 android {
 
     defaultConfig {
@@ -16,7 +13,7 @@ android {
 
 dependencies {
     compileOnly(projects.features.core.api.lib)
-    compileOnly(projects.features.core.ui.api.lib)
+    compileOnly(projects.features.core.ui.lifecycle.lib)
 
     api(Deps.cicerone)
 

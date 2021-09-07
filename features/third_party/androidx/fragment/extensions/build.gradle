@@ -12,5 +12,5 @@ dependencies {
     compileOnly(projects.features.core.extensions)
     compileOnly(projects.features.core.android.extensions)
 
-    compileOnly(Deps.androidxFragment)
+    api(Deps.androidxFragment)
 }

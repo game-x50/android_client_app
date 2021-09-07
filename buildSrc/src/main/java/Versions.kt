@@ -26,7 +26,6 @@ object Versions {
     const val androidxAppCompatVersion = "1.3.0"
     const val androidMaterialVersion = "1.3.0"
     const val androidxAnnotationsVersion = "1.2.0"
-    const val javaxAnnotationsVersion = "1"
     const val swipeRefreshLayoutVersion = "1.1.0"
     const val recyclerViewVersion = "1.2.0"
     const val androidxActivityVersion = "1.3.1"
@@ -40,7 +39,7 @@ object Versions {
 
     const val edgeToEdgeDecoratorVersion = "1.0.0"
 
-    const val lifecycleExtensionsVersion = "2.2.0"
+    const val androidxLifecyclesVersion = "2.3.1"
 
     const val ciceroneVersion = "7.0"
 

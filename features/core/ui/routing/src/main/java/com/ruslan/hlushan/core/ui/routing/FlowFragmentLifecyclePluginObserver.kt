@@ -3,7 +3,7 @@ package com.ruslan.hlushan.core.ui.routing
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Navigator
 import com.github.terrakok.cicerone.Router
-import com.ruslan.hlushan.core.ui.api.presentation.lifecycle.LifecyclePluginObserver
+import com.ruslan.hlushan.core.ui.lifecycle.LifecyclePluginObserver
 
 //TODO: #write_unit_tests
 class FlowFragmentLifecyclePluginObserver(

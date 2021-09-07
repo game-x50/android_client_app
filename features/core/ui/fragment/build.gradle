@@ -14,15 +14,20 @@ android {
 }
 
 dependencies {
+    api(projects.features.core.ui.api.lib)
+    api(projects.features.core.ui.dialog)
+    api(projects.features.core.ui.routing)
+    api(projects.features.core.ui.lifecycle.lib)
+
     compileOnly(projects.features.core.extensions)
     compileOnly(projects.features.core.android.extensions)
     compileOnly(projects.features.core.api.lib)
-    compileOnly(projects.features.core.ui.api.lib)
-    compileOnly(projects.features.core.ui.dialog)
-    compileOnly(projects.features.core.ui.routing)
+    compileOnly(projects.features.core.ui.lifecycle.utils)
+    compileOnly(projects.features.core.ui.layout.container)
 
-    compileOnly(Deps.androidxFragment)
+    api(Deps.androidxFragment)
+//    api(Deps.androidxActivity)
+//    api(Deps.androidxLifecycleExtensions)
 
-    compileOnly(Deps.androidMaterial)
     compileOnly(projects.features.thirdParty.androidx.material.extensions)
 }

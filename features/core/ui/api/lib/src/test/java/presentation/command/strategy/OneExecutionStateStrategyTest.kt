@@ -1,6 +1,6 @@
 package presentation.command.strategy
 
-import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.OneExecutionStateStrategy
+import com.ruslan.hlushan.core.ui.viewmodel.command.strategy.OneExecutionStateStrategy
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Test

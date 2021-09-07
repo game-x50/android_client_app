@@ -18,5 +18,5 @@ internal object NavigationModule {
     @JvmStatic
     @Provides
     @Singleton
-    fun provideFlowCiceronesHolder(): com.ruslan.hlushan.core.ui.routing.FlowCiceronesHolder = com.ruslan.hlushan.core.ui.routing.FlowCiceronesHolder()
+    fun provideFlowCiceronesHolder(): FlowCiceronesHolder = FlowCiceronesHolder()
 }

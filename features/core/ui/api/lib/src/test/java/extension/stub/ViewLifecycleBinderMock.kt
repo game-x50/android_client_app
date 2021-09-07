@@ -1,12 +1,12 @@
 package extension.stub
 
 import com.ruslan.hlushan.core.api.utils.thread.ThreadChecker
-import com.ruslan.hlushan.core.ui.api.extensions.AbstractViewLifecycleBinder
+import com.ruslan.hlushan.core.ui.viewbinding.extensions.AbstractViewLifecycleBinder
 import com.ruslan.hlushan.core.ui.api.presentation.lifecycle.LifecyclePluginObserver
 
 internal class ViewLifecycleBinderMock<in Owner : LifecyclePluginObserver.Owner>(
         override val threadChecker: ThreadChecker,
-) : AbstractViewLifecycleBinder<Owner, ViewLifecycleBinderMock.ReturnValue>() {
+) : com.ruslan.hlushan.core.ui.viewbinding.extensions.AbstractViewLifecycleBinder<Owner, ViewLifecycleBinderMock.ReturnValue>() {
 
     object ReturnValue
 

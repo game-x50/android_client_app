@@ -5,10 +5,13 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import com.github.terrakok.cicerone.androidx.FragmentScreen
+import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.dialog.showSimpleProgress
-import com.ruslan.hlushan.core.ui.api.extensions.bindBaseViewModel
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
+import com.ruslan.hlushan.core.ui.viewbinding.extensions.bindViewBinding
+import com.ruslan.hlushan.core.ui.viewmodel.extensions.bindBaseViewModel
+import com.ruslan.hlushan.core.ui.viewmodel.extensions.handleCommandQueue
 import com.ruslan.hlushan.game.settings.ui.R
 import com.ruslan.hlushan.game.settings.ui.about.AboutAppScreen
 import com.ruslan.hlushan.game.settings.ui.databinding.GameSettingsUiMenuScreenBinding
@@ -18,7 +21,7 @@ import com.ruslan.hlushan.game.settings.ui.languages.LanguagesScreen
 import com.ruslan.hlushan.game.settings.ui.theme.ThemesScreen
 import com.ruslan.hlushan.third_party.androidx.insets.addSystemPadding
 
-internal class SettingsMenuFragment : com.ruslan.hlushan.core.ui.fragment.BaseFragment(
+internal class SettingsMenuFragment : BaseFragment(
         layoutResId = R.layout.game_settings_ui_menu_screen
 ) {
 

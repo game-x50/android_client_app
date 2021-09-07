@@ -8,15 +8,15 @@ import com.ruslan.hlushan.core.api.log.FileLogger
 import com.ruslan.hlushan.core.api.managers.SchedulersManager
 import com.ruslan.hlushan.core.api.utils.thread.ThreadChecker
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
-import com.ruslan.hlushan.core.ui.api.presentation.command.CommandQueue
-import com.ruslan.hlushan.core.ui.api.presentation.command.MutableCommandQueue
-import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.AddToEndSingleStrategy
-import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.HandleStrategy
-import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.OneExecutionStateStrategy
-import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.StrategyCommand
-import com.ruslan.hlushan.core.ui.api.presentation.viewmodel.PaginationViewModel
-import com.ruslan.hlushan.core.ui.api.presentation.viewmodel.pagination.PaginationState
-import com.ruslan.hlushan.core.ui.api.presentation.viewmodel.pagination.itemsOrEmpty
+import com.ruslan.hlushan.core.ui.viewmodel.command.CommandQueue
+import com.ruslan.hlushan.core.ui.viewmodel.command.MutableCommandQueue
+import com.ruslan.hlushan.core.ui.viewmodel.command.strategy.AddToEndSingleStrategy
+import com.ruslan.hlushan.core.ui.viewmodel.command.strategy.HandleStrategy
+import com.ruslan.hlushan.core.ui.viewmodel.command.strategy.OneExecutionStateStrategy
+import com.ruslan.hlushan.core.ui.viewmodel.command.strategy.StrategyCommand
+import com.ruslan.hlushan.core.ui.pagination.viewmodel.PaginationViewModel
+import com.ruslan.hlushan.core.ui.pagination.viewmodel.PaginationState
+import com.ruslan.hlushan.core.ui.pagination.viewmodel.itemsOrEmpty
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import io.reactivex.Single
@@ -32,7 +32,7 @@ constructor(
         threadChecker: ThreadChecker,
         private val fileLogger: FileLogger,
         schedulersManager: SchedulersManager
-) : PaginationViewModel<Unit, Long, LogRecyclerItem, String>(
+) : com.ruslan.hlushan.core.ui.pagination.viewmodel.PaginationViewModel<Unit, Long, LogRecyclerItem, String>(
         appLogger = appLogger,
         threadChecker = threadChecker,
         initFilter = Unit,
@@ -69,7 +69,7 @@ constructor(
     override fun onStateUpdated() =
             mutableCommandsQueue.add(Command.SetState(
                     logs = state.itemsOrEmpty(),
-                    additional = (state as? PaginationState.Active)?.additional
+                    additional = (state as? com.ruslan.hlushan.core.ui.pagination.viewmodel.PaginationState.Active)?.additional
             ))
 
     @UiMainThread
@@ -130,7 +130,7 @@ constructor(
             override fun produceStrategy(): HandleStrategy = OneExecutionStateStrategy()
         }
 
-        class SetState(val logs: List<LogRecyclerItem>, val additional: PaginationState.Additional?) : Command() {
+        class SetState(val logs: List<LogRecyclerItem>, val additional: com.ruslan.hlushan.core.ui.pagination.viewmodel.PaginationState.Additional?) : Command() {
             override fun produceStrategy(): HandleStrategy = OneExecutionStateStrategy()
         }
 

@@ -6,7 +6,7 @@ dependencies {
 
     compileOnly(Deps.rxJava2)
 
-    compileOnly(Deps.androidxAnnotations)
+    api(Deps.androidxAnnotations)
 
     testImplementation(projects.features.core.testUtils)
 }

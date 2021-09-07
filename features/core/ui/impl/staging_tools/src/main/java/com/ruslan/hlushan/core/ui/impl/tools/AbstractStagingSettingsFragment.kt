@@ -4,6 +4,8 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
+import com.ruslan.hlushan.android.extensions.applyDrawableOverlay
+import com.ruslan.hlushan.android.extensions.clearOverlay
 import com.ruslan.hlushan.android.extensions.toPx
 import com.ruslan.hlushan.core.api.dto.DatabaseViewInfo
 import com.ruslan.hlushan.core.api.log.FileLogger
@@ -21,6 +23,7 @@ import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.core.ui.impl.tools.utils.GridDrawable
 import com.ruslan.hlushan.core.ui.impl.tools.databinding.CoreUiImplStagingToolsDeveloperSettingsScreenBinding
 import com.ruslan.hlushan.core.ui.impl.tools.file.FileLogsActivity
+import com.ruslan.hlushan.core.ui.viewbinding.extensions.bindViewBinding
 import com.ruslan.hlushan.extensions.ifNotNull
 import com.ruslan.hlushan.third_party.androidx.insets.addSystemPadding
 import java.util.concurrent.TimeUnit
@@ -28,7 +31,7 @@ import javax.inject.Inject
 
 private const val DEFAULT_GRID_DISTANCE_DP: Int = 16
 
-abstract class AbstractStagingSettingsFragment : com.ruslan.hlushan.core.ui.fragment.BaseFragment(
+abstract class AbstractStagingSettingsFragment : BaseFragment(
         layoutResId = R.layout.core_ui_impl_staging_tools_developer_settings_screen
 ) {
 

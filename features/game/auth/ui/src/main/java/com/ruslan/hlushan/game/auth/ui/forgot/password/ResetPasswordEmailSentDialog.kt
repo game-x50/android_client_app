@@ -15,7 +15,7 @@ import com.ruslan.hlushan.game.auth.ui.R
 
 private const val KEY_RESET_PASSWORD_EMAIL = "KEY_RESET_PASSWORD_EMAIL"
 
-internal class ResetPasswordEmailSentDialog : com.ruslan.hlushan.core.ui.dialog.BaseDialogFragment() {
+internal class ResetPasswordEmailSentDialog : BaseDialogFragment() {
 
     @get:LayoutRes
     override val layoutResId: Int?
@@ -52,12 +52,12 @@ internal class ResetPasswordEmailSentDialog : com.ruslan.hlushan.core.ui.dialog.
 @UiMainThread
 internal fun <Parent> Parent.showResetPasswordEmailSentDialog(
         email: User.Email
-) where Parent : com.ruslan.hlushan.core.ui.dialog.command.DialogCommandsHandler.Owner, Parent : ResetPasswordEmailSentDialog.CancelDialogListener =
+) where Parent : DialogCommandsHandler.Owner, Parent : ResetPasswordEmailSentDialog.CancelDialogListener =
         this.dialogCommandsHandler.executeShowOrAddToQueue(ShowResetPasswordEmailSentDialogCommand(email))
 
 private class ShowResetPasswordEmailSentDialogCommand(
         private val email: User.Email
-) : com.ruslan.hlushan.core.ui.dialog.command.ShowDialogCommand() {
+) : ShowDialogCommand() {
 
     override val tag: String get() = "TAG_RESET_PASSWORD_EMAIL_SENT_DIALOG"
 

@@ -12,16 +12,19 @@ import com.ruslan.hlushan.core.ui.dialog.DialogBackgroundColorLifecyclePluginObs
 import com.ruslan.hlushan.core.ui.dialog.DialogSizeRatioLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.dialog.command.DialogCommandsHandler
 import com.ruslan.hlushan.core.ui.dialog.command.ShowDialogCommand
-import com.ruslan.hlushan.core.ui.api.recycler.DelegatesRecyclerAdapter
-import com.ruslan.hlushan.core.ui.api.recycler.OnItemClickListener
-import com.ruslan.hlushan.core.ui.api.recycler.RecyclerViewLifecyclePluginObserver
+import com.ruslan.hlushan.core.ui.recycler.adapter.DelegatesRecyclerAdapter
+import com.ruslan.hlushan.core.ui.recycler.adapter.OnItemClickListener
+import com.ruslan.hlushan.core.ui.recycler.adapter.RecyclerViewLifecyclePluginObserver
+import com.ruslan.hlushan.core.ui.viewbinding.extensions.bindViewBinding
 import com.ruslan.hlushan.game.api.play.dto.GameSize
 import com.ruslan.hlushan.game.play.ui.R
 import com.ruslan.hlushan.game.play.ui.databinding.GamePlayUiSelectGameLevelDialogBinding
+import com.ruslan.hlushan.third_party.androidx.fragment.extensions.dismissNowSafety
+import com.ruslan.hlushan.third_party.androidx.recyclerview.extensions.setUpDefaults
 
 private const val DIALOG_WIDTH_RATIO = 0.4
 
-internal class SelectGameLevelDialog : com.ruslan.hlushan.core.ui.dialog.BaseDialogFragment() {
+internal class SelectGameLevelDialog : BaseDialogFragment() {
 
     @get:LayoutRes
     override val layoutResId: Int
@@ -41,11 +44,11 @@ internal class SelectGameLevelDialog : com.ruslan.hlushan.core.ui.dialog.BaseDia
     @UiMainThread
     override fun initLifecyclePluginObservers() {
         super.initLifecyclePluginObservers()
-        addLifecyclePluginObserver(com.ruslan.hlushan.core.ui.dialog.DialogBackgroundColorLifecyclePluginObserver(
+        addLifecyclePluginObserver(DialogBackgroundColorLifecyclePluginObserver(
                 owner = this,
                 color = Color.TRANSPARENT
         ))
-        addLifecyclePluginObserver(com.ruslan.hlushan.core.ui.dialog.DialogSizeRatioLifecyclePluginObserver(
+        addLifecyclePluginObserver(DialogSizeRatioLifecyclePluginObserver(
                 owner = this,
                 widthRatio = DIALOG_WIDTH_RATIO
         ))
@@ -75,10 +78,10 @@ internal class SelectGameLevelDialog : com.ruslan.hlushan.core.ui.dialog.BaseDia
 
 @UiMainThread
 internal fun <Parent> Parent.showSelectGameLevelDialog()
-        where Parent : com.ruslan.hlushan.core.ui.dialog.command.DialogCommandsHandler.Owner, Parent : SelectGameLevelDialog.OnGameLevelSelectedListener =
+        where Parent : DialogCommandsHandler.Owner, Parent : SelectGameLevelDialog.OnGameLevelSelectedListener =
         this.dialogCommandsHandler.executeShowOrAddToQueue(ShowSelectGameLevelDialogCommand())
 
-private class ShowSelectGameLevelDialogCommand : com.ruslan.hlushan.core.ui.dialog.command.ShowDialogCommand() {
+private class ShowSelectGameLevelDialogCommand : ShowDialogCommand() {
 
     override val tag: String get() = "TAG_SELECT_GAME_LEVEL_DIALOG"
 

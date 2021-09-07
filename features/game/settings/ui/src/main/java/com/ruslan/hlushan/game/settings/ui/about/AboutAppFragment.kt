@@ -8,7 +8,7 @@ import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.game.settings.ui.R
 import com.ruslan.hlushan.game.settings.ui.di.getGameSettingsUiComponent
 
-internal class AboutAppFragment : com.ruslan.hlushan.core.ui.fragment.BaseFragment(
+internal class AboutAppFragment : BaseFragment(
         layoutResId = R.layout.game_settings_ui_about_app_screen
 ) {
 

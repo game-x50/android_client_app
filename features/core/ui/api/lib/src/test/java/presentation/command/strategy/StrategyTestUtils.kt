@@ -2,10 +2,10 @@
 
 package presentation.command.strategy
 
-import com.ruslan.hlushan.core.ui.api.presentation.command.MutableCommandQueue
-import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.HandleStrategy
-import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.OneExecutionStateStrategy
-import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.StrategyCommand
+import com.ruslan.hlushan.core.ui.viewmodel.command.MutableCommandQueue
+import com.ruslan.hlushan.core.ui.viewmodel.command.strategy.HandleStrategy
+import com.ruslan.hlushan.core.ui.viewmodel.command.strategy.OneExecutionStateStrategy
+import com.ruslan.hlushan.core.ui.viewmodel.command.strategy.StrategyCommand
 import com.ruslan.hlushan.extensions.addAsFirstTo
 import org.junit.Assert.assertEquals
 import presentation.command.stub.HandleStrategyStub

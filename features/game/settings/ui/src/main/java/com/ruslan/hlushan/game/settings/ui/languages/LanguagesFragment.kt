@@ -7,18 +7,21 @@ import androidx.fragment.app.FragmentFactory
 import androidx.recyclerview.widget.GridLayoutManager
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
-import com.ruslan.hlushan.core.ui.api.extensions.bindBaseViewModel
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
-import com.ruslan.hlushan.core.ui.api.recycler.DelegatesRecyclerAdapter
-import com.ruslan.hlushan.core.ui.api.recycler.RecyclerViewLifecyclePluginObserver
+import com.ruslan.hlushan.core.ui.recycler.adapter.DelegatesRecyclerAdapter
+import com.ruslan.hlushan.core.ui.recycler.adapter.RecyclerViewLifecyclePluginObserver
+import com.ruslan.hlushan.core.ui.viewbinding.extensions.bindViewBinding
+import com.ruslan.hlushan.core.ui.viewmodel.extensions.bindBaseViewModel
+import com.ruslan.hlushan.core.ui.viewmodel.extensions.handleCommandQueue
 import com.ruslan.hlushan.extensions.lazyUnsafe
 import com.ruslan.hlushan.game.settings.ui.R
 import com.ruslan.hlushan.game.settings.ui.databinding.GameSettingsUiLanguagesScreenBinding
 import com.ruslan.hlushan.game.settings.ui.di.getGameSettingsUiComponent
+import com.ruslan.hlushan.third_party.androidx.recyclerview.extensions.setUpDefaults
 
 private const val SPAN_WIDTH_DP = 160
 
-internal class LanguagesFragment : com.ruslan.hlushan.core.ui.fragment.BaseFragment(
+internal class LanguagesFragment : BaseFragment(
         layoutResId = R.layout.game_settings_ui_languages_screen
 ) {
 
@@ -29,7 +32,7 @@ internal class LanguagesFragment : com.ruslan.hlushan.core.ui.fragment.BaseFragm
     }
 
     private val languagesRecyclerAdapter by lazyUnsafe {
-        DelegatesRecyclerAdapter(
+        com.ruslan.hlushan.core.ui.recycler.adapter.DelegatesRecyclerAdapter(
                 LanguagesAdapterDelegate(resourceManager) { wrappedLanguage ->
                     viewModel.setApplicationLanguage(wrappedLanguage)
                 }
@@ -42,7 +45,7 @@ internal class LanguagesFragment : com.ruslan.hlushan.core.ui.fragment.BaseFragm
     @UiMainThread
     override fun initLifecyclePluginObservers() {
         super.initLifecyclePluginObservers()
-        addLifecyclePluginObserver(RecyclerViewLifecyclePluginObserver { binding?.languagesScreenRecycler })
+        addLifecyclePluginObserver(com.ruslan.hlushan.core.ui.recycler.adapter.RecyclerViewLifecyclePluginObserver { binding?.languagesScreenRecycler })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

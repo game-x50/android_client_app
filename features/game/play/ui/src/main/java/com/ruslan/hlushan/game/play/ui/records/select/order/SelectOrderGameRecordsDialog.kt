@@ -12,8 +12,8 @@ import com.ruslan.hlushan.core.ui.dialog.BaseDialogFragment
 import com.ruslan.hlushan.core.ui.dialog.DialogBackgroundColorLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.dialog.command.DialogCommandsHandler
 import com.ruslan.hlushan.core.ui.dialog.command.ShowDialogCommand
-import com.ruslan.hlushan.core.ui.api.recycler.DelegatesRecyclerAdapter
-import com.ruslan.hlushan.core.ui.api.recycler.RecyclerViewLifecyclePluginObserver
+import com.ruslan.hlushan.core.ui.recycler.adapter.DelegatesRecyclerAdapter
+import com.ruslan.hlushan.core.ui.recycler.adapter.RecyclerViewLifecyclePluginObserver
 import com.ruslan.hlushan.extensions.lazyUnsafe
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.api.play.dto.OrderType
@@ -55,7 +55,7 @@ internal class SelectOrderGameRecordsDialog : com.ruslan.hlushan.core.ui.dialog.
         }
 
     private val gameRecordsOrderVariantRecyclerAdapter by lazyUnsafe {
-        DelegatesRecyclerAdapter(
+        com.ruslan.hlushan.core.ui.recycler.adapter.DelegatesRecyclerAdapter(
                 GameRecordsOrderVariantAdapterDelegate { selectedRecyclerItem ->
                     selectedOrderVariant = selectedRecyclerItem.orderVariant
                 }
@@ -69,7 +69,7 @@ internal class SelectOrderGameRecordsDialog : com.ruslan.hlushan.core.ui.dialog.
                 owner = this,
                 color = Color.TRANSPARENT
         ))
-        addLifecyclePluginObserver(RecyclerViewLifecyclePluginObserver {
+        addLifecyclePluginObserver(com.ruslan.hlushan.core.ui.recycler.adapter.RecyclerViewLifecyclePluginObserver {
             binding?.selectOrderGameRecordsDialogRecycler
         })
     }

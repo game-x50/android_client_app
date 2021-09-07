@@ -1,10 +1,8 @@
 package presentation.command
 
-import com.ruslan.hlushan.core.ui.api.presentation.command.MutableCommandQueue
-import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.StrategyCommand
-import com.ruslan.hlushan.extensions.copy
+import com.ruslan.hlushan.core.ui.viewmodel.command.MutableCommandQueue
+import com.ruslan.hlushan.core.ui.viewmodel.command.strategy.StrategyCommand
 import com.ruslan.hlushan.test.utils.assertThrows
-import com.ruslan.hlushan.third_party.rxjava2.test.utils.assertNotCompleteNoErrorsNoValues
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertNull

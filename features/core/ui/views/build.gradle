@@ -15,6 +15,7 @@ dependencies {
     compileOnly(projects.features.core.android.extensions)
     compileOnly(projects.features.core.ui.api.lib)
 
+    compileOnly(Deps.androidxCoreKtx)
     compileOnly(Deps.androidMaterial)// todo: implementation instead of compileOnly because of task ./gradlew assembleStaging failing on CI, try to use compileOnly
     compileOnly(Deps.constraintLayout)// todo: implementation instead of compileOnly because of task ./gradlew assembleStaging failing on CI, try to use compileOnly
 }

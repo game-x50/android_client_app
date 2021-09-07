@@ -6,18 +6,22 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
-import com.ruslan.hlushan.core.ui.api.extensions.bindBaseViewModel
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
-import com.ruslan.hlushan.core.ui.api.presentation.viewmodel.pagination.PaginationState
-import com.ruslan.hlushan.core.ui.api.recycler.DelegatesRecyclerAdapter
-import com.ruslan.hlushan.core.ui.api.recycler.RecyclerViewLifecyclePluginObserver
+import com.ruslan.hlushan.core.ui.pagination.view.setUpPagination
+import com.ruslan.hlushan.core.ui.pagination.viewmodel.PaginationState
+import com.ruslan.hlushan.core.ui.recycler.adapter.DelegatesRecyclerAdapter
+import com.ruslan.hlushan.core.ui.recycler.adapter.RecyclerViewLifecyclePluginObserver
+import com.ruslan.hlushan.core.ui.viewbinding.extensions.bindViewBinding
+import com.ruslan.hlushan.core.ui.viewmodel.extensions.bindBaseViewModel
+import com.ruslan.hlushan.core.ui.viewmodel.extensions.handleCommandQueue
 import com.ruslan.hlushan.extensions.exhaustive
 import com.ruslan.hlushan.game.top.ui.R
 import com.ruslan.hlushan.game.top.ui.databinding.GameTopUiTopGamesListScreenBinding
 import com.ruslan.hlushan.game.top.ui.di.clearTopUiComponent
 import com.ruslan.hlushan.game.top.ui.di.getTopUiComponent
+import com.ruslan.hlushan.third_party.androidx.insets.addSystemPadding
 
-internal class TopGamesFragment : com.ruslan.hlushan.core.ui.fragment.BaseFragment(
+internal class TopGamesFragment : BaseFragment(
         layoutResId = R.layout.game_top_ui_top_games_list_screen
 ) {
 

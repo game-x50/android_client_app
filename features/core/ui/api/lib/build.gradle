@@ -16,35 +16,5 @@ android {
 }
 
 dependencies {
-    compileOnly(projects.features.core.extensions)
-    compileOnly(projects.features.core.android.extensions)
     compileOnly(projects.features.core.api.lib)
-
-    compileOnly(Deps.rxJava2)
-    compileOnly(projects.features.thirdParty.rxjava2.extensions)
-
-    implementation(Deps.androidxAppCompat)//todo: implementation instead of compileOnly because ot some dependencies conflicts, try to use compileOnly
-
-    compileOnly(Deps.androidMaterial)
-    compileOnly(projects.features.thirdParty.androidx.material.extensions)
-
-    compileOnly(Deps.recyclerView)
-    compileOnly(projects.features.thirdParty.androidx.recyclerview.extensions)
-
-    compileOnly(Deps.androidxFragment)
-    compileOnly(projects.features.thirdParty.androidx.fragment.extensions)
-
-    compileOnly(Deps.swipeRefreshLayout)
-    compileOnly(Deps.constraintLayout)
-
-    compileOnly(Deps.cicerone)
-
-    testImplementation(projects.features.core.extensions)
-    testImplementation(projects.features.core.api.lib)
-    testImplementation(Deps.rxJava2)
-    testImplementation(projects.features.thirdParty.rxjava2.extensions)
-    testImplementation(projects.features.thirdParty.rxjava2.testUtils)
-    testImplementation(projects.features.core.testUtils)
-    testImplementation(projects.features.core.api.testUtils)
-    testImplementation(projects.features.core.ui.api.testUtils)
 }

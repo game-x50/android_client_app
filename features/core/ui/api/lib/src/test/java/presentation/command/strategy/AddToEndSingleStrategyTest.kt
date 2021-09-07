@@ -1,6 +1,6 @@
 package presentation.command.strategy
 
-import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.AddToEndSingleStrategy
+import com.ruslan.hlushan.core.ui.viewmodel.command.strategy.AddToEndSingleStrategy
 import com.ruslan.hlushan.extensions.withoutFirst
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals

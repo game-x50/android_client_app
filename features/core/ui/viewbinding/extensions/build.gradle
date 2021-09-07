@@ -1,0 +1,24 @@
+apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
+apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
+
+android {
+
+    defaultConfig {
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+//    resourcePrefix("core_ui_api_")
+}
+
+dependencies {
+    api(projects.features.core.ui.lifecycle.lib)
+
+    compileOnly(projects.features.core.extensions)
+    compileOnly(projects.features.core.api.lib)
+    compileOnly(projects.features.core.ui.api.lib)
+
+    api(Deps.androidxFragment)
+
+    compileOnly(Deps.viewBinding)
+}

@@ -8,9 +8,9 @@ import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.dialog.showSimpleProgress
 import com.ruslan.hlushan.core.ui.api.extensions.bindBaseViewModel
 import com.ruslan.hlushan.core.ui.activity.BaseActivity
-import com.ruslan.hlushan.core.ui.api.presentation.viewmodel.pagination.PaginationState
-import com.ruslan.hlushan.core.ui.api.recycler.DelegatesRecyclerAdapter
-import com.ruslan.hlushan.core.ui.api.recycler.RecyclerViewLifecyclePluginObserver
+import com.ruslan.hlushan.core.ui.pagination.viewmodel.PaginationState
+import com.ruslan.hlushan.core.ui.recycler.adapter.DelegatesRecyclerAdapter
+import com.ruslan.hlushan.core.ui.recycler.adapter.RecyclerViewLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.impl.tools.R
 import com.ruslan.hlushan.core.ui.impl.tools.databinding.CoreUiImplStagingToolsFileLogsScreenBinding
 import com.ruslan.hlushan.extensions.exhaustive
@@ -18,7 +18,7 @@ import java.io.File
 
 internal class FileLogsActivity : com.ruslan.hlushan.core.ui.activity.BaseActivity() {
 
-    private val logsAdapter = DelegatesRecyclerAdapter(LogsAdapterDelegate())
+    private val logsAdapter = com.ruslan.hlushan.core.ui.recycler.adapter.DelegatesRecyclerAdapter(LogsAdapterDelegate())
 
     private val binding by bindViewBinding(
             CoreUiImplStagingToolsFileLogsScreenBinding::bind,
@@ -35,7 +35,7 @@ internal class FileLogsActivity : com.ruslan.hlushan.core.ui.activity.BaseActivi
     @UiMainThread
     override fun initLifecyclePluginObservers() {
         super.initLifecyclePluginObservers()
-        addLifecyclePluginObserver(RecyclerViewLifecyclePluginObserver { binding?.activityFileLogsList })
+        addLifecyclePluginObserver(com.ruslan.hlushan.core.ui.recycler.adapter.RecyclerViewLifecyclePluginObserver { binding?.activityFileLogsList })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,17 +80,17 @@ internal class FileLogsActivity : com.ruslan.hlushan.core.ui.activity.BaseActivi
         logsAdapter.submitList(command.logs)
 
         @Suppress("MaxLineLength")
-        binding?.activityFileLogsSwipeRefresh?.isRefreshing = (command.additional is PaginationState.Additional.Loading)
+        binding?.activityFileLogsSwipeRefresh?.isRefreshing = (command.additional is com.ruslan.hlushan.core.ui.pagination.viewmodel.PaginationState.Additional.Loading)
 
         when (command.additional) {
-            is PaginationState.Additional.WaitingForLoadMore -> {
+            is com.ruslan.hlushan.core.ui.pagination.viewmodel.PaginationState.Additional.WaitingForLoadMore -> {
                 //TODO
             }
-            is PaginationState.Additional.Error              -> {
+            is com.ruslan.hlushan.core.ui.pagination.viewmodel.PaginationState.Additional.Error              -> {
                 //TODO
             }
-            is PaginationState.Additional.Loading,
-            null                                             -> Unit
+            is com.ruslan.hlushan.core.ui.pagination.viewmodel.PaginationState.Additional.Loading,
+            null                                                                                             -> Unit
         }.exhaustive
     }
 

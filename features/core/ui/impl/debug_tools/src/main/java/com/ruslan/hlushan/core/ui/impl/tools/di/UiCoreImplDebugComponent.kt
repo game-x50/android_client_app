@@ -10,16 +10,14 @@ import com.ruslan.hlushan.core.api.utils.InitAppConfig
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.core.ui.impl.tools.DebugSettingsFragment
+import com.ruslan.hlushan.core.ui.routing.di.UiRoutingProvider
 import dagger.BindsInstance
 import dagger.Component
-
-/**
- * @author Ruslan Hlushan on 10/22/18.
- */
 
 @Component(
         dependencies = [
             UiCoreProvider::class,
+            UiRoutingProvider::class,
             UserErrorMapperProvider::class,
             ManagersProvider::class,
             LoggersProvider::class,
@@ -37,6 +35,7 @@ internal interface UiCoreImplDebugComponent {
         fun create(
                 @BindsInstance initAppConfig: InitAppConfig,
                 uiCoreProvider: UiCoreProvider,
+                uiRoutingProvider: UiRoutingProvider,
                 userErrorMapperProvider: UserErrorMapperProvider,
                 managersProvider: ManagersProvider,
                 loggersProvider: LoggersProvider,
@@ -47,7 +46,7 @@ internal interface UiCoreImplDebugComponent {
 }
 
 @SuppressWarnings("UnsafeCast")
-internal fun com.ruslan.hlushan.core.ui.fragment.BaseFragment.getUiCoreImplDebugComponent(): UiCoreImplDebugComponent {
+internal fun BaseFragment.getUiCoreImplDebugComponent(): UiCoreImplDebugComponent {
     val injectorHolder = (this.activity?.application as InjectorHolder)
     val components = injectorHolder.components
     return components.getOrPut(UiCoreImplDebugComponent::class) {
@@ -55,6 +54,7 @@ internal fun com.ruslan.hlushan.core.ui.fragment.BaseFragment.getUiCoreImplDebug
                 .create(
                         initAppConfig = (injectorHolder.initAppConfig),
                         uiCoreProvider = (injectorHolder.iBaseInjector as UiCoreProvider),
+                        uiRoutingProvider = (injectorHolder.iBaseInjector as UiRoutingProvider),
                         userErrorMapperProvider = (injectorHolder.iBaseInjector as UserErrorMapperProvider),
                         managersProvider = (injectorHolder.iBaseInjector as ManagersProvider),
                         loggersProvider = (injectorHolder.iBaseInjector as LoggersProvider),

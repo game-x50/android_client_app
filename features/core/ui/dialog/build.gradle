@@ -18,8 +18,11 @@ dependencies {
     compileOnly(projects.features.core.api.lib)
     compileOnly(projects.features.core.extensions)
     compileOnly(projects.features.core.ui.api.lib)
+    compileOnly(projects.features.core.ui.lifecycle.utils)
     compileOnly(projects.features.core.android.extensions)
     compileOnly(projects.features.core.ui.views)
+
+    api(projects.features.core.ui.lifecycle.lib)
 
     compileOnly(Deps.androidxAppCompat)
     compileOnly(Deps.androidMaterial)

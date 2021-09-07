@@ -11,7 +11,7 @@ internal class ShowAvailableNumbersDialog : AbstractPlayNumbersDialog() {
     override val numbers: IntArray
         get() = AVAILABLE_NUMBERS
 
-    class ShowCommand : com.ruslan.hlushan.core.ui.dialog.command.ShowDialogCommand() {
+    class ShowCommand : ShowDialogCommand() {
 
         override val tag: String get() = "TAG_SHOW_AVAILABLE_NUMBERS_DIALOG"
 

@@ -33,13 +33,14 @@ include(
         ":features:core:ui:dialog",
         ":features:core:ui:routing",
         ":features:core:ui:views",
-
-        //todo:
-        ":features:core:ui:lifecycle",//and revisit ":features:core:ui:dialog"
-        ":features:core:ui:viewmodel",
+        ":features:core:ui:lifecycle:lib",
+        ":features:core:ui:lifecycle:utils",
+        ":features:core:ui:viewmodel:lib",
+        ":features:core:ui:viewmodel:extensions",
+        ":features:core:ui:recycler:item",
+        ":features:core:ui:recycler:adapter",
         ":features:core:ui:pagination:viewmodel",
         ":features:core:ui:pagination:view",
-        ":features:core:ui:recyclerview:adapter",
         ":features:core:ui:layout:container",
         ":features:core:ui:viewbinding:extensions",
 

@@ -7,6 +7,7 @@ import com.ruslan.hlushan.core.api.di.SchedulersProvider
 import com.ruslan.hlushan.core.api.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
+import com.ruslan.hlushan.core.ui.routing.di.UiRoutingProvider
 import com.ruslan.hlushan.game.api.di.providers.AuthInteractorProvider
 import com.ruslan.hlushan.game.api.di.providers.GameSettingsProvider
 import com.ruslan.hlushan.game.api.di.providers.PlayRecordsInteractorProvider
@@ -22,12 +23,13 @@ import com.ruslan.hlushan.game.play.ui.records.GameRecordsListViewModel
 import dagger.Component
 import dagger.Module
 import dagger.Provides
-import dagger.Reusable
+import javax.inject.Singleton
 
 @Component(
         modules = [AssistedGamePlayUiViewModelsModule::class],
         dependencies = [
             UiCoreProvider::class,
+            UiRoutingProvider::class,
             UserErrorMapperProvider::class,
             ManagersProvider::class,
             LoggersProvider::class,
@@ -54,6 +56,7 @@ internal interface GamePlayUiComponent {
         @SuppressWarnings("LongParameterList")
         fun create(
                 uiCoreProvider: UiCoreProvider,
+                uiRoutingProvider: UiRoutingProvider,
                 userErrorMapperProvider: UserErrorMapperProvider,
                 managersProvider: ManagersProvider,
                 loggersProvider: LoggersProvider,
@@ -70,19 +73,20 @@ internal interface GamePlayUiComponent {
 internal object AssistedGamePlayUiViewModelsModule {
 
     @JvmStatic
-    @Reusable
+    @Singleton
     @Provides
     fun provideGameScopeMarkerRepository(): GameScopeMarkerRepository = GameScopeMarkerRepository()
 }
 
 @SuppressWarnings("UnsafeCast")
-internal fun com.ruslan.hlushan.core.ui.fragment.BaseFragment.getGamePlayUiComponent(): GamePlayUiComponent {
+internal fun BaseFragment.getGamePlayUiComponent(): GamePlayUiComponent {
     val injectorHolder = (activity?.application as InjectorHolder)
     val components = injectorHolder.components
     return components.getOrPut(GamePlayUiComponent::class) {
         DaggerGamePlayUiComponent.factory()
                 .create(
                         uiCoreProvider = (injectorHolder.iBaseInjector as UiCoreProvider),
+                        uiRoutingProvider = (injectorHolder.iBaseInjector as UiRoutingProvider),
                         userErrorMapperProvider = (injectorHolder.iBaseInjector as UserErrorMapperProvider),
                         managersProvider = (injectorHolder.iBaseInjector as ManagersProvider),
                         loggersProvider = (injectorHolder.iBaseInjector as LoggersProvider),
