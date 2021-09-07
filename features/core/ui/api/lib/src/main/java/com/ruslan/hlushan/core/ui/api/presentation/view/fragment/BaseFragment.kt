@@ -16,7 +16,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.ruslan.hlushan.android.extensions.ViewLambdaListener
 import com.ruslan.hlushan.android.extensions.applicationLabel
 import com.ruslan.hlushan.android.extensions.executeHideKeyboard
-import com.ruslan.hlushan.android.extensions.showSnackBar
 import com.ruslan.hlushan.core.api.log.AppLogger
 import com.ruslan.hlushan.core.api.managers.CompositeUserErrorMapper
 import com.ruslan.hlushan.core.api.managers.ResourceManager
@@ -36,6 +35,7 @@ import com.ruslan.hlushan.core.ui.api.presentation.lifecycle.dispatchEventForAll
 import com.ruslan.hlushan.core.ui.api.presentation.view.activity.BaseAppActivity
 import com.ruslan.hlushan.core.ui.api.utils.LockableHandler
 import com.ruslan.hlushan.extensions.ifNotNull
+import com.ruslan.hlushan.third_party.androidx.material.extensions.showSnackBar
 import javax.inject.Inject
 
 @SuppressWarnings("TooManyFunctions")

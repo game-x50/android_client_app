@@ -46,5 +46,5 @@ dependencies {
     implementation(Deps.rxJava2)//todo: implementation here instead of app module because of because ot some dependencies conflicts, try to use compileOnly here and implementation in app module
     implementation(Deps.rxJava2Android)
 
-    compileOnly(Deps.supportAppCompat)
+    compileOnly(Deps.androidxAppCompat)
 }

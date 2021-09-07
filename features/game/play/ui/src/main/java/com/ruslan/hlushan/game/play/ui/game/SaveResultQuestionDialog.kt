@@ -1,14 +1,14 @@
 package com.ruslan.hlushan.game.play.ui.game
 
 import android.os.Bundle
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.ruslan.hlushan.android.extensions.getIntOrNull
-import com.ruslan.hlushan.android.extensions.showNowSafety
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.api.dialog.BaseTwoOptionsAlert
 import com.ruslan.hlushan.core.ui.api.dialog.TwoOptionsAlertData
-import com.ruslan.hlushan.core.ui.api.dialog.command.DialogCommand
 import com.ruslan.hlushan.core.ui.api.dialog.command.DialogCommandsHandler
+import com.ruslan.hlushan.core.ui.api.dialog.command.ShowDialogCommand
 import com.ruslan.hlushan.game.play.ui.R
 
 private const val KEY_DEFAULT_TOTAL_SCORE = "KEY_DEFAULT_TOTAL_SCORE"
@@ -51,15 +51,14 @@ internal fun <Parent> Parent.showSaveResultQuestionDialog(
 
 private class ShowSaveResultQuestionDialogCommand(
         private val totalScore: Int
-) : DialogCommand() {
+) : ShowDialogCommand() {
 
     override val tag: String get() = "TAG_SAVE_RESULT_QUESTION_DIALOG"
 
     @UiMainThread
-    override fun execute(fragmentManager: FragmentManager) =
+    override fun getOrCreate(fragmentManager: FragmentManager): DialogFragment =
             ((fragmentManager.findFragmentByTag(tag) as? SaveResultQuestionDialog)
              ?: createSaveResultQuestionDialog(totalScore))
-                    .showNowSafety(fragmentManager, tag)
 }
 
 private fun createSaveResultQuestionDialog(totalScore: Int): SaveResultQuestionDialog =

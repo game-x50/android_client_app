@@ -2,7 +2,7 @@ package presentation.viewmodel.stub
 
 import com.ruslan.hlushan.core.api.test.utils.log.EmptyAppLoggerImpl
 import com.ruslan.hlushan.core.api.utils.thread.ThreadChecker
-import com.ruslan.hlushan.core.ui.api.presentation.presenter.BaseViewModel
+import com.ruslan.hlushan.core.ui.api.presentation.viewmodel.BaseViewModel
 import io.reactivex.disposables.Disposable
 
 class BaseViewModelTestImpl(

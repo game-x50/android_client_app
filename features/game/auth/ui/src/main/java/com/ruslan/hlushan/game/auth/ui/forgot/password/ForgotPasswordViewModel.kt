@@ -11,7 +11,7 @@ import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.HandleStrate
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.OneExecutionStateStrategy
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.SkipStrategy
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.StrategyCommand
-import com.ruslan.hlushan.core.ui.api.presentation.presenter.BaseViewModel
+import com.ruslan.hlushan.core.ui.api.presentation.viewmodel.BaseViewModel
 import com.ruslan.hlushan.game.api.auth.AuthInteractor
 import com.ruslan.hlushan.game.api.auth.dto.User
 import dagger.assisted.AssistedFactory

@@ -3,12 +3,12 @@ package com.ruslan.hlushan.game.auth.ui
 import androidx.core.widget.doAfterTextChanged
 import com.google.android.material.textfield.TextInputLayout
 import com.ruslan.hlushan.android.extensions.applicationLabel
-import com.ruslan.hlushan.android.extensions.clearError
-import com.ruslan.hlushan.android.extensions.showErrorResId
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.api.dialog.showDialogMessage
 import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.BaseFragment
 import com.ruslan.hlushan.game.api.auth.dto.AuthError
+import com.ruslan.hlushan.third_party.androidx.material.extensions.clearError
+import com.ruslan.hlushan.third_party.androidx.material.extensions.showErrorResId
 
 internal fun TextInputLayout.showEmailInputError() =
         this.showErrorResId(R.string.game_auth_ui_email_input_error)

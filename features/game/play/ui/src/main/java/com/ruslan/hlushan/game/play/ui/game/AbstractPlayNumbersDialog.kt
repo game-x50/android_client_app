@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
-import com.ruslan.hlushan.android.extensions.setUpDefaults
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.api.dialog.BaseDialogFragment
 import com.ruslan.hlushan.core.ui.api.dialog.DialogBackgroundColorLifecyclePluginObserver
@@ -16,6 +15,7 @@ import com.ruslan.hlushan.core.ui.api.recycler.RecyclerViewLifecyclePluginObserv
 import com.ruslan.hlushan.extensions.ifNotNull
 import com.ruslan.hlushan.game.play.ui.R
 import com.ruslan.hlushan.game.play.ui.databinding.GamePlayUiPlayNumbersDialogBinding
+import com.ruslan.hlushan.third_party.androidx.recyclerview.extensions.setUpDefaults
 
 private const val DIALOG_WIDTH_RATIO = 0.6
 private const val DIALOG_HEIGHT_RATIO = 0.4

@@ -2,10 +2,6 @@ package com.ruslan.hlushan.android.extensions
 
 import android.os.Bundle
 
-/**
- * @author Ruslan Hlushan on 12/27/18
- */
-
 fun Bundle.getIntOrNull(argKey: String): Int? =
 		if (this.containsKey(argKey)) {
 			getInt(argKey)

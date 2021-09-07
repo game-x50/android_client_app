@@ -11,10 +11,7 @@ android {
 dependencies {
     compileOnly(project(LocalGradleProjects.extensions))
 
-    api(Deps.androidCoreKtx)
+    api(Deps.androidxCoreKtx)
 
-    compileOnly(Deps.supportAppCompat)
-    compileOnly(Deps.supportDesign)
-    compileOnly(Deps.recyclerView)
-    compileOnly(Deps.supportAnnotations)
+    compileOnly(Deps.androidxAnnotations)
 }

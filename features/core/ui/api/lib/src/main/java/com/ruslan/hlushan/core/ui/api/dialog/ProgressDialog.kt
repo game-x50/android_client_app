@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.FragmentManager
-import com.ruslan.hlushan.android.extensions.showNowSafety
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.api.R
 import com.ruslan.hlushan.core.ui.api.dialog.command.DialogCommand
 import com.ruslan.hlushan.core.ui.api.dialog.command.DialogCommandsHandler
 import com.ruslan.hlushan.core.ui.api.view.LoaderView
+import com.ruslan.hlushan.third_party.androidx.fragment.extensions.showNowSafety
 
 private const val ARG_MESSAGE = "ARG_MESSAGE"
 private const val TAG_PROGRESS_DIALOG = "TAG_PROGRESS_DIALOG"

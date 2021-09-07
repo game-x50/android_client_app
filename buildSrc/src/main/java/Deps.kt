@@ -8,11 +8,15 @@ object Deps {
     const val kotlinxSerializationCore = "org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinxSerializationVersion}"
     const val kotlinxSerializationJson = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinxSerializationVersion}"
 
-    const val androidCoreKtx = "androidx.core:core-ktx:${Versions.androidCoreKtxVersion}"
+    const val androidxCore = "androidx.core:core:${Versions.androidCoreVersion}"
+    const val androidxCoreKtx = "androidx.core:core-ktx:${Versions.androidCoreVersion}"
 
-    const val supportAnnotations = "androidx.annotation:annotation:${Versions.supportAnnotationsVersion}"
-    const val supportAppCompat = "androidx.appcompat:appcompat:${Versions.supportAppCompatVersion}"
-    const val supportDesign = "com.google.android.material:material:${Versions.supportDesignVersion}"
+    const val androidxAnnotations = "androidx.annotation:annotation:${Versions.androidxAnnotationsVersion}"
+    const val androidxAppCompat = "androidx.appcompat:appcompat:${Versions.androidxAppCompatVersion}"
+    const val androidMaterial = "com.google.android.material:material:${Versions.androidMaterialVersion}"
+
+    const val androidxActivity = "androidx.activity:activity:${Versions.androidxActivityVersion}"
+    const val androidxFragment = "androidx.fragment:fragment:${Versions.androidxFragmentVersion}"
 
     const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerViewVersion}"
     const val swipeRefreshLayout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayoutVersion}"

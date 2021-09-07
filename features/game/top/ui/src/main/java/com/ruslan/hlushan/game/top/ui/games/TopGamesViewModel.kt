@@ -11,9 +11,9 @@ import com.ruslan.hlushan.core.ui.api.presentation.command.MutableCommandQueue
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.AddToEndSingleStrategy
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.HandleStrategy
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.StrategyCommand
-import com.ruslan.hlushan.core.ui.api.presentation.presenter.PaginationViewModel
-import com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination.PaginationState
-import com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination.itemsOrEmpty
+import com.ruslan.hlushan.core.ui.api.presentation.viewmodel.PaginationViewModel
+import com.ruslan.hlushan.core.ui.api.presentation.viewmodel.pagination.PaginationState
+import com.ruslan.hlushan.core.ui.api.presentation.viewmodel.pagination.itemsOrEmpty
 import com.ruslan.hlushan.game.api.auth.AuthInteractor
 import com.ruslan.hlushan.game.api.play.dto.GameSize
 import com.ruslan.hlushan.game.api.top.TopInteractor

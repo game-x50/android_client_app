@@ -13,9 +13,9 @@ import com.ruslan.hlushan.core.ui.api.dialog.showSimpleProgress
 import com.ruslan.hlushan.core.ui.api.extensions.bindBaseViewModel
 import com.ruslan.hlushan.core.ui.api.extensions.bindViewBinding
 import com.ruslan.hlushan.core.ui.api.presentation.command.handleCommandQueue
-import com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination.PaginationState
 import com.ruslan.hlushan.core.ui.api.presentation.view.activity.BaseActivity
 import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.setUpPagination
+import com.ruslan.hlushan.core.ui.api.presentation.viewmodel.pagination.PaginationState
 import com.ruslan.hlushan.core.ui.api.recycler.DelegatesRecyclerAdapter
 import com.ruslan.hlushan.core.ui.api.recycler.RecyclerViewLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.impl.tools.R

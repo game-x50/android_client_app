@@ -6,10 +6,6 @@ import android.content.res.Resources
 import android.os.Build
 import java.util.Locale
 
-/**
- * Created by User on 01.02.2018.
- */
-
 var Configuration.currentLocale: Locale
     get() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         locales.get(0)

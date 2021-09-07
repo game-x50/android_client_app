@@ -6,11 +6,11 @@ import androidx.annotation.LayoutRes
 import androidx.annotation.StyleRes
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentManager
-import com.ruslan.hlushan.android.extensions.showNowSafety
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.api.R
 import com.ruslan.hlushan.core.ui.api.dialog.command.DialogCommand
 import com.ruslan.hlushan.core.ui.api.dialog.command.DialogCommandsHandler
+import com.ruslan.hlushan.third_party.androidx.fragment.extensions.showNowSafety
 
 private const val ARG_STYLE_RES_ID = "ARG_STYLE_RES_ID"
 private const val ARG_TITLE = "ARG_TITLE"

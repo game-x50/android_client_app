@@ -6,9 +6,6 @@ project(":extensions").projectDir = File(rootDir, "features/core/extensions")
 include(":android_extensions")
 project(":android_extensions").projectDir = File(rootDir, "features/core/android/extensions")
 
-include(":android_permissions")
-project(":android_permissions").projectDir = File(rootDir, "features/core/android/permissions")
-
 include(":android_storage")
 project(":android_storage").projectDir = File(rootDir, "features/core/android/storage")
 
@@ -106,6 +103,21 @@ include(":rxjava2_test_utils")
 project(":rxjava2_test_utils").projectDir = File(rootDir, "features/third_party/rxjava2/test_utils")
 
 include(":work_manager_utils")
-project(":work_manager_utils").projectDir = File(rootDir, "features/third_party/work_manager/utils")
+project(":work_manager_utils").projectDir = File(rootDir, "features/third_party/androidx/work_manager/utils")
+
+include(":android_permissions")
+project(":android_permissions").projectDir = File(rootDir, "features/third_party/androidx/permissions")
+
+include(":fragment_extensions")
+project(":fragment_extensions").projectDir = File(rootDir, "features/third_party/androidx/fragment/extensions")
+
+include(":material_extensions")
+project(":material_extensions").projectDir = File(rootDir, "features/third_party/androidx/material/extensions")
+
+include(":recyclerview_extensions")
+project(":recyclerview_extensions").projectDir = File(rootDir, "features/third_party/androidx/recyclerview/extensions")
+
+include(":android_insets")
+project(":android_insets").projectDir = File(rootDir, "features/third_party/androidx/insets")
 
 include(":app")

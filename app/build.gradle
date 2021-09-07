@@ -80,6 +80,8 @@ dependencies {
     implementation(project(LocalGradleProjects.androidCoreApi))
     implementation(project(LocalGradleProjects.coreImpl))
 
+    implementation(project(LocalGradleProjects.androidInsets))
+
     implementation(project(LocalGradleProjects.parsingImpl))
 
     implementation(project(LocalGradleProjects.coreUiApi))
@@ -109,11 +111,19 @@ dependencies {
     runtimeOnly(project(LocalGradleProjects.threeTenExtensions))
     implementation(Deps.threeTenBpAndroid)
 
-    implementation(Deps.supportAppCompat)
-    implementation(Deps.supportDesign)
+    implementation(Deps.androidxAppCompat)
+
+    runtimeOnly(Deps.androidxFragment)
+    runtimeOnly(project(LocalGradleProjects.fragmentExtensions))
+
+    implementation(Deps.androidMaterial)
+    runtimeOnly(project(LocalGradleProjects.androidMaterialExtensions))
+
     runtimeOnly(Deps.swipeRefreshLayout)
     runtimeOnly(Deps.constraintLayout)
+
     runtimeOnly(Deps.recyclerView)
+    runtimeOnly(project(LocalGradleProjects.recyclerViewExtensions))
 
     implementation(Deps.edgeToEdgeDecorator)
 

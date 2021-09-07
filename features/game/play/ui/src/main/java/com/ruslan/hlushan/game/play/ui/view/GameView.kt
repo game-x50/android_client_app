@@ -25,7 +25,7 @@ import com.ruslan.hlushan.game.play.ui.view.calculations.GameViewParams
 import com.ruslan.hlushan.game.play.ui.view.calculations.notFakeItems
 import com.ruslan.hlushan.game.play.ui.view.listeners.GameFinishedListener
 import com.ruslan.hlushan.game.play.ui.view.listeners.TotalSumChangedListener
-import com.ruslan.hlushan.rxjava2.extensions.safetyDispose
+import com.ruslan.hlushan.third_party.rxjava2.extensions.safetyDispose
 import io.reactivex.disposables.Disposable
 
 /**

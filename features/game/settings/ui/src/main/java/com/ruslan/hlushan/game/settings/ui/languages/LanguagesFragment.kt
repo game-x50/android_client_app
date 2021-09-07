@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import androidx.recyclerview.widget.GridLayoutManager
 import com.github.terrakok.cicerone.androidx.FragmentScreen
-import com.ruslan.hlushan.android.extensions.setUpDefaults
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.api.extensions.bindBaseViewModel
 import com.ruslan.hlushan.core.ui.api.extensions.bindViewBinding
@@ -18,10 +17,7 @@ import com.ruslan.hlushan.extensions.lazyUnsafe
 import com.ruslan.hlushan.game.settings.ui.R
 import com.ruslan.hlushan.game.settings.ui.databinding.GameSettingsUiLanguagesScreenBinding
 import com.ruslan.hlushan.game.settings.ui.di.getGameSettingsUiComponent
-
-/**
- * @author Ruslan Hlushan on 2019-07-10
- */
+import com.ruslan.hlushan.third_party.androidx.recyclerview.extensions.setUpDefaults
 
 private const val SPAN_WIDTH_DP = 160
 

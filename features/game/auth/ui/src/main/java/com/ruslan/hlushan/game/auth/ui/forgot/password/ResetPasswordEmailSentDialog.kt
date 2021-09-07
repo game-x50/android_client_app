@@ -4,12 +4,12 @@ import android.app.Dialog
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
-import com.ruslan.hlushan.android.extensions.showNowSafety
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.api.dialog.BaseDialogFragment
-import com.ruslan.hlushan.core.ui.api.dialog.command.DialogCommand
 import com.ruslan.hlushan.core.ui.api.dialog.command.DialogCommandsHandler
+import com.ruslan.hlushan.core.ui.api.dialog.command.ShowDialogCommand
 import com.ruslan.hlushan.game.api.auth.dto.User
 import com.ruslan.hlushan.game.auth.ui.R
 
@@ -55,15 +55,16 @@ internal fun <Parent> Parent.showResetPasswordEmailSentDialog(
 ) where Parent : DialogCommandsHandler.Owner, Parent : ResetPasswordEmailSentDialog.CancelDialogListener =
         this.dialogCommandsHandler.executeShowOrAddToQueue(ShowResetPasswordEmailSentDialogCommand(email))
 
-private class ShowResetPasswordEmailSentDialogCommand(private val email: User.Email) : DialogCommand() {
+private class ShowResetPasswordEmailSentDialogCommand(
+        private val email: User.Email
+) : ShowDialogCommand() {
 
     override val tag: String get() = "TAG_RESET_PASSWORD_EMAIL_SENT_DIALOG"
 
     @UiMainThread
-    override fun execute(fragmentManager: FragmentManager) =
+    override fun getOrCreate(fragmentManager: FragmentManager): DialogFragment =
             ((fragmentManager.findFragmentByTag(tag) as? ResetPasswordEmailSentDialog)
              ?: (createResetPasswordEmailSentDialog(email)))
-                    .showNowSafety(fragmentManager, tag)
 }
 
 private fun createResetPasswordEmailSentDialog(email: User.Email): ResetPasswordEmailSentDialog =

@@ -8,7 +8,7 @@ import com.ruslan.hlushan.core.impl.BaseApplication
 import com.ruslan.hlushan.extensions.lazyUnsafe
 import com.ruslan.hlushan.game.di.GameAppComponent
 import com.ruslan.hlushan.game.error.ErrorLoggerImpl
-import com.ruslan.hlushan.work.manager.utils.CompositeWorkerFactory
+import com.ruslan.hlushan.third_party.androidx.work.manager.utils.CompositeWorkerFactory
 import java.io.File
 import javax.inject.Inject
 

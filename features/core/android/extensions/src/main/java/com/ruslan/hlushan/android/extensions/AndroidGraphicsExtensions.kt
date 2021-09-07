@@ -10,10 +10,6 @@ import android.view.Gravity
 import kotlin.math.pow
 import kotlin.math.sqrt
 
-/**
- * @author Ruslan Hlushan on 1/9/19.
- */
-
 fun applyGravity(gravity: Int, width: Float, height: Float, container: RectF): RectF {
     val containerInt = container.run { Rect(left.toInt(), top.toInt(), right.toInt(), bottom.toInt()) }
     val outRectInt = Rect()

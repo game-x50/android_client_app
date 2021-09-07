@@ -9,7 +9,7 @@ import androidx.annotation.ContentView
 import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.SearchView
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
-import com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination.SearchPaginationViewModel
+import com.ruslan.hlushan.core.ui.api.presentation.viewmodel.pagination.SearchPaginationViewModel
 import com.ruslan.hlushan.extensions.ifNotNull
 
 /**

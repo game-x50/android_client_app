@@ -1,0 +1,16 @@
+apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
+apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
+
+android {
+    defaultConfig {
+        versionCode = 1
+        versionName = "1.0"
+    }
+}
+
+dependencies {
+    compileOnly(project(LocalGradleProjects.extensions))
+    compileOnly(project(LocalGradleProjects.androidExtensions))
+
+    compileOnly(Deps.androidxFragment)
+}
