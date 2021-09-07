@@ -19,29 +19,29 @@ android {
 }
 
 dependencies {
-    compileOnly(project(LocalGradleProjects.coreApi))
-    compileOnly(project(LocalGradleProjects.androidCoreApi))
-    compileOnly(project(LocalGradleProjects.extensions))
-    compileOnly(project(LocalGradleProjects.androidExtensions))
-    compileOnly(project(LocalGradleProjects.gameApi))
-    compileOnly(project(LocalGradleProjects.networkApi))
-    compileOnly(project(LocalGradleProjects.androidStorage))
-    compileOnly(project(LocalGradleProjects.workManagerUtils))
+    compileOnly(projects.features.core.api.lib)
+    compileOnly(projects.features.core.android.api)
+    compileOnly(projects.features.core.extensions)
+    compileOnly(projects.features.core.android.extensions)
+    compileOnly(projects.features.game.api.lib)
+    compileOnly(projects.features.core.network.api)
+    compileOnly(projects.features.core.android.storage)
+    compileOnly(projects.features.thirdParty.androidx.workManager.utils)
 
     implementation(Deps.workManagerRxJava2)
 
     compileOnly(Deps.rxJava2)
-    compileOnly(project(LocalGradleProjects.rxjava2Extensions))
+    compileOnly(projects.features.thirdParty.rxjava2.extensions)
 
     compileOnly(Deps.threeTenBp)
 
-    testImplementation(project(LocalGradleProjects.coreApi))
-    testImplementation(project(LocalGradleProjects.extensions))
-    testImplementation(project(LocalGradleProjects.gameApi))
+    testImplementation(projects.features.core.api.lib)
+    testImplementation(projects.features.core.extensions)
+    testImplementation(projects.features.game.api.lib)
     testImplementation(Deps.threeTenBp)
-    testImplementation(project(LocalGradleProjects.parsingImpl))
-    testImplementation(project(LocalGradleProjects.testUtils))
-    testImplementation(project(LocalGradleProjects.rxjava2TestUtils))
-    testImplementation(project(LocalGradleProjects.coreApiTestUtils))
-    testImplementation(project(LocalGradleProjects.gameApiTestUtils))
+    testImplementation(projects.features.core.parsing.impl)
+    testImplementation(projects.features.core.testUtils)
+    testImplementation(projects.features.thirdParty.rxjava2.testUtils)
+    testImplementation(projects.features.core.api.testUtils)
+    testImplementation(projects.features.game.api.testUtils)
 }

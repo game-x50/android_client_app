@@ -15,38 +15,38 @@ android {
 }
 
 dependencies {
-    compileOnly(project(LocalGradleProjects.coreApi))
-    compileOnly(project(LocalGradleProjects.extensions))
-    compileOnly(project(LocalGradleProjects.androidExtensions))
-    compileOnly(project(LocalGradleProjects.androidInsets))
-    compileOnly(project(LocalGradleProjects.coreUiApi))
-    compileOnly(project(LocalGradleProjects.gameApi))
+    compileOnly(projects.features.core.api.lib)
+    compileOnly(projects.features.core.extensions)
+    compileOnly(projects.features.core.android.extensions)
+    compileOnly(projects.features.thirdParty.androidx.insets)
+    compileOnly(projects.features.core.ui.api.lib)
+    compileOnly(projects.features.game.api.lib)
 
     compileOnly(Deps.threeTenBp)
-    compileOnly(project(LocalGradleProjects.threeTenExtensions))
+    compileOnly(projects.features.thirdParty.threeTen.extensions)
 
     compileOnly(Deps.rxJava2)
-    compileOnly(project(LocalGradleProjects.rxjava2Extensions))
+    compileOnly(projects.features.thirdParty.rxjava2.extensions)
 
     runtimeOnly(Deps.androidxAnnotations)//todo: try to avoid it at all https://stackoverflow.com/questions/67498252/got-assertionerror-no-such-enum-entry-library-group-prefix-after-upgrading-to-a
     compileOnly(Deps.androidxAppCompat)
 
     compileOnly(Deps.androidMaterial)
-    compileOnly(project(LocalGradleProjects.androidMaterialExtensions))
+    compileOnly(projects.features.thirdParty.androidx.material.extensions)
 
     compileOnly(Deps.constraintLayout)
     compileOnly(Deps.swipeRefreshLayout)
 
     compileOnly(Deps.recyclerView)
-    compileOnly(project(LocalGradleProjects.recyclerViewExtensions))
+    compileOnly(projects.features.thirdParty.androidx.recyclerview.extensions)
 
     compileOnly(Deps.androidxFragment)
-    compileOnly(project(LocalGradleProjects.fragmentExtensions))
+    compileOnly(projects.features.thirdParty.androidx.fragment.extensions)
 
     compileOnly(Deps.cicerone)
 
-    testImplementation(project(LocalGradleProjects.testUtils))
-    testImplementation(project(LocalGradleProjects.extensions))
-    testImplementation(project(LocalGradleProjects.gameApi))
-    testImplementation(project(LocalGradleProjects.gameApiTestUtils))
+    testImplementation(projects.features.core.testUtils)
+    testImplementation(projects.features.core.extensions)
+    testImplementation(projects.features.game.api.lib)
+    testImplementation(projects.features.game.api.testUtils)
 }

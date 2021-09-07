@@ -1,123 +1,69 @@
-//not forgot about LocalGradleProjects.kt
+//https://proandroiddev.com/using-type-safe-project-dependencies-on-gradle-493ab7337aa
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-include(":extensions")
-project(":extensions").projectDir = File(rootDir, "features/core/extensions")
+include(
+        //CORE
+        ":features:core:extensions",
 
-include(":android_extensions")
-project(":android_extensions").projectDir = File(rootDir, "features/core/android/extensions")
+        ":features:core:android:api",
+        ":features:core:android:extensions",
+        ":features:core:android:storage",
+        ":features:core:test_utils",
 
-include(":android_storage")
-project(":android_storage").projectDir = File(rootDir, "features/core/android/storage")
+        ":features:core:api:lib",
+        ":features:core:api:debug_tools",
+        ":features:core:api:staging_tools",
+        ":features:core:api:test_utils",
 
-include(":test_utils")
-project(":test_utils").projectDir = File(rootDir, "features/core/test_utils")
+        ":features:core:parsing:impl",
 
-include(":android_core_api")
-project(":android_core_api").projectDir = File(rootDir, "features/core/android/api")
+        ":features:core:network:api",
+        ":features:core:network:impl:lib",
+        ":features:core:network:impl:debug_tools",
+        ":features:core:network:impl:staging_tools",
 
-include(":core_api")
-project(":core_api").projectDir = File(rootDir, "features/core/api/lib")
+        ":features:core:impl:lib",
+        ":features:core:impl:debug_tools",
+        ":features:core:impl:staging_tools",
 
-include(":core_api_debug_tools")
-project(":core_api_debug_tools").projectDir = File(rootDir, "features/core/api/debug_tools")
+        ":features:core:ui:api:lib",
+        ":features:core:ui:api:test_utils",
 
-include(":core_api_staging_tools")
-project(":core_api_staging_tools").projectDir = File(rootDir, "features/core/api/staging_tools")
+        ":features:core:ui:impl:lib",
+        ":features:core:ui:impl:debug_tools",
+        ":features:core:ui:impl:staging_tools",
 
-include(":core_api_test_utils")
-project(":core_api_test_utils").projectDir = File(rootDir, "features/core/api/test_utils")
+        //GAME
+        ":features:game:api:lib",
+        ":features:game:api:test_utils",
 
-include(":parsing_impl")
-project(":parsing_impl").projectDir = File(rootDir, "features/core/parsing/impl")
+        ":features:game:auth:impl",
+        ":features:game:auth:ui",
 
-include(":network_api")
-project(":network_api").projectDir = File(rootDir, "features/core/network/api")
+        ":features:game:storage:impl",
 
-include(":network_impl")
-project(":network_impl").projectDir = File(rootDir, "features/core/network/impl/lib")
+        ":features:game:play:ui",
 
-include(":network_impl_debug_tools")
-project(":network_impl_debug_tools").projectDir = File(rootDir, "features/core/network/impl/debug_tools")
+        ":features:game:settings:ui",
 
-include(":network_impl_staging_tools")
-project(":network_impl_staging_tools").projectDir = File(rootDir, "features/core/network/impl/staging_tools")
+        ":features:game:top:impl",
+        ":features:game:top:ui",
 
-include(":core_impl")
-project(":core_impl").projectDir = File(rootDir, "features/core/impl/lib")
+        //APPS
+        ":app",
 
-include(":core_impl_debug_tools")
-project(":core_impl_debug_tools").projectDir = File(rootDir, "features/core/impl/debug_tools")
+        //THIRD_PARTY
 
-include(":core_impl_staging_tools")
-project(":core_impl_staging_tools").projectDir = File(rootDir, "features/core/impl/staging_tools")
+        ":features:third_party:androidx:permissions",
 
-include(":core_ui_api")
-project(":core_ui_api").projectDir = File(rootDir, "features/core/ui/api/lib")
+        "features:third_party:androidx:fragment:extensions",
+        "features:third_party:androidx:material:extensions",
+        "features:third_party:androidx:recyclerview:extensions",
+        "features:third_party:androidx:insets",
+        ":features:third_party:androidx:work_manager:utils",
 
-include(":core_ui_api_test_utils")
-project(":core_ui_api_test_utils").projectDir = File(rootDir, "features/core/ui/api/test_utils")
+        ":features:third_party:three_ten:extensions",
 
-include(":core_ui_impl")
-project(":core_ui_impl").projectDir = File(rootDir, "features/core/ui/impl/lib")
-
-include(":core_ui_impl_debug_tools")
-project(":core_ui_impl_debug_tools").projectDir = File(rootDir, "features/core/ui/impl/debug_tools")
-
-include(":core_ui_impl_staging_tools")
-project(":core_ui_impl_staging_tools").projectDir = File(rootDir, "features/core/ui/impl/staging_tools")
-
-include(":game_api")
-project(":game_api").projectDir = File(rootDir, "features/game/api/lib")
-
-include(":game_api_test_utils")
-project(":game_api_test_utils").projectDir = File(rootDir, "features/game/api/test_utils")
-
-include(":game_auth_impl")
-project(":game_auth_impl").projectDir = File(rootDir, "features/game/auth/impl")
-
-include(":game_auth_ui")
-project(":game_auth_ui").projectDir = File(rootDir, "features/game/auth/ui")
-
-include(":game_storage_impl")
-project(":game_storage_impl").projectDir = File(rootDir, "features/game/storage/impl")
-
-include(":game_play_ui")
-project(":game_play_ui").projectDir = File(rootDir, "features/game/play/ui")
-
-include(":game_settings_ui")
-project(":game_settings_ui").projectDir = File(rootDir, "features/game/settings/ui")
-
-include(":game_top_impl")
-project(":game_top_impl").projectDir = File(rootDir, "features/game/top/impl")
-
-include(":game_top_ui")
-project(":game_top_ui").projectDir = File(rootDir, "features/game/top/ui")
-
-include(":three_ten_extensions")
-project(":three_ten_extensions").projectDir = File(rootDir, "features/third_party/three_ten/extensions")
-
-include(":rxjava2_extensions")
-project(":rxjava2_extensions").projectDir = File(rootDir, "features/third_party/rxjava2/extensions")
-
-include(":rxjava2_test_utils")
-project(":rxjava2_test_utils").projectDir = File(rootDir, "features/third_party/rxjava2/test_utils")
-
-include(":work_manager_utils")
-project(":work_manager_utils").projectDir = File(rootDir, "features/third_party/androidx/work_manager/utils")
-
-include(":android_permissions")
-project(":android_permissions").projectDir = File(rootDir, "features/third_party/androidx/permissions")
-
-include(":fragment_extensions")
-project(":fragment_extensions").projectDir = File(rootDir, "features/third_party/androidx/fragment/extensions")
-
-include(":material_extensions")
-project(":material_extensions").projectDir = File(rootDir, "features/third_party/androidx/material/extensions")
-
-include(":recyclerview_extensions")
-project(":recyclerview_extensions").projectDir = File(rootDir, "features/third_party/androidx/recyclerview/extensions")
-
-include(":android_insets")
-project(":android_insets").projectDir = File(rootDir, "features/third_party/androidx/insets")
-
-include(":app")
+        ":features:third_party:rxjava2:extensions",
+        ":features:third_party:rxjava2:test_utils"
+)

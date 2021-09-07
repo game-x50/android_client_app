@@ -14,12 +14,12 @@ android {
 }
 
 dependencies {
-    compileOnly(project(LocalGradleProjects.extensions))
-    compileOnly(project(LocalGradleProjects.androidCoreApi))
-    compileOnly(project(LocalGradleProjects.coreApi))
+    compileOnly(projects.features.core.extensions)
+    compileOnly(projects.features.core.android.api)
+    compileOnly(projects.features.core.api.lib)
 
-    compileOnly(project(LocalGradleProjects.coreApiDebugTools))
-    api(project(LocalGradleProjects.coreImplStagingTools))
+    compileOnly(projects.features.core.api.debugTools)
+    api(projects.features.core.impl.stagingTools)
 
     implementation(Deps.stetho)
 }

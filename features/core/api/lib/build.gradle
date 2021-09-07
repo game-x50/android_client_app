@@ -1,12 +1,12 @@
 apply from: rootProject.ext[GradleExtraArgs.baseKotlinLibrary]
 
 dependencies {
-    compileOnly(project(LocalGradleProjects.extensions))
-    compileOnly(project(LocalGradleProjects.rxjava2Extensions))
+    compileOnly(projects.features.core.extensions)
+    compileOnly(projects.features.thirdParty.rxjava2.extensions)
 
     compileOnly(Deps.rxJava2)
 
     compileOnly(Deps.androidxAnnotations)
 
-    testImplementation(project(LocalGradleProjects.testUtils))
+    testImplementation(projects.features.core.testUtils)
 }

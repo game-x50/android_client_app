@@ -1,5 +1,5 @@
 apply from: rootProject.ext[GradleExtraArgs.baseKotlinLibrary]
 
 dependencies {
-    api(project(LocalGradleProjects.coreApiStagingTools))
+    api(projects.features.core.api.stagingTools)
 }

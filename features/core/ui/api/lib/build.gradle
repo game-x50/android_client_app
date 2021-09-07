@@ -16,35 +16,35 @@ android {
 }
 
 dependencies {
-    compileOnly(project(LocalGradleProjects.extensions))
-    compileOnly(project(LocalGradleProjects.androidExtensions))
-    compileOnly(project(LocalGradleProjects.coreApi))
+    compileOnly(projects.features.core.extensions)
+    compileOnly(projects.features.core.android.extensions)
+    compileOnly(projects.features.core.api.lib)
 
     compileOnly(Deps.rxJava2)
-    compileOnly(project(LocalGradleProjects.rxjava2Extensions))
+    compileOnly(projects.features.thirdParty.rxjava2.extensions)
 
     implementation(Deps.androidxAppCompat)//todo: implementation instead of compileOnly because ot some dependencies conflicts, try to use compileOnly
 
     compileOnly(Deps.androidMaterial)
-    compileOnly(project(LocalGradleProjects.androidMaterialExtensions))
+    compileOnly(projects.features.thirdParty.androidx.material.extensions)
 
     compileOnly(Deps.recyclerView)
-    compileOnly(project(LocalGradleProjects.recyclerViewExtensions))
+    compileOnly(projects.features.thirdParty.androidx.recyclerview.extensions)
 
     compileOnly(Deps.androidxFragment)
-    compileOnly(project(LocalGradleProjects.fragmentExtensions))
+    compileOnly(projects.features.thirdParty.androidx.fragment.extensions)
 
     compileOnly(Deps.swipeRefreshLayout)
     compileOnly(Deps.constraintLayout)
 
     compileOnly(Deps.cicerone)
 
-    testImplementation(project(LocalGradleProjects.extensions))
-    testImplementation(project(LocalGradleProjects.coreApi))
+    testImplementation(projects.features.core.extensions)
+    testImplementation(projects.features.core.api.lib)
     testImplementation(Deps.rxJava2)
-    testImplementation(project(LocalGradleProjects.rxjava2Extensions))
-    testImplementation(project(LocalGradleProjects.rxjava2TestUtils))
-    testImplementation(project(LocalGradleProjects.testUtils))
-    testImplementation(project(LocalGradleProjects.coreApiTestUtils))
-    testImplementation(project(LocalGradleProjects.coreUiApiTestUtils))
+    testImplementation(projects.features.thirdParty.rxjava2.extensions)
+    testImplementation(projects.features.thirdParty.rxjava2.testUtils)
+    testImplementation(projects.features.core.testUtils)
+    testImplementation(projects.features.core.api.testUtils)
+    testImplementation(projects.features.core.ui.api.testUtils)
 }

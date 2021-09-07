@@ -1,5 +1,5 @@
 apply from: rootProject.ext[GradleExtraArgs.baseKotlinLibrary]
 
 dependencies {
-    compileOnly(project(LocalGradleProjects.coreApi))
+    compileOnly(projects.features.core.api.lib)
 }

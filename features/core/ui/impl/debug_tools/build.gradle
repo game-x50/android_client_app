@@ -15,14 +15,14 @@ android {
 }
 
 dependencies {
-    compileOnly(project(LocalGradleProjects.extensions))
-    compileOnly(project(LocalGradleProjects.androidExtensions))
-    compileOnly(project(LocalGradleProjects.coreApi))
-    compileOnly(project(LocalGradleProjects.coreUiApi))
+    compileOnly(projects.features.core.extensions)
+    compileOnly(projects.features.core.android.extensions)
+    compileOnly(projects.features.core.api.lib)
+    compileOnly(projects.features.core.ui.api.lib)
 
-    compileOnly(project(LocalGradleProjects.coreApiDebugTools))
+    compileOnly(projects.features.core.api.debugTools)
 
-    implementation(project(LocalGradleProjects.coreUiImplStagingTools))
+    implementation(projects.features.core.ui.impl.stagingTools)
 
     compileOnly(Deps.rxJava2)
 

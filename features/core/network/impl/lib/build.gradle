@@ -25,13 +25,13 @@ android {
 }
 
 dependencies {
-    compileOnly(project(LocalGradleProjects.coreApi))
-    compileOnly(project(LocalGradleProjects.parsingImpl))
+    compileOnly(projects.features.core.api.lib)
+    compileOnly(projects.features.core.parsing.impl)
 
-    implementation(project(LocalGradleProjects.networkApi))//todo: implementation here instead of app module because of because ot some used extensions, try to use compileOnly here and implementation in app module
+    implementation(projects.features.core.network.api)//todo: implementation here instead of app module because of because ot some used extensions, try to use compileOnly here and implementation in app module
 
-    debugImplementation(project(LocalGradleProjects.networkImplDebugTools))
-    stagingImplementation(project(LocalGradleProjects.networkImplStagingTools))
+    debugImplementation(projects.features.core.network.impl.debugTools)
+    stagingImplementation(projects.features.core.network.impl.stagingTools)
 
     implementation(Deps.certificateTransparencyAndroid)
 

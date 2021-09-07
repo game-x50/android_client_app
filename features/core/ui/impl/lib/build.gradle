@@ -26,15 +26,15 @@ android {
 }
 
 dependencies {
-    compileOnly(project(LocalGradleProjects.androidExtensions))
-    compileOnly(project(LocalGradleProjects.coreApi))
-    compileOnly(project(LocalGradleProjects.androidCoreApi))
-    compileOnly(project(LocalGradleProjects.androidStorage))
+    compileOnly(projects.features.core.android.extensions)
+    compileOnly(projects.features.core.api.lib)
+    compileOnly(projects.features.core.android.api)
+    compileOnly(projects.features.core.android.storage)
 
-    compileOnly(project(LocalGradleProjects.coreUiApi))
+    compileOnly(projects.features.core.ui.api.lib)
 
-    debugApi(project(LocalGradleProjects.coreUiImplDebugTools))
-    stagingApi(project(LocalGradleProjects.coreUiImplStagingTools))
+    debugApi(projects.features.core.ui.impl.debugTools)
+    stagingApi(projects.features.core.ui.impl.stagingTools)
 
     compileOnly(Deps.rxJava2)
 
