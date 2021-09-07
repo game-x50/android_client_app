@@ -4,11 +4,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
-import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.BaseFragment
+import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.game.settings.ui.R
 import com.ruslan.hlushan.game.settings.ui.di.getGameSettingsUiComponent
 
-internal class GameInstructionFragment : BaseFragment(
+internal class GameInstructionFragment : com.ruslan.hlushan.core.ui.fragment.BaseFragment(
         layoutResId = R.layout.game_settings_ui_instruction_screen
 ) {
 

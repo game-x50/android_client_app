@@ -4,7 +4,7 @@ import com.ruslan.hlushan.core.api.utils.thread.SingleThreadSafety
 import com.ruslan.hlushan.core.ui.api.utils.LockableHandler
 
 @SingleThreadSafety
-internal class LockableHandlerLifecyclePluginObserver(
+class LockableHandlerLifecyclePluginObserver(
         private val viewsHandler: LockableHandler
 ) : LifecyclePluginObserver {
 

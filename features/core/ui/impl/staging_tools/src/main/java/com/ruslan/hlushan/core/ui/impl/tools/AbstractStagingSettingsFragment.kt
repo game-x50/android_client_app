@@ -4,9 +4,6 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
-import com.ruslan.hlushan.android.extensions.applyDrawableOverlay
-import com.ruslan.hlushan.android.extensions.clearOverlay
-import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
 import com.ruslan.hlushan.android.extensions.toPx
 import com.ruslan.hlushan.core.api.dto.DatabaseViewInfo
 import com.ruslan.hlushan.core.api.log.FileLogger
@@ -20,9 +17,8 @@ import com.ruslan.hlushan.core.api.tools.TaktTool
 import com.ruslan.hlushan.core.api.tools.TinyDancerTool
 import com.ruslan.hlushan.core.api.utils.InitAppConfig
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
-import com.ruslan.hlushan.core.ui.api.extensions.bindViewBinding
-import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.BaseFragment
-import com.ruslan.hlushan.core.ui.api.view.GridDrawable
+import com.ruslan.hlushan.core.ui.fragment.BaseFragment
+import com.ruslan.hlushan.core.ui.impl.tools.utils.GridDrawable
 import com.ruslan.hlushan.core.ui.impl.tools.databinding.CoreUiImplStagingToolsDeveloperSettingsScreenBinding
 import com.ruslan.hlushan.core.ui.impl.tools.file.FileLogsActivity
 import com.ruslan.hlushan.extensions.ifNotNull
@@ -32,7 +28,7 @@ import javax.inject.Inject
 
 private const val DEFAULT_GRID_DISTANCE_DP: Int = 16
 
-abstract class AbstractStagingSettingsFragment : BaseFragment(
+abstract class AbstractStagingSettingsFragment : com.ruslan.hlushan.core.ui.fragment.BaseFragment(
         layoutResId = R.layout.core_ui_impl_staging_tools_developer_settings_screen
 ) {
 

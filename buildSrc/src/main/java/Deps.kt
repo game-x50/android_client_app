@@ -12,6 +12,7 @@ object Deps {
     const val androidxCoreKtx = "androidx.core:core-ktx:${Versions.androidCoreVersion}"
 
     const val androidxAnnotations = "androidx.annotation:annotation:${Versions.androidxAnnotationsVersion}"
+    const val javaxAnnotations = "javax.inject:javax.inject:${Versions.javaxAnnotationsVersion}"
     const val androidxAppCompat = "androidx.appcompat:appcompat:${Versions.androidxAppCompatVersion}"
     const val androidMaterial = "com.google.android.material:material:${Versions.androidMaterialVersion}"
 

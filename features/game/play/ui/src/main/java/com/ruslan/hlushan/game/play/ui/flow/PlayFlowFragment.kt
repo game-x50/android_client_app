@@ -5,8 +5,9 @@ import androidx.fragment.app.FragmentFactory
 import com.github.terrakok.cicerone.Navigator
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
-import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.BaseFlowFragment
-import com.ruslan.hlushan.core.ui.api.router.SupportNestedNavigator
+import com.ruslan.hlushan.core.ui.api.R
+import com.ruslan.hlushan.core.ui.fragment.BaseFlowFragment
+import com.ruslan.hlushan.core.ui.routing.SupportNestedNavigator
 import com.ruslan.hlushan.game.play.ui.di.getGamePlayUiComponent
 import com.ruslan.hlushan.game.play.ui.records.GameRecordsListScreen
 
@@ -16,7 +17,7 @@ import com.ruslan.hlushan.game.play.ui.records.GameRecordsListScreen
 
 private const val GAMES_FLOW_NAME = "GAMES_FLOW"
 
-internal class PlayFlowFragment : BaseFlowFragment() {
+internal class PlayFlowFragment : com.ruslan.hlushan.core.ui.fragment.BaseFlowFragment() {
 
     override val flowName: String get() = GAMES_FLOW_NAME
 
@@ -27,11 +28,11 @@ internal class PlayFlowFragment : BaseFlowFragment() {
     override fun openFirstFlowScreen() = flowCicerone.router.newRootScreen(GameRecordsListScreen())
 
     override fun createFlowNavigator(): Navigator =
-            SupportNestedNavigator(
+            com.ruslan.hlushan.core.ui.routing.SupportNestedNavigator(
                     parentRouter = this.parentRouter,
                     activity = requireActivity(),
                     childFragmentManager = this.childFragmentManager,
-                    containerId = com.ruslan.hlushan.core.ui.api.R.id.app_container
+                    containerId = R.id.app_container
             )
 }
 

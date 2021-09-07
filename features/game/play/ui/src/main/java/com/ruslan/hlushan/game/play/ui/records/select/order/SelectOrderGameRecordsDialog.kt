@@ -7,13 +7,11 @@ import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
-import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
-import com.ruslan.hlushan.core.ui.api.dialog.BaseDialogFragment
-import com.ruslan.hlushan.core.ui.api.dialog.DialogBackgroundColorLifecyclePluginObserver
-import com.ruslan.hlushan.core.ui.api.dialog.command.DialogCommandsHandler
-import com.ruslan.hlushan.core.ui.api.dialog.command.ShowDialogCommand
-import com.ruslan.hlushan.core.ui.api.extensions.bindViewBinding
+import com.ruslan.hlushan.core.ui.dialog.BaseDialogFragment
+import com.ruslan.hlushan.core.ui.dialog.DialogBackgroundColorLifecyclePluginObserver
+import com.ruslan.hlushan.core.ui.dialog.command.DialogCommandsHandler
+import com.ruslan.hlushan.core.ui.dialog.command.ShowDialogCommand
 import com.ruslan.hlushan.core.ui.api.recycler.DelegatesRecyclerAdapter
 import com.ruslan.hlushan.core.ui.api.recycler.RecyclerViewLifecyclePluginObserver
 import com.ruslan.hlushan.extensions.lazyUnsafe
@@ -23,12 +21,10 @@ import com.ruslan.hlushan.game.play.ui.R
 import com.ruslan.hlushan.game.play.ui.databinding.GamePlayUiSelectOrderGameRecordsDialogBinding
 import com.ruslan.hlushan.game.play.ui.dto.GameRecordWithSyncStateOrderParamsParcelable
 import com.ruslan.hlushan.game.play.ui.dto.toParcelable
-import com.ruslan.hlushan.third_party.androidx.fragment.extensions.dismissNowSafety
-import com.ruslan.hlushan.third_party.androidx.recyclerview.extensions.setUpDefaults
 
 private const val KEY_INIT_ORDER_PARAMS = "KEY_INIT_ORDER_PARAMS"
 
-internal class SelectOrderGameRecordsDialog : BaseDialogFragment() {
+internal class SelectOrderGameRecordsDialog : com.ruslan.hlushan.core.ui.dialog.BaseDialogFragment() {
 
     @get:LayoutRes
     override val layoutResId: Int
@@ -69,7 +65,7 @@ internal class SelectOrderGameRecordsDialog : BaseDialogFragment() {
     @UiMainThread
     override fun initLifecyclePluginObservers() {
         super.initLifecyclePluginObservers()
-        addLifecyclePluginObserver(DialogBackgroundColorLifecyclePluginObserver(
+        addLifecyclePluginObserver(com.ruslan.hlushan.core.ui.dialog.DialogBackgroundColorLifecyclePluginObserver(
                 owner = this,
                 color = Color.TRANSPARENT
         ))
@@ -121,13 +117,13 @@ internal class SelectOrderGameRecordsDialog : BaseDialogFragment() {
 @UiMainThread
 internal fun <Parent> Parent.showSelectOrderGameRecordsDialog(
         initOrderParams: GameRecordWithSyncState.Order.Params
-) where Parent : DialogCommandsHandler.Owner,
+) where Parent : com.ruslan.hlushan.core.ui.dialog.command.DialogCommandsHandler.Owner,
         Parent : SelectOrderGameRecordsDialog.SelectOrderGameRecordsParamsListener =
         this.dialogCommandsHandler.executeShowOrAddToQueue(ShowSelectOrderGameRecordsDialogCommand(initOrderParams))
 
 private class ShowSelectOrderGameRecordsDialogCommand(
         private val initOrderParams: GameRecordWithSyncState.Order.Params
-) : ShowDialogCommand() {
+) : com.ruslan.hlushan.core.ui.dialog.command.ShowDialogCommand() {
 
     override val tag: String get() = "TAG_ORDER_GAME_RECORDS_DIALOG"
 

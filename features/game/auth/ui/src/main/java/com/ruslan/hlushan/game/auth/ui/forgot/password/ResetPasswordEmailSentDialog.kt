@@ -7,15 +7,15 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
-import com.ruslan.hlushan.core.ui.api.dialog.BaseDialogFragment
-import com.ruslan.hlushan.core.ui.api.dialog.command.DialogCommandsHandler
-import com.ruslan.hlushan.core.ui.api.dialog.command.ShowDialogCommand
+import com.ruslan.hlushan.core.ui.dialog.BaseDialogFragment
+import com.ruslan.hlushan.core.ui.dialog.command.DialogCommandsHandler
+import com.ruslan.hlushan.core.ui.dialog.command.ShowDialogCommand
 import com.ruslan.hlushan.game.api.auth.dto.User
 import com.ruslan.hlushan.game.auth.ui.R
 
 private const val KEY_RESET_PASSWORD_EMAIL = "KEY_RESET_PASSWORD_EMAIL"
 
-internal class ResetPasswordEmailSentDialog : BaseDialogFragment() {
+internal class ResetPasswordEmailSentDialog : com.ruslan.hlushan.core.ui.dialog.BaseDialogFragment() {
 
     @get:LayoutRes
     override val layoutResId: Int?
@@ -52,12 +52,12 @@ internal class ResetPasswordEmailSentDialog : BaseDialogFragment() {
 @UiMainThread
 internal fun <Parent> Parent.showResetPasswordEmailSentDialog(
         email: User.Email
-) where Parent : DialogCommandsHandler.Owner, Parent : ResetPasswordEmailSentDialog.CancelDialogListener =
+) where Parent : com.ruslan.hlushan.core.ui.dialog.command.DialogCommandsHandler.Owner, Parent : ResetPasswordEmailSentDialog.CancelDialogListener =
         this.dialogCommandsHandler.executeShowOrAddToQueue(ShowResetPasswordEmailSentDialogCommand(email))
 
 private class ShowResetPasswordEmailSentDialogCommand(
         private val email: User.Email
-) : ShowDialogCommand() {
+) : com.ruslan.hlushan.core.ui.dialog.command.ShowDialogCommand() {
 
     override val tag: String get() = "TAG_RESET_PASSWORD_EMAIL_SENT_DIALOG"
 

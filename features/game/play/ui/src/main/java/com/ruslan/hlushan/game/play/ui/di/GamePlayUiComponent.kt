@@ -6,7 +6,7 @@ import com.ruslan.hlushan.core.api.di.ManagersProvider
 import com.ruslan.hlushan.core.api.di.SchedulersProvider
 import com.ruslan.hlushan.core.api.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
-import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.BaseFragment
+import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.game.api.di.providers.AuthInteractorProvider
 import com.ruslan.hlushan.game.api.di.providers.GameSettingsProvider
 import com.ruslan.hlushan.game.api.di.providers.PlayRecordsInteractorProvider
@@ -76,7 +76,7 @@ internal object AssistedGamePlayUiViewModelsModule {
 }
 
 @SuppressWarnings("UnsafeCast")
-internal fun BaseFragment.getGamePlayUiComponent(): GamePlayUiComponent {
+internal fun com.ruslan.hlushan.core.ui.fragment.BaseFragment.getGamePlayUiComponent(): GamePlayUiComponent {
     val injectorHolder = (activity?.application as InjectorHolder)
     val components = injectorHolder.components
     return components.getOrPut(GamePlayUiComponent::class) {

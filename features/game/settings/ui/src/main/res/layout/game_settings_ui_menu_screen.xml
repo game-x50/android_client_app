@@ -13,7 +13,7 @@
         android:paddingStart="@dimen/default_3_2_padding"
         android:paddingEnd="@dimen/default_3_2_padding">
 
-        <com.ruslan.hlushan.core.ui.api.view.MenuItemLayout
+        <com.ruslan.hlushan.core.ui.views.MenuItemLayout
             android:id="@+id/settings_menu_screen_app_lang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
             app:item_title="@string/game_settings_ui_app_language"
             app:titleTextColor="?attr/colorSecondary" />
 
-        <com.ruslan.hlushan.core.ui.api.view.MenuItemLayout
+        <com.ruslan.hlushan.core.ui.views.MenuItemLayout
             android:id="@+id/settings_menu_screen_app_theme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
             app:item_title="@string/game_settings_ui_app_theme"
             app:titleTextColor="?attr/colorSecondary" />
 
-        <com.ruslan.hlushan.core.ui.api.view.MenuItemLayout
+        <com.ruslan.hlushan.core.ui.views.MenuItemLayout
             android:id="@+id/settings_menu_screen_user_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
             app:item_title="@string/game_settings_ui_my_profile"
             app:titleTextColor="?attr/colorSecondary" />
 
-        <com.ruslan.hlushan.core.ui.api.view.MenuItemLayout
+        <com.ruslan.hlushan.core.ui.views.MenuItemLayout
             android:id="@+id/settings_menu_screen_game_instruction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
             app:item_title="@string/game_settings_ui_game_instruction"
             app:titleTextColor="?attr/colorSecondary" />
 
-        <com.ruslan.hlushan.core.ui.api.view.MenuItemLayout
+        <com.ruslan.hlushan.core.ui.views.MenuItemLayout
             android:id="@+id/settings_menu_screen_game_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
             app:item_title="@string/game_settings_ui_top"
             app:titleTextColor="?attr/colorSecondary" />
 
-        <com.ruslan.hlushan.core.ui.api.view.MenuItemLayout
+        <com.ruslan.hlushan.core.ui.views.MenuItemLayout
             android:id="@+id/settings_menu_screen_about_app"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

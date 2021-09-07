@@ -12,10 +12,6 @@ import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.api.presentation.viewmodel.pagination.SearchPaginationViewModel
 import com.ruslan.hlushan.extensions.ifNotNull
 
-/**
- * Created by Ruslan on 08.10.2017.
- */
-
 abstract class BaseSearchPaginationFragment<VM : SearchPaginationViewModel<*, *, *>>
 @ContentView
 constructor(

@@ -2,10 +2,9 @@ package com.ruslan.hlushan.game.auth.ui
 
 import androidx.core.widget.doAfterTextChanged
 import com.google.android.material.textfield.TextInputLayout
-import com.ruslan.hlushan.android.extensions.applicationLabel
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
-import com.ruslan.hlushan.core.ui.api.dialog.showDialogMessage
-import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.BaseFragment
+import com.ruslan.hlushan.core.ui.dialog.showDialogMessage
+import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.game.api.auth.dto.AuthError
 import com.ruslan.hlushan.third_party.androidx.material.extensions.clearError
 import com.ruslan.hlushan.third_party.androidx.material.extensions.showErrorResId
@@ -32,7 +31,7 @@ internal inline fun TextInputLayout.observeConfirmPasswordInput(crossinline getO
         }
 
 @UiMainThread
-internal fun BaseFragment.showAuthError(error: AuthError) =
+internal fun com.ruslan.hlushan.core.ui.fragment.BaseFragment.showAuthError(error: AuthError) =
         showDialogMessage(
                 title = context?.applicationLabel.orEmpty(),
                 message = getString(error.descriptionStringResId),

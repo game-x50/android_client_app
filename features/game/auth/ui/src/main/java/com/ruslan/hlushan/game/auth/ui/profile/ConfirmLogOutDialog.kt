@@ -3,17 +3,16 @@ package com.ruslan.hlushan.game.auth.ui.profile
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
-import com.ruslan.hlushan.android.extensions.getIntOrNull
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
-import com.ruslan.hlushan.core.ui.api.dialog.BaseTwoOptionsAlert
-import com.ruslan.hlushan.core.ui.api.dialog.TwoOptionsAlertData
-import com.ruslan.hlushan.core.ui.api.dialog.command.DialogCommandsHandler
-import com.ruslan.hlushan.core.ui.api.dialog.command.ShowDialogCommand
+import com.ruslan.hlushan.core.ui.dialog.BaseTwoOptionsAlert
+import com.ruslan.hlushan.core.ui.dialog.TwoOptionsAlertData
+import com.ruslan.hlushan.core.ui.dialog.command.DialogCommandsHandler
+import com.ruslan.hlushan.core.ui.dialog.command.ShowDialogCommand
 import com.ruslan.hlushan.game.auth.ui.R
 
 private const val KEY_COUNT_NOT_SYNCHED_RECORDS = "KEY_COUNT_NOT_SYNCHED_RECORDS"
 
-internal class ConfirmLogOutDialog : BaseTwoOptionsAlert() {
+internal class ConfirmLogOutDialog : com.ruslan.hlushan.core.ui.dialog.BaseTwoOptionsAlert() {
 
     private val parentLogOutConfirmedListener: LogOutConfirmedListener?
         get() = ((parentFragment as? LogOutConfirmedListener)
@@ -25,7 +24,7 @@ internal class ConfirmLogOutDialog : BaseTwoOptionsAlert() {
 
     override val negativeOnClickListener: (() -> Unit)? get() = null
 
-    override fun extractData(): TwoOptionsAlertData? =
+    override fun extractData(): com.ruslan.hlushan.core.ui.dialog.TwoOptionsAlertData? =
             arguments?.getIntOrNull(KEY_COUNT_NOT_SYNCHED_RECORDS)?.let { countNotSynchedRecords ->
                 val message: String = if (countNotSynchedRecords > 0) {
                     getString(
@@ -36,7 +35,7 @@ internal class ConfirmLogOutDialog : BaseTwoOptionsAlert() {
                     getString(R.string.game_auth_ui_confirm_logout_message_question)
                 }
 
-                TwoOptionsAlertData(
+                com.ruslan.hlushan.core.ui.dialog.TwoOptionsAlertData(
                         title = getString(R.string.game_auth_ui_confirm_logout_title),
                         message = message,
                         positiveButtonText = getString(android.R.string.yes),
@@ -53,12 +52,12 @@ internal class ConfirmLogOutDialog : BaseTwoOptionsAlert() {
 @UiMainThread
 internal fun <Parent> Parent.showConfirmLogOutDialog(
         countNotSynchedRecords: Int
-) where Parent : DialogCommandsHandler.Owner, Parent : ConfirmLogOutDialog.LogOutConfirmedListener =
+) where Parent : com.ruslan.hlushan.core.ui.dialog.command.DialogCommandsHandler.Owner, Parent : ConfirmLogOutDialog.LogOutConfirmedListener =
         this.dialogCommandsHandler.executeShowOrAddToQueue(ShowConfirmLogOutDialogCommand(countNotSynchedRecords))
 
 private class ShowConfirmLogOutDialogCommand(
         private val countNotSynchedRecords: Int
-) : ShowDialogCommand() {
+) : com.ruslan.hlushan.core.ui.dialog.command.ShowDialogCommand() {
 
     override val tag: String get() = "TAG_CONFIRM_LOG_OUT_DIALOG"
 

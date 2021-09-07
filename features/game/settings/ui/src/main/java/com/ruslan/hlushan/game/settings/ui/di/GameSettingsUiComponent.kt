@@ -7,7 +7,7 @@ import com.ruslan.hlushan.core.api.di.ManagersProvider
 import com.ruslan.hlushan.core.api.di.SchedulersProvider
 import com.ruslan.hlushan.core.api.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
-import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.BaseFragment
+import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.game.settings.ui.about.AboutAppFragment
 import com.ruslan.hlushan.game.settings.ui.flow.SettingsFlowFragment
 import com.ruslan.hlushan.game.settings.ui.instruction.GameInstructionFragment
@@ -58,7 +58,7 @@ internal interface GameSettingsUiComponent {
 }
 
 @SuppressWarnings("UnsafeCast", "MaxLineLength")
-internal fun BaseFragment.getGameSettingsUiComponent(): GameSettingsUiComponent {
+internal fun com.ruslan.hlushan.core.ui.fragment.BaseFragment.getGameSettingsUiComponent(): GameSettingsUiComponent {
     val injectorHolder = (activity?.application as InjectorHolder)
     val components = injectorHolder.components
     return components.getOrPut(GameSettingsUiComponent::class) {

@@ -4,7 +4,7 @@ import com.ruslan.hlushan.core.api.log.AppLogger
 
 //TODO: #write_unit_tests
 @SuppressWarnings("TooManyFunctions")
-internal class LoggerLifecyclePluginObserver(
+class LoggerLifecyclePluginObserver(
         owner: Any,
         private val appLogger: AppLogger
 ) : LifecyclePluginObserver {

@@ -1,0 +1,29 @@
+apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
+apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
+
+apply from: rootProject.ext[GradleExtraArgs.kapt]
+apply plugin: Plugins.kotlinParcelize
+
+android {
+
+    defaultConfig {
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+//    resourcePrefix("core_ui_api_")
+}
+
+dependencies {
+    compileOnly(projects.features.core.api.lib)
+    compileOnly(projects.features.core.extensions)
+    compileOnly(projects.features.core.ui.api.lib)
+    compileOnly(projects.features.core.android.extensions)
+    compileOnly(projects.features.core.ui.views)
+
+    compileOnly(Deps.androidxAppCompat)
+    compileOnly(Deps.androidMaterial)
+
+    compileOnly(Deps.androidxFragment)
+    compileOnly(projects.features.thirdParty.androidx.fragment.extensions)
+}

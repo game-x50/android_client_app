@@ -6,7 +6,7 @@ import com.ruslan.hlushan.core.api.di.ManagersProvider
 import com.ruslan.hlushan.core.api.di.SchedulersProvider
 import com.ruslan.hlushan.core.api.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
-import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.BaseFragment
+import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.game.api.di.providers.AuthInteractorProvider
 import com.ruslan.hlushan.game.api.di.providers.PlayRecordsInteractorProvider
 import com.ruslan.hlushan.game.auth.ui.forgot.password.ForgotPasswordFragment
@@ -58,7 +58,7 @@ internal interface GameAuthUiComponent {
 }
 
 @SuppressWarnings("UnsafeCast")
-internal fun BaseFragment.getGameAuthUiComponent(): GameAuthUiComponent {
+internal fun com.ruslan.hlushan.core.ui.fragment.BaseFragment.getGameAuthUiComponent(): GameAuthUiComponent {
     val injectorHolder = (activity?.application as InjectorHolder)
     val components = injectorHolder.components
     return components.getOrPut(GameAuthUiComponent::class) {

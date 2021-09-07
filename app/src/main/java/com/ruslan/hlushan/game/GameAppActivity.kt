@@ -5,15 +5,12 @@ import androidx.annotation.StyleRes
 import com.github.terrakok.cicerone.Navigator
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.redmadrobot.e2e.decorator.EdgeToEdgeDecorator
-import com.ruslan.hlushan.android.extensions.getContextCompatColor
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.api.extensions.bindBaseViewModel
-import com.ruslan.hlushan.core.ui.api.presentation.view.activity.BaseAppActivity
+import com.ruslan.hlushan.core.ui.activity.BaseAppActivity
 import com.ruslan.hlushan.core.ui.api.utils.BottomMenuHolder
-import com.ruslan.hlushan.game.di.getGameMainUiComponent
-import com.ruslan.hlushan.third_party.androidx.insets.applyWindowTransparencyAfterSetContentView
 
-internal class GameAppActivity : BaseAppActivity(), BottomMenuHolder {
+internal class GameAppActivity : com.ruslan.hlushan.core.ui.activity.BaseAppActivity(), BottomMenuHolder {
 
     @get:StyleRes
     override val appThemeReId: Int

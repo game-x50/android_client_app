@@ -8,20 +8,17 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.api.extensions.bindBaseViewModel
-import com.ruslan.hlushan.core.ui.api.extensions.bindViewBinding
-import com.ruslan.hlushan.core.ui.api.presentation.command.handleCommandQueue
-import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.BaseFragment
+import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.core.ui.api.recycler.DelegatesRecyclerAdapter
 import com.ruslan.hlushan.core.ui.api.recycler.RecyclerViewLifecyclePluginObserver
 import com.ruslan.hlushan.extensions.lazyUnsafe
 import com.ruslan.hlushan.game.settings.ui.R
 import com.ruslan.hlushan.game.settings.ui.databinding.GameSettingsUiLanguagesScreenBinding
 import com.ruslan.hlushan.game.settings.ui.di.getGameSettingsUiComponent
-import com.ruslan.hlushan.third_party.androidx.recyclerview.extensions.setUpDefaults
 
 private const val SPAN_WIDTH_DP = 160
 
-internal class LanguagesFragment : BaseFragment(
+internal class LanguagesFragment : com.ruslan.hlushan.core.ui.fragment.BaseFragment(
         layoutResId = R.layout.game_settings_ui_languages_screen
 ) {
 

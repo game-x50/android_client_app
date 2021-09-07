@@ -8,7 +8,7 @@ import com.ruslan.hlushan.core.api.di.ManagersProvider
 import com.ruslan.hlushan.core.api.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.api.utils.InitAppConfig
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
-import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.BaseFragment
+import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.core.ui.impl.tools.DebugSettingsFragment
 import dagger.BindsInstance
 import dagger.Component
@@ -47,7 +47,7 @@ internal interface UiCoreImplDebugComponent {
 }
 
 @SuppressWarnings("UnsafeCast")
-internal fun BaseFragment.getUiCoreImplDebugComponent(): UiCoreImplDebugComponent {
+internal fun com.ruslan.hlushan.core.ui.fragment.BaseFragment.getUiCoreImplDebugComponent(): UiCoreImplDebugComponent {
     val injectorHolder = (this.activity?.application as InjectorHolder)
     val components = injectorHolder.components
     return components.getOrPut(UiCoreImplDebugComponent::class) {

@@ -26,6 +26,7 @@ object Versions {
     const val androidxAppCompatVersion = "1.3.0"
     const val androidMaterialVersion = "1.3.0"
     const val androidxAnnotationsVersion = "1.2.0"
+    const val javaxAnnotationsVersion = "1"
     const val swipeRefreshLayoutVersion = "1.1.0"
     const val recyclerViewVersion = "1.2.0"
     const val androidxActivityVersion = "1.3.1"

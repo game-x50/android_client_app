@@ -3,28 +3,20 @@ package com.ruslan.hlushan.core.ui.impl.tools.file
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import com.ruslan.hlushan.android.core.api.di.createExternalReportsFileWithReadPermissionsForOtherApps
 import com.ruslan.hlushan.android.core.api.di.createOpenFileWithReadPermissionForOtherApps
-import com.ruslan.hlushan.android.core.api.di.getUriForFile
-import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
-import com.ruslan.hlushan.android.extensions.showSystemMessage
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
-import com.ruslan.hlushan.core.ui.api.dialog.showSimpleProgress
+import com.ruslan.hlushan.core.ui.dialog.showSimpleProgress
 import com.ruslan.hlushan.core.ui.api.extensions.bindBaseViewModel
-import com.ruslan.hlushan.core.ui.api.extensions.bindViewBinding
-import com.ruslan.hlushan.core.ui.api.presentation.command.handleCommandQueue
-import com.ruslan.hlushan.core.ui.api.presentation.view.activity.BaseActivity
-import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.setUpPagination
+import com.ruslan.hlushan.core.ui.activity.BaseActivity
 import com.ruslan.hlushan.core.ui.api.presentation.viewmodel.pagination.PaginationState
 import com.ruslan.hlushan.core.ui.api.recycler.DelegatesRecyclerAdapter
 import com.ruslan.hlushan.core.ui.api.recycler.RecyclerViewLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.impl.tools.R
 import com.ruslan.hlushan.core.ui.impl.tools.databinding.CoreUiImplStagingToolsFileLogsScreenBinding
-import com.ruslan.hlushan.core.ui.impl.tools.di.getUiCoreImplStagingHelpersComponent
 import com.ruslan.hlushan.extensions.exhaustive
 import java.io.File
 
-internal class FileLogsActivity : BaseActivity() {
+internal class FileLogsActivity : com.ruslan.hlushan.core.ui.activity.BaseActivity() {
 
     private val logsAdapter = DelegatesRecyclerAdapter(LogsAdapterDelegate())
 

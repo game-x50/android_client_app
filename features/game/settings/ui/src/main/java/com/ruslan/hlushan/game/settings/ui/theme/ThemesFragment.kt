@@ -12,15 +12,14 @@ import com.google.android.material.radiobutton.MaterialRadioButton
 import com.ruslan.hlushan.core.api.managers.Settings
 import com.ruslan.hlushan.core.api.utils.ThemeMode
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
-import com.ruslan.hlushan.core.ui.api.extensions.bindViewBinding
-import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.BaseFragment
+import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.game.settings.ui.R
 import com.ruslan.hlushan.game.settings.ui.databinding.GameSettingsUiThemesScreenBinding
 import com.ruslan.hlushan.game.settings.ui.di.getGameSettingsUiComponent
 import com.ruslan.hlushan.third_party.androidx.insets.addSystemPadding
 import javax.inject.Inject
 
-internal class ThemesFragment : BaseFragment(
+internal class ThemesFragment : com.ruslan.hlushan.core.ui.fragment.BaseFragment(
         layoutResId = R.layout.game_settings_ui_themes_screen
 ) {
 

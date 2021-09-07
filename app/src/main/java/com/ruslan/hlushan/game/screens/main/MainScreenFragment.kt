@@ -2,7 +2,6 @@ package com.ruslan.hlushan.game.screens.main
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import com.github.terrakok.cicerone.Navigator
@@ -10,20 +9,18 @@ import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
-import com.ruslan.hlushan.core.ui.api.extensions.bindViewBinding
-import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.BaseFlowFragment
-import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.BaseFragment
+import com.ruslan.hlushan.core.ui.fragment.BaseFlowFragment
+import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.core.ui.api.utils.BottomMenuHolder
 import com.ruslan.hlushan.extensions.ifNotNull
 import com.ruslan.hlushan.game.R
 import com.ruslan.hlushan.game.databinding.GameAppMainScreenBinding
-import com.ruslan.hlushan.game.di.getGameMainUiComponent
 import com.ruslan.hlushan.game.play.ui.flow.PlayFlowScreen
 import com.ruslan.hlushan.game.settings.ui.flow.SettingsFlowScreen
 
 private const val MAIN_FLOW_NAME = "MAIN_FLOW"
 
-internal class MainScreenFragment : BaseFlowFragment(
+internal class MainScreenFragment : com.ruslan.hlushan.core.ui.fragment.BaseFlowFragment(
         layoutResId = R.layout.game_app_main_screen
 ), BottomMenuHolder {
 
@@ -34,9 +31,9 @@ internal class MainScreenFragment : BaseFlowFragment(
     private val playFlowTab = PlayFlowScreen()
     private val settingsTab = SettingsFlowScreen()
 
-    private val currentTabFragment: BaseFragment?
+    private val currentTabFragment: com.ruslan.hlushan.core.ui.fragment.BaseFragment?
         get() = (childFragmentManager.fragments
-                .firstOrNull { fragment -> !fragment.isHidden } as? BaseFragment)
+                .firstOrNull { fragment -> !fragment.isHidden } as? com.ruslan.hlushan.core.ui.fragment.BaseFragment)
 
     @UiMainThread
     override fun injectDagger2() = requireActivity().getGameMainUiComponent().inject(this)

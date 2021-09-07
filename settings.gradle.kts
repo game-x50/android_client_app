@@ -28,6 +28,20 @@ include(
 
         ":features:core:ui:api:lib",
         ":features:core:ui:api:test_utils",
+        ":features:core:ui:activity",
+        ":features:core:ui:fragment",
+        ":features:core:ui:dialog",
+        ":features:core:ui:routing",
+        ":features:core:ui:views",
+
+        //todo:
+        ":features:core:ui:lifecycle",//and revisit ":features:core:ui:dialog"
+        ":features:core:ui:viewmodel",
+        ":features:core:ui:pagination:viewmodel",
+        ":features:core:ui:pagination:view",
+        ":features:core:ui:recyclerview:adapter",
+        ":features:core:ui:layout:container",
+        ":features:core:ui:viewbinding:extensions",
 
         ":features:core:ui:impl:lib",
         ":features:core:ui:impl:debug_tools",

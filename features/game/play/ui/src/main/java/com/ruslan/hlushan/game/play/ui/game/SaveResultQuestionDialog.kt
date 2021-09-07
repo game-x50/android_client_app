@@ -1,19 +1,18 @@
 package com.ruslan.hlushan.game.play.ui.game
 
+import android.R
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
-import com.ruslan.hlushan.android.extensions.getIntOrNull
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
-import com.ruslan.hlushan.core.ui.api.dialog.BaseTwoOptionsAlert
-import com.ruslan.hlushan.core.ui.api.dialog.TwoOptionsAlertData
-import com.ruslan.hlushan.core.ui.api.dialog.command.DialogCommandsHandler
-import com.ruslan.hlushan.core.ui.api.dialog.command.ShowDialogCommand
-import com.ruslan.hlushan.game.play.ui.R
+import com.ruslan.hlushan.core.ui.dialog.BaseTwoOptionsAlert
+import com.ruslan.hlushan.core.ui.dialog.TwoOptionsAlertData
+import com.ruslan.hlushan.core.ui.dialog.command.DialogCommandsHandler
+import com.ruslan.hlushan.core.ui.dialog.command.ShowDialogCommand
 
 private const val KEY_DEFAULT_TOTAL_SCORE = "KEY_DEFAULT_TOTAL_SCORE"
 
-internal class SaveResultQuestionDialog : BaseTwoOptionsAlert() {
+internal class SaveResultQuestionDialog : com.ruslan.hlushan.core.ui.dialog.BaseTwoOptionsAlert() {
 
     private val parentAnswerSaveResultQuestionListener: AnswerSaveResultQuestionListener?
         get() = ((parentFragment as? AnswerSaveResultQuestionListener)
@@ -27,13 +26,13 @@ internal class SaveResultQuestionDialog : BaseTwoOptionsAlert() {
         parentAnswerSaveResultQuestionListener?.onAnswerSaveResultQuestion(save = false)
     }
 
-    override fun extractData(): TwoOptionsAlertData? =
+    override fun extractData(): com.ruslan.hlushan.core.ui.dialog.TwoOptionsAlertData? =
             arguments?.getIntOrNull(KEY_DEFAULT_TOTAL_SCORE)?.let { totalScore ->
-                TwoOptionsAlertData(
+                com.ruslan.hlushan.core.ui.dialog.TwoOptionsAlertData(
                         title = getString(R.string.game_play_ui_save_result_question_template, totalScore),
                         message = getString(R.string.game_play_ui_result_can_be_lose),
-                        positiveButtonText = getString(android.R.string.yes), //todo
-                        negativeButtonText = getString(android.R.string.no)//todo
+                        positiveButtonText = getString(R.string.yes), //todo
+                        negativeButtonText = getString(R.string.no)//todo
                 )
             }
 
@@ -46,12 +45,12 @@ internal class SaveResultQuestionDialog : BaseTwoOptionsAlert() {
 @UiMainThread
 internal fun <Parent> Parent.showSaveResultQuestionDialog(
         totalScore: Int
-) where Parent : DialogCommandsHandler.Owner, Parent : SaveResultQuestionDialog.AnswerSaveResultQuestionListener =
+) where Parent : com.ruslan.hlushan.core.ui.dialog.command.DialogCommandsHandler.Owner, Parent : SaveResultQuestionDialog.AnswerSaveResultQuestionListener =
         this.dialogCommandsHandler.executeShowOrAddToQueue(ShowSaveResultQuestionDialogCommand(totalScore))
 
 private class ShowSaveResultQuestionDialogCommand(
         private val totalScore: Int
-) : ShowDialogCommand() {
+) : com.ruslan.hlushan.core.ui.dialog.command.ShowDialogCommand() {
 
     override val tag: String get() = "TAG_SAVE_RESULT_QUESTION_DIALOG"
 

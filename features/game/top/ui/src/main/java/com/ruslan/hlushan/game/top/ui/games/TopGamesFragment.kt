@@ -7,10 +7,7 @@ import androidx.fragment.app.FragmentFactory
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.api.extensions.bindBaseViewModel
-import com.ruslan.hlushan.core.ui.api.extensions.bindViewBinding
-import com.ruslan.hlushan.core.ui.api.presentation.command.handleCommandQueue
-import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.BaseFragment
-import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.setUpPagination
+import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.core.ui.api.presentation.viewmodel.pagination.PaginationState
 import com.ruslan.hlushan.core.ui.api.recycler.DelegatesRecyclerAdapter
 import com.ruslan.hlushan.core.ui.api.recycler.RecyclerViewLifecyclePluginObserver
@@ -19,9 +16,8 @@ import com.ruslan.hlushan.game.top.ui.R
 import com.ruslan.hlushan.game.top.ui.databinding.GameTopUiTopGamesListScreenBinding
 import com.ruslan.hlushan.game.top.ui.di.clearTopUiComponent
 import com.ruslan.hlushan.game.top.ui.di.getTopUiComponent
-import com.ruslan.hlushan.third_party.androidx.insets.addSystemPadding
 
-internal class TopGamesFragment : BaseFragment(
+internal class TopGamesFragment : com.ruslan.hlushan.core.ui.fragment.BaseFragment(
         layoutResId = R.layout.game_top_ui_top_games_list_screen
 ) {
 
