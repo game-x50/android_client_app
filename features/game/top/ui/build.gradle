@@ -23,8 +23,12 @@ dependencies {
     compileOnly(projects.features.core.ui.viewbinding.extensions)
     compileOnly(projects.features.game.api.lib)
 
+    implementation(projects.features.core.ui.dimens)//todo: #check_compileOnly
+
     compileOnly(Deps.threeTenBp)
 
     compileOnly(Deps.androidMaterial)
     compileOnly(Deps.constraintLayout)
+
+    implementation(Deps.androidxAnnotations)//todo: #check_compileOnly
 }

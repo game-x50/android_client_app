@@ -18,6 +18,8 @@ dependencies {
     compileOnly(projects.features.core.ui.lifecycle.utils)
     compileOnly(projects.features.core.ui.layout.container)
 
+    implementation(projects.features.core.ui.colors)//todo: #check_compileOnly
+
     api(projects.features.core.ui.api.lib)
     api(projects.features.core.ui.dialog)
     api(projects.features.core.ui.routing)

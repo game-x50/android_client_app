@@ -32,7 +32,7 @@ internal class LanguagesFragment : BaseFragment(
     }
 
     private val languagesRecyclerAdapter by lazyUnsafe {
-        com.ruslan.hlushan.core.ui.recycler.adapter.DelegatesRecyclerAdapter(
+        DelegatesRecyclerAdapter(
                 LanguagesAdapterDelegate(resourceManager) { wrappedLanguage ->
                     viewModel.setApplicationLanguage(wrappedLanguage)
                 }
@@ -45,7 +45,7 @@ internal class LanguagesFragment : BaseFragment(
     @UiMainThread
     override fun initLifecyclePluginObservers() {
         super.initLifecyclePluginObservers()
-        addLifecyclePluginObserver(com.ruslan.hlushan.core.ui.recycler.adapter.RecyclerViewLifecyclePluginObserver { binding?.languagesScreenRecycler })
+        addLifecyclePluginObserver(RecyclerViewLifecyclePluginObserver { binding?.languagesScreenRecycler })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

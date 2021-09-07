@@ -26,8 +26,6 @@ dependencies {
     compileOnly(projects.features.core.ui.layout.container)
 
     api(Deps.androidxFragment)
-//    api(Deps.androidxActivity)
-//    api(Deps.androidxLifecycleExtensions)
 
     compileOnly(projects.features.thirdParty.androidx.material.extensions)
 }

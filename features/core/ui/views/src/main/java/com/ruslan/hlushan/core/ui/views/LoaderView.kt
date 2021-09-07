@@ -176,7 +176,7 @@ constructor(
 
         @SuppressLint("ObsoleteSdkInt")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            elevation = context.resources.getDimension(com.ruslan.hlushan.core.ui.api.R.dimen.default_1_2_padding)
+            elevation = context.resources.getDimension(com.ruslan.hlushan.core.ui.dimens.R.dimen.default_1_2_padding)
         }
         isFocusable = true
         isClickable = true

@@ -10,6 +10,7 @@ import com.ruslan.hlushan.core.api.utils.InitAppConfig
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.core.ui.impl.tools.StagingSettingsFragment
+import com.ruslan.hlushan.core.ui.routing.di.UiRoutingProvider
 import dagger.BindsInstance
 import dagger.Component
 
@@ -45,7 +46,7 @@ internal interface UiCoreImplStagingComponent {
 }
 
 @SuppressWarnings("UnsafeCast")
-internal fun com.ruslan.hlushan.core.ui.fragment.BaseFragment.getUiCoreImplStagingComponent(): UiCoreImplStagingComponent {
+internal fun BaseFragment.getUiCoreImplStagingComponent(): UiCoreImplStagingComponent {
     val injectorHolder = (this.activity?.application as InjectorHolder)
     val components = injectorHolder.components
     return components.getOrPut(UiCoreImplStagingComponent::class) {
@@ -53,6 +54,7 @@ internal fun com.ruslan.hlushan.core.ui.fragment.BaseFragment.getUiCoreImplStagi
                 .create(
                         initAppConfig = (injectorHolder.initAppConfig),
                         uiCoreProvider = (injectorHolder.iBaseInjector as UiCoreProvider),
+                        uiRoutingProvider = (injectorHolder.iBaseInjector as UiRoutingProvider),
                         userErrorMapperProvider = (injectorHolder.iBaseInjector as UserErrorMapperProvider),
                         managersProvider = (injectorHolder.iBaseInjector as ManagersProvider),
                         loggersProvider = (injectorHolder.iBaseInjector as LoggersProvider),

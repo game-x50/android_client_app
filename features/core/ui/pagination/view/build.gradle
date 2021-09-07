@@ -20,6 +20,8 @@ dependencies {
     compileOnly(projects.features.core.android.extensions)
     compileOnly(projects.features.thirdParty.androidx.recyclerview.extensions)
 
+    compileOnly(Deps.androidMaterial)
+
     api(Deps.androidxAppCompat)
     api(Deps.swipeRefreshLayout)
 }

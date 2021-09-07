@@ -67,8 +67,8 @@ internal fun BaseFragment.getGameAuthUiComponent(): GameAuthUiComponent {
     return components.getOrPut(GameAuthUiComponent::class) {
         DaggerGameAuthUiComponent.factory()
                 .create(
-                        uiCoreProvider = (injectorHolder.iBaseInjector as UiRoutingProvider),
-                        uiRoutingProvider = (injectorHolder.iBaseInjector as UiCoreProvider),
+                        uiCoreProvider = (injectorHolder.iBaseInjector as UiCoreProvider),
+                        uiRoutingProvider = (injectorHolder.iBaseInjector as UiRoutingProvider),
                         userErrorMapperProvider = (injectorHolder.iBaseInjector as UserErrorMapperProvider),
                         managersProvider = (injectorHolder.iBaseInjector as ManagersProvider),
                         loggersProvider = (injectorHolder.iBaseInjector as LoggersProvider),

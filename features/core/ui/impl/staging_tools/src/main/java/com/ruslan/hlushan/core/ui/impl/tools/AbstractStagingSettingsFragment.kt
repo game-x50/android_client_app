@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import com.ruslan.hlushan.android.extensions.applyDrawableOverlay
 import com.ruslan.hlushan.android.extensions.clearOverlay
+import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
 import com.ruslan.hlushan.android.extensions.toPx
 import com.ruslan.hlushan.core.api.dto.DatabaseViewInfo
 import com.ruslan.hlushan.core.api.log.FileLogger

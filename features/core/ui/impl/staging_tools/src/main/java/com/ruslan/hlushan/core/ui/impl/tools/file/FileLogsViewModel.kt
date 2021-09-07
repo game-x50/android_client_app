@@ -32,7 +32,7 @@ constructor(
         threadChecker: ThreadChecker,
         private val fileLogger: FileLogger,
         schedulersManager: SchedulersManager
-) : com.ruslan.hlushan.core.ui.pagination.viewmodel.PaginationViewModel<Unit, Long, LogRecyclerItem, String>(
+) : PaginationViewModel<Unit, Long, LogRecyclerItem, String>(
         appLogger = appLogger,
         threadChecker = threadChecker,
         initFilter = Unit,
@@ -69,7 +69,7 @@ constructor(
     override fun onStateUpdated() =
             mutableCommandsQueue.add(Command.SetState(
                     logs = state.itemsOrEmpty(),
-                    additional = (state as? com.ruslan.hlushan.core.ui.pagination.viewmodel.PaginationState.Active)?.additional
+                    additional = (state as? PaginationState.Active)?.additional
             ))
 
     @UiMainThread
@@ -130,7 +130,7 @@ constructor(
             override fun produceStrategy(): HandleStrategy = OneExecutionStateStrategy()
         }
 
-        class SetState(val logs: List<LogRecyclerItem>, val additional: com.ruslan.hlushan.core.ui.pagination.viewmodel.PaginationState.Additional?) : Command() {
+        class SetState(val logs: List<LogRecyclerItem>, val additional: PaginationState.Additional?) : Command() {
             override fun produceStrategy(): HandleStrategy = OneExecutionStateStrategy()
         }
 

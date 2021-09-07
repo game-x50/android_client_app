@@ -3,22 +3,30 @@ package com.ruslan.hlushan.core.ui.impl.tools.file
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import com.ruslan.hlushan.android.core.api.di.createExternalReportsFileWithReadPermissionsForOtherApps
 import com.ruslan.hlushan.android.core.api.di.createOpenFileWithReadPermissionForOtherApps
+import com.ruslan.hlushan.android.core.api.di.getUriForFile
+import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
+import com.ruslan.hlushan.android.extensions.showSystemMessage
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.dialog.showSimpleProgress
-import com.ruslan.hlushan.core.ui.api.extensions.bindBaseViewModel
 import com.ruslan.hlushan.core.ui.activity.BaseActivity
 import com.ruslan.hlushan.core.ui.pagination.viewmodel.PaginationState
 import com.ruslan.hlushan.core.ui.recycler.adapter.DelegatesRecyclerAdapter
 import com.ruslan.hlushan.core.ui.recycler.adapter.RecyclerViewLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.impl.tools.R
 import com.ruslan.hlushan.core.ui.impl.tools.databinding.CoreUiImplStagingToolsFileLogsScreenBinding
+import com.ruslan.hlushan.core.ui.impl.tools.di.getUiCoreImplStagingHelpersComponent
+import com.ruslan.hlushan.core.ui.pagination.view.setUpPagination
+import com.ruslan.hlushan.core.ui.viewbinding.extensions.bindViewBinding
+import com.ruslan.hlushan.core.ui.viewmodel.extensions.bindBaseViewModel
+import com.ruslan.hlushan.core.ui.viewmodel.extensions.handleCommandQueue
 import com.ruslan.hlushan.extensions.exhaustive
 import java.io.File
 
-internal class FileLogsActivity : com.ruslan.hlushan.core.ui.activity.BaseActivity() {
+internal class FileLogsActivity : BaseActivity() {
 
-    private val logsAdapter = com.ruslan.hlushan.core.ui.recycler.adapter.DelegatesRecyclerAdapter(LogsAdapterDelegate())
+    private val logsAdapter = DelegatesRecyclerAdapter(LogsAdapterDelegate())
 
     private val binding by bindViewBinding(
             CoreUiImplStagingToolsFileLogsScreenBinding::bind,
@@ -35,7 +43,7 @@ internal class FileLogsActivity : com.ruslan.hlushan.core.ui.activity.BaseActivi
     @UiMainThread
     override fun initLifecyclePluginObservers() {
         super.initLifecyclePluginObservers()
-        addLifecyclePluginObserver(com.ruslan.hlushan.core.ui.recycler.adapter.RecyclerViewLifecyclePluginObserver { binding?.activityFileLogsList })
+        addLifecyclePluginObserver(RecyclerViewLifecyclePluginObserver { binding?.activityFileLogsList })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,17 +88,17 @@ internal class FileLogsActivity : com.ruslan.hlushan.core.ui.activity.BaseActivi
         logsAdapter.submitList(command.logs)
 
         @Suppress("MaxLineLength")
-        binding?.activityFileLogsSwipeRefresh?.isRefreshing = (command.additional is com.ruslan.hlushan.core.ui.pagination.viewmodel.PaginationState.Additional.Loading)
+        binding?.activityFileLogsSwipeRefresh?.isRefreshing = (command.additional is PaginationState.Additional.Loading)
 
         when (command.additional) {
-            is com.ruslan.hlushan.core.ui.pagination.viewmodel.PaginationState.Additional.WaitingForLoadMore -> {
+            is PaginationState.Additional.WaitingForLoadMore -> {
                 //TODO
             }
-            is com.ruslan.hlushan.core.ui.pagination.viewmodel.PaginationState.Additional.Error              -> {
+            is PaginationState.Additional.Error              -> {
                 //TODO
             }
-            is com.ruslan.hlushan.core.ui.pagination.viewmodel.PaginationState.Additional.Loading,
-            null                                                                                             -> Unit
+            is PaginationState.Additional.Loading,
+            null                                             -> Unit
         }.exhaustive
     }
 

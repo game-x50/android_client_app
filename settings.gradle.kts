@@ -32,6 +32,8 @@ include(
         ":features:core:ui:fragment",
         ":features:core:ui:dialog",
         ":features:core:ui:routing",
+        ":features:core:ui:colors",
+        ":features:core:ui:dimens",
         ":features:core:ui:views",
         ":features:core:ui:lifecycle:lib",
         ":features:core:ui:lifecycle:utils",
