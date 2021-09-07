@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
-import com.ruslan.hlushan.android.extensions.addSystemPadding
 import com.ruslan.hlushan.android.extensions.applyDrawableOverlay
 import com.ruslan.hlushan.android.extensions.clearOverlay
 import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
@@ -27,6 +26,7 @@ import com.ruslan.hlushan.core.ui.api.view.GridDrawable
 import com.ruslan.hlushan.core.ui.impl.tools.databinding.CoreUiImplStagingToolsDeveloperSettingsScreenBinding
 import com.ruslan.hlushan.core.ui.impl.tools.file.FileLogsActivity
 import com.ruslan.hlushan.extensions.ifNotNull
+import com.ruslan.hlushan.third_party.androidx.insets.addSystemPadding
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 

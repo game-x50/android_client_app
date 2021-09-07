@@ -6,18 +6,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import androidx.recyclerview.widget.RecyclerView
 import com.github.terrakok.cicerone.androidx.FragmentScreen
-import com.ruslan.hlushan.android.extensions.addSystemPadding
-import com.ruslan.hlushan.android.extensions.notifyOnScrolledBottom
 import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
-import com.ruslan.hlushan.android.extensions.show
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.api.dialog.showSimpleProgress
 import com.ruslan.hlushan.core.ui.api.extensions.bindBaseViewModel
 import com.ruslan.hlushan.core.ui.api.extensions.bindViewBinding
 import com.ruslan.hlushan.core.ui.api.presentation.command.handleCommandQueue
-import com.ruslan.hlushan.core.ui.api.presentation.presenter.pagination.PaginationState
 import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.BaseFragment
 import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.setUpPagination
+import com.ruslan.hlushan.core.ui.api.presentation.viewmodel.pagination.PaginationState
 import com.ruslan.hlushan.core.ui.api.recycler.DelegatesRecyclerAdapter
 import com.ruslan.hlushan.core.ui.api.recycler.RecyclerViewLifecyclePluginObserver
 import com.ruslan.hlushan.extensions.exhaustive
@@ -34,6 +31,9 @@ import com.ruslan.hlushan.game.play.ui.records.select.level.SelectGameLevelDialo
 import com.ruslan.hlushan.game.play.ui.records.select.level.showSelectGameLevelDialog
 import com.ruslan.hlushan.game.play.ui.records.select.order.SelectOrderGameRecordsDialog
 import com.ruslan.hlushan.game.play.ui.records.select.order.showSelectOrderGameRecordsDialog
+import com.ruslan.hlushan.third_party.androidx.insets.addSystemPadding
+import com.ruslan.hlushan.third_party.androidx.material.extensions.show
+import com.ruslan.hlushan.third_party.androidx.recyclerview.extensions.notifyOnScrolledBottom
 
 private const val RECYCLER_DY_MINIMAL_SCROLL = 20
 

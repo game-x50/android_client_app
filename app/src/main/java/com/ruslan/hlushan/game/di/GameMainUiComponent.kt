@@ -12,10 +12,6 @@ import com.ruslan.hlushan.game.GameAppViewModel
 import com.ruslan.hlushan.game.screens.main.MainScreenFragment
 import dagger.Component
 
-/**
- * @author Ruslan Hlushan on 11/6/18.
- */
-
 @Component(
         dependencies = [
             UiCoreProvider::class,

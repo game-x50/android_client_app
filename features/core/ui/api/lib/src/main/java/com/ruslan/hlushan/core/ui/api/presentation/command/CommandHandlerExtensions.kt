@@ -4,7 +4,7 @@ import androidx.lifecycle.Lifecycle
 import com.ruslan.hlushan.core.api.utils.thread.SingleThreadSafety
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.StrategyCommand
 import com.ruslan.hlushan.core.ui.api.presentation.lifecycle.LifecyclePluginObserver
-import com.ruslan.hlushan.rxjava2.extensions.safetyDispose
+import com.ruslan.hlushan.third_party.rxjava2.extensions.safetyDispose
 import io.reactivex.disposables.Disposable
 
 fun <Command : StrategyCommand> LifecyclePluginObserver.Owner.handleCommandQueue(

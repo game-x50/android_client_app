@@ -1,6 +1,6 @@
 package com.ruslan.hlushan.core.ui.api.test.utils
 
-import com.ruslan.hlushan.core.ui.api.presentation.presenter.BaseViewModel
+import com.ruslan.hlushan.core.ui.api.presentation.viewmodel.BaseViewModel
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 

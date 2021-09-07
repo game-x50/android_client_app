@@ -3,7 +3,6 @@ package com.ruslan.hlushan.game.play.ui.records
 import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
-import com.ruslan.hlushan.android.extensions.getAllViewHolders
 import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.api.recycler.AdapterDelegate
@@ -14,8 +13,9 @@ import com.ruslan.hlushan.extensions.ifNotNull
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.play.ui.R
 import com.ruslan.hlushan.game.play.ui.databinding.GamePlayUiGameRecordItemBinding
-import com.ruslan.hlushan.rxjava2.extensions.isActive
-import com.ruslan.hlushan.rxjava2.extensions.safetySubscribe
+import com.ruslan.hlushan.third_party.androidx.recyclerview.extensions.getAllViewHolders
+import com.ruslan.hlushan.third_party.rxjava2.extensions.isActive
+import com.ruslan.hlushan.third_party.rxjava2.extensions.safetySubscribe
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
 import org.threeten.bp.ZoneId

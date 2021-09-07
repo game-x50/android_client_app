@@ -5,16 +5,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
-import com.ruslan.hlushan.android.extensions.dismissNowSafety
 import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
-import com.ruslan.hlushan.android.extensions.setUpDefaults
-import com.ruslan.hlushan.android.extensions.showNowSafety
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.api.dialog.BaseDialogFragment
 import com.ruslan.hlushan.core.ui.api.dialog.DialogBackgroundColorLifecyclePluginObserver
-import com.ruslan.hlushan.core.ui.api.dialog.command.DialogCommand
 import com.ruslan.hlushan.core.ui.api.dialog.command.DialogCommandsHandler
+import com.ruslan.hlushan.core.ui.api.dialog.command.ShowDialogCommand
 import com.ruslan.hlushan.core.ui.api.extensions.bindViewBinding
 import com.ruslan.hlushan.core.ui.api.recycler.DelegatesRecyclerAdapter
 import com.ruslan.hlushan.core.ui.api.recycler.RecyclerViewLifecyclePluginObserver
@@ -25,10 +23,8 @@ import com.ruslan.hlushan.game.play.ui.R
 import com.ruslan.hlushan.game.play.ui.databinding.GamePlayUiSelectOrderGameRecordsDialogBinding
 import com.ruslan.hlushan.game.play.ui.dto.GameRecordWithSyncStateOrderParamsParcelable
 import com.ruslan.hlushan.game.play.ui.dto.toParcelable
-
-/**
- * @author Ruslan Hlushan on 2019-07-31
- */
+import com.ruslan.hlushan.third_party.androidx.fragment.extensions.dismissNowSafety
+import com.ruslan.hlushan.third_party.androidx.recyclerview.extensions.setUpDefaults
 
 private const val KEY_INIT_ORDER_PARAMS = "KEY_INIT_ORDER_PARAMS"
 
@@ -131,15 +127,14 @@ internal fun <Parent> Parent.showSelectOrderGameRecordsDialog(
 
 private class ShowSelectOrderGameRecordsDialogCommand(
         private val initOrderParams: GameRecordWithSyncState.Order.Params
-) : DialogCommand() {
+) : ShowDialogCommand() {
 
     override val tag: String get() = "TAG_ORDER_GAME_RECORDS_DIALOG"
 
     @UiMainThread
-    override fun execute(fragmentManager: FragmentManager) =
+    override fun getOrCreate(fragmentManager: FragmentManager): DialogFragment =
             ((fragmentManager.findFragmentByTag(tag) as? SelectOrderGameRecordsDialog)
              ?: (createSelectOrderGameRecordsDialog(initOrderParams)))
-                    .showNowSafety(fragmentManager, tag)
 }
 
 private fun createSelectOrderGameRecordsDialog(

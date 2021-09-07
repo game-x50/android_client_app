@@ -2,7 +2,7 @@ package com.ruslan.hlushan.game.storage.impl
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.ruslan.hlushan.android.extensions.ReferencePreferencesDelegate
+import com.ruslan.hlushan.android.storage.ReferencePreferencesDelegate
 import com.ruslan.hlushan.android.storage.SharedPrefsProvider
 import com.ruslan.hlushan.game.api.GameSettings
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState

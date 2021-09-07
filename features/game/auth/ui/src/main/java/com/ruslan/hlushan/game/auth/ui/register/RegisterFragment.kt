@@ -5,9 +5,6 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import com.github.terrakok.cicerone.androidx.FragmentScreen
-import com.ruslan.hlushan.android.extensions.addSystemPadding
-import com.ruslan.hlushan.android.extensions.clearErrorOnAnyInput
-import com.ruslan.hlushan.android.extensions.getTrimmedText
 import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.api.dialog.showSimpleProgress
@@ -23,10 +20,10 @@ import com.ruslan.hlushan.game.auth.ui.showAuthError
 import com.ruslan.hlushan.game.auth.ui.showEmailInputError
 import com.ruslan.hlushan.game.auth.ui.showNickNameInputError
 import com.ruslan.hlushan.game.auth.ui.showPasswordInputError
+import com.ruslan.hlushan.third_party.androidx.insets.addSystemPadding
+import com.ruslan.hlushan.third_party.androidx.material.extensions.clearErrorOnAnyInput
+import com.ruslan.hlushan.third_party.androidx.material.extensions.getTrimmedText
 
-/**
- * @author Ruslan Hlushan on 2019-07-10
- */
 internal class RegisterFragment : BaseFragment(
         layoutResId = R.layout.game_auth_ui_register_screen
 ) {

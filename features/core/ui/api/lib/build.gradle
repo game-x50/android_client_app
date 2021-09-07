@@ -23,10 +23,17 @@ dependencies {
     compileOnly(Deps.rxJava2)
     compileOnly(project(LocalGradleProjects.rxjava2Extensions))
 
-    implementation(Deps.supportAppCompat)//todo: implementation instead of compileOnly because ot some dependencies conflicts, try to use compileOnly
-    compileOnly(Deps.supportDesign)
+    implementation(Deps.androidxAppCompat)//todo: implementation instead of compileOnly because ot some dependencies conflicts, try to use compileOnly
+
+    compileOnly(Deps.androidMaterial)
+    compileOnly(project(LocalGradleProjects.androidMaterialExtensions))
 
     compileOnly(Deps.recyclerView)
+    compileOnly(project(LocalGradleProjects.recyclerViewExtensions))
+
+    compileOnly(Deps.androidxFragment)
+    compileOnly(project(LocalGradleProjects.fragmentExtensions))
+
     compileOnly(Deps.swipeRefreshLayout)
     compileOnly(Deps.constraintLayout)
 

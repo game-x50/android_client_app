@@ -2,10 +2,6 @@ package com.ruslan.hlushan.android.extensions
 
 import android.content.Intent
 
-/**
- * @author Ruslan Hlushan on 12/27/18
- */
-
 fun Intent.getIntExtraOrNull(extraKey: String): Int? =
 		if (hasExtra(extraKey)) {
 			getIntExtra(extraKey, 0)

@@ -18,6 +18,7 @@ dependencies {
     compileOnly(project(LocalGradleProjects.coreApi))
     compileOnly(project(LocalGradleProjects.extensions))
     compileOnly(project(LocalGradleProjects.androidExtensions))
+    compileOnly(project(LocalGradleProjects.androidInsets))
     compileOnly(project(LocalGradleProjects.coreUiApi))
     compileOnly(project(LocalGradleProjects.gameApi))
 
@@ -27,12 +28,20 @@ dependencies {
     compileOnly(Deps.rxJava2)
     compileOnly(project(LocalGradleProjects.rxjava2Extensions))
 
-    runtimeOnly(Deps.supportAnnotations)//todo: try to avoid it at all https://stackoverflow.com/questions/67498252/got-assertionerror-no-such-enum-entry-library-group-prefix-after-upgrading-to-a
-    compileOnly(Deps.supportAppCompat)
-    compileOnly(Deps.supportDesign)
+    runtimeOnly(Deps.androidxAnnotations)//todo: try to avoid it at all https://stackoverflow.com/questions/67498252/got-assertionerror-no-such-enum-entry-library-group-prefix-after-upgrading-to-a
+    compileOnly(Deps.androidxAppCompat)
+
+    compileOnly(Deps.androidMaterial)
+    compileOnly(project(LocalGradleProjects.androidMaterialExtensions))
+
     compileOnly(Deps.constraintLayout)
     compileOnly(Deps.swipeRefreshLayout)
+
     compileOnly(Deps.recyclerView)
+    compileOnly(project(LocalGradleProjects.recyclerViewExtensions))
+
+    compileOnly(Deps.androidxFragment)
+    compileOnly(project(LocalGradleProjects.fragmentExtensions))
 
     compileOnly(Deps.cicerone)
 

@@ -5,10 +5,6 @@ import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 
-/**
- * @author Ruslan Hlushan on 2019-09-05
- */
-
 abstract class DialogCommand {
 
     abstract val tag: String

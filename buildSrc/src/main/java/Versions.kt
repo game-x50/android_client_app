@@ -23,15 +23,17 @@ object Versions {
 
     const val firebaseBomVersion = "28.0.1"
 
-    const val supportAppCompatVersion = "1.3.0"
-    const val supportDesignVersion = "1.3.0"
-    const val supportAnnotationsVersion = "1.2.0"
+    const val androidxAppCompatVersion = "1.3.0"
+    const val androidMaterialVersion = "1.3.0"
+    const val androidxAnnotationsVersion = "1.2.0"
     const val swipeRefreshLayoutVersion = "1.1.0"
     const val recyclerViewVersion = "1.2.0"
+    const val androidxActivityVersion = "1.3.1"
+    const val androidxFragmentVersion = "1.3.4"
 
     const val constraintLayoutVersion = "2.0.4"
 
-    const val androidCoreKtxVersion = "1.5.0"
+    const val androidCoreVersion = "1.5.0"
 
     const val workManagerVersion = "2.6.0"//please check release notes, related to expedited jobs and WorkerFactory init
 

@@ -12,7 +12,7 @@ import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.AddToEndSing
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.HandleStrategy
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.OneExecutionStateStrategy
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.StrategyCommand
-import com.ruslan.hlushan.core.ui.api.presentation.presenter.BaseViewModel
+import com.ruslan.hlushan.core.ui.api.presentation.viewmodel.BaseViewModel
 import com.ruslan.hlushan.game.settings.ui.di.SettingsOutScreenCreator
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory

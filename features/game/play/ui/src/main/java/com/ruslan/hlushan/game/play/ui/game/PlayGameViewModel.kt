@@ -13,11 +13,11 @@ import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.HandleStrate
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.OneExecutionStateStrategy
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.SkipStrategy
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.StrategyCommand
-import com.ruslan.hlushan.core.ui.api.presentation.presenter.BaseViewModel
+import com.ruslan.hlushan.core.ui.api.presentation.viewmodel.BaseViewModel
 import com.ruslan.hlushan.game.api.play.PlayRecordsInteractor
 import com.ruslan.hlushan.game.api.play.dto.GameState
 import com.ruslan.hlushan.game.play.ui.GameScopeMarkerRepository
-import com.ruslan.hlushan.rxjava2.extensions.safetyDispose
+import com.ruslan.hlushan.third_party.rxjava2.extensions.safetyDispose
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable

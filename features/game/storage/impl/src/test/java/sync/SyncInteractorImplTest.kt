@@ -19,8 +19,8 @@ import com.ruslan.hlushan.game.storage.impl.remote.dto.UpdateLocalNonModifiedRes
 import com.ruslan.hlushan.game.storage.impl.remote.dto.UploadLocalModifiedRequest
 import com.ruslan.hlushan.game.storage.impl.remote.dto.server.GetNewRemoteCreatedRequest
 import com.ruslan.hlushan.game.storage.impl.remote.dto.server.toUpdateLocalSyncedRequest
-import com.ruslan.hlushan.rxjava2.test.utils.assertNotCompleteNoErrorsNoValues
 import com.ruslan.hlushan.test.utils.generateFakeInstantTimestamp
+import com.ruslan.hlushan.third_party.rxjava2.test.utils.assertNotCompleteNoErrorsNoValues
 import generateAndAddLocalCreatedToLocalRepo
 import generateAndAddLocalSyncedToLocalRepo
 import generateFakeRemoteRecord

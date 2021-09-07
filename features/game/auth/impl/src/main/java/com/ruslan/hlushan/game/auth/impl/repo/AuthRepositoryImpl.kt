@@ -30,7 +30,7 @@ import com.ruslan.hlushan.extensions.ifNotNull
 import com.ruslan.hlushan.game.api.auth.dto.AuthError
 import com.ruslan.hlushan.game.api.auth.dto.User
 import com.ruslan.hlushan.game.auth.impl.repo.dto.server.UserNameRequest
-import com.ruslan.hlushan.rxjava2.extensions.tryEmitOrProvideError
+import com.ruslan.hlushan.third_party.rxjava2.extensions.tryEmitOrProvideError
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single

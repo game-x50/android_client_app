@@ -1,14 +1,14 @@
 package com.ruslan.hlushan.game.auth.ui.profile
 
 import android.os.Bundle
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.ruslan.hlushan.android.extensions.getIntOrNull
-import com.ruslan.hlushan.android.extensions.showNowSafety
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.api.dialog.BaseTwoOptionsAlert
 import com.ruslan.hlushan.core.ui.api.dialog.TwoOptionsAlertData
-import com.ruslan.hlushan.core.ui.api.dialog.command.DialogCommand
 import com.ruslan.hlushan.core.ui.api.dialog.command.DialogCommandsHandler
+import com.ruslan.hlushan.core.ui.api.dialog.command.ShowDialogCommand
 import com.ruslan.hlushan.game.auth.ui.R
 
 private const val KEY_COUNT_NOT_SYNCHED_RECORDS = "KEY_COUNT_NOT_SYNCHED_RECORDS"
@@ -58,15 +58,14 @@ internal fun <Parent> Parent.showConfirmLogOutDialog(
 
 private class ShowConfirmLogOutDialogCommand(
         private val countNotSynchedRecords: Int
-) : DialogCommand() {
+) : ShowDialogCommand() {
 
     override val tag: String get() = "TAG_CONFIRM_LOG_OUT_DIALOG"
 
     @UiMainThread
-    override fun execute(fragmentManager: FragmentManager) =
+    override fun getOrCreate(fragmentManager: FragmentManager): DialogFragment =
             ((fragmentManager.findFragmentByTag(tag) as? ConfirmLogOutDialog)
              ?: createConfirmLogOutDialog(countNotSynchedRecords))
-                    .showNowSafety(fragmentManager, tag)
 }
 
 private fun createConfirmLogOutDialog(countNotSynchedRecords: Int): ConfirmLogOutDialog =

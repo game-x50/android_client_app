@@ -13,7 +13,7 @@ import com.ruslan.hlushan.game.api.play.dto.GameRecord
 import com.ruslan.hlushan.game.api.play.dto.GameState
 import com.ruslan.hlushan.game.play.ui.GameScopeMarkerRepository
 import com.ruslan.hlushan.game.play.ui.game.PlayGameViewModel
-import com.ruslan.hlushan.threeten.extensions.orZero
+import com.ruslan.hlushan.third_party.three_ten.extensions.orZero
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject

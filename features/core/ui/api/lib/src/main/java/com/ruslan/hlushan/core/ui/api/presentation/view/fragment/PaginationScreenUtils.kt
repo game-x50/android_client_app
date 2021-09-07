@@ -4,16 +4,12 @@ import android.app.Activity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.ruslan.hlushan.android.extensions.addPaginationScrollListener
 import com.ruslan.hlushan.android.extensions.colorAttributeValue
-import com.ruslan.hlushan.android.extensions.setUpDefaults
-import com.ruslan.hlushan.core.ui.api.presentation.presenter.PaginationViewModel
+import com.ruslan.hlushan.core.ui.api.presentation.viewmodel.PaginationViewModel
 import com.ruslan.hlushan.core.ui.api.recycler.DelegatesRecyclerAdapter
 import com.ruslan.hlushan.core.ui.api.recycler.RecyclerItem
-
-/**
- * Created by Ruslan on 08.10.2017.
- */
+import com.ruslan.hlushan.third_party.androidx.recyclerview.extensions.addPaginationScrollListener
+import com.ruslan.hlushan.third_party.androidx.recyclerview.extensions.setUpDefaults
 
 fun <Id : Any, RI : RecyclerItem<Id>> Fragment.setUpPagination(
         recyclerAdapter: DelegatesRecyclerAdapter<Id, RI>,

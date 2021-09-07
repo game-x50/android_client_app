@@ -4,16 +4,14 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.LayoutRes
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
-import com.ruslan.hlushan.android.extensions.dismissNowSafety
-import com.ruslan.hlushan.android.extensions.setUpDefaults
-import com.ruslan.hlushan.android.extensions.showNowSafety
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.api.dialog.BaseDialogFragment
 import com.ruslan.hlushan.core.ui.api.dialog.DialogBackgroundColorLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.api.dialog.DialogSizeRatioLifecyclePluginObserver
-import com.ruslan.hlushan.core.ui.api.dialog.command.DialogCommand
 import com.ruslan.hlushan.core.ui.api.dialog.command.DialogCommandsHandler
+import com.ruslan.hlushan.core.ui.api.dialog.command.ShowDialogCommand
 import com.ruslan.hlushan.core.ui.api.extensions.bindViewBinding
 import com.ruslan.hlushan.core.ui.api.recycler.DelegatesRecyclerAdapter
 import com.ruslan.hlushan.core.ui.api.recycler.OnItemClickListener
@@ -21,6 +19,8 @@ import com.ruslan.hlushan.core.ui.api.recycler.RecyclerViewLifecyclePluginObserv
 import com.ruslan.hlushan.game.api.play.dto.GameSize
 import com.ruslan.hlushan.game.play.ui.R
 import com.ruslan.hlushan.game.play.ui.databinding.GamePlayUiSelectGameLevelDialogBinding
+import com.ruslan.hlushan.third_party.androidx.fragment.extensions.dismissNowSafety
+import com.ruslan.hlushan.third_party.androidx.recyclerview.extensions.setUpDefaults
 
 private const val DIALOG_WIDTH_RATIO = 0.4
 
@@ -81,13 +81,12 @@ internal fun <Parent> Parent.showSelectGameLevelDialog()
         where Parent : DialogCommandsHandler.Owner, Parent : SelectGameLevelDialog.OnGameLevelSelectedListener =
         this.dialogCommandsHandler.executeShowOrAddToQueue(ShowSelectGameLevelDialogCommand())
 
-private class ShowSelectGameLevelDialogCommand : DialogCommand() {
+private class ShowSelectGameLevelDialogCommand : ShowDialogCommand() {
 
     override val tag: String get() = "TAG_SELECT_GAME_LEVEL_DIALOG"
 
     @UiMainThread
-    override fun execute(fragmentManager: FragmentManager) =
+    override fun getOrCreate(fragmentManager: FragmentManager): DialogFragment =
             ((fragmentManager.findFragmentByTag(tag) as? SelectGameLevelDialog)
              ?: SelectGameLevelDialog())
-                    .showNowSafety(fragmentManager, tag)
 }

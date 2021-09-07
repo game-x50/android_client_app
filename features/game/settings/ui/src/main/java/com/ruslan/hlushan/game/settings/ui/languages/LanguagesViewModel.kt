@@ -15,14 +15,11 @@ import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.AddToEndSing
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.HandleStrategy
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.OneExecutionStateStrategy
 import com.ruslan.hlushan.core.ui.api.presentation.command.strategy.StrategyCommand
-import com.ruslan.hlushan.core.ui.api.presentation.presenter.BaseViewModel
+import com.ruslan.hlushan.core.ui.api.presentation.viewmodel.BaseViewModel
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 
-/**
- * @author Ruslan Hlushan on 2019-07-10
- */
 internal class LanguagesViewModel
 @AssistedInject
 constructor(

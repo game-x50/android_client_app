@@ -2,7 +2,6 @@ package com.ruslan.hlushan.game.play.ui.game
 
 import android.os.Bundle
 import android.view.View
-import com.ruslan.hlushan.android.extensions.addSystemPadding
 import com.ruslan.hlushan.android.extensions.getLongOrNull
 import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
@@ -16,9 +15,10 @@ import com.ruslan.hlushan.game.play.ui.R
 import com.ruslan.hlushan.game.play.ui.databinding.GamePlayUiPlayScreenBinding
 import com.ruslan.hlushan.game.play.ui.view.listeners.GameFinishedListener
 import com.ruslan.hlushan.game.play.ui.view.listeners.TotalSumChangedListener
-import com.ruslan.hlushan.threeten.extensions.hoursInNonFullDay
-import com.ruslan.hlushan.threeten.extensions.minutesInNonFullHour
-import com.ruslan.hlushan.threeten.extensions.secondsInNonFullMinute
+import com.ruslan.hlushan.third_party.androidx.insets.addSystemPadding
+import com.ruslan.hlushan.third_party.three_ten.extensions.hoursInNonFullDay
+import com.ruslan.hlushan.third_party.three_ten.extensions.minutesInNonFullHour
+import com.ruslan.hlushan.third_party.three_ten.extensions.secondsInNonFullMinute
 import org.threeten.bp.Duration
 
 private const val KEY_PLAYED_SECONDS = "KEY_PLAYED_SECONDS"

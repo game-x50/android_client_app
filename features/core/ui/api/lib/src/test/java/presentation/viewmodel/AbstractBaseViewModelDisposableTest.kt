@@ -2,7 +2,7 @@ package presentation.viewmodel
 
 import com.ruslan.hlushan.core.api.test.utils.utils.thread.ThreadCheckerStub
 import com.ruslan.hlushan.core.ui.api.test.utils.TestBaseViewModelCleanUpRule
-import com.ruslan.hlushan.rxjava2.test.utils.TestSchedulerCleanUpRule
+import com.ruslan.hlushan.third_party.rxjava2.test.utils.TestSchedulerCleanUpRule
 import io.reactivex.schedulers.TestScheduler
 import org.junit.Before
 import org.junit.Rule

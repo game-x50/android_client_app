@@ -9,6 +9,10 @@ object LocalGradleProjects {
     const val rxjava2Extensions = ":rxjava2_extensions"
     const val rxjava2TestUtils = ":rxjava2_test_utils"
 
+    const val fragmentExtensions = ":fragment_extensions"
+    const val androidInsets = ":android_insets"
+    const val androidMaterialExtensions = ":material_extensions"
+    const val recyclerViewExtensions = ":recyclerview_extensions"
     const val workManagerUtils = ":work_manager_utils"
 
     const val coreApi = ":core_api"
