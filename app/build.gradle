@@ -74,56 +74,55 @@ android {
 }
 
 dependencies {
-    implementation(project(LocalGradleProjects.extensions))
-    implementation(project(LocalGradleProjects.androidExtensions))
-    implementation(project(LocalGradleProjects.coreApi))
-    implementation(project(LocalGradleProjects.androidCoreApi))
-    implementation(project(LocalGradleProjects.coreImpl))
+    implementation(projects.features.core.extensions)
+    implementation(projects.features.core.android.extensions)
+    implementation(projects.features.core.api.lib)
+    implementation(projects.features.core.android.api)
+    implementation(projects.features.core.impl.lib)
+    implementation(projects.features.thirdParty.androidx.insets)
 
-    implementation(project(LocalGradleProjects.androidInsets))
+    implementation(projects.features.core.parsing.impl)
 
-    implementation(project(LocalGradleProjects.parsingImpl))
+    implementation(projects.features.core.ui.api.lib)
+    implementation(projects.features.core.ui.impl.lib)
 
-    implementation(project(LocalGradleProjects.coreUiApi))
-    implementation(project(LocalGradleProjects.coreUiImpl))
+    compileOnly(projects.features.core.network.api)//todo: compileOnly here instead of network_impl module because of some used extensions in network_impl, try to use implementation here and compileOnly in network_impl module
+    implementation(projects.features.core.network.impl.lib)
 
-    compileOnly(project(LocalGradleProjects.networkApi))//todo: compileOnly here instead of network_impl module because of some used extensions in network_impl, try to use implementation here and compileOnly in network_impl module
-    implementation(project(LocalGradleProjects.networkImpl))
+    implementation(projects.features.core.android.storage)
 
-    implementation(project(LocalGradleProjects.androidStorage))
+    implementation(projects.features.thirdParty.androidx.workManager.utils)
 
-    implementation(project(LocalGradleProjects.workManagerUtils))
+    implementation(projects.features.game.api.lib)
 
-    implementation(project(LocalGradleProjects.gameApi))
+    implementation(projects.features.game.auth.impl)
+    implementation(projects.features.game.storage.impl)
+    implementation(projects.features.game.top.impl)
 
-    implementation(project(LocalGradleProjects.gameAuthImpl))
-    implementation(project(LocalGradleProjects.gameStorageImpl))
-    implementation(project(LocalGradleProjects.gameTopImpl))
-
-    implementation(project(LocalGradleProjects.gameAuthUi))
-    implementation(project(LocalGradleProjects.gamePlayUi))
-    implementation(project(LocalGradleProjects.gameSettingsUi))
-    implementation(project(LocalGradleProjects.gameTopUi))
+    implementation(projects.features.game.auth.ui)
+    implementation(projects.features.game.play.ui)
+    implementation(projects.features.game.settings.ui)
+    implementation(projects.features.game.top.ui)
 
     compileOnly(Deps.rxJava2)//todo: compileOnly here instead of core_impl module of because ot some dependencies conflicts in core_impl, try to use implementation here and compileOnly in core_impl module
-    runtimeOnly(project(LocalGradleProjects.rxjava2Extensions))
+    runtimeOnly(projects.features.thirdParty.rxjava2.extensions)
 
-    runtimeOnly(project(LocalGradleProjects.threeTenExtensions))
+    runtimeOnly(projects.features.thirdParty.threeTen.extensions)
     implementation(Deps.threeTenBpAndroid)
 
     implementation(Deps.androidxAppCompat)
 
     runtimeOnly(Deps.androidxFragment)
-    runtimeOnly(project(LocalGradleProjects.fragmentExtensions))
+    runtimeOnly(projects.features.thirdParty.androidx.fragment.extensions)
 
     implementation(Deps.androidMaterial)
-    runtimeOnly(project(LocalGradleProjects.androidMaterialExtensions))
+    runtimeOnly(projects.features.thirdParty.androidx.material.extensions)
 
     runtimeOnly(Deps.swipeRefreshLayout)
     runtimeOnly(Deps.constraintLayout)
 
     runtimeOnly(Deps.recyclerView)
-    runtimeOnly(project(LocalGradleProjects.recyclerViewExtensions))
+    runtimeOnly(projects.features.thirdParty.androidx.recyclerview.extensions)
 
     implementation(Deps.edgeToEdgeDecorator)
 

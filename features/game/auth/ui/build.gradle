@@ -14,12 +14,12 @@ android {
 }
 
 dependencies {
-    compileOnly(project(LocalGradleProjects.coreApi))
-    compileOnly(project(LocalGradleProjects.extensions))
-    compileOnly(project(LocalGradleProjects.androidExtensions))
-    compileOnly(project(LocalGradleProjects.androidInsets))
-    compileOnly(project(LocalGradleProjects.coreUiApi))
-    compileOnly(project(LocalGradleProjects.gameApi))
+    compileOnly(projects.features.core.api.lib)
+    compileOnly(projects.features.core.extensions)
+    compileOnly(projects.features.core.android.extensions)
+    compileOnly(projects.features.thirdParty.androidx.insets)
+    compileOnly(projects.features.core.ui.api.lib)
+    compileOnly(projects.features.game.api.lib)
 
     compileOnly(Deps.threeTenBp)
 
@@ -27,8 +27,10 @@ dependencies {
 
     runtimeOnly(Deps.androidxAnnotations)//todo: try to avoid it at all https://stackoverflow.com/questions/67498252/got-assertionerror-no-such-enum-entry-library-group-prefix-after-upgrading-to-a
     compileOnly(Deps.androidxAppCompat)
+
     compileOnly(Deps.androidMaterial)
-    compileOnly(project(LocalGradleProjects.androidMaterialExtensions))
+    compileOnly(projects.features.thirdParty.androidx.material.extensions)
+
     compileOnly(Deps.constraintLayout)
 
     compileOnly(Deps.cicerone)

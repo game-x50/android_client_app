@@ -18,11 +18,11 @@ android {
 }
 
 dependencies {
-    compileOnly(project(LocalGradleProjects.extensions))
-    compileOnly(project(LocalGradleProjects.androidCoreApi))
-    compileOnly(project(LocalGradleProjects.coreApi))
+    compileOnly(projects.features.core.extensions)
+    compileOnly(projects.features.core.android.api)
+    compileOnly(projects.features.core.api.lib)
 
-    compileOnly(project(LocalGradleProjects.coreApiStagingTools))
+    compileOnly(projects.features.core.api.stagingTools)
 
     implementation(Deps.androidxAppCompat)//todo: implementation instead of compileOnly because ot some dependencies conflicts, try to use compileOnly
 

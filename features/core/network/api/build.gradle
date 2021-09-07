@@ -11,7 +11,7 @@ android {
 }
 
 dependencies {
-    compileOnly(project(LocalGradleProjects.coreApi))
+    compileOnly(projects.features.core.api.lib)
 
     api(Deps.okHttp3)
     api(Deps.retrofit2)

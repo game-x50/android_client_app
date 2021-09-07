@@ -9,7 +9,7 @@ android {
 }
 
 dependencies {
-    compileOnly(project(LocalGradleProjects.extensions))
+    compileOnly(projects.features.core.extensions)
 
     api(Deps.androidxCoreKtx)
 
