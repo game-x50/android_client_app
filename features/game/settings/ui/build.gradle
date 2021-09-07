@@ -23,11 +23,11 @@ android {
 }
 
 dependencies {
-    compileOnly(project(LocalGradleProjects.coreApi))
-    compileOnly(project(LocalGradleProjects.extensions))
-    compileOnly(project(LocalGradleProjects.androidExtensions))
-    compileOnly(project(LocalGradleProjects.androidInsets))
-    compileOnly(project(LocalGradleProjects.coreUiApi))
+    compileOnly(projects.features.core.api.lib)
+    compileOnly(projects.features.core.extensions)
+    compileOnly(projects.features.core.android.extensions)
+    compileOnly(projects.features.thirdParty.androidx.insets)
+    compileOnly(projects.features.core.ui.api.lib)
 
     compileOnly(Deps.threeTenBp)
 
@@ -39,7 +39,7 @@ dependencies {
     compileOnly(Deps.constraintLayout)
 
     compileOnly(Deps.recyclerView)
-    compileOnly(project(LocalGradleProjects.recyclerViewExtensions))
+    compileOnly(projects.features.thirdParty.androidx.recyclerview.extensions)
 
     compileOnly(Deps.cicerone)
 }

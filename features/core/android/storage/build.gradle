@@ -11,7 +11,7 @@ android {
 }
 
 dependencies {
-    compileOnly(project(LocalGradleProjects.androidExtensions))
+    compileOnly(projects.features.core.android.extensions)
 
     implementation(Deps.binaryPrefs)
     implementation(Deps.tinkAndroid)

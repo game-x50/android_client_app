@@ -31,17 +31,17 @@ android {
 }
 
 dependencies {
-    compileOnly(project(LocalGradleProjects.extensions))
-    compileOnly(project(LocalGradleProjects.androidExtensions))
-    compileOnly(project(LocalGradleProjects.coreApi))
-    compileOnly(project(LocalGradleProjects.androidCoreApi))
-    compileOnly(project(LocalGradleProjects.androidStorage))
+    compileOnly(projects.features.core.extensions)
+    compileOnly(projects.features.core.android.extensions)
+    compileOnly(projects.features.core.api.lib)
+    compileOnly(projects.features.core.android.api)
+    compileOnly(projects.features.core.android.storage)
 
-    debugApi(project(LocalGradleProjects.coreApiDebugTools))
-    stagingApi(project(LocalGradleProjects.coreApiStagingTools))
+    debugApi(projects.features.core.api.debugTools)
+    stagingApi(projects.features.core.api.stagingTools)
 
-    debugImplementation(project(LocalGradleProjects.coreImplDebugTools))
-    stagingImplementation(project(LocalGradleProjects.coreImplStagingTools))
+    debugImplementation(projects.features.core.impl.debugTools)
+    stagingImplementation(projects.features.core.impl.stagingTools)
 
     implementation(Deps.rxJava2)//todo: implementation here instead of app module because of because ot some dependencies conflicts, try to use compileOnly here and implementation in app module
     implementation(Deps.rxJava2Android)

@@ -11,7 +11,7 @@ android {
 }
 
 dependencies {
-    compileOnly(project(LocalGradleProjects.networkApi))
+    compileOnly(projects.features.core.network.api)
 
     compileOnly(Deps.chucker)
 }

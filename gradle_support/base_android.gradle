@@ -38,6 +38,7 @@ android {
         exclude "META-INF/NOTICE"
         exclude "META-INF/notice.txt"
         exclude "META-INF/rxjava.properties"
+        exclude "META-INF/*.kotlin_module"
     }
 
     dexOptions {
