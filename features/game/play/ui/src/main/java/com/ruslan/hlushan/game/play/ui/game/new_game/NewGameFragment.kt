@@ -10,7 +10,7 @@ import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.viewmodel.extensions.bindBaseViewModel
 import com.ruslan.hlushan.game.api.play.dto.GameSize
-import com.ruslan.hlushan.game.play.ui.di.getGamePlayUiComponent
+import com.ruslan.hlushan.game.play.ui.di.gamePlayUiComponent
 import com.ruslan.hlushan.game.play.ui.game.PlayGameFragment
 
 private const val KEY_GAME_SIZE = "KEY_GAME_SIZE"
@@ -18,7 +18,7 @@ private const val KEY_GAME_SIZE = "KEY_GAME_SIZE"
 internal class NewGameFragment : PlayGameFragment<NewGameViewModel>() {
 
     override val viewModel: NewGameViewModel by bindBaseViewModel {
-        getGamePlayUiComponent().newGameViewModelFactory().create(parentRouter)
+        gamePlayUiComponent().newGameViewModelFactory().create(parentRouter)
     }
 
     private val selectedGameSize: GameSize
@@ -27,7 +27,7 @@ internal class NewGameFragment : PlayGameFragment<NewGameViewModel>() {
                  ?: GameSize.SMALL)
 
     @UiMainThread
-    override fun injectDagger2() = getGamePlayUiComponent().inject(this)
+    override fun injectDagger2() = gamePlayUiComponent().inject(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

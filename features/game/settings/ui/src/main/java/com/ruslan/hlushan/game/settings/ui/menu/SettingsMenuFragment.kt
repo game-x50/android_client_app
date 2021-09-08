@@ -15,7 +15,7 @@ import com.ruslan.hlushan.core.ui.viewmodel.extensions.handleCommandQueue
 import com.ruslan.hlushan.game.settings.ui.R
 import com.ruslan.hlushan.game.settings.ui.about.AboutAppScreen
 import com.ruslan.hlushan.game.settings.ui.databinding.GameSettingsUiMenuScreenBinding
-import com.ruslan.hlushan.game.settings.ui.di.getGameSettingsUiComponent
+import com.ruslan.hlushan.game.settings.ui.di.getSettingsUiComponent
 import com.ruslan.hlushan.game.settings.ui.instruction.GameInstructionScreen
 import com.ruslan.hlushan.game.settings.ui.languages.LanguagesScreen
 import com.ruslan.hlushan.game.settings.ui.theme.ThemesScreen
@@ -28,11 +28,11 @@ internal class SettingsMenuFragment : BaseFragment(
     private val binding by bindViewBinding(GameSettingsUiMenuScreenBinding::bind)
 
     private val viewModel: SettingsMenuViewModel by bindBaseViewModel {
-        getGameSettingsUiComponent().settingMenuViewModelFactory().create(parentRouter)
+        getSettingsUiComponent().settingMenuViewModelFactory().create(parentRouter)
     }
 
     @UiMainThread
-    override fun injectDagger2() = getGameSettingsUiComponent().inject(this)
+    override fun injectDagger2() = getSettingsUiComponent().inject(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

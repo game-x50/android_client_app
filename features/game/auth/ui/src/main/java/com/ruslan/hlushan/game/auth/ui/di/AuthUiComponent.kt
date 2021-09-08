@@ -1,12 +1,13 @@
 package com.ruslan.hlushan.game.auth.ui.di
 
-import com.ruslan.hlushan.core.api.di.InjectorHolder
 import com.ruslan.hlushan.core.api.di.LoggersProvider
 import com.ruslan.hlushan.core.api.di.ManagersProvider
 import com.ruslan.hlushan.core.api.di.SchedulersProvider
 import com.ruslan.hlushan.core.api.di.UserErrorMapperProvider
+import com.ruslan.hlushan.core.api.di.asType
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
+import com.ruslan.hlushan.core.ui.fragment.injectorHolder
 import com.ruslan.hlushan.core.ui.routing.di.UiRoutingProvider
 import com.ruslan.hlushan.game.api.di.providers.AuthInteractorProvider
 import com.ruslan.hlushan.game.api.di.providers.PlayRecordsInteractorProvider
@@ -20,6 +21,7 @@ import com.ruslan.hlushan.game.auth.ui.register.RegisterFragment
 import com.ruslan.hlushan.game.auth.ui.register.RegisterViewModel
 import dagger.Component
 
+@AuthUiScope
 @Component(
         dependencies = [
             UiCoreProvider::class,
@@ -32,7 +34,7 @@ import dagger.Component
             AuthInteractorProvider::class
         ]
 )
-internal interface GameAuthUiComponent {
+internal interface AuthUiComponent {
 
     fun inject(fragment: UserProfileFragment)
     fun inject(fragment: LoginFragment)
@@ -56,25 +58,26 @@ internal interface GameAuthUiComponent {
                 schedulersProvider: SchedulersProvider,
                 playRecordsInteractorProvider: PlayRecordsInteractorProvider,
                 authInteractorProvider: AuthInteractorProvider
-        ): GameAuthUiComponent
+        ): AuthUiComponent
     }
 }
 
-@SuppressWarnings("UnsafeCast")
-internal fun BaseFragment.getGameAuthUiComponent(): GameAuthUiComponent {
-    val injectorHolder = (activity?.application as InjectorHolder)
-    val components = injectorHolder.components
-    return components.getOrPut(GameAuthUiComponent::class) {
-        DaggerGameAuthUiComponent.factory()
+internal fun BaseFragment.getAuthUiComponent(): AuthUiComponent {
+    val fragmentInjectorHolder = this.injectorHolder
+    return fragmentInjectorHolder.components.getOrPut(AuthUiComponent::class) {
+        DaggerAuthUiComponent.factory()
                 .create(
-                        uiCoreProvider = (injectorHolder.iBaseInjector as UiCoreProvider),
-                        uiRoutingProvider = (injectorHolder.iBaseInjector as UiRoutingProvider),
-                        userErrorMapperProvider = (injectorHolder.iBaseInjector as UserErrorMapperProvider),
-                        managersProvider = (injectorHolder.iBaseInjector as ManagersProvider),
-                        loggersProvider = (injectorHolder.iBaseInjector as LoggersProvider),
-                        schedulersProvider = (injectorHolder.iBaseInjector as SchedulersProvider),
-                        playRecordsInteractorProvider = (injectorHolder.iBaseInjector as PlayRecordsInteractorProvider),
-                        authInteractorProvider = (injectorHolder.iBaseInjector as AuthInteractorProvider)
+                        uiCoreProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        uiRoutingProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        userErrorMapperProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        managersProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        loggersProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        schedulersProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        playRecordsInteractorProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        authInteractorProvider = fragmentInjectorHolder.iBaseInjector.asType()
                 )
     }
 }
+
+internal fun BaseFragment.clearAuthUiComponent() =
+        this.injectorHolder.components.clear(AuthUiComponent::class)

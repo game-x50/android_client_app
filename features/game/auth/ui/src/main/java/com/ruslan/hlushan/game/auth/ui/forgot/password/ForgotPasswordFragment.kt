@@ -14,7 +14,7 @@ import com.ruslan.hlushan.core.ui.viewmodel.extensions.bindBaseViewModel
 import com.ruslan.hlushan.core.ui.viewmodel.extensions.handleCommandQueue
 import com.ruslan.hlushan.game.auth.ui.R
 import com.ruslan.hlushan.game.auth.ui.databinding.GameAuthUiForgotPasswordScreenBinding
-import com.ruslan.hlushan.game.auth.ui.di.getGameAuthUiComponent
+import com.ruslan.hlushan.game.auth.ui.di.getAuthUiComponent
 import com.ruslan.hlushan.game.auth.ui.showEmailInputError
 import com.ruslan.hlushan.third_party.androidx.insets.addSystemPadding
 import com.ruslan.hlushan.third_party.androidx.material.extensions.getTrimmedText
@@ -26,11 +26,11 @@ internal class ForgotPasswordFragment : BaseFragment(
     private val binding by bindViewBinding(GameAuthUiForgotPasswordScreenBinding::bind)
 
     private val viewModel: ForgotPasswordViewModel by bindBaseViewModel {
-        getGameAuthUiComponent().forgotPasswordViewModelFactory().create()
+        getAuthUiComponent().forgotPasswordViewModelFactory().create()
     }
 
     @UiMainThread
-    override fun injectDagger2() = getGameAuthUiComponent().inject(this)
+    override fun injectDagger2() = getAuthUiComponent().inject(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

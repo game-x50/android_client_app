@@ -16,7 +16,7 @@ import com.ruslan.hlushan.core.ui.viewmodel.extensions.handleCommandQueue
 import com.ruslan.hlushan.extensions.lazyUnsafe
 import com.ruslan.hlushan.game.settings.ui.R
 import com.ruslan.hlushan.game.settings.ui.databinding.GameSettingsUiLanguagesScreenBinding
-import com.ruslan.hlushan.game.settings.ui.di.getGameSettingsUiComponent
+import com.ruslan.hlushan.game.settings.ui.di.getSettingsUiComponent
 import com.ruslan.hlushan.third_party.androidx.recyclerview.extensions.setUpDefaults
 
 private const val SPAN_WIDTH_DP = 160
@@ -28,7 +28,7 @@ internal class LanguagesFragment : BaseFragment(
     private val binding by bindViewBinding(GameSettingsUiLanguagesScreenBinding::bind)
 
     private val viewModel: LanguagesViewModel by bindBaseViewModel {
-        getGameSettingsUiComponent().languagesViewModelFactory().create(parentRouter)
+        getSettingsUiComponent().languagesViewModelFactory().create(parentRouter)
     }
 
     private val languagesRecyclerAdapter by lazyUnsafe {
@@ -40,7 +40,7 @@ internal class LanguagesFragment : BaseFragment(
     }
 
     @UiMainThread
-    override fun injectDagger2() = getGameSettingsUiComponent().inject(this)
+    override fun injectDagger2() = getSettingsUiComponent().inject(this)
 
     @UiMainThread
     override fun initLifecyclePluginObservers() {

@@ -15,7 +15,7 @@ import com.ruslan.hlushan.core.ui.viewmodel.extensions.handleCommandQueue
 import com.ruslan.hlushan.game.api.auth.dto.User
 import com.ruslan.hlushan.game.auth.ui.R
 import com.ruslan.hlushan.game.auth.ui.databinding.GameAuthUiUserProfileScreenBinding
-import com.ruslan.hlushan.game.auth.ui.di.getGameAuthUiComponent
+import com.ruslan.hlushan.game.auth.ui.di.getAuthUiComponent
 import com.ruslan.hlushan.game.auth.ui.observeConfirmPasswordInput
 import com.ruslan.hlushan.game.auth.ui.showAuthError
 import com.ruslan.hlushan.game.auth.ui.showNickNameInputError
@@ -30,11 +30,11 @@ internal class UserProfileFragment : BaseFragment(
     private val binding by bindViewBinding(GameAuthUiUserProfileScreenBinding::bind)
 
     private val viewModel: UserProfileViewModel by bindBaseViewModel {
-        getGameAuthUiComponent().userProfileViewModelFactory().create(parentRouter)
+        getAuthUiComponent().userProfileViewModelFactory().create(parentRouter)
     }
 
     @UiMainThread
-    override fun injectDagger2() = getGameAuthUiComponent().inject(this)
+    override fun injectDagger2() = getAuthUiComponent().inject(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

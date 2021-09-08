@@ -11,7 +11,7 @@ import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.viewmodel.extensions.bindBaseViewModel
 import com.ruslan.hlushan.extensions.ifNotNull
 import com.ruslan.hlushan.game.api.play.dto.GameRecord
-import com.ruslan.hlushan.game.play.ui.di.getGamePlayUiComponent
+import com.ruslan.hlushan.game.play.ui.di.gamePlayUiComponent
 import com.ruslan.hlushan.game.play.ui.dto.GameRecordParcelable
 import com.ruslan.hlushan.game.play.ui.dto.toParcelable
 import com.ruslan.hlushan.game.play.ui.game.PlayGameFragment
@@ -21,14 +21,14 @@ private const val KEY_GAME_RECORD = "KEY_GAME_RECORD"
 internal class ContinueGameFragment : PlayGameFragment<ContinueGameViewModel>() {
 
     override val viewModel: ContinueGameViewModel by bindBaseViewModel {
-        getGamePlayUiComponent().continueGameViewModelFactory().create(
+        gamePlayUiComponent().continueGameViewModelFactory().create(
                 router = parentRouter,
                 continuedGameRecord = arguments?.getParcelable<GameRecordParcelable>(KEY_GAME_RECORD)?.toOriginal()
         )
     }
 
     @UiMainThread
-    override fun injectDagger2() = getGamePlayUiComponent().inject(this)
+    override fun injectDagger2() = gamePlayUiComponent().inject(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

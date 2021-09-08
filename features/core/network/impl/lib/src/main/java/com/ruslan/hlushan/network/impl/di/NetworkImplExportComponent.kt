@@ -4,8 +4,12 @@ import com.ruslan.hlushan.network.api.di.NetworkBuildHelperProvider
 import dagger.Component
 import javax.inject.Singleton
 
-@Component(modules = [NetworkModule::class])
 @Singleton
+@Component(
+        modules = [
+            NetworkModule::class
+        ]
+)
 interface NetworkImplExportComponent : NetworkBuildHelperProvider {
 
     @Component.Factory

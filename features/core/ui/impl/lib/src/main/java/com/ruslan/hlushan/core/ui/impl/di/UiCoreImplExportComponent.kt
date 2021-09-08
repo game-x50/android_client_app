@@ -11,6 +11,7 @@ import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
+@Singleton
 @Component(
         modules = [
             NavigationModule::class,
@@ -24,7 +25,6 @@ import javax.inject.Singleton
             AppContextProvider::class
         ]
 )
-@Singleton
 interface UiCoreImplExportComponent : UiCoreProvider,
                                       UiRoutingProvider,
                                       UserErrorMapperProvider {

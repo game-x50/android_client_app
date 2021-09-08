@@ -7,7 +7,7 @@ import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.fragment.BaseFlowFragment
 import com.ruslan.hlushan.core.ui.routing.SupportNestedNavigator
-import com.ruslan.hlushan.game.settings.ui.di.getGameSettingsUiComponent
+import com.ruslan.hlushan.game.settings.ui.di.getSettingsUiComponent
 import com.ruslan.hlushan.game.settings.ui.menu.SettingsMenuScreen
 
 private const val SETTINGS_FLOW_NAME = "SETTINGS_FLOW"
@@ -17,7 +17,7 @@ internal class SettingsFlowFragment : BaseFlowFragment() {
     override val flowName: String get() = SETTINGS_FLOW_NAME
 
     @UiMainThread
-    override fun injectDagger2() = getGameSettingsUiComponent().inject(this)
+    override fun injectDagger2() = getSettingsUiComponent().inject(this)
 
     @UiMainThread
     override fun openFirstFlowScreen() = cicerone.router.newRootScreen(SettingsMenuScreen())

@@ -7,10 +7,12 @@ import com.ruslan.hlushan.core.api.di.StagingToolsProvider
 import dagger.Component
 import javax.inject.Singleton
 
-@Component(
-        dependencies = [StagingToolsProvider::class]
-)
 @Singleton
+@Component(
+        dependencies = [
+            StagingToolsProvider::class
+        ]
+)
 interface CoreImplDebugToolsExportComponent : DebugToolsProvider {
 
     @Component.Factory

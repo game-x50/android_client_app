@@ -1,13 +1,14 @@
 package com.ruslan.hlushan.game.settings.ui.di
 
-import com.ruslan.hlushan.core.api.di.InjectorHolder
 import com.ruslan.hlushan.core.api.di.LanguagesProvider
 import com.ruslan.hlushan.core.api.di.LoggersProvider
 import com.ruslan.hlushan.core.api.di.ManagersProvider
 import com.ruslan.hlushan.core.api.di.SchedulersProvider
 import com.ruslan.hlushan.core.api.di.UserErrorMapperProvider
+import com.ruslan.hlushan.core.api.di.asType
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
+import com.ruslan.hlushan.core.ui.fragment.injectorHolder
 import com.ruslan.hlushan.core.ui.routing.di.UiRoutingProvider
 import com.ruslan.hlushan.game.settings.ui.about.AboutAppFragment
 import com.ruslan.hlushan.game.settings.ui.flow.SettingsFlowFragment
@@ -20,6 +21,7 @@ import com.ruslan.hlushan.game.settings.ui.theme.ThemesFragment
 import dagger.Component
 
 @SuppressWarnings("ComplexInterface", "MethodOverloading")
+@SettingsUiScope
 @Component(
         dependencies = [
             UiCoreProvider::class,
@@ -32,7 +34,7 @@ import dagger.Component
             SettingsOutScreenCreatorProvider::class
         ]
 )
-internal interface GameSettingsUiComponent {
+internal interface SettingsUiComponent {
 
     fun inject(fragment: SettingsFlowFragment)
     fun inject(fragment: SettingsMenuFragment)
@@ -56,25 +58,26 @@ internal interface GameSettingsUiComponent {
                 schedulersProvider: SchedulersProvider,
                 languagesProvider: LanguagesProvider,
                 settingsOutScreenCreatorProvider: SettingsOutScreenCreatorProvider
-        ): GameSettingsUiComponent
+        ): SettingsUiComponent
     }
 }
 
-@SuppressWarnings("UnsafeCast", "MaxLineLength")
-internal fun BaseFragment.getGameSettingsUiComponent(): GameSettingsUiComponent {
-    val injectorHolder = (activity?.application as InjectorHolder)
-    val components = injectorHolder.components
-    return components.getOrPut(GameSettingsUiComponent::class) {
-        DaggerGameSettingsUiComponent.factory()
+internal fun BaseFragment.getSettingsUiComponent(): SettingsUiComponent {
+    val fragmentInjectorHolder = this.injectorHolder
+    return fragmentInjectorHolder.components.getOrPut(SettingsUiComponent::class) {
+        DaggerSettingsUiComponent.factory()
                 .create(
-                        uiCoreProvider = (injectorHolder.iBaseInjector as UiCoreProvider),
-                        uiRoutingProvider = (injectorHolder.iBaseInjector as UiRoutingProvider),
-                        userErrorMapperProvider = (injectorHolder.iBaseInjector as UserErrorMapperProvider),
-                        managersProvider = (injectorHolder.iBaseInjector as ManagersProvider),
-                        loggersProvider = (injectorHolder.iBaseInjector as LoggersProvider),
-                        schedulersProvider = (injectorHolder.iBaseInjector as SchedulersProvider),
-                        languagesProvider = (injectorHolder.iBaseInjector as LanguagesProvider),
-                        settingsOutScreenCreatorProvider = (injectorHolder.iBaseInjector as SettingsOutScreenCreatorProvider)
+                        uiCoreProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        uiRoutingProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        userErrorMapperProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        managersProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        loggersProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        schedulersProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        languagesProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        settingsOutScreenCreatorProvider = fragmentInjectorHolder.iBaseInjector.asType()
                 )
     }
 }
+
+internal fun BaseFragment.clearSettingsUiComponent() =
+        this.injectorHolder.components.clear(SettingsUiComponent::class)
