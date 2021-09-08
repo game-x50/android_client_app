@@ -70,6 +70,12 @@ android {
         }
     }
 
+    lintOptions {
+        //todo: try to avoid: issue is related to lint crash itself;
+        // duplicated in ":features:core:ui:viewbinding:extensions"
+        disable "NullSafeMutableLiveData"
+    }
+
     resourcePrefix("game_app_")
 }
 

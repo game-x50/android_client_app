@@ -8,6 +8,12 @@ android {
         versionName = "1.0"
     }
 
+    lintOptions {
+        //todo: try to avoid: issue is related to lint crash itself;
+        // duplicated in ":app"
+        disable "NullSafeMutableLiveData"
+    }
+
 //    resourcePrefix("core_ui_api_")
 }
 
