@@ -56,6 +56,7 @@ def setupAndroidReporting() {
     tasks.withType(Test) {
         // Whether or not classes without source location should be instrumented
         jacoco.includeNoLocationClasses true
+        jacoco.excludes = ['jdk.internal.*']
     }
 
     task "jacocoTestReport"(type: JacocoReport, dependsOn: "test") {

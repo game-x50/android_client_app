@@ -27,19 +27,20 @@ dependencies {
     compileOnly(projects.features.core.extensions)
     compileOnly(projects.features.core.android.extensions)
     compileOnly(projects.features.thirdParty.androidx.insets)
-    compileOnly(projects.features.core.ui.api.lib)
+    compileOnly(projects.features.core.ui.fragment)
+    compileOnly(projects.features.core.ui.layout.container)
+    compileOnly(projects.features.core.ui.viewmodel.extensions)
+    compileOnly(projects.features.core.ui.recycler.adapter)
+    compileOnly(projects.features.core.ui.viewbinding.extensions)
+    compileOnly(projects.features.core.ui.views)
+
+    implementation(projects.features.core.ui.dimens)//todo: #check_compileOnly
+    implementation(projects.features.core.ui.views)//todo: #check_compileOnly
 
     compileOnly(Deps.threeTenBp)
 
-    compileOnly(Deps.rxJava2)
+    implementation(Deps.androidMaterial)//todo: #check_compileOnly
+    implementation(Deps.constraintLayout)//todo: #check_compileOnly
 
-    runtimeOnly(Deps.androidxAnnotations)//todo: try to avoid it at all https://stackoverflow.com/questions/67498252/got-assertionerror-no-such-enum-entry-library-group-prefix-after-upgrading-to-a
-    compileOnly(Deps.androidxAppCompat)
-    compileOnly(Deps.androidMaterial)
-    compileOnly(Deps.constraintLayout)
-
-    compileOnly(Deps.recyclerView)
-    compileOnly(projects.features.thirdParty.androidx.recyclerview.extensions)
-
-    compileOnly(Deps.cicerone)
+    implementation(Deps.recyclerView)//todo: because of conflict deps, try to avoid as it transitively should be received from projects.features.core.ui.recycler.adapter
 }

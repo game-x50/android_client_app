@@ -9,6 +9,6 @@ android {
 }
 
 dependencies {
-    compileOnly(Deps.androidxCore)
+    compileOnly(Deps.androidxCoreKtx)
     compileOnly(Deps.androidxCoreKtx)
 }

@@ -12,8 +12,8 @@ import com.google.android.material.radiobutton.MaterialRadioButton
 import com.ruslan.hlushan.core.api.managers.Settings
 import com.ruslan.hlushan.core.api.utils.ThemeMode
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
-import com.ruslan.hlushan.core.ui.api.extensions.bindViewBinding
-import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.BaseFragment
+import com.ruslan.hlushan.core.ui.fragment.BaseFragment
+import com.ruslan.hlushan.core.ui.viewbinding.extensions.bindViewBinding
 import com.ruslan.hlushan.game.settings.ui.R
 import com.ruslan.hlushan.game.settings.ui.databinding.GameSettingsUiThemesScreenBinding
 import com.ruslan.hlushan.game.settings.ui.di.getGameSettingsUiComponent
@@ -81,7 +81,7 @@ private fun RadioGroup.addOptionFor(themeMode: ThemeMode, currentSelected: Theme
     option.setText(themeMode.nameResId)
 
     val verticalPadding = this.resources.getDimensionPixelOffset(
-            com.ruslan.hlushan.core.ui.api.R.dimen.default_1_2_padding
+            com.ruslan.hlushan.core.ui.dimens.R.dimen.default_1_2_padding
     )
     option.setPadding(verticalPadding, verticalPadding, 0, verticalPadding)
 

@@ -6,13 +6,11 @@ import com.ruslan.hlushan.core.api.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.api.managers.SimpleUserErrorMapper
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
 import com.ruslan.hlushan.core.ui.impl.tools.di.UiToolsModule
+import com.ruslan.hlushan.core.ui.routing.di.UiRoutingProvider
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
-/**
- * @author Ruslan Hlushan on 9/15/18.
- */
 @Component(
         modules = [
             NavigationModule::class,
@@ -28,6 +26,7 @@ import javax.inject.Singleton
 )
 @Singleton
 interface UiCoreImplExportComponent : UiCoreProvider,
+                                      UiRoutingProvider,
                                       UserErrorMapperProvider {
 
     @Component.Factory

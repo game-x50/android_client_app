@@ -1,0 +1,28 @@
+apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
+apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
+
+android {
+
+    defaultConfig {
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+//    resourcePrefix("core_ui_api_")
+}
+
+dependencies {
+    api(projects.features.core.api.lib)
+
+    compileOnly(projects.features.core.extensions)
+
+    api(Deps.rxJava2)
+    api(Deps.androidxViewModel)
+
+    testImplementation(projects.features.core.extensions)
+    testImplementation(projects.features.core.testUtils)
+    testImplementation(projects.features.core.api.testUtils)
+    testImplementation(projects.features.core.ui.viewmodel.testUtils)
+    testImplementation(projects.features.thirdParty.rxjava2.extensions)
+    testImplementation(projects.features.thirdParty.rxjava2.testUtils)
+}

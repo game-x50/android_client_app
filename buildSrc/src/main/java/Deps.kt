@@ -8,15 +8,14 @@ object Deps {
     const val kotlinxSerializationCore = "org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinxSerializationVersion}"
     const val kotlinxSerializationJson = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinxSerializationVersion}"
 
-    const val androidxCore = "androidx.core:core:${Versions.androidCoreVersion}"
     const val androidxCoreKtx = "androidx.core:core-ktx:${Versions.androidCoreVersion}"
 
     const val androidxAnnotations = "androidx.annotation:annotation:${Versions.androidxAnnotationsVersion}"
     const val androidxAppCompat = "androidx.appcompat:appcompat:${Versions.androidxAppCompatVersion}"
     const val androidMaterial = "com.google.android.material:material:${Versions.androidMaterialVersion}"
 
-    const val androidxActivity = "androidx.activity:activity:${Versions.androidxActivityVersion}"
-    const val androidxFragment = "androidx.fragment:fragment:${Versions.androidxFragmentVersion}"
+    const val androidxActivity = "androidx.activity:activity-ktx:${Versions.androidxActivityVersion}"
+    const val androidxFragment = "androidx.fragment:fragment-ktx:${Versions.androidxFragmentVersion}"
 
     const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerViewVersion}"
     const val swipeRefreshLayout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayoutVersion}"
@@ -25,9 +24,14 @@ object Deps {
     const val workManager = "androidx.work:work-runtime:${Versions.workManagerVersion}"
     const val workManagerRxJava2 = "androidx.work:work-rxjava2:${Versions.workManagerVersion}"
 
+    const val viewBinding = "androidx.databinding:viewbinding:${Versions.gradleVersion}"
+
     const val edgeToEdgeDecorator = "com.redmadrobot:edge-to-edge-decorator:${Versions.edgeToEdgeDecoratorVersion}"
 
-    const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycleExtensionsVersion}"
+    const val androidxLifecycle = "androidx.lifecycle:lifecycle-common:${Versions.androidxLifecyclesVersion}"
+    const val androidxLifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.androidxLifecyclesVersion}"
+
+    const val androidxViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.androidxLifecyclesVersion}"
 
     const val firebaseBom = "com.google.firebase:firebase-bom:${Versions.firebaseBomVersion}"
     const val firebaseAnalytics = "com.google.firebase:firebase-analytics"

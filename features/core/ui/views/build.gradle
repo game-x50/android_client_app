@@ -1,0 +1,23 @@
+apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
+apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
+
+android {
+
+    defaultConfig {
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+//    resourcePrefix("core_ui_api_")
+}
+
+dependencies {
+    compileOnly(projects.features.core.android.extensions)
+    compileOnly(projects.features.core.ui.dimens)
+
+    implementation(projects.features.core.ui.colors)//todo: #check_compileOnly
+
+    compileOnly(Deps.androidxCoreKtx)
+    compileOnly(Deps.androidMaterial)// todo: implementation instead of compileOnly because of task ./gradlew assembleStaging failing on CI, try to use compileOnly
+    compileOnly(Deps.constraintLayout)// todo: implementation instead of compileOnly because of task ./gradlew assembleStaging failing on CI, try to use compileOnly
+}

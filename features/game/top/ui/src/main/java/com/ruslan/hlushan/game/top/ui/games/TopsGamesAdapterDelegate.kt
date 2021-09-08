@@ -2,9 +2,9 @@ package com.ruslan.hlushan.game.top.ui.games
 
 import android.view.View
 import androidx.annotation.LayoutRes
-import com.ruslan.hlushan.core.ui.api.recycler.AdapterDelegate
-import com.ruslan.hlushan.core.ui.api.recycler.BaseItemViewHolder
-import com.ruslan.hlushan.core.ui.api.recycler.RecyclerItem
+import com.ruslan.hlushan.core.ui.recycler.adapter.AdapterDelegate
+import com.ruslan.hlushan.core.ui.recycler.adapter.BaseItemViewHolder
+import com.ruslan.hlushan.core.ui.recycler.item.RecyclerItem
 import com.ruslan.hlushan.game.api.top.dto.GamePreviewWithUserDetails
 import com.ruslan.hlushan.game.top.ui.R
 import com.ruslan.hlushan.game.top.ui.databinding.GameTopUiTopGameItemBinding

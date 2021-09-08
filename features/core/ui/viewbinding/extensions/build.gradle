@@ -1,0 +1,34 @@
+apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
+apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
+
+android {
+
+    defaultConfig {
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    lintOptions {
+        //todo: try to avoid: issue is related to lint crash itself;
+        // duplicated in ":app"
+        disable "NullSafeMutableLiveData"
+    }
+
+//    resourcePrefix("core_ui_api_")
+}
+
+dependencies {
+    api(projects.features.core.ui.lifecycle.lib)
+
+    compileOnly(projects.features.core.extensions)
+    compileOnly(projects.features.core.api.lib)
+    compileOnly(projects.features.core.ui.api.lib)
+
+    api(Deps.androidxFragment)
+
+    compileOnly(Deps.viewBinding)
+
+    testImplementation(projects.features.core.testUtils)
+    testImplementation(projects.features.core.api.testUtils)
+    testImplementation(projects.features.core.ui.lifecycle.testUtils)
+}

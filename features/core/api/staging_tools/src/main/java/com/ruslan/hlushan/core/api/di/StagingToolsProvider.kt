@@ -9,10 +9,6 @@ import com.ruslan.hlushan.core.api.tools.RxDisposableWatcherTool
 import com.ruslan.hlushan.core.api.tools.TaktTool
 import com.ruslan.hlushan.core.api.tools.TinyDancerTool
 
-/**
- * @author Ruslan Hlushan on 2019-07-18
- */
-
 interface StagingToolsProvider : BlockCanaryToolProvider,
                                  TinyDancerToolProvider,
                                  TaktToolProvider,

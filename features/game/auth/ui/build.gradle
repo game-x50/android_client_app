@@ -18,20 +18,18 @@ dependencies {
     compileOnly(projects.features.core.extensions)
     compileOnly(projects.features.core.android.extensions)
     compileOnly(projects.features.thirdParty.androidx.insets)
-    compileOnly(projects.features.core.ui.api.lib)
+    compileOnly(projects.features.core.ui.fragment)
+    compileOnly(projects.features.core.ui.viewmodel.extensions)
+    compileOnly(projects.features.core.ui.viewbinding.extensions)
     compileOnly(projects.features.game.api.lib)
+
+    implementation(projects.features.core.ui.dimens)//todo: #check_compileOnly
 
     compileOnly(Deps.threeTenBp)
 
     compileOnly(Deps.rxJava2)
 
-    runtimeOnly(Deps.androidxAnnotations)//todo: try to avoid it at all https://stackoverflow.com/questions/67498252/got-assertionerror-no-such-enum-entry-library-group-prefix-after-upgrading-to-a
-    compileOnly(Deps.androidxAppCompat)
+    implementation(projects.features.thirdParty.androidx.material.extensions)//todo: #check_compileOnly
 
-    compileOnly(Deps.androidMaterial)
-    compileOnly(projects.features.thirdParty.androidx.material.extensions)
-
-    compileOnly(Deps.constraintLayout)
-
-    compileOnly(Deps.cicerone)
+    implementation(Deps.constraintLayout)//todo: #check_compileOnly
 }

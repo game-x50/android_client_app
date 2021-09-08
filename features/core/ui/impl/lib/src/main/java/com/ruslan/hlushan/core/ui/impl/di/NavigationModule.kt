@@ -2,7 +2,7 @@ package com.ruslan.hlushan.core.ui.impl.di
 
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Router
-import com.ruslan.hlushan.core.ui.api.router.FlowCiceronesHolder
+import com.ruslan.hlushan.core.ui.routing.FlowCiceronesHolder
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="UnusedResources">
+
+    <dimen name="default_zero_padding">0dp</dimen>
+    <dimen name="default_1_16_padding">1dp</dimen>
+    <dimen name="default_1_8_padding">2dp</dimen>
+    <dimen name="default_1_4_padding">4dp</dimen>
+    <dimen name="default_1_2_padding">8dp</dimen>
+    <dimen name="default_3_4_padding">12dp</dimen>
+    <dimen name="default_padding">16dp</dimen>
+    <dimen name="default_5_4_padding">20dp</dimen>
+    <dimen name="default_3_2_padding">24dp</dimen>
+    <dimen name="default_2_padding">32dp</dimen>
+    <dimen name="default_3_padding">48dp</dimen>
+    <dimen name="default_7_2_padding">56dp</dimen>
+    <dimen name="default_4_padding">64dp</dimen>
+    <dimen name="default_5_padding">80dp</dimen>
+    <dimen name="default_6_padding">96dp</dimen>
+    <dimen name="default_8_padding">128dp</dimen>
+    <dimen name="default_9_padding">144dp</dimen>
+    <dimen name="default_10_padding">160dp</dimen>
+    <dimen name="default_12_padding">192dp</dimen>
+
+    <dimen name="default_negative_1_16_padding">-1dp</dimen>
+    <dimen name="default_negative_1_8_padding">-2dp</dimen>
+    <dimen name="default_negative_1_4_padding">-4dp</dimen>
+    <dimen name="default_negative_1_2_padding">-8dp</dimen>
+    <dimen name="default_negative_3_4_padding">-12dp</dimen>
+    <dimen name="default_negative_padding">-16dp</dimen>
+    <dimen name="default_negative_5_4_padding">-20dp</dimen>
+    <dimen name="default_negative_3_2_padding">-24dp</dimen>
+    <dimen name="default_negative_2_padding">-36dp</dimen>
+
+</resources>

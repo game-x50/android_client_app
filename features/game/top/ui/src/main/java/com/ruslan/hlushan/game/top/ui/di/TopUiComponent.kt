@@ -6,7 +6,8 @@ import com.ruslan.hlushan.core.api.di.ManagersProvider
 import com.ruslan.hlushan.core.api.di.SchedulersProvider
 import com.ruslan.hlushan.core.api.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
-import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.BaseFragment
+import com.ruslan.hlushan.core.ui.fragment.BaseFragment
+import com.ruslan.hlushan.core.ui.routing.di.UiRoutingProvider
 import com.ruslan.hlushan.game.api.di.providers.AuthInteractorProvider
 import com.ruslan.hlushan.game.api.di.providers.TopInteractorProvider
 import com.ruslan.hlushan.game.top.ui.games.TopGamesFragment
@@ -17,6 +18,7 @@ import dagger.Component
 @Component(
         dependencies = [
             UiCoreProvider::class,
+            UiRoutingProvider::class,
             UserErrorMapperProvider::class,
             ManagersProvider::class,
             LoggersProvider::class,
@@ -36,6 +38,7 @@ internal interface TopUiComponent {
         @SuppressWarnings("LongParameterList")
         fun create(
                 uiCoreProvider: UiCoreProvider,
+                uiRoutingProvider: UiRoutingProvider,
                 userErrorMapperProvider: UserErrorMapperProvider,
                 managersProvider: ManagersProvider,
                 loggersProvider: LoggersProvider,
@@ -54,6 +57,7 @@ internal fun BaseFragment.getTopUiComponent(): TopUiComponent {
         DaggerTopUiComponent.factory()
                 .create(
                         uiCoreProvider = (injectorHolder.iBaseInjector as UiCoreProvider),
+                        uiRoutingProvider = (injectorHolder.iBaseInjector as UiRoutingProvider),
                         userErrorMapperProvider = (injectorHolder.iBaseInjector as UserErrorMapperProvider),
                         managersProvider = (injectorHolder.iBaseInjector as ManagersProvider),
                         loggersProvider = (injectorHolder.iBaseInjector as LoggersProvider),

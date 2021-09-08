@@ -1,0 +1,31 @@
+apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
+apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
+
+apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
+
+android {
+
+    defaultConfig {
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+//    resourcePrefix("core_ui_api_")
+}
+
+dependencies {
+    compileOnly(projects.features.core.api.lib)
+    compileOnly(projects.features.core.ui.lifecycle.utils)
+    compileOnly(projects.features.core.ui.layout.container)
+
+    implementation(projects.features.core.ui.colors)//todo: #check_compileOnly
+
+    api(projects.features.core.ui.api.lib)
+    api(projects.features.core.ui.dialog)
+    api(projects.features.core.ui.routing)
+    api(projects.features.core.ui.lifecycle.lib)
+
+    api(Deps.androidxActivity)
+
+    compileOnly(Deps.androidMaterial)
+}

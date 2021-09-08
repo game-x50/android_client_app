@@ -70,12 +70,17 @@ android {
         }
     }
 
+    lintOptions {
+        //todo: try to avoid: issue is related to lint crash itself;
+        // duplicated in ":features:core:ui:viewbinding:extensions"
+        disable "NullSafeMutableLiveData"
+    }
+
     resourcePrefix("game_app_")
 }
 
 dependencies {
     implementation(projects.features.core.extensions)
-    implementation(projects.features.core.android.extensions)
     implementation(projects.features.core.api.lib)
     implementation(projects.features.core.android.api)
     implementation(projects.features.core.impl.lib)
@@ -83,8 +88,25 @@ dependencies {
 
     implementation(projects.features.core.parsing.impl)
 
-    implementation(projects.features.core.ui.api.lib)
     implementation(projects.features.core.ui.impl.lib)
+
+    implementation(projects.features.core.ui.views)
+
+    implementation(projects.features.core.ui.activity)
+    implementation(projects.features.core.ui.fragment)
+
+    runtimeOnly(projects.features.core.ui.layout.container)
+
+    runtimeOnly(projects.features.core.ui.lifecycle.utils)
+
+    implementation(projects.features.core.ui.dimens)
+    implementation(projects.features.core.ui.colors)
+
+    implementation(projects.features.core.ui.viewmodel.extensions)
+
+    runtimeOnly(projects.features.core.ui.pagination.view)
+
+    implementation(projects.features.core.ui.viewbinding.extensions)
 
     compileOnly(projects.features.core.network.api)//todo: compileOnly here instead of network_impl module because of some used extensions in network_impl, try to use implementation here and compileOnly in network_impl module
     implementation(projects.features.core.network.impl.lib)
@@ -118,6 +140,9 @@ dependencies {
     implementation(Deps.androidMaterial)
     runtimeOnly(projects.features.thirdParty.androidx.material.extensions)
 
+    implementation(Deps.androidxCoreKtx)
+    implementation(projects.features.core.android.extensions)
+
     runtimeOnly(Deps.swipeRefreshLayout)
     runtimeOnly(Deps.constraintLayout)
 
@@ -127,8 +152,6 @@ dependencies {
     implementation(Deps.edgeToEdgeDecorator)
 
     implementation(Deps.dagger2)
-
-    implementation(Deps.cicerone)
 
     implementation platform(Deps.firebaseBom)
     runtimeOnly(Deps.firebaseAnalytics)//todo because of firebaseAuth, crashlytics require

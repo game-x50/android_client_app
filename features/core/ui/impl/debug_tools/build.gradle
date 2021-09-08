@@ -18,7 +18,7 @@ dependencies {
     compileOnly(projects.features.core.extensions)
     compileOnly(projects.features.core.android.extensions)
     compileOnly(projects.features.core.api.lib)
-    compileOnly(projects.features.core.ui.api.lib)
+    compileOnly(projects.features.core.ui.fragment)
 
     compileOnly(projects.features.core.api.debugTools)
 
@@ -27,6 +27,4 @@ dependencies {
     compileOnly(Deps.rxJava2)
 
     compileOnly(Deps.androidMaterial)
-
-    compileOnly(Deps.cicerone)
 }

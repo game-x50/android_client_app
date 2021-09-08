@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.ruslan.hlushan.core.ui.fragment"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <activity
+            android:name="com.ruslan.hlushan.core.ui.activity.DummyActivity"
+            android:noHistory="true"
+            android:theme="@style/AppTheme.TransparentActivity" />
+    </application>
+
+</manifest>

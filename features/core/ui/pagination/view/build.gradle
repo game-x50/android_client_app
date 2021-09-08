@@ -1,0 +1,27 @@
+apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
+apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
+
+android {
+
+    defaultConfig {
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+//    resourcePrefix("core_ui_api_")
+}
+
+dependencies {
+    api(projects.features.core.ui.pagination.viewmodel)
+    api(projects.features.core.ui.fragment)
+    api(projects.features.core.ui.recycler.adapter)
+
+    compileOnly(projects.features.core.extensions)
+    compileOnly(projects.features.core.android.extensions)
+    compileOnly(projects.features.thirdParty.androidx.recyclerview.extensions)
+
+    compileOnly(Deps.androidMaterial)
+
+    api(Deps.androidxAppCompat)
+    api(Deps.swipeRefreshLayout)
+}

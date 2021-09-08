@@ -8,15 +8,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
-import com.ruslan.hlushan.core.ui.api.dialog.showSimpleProgress
-import com.ruslan.hlushan.core.ui.api.extensions.bindBaseViewModel
-import com.ruslan.hlushan.core.ui.api.extensions.bindViewBinding
-import com.ruslan.hlushan.core.ui.api.presentation.command.handleCommandQueue
-import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.BaseFragment
-import com.ruslan.hlushan.core.ui.api.presentation.view.fragment.setUpPagination
-import com.ruslan.hlushan.core.ui.api.presentation.viewmodel.pagination.PaginationState
-import com.ruslan.hlushan.core.ui.api.recycler.DelegatesRecyclerAdapter
-import com.ruslan.hlushan.core.ui.api.recycler.RecyclerViewLifecyclePluginObserver
+import com.ruslan.hlushan.core.ui.dialog.showSimpleProgress
+import com.ruslan.hlushan.core.ui.fragment.BaseFragment
+import com.ruslan.hlushan.core.ui.pagination.view.setUpPagination
+import com.ruslan.hlushan.core.ui.pagination.viewmodel.PaginationState
+import com.ruslan.hlushan.core.ui.recycler.adapter.DelegatesRecyclerAdapter
+import com.ruslan.hlushan.core.ui.recycler.adapter.RecyclerViewLifecyclePluginObserver
+import com.ruslan.hlushan.core.ui.viewbinding.extensions.bindViewBinding
+import com.ruslan.hlushan.core.ui.viewmodel.extensions.bindBaseViewModel
+import com.ruslan.hlushan.core.ui.viewmodel.extensions.handleCommandQueue
 import com.ruslan.hlushan.extensions.exhaustive
 import com.ruslan.hlushan.extensions.ifNotNull
 import com.ruslan.hlushan.extensions.lazyUnsafe
@@ -51,7 +51,7 @@ internal class GameRecordsListFragment :
             field = newValue
 
             val minDistance: Float = if (newValue) {
-                -resources.getDimension(com.ruslan.hlushan.core.ui.api.R.dimen.default_4_padding)
+                -resources.getDimension(com.ruslan.hlushan.core.ui.dimens.R.dimen.default_4_padding)
             } else {
                 0f
             }

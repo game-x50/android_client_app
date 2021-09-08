@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.ruslan.hlushan.core.ui.api.view.SquareRelativeLayout
+    <com.ruslan.hlushan.core.ui.views.SquareRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
@@ -29,6 +29,6 @@
             android:textAppearance="?attr/textAppearanceSubtitle1"
             tools:text="Portugal'skii" />
 
-    </com.ruslan.hlushan.core.ui.api.view.SquareRelativeLayout>
+    </com.ruslan.hlushan.core.ui.views.SquareRelativeLayout>
 
 </com.google.android.material.card.MaterialCardView>

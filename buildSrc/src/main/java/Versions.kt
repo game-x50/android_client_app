@@ -39,7 +39,7 @@ object Versions {
 
     const val edgeToEdgeDecoratorVersion = "1.0.0"
 
-    const val lifecycleExtensionsVersion = "2.2.0"
+    const val androidxLifecyclesVersion = "2.3.1"
 
     const val ciceroneVersion = "7.0"
 
