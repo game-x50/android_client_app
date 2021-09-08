@@ -2,13 +2,13 @@
 
 package extension
 
+import com.ruslan.hlushan.core.ui.api.presentation.lifecycle.LifecyclePluginObserver
+import com.ruslan.hlushan.core.ui.api.test.utils.LifecyclePluginObserverOwnerFragmentStub
+import com.ruslan.hlushan.core.ui.api.test.utils.from_init_go_to
 import com.ruslan.hlushan.core.ui.viewmodel.command.CommandQueue
 import com.ruslan.hlushan.core.ui.viewmodel.command.MutableCommandQueue
 import com.ruslan.hlushan.core.ui.viewmodel.command.handleCommandQueue
 import com.ruslan.hlushan.core.ui.viewmodel.command.strategy.StrategyCommand
-import com.ruslan.hlushan.core.ui.api.presentation.lifecycle.LifecyclePluginObserver
-import com.ruslan.hlushan.core.ui.api.test.utils.LifecyclePluginObserverOwnerFragmentStub
-import com.ruslan.hlushan.core.ui.api.test.utils.from_init_go_to
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Assert.fail

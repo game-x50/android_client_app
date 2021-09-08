@@ -10,11 +10,10 @@ import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Navigator
 import com.github.terrakok.cicerone.Router
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
-import com.ruslan.hlushan.core.ui.api.R
 import com.ruslan.hlushan.core.ui.api.utils.NewIntentHandler
-import com.ruslan.hlushan.core.ui.routing.FlowFragmentLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.api.utils.ViewModifier
 import com.ruslan.hlushan.core.ui.routing.CiceroneOwner
+import com.ruslan.hlushan.core.ui.routing.FlowFragmentLifecyclePluginObserver
 import javax.inject.Inject
 
 abstract class BaseAppActivity : BaseActivity(), CiceroneOwner {

@@ -13,7 +13,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.AttrRes
 import androidx.core.view.isVisible
-import com.ruslan.hlushan.core.ui.views.R
 
 @SuppressWarnings("TooManyFunctions")
 class CustomToolbar

@@ -21,9 +21,9 @@ import com.ruslan.hlushan.core.api.tools.TinyDancerTool
 import com.ruslan.hlushan.core.api.utils.InitAppConfig
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
-import com.ruslan.hlushan.core.ui.impl.tools.utils.GridDrawable
 import com.ruslan.hlushan.core.ui.impl.tools.databinding.CoreUiImplStagingToolsDeveloperSettingsScreenBinding
 import com.ruslan.hlushan.core.ui.impl.tools.file.FileLogsActivity
+import com.ruslan.hlushan.core.ui.impl.tools.utils.GridDrawable
 import com.ruslan.hlushan.core.ui.viewbinding.extensions.bindViewBinding
 import com.ruslan.hlushan.extensions.ifNotNull
 import com.ruslan.hlushan.third_party.androidx.insets.addSystemPadding

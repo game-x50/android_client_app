@@ -17,7 +17,6 @@ import androidx.annotation.StringRes
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isVisible
 import com.ruslan.hlushan.android.extensions.colorAttributeValue
-import com.ruslan.hlushan.core.ui.views.R
 
 private const val INVALID_RESOURCE_ID = 0
 

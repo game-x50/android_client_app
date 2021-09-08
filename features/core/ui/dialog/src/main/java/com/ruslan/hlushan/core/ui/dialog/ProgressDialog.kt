@@ -5,7 +5,6 @@ import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.FragmentManager
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
-import com.ruslan.hlushan.core.ui.dialog.R
 import com.ruslan.hlushan.core.ui.dialog.command.DialogCommand
 import com.ruslan.hlushan.core.ui.dialog.command.DialogCommandsHandler
 import com.ruslan.hlushan.core.ui.views.LoaderView

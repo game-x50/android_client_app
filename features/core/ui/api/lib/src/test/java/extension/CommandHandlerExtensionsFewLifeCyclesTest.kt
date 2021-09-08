@@ -2,12 +2,12 @@
 
 package extension
 
-import com.ruslan.hlushan.core.ui.viewmodel.command.MutableCommandQueue
-import com.ruslan.hlushan.core.ui.viewmodel.command.handleCommandQueue
-import com.ruslan.hlushan.core.ui.viewmodel.command.strategy.StrategyCommand
 import com.ruslan.hlushan.core.ui.api.test.utils.LifecyclePluginObserverOwnerFragmentStub
 import com.ruslan.hlushan.core.ui.api.test.utils.from_init_go_to
 import com.ruslan.hlushan.core.ui.api.test.utils.go_to
+import com.ruslan.hlushan.core.ui.viewmodel.command.MutableCommandQueue
+import com.ruslan.hlushan.core.ui.viewmodel.command.handleCommandQueue
+import com.ruslan.hlushan.core.ui.viewmodel.command.strategy.StrategyCommand
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test

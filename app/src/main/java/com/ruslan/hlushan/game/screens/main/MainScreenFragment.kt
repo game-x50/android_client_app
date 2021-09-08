@@ -10,9 +10,9 @@ import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.ui.api.utils.BottomMenuHolder
 import com.ruslan.hlushan.core.ui.fragment.BaseFlowFragment
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
-import com.ruslan.hlushan.core.ui.api.utils.BottomMenuHolder
 import com.ruslan.hlushan.core.ui.viewbinding.extensions.bindViewBinding
 import com.ruslan.hlushan.extensions.ifNotNull
 import com.ruslan.hlushan.game.R

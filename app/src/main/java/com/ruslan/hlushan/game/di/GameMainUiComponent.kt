@@ -32,6 +32,7 @@ internal interface GameMainUiComponent {
 
     @Component.Factory
     interface Factory {
+        @SuppressWarnings("LongParameterList")
         fun create(
                 uiCoreProvider: UiCoreProvider,
                 uiRoutingProvider: UiRoutingProvider,

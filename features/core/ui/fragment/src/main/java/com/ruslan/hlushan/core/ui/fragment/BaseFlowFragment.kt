@@ -24,7 +24,9 @@ constructor(
 
     protected abstract val flowName: String
 
-    override val cicerone: Cicerone<FlowRouter> by lazyUnsafe { flowCiceronesHolder.getOrCreate(flowName, parentRouter) }
+    override val cicerone: Cicerone<FlowRouter> by lazyUnsafe {
+        flowCiceronesHolder.getOrCreate(flowName, parentRouter)
+    }
 
     @UiMainThread
     override fun initLifecyclePluginObservers() {

@@ -24,7 +24,6 @@ import com.ruslan.hlushan.android.extensions.copy
 import com.ruslan.hlushan.android.extensions.diagonal
 import com.ruslan.hlushan.android.extensions.endRightPadding
 import com.ruslan.hlushan.android.extensions.startLeftPadding
-import com.ruslan.hlushan.core.ui.views.R
 import kotlin.math.abs
 import kotlin.math.cos
 import kotlin.math.max
