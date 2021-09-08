@@ -2,10 +2,6 @@ package com.ruslan.hlushan.core.api.test.utils.log
 
 import com.ruslan.hlushan.core.api.log.AppLogger
 
-/**
- * @author Ruslan Hlushan on 2019-07-26
- */
-
 class EmptyAppLoggerImpl : AppLogger {
 
     override fun log(any: Any) = Unit

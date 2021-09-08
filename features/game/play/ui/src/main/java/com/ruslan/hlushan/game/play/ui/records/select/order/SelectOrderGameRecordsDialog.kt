@@ -7,6 +7,7 @@ import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.dialog.BaseDialogFragment
 import com.ruslan.hlushan.core.ui.dialog.DialogBackgroundColorLifecyclePluginObserver
@@ -14,6 +15,7 @@ import com.ruslan.hlushan.core.ui.dialog.command.DialogCommandsHandler
 import com.ruslan.hlushan.core.ui.dialog.command.ShowDialogCommand
 import com.ruslan.hlushan.core.ui.recycler.adapter.DelegatesRecyclerAdapter
 import com.ruslan.hlushan.core.ui.recycler.adapter.RecyclerViewLifecyclePluginObserver
+import com.ruslan.hlushan.core.ui.viewbinding.extensions.bindViewBinding
 import com.ruslan.hlushan.extensions.lazyUnsafe
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.api.play.dto.OrderType
@@ -21,10 +23,12 @@ import com.ruslan.hlushan.game.play.ui.R
 import com.ruslan.hlushan.game.play.ui.databinding.GamePlayUiSelectOrderGameRecordsDialogBinding
 import com.ruslan.hlushan.game.play.ui.dto.GameRecordWithSyncStateOrderParamsParcelable
 import com.ruslan.hlushan.game.play.ui.dto.toParcelable
+import com.ruslan.hlushan.third_party.androidx.fragment.extensions.dismissNowSafety
+import com.ruslan.hlushan.third_party.androidx.recyclerview.extensions.setUpDefaults
 
 private const val KEY_INIT_ORDER_PARAMS = "KEY_INIT_ORDER_PARAMS"
 
-internal class SelectOrderGameRecordsDialog : com.ruslan.hlushan.core.ui.dialog.BaseDialogFragment() {
+internal class SelectOrderGameRecordsDialog : BaseDialogFragment() {
 
     @get:LayoutRes
     override val layoutResId: Int
@@ -55,7 +59,7 @@ internal class SelectOrderGameRecordsDialog : com.ruslan.hlushan.core.ui.dialog.
         }
 
     private val gameRecordsOrderVariantRecyclerAdapter by lazyUnsafe {
-        com.ruslan.hlushan.core.ui.recycler.adapter.DelegatesRecyclerAdapter(
+        DelegatesRecyclerAdapter(
                 GameRecordsOrderVariantAdapterDelegate { selectedRecyclerItem ->
                     selectedOrderVariant = selectedRecyclerItem.orderVariant
                 }
@@ -65,11 +69,11 @@ internal class SelectOrderGameRecordsDialog : com.ruslan.hlushan.core.ui.dialog.
     @UiMainThread
     override fun initLifecyclePluginObservers() {
         super.initLifecyclePluginObservers()
-        addLifecyclePluginObserver(com.ruslan.hlushan.core.ui.dialog.DialogBackgroundColorLifecyclePluginObserver(
+        addLifecyclePluginObserver(DialogBackgroundColorLifecyclePluginObserver(
                 owner = this,
                 color = Color.TRANSPARENT
         ))
-        addLifecyclePluginObserver(com.ruslan.hlushan.core.ui.recycler.adapter.RecyclerViewLifecyclePluginObserver {
+        addLifecyclePluginObserver(RecyclerViewLifecyclePluginObserver {
             binding?.selectOrderGameRecordsDialogRecycler
         })
     }
@@ -117,13 +121,13 @@ internal class SelectOrderGameRecordsDialog : com.ruslan.hlushan.core.ui.dialog.
 @UiMainThread
 internal fun <Parent> Parent.showSelectOrderGameRecordsDialog(
         initOrderParams: GameRecordWithSyncState.Order.Params
-) where Parent : com.ruslan.hlushan.core.ui.dialog.command.DialogCommandsHandler.Owner,
+) where Parent : DialogCommandsHandler.Owner,
         Parent : SelectOrderGameRecordsDialog.SelectOrderGameRecordsParamsListener =
         this.dialogCommandsHandler.executeShowOrAddToQueue(ShowSelectOrderGameRecordsDialogCommand(initOrderParams))
 
 private class ShowSelectOrderGameRecordsDialogCommand(
         private val initOrderParams: GameRecordWithSyncState.Order.Params
-) : com.ruslan.hlushan.core.ui.dialog.command.ShowDialogCommand() {
+) : ShowDialogCommand() {
 
     override val tag: String get() = "TAG_ORDER_GAME_RECORDS_DIALOG"
 

@@ -26,12 +26,13 @@ android {
 }
 
 dependencies {
+    api(projects.features.core.ui.api.lib)
+    api(projects.features.core.ui.routing)
+
     compileOnly(projects.features.core.android.extensions)
     compileOnly(projects.features.core.api.lib)
     compileOnly(projects.features.core.android.api)
     compileOnly(projects.features.core.android.storage)
-    compileOnly(projects.features.core.ui.api.lib)
-    compileOnly(projects.features.core.ui.routing)
 
     debugApi(projects.features.core.ui.impl.debugTools)
     stagingApi(projects.features.core.ui.impl.stagingTools)

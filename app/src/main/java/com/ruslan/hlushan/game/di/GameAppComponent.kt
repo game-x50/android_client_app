@@ -12,6 +12,7 @@ import com.ruslan.hlushan.core.impl.di.CoreImplExportComponent
 import com.ruslan.hlushan.core.impl.tools.createToolsProvider
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
 import com.ruslan.hlushan.core.ui.impl.di.UiCoreImplExportComponent
+import com.ruslan.hlushan.core.ui.routing.di.UiRoutingProvider
 import com.ruslan.hlushan.game.BuildConfig
 import com.ruslan.hlushan.game.GameApp
 import com.ruslan.hlushan.game.api.di.providers.AuthInteractorProvider
@@ -76,7 +77,7 @@ internal interface GameAppComponent : IBaseInjector,
                 coreProvider: CoreProvider,
                 appContextProvider: AppContextProvider,
                 uiCoreProvider: UiCoreProvider,
-                uiRoutingProvider: UiRoutingProvider
+                uiRoutingProvider: UiRoutingProvider,
                 toolsProvider: ToolsProvider,
                 userErrorMapperProvider: UserErrorMapperProvider,
                 authInteractorProvider: AuthInteractorProvider,
@@ -169,6 +170,7 @@ internal interface GameAppComponent : IBaseInjector,
                             coreProvider = coreProvider,
                             appContextProvider = coreProvider,
                             uiCoreProvider = uiCoreProvider,
+                            uiRoutingProvider = uiCoreProvider,
                             toolsProvider = toolsProvider,
                             userErrorMapperProvider = uiCoreProvider,
                             authInteractorProvider = authInteractorProvider,

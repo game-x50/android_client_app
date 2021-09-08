@@ -82,13 +82,25 @@ dependencies {
 
     implementation(projects.features.core.parsing.impl)
 
-    implementation(projects.features.core.ui.api.lib)
     implementation(projects.features.core.ui.impl.lib)
 
     implementation(projects.features.core.ui.views)
 
+    implementation(projects.features.core.ui.activity)
+    implementation(projects.features.core.ui.fragment)
+
+    runtimeOnly(projects.features.core.ui.layout.container)
+
+    runtimeOnly(projects.features.core.ui.lifecycle.utils)
+
     implementation(projects.features.core.ui.dimens)
     implementation(projects.features.core.ui.colors)
+
+    implementation(projects.features.core.ui.viewmodel.extensions)
+
+    runtimeOnly(projects.features.core.ui.pagination.view)
+
+    implementation(projects.features.core.ui.viewbinding.extensions)
 
     compileOnly(projects.features.core.network.api)//todo: compileOnly here instead of network_impl module because of some used extensions in network_impl, try to use implementation here and compileOnly in network_impl module
     implementation(projects.features.core.network.impl.lib)

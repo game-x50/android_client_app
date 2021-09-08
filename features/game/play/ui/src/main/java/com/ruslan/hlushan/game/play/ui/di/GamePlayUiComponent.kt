@@ -25,6 +25,7 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
+@Singleton
 @Component(
         modules = [AssistedGamePlayUiViewModelsModule::class],
         dependencies = [
@@ -73,7 +74,7 @@ internal interface GamePlayUiComponent {
 internal object AssistedGamePlayUiViewModelsModule {
 
     @JvmStatic
-    @Singleton
+    @Singleton//todo: create custom named?: https://github.com/game-x50/android_client_app/issues/40
     @Provides
     fun provideGameScopeMarkerRepository(): GameScopeMarkerRepository = GameScopeMarkerRepository()
 }

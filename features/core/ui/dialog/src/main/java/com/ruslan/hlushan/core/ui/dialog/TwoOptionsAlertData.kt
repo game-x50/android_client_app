@@ -3,7 +3,6 @@ package com.ruslan.hlushan.core.ui.dialog
 import android.os.Parcelable
 import androidx.annotation.DrawableRes
 import androidx.annotation.StyleRes
-import com.ruslan.hlushan.core.ui.dialog.R
 import kotlinx.parcelize.Parcelize
 
 @SuppressWarnings("LongParameterList")

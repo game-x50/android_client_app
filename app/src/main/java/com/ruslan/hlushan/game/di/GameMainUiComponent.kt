@@ -7,6 +7,7 @@ import com.ruslan.hlushan.core.api.di.ManagersProvider
 import com.ruslan.hlushan.core.api.di.SchedulersProvider
 import com.ruslan.hlushan.core.api.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
+import com.ruslan.hlushan.core.ui.routing.di.UiRoutingProvider
 import com.ruslan.hlushan.game.GameAppActivity
 import com.ruslan.hlushan.game.GameAppViewModel
 import com.ruslan.hlushan.game.screens.main.MainScreenFragment

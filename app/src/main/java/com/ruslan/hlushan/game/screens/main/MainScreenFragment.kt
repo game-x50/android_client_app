@@ -2,6 +2,7 @@ package com.ruslan.hlushan.game.screens.main
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import com.github.terrakok.cicerone.Navigator
@@ -12,15 +13,17 @@ import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.fragment.BaseFlowFragment
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.core.ui.api.utils.BottomMenuHolder
+import com.ruslan.hlushan.core.ui.viewbinding.extensions.bindViewBinding
 import com.ruslan.hlushan.extensions.ifNotNull
 import com.ruslan.hlushan.game.R
 import com.ruslan.hlushan.game.databinding.GameAppMainScreenBinding
+import com.ruslan.hlushan.game.di.getGameMainUiComponent
 import com.ruslan.hlushan.game.play.ui.flow.PlayFlowScreen
 import com.ruslan.hlushan.game.settings.ui.flow.SettingsFlowScreen
 
 private const val MAIN_FLOW_NAME = "MAIN_FLOW"
 
-internal class MainScreenFragment : com.ruslan.hlushan.core.ui.fragment.BaseFlowFragment(
+internal class MainScreenFragment : BaseFlowFragment(
         layoutResId = R.layout.game_app_main_screen
 ), BottomMenuHolder {
 
@@ -31,9 +34,9 @@ internal class MainScreenFragment : com.ruslan.hlushan.core.ui.fragment.BaseFlow
     private val playFlowTab = PlayFlowScreen()
     private val settingsTab = SettingsFlowScreen()
 
-    private val currentTabFragment: com.ruslan.hlushan.core.ui.fragment.BaseFragment?
+    private val currentTabFragment: BaseFragment?
         get() = (childFragmentManager.fragments
-                .firstOrNull { fragment -> !fragment.isHidden } as? com.ruslan.hlushan.core.ui.fragment.BaseFragment)
+                .firstOrNull { fragment -> !fragment.isHidden } as? BaseFragment)
 
     @UiMainThread
     override fun injectDagger2() = requireActivity().getGameMainUiComponent().inject(this)
