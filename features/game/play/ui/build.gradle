@@ -2,7 +2,7 @@ apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
 apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
 
 apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
-apply from: rootProject.ext[GradleExtraArgs.viewBinding]
+apply from: rootProject.ext[GradleExtraArgs.androidLibraryViewBindingWithExtensions]
 apply plugin: Plugins.kotlinParcelize
 
 android {
@@ -22,7 +22,6 @@ dependencies {
     compileOnly(projects.features.core.ui.pagination.view)
     compileOnly(projects.features.core.ui.layout.container)
     compileOnly(projects.features.core.ui.viewmodel.extensions)
-    compileOnly(projects.features.core.ui.viewbinding.extensions)
     compileOnly(projects.features.game.api.lib)
 
     compileOnly(projects.features.thirdParty.threeTen.extensions)

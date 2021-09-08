@@ -75,6 +75,8 @@ afterEvaluate {
     extra[GradleExtraArgs.dagger2Kapt] = "${gradleSupportFolder}dagger2_kapt.gradle"
     extra[GradleExtraArgs.room] = "${gradleSupportFolder}room.gradle"
     extra[GradleExtraArgs.viewBinding] = "${gradleSupportFolder}android_view_binding.gradle"
+    extra[GradleExtraArgs.androidLibraryViewBindingWithExtensions] = "${gradleSupportFolder}android_library_view_binding_with_extensions.gradle"
+    extra[GradleExtraArgs.androidAppViewBindingWithExtensions] = "${gradleSupportFolder}android_app_view_binding_with_extensions.gradle"
     extra[GradleExtraArgs.kotlinxSerilization] = "${gradleSupportFolder}kotlinx_serilization.gradle"
     extra[GradleExtraArgs.applicationLeakCanaryTool] = "${gradleSupportFolder}application_leak_canary_tool.gradle"
     extra[GradleExtraArgs.projectPropertiesRead] = "${gradleSupportFolder}project_properties_read.gradle"
