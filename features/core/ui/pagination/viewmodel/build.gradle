@@ -16,7 +16,5 @@ dependencies {
     api(projects.features.core.ui.recycler.item)
 
     compileOnly(projects.features.core.extensions)
-
-    compileOnly(projects.features.core.extensions)
     compileOnly(projects.features.thirdParty.rxjava2.extensions)
 }

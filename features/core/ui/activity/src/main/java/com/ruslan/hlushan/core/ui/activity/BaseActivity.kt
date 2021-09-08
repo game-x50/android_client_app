@@ -31,7 +31,7 @@ abstract class BaseActivity : AppCompatActivity(),
 
     @Suppress("LeakingThis")
     @UiMainThread
-    override val dialogCommandsHandler: DialogCommandsHandler =ActivityDialogCommandsHandler(this)
+    override val dialogCommandsHandler: DialogCommandsHandler = ActivityDialogCommandsHandler(this)
 
     @UiMainThread
     internal var instanceStateSaved: Boolean = false

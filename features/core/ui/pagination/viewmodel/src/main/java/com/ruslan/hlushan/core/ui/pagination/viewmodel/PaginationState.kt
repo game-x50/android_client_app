@@ -20,17 +20,17 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
 
         abstract val additional: Additional
 
-        sealed class Empty<out F : Any> : Active<F, Nothing, Nothing, Nothing>() {
+        sealed class Empty<out F : Any> : PaginationState.Active<F, Nothing, Nothing, Nothing>() {
 
             data class Default<out F : Any>(
                     override val filter: F
-            ) : Empty<F>() {
+            ) : PaginationState.Active.Empty<F>() {
                 override val additional: Additional.WaitingForLoadMore get() = Additional.WaitingForLoadMore
             }
 
             data class Loading<out F : Any>(
                     override val filter: F
-            ) : Empty<F>() {
+            ) : PaginationState.Active.Empty<F>() {
                 override val additional: Additional.Loading get() = Additional.Loading
             }
 
@@ -38,7 +38,7 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
             data class WithError<out F : Any> private constructor(
                     override val filter: F,
                     override val additional: Additional.Error
-            ) : Empty<F>(), PaginationState.WithError {
+            ) : PaginationState.Active.Empty<F>(), PaginationState.WithError {
 
                 constructor(
                         filter: F,
@@ -56,7 +56,7 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
         sealed class PartiallyLoaded<out F : Any, ItemId : Any, out RI : RecyclerItem<ItemId>, out Id : Any>(
                 previousPageId: PreviousPageId<Id>,
                 currentPages: List<PageRelation<Id, ItemId>>
-        ) : Active<F, ItemId, RI, Id>(), WithItems<ItemId, RI, Id> {
+        ) : PaginationState.Active<F, ItemId, RI, Id>(), PaginationState.WithItems<ItemId, RI, Id> {
 
             abstract val previousPageId: PreviousPageId<Id>
             abstract val nextPageId: NextPageId<Id>
@@ -87,7 +87,7 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
                     override val currentPages: List<PageRelation<Id, ItemId>>,
                     override val previousPageId: PreviousPageId<Id>,
                     override val nextPageId: NextPageId<Id>
-            ) : PartiallyLoaded<F, ItemId, RI, Id>(
+            ) : PaginationState.Active.PartiallyLoaded<F, ItemId, RI, Id>(
                     previousPageId = previousPageId,
                     currentPages = currentPages
             ) {
@@ -101,7 +101,7 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
                     override val previousPageId: PreviousPageId<Id>,
                     override val nextPageId: NextPageId<Id>,
                     val direction: PaginationPagesRequest.Direction
-            ) : PartiallyLoaded<F, ItemId, RI, Id>(
+            ) : PaginationState.Active.PartiallyLoaded<F, ItemId, RI, Id>(
                     previousPageId = previousPageId,
                     currentPages = currentPages
             ) {
@@ -126,7 +126,7 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
                     override val previousPageId: PreviousPageId<Id>,
                     override val nextPageId: NextPageId<Id>,
                     override val additional: Additional.Error
-            ) : PartiallyLoaded<F, ItemId, RI, Id>(
+            ) : PaginationState.Active.PartiallyLoaded<F, ItemId, RI, Id>(
                     previousPageId = previousPageId,
                     currentPages = currentPages
             ), PaginationState.WithError {
@@ -165,11 +165,11 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
                 override val items: List<RI>,
                 override val currentPages: List<PageRelation<Id, ItemId>>,
                 override val filter: F
-        ) : Finished<F, ItemId, RI, Id>(), WithItems<ItemId, RI, Id>
+        ) : PaginationState.Finished<F, ItemId, RI, Id>(), PaginationState.WithItems<ItemId, RI, Id>
 
         data class Empty<out F : Any>(
                 override val filter: F
-        ) : Finished<F, Nothing, Nothing, Nothing>()
+        ) : PaginationState.Finished<F, Nothing, Nothing, Nothing>()
     }
 
     sealed class Additional {

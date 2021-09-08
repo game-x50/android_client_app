@@ -6,7 +6,7 @@ import com.ruslan.hlushan.core.ui.api.presentation.lifecycle.LifecyclePluginObse
 
 internal class ViewLifecycleBinderMock<in Owner : LifecyclePluginObserver.Owner>(
         override val threadChecker: ThreadChecker,
-) : com.ruslan.hlushan.core.ui.viewbinding.extensions.AbstractViewLifecycleBinder<Owner, ViewLifecycleBinderMock.ReturnValue>() {
+) : AbstractViewLifecycleBinder<Owner, ViewLifecycleBinderMock.ReturnValue>() {
 
     object ReturnValue
 

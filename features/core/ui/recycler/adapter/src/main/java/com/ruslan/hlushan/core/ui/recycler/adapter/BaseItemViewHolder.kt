@@ -4,9 +4,10 @@ import android.view.View
 import androidx.annotation.CallSuper
 import androidx.recyclerview.widget.RecyclerView
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.ui.recycler.item.RecyclerItem
 
 @Suppress("MaxLineLength")
-abstract class BaseItemViewHolder<out Id : Any, RI : com.ruslan.hlushan.core.ui.recycler.item.RecyclerItem<Id>>(itemView: View) : RecyclerView.ViewHolder(itemView) {
+abstract class BaseItemViewHolder<out Id : Any, RI : RecyclerItem<Id>>(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     @UiMainThread
     protected var recyclerItem: RI? = null

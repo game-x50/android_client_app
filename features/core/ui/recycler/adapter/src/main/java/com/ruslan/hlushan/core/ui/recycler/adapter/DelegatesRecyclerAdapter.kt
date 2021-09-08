@@ -117,7 +117,7 @@ class DelegatesRecyclerAdapter<
 }
 
 @Suppress("MaxLineLength")
-private class DelegatesDiffHelperItemCallback<out Id : Any, RI : com.ruslan.hlushan.core.ui.recycler.item.RecyclerItem<Id>> : DiffUtil.ItemCallback<RI>() {
+private class DelegatesDiffHelperItemCallback<out Id : Any, RI : RecyclerItem<Id>> : DiffUtil.ItemCallback<RI>() {
 
     private val payload = Any()
 

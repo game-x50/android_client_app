@@ -634,7 +634,7 @@ private inline fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, Id : Any, 
                     arrayOf(PaginationSideEffect.AvoidNotifyStateUpdated())
                 }
                 @Suppress("SpreadOperator")
-                (ReduceResult(copyStateWithNewItems(updatedItems, state.currentPages), *sideEffects))
+                ReduceResult(copyStateWithNewItems(updatedItems, state.currentPages), *sideEffects)
             }
             is PaginationAction.Change.SingleItemDeleted -> {
                 val updatedItems: List<RI> = state.items.withoutFirst { item -> (item.id == action.deletedItemId) }

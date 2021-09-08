@@ -36,7 +36,7 @@ internal class ConfirmLogOutDialog : BaseTwoOptionsAlert() {
                     getString(R.string.game_auth_ui_confirm_logout_message_question)
                 }
 
-                com.ruslan.hlushan.core.ui.dialog.TwoOptionsAlertData(
+                TwoOptionsAlertData(
                         title = getString(R.string.game_auth_ui_confirm_logout_title),
                         message = message,
                         positiveButtonText = getString(android.R.string.yes),

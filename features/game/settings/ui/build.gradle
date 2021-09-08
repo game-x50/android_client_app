@@ -42,6 +42,5 @@ dependencies {
     implementation(Deps.androidMaterial)//todo: #check_compileOnly
     implementation(Deps.constraintLayout)//todo: #check_compileOnly
 
-    implementation(Deps.recyclerView)//todo: #check_compileOnly
-    compileOnly(projects.features.thirdParty.androidx.recyclerview.extensions)
+    implementation(Deps.recyclerView)//todo: because of conflict deps, try to avoid as it transitively should be received from projects.features.core.ui.recycler.adapter
 }
