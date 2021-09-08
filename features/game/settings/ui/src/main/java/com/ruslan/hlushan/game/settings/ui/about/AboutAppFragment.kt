@@ -6,14 +6,14 @@ import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.game.settings.ui.R
-import com.ruslan.hlushan.game.settings.ui.di.getGameSettingsUiComponent
+import com.ruslan.hlushan.game.settings.ui.di.getSettingsUiComponent
 
 internal class AboutAppFragment : BaseFragment(
         layoutResId = R.layout.game_settings_ui_about_app_screen
 ) {
 
     @UiMainThread
-    override fun injectDagger2() = getGameSettingsUiComponent().inject(this)
+    override fun injectDagger2() = getSettingsUiComponent().inject(this)
 }
 
 internal class AboutAppScreen : FragmentScreen {

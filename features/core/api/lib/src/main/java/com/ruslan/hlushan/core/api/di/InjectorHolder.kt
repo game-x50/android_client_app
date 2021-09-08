@@ -3,9 +3,6 @@ package com.ruslan.hlushan.core.api.di
 import com.ruslan.hlushan.core.api.utils.InitAppConfig
 import kotlin.reflect.KClass
 
-/**
- * @author Ruslan Hlushan on 11/6/18.
- */
 interface InjectorHolder {
 
     val initAppConfig: InitAppConfig

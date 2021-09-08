@@ -25,7 +25,7 @@ import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.api.play.dto.GameSize
 import com.ruslan.hlushan.game.play.ui.R
 import com.ruslan.hlushan.game.play.ui.databinding.GamePlayUiGameRecordsListScreenBinding
-import com.ruslan.hlushan.game.play.ui.di.getGamePlayUiComponent
+import com.ruslan.hlushan.game.play.ui.di.gamePlayUiComponent
 import com.ruslan.hlushan.game.play.ui.game.new_game.NewGameScreen
 import com.ruslan.hlushan.game.play.ui.records.select.level.SelectGameLevelDialog
 import com.ruslan.hlushan.game.play.ui.records.select.level.showSelectGameLevelDialog
@@ -77,11 +77,11 @@ internal class GameRecordsListFragment :
     }
 
     private val viewModel: GameRecordsListViewModel by bindBaseViewModel {
-        getGamePlayUiComponent().gameRecordsListViewModelFactory().create(parentRouter)
+        gamePlayUiComponent().gameRecordsListViewModelFactory().create(parentRouter)
     }
 
     @UiMainThread
-    override fun injectDagger2() = getGamePlayUiComponent().inject(this)
+    override fun injectDagger2() = gamePlayUiComponent().inject(this)
 
     @UiMainThread
     override fun initLifecyclePluginObservers() {

@@ -6,14 +6,16 @@ import com.ruslan.hlushan.core.api.di.StagingToolsProvider
 import dagger.Component
 import javax.inject.Singleton
 
+@Singleton
 @Component(
-        modules = [CoreImplStagingToolsModule::class],
+        modules = [
+            CoreImplStagingToolsModule::class
+        ],
         dependencies = [
             AppContextProvider::class,
             LoggersProvider::class
         ]
 )
-@Singleton
 interface CoreImplStagingToolsExportComponent : StagingToolsProvider {
 
     @Component.Factory

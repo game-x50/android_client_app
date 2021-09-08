@@ -1,19 +1,21 @@
 package com.ruslan.hlushan.core.ui.impl.tools.di
 
 import com.ruslan.hlushan.core.api.di.DatabaseViewInfoListProvider
-import com.ruslan.hlushan.core.api.di.InjectorHolder
 import com.ruslan.hlushan.core.api.di.LoggersProvider
 import com.ruslan.hlushan.core.api.di.ManagersProvider
 import com.ruslan.hlushan.core.api.di.StagingToolsProvider
 import com.ruslan.hlushan.core.api.di.UserErrorMapperProvider
+import com.ruslan.hlushan.core.api.di.asType
 import com.ruslan.hlushan.core.api.utils.InitAppConfig
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
+import com.ruslan.hlushan.core.ui.fragment.injectorHolder
 import com.ruslan.hlushan.core.ui.impl.tools.StagingSettingsFragment
 import com.ruslan.hlushan.core.ui.routing.di.UiRoutingProvider
 import dagger.BindsInstance
 import dagger.Component
 
+@UiCoreImplStagingUiScope
 @Component(
         dependencies = [
             UiCoreProvider::class,
@@ -45,21 +47,22 @@ internal interface UiCoreImplStagingComponent {
     }
 }
 
-@SuppressWarnings("UnsafeCast")
 internal fun BaseFragment.getUiCoreImplStagingComponent(): UiCoreImplStagingComponent {
-    val injectorHolder = (this.activity?.application as InjectorHolder)
-    val components = injectorHolder.components
-    return components.getOrPut(UiCoreImplStagingComponent::class) {
+    val fragmentInjectorHolder = this.injectorHolder
+    return fragmentInjectorHolder.components.getOrPut(UiCoreImplStagingComponent::class) {
         DaggerUiCoreImplStagingComponent.factory()
                 .create(
-                        initAppConfig = (injectorHolder.initAppConfig),
-                        uiCoreProvider = (injectorHolder.iBaseInjector as UiCoreProvider),
-                        uiRoutingProvider = (injectorHolder.iBaseInjector as UiRoutingProvider),
-                        userErrorMapperProvider = (injectorHolder.iBaseInjector as UserErrorMapperProvider),
-                        managersProvider = (injectorHolder.iBaseInjector as ManagersProvider),
-                        loggersProvider = (injectorHolder.iBaseInjector as LoggersProvider),
-                        stagingToolsProvider = (injectorHolder.iBaseInjector as StagingToolsProvider),
-                        databasesListProvider = (injectorHolder.iBaseInjector as DatabaseViewInfoListProvider)
+                        initAppConfig = fragmentInjectorHolder.initAppConfig,
+                        uiCoreProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        uiRoutingProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        userErrorMapperProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        managersProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        loggersProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        stagingToolsProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        databasesListProvider = fragmentInjectorHolder.iBaseInjector.asType()
                 )
     }
 }
+
+internal fun BaseFragment.clearUiCoreImplStagingComponent() =
+        this.injectorHolder.components.clear(UiCoreImplStagingComponent::class)

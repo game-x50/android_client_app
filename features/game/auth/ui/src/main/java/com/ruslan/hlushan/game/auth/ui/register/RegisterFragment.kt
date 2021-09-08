@@ -14,7 +14,7 @@ import com.ruslan.hlushan.core.ui.viewmodel.extensions.bindBaseViewModel
 import com.ruslan.hlushan.core.ui.viewmodel.extensions.handleCommandQueue
 import com.ruslan.hlushan.game.auth.ui.R
 import com.ruslan.hlushan.game.auth.ui.databinding.GameAuthUiRegisterScreenBinding
-import com.ruslan.hlushan.game.auth.ui.di.getGameAuthUiComponent
+import com.ruslan.hlushan.game.auth.ui.di.getAuthUiComponent
 import com.ruslan.hlushan.game.auth.ui.observeConfirmPasswordInput
 import com.ruslan.hlushan.game.auth.ui.showAuthError
 import com.ruslan.hlushan.game.auth.ui.showEmailInputError
@@ -31,11 +31,11 @@ internal class RegisterFragment : BaseFragment(
     private val binding by bindViewBinding(GameAuthUiRegisterScreenBinding::bind)
 
     private val viewModel: RegisterViewModel by bindBaseViewModel {
-        getGameAuthUiComponent().registerViewModelFactory().create(parentRouter)
+        getAuthUiComponent().registerViewModelFactory().create(parentRouter)
     }
 
     @UiMainThread
-    override fun injectDagger2() = getGameAuthUiComponent().inject(this)
+    override fun injectDagger2() = getAuthUiComponent().inject(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

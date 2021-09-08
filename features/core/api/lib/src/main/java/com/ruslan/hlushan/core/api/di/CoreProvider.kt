@@ -9,9 +9,6 @@ import com.ruslan.hlushan.core.api.managers.Settings
 import com.ruslan.hlushan.core.api.model.interactors.LanguagesInteractor
 import com.ruslan.hlushan.core.api.utils.InitAppConfig
 
-/**
- * @author Ruslan Hlushan on 10/29/18.
- */
 interface CoreProvider : ManagersProvider,
                          LoggersProvider,
                          LanguagesProvider,

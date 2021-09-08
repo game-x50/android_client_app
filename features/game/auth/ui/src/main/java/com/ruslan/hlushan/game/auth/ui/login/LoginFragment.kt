@@ -14,7 +14,7 @@ import com.ruslan.hlushan.core.ui.viewmodel.extensions.bindBaseViewModel
 import com.ruslan.hlushan.core.ui.viewmodel.extensions.handleCommandQueue
 import com.ruslan.hlushan.game.auth.ui.R
 import com.ruslan.hlushan.game.auth.ui.databinding.GameAuthUiLoginScreenBinding
-import com.ruslan.hlushan.game.auth.ui.di.getGameAuthUiComponent
+import com.ruslan.hlushan.game.auth.ui.di.getAuthUiComponent
 import com.ruslan.hlushan.game.auth.ui.forgot.password.ForgotPasswordScreen
 import com.ruslan.hlushan.game.auth.ui.register.RegisterScreen
 import com.ruslan.hlushan.game.auth.ui.showAuthError
@@ -31,11 +31,11 @@ internal class LoginFragment : BaseFragment(
     private val binding by bindViewBinding(GameAuthUiLoginScreenBinding::bind)
 
     private val viewModel: LoginViewModel by bindBaseViewModel {
-        getGameAuthUiComponent().loginViewModelFactory().create(parentRouter)
+        getAuthUiComponent().loginViewModelFactory().create(parentRouter)
     }
 
     @UiMainThread
-    override fun injectDagger2() = getGameAuthUiComponent().inject(this)
+    override fun injectDagger2() = getAuthUiComponent().inject(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

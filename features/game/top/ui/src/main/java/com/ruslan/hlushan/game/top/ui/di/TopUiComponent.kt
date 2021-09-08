@@ -1,12 +1,13 @@
 package com.ruslan.hlushan.game.top.ui.di
 
-import com.ruslan.hlushan.core.api.di.InjectorHolder
 import com.ruslan.hlushan.core.api.di.LoggersProvider
 import com.ruslan.hlushan.core.api.di.ManagersProvider
 import com.ruslan.hlushan.core.api.di.SchedulersProvider
 import com.ruslan.hlushan.core.api.di.UserErrorMapperProvider
+import com.ruslan.hlushan.core.api.di.asType
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
+import com.ruslan.hlushan.core.ui.fragment.injectorHolder
 import com.ruslan.hlushan.core.ui.routing.di.UiRoutingProvider
 import com.ruslan.hlushan.game.api.di.providers.AuthInteractorProvider
 import com.ruslan.hlushan.game.api.di.providers.TopInteractorProvider
@@ -15,6 +16,7 @@ import com.ruslan.hlushan.game.top.ui.games.TopGamesViewModel
 import dagger.Component
 
 @SuppressWarnings("ComplexInterface")
+@TopUiScope
 @Component(
         dependencies = [
             UiCoreProvider::class,
@@ -49,26 +51,22 @@ internal interface TopUiComponent {
     }
 }
 
-@SuppressWarnings("UnsafeCast")
 internal fun BaseFragment.getTopUiComponent(): TopUiComponent {
-    val injectorHolder = (activity?.application as InjectorHolder)
-    val components = injectorHolder.components
-    return components.getOrPut(TopUiComponent::class) {
+    val fragmentInjectorHolder = this.injectorHolder
+    return fragmentInjectorHolder.components.getOrPut(TopUiComponent::class) {
         DaggerTopUiComponent.factory()
                 .create(
-                        uiCoreProvider = (injectorHolder.iBaseInjector as UiCoreProvider),
-                        uiRoutingProvider = (injectorHolder.iBaseInjector as UiRoutingProvider),
-                        userErrorMapperProvider = (injectorHolder.iBaseInjector as UserErrorMapperProvider),
-                        managersProvider = (injectorHolder.iBaseInjector as ManagersProvider),
-                        loggersProvider = (injectorHolder.iBaseInjector as LoggersProvider),
-                        schedulersProvider = (injectorHolder.iBaseInjector as SchedulersProvider),
-                        topInteractorProvider = (injectorHolder.iBaseInjector as TopInteractorProvider),
-                        authInteractorProvider = (injectorHolder.iBaseInjector as AuthInteractorProvider)
+                        uiCoreProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        uiRoutingProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        userErrorMapperProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        managersProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        loggersProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        schedulersProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        topInteractorProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        authInteractorProvider = fragmentInjectorHolder.iBaseInjector.asType()
                 )
     }
 }
 
-internal fun BaseFragment.clearTopUiComponent() {
-    val injectorHolder = (activity?.application as InjectorHolder)
-    injectorHolder.components.clear(TopUiComponent::class)
-}
+internal fun BaseFragment.clearTopUiComponent() =
+        this.injectorHolder.components.clear(TopUiComponent::class)

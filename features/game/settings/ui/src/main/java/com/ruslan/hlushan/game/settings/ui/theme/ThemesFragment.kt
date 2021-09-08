@@ -16,7 +16,7 @@ import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.core.ui.viewbinding.extensions.bindViewBinding
 import com.ruslan.hlushan.game.settings.ui.R
 import com.ruslan.hlushan.game.settings.ui.databinding.GameSettingsUiThemesScreenBinding
-import com.ruslan.hlushan.game.settings.ui.di.getGameSettingsUiComponent
+import com.ruslan.hlushan.game.settings.ui.di.getSettingsUiComponent
 import com.ruslan.hlushan.third_party.androidx.insets.addSystemPadding
 import javax.inject.Inject
 
@@ -30,7 +30,7 @@ internal class ThemesFragment : BaseFragment(
     lateinit var settings: Settings
 
     @UiMainThread
-    override fun injectDagger2() = getGameSettingsUiComponent().inject(this)
+    override fun injectDagger2() = getSettingsUiComponent().inject(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
