@@ -17,4 +17,6 @@ android {
 
 dependencies {
     compileOnly(projects.features.core.api.lib)
+
+    testImplementation(projects.features.core.testUtils)
 }

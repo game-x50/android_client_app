@@ -13,7 +13,6 @@ android {
 
 dependencies {
     compileOnly(projects.features.core.android.extensions)
-    compileOnly(projects.features.core.ui.api.lib)//?
     compileOnly(projects.features.core.ui.dimens)
 
     implementation(projects.features.core.ui.colors)//todo: #check_compileOnly

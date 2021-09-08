@@ -16,4 +16,9 @@ dependencies {
     api(projects.features.core.ui.viewmodel.lib)
 
     compileOnly(projects.features.thirdParty.rxjava2.extensions)
+
+    testImplementation(projects.features.core.testUtils)
+    testImplementation(projects.features.core.extensions)
+    testImplementation(projects.features.core.ui.lifecycle.testUtils)
+    testImplementation(projects.features.core.ui.viewmodel.testUtils)
 }

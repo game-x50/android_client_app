@@ -27,7 +27,6 @@ include(
         ":features:core:impl:staging_tools",
 
         ":features:core:ui:api:lib",
-        ":features:core:ui:api:test_utils",
         ":features:core:ui:activity",
         ":features:core:ui:fragment",
         ":features:core:ui:dialog",
@@ -36,8 +35,10 @@ include(
         ":features:core:ui:dimens",
         ":features:core:ui:views",
         ":features:core:ui:lifecycle:lib",
+        ":features:core:ui:lifecycle:test_utils",
         ":features:core:ui:lifecycle:utils",
         ":features:core:ui:viewmodel:lib",
+        ":features:core:ui:viewmodel:test_utils",
         ":features:core:ui:viewmodel:extensions",
         ":features:core:ui:recycler:item",
         ":features:core:ui:recycler:adapter",

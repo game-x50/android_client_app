@@ -21,4 +21,8 @@ dependencies {
     api(Deps.androidxFragment)
 
     compileOnly(Deps.viewBinding)
+
+    testImplementation(projects.features.core.testUtils)
+    testImplementation(projects.features.core.api.testUtils)
+    testImplementation(projects.features.core.ui.lifecycle.testUtils)
 }

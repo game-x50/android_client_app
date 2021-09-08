@@ -1,0 +1,7 @@
+apply from: rootProject.ext[GradleExtraArgs.baseKotlinLibrary]
+
+dependencies {
+    api(projects.features.core.ui.lifecycle.lib)
+
+    compileOnly(projects.features.core.testUtils)
+}
