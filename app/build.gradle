@@ -1,7 +1,7 @@
 apply from: rootProject.ext[GradleExtraArgs.baseAndroidApp]
 
 apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
-apply from: rootProject.ext[GradleExtraArgs.viewBinding]
+apply from: rootProject.ext[GradleExtraArgs.androidAppViewBindingWithExtensions]
 apply from: rootProject.ext[GradleExtraArgs.applicationLeakCanaryTool]
 
 apply from: rootProject.ext[GradleExtraArgs.apkSigning]
@@ -105,8 +105,6 @@ dependencies {
     implementation(projects.features.core.ui.viewmodel.extensions)
 
     runtimeOnly(projects.features.core.ui.pagination.view)
-
-    implementation(projects.features.core.ui.viewbinding.extensions)
 
     compileOnly(projects.features.core.network.api)//todo: compileOnly here instead of network_impl module because of some used extensions in network_impl, try to use implementation here and compileOnly in network_impl module
     implementation(projects.features.core.network.impl.lib)

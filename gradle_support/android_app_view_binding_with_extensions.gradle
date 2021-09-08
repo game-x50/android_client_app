@@ -1,0 +1,5 @@
+apply from: rootProject.ext[GradleExtraArgs.viewBinding]
+
+dependencies {
+    implementation(projects.features.core.ui.viewbinding.extensions)
+}

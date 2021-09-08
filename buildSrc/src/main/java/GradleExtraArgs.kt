@@ -23,7 +23,10 @@ object GradleExtraArgs {
     const val kapt = "gradle_support_kapt"
     const val dagger2Kapt = "gradle_support_dagger2_kapt"
     const val room = "gradle_support_room"
+
     const val viewBinding = "gradle_support_android_view_binding"
+    const val androidLibraryViewBindingWithExtensions = "gradle_support_android_library_view_binding_with_extensions"
+    const val androidAppViewBindingWithExtensions = "gradle_support_android_app_view_binding_with_extensions"
 
     const val kotlinxSerilization = "gradle_support_kotlinx_serilization"
 

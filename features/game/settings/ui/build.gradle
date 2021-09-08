@@ -2,7 +2,7 @@ apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
 apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
 
 apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
-apply from: rootProject.ext[GradleExtraArgs.viewBinding]
+apply from: rootProject.ext[GradleExtraArgs.androidLibraryViewBindingWithExtensions]
 
 def localizationFolder = rootProject.ext[GradleExtraArgs.localizationFolder]
 
@@ -31,7 +31,6 @@ dependencies {
     compileOnly(projects.features.core.ui.layout.container)
     compileOnly(projects.features.core.ui.viewmodel.extensions)
     compileOnly(projects.features.core.ui.recycler.adapter)
-    compileOnly(projects.features.core.ui.viewbinding.extensions)
     compileOnly(projects.features.core.ui.views)
 
     implementation(projects.features.core.ui.dimens)//todo: #check_compileOnly

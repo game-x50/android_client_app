@@ -2,7 +2,7 @@ apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
 apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
 
 apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
-apply from: rootProject.ext[GradleExtraArgs.viewBinding]
+apply from: rootProject.ext[GradleExtraArgs.androidLibraryViewBindingWithExtensions]
 
 android {
     defaultConfig {
@@ -20,7 +20,6 @@ dependencies {
     compileOnly(projects.features.thirdParty.androidx.insets)
     compileOnly(projects.features.core.ui.pagination.view)
     compileOnly(projects.features.core.ui.viewmodel.extensions)
-    compileOnly(projects.features.core.ui.viewbinding.extensions)
     compileOnly(projects.features.game.api.lib)
 
     implementation(projects.features.core.ui.dimens)//todo: #check_compileOnly
