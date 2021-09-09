@@ -1,0 +1,27 @@
+apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
+apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
+
+apply plugin: Plugins.kotlinParcelize
+
+android {
+    defaultConfig {
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+//    resourcePrefix("game_play_ui_")
+}
+
+dependencies {
+    api(projects.features.game.play.api)
+
+    compileOnly(projects.features.core.extensions)
+    compileOnly(projects.features.core.android.extensions)
+    compileOnly(projects.features.core.api.lib)
+    compileOnly(projects.features.thirdParty.rxjava2.extensions)
+
+    api(Deps.threeTenBp)
+
+    compileOnly(Deps.androidxCoreKtx)
+    compileOnly(Deps.androidMaterial)
+}

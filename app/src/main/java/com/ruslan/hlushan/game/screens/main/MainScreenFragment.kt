@@ -18,7 +18,7 @@ import com.ruslan.hlushan.extensions.ifNotNull
 import com.ruslan.hlushan.game.R
 import com.ruslan.hlushan.game.databinding.GameAppMainScreenBinding
 import com.ruslan.hlushan.game.di.getGameMainUiComponent
-import com.ruslan.hlushan.game.play.ui.flow.PlayFlowScreen
+import com.ruslan.hlushan.game.play.ui.screens.flow.PlayFlowScreen
 import com.ruslan.hlushan.game.settings.ui.flow.SettingsFlowScreen
 
 private const val MAIN_FLOW_NAME = "MAIN_FLOW"
