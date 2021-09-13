@@ -1,0 +1,5 @@
+apply from: rootProject.ext[GradleExtraArgs.baseKotlinLibrary]
+
+dependencies {
+    api(projects.features.core.logger.api.lib)
+}

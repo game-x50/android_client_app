@@ -2,8 +2,8 @@ package com.ruslan.hlushan.game.storage.impl.di
 
 import com.ruslan.hlushan.android.core.api.di.AppContextProvider
 import com.ruslan.hlushan.core.api.di.DatabaseViewInfoListProvider
-import com.ruslan.hlushan.core.api.di.LoggersProvider
 import com.ruslan.hlushan.core.api.di.SchedulersProvider
+import com.ruslan.hlushan.core.logger.api.di.LoggersProvider
 import com.ruslan.hlushan.game.api.di.providers.AuthorizedNetworkApiCreatorProvider
 import com.ruslan.hlushan.game.api.di.providers.GameSettingsProvider
 import com.ruslan.hlushan.game.api.di.providers.PlayRecordsInteractorProvider

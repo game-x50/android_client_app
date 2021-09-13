@@ -1,7 +1,7 @@
 package com.ruslan.hlushan.core.impl.utils
 
 import android.content.SharedPreferences
-import com.ruslan.hlushan.extensions.defIfEmpty
+import com.ruslan.hlushan.core.extensions.defIfEmpty
 import java.util.Locale
 
 private const val KEY_APP_LANGUAGE_FULL_CODE = "KEY_APP_LANGUAGE_FULL_CODE"

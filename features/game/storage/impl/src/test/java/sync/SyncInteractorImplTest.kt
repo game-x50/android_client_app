@@ -2,8 +2,8 @@ package sync
 
 import assertRecordsWithSyncStateInLocalRepo
 import com.ruslan.hlushan.core.api.dto.OperationResult
-import com.ruslan.hlushan.core.api.test.utils.log.EmptyAppLoggerImpl
 import com.ruslan.hlushan.core.api.test.utils.managers.CurrentThreadSchedulersManager
+import com.ruslan.hlushan.core.logger.api.test.utils.EmptyAppLoggerImpl
 import com.ruslan.hlushan.game.api.play.dto.GameRecord
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
@@ -53,7 +53,7 @@ internal class SyncInteractorImplTest {
     @Before
     fun before() {
         val scheduler = CurrentThreadSchedulersManager()
-        val logger = EmptyAppLoggerImpl()
+        val logger = EmptyAppLoggerImpl
 
         localRecordsRepositoryStorage = LocalRecordsRepositoryStorageMockImpl()
         localRepo = LocalRecordsRepoTestImpl(localRecordsRepositoryStorage, scheduler)

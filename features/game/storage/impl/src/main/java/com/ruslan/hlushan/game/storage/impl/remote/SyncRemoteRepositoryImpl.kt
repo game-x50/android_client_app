@@ -1,7 +1,7 @@
 package com.ruslan.hlushan.game.storage.impl.remote
 
-import com.ruslan.hlushan.core.api.log.AppLogger
 import com.ruslan.hlushan.core.api.managers.SchedulersManager
+import com.ruslan.hlushan.core.logger.api.AppLogger
 import com.ruslan.hlushan.game.storage.impl.remote.dto.LocalModifiedResponse
 import com.ruslan.hlushan.game.storage.impl.remote.dto.RemoteRecord
 import com.ruslan.hlushan.game.storage.impl.remote.dto.UpdateLocalNonModifiedResponse

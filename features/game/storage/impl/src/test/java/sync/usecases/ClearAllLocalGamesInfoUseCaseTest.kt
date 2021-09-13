@@ -1,7 +1,7 @@
 package sync.usecases
 
 import com.ruslan.hlushan.core.api.test.utils.managers.CurrentThreadSchedulersManager
-import com.ruslan.hlushan.extensions.addAsFirstTo
+import com.ruslan.hlushan.core.extensions.addAsFirstTo
 import com.ruslan.hlushan.game.api.play.ClearAllLocalGamesInfoUseCase
 import com.ruslan.hlushan.game.storage.impl.ClearAllLocalGamesInfoUseCaseImpl
 import com.ruslan.hlushan.test.utils.generateFakeInstantTimestamp

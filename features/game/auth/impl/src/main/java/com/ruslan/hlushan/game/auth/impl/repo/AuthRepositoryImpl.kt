@@ -24,9 +24,9 @@ import com.ruslan.hlushan.core.api.dto.mapSuccess
 import com.ruslan.hlushan.core.api.dto.toOperationResult
 import com.ruslan.hlushan.core.api.exceptions.NetworkException
 import com.ruslan.hlushan.core.api.exceptions.mapError
-import com.ruslan.hlushan.core.api.log.AppLogger
 import com.ruslan.hlushan.core.api.managers.SchedulersManager
-import com.ruslan.hlushan.extensions.ifNotNull
+import com.ruslan.hlushan.core.extensions.ifNotNull
+import com.ruslan.hlushan.core.logger.api.AppLogger
 import com.ruslan.hlushan.game.api.auth.dto.AuthError
 import com.ruslan.hlushan.game.api.auth.dto.User
 import com.ruslan.hlushan.game.auth.impl.repo.dto.server.UserNameRequest

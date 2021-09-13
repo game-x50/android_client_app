@@ -1,7 +1,7 @@
 package com.ruslan.hlushan.game.top.impl.di
 
-import com.ruslan.hlushan.core.api.di.LoggersProvider
 import com.ruslan.hlushan.core.api.di.SchedulersProvider
+import com.ruslan.hlushan.core.logger.api.di.LoggersProvider
 import com.ruslan.hlushan.game.api.di.providers.NonAuthorizedNetworkApiCreatorProvider
 import com.ruslan.hlushan.game.api.di.providers.TopInteractorProvider
 import com.ruslan.hlushan.game.api.network.GameNetworkParams

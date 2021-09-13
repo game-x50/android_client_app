@@ -1,7 +1,7 @@
 package com.ruslan.hlushan.game.error
 
 import com.google.firebase.crashlytics.FirebaseCrashlytics
-import com.ruslan.hlushan.core.api.log.ErrorLogger
+import com.ruslan.hlushan.core.logger.api.ErrorLogger
 import com.ruslan.hlushan.game.BuildConfig
 
 internal class ErrorLoggerImpl : ErrorLogger {

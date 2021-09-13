@@ -1,7 +1,7 @@
 package command.strategy
 
 import com.ruslan.hlushan.core.command.strategy.AddToEndSingleStrategy
-import com.ruslan.hlushan.extensions.withoutFirst
+import com.ruslan.hlushan.core.extensions.withoutFirst
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Test

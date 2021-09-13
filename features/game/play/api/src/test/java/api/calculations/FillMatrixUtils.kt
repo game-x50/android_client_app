@@ -6,7 +6,7 @@ import api.getIndexesForRectangle
 import api.getIndexesForRow
 import api.isIndexInColumn
 import api.isIndexInRow
-import com.ruslan.hlushan.extensions.removeFirst
+import com.ruslan.hlushan.core.extensions.removeFirst
 import com.ruslan.hlushan.game.api.play.dto.GameSize
 import com.ruslan.hlushan.game.play.api.calculations.ItemsMatrix
 import com.ruslan.hlushan.test.utils.generateFakePositiveInt

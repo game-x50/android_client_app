@@ -19,6 +19,8 @@ android {
 }
 
 dependencies {
+    api(projects.features.core.logger.api.lib)
+
     compileOnly(projects.features.core.api.lib)
     compileOnly(projects.features.core.android.api)
     compileOnly(projects.features.core.extensions)
@@ -43,5 +45,6 @@ dependencies {
     testImplementation(projects.features.core.testUtils)
     testImplementation(projects.features.thirdParty.rxjava2.testUtils)
     testImplementation(projects.features.core.api.testUtils)
+    testImplementation(projects.features.core.logger.api.testUtils)
     testImplementation(projects.features.game.api.testUtils)
 }

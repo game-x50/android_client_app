@@ -1,6 +1,5 @@
 package sync.usecases.downloadNewRemoteCreated
 
-import com.ruslan.hlushan.core.api.test.utils.log.EmptyAppLoggerImpl
 import com.ruslan.hlushan.core.api.test.utils.managers.CurrentThreadSchedulersManager
 import com.ruslan.hlushan.game.storage.impl.DownloadNewRemoteCreatedUseCase
 import org.junit.Before
@@ -30,7 +29,7 @@ internal abstract class BaseDownloadNewRemoteCreatedUseCaseTest {
     @Before
     fun before() {
         val scheduler = CurrentThreadSchedulersManager()
-        val logger = EmptyAppLoggerImpl()
+        val logger = com.ruslan.hlushan.core.logger.api.test.utils.EmptyAppLoggerImpl
 
         storage = LocalRecordsRepositoryStorageMockImpl()
         localRepo = LocalRecordsRepoTestImpl(storage, scheduler)

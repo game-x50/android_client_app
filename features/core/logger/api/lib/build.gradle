@@ -1,0 +1,7 @@
+apply from: rootProject.ext[GradleExtraArgs.baseKotlinLibrary]
+
+dependencies {
+    api(projects.features.core.pagination.api)
+
+    api(Deps.rxJava2)
+}

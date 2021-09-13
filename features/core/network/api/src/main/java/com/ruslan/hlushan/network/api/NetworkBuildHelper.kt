@@ -1,8 +1,8 @@
 package com.ruslan.hlushan.network.api
 
 import android.content.Context
-import com.ruslan.hlushan.core.api.log.AppLogger
 import com.ruslan.hlushan.core.api.utils.InitAppConfig
+import com.ruslan.hlushan.core.logger.api.AppLogger
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 

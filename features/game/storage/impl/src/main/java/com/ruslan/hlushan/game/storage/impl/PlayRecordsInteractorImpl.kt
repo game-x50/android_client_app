@@ -2,7 +2,7 @@ package com.ruslan.hlushan.game.storage.impl
 
 import android.annotation.SuppressLint
 import com.ruslan.hlushan.core.api.dto.ValueHolder
-import com.ruslan.hlushan.core.api.log.AppLogger
+import com.ruslan.hlushan.core.logger.api.AppLogger
 import com.ruslan.hlushan.core.pagination.api.PaginationPagesRequest
 import com.ruslan.hlushan.core.pagination.api.PaginationResponse
 import com.ruslan.hlushan.game.api.play.PlayRecordsInteractor

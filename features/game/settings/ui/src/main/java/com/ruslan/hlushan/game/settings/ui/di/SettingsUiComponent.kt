@@ -1,11 +1,11 @@
 package com.ruslan.hlushan.game.settings.ui.di
 
 import com.ruslan.hlushan.core.api.di.LanguagesProvider
-import com.ruslan.hlushan.core.api.di.LoggersProvider
 import com.ruslan.hlushan.core.api.di.ManagersProvider
 import com.ruslan.hlushan.core.api.di.SchedulersProvider
 import com.ruslan.hlushan.core.api.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.api.di.asType
+import com.ruslan.hlushan.core.logger.api.di.LoggersProvider
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.core.ui.fragment.injectorHolder

@@ -1,7 +1,7 @@
 package com.ruslan.hlushan.game.storage.impl
 
 import androidx.annotation.IntRange
-import com.ruslan.hlushan.core.api.log.AppLogger
+import com.ruslan.hlushan.core.logger.api.AppLogger
 import com.ruslan.hlushan.game.storage.impl.local.LocalRecordsRepository
 import com.ruslan.hlushan.game.storage.impl.remote.SyncRemoteRepository
 import com.ruslan.hlushan.game.storage.impl.remote.dto.server.GetNewRemoteCreatedRequest

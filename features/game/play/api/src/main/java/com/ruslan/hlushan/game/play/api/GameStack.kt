@@ -2,8 +2,8 @@ package com.ruslan.hlushan.game.play.api
 
 import androidx.annotation.IntRange
 import androidx.annotation.VisibleForTesting
-import com.ruslan.hlushan.extensions.clearAndAddAll
-import com.ruslan.hlushan.extensions.removeLast
+import com.ruslan.hlushan.core.extensions.clearAndAddAll
+import com.ruslan.hlushan.core.extensions.removeLast
 import com.ruslan.hlushan.game.api.play.dto.MatrixAndNewItemsState
 
 class GameStack(@IntRange(from = 1) limit: Int = DEFAULT_LIMIT) {

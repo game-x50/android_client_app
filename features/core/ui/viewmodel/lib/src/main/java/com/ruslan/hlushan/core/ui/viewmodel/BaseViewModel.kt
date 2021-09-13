@@ -3,10 +3,10 @@ package com.ruslan.hlushan.core.ui.viewmodel
 import androidx.annotation.CallSuper
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
-import com.ruslan.hlushan.core.api.log.AppLogger
 import com.ruslan.hlushan.core.api.utils.thread.ThreadChecker
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.api.utils.thread.checkThread
+import com.ruslan.hlushan.core.logger.api.AppLogger
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import java.util.concurrent.atomic.AtomicReference

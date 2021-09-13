@@ -1,15 +1,19 @@
 package com.ruslan.hlushan.game.di
 
 import com.ruslan.hlushan.android.core.api.di.AppContextProvider
-import com.ruslan.hlushan.core.api.di.CoreProvider
 import com.ruslan.hlushan.core.api.di.DatabaseViewInfoListProvider
 import com.ruslan.hlushan.core.api.di.IBaseInjector
+import com.ruslan.hlushan.core.api.di.LanguagesProvider
+import com.ruslan.hlushan.core.api.di.ManagersProvider
+import com.ruslan.hlushan.core.api.di.SchedulersProvider
 import com.ruslan.hlushan.core.api.di.ToolsProvider
 import com.ruslan.hlushan.core.api.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.api.dto.DatabaseViewInfo
 import com.ruslan.hlushan.core.api.utils.InitAppConfig
 import com.ruslan.hlushan.core.impl.di.CoreImplExportComponent
 import com.ruslan.hlushan.core.impl.tools.createToolsProvider
+import com.ruslan.hlushan.core.logger.api.di.LoggersProvider
+import com.ruslan.hlushan.core.logger.impl.di.LoggerImplExportComponent
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
 import com.ruslan.hlushan.core.ui.impl.di.UiCoreImplExportComponent
 import com.ruslan.hlushan.core.ui.routing.di.UiRoutingProvider
@@ -39,7 +43,10 @@ import javax.inject.Singleton
 @Component(
         modules = [GameAppModule::class],
         dependencies = [
-            CoreProvider::class,
+            ManagersProvider::class,
+            LoggersProvider::class,
+            LanguagesProvider::class,
+            SchedulersProvider::class,
             AppContextProvider::class,
             UiCoreProvider::class,
             UiRoutingProvider::class,
@@ -53,7 +60,10 @@ import javax.inject.Singleton
         ]
 )
 internal interface GameAppComponent : IBaseInjector,
-                                      CoreProvider,
+                                      ManagersProvider,
+                                      LoggersProvider,
+                                      LanguagesProvider,
+                                      SchedulersProvider,
                                       UiCoreProvider,
                                       UiRoutingProvider,
                                       ToolsProvider,
@@ -74,7 +84,10 @@ internal interface GameAppComponent : IBaseInjector,
         fun create(
                 @BindsInstance allAppDatabases: List<DatabaseViewInfo>,
                 @BindsInstance compositeWorkerFactory: CompositeWorkerFactory,
-                coreProvider: CoreProvider,
+                managersProvider: ManagersProvider,
+                loggersProvider: LoggersProvider,
+                languagesProvider: LanguagesProvider,
+                schedulersProvider: SchedulersProvider,
                 appContextProvider: AppContextProvider,
                 uiCoreProvider: UiCoreProvider,
                 uiRoutingProvider: UiRoutingProvider,
@@ -96,21 +109,27 @@ internal interface GameAppComponent : IBaseInjector,
             val networkConfig = NetworkConfig()
             val gameNetworkParams = GameNetworkParams(baseApiUrl = BuildConfig.BASE_API_URL)
 
-            val coreProvider = CoreImplExportComponent.Initializer.init(
+            val coreImplProvider = CoreImplExportComponent.Initializer.init(
                     application = app,
+                    initAppConfig = initAppConfig
+            )
+
+            val loggersProvider = LoggerImplExportComponent.Initializer.init(
                     initAppConfig = initAppConfig,
-                    errorLogger = ErrorLoggerImpl()
+                    errorLogger = ErrorLoggerImpl(),
+                    appContextProvider = coreImplProvider
             )
 
             val toolsProvider = createToolsProvider(
-                    appContextProvider = coreProvider,
-                    loggersProvider = coreProvider
+                    appContextProvider = coreImplProvider,
+                    loggersProvider = loggersProvider
             )
 
             val uiCoreProvider = UiCoreImplExportComponent.Initializer.init(
                     external = emptyList(),
-                    coreProvider = coreProvider,
-                    appContextProvider = coreProvider
+                    managersProvider = coreImplProvider,
+                    loggersProvider = loggersProvider,
+                    appContextProvider = coreImplProvider
             )
 
             val networkBuildHelperProvider = NetworkImplExportComponent.Initializer.init()
@@ -119,9 +138,9 @@ internal interface GameAppComponent : IBaseInjector,
                     initAppConfig = initAppConfig,
                     networkConfig = networkConfig,
                     gameNetworkParams = gameNetworkParams,
-                    appContextProvider = coreProvider,
-                    loggersProvider = coreProvider,
-                    schedulersProvider = coreProvider,
+                    appContextProvider = coreImplProvider,
+                    loggersProvider = loggersProvider,
+                    schedulersProvider = coreImplProvider,
                     networkBuildHelperProvider = networkBuildHelperProvider
             )
 
@@ -131,30 +150,30 @@ internal interface GameAppComponent : IBaseInjector,
                     initAppConfig = initAppConfig,
                     networkConfig = networkConfig,
                     authRepoHolder = authRepoHolder,
-                    appContextProvider = coreProvider,
-                    loggersProvider = coreProvider,
+                    appContextProvider = coreImplProvider,
+                    loggersProvider = loggersProvider,
                     networkBuildHelperProvider = networkBuildHelperProvider
             )
 
             val gameRecordsFeatureProvider = RecordsExportComponentProvider.Initializer.init(
                     gameNetworkParams = gameNetworkParams,
-                    appContextProvider = coreProvider,
-                    loggersProvider = coreProvider,
-                    schedulersProvider = coreProvider,
+                    appContextProvider = coreImplProvider,
+                    loggersProvider = loggersProvider,
+                    schedulersProvider = coreImplProvider,
                     authorizedNetworkApiCreatorProvider = authorizedNetworkApiCreatorProvider
             )
 
             val topInteractorProvider = TopInteractorExportComponentProvider.Initializer.init(
                     gameNetworkParams = gameNetworkParams,
-                    loggersProvider = coreProvider,
-                    schedulersProvider = coreProvider,
+                    loggersProvider = loggersProvider,
+                    schedulersProvider = coreImplProvider,
                     nonAuthorizedNetworkApiCreatorProvider = authRepoExportComponentProvider
             )
 
             val authInteractorProvider = AuthInteractorExportComponentProvider.Initializer.init(
                     recordsUseCasesProvider = gameRecordsFeatureProvider,
                     authRepoHolder = authRepoHolder,
-                    schedulersProvider = coreProvider
+                    schedulersProvider = coreImplProvider
             )
 
             val allAppDatabases: List<DatabaseViewInfo> = gameRecordsFeatureProvider.provideDatabases()
@@ -167,8 +186,11 @@ internal interface GameAppComponent : IBaseInjector,
                     .create(
                             allAppDatabases = allAppDatabases,
                             compositeWorkerFactory = compositeWorkerFactory,
-                            coreProvider = coreProvider,
-                            appContextProvider = coreProvider,
+                            managersProvider = coreImplProvider,
+                            loggersProvider = loggersProvider,
+                            languagesProvider = coreImplProvider,
+                            schedulersProvider = coreImplProvider,
+                            appContextProvider = coreImplProvider,
                             uiCoreProvider = uiCoreProvider,
                             uiRoutingProvider = uiCoreProvider,
                             toolsProvider = toolsProvider,

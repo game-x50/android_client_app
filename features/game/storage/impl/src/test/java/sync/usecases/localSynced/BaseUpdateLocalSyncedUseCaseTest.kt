@@ -1,6 +1,5 @@
 package sync.usecases.localSynced
 
-import com.ruslan.hlushan.core.api.test.utils.log.EmptyAppLoggerImpl
 import com.ruslan.hlushan.core.api.test.utils.managers.CurrentThreadSchedulersManager
 import com.ruslan.hlushan.game.storage.impl.PlayRecordsInteractorImpl
 import com.ruslan.hlushan.game.storage.impl.UpdateLocalSyncedUseCase
@@ -32,7 +31,7 @@ internal abstract class BaseUpdateLocalSyncedUseCaseTest {
     @Before
     fun before() {
         val scheduler = CurrentThreadSchedulersManager()
-        val logger = EmptyAppLoggerImpl()
+        val logger = com.ruslan.hlushan.core.logger.api.test.utils.EmptyAppLoggerImpl
 
         localRepo = LocalRecordsRepoTestImpl(LocalRecordsRepositoryStorageMockImpl(), scheduler)
         remoteRepo = SyncRemoteRepositoryMockImpl()

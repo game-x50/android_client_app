@@ -2,8 +2,8 @@ package com.ruslan.hlushan.game.storage.impl.local
 
 import androidx.annotation.IntRange
 import com.ruslan.hlushan.core.api.dto.ValueHolder
-import com.ruslan.hlushan.core.api.log.AppLogger
 import com.ruslan.hlushan.core.api.managers.SchedulersManager
+import com.ruslan.hlushan.core.logger.api.AppLogger
 import com.ruslan.hlushan.core.pagination.api.PaginationPagesRequest
 import com.ruslan.hlushan.core.pagination.api.PaginationResponse
 import com.ruslan.hlushan.game.api.play.dto.GameRecord

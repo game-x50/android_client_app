@@ -6,9 +6,6 @@ import leakcanary.AppWatcher
 import leakcanary.LeakCanary
 import javax.inject.Inject
 
-/**
- * @author Ruslan Hlushan on 2019-07-18
- */
 internal class LeakCanaryToolStagingImpl
 @Inject
 constructor(

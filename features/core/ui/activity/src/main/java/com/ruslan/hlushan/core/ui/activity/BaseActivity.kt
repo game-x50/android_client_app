@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
-import com.ruslan.hlushan.core.api.log.AppLogger
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.logger.api.AppLogger
 import com.ruslan.hlushan.core.ui.api.manager.AppActivitiesSettings
 import com.ruslan.hlushan.core.ui.dialog.DialogCommandsHandlerLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.dialog.command.DialogCommandsHandler
