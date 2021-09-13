@@ -25,6 +25,7 @@ import com.ruslan.hlushan.core.ui.api.R
 import com.ruslan.hlushan.core.ui.api.manager.AppActivitiesSettings
 import com.ruslan.hlushan.core.ui.api.utils.LockableHandler
 import com.ruslan.hlushan.core.ui.api.utils.NewIntentHandler
+import com.ruslan.hlushan.core.ui.api.utils.OnBackPressedHandler
 import com.ruslan.hlushan.core.ui.dialog.DialogCommandsHandlerLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.dialog.command.DialogCommandsHandler
 import com.ruslan.hlushan.core.ui.dialog.showDialogMessage
@@ -44,7 +45,8 @@ constructor(
 ) : Fragment(layoutResId),
     DialogCommandsHandler.Owner,
     LifecyclePluginObserver.Owner,
-    NewIntentHandler {
+    NewIntentHandler,
+    OnBackPressedHandler {
 
     @UiMainThread
     private val lifecyclePluginObservers: MutableList<LifecyclePluginObserver> = mutableListOf()
@@ -197,7 +199,7 @@ constructor(
     }
 
     @UiMainThread
-    protected open fun onBackPressed() = parentRouter.exit()
+    override fun onBackPressed() = parentRouter.exit()
 
     @UiMainThread
     protected open fun onCloseScope() = Unit
@@ -213,10 +215,6 @@ constructor(
         addLifecyclePluginObserver(AppActivitiesSettingsLifecyclePluginObserver(
                 owner = this,
                 appActivitiesSettings = appActivitiesSettings
-        ))
-        addLifecyclePluginObserver(OnBackPressedCallbackLifecyclePluginObserver(
-                owner = this,
-                onBackPressed = ::onBackPressed
         ))
     }
 
