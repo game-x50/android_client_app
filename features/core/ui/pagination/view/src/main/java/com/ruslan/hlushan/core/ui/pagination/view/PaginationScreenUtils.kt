@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.ruslan.hlushan.android.extensions.colorAttributeValue
+import com.ruslan.hlushan.core.recycler.item.RecyclerItem
 import com.ruslan.hlushan.core.ui.pagination.viewmodel.PaginationViewModel
 import com.ruslan.hlushan.core.ui.recycler.adapter.DelegatesRecyclerAdapter
-import com.ruslan.hlushan.core.ui.recycler.item.RecyclerItem
 import com.ruslan.hlushan.third_party.androidx.recyclerview.extensions.addPaginationScrollListener
 import com.ruslan.hlushan.third_party.androidx.recyclerview.extensions.setUpDefaults
 

@@ -9,10 +9,10 @@ import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.command.extensions.handleCommandQueue
+import com.ruslan.hlushan.core.pagination.api.PaginationState
 import com.ruslan.hlushan.core.ui.dialog.showSimpleProgress
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.core.ui.pagination.view.setUpPagination
-import com.ruslan.hlushan.core.ui.pagination.viewmodel.PaginationState
 import com.ruslan.hlushan.core.ui.recycler.adapter.DelegatesRecyclerAdapter
 import com.ruslan.hlushan.core.ui.recycler.adapter.RecyclerViewLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.viewbinding.extensions.bindViewBinding
@@ -200,11 +200,11 @@ internal class GameRecordsListFragment :
             is PaginationState.Additional.WaitingForLoadMore -> {
                 //TODO
             }
-            is PaginationState.Additional.Error -> {
+            is PaginationState.Additional.Error              -> {
                 //TODO
             }
             is PaginationState.Additional.Loading,
-            null                                -> Unit
+            null                                             -> Unit
         }.exhaustive
     }
 

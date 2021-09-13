@@ -1,4 +1,4 @@
-package com.ruslan.hlushan.core.api.dto.pagination
+package com.ruslan.hlushan.core.pagination.api
 
 sealed class PaginationResponse<out T : Any, out Id : Any> {
 
@@ -39,7 +39,7 @@ fun <T : Any, Id : Any, R : Any> PaginationResponse<T, Id>.map(transform: (T) ->
     val transformedResult = this.result.map(transform)
 
     return when (this) {
-        is PaginationResponse.FirstPage -> PaginationResponse.FirstPage(
+        is PaginationResponse.FirstPage  -> PaginationResponse.FirstPage(
                 result = transformedResult,
                 nextPageId = this.nextPageId
         )
@@ -49,7 +49,7 @@ fun <T : Any, Id : Any, R : Any> PaginationResponse<T, Id>.map(transform: (T) ->
                 currentPageId = this.currentPageId,
                 nextPageId = this.nextPageId
         )
-        is PaginationResponse.LastPage -> PaginationResponse.LastPage(
+        is PaginationResponse.LastPage   -> PaginationResponse.LastPage(
                 result = transformedResult,
                 previousPageId = this.previousPageId,
                 currentPageId = this.currentPageId,
@@ -71,7 +71,7 @@ fun <Id : Any, RequestId : Id?, Item : Any> createPaginationResponseByLimits(
         createPreviousPageIdFor: (RequestId, List<Item>) -> PreviousPageId.Existing<Id>
 ): PaginationResponse<Item, Id> =
         when (pagesRequest) {
-            is PaginationPagesRequest.Init -> {
+            is PaginationPagesRequest.Init     -> {
                 if (isLastOrFirstPage(pageResult, limit)) {
                     PaginationResponse.SinglePage(result = pageResult)
                 } else {
@@ -81,7 +81,7 @@ fun <Id : Any, RequestId : Id?, Item : Any> createPaginationResponseByLimits(
                     )
                 }
             }
-            is PaginationPagesRequest.Next -> {
+            is PaginationPagesRequest.Next     -> {
                 val currentPageId = PageId.SecondOrMore(requestPageId!!)
                 val previousPageId = PreviousPageId.Existing(pagesRequest.lastLoadedPageId)
                 if (isLastOrFirstPage(pageResult, limit)) {

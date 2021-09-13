@@ -10,9 +10,6 @@ import io.reactivex.Completable
 import io.reactivex.Single
 import org.threeten.bp.Instant
 
-/**
- * @author Ruslan Hlushan on 2019-06-25
- */
 internal class LocalRecordsRepoTestImpl(
         localRecordsRepositoryStorage: LocalRecordsRepositoryStorage,
         schedulersManager: SchedulersManager,

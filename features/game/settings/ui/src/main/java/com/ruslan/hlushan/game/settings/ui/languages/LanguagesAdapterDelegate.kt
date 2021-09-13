@@ -9,10 +9,10 @@ import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
 import com.ruslan.hlushan.core.api.dto.WrappedLanguage
 import com.ruslan.hlushan.core.api.managers.ResourceManager
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.recycler.item.RecyclerItem
 import com.ruslan.hlushan.core.ui.recycler.adapter.AdapterDelegate
 import com.ruslan.hlushan.core.ui.recycler.adapter.BaseItemViewHolder
 import com.ruslan.hlushan.core.ui.recycler.adapter.OnItemClickListener
-import com.ruslan.hlushan.core.ui.recycler.item.RecyclerItem
 import com.ruslan.hlushan.extensions.ifNotNull
 import com.ruslan.hlushan.game.settings.ui.R
 import com.ruslan.hlushan.game.settings.ui.databinding.GameSettingsUiItemLanguageBinding

@@ -1,10 +1,10 @@
 package com.ruslan.hlushan.core.ui.pagination.viewmodel
 
-import com.ruslan.hlushan.core.api.dto.pagination.PaginationLimits
 import com.ruslan.hlushan.core.api.log.AppLogger
 import com.ruslan.hlushan.core.api.managers.SchedulersManager
 import com.ruslan.hlushan.core.api.utils.thread.ThreadChecker
-import com.ruslan.hlushan.core.ui.recycler.item.RecyclerItem
+import com.ruslan.hlushan.core.pagination.api.PaginationLimits
+import com.ruslan.hlushan.core.recycler.item.RecyclerItem
 
 abstract class SearchPaginationViewModel<ItemId : Any, RI : RecyclerItem<ItemId>, PageId : Any>(
         appLogger: AppLogger,

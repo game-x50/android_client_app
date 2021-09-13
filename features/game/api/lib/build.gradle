@@ -1,6 +1,8 @@
 apply from: rootProject.ext[GradleExtraArgs.baseKotlinLibrary]
 
 dependencies {
+    api(projects.features.core.pagination.api)
+
     compileOnly(projects.features.core.api.lib)
     compileOnly(projects.features.core.extensions)
 

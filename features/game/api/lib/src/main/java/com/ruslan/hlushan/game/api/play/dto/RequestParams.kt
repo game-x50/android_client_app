@@ -1,16 +1,13 @@
 package com.ruslan.hlushan.game.api.play.dto
 
-import com.ruslan.hlushan.core.api.dto.pagination.NextPageId
-import com.ruslan.hlushan.core.api.dto.pagination.PageId
-import com.ruslan.hlushan.core.api.dto.pagination.PaginationPagesRequest
-import com.ruslan.hlushan.core.api.dto.pagination.PaginationResponse
-import com.ruslan.hlushan.core.api.dto.pagination.PreviousPageId
-import com.ruslan.hlushan.core.api.dto.pagination.createPaginationResponseByLimits
+import com.ruslan.hlushan.core.pagination.api.NextPageId
+import com.ruslan.hlushan.core.pagination.api.PageId
+import com.ruslan.hlushan.core.pagination.api.PaginationPagesRequest
+import com.ruslan.hlushan.core.pagination.api.PaginationResponse
+import com.ruslan.hlushan.core.pagination.api.PreviousPageId
+import com.ruslan.hlushan.core.pagination.api.createPaginationResponseByLimits
 import org.threeten.bp.Instant
 
-/**
- * @author Ruslan Hlushan on 2019-07-31
- */
 sealed class RequestParams {
 
     abstract val excludedIds: List<Long>

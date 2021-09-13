@@ -2,8 +2,8 @@ package com.ruslan.hlushan.game.storage.impl.local
 
 import androidx.annotation.IntRange
 import com.ruslan.hlushan.core.api.dto.ValueHolder
-import com.ruslan.hlushan.core.api.dto.pagination.PaginationPagesRequest
-import com.ruslan.hlushan.core.api.dto.pagination.PaginationResponse
+import com.ruslan.hlushan.core.pagination.api.PaginationPagesRequest
+import com.ruslan.hlushan.core.pagination.api.PaginationResponse
 import com.ruslan.hlushan.game.api.play.dto.GameRecord
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.api.play.dto.GameState
