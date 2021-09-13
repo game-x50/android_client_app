@@ -8,7 +8,10 @@ include(
         ":features:core:android:api",
         ":features:core:android:extensions",
         ":features:core:android:storage",
+
         ":features:core:test_utils",
+
+        ":features:core:command:lib",
 
         ":features:core:api:lib",
         ":features:core:api:debug_tools",

@@ -1,11 +1,11 @@
-package extensions
+package command.extensions
 
+import com.ruslan.hlushan.core.command.extensions.handleCommandQueue
 import com.ruslan.hlushan.core.ui.lifecycle.test.utils.LifecyclePluginObserverOwnerFragmentStub
 import com.ruslan.hlushan.core.ui.lifecycle.test.utils.from_init_go_to
 import com.ruslan.hlushan.core.ui.lifecycle.test.utils.go_to
-import com.ruslan.hlushan.core.ui.viewmodel.extensions.handleCommandQueue
-import com.ruslan.hlushan.core.ui.viewmodel.test.utils.strategy.`create NOT empty CommandQueue`
 import com.ruslan.hlushan.extensions.copy
+import command.strategy.`create NOT empty CommandQueue`
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test

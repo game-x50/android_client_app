@@ -1,22 +1,6 @@
 package command.strategy
 
-import com.ruslan.hlushan.core.ui.viewmodel.command.strategy.AddToEndSingleStrategy
-import com.ruslan.hlushan.core.ui.viewmodel.test.utils.strategy.`assert afterApply not mutate state`
-import com.ruslan.hlushan.core.ui.viewmodel.test.utils.strategy.`assert beforeApply not mutate state`
-import com.ruslan.hlushan.core.ui.viewmodel.test.utils.strategy.`create empty state`
-import com.ruslan.hlushan.core.ui.viewmodel.test.utils.strategy.`create state contains NO instances of command class but there are another commands`
-import com.ruslan.hlushan.core.ui.viewmodel.test.utils.strategy.`create state contains many duplicated equal commands and another commands`
-import com.ruslan.hlushan.core.ui.viewmodel.test.utils.strategy.`create state contains many duplicated equal commands but NO another commands`
-import com.ruslan.hlushan.core.ui.viewmodel.test.utils.strategy.`create state contains many instances of command class and another commands`
-import com.ruslan.hlushan.core.ui.viewmodel.test.utils.strategy.`create state contains many instances of command class but NO another commands`
-import com.ruslan.hlushan.core.ui.viewmodel.test.utils.strategy.`create state contains single equal command and another commands after`
-import com.ruslan.hlushan.core.ui.viewmodel.test.utils.strategy.`create state contains single equal command and another commands before and after`
-import com.ruslan.hlushan.core.ui.viewmodel.test.utils.strategy.`create state contains single equal command and another commands before`
-import com.ruslan.hlushan.core.ui.viewmodel.test.utils.strategy.`create state contains single equal command but NO other commands`
-import com.ruslan.hlushan.core.ui.viewmodel.test.utils.strategy.`create state contains single instance of command class and another commands after`
-import com.ruslan.hlushan.core.ui.viewmodel.test.utils.strategy.`create state contains single instance of command class and another commands before and after`
-import com.ruslan.hlushan.core.ui.viewmodel.test.utils.strategy.`create state contains single instance of command class and another commands before`
-import com.ruslan.hlushan.core.ui.viewmodel.test.utils.strategy.`create state contains single instance of command class but NO other commands`
+import com.ruslan.hlushan.core.command.strategy.AddToEndSingleStrategy
 import com.ruslan.hlushan.extensions.withoutFirst
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals

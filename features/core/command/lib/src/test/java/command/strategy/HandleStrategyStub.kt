@@ -1,7 +1,7 @@
-package com.ruslan.hlushan.core.ui.viewmodel.test.utils.strategy.stub
+package command.strategy
 
-import com.ruslan.hlushan.core.ui.viewmodel.command.strategy.HandleStrategy
-import com.ruslan.hlushan.core.ui.viewmodel.command.strategy.StrategyCommand
+import com.ruslan.hlushan.core.command.strategy.HandleStrategy
+import com.ruslan.hlushan.core.command.strategy.StrategyCommand
 
 class HandleStrategyStub(
         private val returnBeforeApply: List<StrategyCommand>?,

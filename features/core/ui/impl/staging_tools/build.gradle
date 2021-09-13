@@ -23,6 +23,7 @@ dependencies {
     compileOnly(projects.features.core.ui.activity)
     compileOnly(projects.features.core.ui.pagination.view)
     compileOnly(projects.features.core.ui.viewmodel.extensions)
+    compileOnly(projects.features.core.command.lib)
     compileOnly(projects.features.core.ui.recycler.adapter)
 
     compileOnly(projects.features.core.api.stagingTools)
