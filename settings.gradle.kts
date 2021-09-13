@@ -60,7 +60,9 @@ include(
 
         ":features:game:storage:impl",
 
-        ":features:game:play:ui",
+        ":features:game:play:api",
+        ":features:game:play:ui:view",
+        ":features:game:play:ui:screens",
 
         ":features:game:settings:ui",
 
@@ -74,10 +76,10 @@ include(
 
         ":features:third_party:androidx:permissions",
 
-        "features:third_party:androidx:fragment:extensions",
-        "features:third_party:androidx:material:extensions",
-        "features:third_party:androidx:recyclerview:extensions",
-        "features:third_party:androidx:insets",
+        ":features:third_party:androidx:fragment:extensions",
+        ":features:third_party:androidx:material:extensions",
+        ":features:third_party:androidx:recyclerview:extensions",
+        ":features:third_party:androidx:insets",
         ":features:third_party:androidx:work_manager:utils",
 
         ":features:third_party:three_ten:extensions",

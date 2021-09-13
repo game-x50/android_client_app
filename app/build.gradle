@@ -120,7 +120,7 @@ dependencies {
     implementation(projects.features.game.top.impl)
 
     implementation(projects.features.game.auth.ui)
-    implementation(projects.features.game.play.ui)
+    implementation(projects.features.game.play.ui.screens)
     implementation(projects.features.game.settings.ui)
     implementation(projects.features.game.top.ui)
 
