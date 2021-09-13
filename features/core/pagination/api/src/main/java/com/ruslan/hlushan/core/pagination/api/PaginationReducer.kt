@@ -1,26 +1,19 @@
 @file:Suppress("TooManyFunctions", "MatchingDeclarationName", "MaxLineLength")
 
-package com.ruslan.hlushan.core.ui.pagination.viewmodel
+package com.ruslan.hlushan.core.pagination.api
 
-import com.ruslan.hlushan.core.api.dto.pagination.NextPageId
-import com.ruslan.hlushan.core.api.dto.pagination.PageId
-import com.ruslan.hlushan.core.api.dto.pagination.PageRelation
-import com.ruslan.hlushan.core.api.dto.pagination.PaginationLimits
-import com.ruslan.hlushan.core.api.dto.pagination.PaginationPagesRequest
-import com.ruslan.hlushan.core.api.dto.pagination.PaginationResponse
-import com.ruslan.hlushan.core.api.dto.pagination.PreviousPageId
-import com.ruslan.hlushan.core.ui.recycler.item.RecyclerItem
+import com.ruslan.hlushan.core.recycler.item.RecyclerItem
 import com.ruslan.hlushan.extensions.addAsFirstTo
 import com.ruslan.hlushan.extensions.withReplacedFirst
 import com.ruslan.hlushan.extensions.withoutFirst
 
-internal class ReduceResult<out F : Any, out ItemId : Any, out RI : RecyclerItem<ItemId>, out Id : Any>(
+class ReduceResult<out F : Any, out ItemId : Any, out RI : RecyclerItem<ItemId>, out Id : Any>(
         val newState: PaginationState<F, ItemId, RI, Id>,
         vararg val sideEffects: PaginationSideEffect<Id>
 )
 
 //TODO: #write_unit_tests
-internal fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, Id : Any> reduceState(
+fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, Id : Any> reduceState(
         state: PaginationState<F, ItemId, RI, Id>,
         action: PaginationAction<F, ItemId, RI, Id>,
         limits: PaginationLimits

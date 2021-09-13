@@ -1,12 +1,6 @@
 package com.ruslan.hlushan.core.impl.log
 
 import android.content.SharedPreferences
-import com.ruslan.hlushan.core.api.dto.pagination.NextPageId
-import com.ruslan.hlushan.core.api.dto.pagination.PageId
-import com.ruslan.hlushan.core.api.dto.pagination.PaginationPagesRequest
-import com.ruslan.hlushan.core.api.dto.pagination.PaginationResponse
-import com.ruslan.hlushan.core.api.dto.pagination.PreviousPageId
-import com.ruslan.hlushan.core.api.dto.pagination.createPaginationResponseByLimits
 import com.ruslan.hlushan.core.api.log.FileLogger
 import com.ruslan.hlushan.core.api.utils.InitAppConfig
 import com.ruslan.hlushan.core.api.utils.thread.ThreadPoolSpecification
@@ -15,6 +9,12 @@ import com.ruslan.hlushan.core.impl.di.annotations.SettingsPrefs
 import com.ruslan.hlushan.core.impl.utils.files.deleteAllFilesInFolder
 import com.ruslan.hlushan.core.impl.utils.files.readListFromFileReversedBySpliterator
 import com.ruslan.hlushan.core.impl.utils.files.writeToFile
+import com.ruslan.hlushan.core.pagination.api.NextPageId
+import com.ruslan.hlushan.core.pagination.api.PageId
+import com.ruslan.hlushan.core.pagination.api.PaginationPagesRequest
+import com.ruslan.hlushan.core.pagination.api.PaginationResponse
+import com.ruslan.hlushan.core.pagination.api.PreviousPageId
+import com.ruslan.hlushan.core.pagination.api.createPaginationResponseByLimits
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
@@ -26,10 +26,6 @@ import java.util.concurrent.atomic.AtomicReference
 import javax.inject.Inject
 import kotlin.math.max
 import kotlin.math.min
-
-/**
- * @author Ruslan Hlushan on 10/18/18.
- */
 
 private const val KEY_IS_FILE_LOGS_ENABLED = "KEY_IS_FILE_LOGS_ENABLED"
 

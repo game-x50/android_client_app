@@ -9,6 +9,10 @@ include(
         ":features:core:android:extensions",
         ":features:core:android:storage",
 
+        ":features:core:recycler:item",
+
+        ":features:core:pagination:api",
+
         ":features:core:test_utils",
 
         ":features:core:command:lib",
@@ -43,7 +47,6 @@ include(
         ":features:core:ui:viewmodel:lib",
         ":features:core:ui:viewmodel:test_utils",
         ":features:core:ui:viewmodel:extensions",
-        ":features:core:ui:recycler:item",
         ":features:core:ui:recycler:adapter",
         ":features:core:ui:pagination:viewmodel",
         ":features:core:ui:pagination:view",

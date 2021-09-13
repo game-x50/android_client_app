@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
-import com.ruslan.hlushan.core.ui.recycler.item.RecyclerItem
+import com.ruslan.hlushan.core.recycler.item.RecyclerItem
 import com.ruslan.hlushan.extensions.ifNotNull
 import java.lang.IllegalStateException
 

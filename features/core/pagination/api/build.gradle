@@ -1,0 +1,9 @@
+apply from: rootProject.ext[GradleExtraArgs.baseKotlinLibrary]
+
+dependencies {
+    api(projects.features.core.recycler.item)
+
+    compileOnly(projects.features.core.extensions)
+
+    compileOnly(Deps.androidxAnnotations)
+}

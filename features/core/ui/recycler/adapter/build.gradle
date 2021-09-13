@@ -12,7 +12,7 @@ android {
 }
 
 dependencies {
-    api(projects.features.core.ui.recycler.item)
+    api(projects.features.core.recycler.item)
     api(projects.features.core.ui.lifecycle.lib)
     api(projects.features.thirdParty.androidx.recyclerview.extensions)
 

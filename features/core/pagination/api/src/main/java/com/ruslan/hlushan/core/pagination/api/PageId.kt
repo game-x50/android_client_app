@@ -1,4 +1,4 @@
-package com.ruslan.hlushan.core.api.dto.pagination
+package com.ruslan.hlushan.core.pagination.api
 
 sealed class PageId<out Id : Any> {
 

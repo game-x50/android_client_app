@@ -1,4 +1,4 @@
-package com.ruslan.hlushan.core.ui.recycler.item
+package com.ruslan.hlushan.core.recycler.item
 
 interface RecyclerItem<out Id : Any> {
 
