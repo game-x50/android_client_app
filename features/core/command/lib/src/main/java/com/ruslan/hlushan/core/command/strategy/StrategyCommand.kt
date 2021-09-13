@@ -1,4 +1,4 @@
-package com.ruslan.hlushan.core.ui.viewmodel.command.strategy
+package com.ruslan.hlushan.core.command.strategy
 
 interface StrategyCommand {
 

@@ -14,12 +14,9 @@ android {
 dependencies {
     api(projects.features.core.api.lib)
 
-    compileOnly(projects.features.core.extensions)
-
     api(Deps.rxJava2)
     api(Deps.androidxViewModel)
 
-    testImplementation(projects.features.core.extensions)
     testImplementation(projects.features.core.testUtils)
     testImplementation(projects.features.core.api.testUtils)
     testImplementation(projects.features.core.ui.viewmodel.testUtils)

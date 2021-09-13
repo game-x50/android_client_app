@@ -1,13 +1,11 @@
 @file:SuppressWarnings("MaxLineLength")
 
-package com.ruslan.hlushan.core.ui.viewmodel.test.utils.strategy
+package command.strategy
 
-import com.ruslan.hlushan.core.ui.viewmodel.command.MutableCommandQueue
-import com.ruslan.hlushan.core.ui.viewmodel.command.strategy.HandleStrategy
-import com.ruslan.hlushan.core.ui.viewmodel.command.strategy.OneExecutionStateStrategy
-import com.ruslan.hlushan.core.ui.viewmodel.command.strategy.StrategyCommand
-import com.ruslan.hlushan.core.ui.viewmodel.test.utils.strategy.stub.HandleStrategyStub
-import com.ruslan.hlushan.core.ui.viewmodel.test.utils.strategy.stub.StrategyCommandStub
+import com.ruslan.hlushan.core.command.MutableCommandQueue
+import com.ruslan.hlushan.core.command.strategy.HandleStrategy
+import com.ruslan.hlushan.core.command.strategy.OneExecutionStateStrategy
+import com.ruslan.hlushan.core.command.strategy.StrategyCommand
 import com.ruslan.hlushan.extensions.addAsFirstTo
 import org.junit.Assert.assertEquals
 

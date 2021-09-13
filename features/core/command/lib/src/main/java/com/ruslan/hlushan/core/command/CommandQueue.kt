@@ -1,6 +1,6 @@
-package com.ruslan.hlushan.core.ui.viewmodel.command
+package com.ruslan.hlushan.core.command
 
-import com.ruslan.hlushan.core.ui.viewmodel.command.strategy.StrategyCommand
+import com.ruslan.hlushan.core.command.strategy.StrategyCommand
 import io.reactivex.Observable
 
 /**

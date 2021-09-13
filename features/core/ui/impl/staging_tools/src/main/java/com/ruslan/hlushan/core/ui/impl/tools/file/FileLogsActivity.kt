@@ -9,6 +9,7 @@ import com.ruslan.hlushan.android.core.api.di.getUriForFile
 import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
 import com.ruslan.hlushan.android.extensions.showSystemMessage
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.command.extensions.handleCommandQueue
 import com.ruslan.hlushan.core.ui.activity.BaseActivity
 import com.ruslan.hlushan.core.ui.dialog.showSimpleProgress
 import com.ruslan.hlushan.core.ui.impl.tools.R
@@ -20,7 +21,6 @@ import com.ruslan.hlushan.core.ui.recycler.adapter.DelegatesRecyclerAdapter
 import com.ruslan.hlushan.core.ui.recycler.adapter.RecyclerViewLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.viewbinding.extensions.bindViewBinding
 import com.ruslan.hlushan.core.ui.viewmodel.extensions.bindBaseViewModel
-import com.ruslan.hlushan.core.ui.viewmodel.extensions.handleCommandQueue
 import com.ruslan.hlushan.extensions.exhaustive
 import java.io.File
 

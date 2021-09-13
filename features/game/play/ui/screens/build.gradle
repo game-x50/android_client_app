@@ -22,6 +22,7 @@ dependencies {
     compileOnly(projects.features.core.ui.pagination.view)
     compileOnly(projects.features.core.ui.layout.container)
     compileOnly(projects.features.core.ui.viewmodel.extensions)
+    compileOnly(projects.features.core.command.lib)
 
     compileOnly(projects.features.thirdParty.threeTen.extensions)
 

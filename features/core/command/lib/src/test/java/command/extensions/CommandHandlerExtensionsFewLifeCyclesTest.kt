@@ -1,14 +1,14 @@
 @file:SuppressWarnings("MaxLineLength")
 
-package extensions
+package command.extensions
 
+import com.ruslan.hlushan.core.command.MutableCommandQueue
+import com.ruslan.hlushan.core.command.extensions.handleCommandQueue
+import com.ruslan.hlushan.core.command.strategy.StrategyCommand
 import com.ruslan.hlushan.core.ui.lifecycle.test.utils.LifecyclePluginObserverOwnerFragmentStub
 import com.ruslan.hlushan.core.ui.lifecycle.test.utils.from_init_go_to
 import com.ruslan.hlushan.core.ui.lifecycle.test.utils.go_to
-import com.ruslan.hlushan.core.ui.viewmodel.command.MutableCommandQueue
-import com.ruslan.hlushan.core.ui.viewmodel.command.strategy.StrategyCommand
-import com.ruslan.hlushan.core.ui.viewmodel.extensions.handleCommandQueue
-import com.ruslan.hlushan.core.ui.viewmodel.test.utils.strategy.`create default real command`
+import command.strategy.`create default real command`
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test

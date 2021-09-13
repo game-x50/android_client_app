@@ -7,11 +7,11 @@ import androidx.fragment.app.FragmentFactory
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.command.extensions.handleCommandQueue
 import com.ruslan.hlushan.core.ui.dialog.showSimpleProgress
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.core.ui.viewbinding.extensions.bindViewBinding
 import com.ruslan.hlushan.core.ui.viewmodel.extensions.bindBaseViewModel
-import com.ruslan.hlushan.core.ui.viewmodel.extensions.handleCommandQueue
 import com.ruslan.hlushan.game.api.auth.dto.User
 import com.ruslan.hlushan.game.auth.ui.R
 import com.ruslan.hlushan.game.auth.ui.databinding.GameAuthUiUserProfileScreenBinding

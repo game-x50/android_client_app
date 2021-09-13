@@ -13,6 +13,4 @@ android {
 dependencies {
     api(projects.features.core.testUtils)
     api(projects.features.core.ui.viewmodel.lib)
-
-    compileOnly(projects.features.core.extensions)
 }

@@ -1,13 +1,13 @@
 package command
 
-import com.ruslan.hlushan.core.ui.viewmodel.command.MutableCommandQueue
-import com.ruslan.hlushan.core.ui.viewmodel.command.strategy.StrategyCommand
-import com.ruslan.hlushan.core.ui.viewmodel.test.utils.strategy.`generate new state of empty commands`
-import com.ruslan.hlushan.core.ui.viewmodel.test.utils.strategy.stub.HandleStrategyStub
-import com.ruslan.hlushan.core.ui.viewmodel.test.utils.strategy.stub.StrategyCommandStub
+import com.ruslan.hlushan.core.command.MutableCommandQueue
+import com.ruslan.hlushan.core.command.strategy.StrategyCommand
 import com.ruslan.hlushan.extensions.copy
 import com.ruslan.hlushan.test.utils.assertThrows
 import com.ruslan.hlushan.third_party.rxjava2.test.utils.assertNotCompleteNoErrorsNoValues
+import command.strategy.HandleStrategyStub
+import command.strategy.StrategyCommandStub
+import command.strategy.`generate new state of empty commands`
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertNull

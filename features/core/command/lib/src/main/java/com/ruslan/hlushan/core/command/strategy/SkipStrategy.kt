@@ -1,16 +1,16 @@
-package com.ruslan.hlushan.core.ui.viewmodel.command.strategy
+package com.ruslan.hlushan.core.command.strategy
 
-class OneExecutionStateStrategy : HandleStrategy {
+class SkipStrategy : HandleStrategy {
 
     override fun <Command : Any> beforeApply(
             currentState: List<Command>,
             incomingCommand: Command
     ): List<Command> =
-            (currentState + incomingCommand)
+            currentState
 
     override fun <Command : Any> afterApply(
             currentState: List<Command>,
             incomingCommand: Command
     ): List<Command> =
-            (currentState - incomingCommand)
+            currentState
 }
