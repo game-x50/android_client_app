@@ -1,14 +1,14 @@
 package viewmodel.stub
 
-import com.ruslan.hlushan.core.api.test.utils.log.EmptyAppLoggerImpl
 import com.ruslan.hlushan.core.api.utils.thread.ThreadChecker
+import com.ruslan.hlushan.core.logger.api.test.utils.EmptyAppLoggerImpl
 import com.ruslan.hlushan.core.ui.viewmodel.BaseViewModel
 import io.reactivex.disposables.Disposable
 
 class BaseViewModelTestImpl(
         threadChecker: ThreadChecker
 ) : BaseViewModel(
-        appLogger = EmptyAppLoggerImpl(),
+        appLogger = EmptyAppLoggerImpl,
         threadChecker = threadChecker
 ) {
 

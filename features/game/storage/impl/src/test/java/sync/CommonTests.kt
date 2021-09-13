@@ -1,7 +1,7 @@
 package sync
 
-import com.ruslan.hlushan.core.api.test.utils.log.EmptyAppLoggerImpl
 import com.ruslan.hlushan.core.api.test.utils.managers.CurrentThreadSchedulersManager
+import com.ruslan.hlushan.core.logger.api.test.utils.EmptyAppLoggerImpl
 import com.ruslan.hlushan.game.api.play.dto.GameSize
 import com.ruslan.hlushan.game.api.play.dto.GameState
 import com.ruslan.hlushan.game.api.play.dto.ImmutableNumbersMatrix
@@ -47,7 +47,7 @@ internal class CommonTests {
     @Before
     fun before() {
         val scheduler = CurrentThreadSchedulersManager()
-        val logger = EmptyAppLoggerImpl()
+        val logger = EmptyAppLoggerImpl
 
         localRepo = LocalRecordsRepoTestImpl(LocalRecordsRepositoryStorageMockImpl(), scheduler)
         remoteRepo = SyncRemoteRepositoryMockImpl()

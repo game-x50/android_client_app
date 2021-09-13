@@ -6,7 +6,7 @@ import com.ruslan.hlushan.core.command.MutableCommandQueue
 import com.ruslan.hlushan.core.command.strategy.HandleStrategy
 import com.ruslan.hlushan.core.command.strategy.OneExecutionStateStrategy
 import com.ruslan.hlushan.core.command.strategy.StrategyCommand
-import com.ruslan.hlushan.extensions.addAsFirstTo
+import com.ruslan.hlushan.core.extensions.addAsFirstTo
 import org.junit.Assert.assertEquals
 
 fun `create state contains single instance of command class and another commands after`(): OldStateWithIncomingCommand =

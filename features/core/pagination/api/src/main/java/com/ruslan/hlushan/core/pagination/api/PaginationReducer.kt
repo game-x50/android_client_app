@@ -2,10 +2,10 @@
 
 package com.ruslan.hlushan.core.pagination.api
 
+import com.ruslan.hlushan.core.extensions.addAsFirstTo
+import com.ruslan.hlushan.core.extensions.withReplacedFirst
+import com.ruslan.hlushan.core.extensions.withoutFirst
 import com.ruslan.hlushan.core.recycler.item.RecyclerItem
-import com.ruslan.hlushan.extensions.addAsFirstTo
-import com.ruslan.hlushan.extensions.withReplacedFirst
-import com.ruslan.hlushan.extensions.withoutFirst
 
 class ReduceResult<out F : Any, out ItemId : Any, out RI : RecyclerItem<ItemId>, out Id : Any>(
         val newState: PaginationState<F, ItemId, RI, Id>,

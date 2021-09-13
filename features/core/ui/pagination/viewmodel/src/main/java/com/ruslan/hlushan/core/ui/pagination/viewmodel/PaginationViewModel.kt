@@ -1,9 +1,10 @@
 package com.ruslan.hlushan.core.ui.pagination.viewmodel
 
-import com.ruslan.hlushan.core.api.log.AppLogger
 import com.ruslan.hlushan.core.api.managers.SchedulersManager
 import com.ruslan.hlushan.core.api.utils.thread.ThreadChecker
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.extensions.exhaustive
+import com.ruslan.hlushan.core.logger.api.AppLogger
 import com.ruslan.hlushan.core.pagination.api.PaginationAction
 import com.ruslan.hlushan.core.pagination.api.PaginationLimits
 import com.ruslan.hlushan.core.pagination.api.PaginationPagesRequest
@@ -14,7 +15,6 @@ import com.ruslan.hlushan.core.pagination.api.itemsCount
 import com.ruslan.hlushan.core.pagination.api.reduceState
 import com.ruslan.hlushan.core.recycler.item.RecyclerItem
 import com.ruslan.hlushan.core.ui.viewmodel.BaseViewModel
-import com.ruslan.hlushan.extensions.exhaustive
 import com.ruslan.hlushan.third_party.rxjava2.extensions.safetyDispose
 import io.reactivex.Single
 import io.reactivex.disposables.Disposable

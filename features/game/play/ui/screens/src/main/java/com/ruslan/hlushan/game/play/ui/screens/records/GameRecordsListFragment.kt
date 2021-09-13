@@ -9,6 +9,9 @@ import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.command.extensions.handleCommandQueue
+import com.ruslan.hlushan.core.extensions.exhaustive
+import com.ruslan.hlushan.core.extensions.ifNotNull
+import com.ruslan.hlushan.core.extensions.lazyUnsafe
 import com.ruslan.hlushan.core.pagination.api.PaginationState
 import com.ruslan.hlushan.core.ui.dialog.showSimpleProgress
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
@@ -17,9 +20,6 @@ import com.ruslan.hlushan.core.ui.recycler.adapter.DelegatesRecyclerAdapter
 import com.ruslan.hlushan.core.ui.recycler.adapter.RecyclerViewLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.viewbinding.extensions.bindViewBinding
 import com.ruslan.hlushan.core.ui.viewmodel.extensions.bindBaseViewModel
-import com.ruslan.hlushan.extensions.exhaustive
-import com.ruslan.hlushan.extensions.ifNotNull
-import com.ruslan.hlushan.extensions.lazyUnsafe
 import com.ruslan.hlushan.game.api.play.dto.GameRecord
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.api.play.dto.GameSize

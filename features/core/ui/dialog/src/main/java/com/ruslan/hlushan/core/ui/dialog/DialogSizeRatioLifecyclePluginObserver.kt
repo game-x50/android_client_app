@@ -4,8 +4,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.ruslan.hlushan.android.extensions.applicationScreenDimension
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.extensions.ifNotNull
 import com.ruslan.hlushan.core.ui.lifecycle.LifecyclePluginObserver
-import com.ruslan.hlushan.extensions.ifNotNull
 import java.lang.ref.WeakReference
 
 class DialogSizeRatioLifecyclePluginObserver(

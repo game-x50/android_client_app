@@ -1,6 +1,5 @@
 package com.ruslan.hlushan.game.top.ui.games
 
-import com.ruslan.hlushan.core.api.log.AppLogger
 import com.ruslan.hlushan.core.api.managers.SchedulersManager
 import com.ruslan.hlushan.core.api.utils.thread.ThreadChecker
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
@@ -9,6 +8,7 @@ import com.ruslan.hlushan.core.command.MutableCommandQueue
 import com.ruslan.hlushan.core.command.strategy.AddToEndSingleStrategy
 import com.ruslan.hlushan.core.command.strategy.HandleStrategy
 import com.ruslan.hlushan.core.command.strategy.StrategyCommand
+import com.ruslan.hlushan.core.logger.api.AppLogger
 import com.ruslan.hlushan.core.pagination.api.PaginationPagesRequest
 import com.ruslan.hlushan.core.pagination.api.PaginationResponse
 import com.ruslan.hlushan.core.pagination.api.PaginationState

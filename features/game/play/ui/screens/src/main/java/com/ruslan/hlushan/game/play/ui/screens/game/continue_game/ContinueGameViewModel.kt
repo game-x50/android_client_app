@@ -3,11 +3,11 @@
 package com.ruslan.hlushan.game.play.ui.screens.game.continue_game
 
 import com.github.terrakok.cicerone.Router
-import com.ruslan.hlushan.core.api.log.AppLogger
 import com.ruslan.hlushan.core.api.managers.SchedulersManager
 import com.ruslan.hlushan.core.api.utils.thread.ThreadChecker
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
-import com.ruslan.hlushan.extensions.ifNotNull
+import com.ruslan.hlushan.core.extensions.ifNotNull
+import com.ruslan.hlushan.core.logger.api.AppLogger
 import com.ruslan.hlushan.game.api.play.PlayRecordsInteractor
 import com.ruslan.hlushan.game.api.play.dto.GameRecord
 import com.ruslan.hlushan.game.api.play.dto.GameState

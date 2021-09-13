@@ -3,16 +3,13 @@ package com.ruslan.hlushan.core.impl.tools.impl
 import android.app.Application
 import android.content.Context
 import android.graphics.Color
-import com.ruslan.hlushan.core.api.log.AppLogger
 import com.ruslan.hlushan.core.api.tools.TaktTool
+import com.ruslan.hlushan.core.logger.api.AppLogger
 import jp.wasabeef.takt.Seat
 import jp.wasabeef.takt.Takt
 import java.util.concurrent.atomic.AtomicBoolean
 import javax.inject.Inject
 
-/**
- * @author Ruslan Hlushan on 2019-07-18
- */
 internal class TaktToolStagingImpl
 @Inject
 constructor(

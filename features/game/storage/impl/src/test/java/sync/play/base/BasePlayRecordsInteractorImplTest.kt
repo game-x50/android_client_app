@@ -1,6 +1,5 @@
 package sync.play.base
 
-import com.ruslan.hlushan.core.api.test.utils.log.EmptyAppLoggerImpl
 import com.ruslan.hlushan.core.api.test.utils.managers.CurrentThreadSchedulersManager
 import com.ruslan.hlushan.game.storage.impl.PlayRecordsInteractorImpl
 import org.junit.Before
@@ -24,7 +23,7 @@ internal abstract class BasePlayRecordsInteractorImplTest {
     @Before
     fun before() {
         val scheduler = CurrentThreadSchedulersManager()
-        val logger = EmptyAppLoggerImpl()
+        val logger = com.ruslan.hlushan.core.logger.api.test.utils.EmptyAppLoggerImpl
 
         localRepo = LocalRecordsRepoTestImpl(LocalRecordsRepositoryStorageMockImpl(), scheduler)
         playRecordsInteractor = PlayRecordsInteractorImpl(localRepo, logger)

@@ -27,6 +27,7 @@ android {
 
 dependencies {
     api(projects.features.core.ui.api.lib)
+    api(projects.features.core.logger.api.lib)
     api(projects.features.core.ui.routing)
 
     compileOnly(projects.features.core.android.extensions)

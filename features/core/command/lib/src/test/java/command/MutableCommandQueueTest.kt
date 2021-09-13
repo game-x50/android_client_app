@@ -2,7 +2,7 @@ package command
 
 import com.ruslan.hlushan.core.command.MutableCommandQueue
 import com.ruslan.hlushan.core.command.strategy.StrategyCommand
-import com.ruslan.hlushan.extensions.copy
+import com.ruslan.hlushan.core.extensions.copy
 import com.ruslan.hlushan.test.utils.assertThrows
 import com.ruslan.hlushan.third_party.rxjava2.test.utils.assertNotCompleteNoErrorsNoValues
 import command.strategy.HandleStrategyStub

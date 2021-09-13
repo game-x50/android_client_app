@@ -5,11 +5,11 @@ import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.extensions.ifNotNull
 import com.ruslan.hlushan.core.recycler.item.RecyclerItem
 import com.ruslan.hlushan.core.ui.recycler.adapter.AdapterDelegate
 import com.ruslan.hlushan.core.ui.recycler.adapter.BaseItemViewHolder
 import com.ruslan.hlushan.core.ui.recycler.adapter.OnItemClickListener
-import com.ruslan.hlushan.extensions.ifNotNull
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.play.ui.screens.R
 import com.ruslan.hlushan.game.play.ui.screens.databinding.GamePlayUiGameRecordItemBinding

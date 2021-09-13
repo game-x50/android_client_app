@@ -1,6 +1,6 @@
 package com.ruslan.hlushan.game.storage.impl
 
-import com.ruslan.hlushan.core.api.log.AppLogger
+import com.ruslan.hlushan.core.logger.api.AppLogger
 import com.ruslan.hlushan.game.storage.impl.local.LocalRecordsRepository
 import com.ruslan.hlushan.game.storage.impl.local.markSynchronizingFinished
 import com.ruslan.hlushan.game.storage.impl.local.markSynchronizingStarted

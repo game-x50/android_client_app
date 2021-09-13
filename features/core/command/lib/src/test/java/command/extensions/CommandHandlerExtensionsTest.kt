@@ -6,10 +6,10 @@ import com.ruslan.hlushan.core.command.CommandQueue
 import com.ruslan.hlushan.core.command.MutableCommandQueue
 import com.ruslan.hlushan.core.command.extensions.handleCommandQueue
 import com.ruslan.hlushan.core.command.strategy.StrategyCommand
+import com.ruslan.hlushan.core.extensions.copy
 import com.ruslan.hlushan.core.ui.lifecycle.LifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.lifecycle.test.utils.LifecyclePluginObserverOwnerFragmentStub
 import com.ruslan.hlushan.core.ui.lifecycle.test.utils.from_init_go_to
-import com.ruslan.hlushan.extensions.copy
 import command.strategy.`create NOT empty CommandQueue`
 import command.strategy.`create default real command`
 import org.junit.Assert.assertEquals

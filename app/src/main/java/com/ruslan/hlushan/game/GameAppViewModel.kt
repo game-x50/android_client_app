@@ -1,8 +1,8 @@
 package com.ruslan.hlushan.game
 
 import com.github.terrakok.cicerone.Router
-import com.ruslan.hlushan.core.api.log.AppLogger
 import com.ruslan.hlushan.core.api.utils.thread.ThreadChecker
+import com.ruslan.hlushan.core.logger.api.AppLogger
 import com.ruslan.hlushan.core.ui.viewmodel.BaseViewModel
 import com.ruslan.hlushan.game.screens.main.MainScreen
 import dagger.assisted.Assisted

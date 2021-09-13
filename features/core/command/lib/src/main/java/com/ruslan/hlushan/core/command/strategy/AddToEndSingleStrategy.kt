@@ -1,6 +1,6 @@
 package com.ruslan.hlushan.core.command.strategy
 
-import com.ruslan.hlushan.extensions.withoutFirst
+import com.ruslan.hlushan.core.extensions.withoutFirst
 
 class AddToEndSingleStrategy : HandleStrategy {
 

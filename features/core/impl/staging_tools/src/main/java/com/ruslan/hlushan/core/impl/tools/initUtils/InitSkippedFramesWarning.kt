@@ -1,8 +1,8 @@
 package com.ruslan.hlushan.core.impl.tools.initUtils
 
 import android.view.Choreographer
-import com.ruslan.hlushan.core.api.log.AppLogger
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.logger.api.AppLogger
 import java.lang.reflect.Field
 import java.lang.reflect.Modifier
 

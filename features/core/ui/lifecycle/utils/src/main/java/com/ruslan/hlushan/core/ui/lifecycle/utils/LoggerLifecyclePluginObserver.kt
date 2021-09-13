@@ -1,6 +1,6 @@
 package com.ruslan.hlushan.core.ui.lifecycle.utils
 
-import com.ruslan.hlushan.core.api.log.AppLogger
+import com.ruslan.hlushan.core.logger.api.AppLogger
 import com.ruslan.hlushan.core.ui.lifecycle.LifecyclePluginObserver
 
 //TODO: #write_unit_tests

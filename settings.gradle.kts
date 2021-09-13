@@ -17,6 +17,10 @@ include(
 
         ":features:core:command:lib",
 
+        ":features:core:logger:api:lib",
+        ":features:core:logger:api:test_utils",
+        ":features:core:logger:impl",
+
         ":features:core:api:lib",
         ":features:core:api:debug_tools",
         ":features:core:api:staging_tools",

@@ -7,9 +7,6 @@ import com.github.pedrovgs.lynx.LynxConfig
 import com.ruslan.hlushan.core.api.tools.LynxTool
 import javax.inject.Inject
 
-/**
- * @author Ruslan Hlushan on 2019-07-18
- */
 internal class LynxToolStagingImpl
 @Inject
 constructor(

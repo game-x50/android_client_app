@@ -20,10 +20,6 @@ import dagger.Binds
 import dagger.Module
 import javax.inject.Singleton
 
-/**
- * @author Ruslan Hlushan on 2019-07-18
- */
-
 @Module
 internal interface CoreImplStagingToolsModule {
 

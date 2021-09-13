@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentFactory
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.command.extensions.handleCommandQueue
+import com.ruslan.hlushan.core.extensions.exhaustive
 import com.ruslan.hlushan.core.pagination.api.PaginationState
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.core.ui.pagination.view.setUpPagination
@@ -14,7 +15,6 @@ import com.ruslan.hlushan.core.ui.recycler.adapter.DelegatesRecyclerAdapter
 import com.ruslan.hlushan.core.ui.recycler.adapter.RecyclerViewLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.viewbinding.extensions.bindViewBinding
 import com.ruslan.hlushan.core.ui.viewmodel.extensions.bindBaseViewModel
-import com.ruslan.hlushan.extensions.exhaustive
 import com.ruslan.hlushan.game.top.ui.R
 import com.ruslan.hlushan.game.top.ui.databinding.GameTopUiTopGamesListScreenBinding
 import com.ruslan.hlushan.game.top.ui.di.clearTopUiComponent

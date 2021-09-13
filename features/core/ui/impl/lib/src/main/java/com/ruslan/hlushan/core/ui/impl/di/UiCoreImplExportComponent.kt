@@ -1,9 +1,10 @@
 package com.ruslan.hlushan.core.ui.impl.di
 
 import com.ruslan.hlushan.android.core.api.di.AppContextProvider
-import com.ruslan.hlushan.core.api.di.CoreProvider
+import com.ruslan.hlushan.core.api.di.ManagersProvider
 import com.ruslan.hlushan.core.api.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.api.managers.SimpleUserErrorMapper
+import com.ruslan.hlushan.core.logger.api.di.LoggersProvider
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
 import com.ruslan.hlushan.core.ui.impl.tools.di.UiToolsModule
 import com.ruslan.hlushan.core.ui.routing.di.UiRoutingProvider
@@ -21,7 +22,8 @@ import javax.inject.Singleton
             UiToolsModule::class
         ],
         dependencies = [
-            CoreProvider::class,
+            ManagersProvider::class,
+            LoggersProvider::class,
             AppContextProvider::class
         ]
 )
@@ -33,7 +35,8 @@ interface UiCoreImplExportComponent : UiCoreProvider,
     interface Factory {
         fun create(
                 @BindsInstance external: List<SimpleUserErrorMapper>,
-                coreProvider: CoreProvider,
+                managersProvider: ManagersProvider,
+                loggersProvider: LoggersProvider,
                 appContextProvider: AppContextProvider
         ): UiCoreImplExportComponent
     }
@@ -42,13 +45,15 @@ interface UiCoreImplExportComponent : UiCoreProvider,
 
         fun init(
                 external: List<SimpleUserErrorMapper>,
-                coreProvider: CoreProvider,
+                managersProvider: ManagersProvider,
+                loggersProvider: LoggersProvider,
                 appContextProvider: AppContextProvider
         ): UiCoreImplExportComponent =
                 DaggerUiCoreImplExportComponent.factory()
                         .create(
                                 external = external,
-                                coreProvider = coreProvider,
+                                managersProvider = managersProvider,
+                                loggersProvider = loggersProvider,
                                 appContextProvider = appContextProvider
                         )
     }

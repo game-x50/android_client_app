@@ -1,8 +1,6 @@
 apply from: rootProject.ext[GradleExtraArgs.baseKotlinLibrary]
 
 dependencies {
-    api(projects.features.core.pagination.api)//todo:because of FileLogger
-
     compileOnly(projects.features.core.extensions)
     compileOnly(projects.features.thirdParty.rxjava2.extensions)
 

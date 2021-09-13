@@ -9,9 +9,9 @@ import androidx.annotation.ContentView
 import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.SearchView
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.extensions.ifNotNull
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.core.ui.pagination.viewmodel.SearchPaginationViewModel
-import com.ruslan.hlushan.extensions.ifNotNull
 
 abstract class BaseSearchPaginationFragment<VM : SearchPaginationViewModel<*, *, *>>
 @ContentView

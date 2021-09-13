@@ -3,13 +3,9 @@ package com.ruslan.hlushan.core.impl.tools.impl
 import android.content.Context
 import com.github.moduth.blockcanary.BlockCanaryContext
 import com.github.moduth.blockcanary.internal.BlockInfo
-import com.ruslan.hlushan.core.api.log.AppLogger
+import com.ruslan.hlushan.core.logger.api.AppLogger
 import java.io.File
 import java.util.LinkedList
-
-/**
- * @author Ruslan Hlushan on 9/3/18.
- */
 
 internal class AppBlockCanaryContext(private val appLogger: AppLogger) : BlockCanaryContext() {
 

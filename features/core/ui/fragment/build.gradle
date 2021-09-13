@@ -22,6 +22,7 @@ dependencies {
     compileOnly(projects.features.core.extensions)
     compileOnly(projects.features.core.android.extensions)
     compileOnly(projects.features.core.api.lib)
+    compileOnly(projects.features.core.logger.api.lib)
     compileOnly(projects.features.core.ui.lifecycle.utils)
     compileOnly(projects.features.core.ui.layout.container)
 

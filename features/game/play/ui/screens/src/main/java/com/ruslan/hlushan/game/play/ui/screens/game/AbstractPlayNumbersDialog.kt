@@ -6,13 +6,13 @@ import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.extensions.ifNotNull
 import com.ruslan.hlushan.core.ui.dialog.BaseDialogFragment
 import com.ruslan.hlushan.core.ui.dialog.DialogBackgroundColorLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.dialog.DialogSizeRatioLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.recycler.adapter.DelegatesRecyclerAdapter
 import com.ruslan.hlushan.core.ui.recycler.adapter.RecyclerViewLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.viewbinding.extensions.bindViewBinding
-import com.ruslan.hlushan.extensions.ifNotNull
 import com.ruslan.hlushan.game.play.ui.screens.R
 import com.ruslan.hlushan.game.play.ui.screens.databinding.GamePlayUiPlayNumbersDialogBinding
 import com.ruslan.hlushan.third_party.androidx.recyclerview.extensions.setUpDefaults

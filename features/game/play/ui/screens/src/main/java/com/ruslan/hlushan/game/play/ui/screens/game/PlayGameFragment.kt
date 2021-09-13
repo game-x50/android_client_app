@@ -6,11 +6,11 @@ import com.ruslan.hlushan.android.extensions.getLongOrNull
 import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.command.extensions.handleCommandQueue
+import com.ruslan.hlushan.core.extensions.formatWithLeadingZerosString
 import com.ruslan.hlushan.core.ui.api.utils.BottomMenuHolder
 import com.ruslan.hlushan.core.ui.dialog.showSimpleProgress
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.core.ui.viewbinding.extensions.bindViewBinding
-import com.ruslan.hlushan.extensions.formatWithLeadingZerosString
 import com.ruslan.hlushan.game.play.api.listeners.GameFinishedListener
 import com.ruslan.hlushan.game.play.api.listeners.TotalSumChangedListener
 import com.ruslan.hlushan.game.play.ui.screens.R

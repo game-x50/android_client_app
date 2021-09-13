@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AlertDialog
 import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
-import com.ruslan.hlushan.extensions.ifNotNull
+import com.ruslan.hlushan.core.extensions.ifNotNull
 import com.ruslan.hlushan.third_party.androidx.fragment.extensions.dismissNowSafety
 
 abstract class BaseTwoOptionsAlert : BaseDialogFragment() {

@@ -2,6 +2,7 @@ apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
 apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
 
 dependencies {
+    api(projects.features.core.logger.api.lib)
     api(projects.features.core.ui.lifecycle.lib)
 
     compileOnly(projects.features.core.api.lib)

@@ -2,7 +2,7 @@ package com.ruslan.hlushan.game.storage.impl
 
 import android.annotation.SuppressLint
 import androidx.annotation.IntRange
-import com.ruslan.hlushan.core.api.log.AppLogger
+import com.ruslan.hlushan.core.logger.api.AppLogger
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.api.play.dto.LocalAction
 import com.ruslan.hlushan.game.api.play.dto.RecordSyncState

@@ -6,11 +6,11 @@ import androidx.annotation.LayoutRes
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Navigator
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.extensions.lazyUnsafe
 import com.ruslan.hlushan.core.ui.routing.CiceroneOwner
 import com.ruslan.hlushan.core.ui.routing.FlowCiceronesHolder
 import com.ruslan.hlushan.core.ui.routing.FlowFragmentLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.routing.FlowRouter
-import com.ruslan.hlushan.extensions.lazyUnsafe
 import javax.inject.Inject
 
 abstract class BaseFlowFragment

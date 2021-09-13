@@ -4,11 +4,11 @@ import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.extensions.ifNotNull
 import com.ruslan.hlushan.core.ui.dialog.BaseTwoOptionsAlert
 import com.ruslan.hlushan.core.ui.dialog.TwoOptionsAlertData
 import com.ruslan.hlushan.core.ui.dialog.command.DialogCommandsHandler
 import com.ruslan.hlushan.core.ui.dialog.command.ShowDialogCommand
-import com.ruslan.hlushan.extensions.ifNotNull
 import com.ruslan.hlushan.game.api.play.dto.GameRecord
 import com.ruslan.hlushan.game.play.ui.screens.R
 import com.ruslan.hlushan.game.play.ui.screens.dto.GameRecordParcelable

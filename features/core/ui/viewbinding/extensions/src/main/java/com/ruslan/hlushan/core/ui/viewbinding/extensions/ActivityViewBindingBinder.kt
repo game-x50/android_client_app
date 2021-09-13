@@ -4,8 +4,8 @@ import android.app.Activity
 import android.view.View
 import androidx.annotation.IdRes
 import androidx.viewbinding.ViewBinding
+import com.ruslan.hlushan.core.extensions.lazyUnsafe
 import com.ruslan.hlushan.core.ui.lifecycle.LifecyclePluginObserver
-import com.ruslan.hlushan.extensions.lazyUnsafe
 import kotlin.properties.ReadOnlyProperty
 
 fun <V : View?> Activity.bindViewById(@IdRes viewResId: Int): Lazy<V> = lazyUnsafe { findViewById<V>(viewResId) }

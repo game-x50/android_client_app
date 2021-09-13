@@ -1,7 +1,7 @@
 package sync.stub
 
 import com.ruslan.hlushan.core.api.managers.SchedulersManager
-import com.ruslan.hlushan.core.api.test.utils.log.EmptyAppLoggerImpl
+import com.ruslan.hlushan.core.logger.api.test.utils.EmptyAppLoggerImpl
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.storage.impl.local.LocalRecordsRepositoryImpl
 import com.ruslan.hlushan.game.storage.impl.local.LocalRecordsRepositoryStorage
@@ -18,7 +18,7 @@ internal class LocalRecordsRepoTestImpl(
         localRecordsRepositoryStorage,
         gameRecordsDAOStubImpl,
         schedulersManager,
-        EmptyAppLoggerImpl()
+        com.ruslan.hlushan.core.logger.api.test.utils.EmptyAppLoggerImpl
 ) {
 
     var maxLastRemoteSyncedTimestampRequest: Instant? = null

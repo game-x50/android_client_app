@@ -3,7 +3,6 @@ package com.ruslan.hlushan.game.auth.ui.login
 import com.github.terrakok.cicerone.Router
 import com.ruslan.hlushan.core.api.dto.OperationResult
 import com.ruslan.hlushan.core.api.dto.VoidOperationResult
-import com.ruslan.hlushan.core.api.log.AppLogger
 import com.ruslan.hlushan.core.api.managers.SchedulersManager
 import com.ruslan.hlushan.core.api.utils.thread.ThreadChecker
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
@@ -14,6 +13,7 @@ import com.ruslan.hlushan.core.command.strategy.HandleStrategy
 import com.ruslan.hlushan.core.command.strategy.OneExecutionStateStrategy
 import com.ruslan.hlushan.core.command.strategy.SkipStrategy
 import com.ruslan.hlushan.core.command.strategy.StrategyCommand
+import com.ruslan.hlushan.core.logger.api.AppLogger
 import com.ruslan.hlushan.core.ui.viewmodel.BaseViewModel
 import com.ruslan.hlushan.game.api.auth.AuthInteractor
 import com.ruslan.hlushan.game.api.auth.dto.AuthError

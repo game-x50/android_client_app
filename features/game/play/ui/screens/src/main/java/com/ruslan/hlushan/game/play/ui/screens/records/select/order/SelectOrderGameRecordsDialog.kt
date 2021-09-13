@@ -9,6 +9,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.extensions.lazyUnsafe
 import com.ruslan.hlushan.core.ui.dialog.BaseDialogFragment
 import com.ruslan.hlushan.core.ui.dialog.DialogBackgroundColorLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.dialog.command.DialogCommandsHandler
@@ -16,7 +17,6 @@ import com.ruslan.hlushan.core.ui.dialog.command.ShowDialogCommand
 import com.ruslan.hlushan.core.ui.recycler.adapter.DelegatesRecyclerAdapter
 import com.ruslan.hlushan.core.ui.recycler.adapter.RecyclerViewLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.viewbinding.extensions.bindViewBinding
-import com.ruslan.hlushan.extensions.lazyUnsafe
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.api.play.dto.OrderType
 import com.ruslan.hlushan.game.play.ui.screens.R
