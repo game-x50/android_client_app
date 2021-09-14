@@ -1,7 +1,7 @@
 package com.ruslan.hlushan.core.ui.api.manager
 
 import android.app.Activity
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.thread.UiMainThread
 
 interface AppActivitiesSettings {
 

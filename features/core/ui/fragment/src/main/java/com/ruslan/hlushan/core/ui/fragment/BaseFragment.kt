@@ -18,9 +18,9 @@ import com.ruslan.hlushan.android.extensions.applicationLabel
 import com.ruslan.hlushan.android.extensions.executeHideKeyboard
 import com.ruslan.hlushan.core.api.managers.CompositeUserErrorMapper
 import com.ruslan.hlushan.core.api.managers.ResourceManager
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.extensions.ifNotNull
 import com.ruslan.hlushan.core.logger.api.AppLogger
+import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.api.R
 import com.ruslan.hlushan.core.ui.api.manager.AppActivitiesSettings
 import com.ruslan.hlushan.core.ui.api.utils.LockableHandler

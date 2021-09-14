@@ -16,6 +16,7 @@ dependencies {
     api(projects.features.core.ui.fragment)
     api(projects.features.core.ui.recycler.adapter)
 
+    compileOnly(projects.features.core.thread.lib)
     compileOnly(projects.features.core.extensions)
     compileOnly(projects.features.core.android.extensions)
     compileOnly(projects.features.thirdParty.androidx.recyclerview.extensions)

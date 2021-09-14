@@ -6,7 +6,7 @@ import com.github.terrakok.cicerone.Navigator
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.redmadrobot.e2e.decorator.EdgeToEdgeDecorator
 import com.ruslan.hlushan.android.extensions.getContextCompatColor
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.activity.BaseAppActivity
 import com.ruslan.hlushan.core.ui.api.utils.BottomMenuHolder
 import com.ruslan.hlushan.core.ui.viewmodel.extensions.bindBaseViewModel

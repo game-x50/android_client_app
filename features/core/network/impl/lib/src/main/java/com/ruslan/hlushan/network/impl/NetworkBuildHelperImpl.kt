@@ -3,7 +3,7 @@ package com.ruslan.hlushan.network.impl
 import android.content.Context
 import com.babylon.certificatetransparency.certificateTransparencyInterceptor
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.ruslan.hlushan.core.api.utils.InitAppConfig
+import com.ruslan.hlushan.core.api.dto.InitAppConfig
 import com.ruslan.hlushan.core.logger.api.AppLogger
 import com.ruslan.hlushan.network.api.NetworkBuildHelper
 import com.ruslan.hlushan.network.api.NetworkConfig

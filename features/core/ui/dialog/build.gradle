@@ -17,7 +17,7 @@ android {
 dependencies {
     api(projects.features.core.ui.lifecycle.lib)
 
-    compileOnly(projects.features.core.api.lib)
+    compileOnly(projects.features.core.thread.lib)
     compileOnly(projects.features.core.extensions)
     compileOnly(projects.features.core.ui.api.lib)
     compileOnly(projects.features.core.ui.lifecycle.utils)

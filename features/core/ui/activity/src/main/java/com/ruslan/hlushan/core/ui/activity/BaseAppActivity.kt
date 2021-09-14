@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Navigator
 import com.github.terrakok.cicerone.Router
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.api.utils.NewIntentHandler
 import com.ruslan.hlushan.core.ui.api.utils.OnBackPressedHandler
 import com.ruslan.hlushan.core.ui.api.utils.ViewModifier

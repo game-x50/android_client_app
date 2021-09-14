@@ -3,8 +3,6 @@ package com.ruslan.hlushan.game.play.ui.screens.game
 import androidx.annotation.CallSuper
 import com.github.terrakok.cicerone.Router
 import com.ruslan.hlushan.core.api.managers.SchedulersManager
-import com.ruslan.hlushan.core.api.utils.thread.ThreadChecker
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.command.CommandQueue
 import com.ruslan.hlushan.core.command.MutableCommandQueue
 import com.ruslan.hlushan.core.command.strategy.AddToEndSingleStrategy
@@ -13,6 +11,8 @@ import com.ruslan.hlushan.core.command.strategy.OneExecutionStateStrategy
 import com.ruslan.hlushan.core.command.strategy.SkipStrategy
 import com.ruslan.hlushan.core.command.strategy.StrategyCommand
 import com.ruslan.hlushan.core.logger.api.AppLogger
+import com.ruslan.hlushan.core.thread.ThreadChecker
+import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.viewmodel.BaseViewModel
 import com.ruslan.hlushan.game.api.play.PlayRecordsInteractor
 import com.ruslan.hlushan.game.api.play.dto.GameState

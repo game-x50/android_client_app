@@ -5,10 +5,10 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import com.github.terrakok.cicerone.androidx.FragmentScreen
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.command.extensions.handleCommandQueue
 import com.ruslan.hlushan.core.extensions.exhaustive
 import com.ruslan.hlushan.core.pagination.api.PaginationState
+import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.core.ui.pagination.view.setUpPagination
 import com.ruslan.hlushan.core.ui.recycler.adapter.DelegatesRecyclerAdapter

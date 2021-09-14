@@ -1,20 +1,20 @@
 package com.ruslan.hlushan.game.settings.ui.languages
 
 import com.github.terrakok.cicerone.Router
-import com.ruslan.hlushan.core.api.dto.WrappedLanguage
 import com.ruslan.hlushan.core.api.managers.SchedulersManager
 import com.ruslan.hlushan.core.api.managers.Settings
-import com.ruslan.hlushan.core.api.model.interactors.LanguagesInteractor
-import com.ruslan.hlushan.core.api.model.interactors.getWrappedLanguages
-import com.ruslan.hlushan.core.api.utils.thread.ThreadChecker
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.command.CommandQueue
 import com.ruslan.hlushan.core.command.MutableCommandQueue
 import com.ruslan.hlushan.core.command.strategy.AddToEndSingleStrategy
 import com.ruslan.hlushan.core.command.strategy.HandleStrategy
 import com.ruslan.hlushan.core.command.strategy.OneExecutionStateStrategy
 import com.ruslan.hlushan.core.command.strategy.StrategyCommand
+import com.ruslan.hlushan.core.language.api.LanguageInteractor
+import com.ruslan.hlushan.core.language.api.WrappedLanguage
+import com.ruslan.hlushan.core.language.api.getWrappedLanguages
 import com.ruslan.hlushan.core.logger.api.AppLogger
+import com.ruslan.hlushan.core.thread.ThreadChecker
+import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.viewmodel.BaseViewModel
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
@@ -26,7 +26,7 @@ constructor(
         appLogger: AppLogger,
         threadChecker: ThreadChecker,
         schedulersManager: SchedulersManager,
-        languagesInteractor: LanguagesInteractor,
+        languagesInteractor: LanguageInteractor,
         @Assisted private val router: Router,
         private val settings: Settings
 ) : BaseViewModel(appLogger, threadChecker) {

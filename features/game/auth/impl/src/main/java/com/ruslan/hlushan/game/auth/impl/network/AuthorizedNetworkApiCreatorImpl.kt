@@ -1,7 +1,7 @@
 package com.ruslan.hlushan.game.auth.impl.network
 
 import android.content.Context
-import com.ruslan.hlushan.core.api.utils.InitAppConfig
+import com.ruslan.hlushan.core.api.dto.InitAppConfig
 import com.ruslan.hlushan.core.logger.api.AppLogger
 import com.ruslan.hlushan.game.api.network.AuthorizedNetworkApiCreator
 import com.ruslan.hlushan.network.api.NetworkBuildHelper
@@ -11,9 +11,6 @@ import retrofit2.Retrofit
 import javax.inject.Inject
 import kotlin.reflect.KClass
 
-/**
- * @author Ruslan Hlushan on 2019-07-26
- */
 internal class AuthorizedNetworkApiCreatorImpl
 @Inject
 constructor(

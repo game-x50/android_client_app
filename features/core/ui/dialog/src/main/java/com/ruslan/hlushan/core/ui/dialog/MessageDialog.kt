@@ -6,7 +6,7 @@ import androidx.annotation.LayoutRes
 import androidx.annotation.StyleRes
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentManager
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.dialog.command.DialogCommand
 import com.ruslan.hlushan.core.ui.dialog.command.DialogCommandsHandler
 import com.ruslan.hlushan.third_party.androidx.fragment.extensions.showNowSafety

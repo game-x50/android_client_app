@@ -5,7 +5,7 @@ import com.ruslan.hlushan.core.api.di.DebugToolsProvider
 import com.ruslan.hlushan.core.api.di.ManagersProvider
 import com.ruslan.hlushan.core.api.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.api.di.asType
-import com.ruslan.hlushan.core.api.utils.InitAppConfig
+import com.ruslan.hlushan.core.api.dto.InitAppConfig
 import com.ruslan.hlushan.core.logger.api.di.LoggersProvider
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment

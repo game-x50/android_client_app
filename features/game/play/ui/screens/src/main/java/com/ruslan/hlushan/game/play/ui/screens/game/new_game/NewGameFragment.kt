@@ -7,7 +7,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import com.github.terrakok.cicerone.androidx.FragmentScreen
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.viewmodel.extensions.bindBaseViewModel
 import com.ruslan.hlushan.game.api.play.dto.GameSize
 import com.ruslan.hlushan.game.play.ui.screens.di.gamePlayUiComponent

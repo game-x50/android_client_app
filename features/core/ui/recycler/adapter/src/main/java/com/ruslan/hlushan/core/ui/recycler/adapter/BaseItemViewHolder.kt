@@ -3,8 +3,8 @@ package com.ruslan.hlushan.core.ui.recycler.adapter
 import android.view.View
 import androidx.annotation.CallSuper
 import androidx.recyclerview.widget.RecyclerView
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.recycler.item.RecyclerItem
+import com.ruslan.hlushan.core.thread.UiMainThread
 
 @Suppress("MaxLineLength")
 abstract class BaseItemViewHolder<out Id : Any, RI : RecyclerItem<Id>>(itemView: View) : RecyclerView.ViewHolder(itemView) {

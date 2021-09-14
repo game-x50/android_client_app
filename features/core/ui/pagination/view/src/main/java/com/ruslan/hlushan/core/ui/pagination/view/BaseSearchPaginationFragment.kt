@@ -8,8 +8,8 @@ import android.view.View
 import androidx.annotation.ContentView
 import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.SearchView
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.extensions.ifNotNull
+import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.core.ui.pagination.viewmodel.SearchPaginationViewModel
 

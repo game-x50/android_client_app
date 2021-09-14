@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.extensions.ifNotNull
+import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.dialog.BaseDialogFragment
 import com.ruslan.hlushan.core.ui.dialog.DialogBackgroundColorLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.dialog.DialogSizeRatioLifecyclePluginObserver

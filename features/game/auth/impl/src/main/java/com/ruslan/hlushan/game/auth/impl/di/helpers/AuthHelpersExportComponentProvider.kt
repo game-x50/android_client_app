@@ -1,7 +1,7 @@
 package com.ruslan.hlushan.game.auth.impl.di.helpers
 
 import com.ruslan.hlushan.android.core.api.di.AppContextProvider
-import com.ruslan.hlushan.core.api.utils.InitAppConfig
+import com.ruslan.hlushan.core.api.dto.InitAppConfig
 import com.ruslan.hlushan.core.logger.api.di.LoggersProvider
 import com.ruslan.hlushan.game.api.di.providers.AuthorizedNetworkApiCreatorProvider
 import com.ruslan.hlushan.game.auth.impl.di.repo.AuthRepoHolder

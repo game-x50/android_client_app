@@ -2,16 +2,16 @@ package com.ruslan.hlushan.game.settings.ui.menu
 
 import com.github.terrakok.cicerone.Router
 import com.ruslan.hlushan.core.api.managers.SchedulersManager
-import com.ruslan.hlushan.core.api.model.interactors.LanguagesInteractor
-import com.ruslan.hlushan.core.api.utils.thread.ThreadChecker
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.command.CommandQueue
 import com.ruslan.hlushan.core.command.MutableCommandQueue
 import com.ruslan.hlushan.core.command.strategy.AddToEndSingleStrategy
 import com.ruslan.hlushan.core.command.strategy.HandleStrategy
 import com.ruslan.hlushan.core.command.strategy.OneExecutionStateStrategy
 import com.ruslan.hlushan.core.command.strategy.StrategyCommand
+import com.ruslan.hlushan.core.language.api.LanguageInteractor
 import com.ruslan.hlushan.core.logger.api.AppLogger
+import com.ruslan.hlushan.core.thread.ThreadChecker
+import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.viewmodel.BaseViewModel
 import com.ruslan.hlushan.game.settings.ui.di.SettingsOutScreenCreator
 import dagger.assisted.Assisted
@@ -26,7 +26,7 @@ constructor(
         threadChecker: ThreadChecker,
         @Assisted private val router: Router,
         private val schedulersManager: SchedulersManager,
-        private val languagesInteractor: LanguagesInteractor,
+        private val languagesInteractor: LanguageInteractor,
         private val settingsOutScreenCreator: SettingsOutScreenCreator
 ) : BaseViewModel(appLogger, threadChecker) {
 

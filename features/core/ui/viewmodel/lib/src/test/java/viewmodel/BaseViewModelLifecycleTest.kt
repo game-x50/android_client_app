@@ -1,6 +1,6 @@
 package viewmodel
 
-import com.ruslan.hlushan.core.api.test.utils.thread.ThreadCheckerStub
+import com.ruslan.hlushan.core.thread.test.utils.ThreadCheckerStub
 import com.ruslan.hlushan.core.ui.viewmodel.test.utils.callOnCleared
 import com.ruslan.hlushan.test.utils.assertThrows
 import org.junit.Assert.assertEquals

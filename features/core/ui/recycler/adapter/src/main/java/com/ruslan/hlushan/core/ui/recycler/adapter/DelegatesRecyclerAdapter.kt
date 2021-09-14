@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.extensions.ifNotNull
 import com.ruslan.hlushan.core.recycler.item.RecyclerItem
+import com.ruslan.hlushan.core.thread.UiMainThread
 
 typealias OnItemClickListener<T> = (item: T) -> Unit
 

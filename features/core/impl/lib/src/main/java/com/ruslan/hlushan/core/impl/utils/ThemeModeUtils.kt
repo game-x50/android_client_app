@@ -3,8 +3,8 @@ package com.ruslan.hlushan.core.impl.utils
 import android.content.SharedPreferences
 import android.os.Build
 import androidx.appcompat.app.AppCompatDelegate
-import com.ruslan.hlushan.core.api.utils.ThemeMode
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.api.dto.ThemeMode
+import com.ruslan.hlushan.core.thread.UiMainThread
 
 private const val KEY_APP_THEME_MODE = "KEY_APP_THEME_MODE"
 

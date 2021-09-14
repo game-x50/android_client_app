@@ -6,10 +6,6 @@ import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
-/**
- * Created by User on 31.01.2018.
- */
-
 fun <T> Single<T>.mapError(block: (Throwable) -> Throwable): Single<T> =
         onErrorResumeNext { throwable -> Single.error(block(throwable)) }
 

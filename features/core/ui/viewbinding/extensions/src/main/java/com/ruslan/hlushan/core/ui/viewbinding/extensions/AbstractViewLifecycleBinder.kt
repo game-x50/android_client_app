@@ -1,9 +1,9 @@
 package com.ruslan.hlushan.core.ui.viewbinding.extensions
 
 import androidx.lifecycle.Lifecycle
-import com.ruslan.hlushan.core.api.utils.thread.SingleThreadSafety
-import com.ruslan.hlushan.core.api.utils.thread.ThreadChecker
-import com.ruslan.hlushan.core.api.utils.thread.checkThread
+import com.ruslan.hlushan.core.thread.SingleThreadSafety
+import com.ruslan.hlushan.core.thread.ThreadChecker
+import com.ruslan.hlushan.core.thread.checkThread
 import com.ruslan.hlushan.core.ui.lifecycle.LifecyclePluginObserver
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty

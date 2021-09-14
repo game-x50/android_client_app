@@ -1,10 +1,10 @@
 package com.ruslan.hlushan.core.command
 
-import com.ruslan.hlushan.core.api.utils.thread.SingleThreadChecker
-import com.ruslan.hlushan.core.api.utils.thread.SingleThreadSafety
-import com.ruslan.hlushan.core.api.utils.thread.ThreadChecker
-import com.ruslan.hlushan.core.api.utils.thread.checkThread
 import com.ruslan.hlushan.core.command.strategy.StrategyCommand
+import com.ruslan.hlushan.core.thread.SingleThreadChecker
+import com.ruslan.hlushan.core.thread.SingleThreadSafety
+import com.ruslan.hlushan.core.thread.ThreadChecker
+import com.ruslan.hlushan.core.thread.checkThread
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 

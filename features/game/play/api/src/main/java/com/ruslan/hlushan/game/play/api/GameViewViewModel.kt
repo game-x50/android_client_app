@@ -1,8 +1,8 @@
 package com.ruslan.hlushan.game.play.api
 
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.extensions.ifNotNull
 import com.ruslan.hlushan.core.extensions.indexOfFirstOrNull
+import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.game.api.play.dto.GameSize
 import com.ruslan.hlushan.game.api.play.dto.GameState
 import com.ruslan.hlushan.game.api.play.dto.ImmutableNumbersMatrix

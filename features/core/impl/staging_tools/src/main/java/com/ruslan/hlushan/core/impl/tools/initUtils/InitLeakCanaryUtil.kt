@@ -1,8 +1,8 @@
 package com.ruslan.hlushan.core.impl.tools.initUtils
 
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.extensions.exhaustive
 import com.ruslan.hlushan.core.logger.api.AppLogger
+import com.ruslan.hlushan.core.thread.UiMainThread
 import leakcanary.AppWatcher
 import leakcanary.DefaultOnHeapAnalyzedListener
 import leakcanary.LeakCanary

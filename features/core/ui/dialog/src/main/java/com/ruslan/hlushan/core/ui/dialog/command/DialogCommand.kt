@@ -3,7 +3,7 @@ package com.ruslan.hlushan.core.ui.dialog.command
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.thread.UiMainThread
 
 abstract class DialogCommand {
 

@@ -1,8 +1,8 @@
 package com.ruslan.hlushan.core.ui.fragment
 
 import androidx.fragment.app.Fragment
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.extensions.ifNotNull
+import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.api.manager.AppActivitiesSettings
 import com.ruslan.hlushan.core.ui.lifecycle.LifecyclePluginObserver
 import java.lang.ref.WeakReference

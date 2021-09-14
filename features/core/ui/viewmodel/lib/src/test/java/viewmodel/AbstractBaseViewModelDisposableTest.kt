@@ -1,6 +1,6 @@
 package viewmodel
 
-import com.ruslan.hlushan.core.api.test.utils.thread.ThreadCheckerStub
+import com.ruslan.hlushan.core.thread.test.utils.ThreadCheckerStub
 import com.ruslan.hlushan.core.ui.viewmodel.test.utils.TestBaseViewModelCleanUpRule
 import com.ruslan.hlushan.third_party.rxjava2.test.utils.TestSchedulerCleanUpRule
 import io.reactivex.schedulers.TestScheduler

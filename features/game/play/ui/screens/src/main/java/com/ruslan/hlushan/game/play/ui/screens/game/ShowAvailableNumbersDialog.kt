@@ -2,7 +2,7 @@ package com.ruslan.hlushan.game.play.ui.screens.game
 
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.dialog.command.ShowDialogCommand
 import com.ruslan.hlushan.game.play.api.AVAILABLE_NUMBERS
 

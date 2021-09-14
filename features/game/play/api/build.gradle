@@ -4,7 +4,7 @@ dependencies {
     api(projects.features.game.api.lib)
 
     compileOnly(projects.features.core.extensions)
-    compileOnly(projects.features.core.api.lib)
+    compileOnly(projects.features.core.thread.lib)
 
     api(Deps.rxJava2)
 

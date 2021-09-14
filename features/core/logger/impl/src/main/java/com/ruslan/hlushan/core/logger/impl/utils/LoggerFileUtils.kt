@@ -1,7 +1,7 @@
 package com.ruslan.hlushan.core.logger.impl.utils
 
-import com.ruslan.hlushan.core.api.utils.thread.ThreadPoolSpecification
-import com.ruslan.hlushan.core.api.utils.thread.ThreadPoolType
+import com.ruslan.hlushan.core.thread.ThreadPoolSpecification
+import com.ruslan.hlushan.core.thread.ThreadPoolType
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileReader

@@ -1,7 +1,7 @@
 package com.ruslan.hlushan.core.logger.impl
 
 import android.util.Log
-import com.ruslan.hlushan.core.api.utils.InitAppConfig
+import com.ruslan.hlushan.core.api.dto.InitAppConfig
 import javax.inject.Inject
 
 internal class LogcatLoggerImpl

@@ -1,7 +1,7 @@
 package com.ruslan.hlushan.core.ui.api.utils
 
 import android.os.Handler
-import com.ruslan.hlushan.core.api.utils.thread.SingleThreadSafety
+import com.ruslan.hlushan.core.thread.SingleThreadSafety
 import java.util.concurrent.TimeUnit
 
 @SingleThreadSafety

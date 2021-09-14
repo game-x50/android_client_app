@@ -1,0 +1,23 @@
+apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
+apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
+
+apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
+apply from: rootProject.ext[GradleExtraArgs.kotlinxSerilization]
+
+def proguardRulesFile = "proguard-rules-core_language_impl.pro"
+
+android {
+    defaultConfig {
+        versionCode = 1
+        versionName = "1.0"
+
+        consumerProguardFiles(proguardRulesFile)
+    }
+
+//    resourcePrefix("language_impl")
+}
+
+dependencies {
+    api(projects.features.core.language.api)
+    api(projects.features.core.api.lib)
+}

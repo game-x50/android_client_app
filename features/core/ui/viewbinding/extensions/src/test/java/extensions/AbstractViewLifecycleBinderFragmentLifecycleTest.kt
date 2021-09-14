@@ -1,6 +1,6 @@
 package extensions
 
-import com.ruslan.hlushan.core.api.test.utils.thread.ThreadCheckerStub
+import com.ruslan.hlushan.core.thread.test.utils.ThreadCheckerStub
 import com.ruslan.hlushan.core.ui.lifecycle.test.utils.LifecyclePluginObserverOwnerFragmentStub
 import com.ruslan.hlushan.core.ui.lifecycle.test.utils.from_init_go_to
 import extensions.mock.FragmentStubWithBinder

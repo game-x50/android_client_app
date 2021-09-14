@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.ruslan.hlushan.android.extensions.getIntOrNull
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.dialog.BaseTwoOptionsAlert
 import com.ruslan.hlushan.core.ui.dialog.TwoOptionsAlertData
 import com.ruslan.hlushan.core.ui.dialog.command.DialogCommandsHandler

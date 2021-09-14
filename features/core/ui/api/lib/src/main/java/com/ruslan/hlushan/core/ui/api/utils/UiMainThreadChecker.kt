@@ -1,7 +1,7 @@
 package com.ruslan.hlushan.core.ui.api.utils
 
 import android.os.Looper
-import com.ruslan.hlushan.core.api.utils.thread.ThreadChecker
+import com.ruslan.hlushan.core.thread.ThreadChecker
 
 object UiMainThreadChecker : ThreadChecker {
 

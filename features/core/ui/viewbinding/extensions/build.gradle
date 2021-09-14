@@ -21,7 +21,7 @@ dependencies {
     api(projects.features.core.ui.lifecycle.lib)
 
     compileOnly(projects.features.core.extensions)
-    compileOnly(projects.features.core.api.lib)
+    compileOnly(projects.features.core.thread.lib)
     compileOnly(projects.features.core.ui.api.lib)
 
     api(Deps.androidxFragment)
@@ -29,6 +29,6 @@ dependencies {
     compileOnly(Deps.viewBinding)
 
     testImplementation(projects.features.core.testUtils)
-    testImplementation(projects.features.core.api.testUtils)
+    testImplementation(projects.features.core.thread.testUtils)
     testImplementation(projects.features.core.ui.lifecycle.testUtils)
 }
