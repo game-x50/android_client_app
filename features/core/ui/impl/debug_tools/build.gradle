@@ -26,7 +26,5 @@ dependencies {
 
     implementation(projects.features.core.ui.impl.stagingTools)
 
-    compileOnly(Deps.rxJava2)
-
     compileOnly(Deps.androidMaterial)
 }

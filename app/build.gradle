@@ -132,9 +132,6 @@ dependencies {
     implementation(projects.features.game.settings.ui)
     implementation(projects.features.game.top.ui)
 
-    compileOnly(Deps.rxJava2)//todo: compileOnly here instead of core_impl module of because ot some dependencies conflicts in core_impl, try to use implementation here and compileOnly in core_impl module
-    runtimeOnly(projects.features.thirdParty.rxjava2.extensions)
-
     runtimeOnly(projects.features.thirdParty.threeTen.extensions)
     implementation(Deps.threeTenBpAndroid)
 

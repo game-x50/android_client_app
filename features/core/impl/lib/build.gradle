@@ -28,6 +28,7 @@ android {
 dependencies {
     api(projects.features.core.api.lib)
     api(projects.features.core.logger.api.lib)
+    api(projects.features.thirdParty.rxjava2.extensions)
 
     compileOnly(projects.features.core.thread.lib)
     compileOnly(projects.features.core.extensions)
@@ -42,7 +43,6 @@ dependencies {
     debugImplementation(projects.features.core.impl.debugTools)
     stagingImplementation(projects.features.core.impl.stagingTools)
 
-    implementation(Deps.rxJava2)//todo: implementation here instead of app module because of because ot some dependencies conflicts, try to use compileOnly here and implementation in app module
     implementation(Deps.rxJava2Android)
 
     compileOnly(Deps.androidxAppCompat)

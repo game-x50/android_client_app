@@ -2,7 +2,6 @@ package com.ruslan.hlushan.game.di
 
 import android.app.Activity
 import com.ruslan.hlushan.core.api.di.ManagersProvider
-import com.ruslan.hlushan.core.api.di.SchedulersProvider
 import com.ruslan.hlushan.core.api.di.asType
 import com.ruslan.hlushan.core.error.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.logger.api.di.LoggersProvider
@@ -12,6 +11,7 @@ import com.ruslan.hlushan.core.ui.routing.di.UiRoutingProvider
 import com.ruslan.hlushan.game.GameAppActivity
 import com.ruslan.hlushan.game.GameAppViewModel
 import com.ruslan.hlushan.game.screens.main.MainScreenFragment
+import com.ruslan.hlushan.third_party.rxjava2.extensions.di.SchedulersManagerProvider
 import dagger.Component
 
 @MainUiScope
@@ -22,7 +22,7 @@ import dagger.Component
             UserErrorMapperProvider::class,
             ManagersProvider::class,
             LoggersProvider::class,
-            SchedulersProvider::class
+            SchedulersManagerProvider::class
         ]
 )
 internal interface GameMainUiComponent {
@@ -41,7 +41,7 @@ internal interface GameMainUiComponent {
                 userErrorMapperProvider: UserErrorMapperProvider,
                 managersProvider: ManagersProvider,
                 loggersProvider: LoggersProvider,
-                schedulersProvider: SchedulersProvider
+                schedulersProvider: SchedulersManagerProvider
         ): GameMainUiComponent
     }
 }

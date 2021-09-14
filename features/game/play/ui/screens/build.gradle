@@ -25,11 +25,8 @@ dependencies {
     compileOnly(projects.features.core.ui.layout.container)
     compileOnly(projects.features.core.ui.viewmodel.extensions)
     compileOnly(projects.features.core.command.lib)
-
     compileOnly(projects.features.thirdParty.threeTen.extensions)
-
     compileOnly(projects.features.thirdParty.rxjava2.extensions)
-
     compileOnly(projects.features.thirdParty.androidx.material.extensions)
 
     implementation(projects.features.core.ui.dimens)//todo: #check_compileOnly

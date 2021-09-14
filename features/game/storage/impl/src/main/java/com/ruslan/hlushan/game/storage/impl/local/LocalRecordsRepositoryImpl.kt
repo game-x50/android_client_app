@@ -2,7 +2,6 @@ package com.ruslan.hlushan.game.storage.impl.local
 
 import androidx.annotation.IntRange
 import com.ruslan.hlushan.core.api.dto.ValueHolder
-import com.ruslan.hlushan.core.api.managers.SchedulersManager
 import com.ruslan.hlushan.core.logger.api.AppLogger
 import com.ruslan.hlushan.core.pagination.api.PaginationPagesRequest
 import com.ruslan.hlushan.core.pagination.api.PaginationResponse
@@ -16,6 +15,7 @@ import com.ruslan.hlushan.game.api.play.dto.createPaginationResponseFor
 import com.ruslan.hlushan.game.storage.impl.local.db.dao.GameRecordsDAO
 import com.ruslan.hlushan.game.storage.impl.local.db.entities.GameRecordDb
 import com.ruslan.hlushan.game.storage.impl.local.db.entities.LocalActionTypeDb
+import com.ruslan.hlushan.third_party.rxjava2.extensions.SchedulersManager
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single

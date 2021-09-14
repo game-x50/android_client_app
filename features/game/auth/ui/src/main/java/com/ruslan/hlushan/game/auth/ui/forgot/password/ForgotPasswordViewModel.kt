@@ -1,6 +1,5 @@
 package com.ruslan.hlushan.game.auth.ui.forgot.password
 
-import com.ruslan.hlushan.core.api.managers.SchedulersManager
 import com.ruslan.hlushan.core.command.CommandQueue
 import com.ruslan.hlushan.core.command.MutableCommandQueue
 import com.ruslan.hlushan.core.command.strategy.AddToEndSingleStrategy
@@ -14,6 +13,7 @@ import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.viewmodel.BaseViewModel
 import com.ruslan.hlushan.game.api.auth.AuthInteractor
 import com.ruslan.hlushan.game.api.auth.dto.User
+import com.ruslan.hlushan.third_party.rxjava2.extensions.SchedulersManager
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 

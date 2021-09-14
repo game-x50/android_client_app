@@ -2,12 +2,12 @@ package com.ruslan.hlushan.core.language.impl
 
 import com.ruslan.hlushan.core.api.dto.InitAppConfig
 import com.ruslan.hlushan.core.api.managers.ResourceManager
-import com.ruslan.hlushan.core.api.managers.SchedulersManager
 import com.ruslan.hlushan.core.api.managers.Settings
 import com.ruslan.hlushan.core.language.api.Language
 import com.ruslan.hlushan.core.language.impl.dto.LanguageDTO
 import com.ruslan.hlushan.core.language.impl.dto.mapLanguage
 import com.ruslan.hlushan.parsing.impl.utils.parsing.AppJson
+import com.ruslan.hlushan.third_party.rxjava2.extensions.SchedulersManager
 import io.reactivex.Single
 import kotlinx.serialization.decodeFromString
 import javax.inject.Inject

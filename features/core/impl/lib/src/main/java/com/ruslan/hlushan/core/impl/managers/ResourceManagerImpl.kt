@@ -7,7 +7,6 @@ import androidx.annotation.RawRes
 import androidx.annotation.StringRes
 import com.ruslan.hlushan.core.api.dto.ValueHolder
 import com.ruslan.hlushan.core.api.managers.ResourceManager
-import com.ruslan.hlushan.core.api.managers.SchedulersManager
 import com.ruslan.hlushan.core.api.managers.Settings
 import com.ruslan.hlushan.core.api.managers.appLanguageNotFullCode
 import com.ruslan.hlushan.core.impl.utils.files.readRawTextFile
@@ -16,6 +15,7 @@ import com.ruslan.hlushan.core.impl.utils.getStringResourceByName
 import com.ruslan.hlushan.core.impl.utils.getWrappedOrUpdateContext
 import com.ruslan.hlushan.core.thread.ThreadPoolSpecification
 import com.ruslan.hlushan.core.thread.ThreadPoolType
+import com.ruslan.hlushan.third_party.rxjava2.extensions.SchedulersManager
 import io.reactivex.Single
 import javax.inject.Inject
 

@@ -22,7 +22,6 @@ import com.ruslan.hlushan.core.api.dto.flatMapCompletableSuccess
 import com.ruslan.hlushan.core.api.dto.flatMapNestedSuccess
 import com.ruslan.hlushan.core.api.dto.mapSuccess
 import com.ruslan.hlushan.core.api.dto.toOperationResult
-import com.ruslan.hlushan.core.api.managers.SchedulersManager
 import com.ruslan.hlushan.core.error.NetworkException
 import com.ruslan.hlushan.core.error.mapError
 import com.ruslan.hlushan.core.extensions.ifNotNull
@@ -30,6 +29,7 @@ import com.ruslan.hlushan.core.logger.api.AppLogger
 import com.ruslan.hlushan.game.api.auth.dto.AuthError
 import com.ruslan.hlushan.game.api.auth.dto.User
 import com.ruslan.hlushan.game.auth.impl.repo.dto.server.UserNameRequest
+import com.ruslan.hlushan.third_party.rxjava2.extensions.SchedulersManager
 import com.ruslan.hlushan.third_party.rxjava2.extensions.tryEmitOrProvideError
 import io.reactivex.Completable
 import io.reactivex.Observable

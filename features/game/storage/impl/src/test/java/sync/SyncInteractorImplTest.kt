@@ -2,7 +2,6 @@ package sync
 
 import assertRecordsWithSyncStateInLocalRepo
 import com.ruslan.hlushan.core.api.dto.OperationResult
-import com.ruslan.hlushan.core.api.test.utils.managers.CurrentThreadSchedulersManager
 import com.ruslan.hlushan.core.logger.api.test.utils.EmptyAppLoggerImpl
 import com.ruslan.hlushan.game.api.play.dto.GameRecord
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
@@ -20,6 +19,7 @@ import com.ruslan.hlushan.game.storage.impl.remote.dto.UploadLocalModifiedReques
 import com.ruslan.hlushan.game.storage.impl.remote.dto.server.GetNewRemoteCreatedRequest
 import com.ruslan.hlushan.game.storage.impl.remote.dto.server.toUpdateLocalSyncedRequest
 import com.ruslan.hlushan.test.utils.generateFakeInstantTimestamp
+import com.ruslan.hlushan.third_party.rxjava2.test.utils.CurrentThreadSchedulersManager
 import com.ruslan.hlushan.third_party.rxjava2.test.utils.assertNotCompleteNoErrorsNoValues
 import generateAndAddLocalCreatedToLocalRepo
 import generateAndAddLocalSyncedToLocalRepo

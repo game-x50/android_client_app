@@ -32,7 +32,6 @@ include(
         ":features:core:api:lib",
         ":features:core:api:debug_tools",
         ":features:core:api:staging_tools",
-        ":features:core:api:test_utils",
 
         ":features:core:parsing:impl",
 

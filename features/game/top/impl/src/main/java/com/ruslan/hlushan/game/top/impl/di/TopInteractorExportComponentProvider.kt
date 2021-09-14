@@ -1,10 +1,10 @@
 package com.ruslan.hlushan.game.top.impl.di
 
-import com.ruslan.hlushan.core.api.di.SchedulersProvider
 import com.ruslan.hlushan.core.logger.api.di.LoggersProvider
 import com.ruslan.hlushan.game.api.di.providers.NonAuthorizedNetworkApiCreatorProvider
 import com.ruslan.hlushan.game.api.di.providers.TopInteractorProvider
 import com.ruslan.hlushan.game.api.network.GameNetworkParams
+import com.ruslan.hlushan.third_party.rxjava2.extensions.di.SchedulersManagerProvider
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -14,7 +14,7 @@ import javax.inject.Singleton
         modules = [TopModule::class],
         dependencies = [
             LoggersProvider::class,
-            SchedulersProvider::class,
+            SchedulersManagerProvider::class,
             NonAuthorizedNetworkApiCreatorProvider::class
         ]
 )
@@ -25,7 +25,7 @@ interface TopInteractorExportComponentProvider : TopInteractorProvider {
         fun create(
                 @BindsInstance gameNetworkParams: GameNetworkParams,
                 loggersProvider: LoggersProvider,
-                schedulersProvider: SchedulersProvider,
+                schedulersProvider: SchedulersManagerProvider,
                 nonAuthorizedNetworkApiCreatorProvider: NonAuthorizedNetworkApiCreatorProvider
         ): TopInteractorExportComponentProvider
     }
@@ -34,7 +34,7 @@ interface TopInteractorExportComponentProvider : TopInteractorProvider {
         fun init(
                 gameNetworkParams: GameNetworkParams,
                 loggersProvider: LoggersProvider,
-                schedulersProvider: SchedulersProvider,
+                schedulersProvider: SchedulersManagerProvider,
                 nonAuthorizedNetworkApiCreatorProvider: NonAuthorizedNetworkApiCreatorProvider
         ): TopInteractorExportComponentProvider =
                 DaggerTopInteractorExportComponentProvider.factory()

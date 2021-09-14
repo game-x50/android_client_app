@@ -1,6 +1,6 @@
-package com.ruslan.hlushan.core.api.test.utils.managers
+package com.ruslan.hlushan.third_party.rxjava2.test.utils
 
-import com.ruslan.hlushan.core.api.managers.SchedulersManager
+import com.ruslan.hlushan.third_party.rxjava2.extensions.SchedulersManager
 import io.reactivex.Scheduler
 import io.reactivex.schedulers.TestScheduler
 import java.util.concurrent.TimeUnit

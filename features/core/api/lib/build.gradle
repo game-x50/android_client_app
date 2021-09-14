@@ -5,7 +5,5 @@ dependencies {
     compileOnly(projects.features.thirdParty.rxjava2.extensions)
     compileOnly(projects.features.core.thread.lib)
 
-    compileOnly(Deps.rxJava2)
-
     api(Deps.androidxAnnotations)
 }

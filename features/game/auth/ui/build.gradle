@@ -23,12 +23,11 @@ dependencies {
     compileOnly(projects.features.core.ui.viewmodel.extensions)
     compileOnly(projects.features.core.command.lib)
     compileOnly(projects.features.game.api.lib)
+    compileOnly(projects.features.thirdParty.rxjava2.extensions)
 
     implementation(projects.features.core.ui.dimens)//todo: #check_compileOnly
 
     compileOnly(Deps.threeTenBp)
-
-    compileOnly(Deps.rxJava2)
 
     implementation(projects.features.thirdParty.androidx.material.extensions)//todo: #check_compileOnly
 
