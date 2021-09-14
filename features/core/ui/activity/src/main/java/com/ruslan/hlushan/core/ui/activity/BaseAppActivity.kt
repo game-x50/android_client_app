@@ -6,11 +6,13 @@ import androidx.annotation.CallSuper
 import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 import androidx.annotation.StyleRes
+import androidx.fragment.app.Fragment
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Navigator
 import com.github.terrakok.cicerone.Router
 import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.api.utils.NewIntentHandler
+import com.ruslan.hlushan.core.ui.api.utils.OnBackPressedHandler
 import com.ruslan.hlushan.core.ui.api.utils.ViewModifier
 import com.ruslan.hlushan.core.ui.routing.CiceroneOwner
 import com.ruslan.hlushan.core.ui.routing.FlowFragmentLifecyclePluginObserver
@@ -34,6 +36,8 @@ abstract class BaseAppActivity : BaseActivity(), CiceroneOwner {
     @get:IdRes
     protected open val appContainerResId: Int
         get() = com.ruslan.hlushan.core.ui.layout.container.R.id.app_container
+
+    private val currentFragment: Fragment? get() = supportFragmentManager.findFragmentById(appContainerResId)
 
     @UiMainThread
     protected abstract fun createNavigator(): Navigator
@@ -71,7 +75,16 @@ abstract class BaseAppActivity : BaseActivity(), CiceroneOwner {
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
 
-        val handler = (supportFragmentManager.findFragmentById(appContainerResId) as? NewIntentHandler)
+        val handler = (currentFragment as? NewIntentHandler)
         handler?.onNewIntent(intent)
+    }
+
+    override fun onBackPressed() {
+        val handler = (currentFragment as? OnBackPressedHandler)
+        if (handler != null) {
+            handler.onBackPressed()
+        } else {
+            super.onBackPressed()
+        }
     }
 }
