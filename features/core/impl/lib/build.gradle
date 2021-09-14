@@ -34,6 +34,7 @@ dependencies {
     compileOnly(projects.features.core.android.extensions)
     compileOnly(projects.features.core.android.api)
     compileOnly(projects.features.core.android.storage)
+    compileOnly(projects.features.core.error)
 
     debugApi(projects.features.core.api.debugTools)
     stagingApi(projects.features.core.api.stagingTools)

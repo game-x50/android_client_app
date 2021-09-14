@@ -1,4 +1,4 @@
-package com.ruslan.hlushan.core.api.exceptions
+package com.ruslan.hlushan.core.error
 
 import androidx.annotation.StringRes
 

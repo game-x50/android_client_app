@@ -1,14 +1,10 @@
 package com.ruslan.hlushan.core.impl.utils.exceptions
 
-import com.ruslan.hlushan.core.api.exceptions.isNoNetworkException
+import com.ruslan.hlushan.core.error.isNoNetworkException
 import com.ruslan.hlushan.core.logger.api.AppLogger
 import io.reactivex.exceptions.UndeliverableException
 import io.reactivex.functions.Consumer
 import io.reactivex.plugins.RxJavaPlugins
-
-/**
- * Created by User on 19.09.2017.
- */
 
 /*
 EN - https://proandroiddev.com/rxjava2-undeliverableexception-f01d19d18048

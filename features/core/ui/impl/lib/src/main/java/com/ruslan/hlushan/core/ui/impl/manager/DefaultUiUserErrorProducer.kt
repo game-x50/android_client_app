@@ -1,9 +1,9 @@
 package com.ruslan.hlushan.core.ui.impl.manager
 
-import com.ruslan.hlushan.core.api.exceptions.BaseAppException
-import com.ruslan.hlushan.core.api.exceptions.NetworkException
 import com.ruslan.hlushan.core.api.managers.ResourceManager
-import com.ruslan.hlushan.core.api.managers.SimpleUserErrorMapper
+import com.ruslan.hlushan.core.error.BaseAppException
+import com.ruslan.hlushan.core.error.NetworkException
+import com.ruslan.hlushan.core.error.SimpleUserErrorMapper
 import javax.inject.Inject
 
 internal class DefaultUiUserErrorProducer

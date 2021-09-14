@@ -18,6 +18,7 @@ dependencies {
     api(projects.features.core.ui.dialog)
     api(projects.features.core.ui.routing)
     api(projects.features.core.ui.lifecycle.lib)
+    api(projects.features.core.error)
 
     compileOnly(projects.features.core.extensions)
     compileOnly(projects.features.core.android.extensions)

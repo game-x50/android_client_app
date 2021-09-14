@@ -6,9 +6,9 @@ import com.ruslan.hlushan.core.api.di.IBaseInjector
 import com.ruslan.hlushan.core.api.di.ManagersProvider
 import com.ruslan.hlushan.core.api.di.SchedulersProvider
 import com.ruslan.hlushan.core.api.di.ToolsProvider
-import com.ruslan.hlushan.core.api.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.api.dto.DatabaseViewInfo
 import com.ruslan.hlushan.core.api.dto.InitAppConfig
+import com.ruslan.hlushan.core.error.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.impl.di.CoreImplExportComponent
 import com.ruslan.hlushan.core.impl.tools.createToolsProvider
 import com.ruslan.hlushan.core.language.api.di.LanguagesProvider

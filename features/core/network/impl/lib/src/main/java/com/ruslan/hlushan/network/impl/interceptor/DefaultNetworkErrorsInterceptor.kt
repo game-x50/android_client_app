@@ -1,6 +1,6 @@
 package com.ruslan.hlushan.network.impl.interceptor
 
-import com.ruslan.hlushan.core.api.exceptions.networkErrorMap
+import com.ruslan.hlushan.core.error.networkErrorMap
 import okhttp3.Interceptor
 import okhttp3.Response
 

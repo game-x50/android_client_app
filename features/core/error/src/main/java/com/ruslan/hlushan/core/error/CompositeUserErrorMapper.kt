@@ -1,4 +1,4 @@
-package com.ruslan.hlushan.core.api.managers
+package com.ruslan.hlushan.core.error
 
 class CompositeUserErrorMapper(
         private val simpleProducers: List<SimpleUserErrorMapper>

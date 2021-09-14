@@ -2,8 +2,8 @@ package com.ruslan.hlushan.game.top.ui.di
 
 import com.ruslan.hlushan.core.api.di.ManagersProvider
 import com.ruslan.hlushan.core.api.di.SchedulersProvider
-import com.ruslan.hlushan.core.api.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.api.di.asType
+import com.ruslan.hlushan.core.error.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.logger.api.di.LoggersProvider
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
