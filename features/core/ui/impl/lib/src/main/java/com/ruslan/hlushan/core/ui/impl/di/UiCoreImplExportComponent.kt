@@ -2,8 +2,8 @@ package com.ruslan.hlushan.core.ui.impl.di
 
 import com.ruslan.hlushan.android.core.api.di.AppContextProvider
 import com.ruslan.hlushan.core.api.di.ManagersProvider
-import com.ruslan.hlushan.core.api.di.UserErrorMapperProvider
-import com.ruslan.hlushan.core.api.managers.SimpleUserErrorMapper
+import com.ruslan.hlushan.core.error.SimpleUserErrorMapper
+import com.ruslan.hlushan.core.error.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.logger.api.di.LoggersProvider
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
 import com.ruslan.hlushan.core.ui.impl.tools.di.UiToolsModule

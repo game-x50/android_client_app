@@ -17,6 +17,7 @@ dependencies {
     compileOnly(projects.features.core.extensions)
     compileOnly(projects.features.core.android.extensions)
     compileOnly(projects.features.core.api.lib)
+    compileOnly(projects.features.core.error)
     compileOnly(projects.features.core.thread.lib)
     compileOnly(projects.features.core.logger.api.lib)
     compileOnly(projects.features.core.ui.fragment)

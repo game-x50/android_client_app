@@ -16,8 +16,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.ruslan.hlushan.android.extensions.ViewLambdaListener
 import com.ruslan.hlushan.android.extensions.applicationLabel
 import com.ruslan.hlushan.android.extensions.executeHideKeyboard
-import com.ruslan.hlushan.core.api.managers.CompositeUserErrorMapper
 import com.ruslan.hlushan.core.api.managers.ResourceManager
+import com.ruslan.hlushan.core.error.CompositeUserErrorMapper
 import com.ruslan.hlushan.core.extensions.ifNotNull
 import com.ruslan.hlushan.core.logger.api.AppLogger
 import com.ruslan.hlushan.core.thread.UiMainThread

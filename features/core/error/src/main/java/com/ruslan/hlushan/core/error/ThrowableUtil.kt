@@ -1,4 +1,4 @@
-package com.ruslan.hlushan.core.api.exceptions
+package com.ruslan.hlushan.core.error
 
 import io.reactivex.Completable
 import io.reactivex.Single
