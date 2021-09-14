@@ -3,7 +3,6 @@
 package com.ruslan.hlushan.game.play.ui.screens.game.new_game
 
 import com.github.terrakok.cicerone.Router
-import com.ruslan.hlushan.core.api.managers.SchedulersManager
 import com.ruslan.hlushan.core.logger.api.AppLogger
 import com.ruslan.hlushan.core.thread.ThreadChecker
 import com.ruslan.hlushan.core.thread.UiMainThread
@@ -12,6 +11,7 @@ import com.ruslan.hlushan.game.api.play.dto.GameState
 import com.ruslan.hlushan.game.api.play.dto.wasPlayed
 import com.ruslan.hlushan.game.play.ui.screens.GameScopeMarkerRepository
 import com.ruslan.hlushan.game.play.ui.screens.game.PlayGameViewModel
+import com.ruslan.hlushan.third_party.rxjava2.extensions.SchedulersManager
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject

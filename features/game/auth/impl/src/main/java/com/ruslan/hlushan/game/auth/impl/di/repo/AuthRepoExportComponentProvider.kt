@@ -1,7 +1,6 @@
 package com.ruslan.hlushan.game.auth.impl.di.repo
 
 import com.ruslan.hlushan.android.core.api.di.AppContextProvider
-import com.ruslan.hlushan.core.api.di.SchedulersProvider
 import com.ruslan.hlushan.core.api.dto.InitAppConfig
 import com.ruslan.hlushan.core.logger.api.di.LoggersProvider
 import com.ruslan.hlushan.game.api.di.providers.NonAuthorizedNetworkApiCreatorProvider
@@ -9,6 +8,7 @@ import com.ruslan.hlushan.game.api.network.GameNetworkParams
 import com.ruslan.hlushan.game.auth.impl.repo.AuthRepository
 import com.ruslan.hlushan.network.api.NetworkConfig
 import com.ruslan.hlushan.network.api.di.NetworkBuildHelperProvider
+import com.ruslan.hlushan.third_party.rxjava2.extensions.di.SchedulersManagerProvider
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -19,7 +19,7 @@ import javax.inject.Singleton
         dependencies = [
             AppContextProvider::class,
             LoggersProvider::class,
-            SchedulersProvider::class,
+            SchedulersManagerProvider::class,
             NetworkBuildHelperProvider::class
         ]
 )
@@ -36,7 +36,7 @@ interface AuthRepoExportComponentProvider : NonAuthorizedNetworkApiCreatorProvid
                 @BindsInstance gameNetworkParams: GameNetworkParams,
                 appContextProvider: AppContextProvider,
                 loggersProvider: LoggersProvider,
-                schedulersProvider: SchedulersProvider,
+                schedulersProvider: SchedulersManagerProvider,
                 networkBuildHelperProvider: NetworkBuildHelperProvider
         ): AuthRepoExportComponentProvider
     }
@@ -49,7 +49,7 @@ interface AuthRepoExportComponentProvider : NonAuthorizedNetworkApiCreatorProvid
                 gameNetworkParams: GameNetworkParams,
                 appContextProvider: AppContextProvider,
                 loggersProvider: LoggersProvider,
-                schedulersProvider: SchedulersProvider,
+                schedulersProvider: SchedulersManagerProvider,
                 networkBuildHelperProvider: NetworkBuildHelperProvider
         ): AuthRepoExportComponentProvider =
                 DaggerAuthRepoExportComponentProvider.factory()

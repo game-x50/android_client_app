@@ -1,7 +1,6 @@
 package com.ruslan.hlushan.game.auth.ui.di
 
 import com.ruslan.hlushan.core.api.di.ManagersProvider
-import com.ruslan.hlushan.core.api.di.SchedulersProvider
 import com.ruslan.hlushan.core.api.di.asType
 import com.ruslan.hlushan.core.error.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.logger.api.di.LoggersProvider
@@ -19,6 +18,7 @@ import com.ruslan.hlushan.game.auth.ui.profile.UserProfileFragment
 import com.ruslan.hlushan.game.auth.ui.profile.UserProfileViewModel
 import com.ruslan.hlushan.game.auth.ui.register.RegisterFragment
 import com.ruslan.hlushan.game.auth.ui.register.RegisterViewModel
+import com.ruslan.hlushan.third_party.rxjava2.extensions.di.SchedulersManagerProvider
 import dagger.Component
 
 @AuthUiScope
@@ -29,7 +29,7 @@ import dagger.Component
             UserErrorMapperProvider::class,
             ManagersProvider::class,
             LoggersProvider::class,
-            SchedulersProvider::class,
+            SchedulersManagerProvider::class,
             PlayRecordsInteractorProvider::class,
             AuthInteractorProvider::class
         ]
@@ -55,7 +55,7 @@ internal interface AuthUiComponent {
                 userErrorMapperProvider: UserErrorMapperProvider,
                 managersProvider: ManagersProvider,
                 loggersProvider: LoggersProvider,
-                schedulersProvider: SchedulersProvider,
+                schedulersProvider: SchedulersManagerProvider,
                 playRecordsInteractorProvider: PlayRecordsInteractorProvider,
                 authInteractorProvider: AuthInteractorProvider
         ): AuthUiComponent

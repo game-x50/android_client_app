@@ -1,8 +1,8 @@
 package sync.usecases.localSynced
 
-import com.ruslan.hlushan.core.api.test.utils.managers.CurrentThreadSchedulersManager
 import com.ruslan.hlushan.game.storage.impl.PlayRecordsInteractorImpl
 import com.ruslan.hlushan.game.storage.impl.UpdateLocalSyncedUseCase
+import com.ruslan.hlushan.third_party.rxjava2.test.utils.CurrentThreadSchedulersManager
 import org.junit.Before
 import org.junit.Rule
 import sync.rule.TestLocalRecordsRepoCleanUpRule

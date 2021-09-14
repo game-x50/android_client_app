@@ -1,6 +1,0 @@
-apply from: rootProject.ext[GradleExtraArgs.baseKotlinLibrary]
-
-dependencies {
-    api(projects.features.core.api.lib)
-    compileOnly(Deps.rxJava2)
-}

@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.ruslan.hlushan.android.storage.ReferencePreferencesDelegate
 import com.ruslan.hlushan.android.storage.SharedPrefsProvider
-import com.ruslan.hlushan.core.api.managers.SchedulersManager
+import com.ruslan.hlushan.third_party.rxjava2.extensions.SchedulersManager
 import io.reactivex.Completable
 import org.threeten.bp.Instant
 import javax.inject.Inject

@@ -20,6 +20,7 @@ android {
 
 dependencies {
     api(projects.features.core.logger.api.lib)
+    api(projects.features.thirdParty.rxjava2.extensions)
 
     compileOnly(projects.features.core.api.lib)
     compileOnly(projects.features.core.android.api)
@@ -32,9 +33,6 @@ dependencies {
 
     implementation(Deps.workManagerRxJava2)
 
-    compileOnly(Deps.rxJava2)
-    compileOnly(projects.features.thirdParty.rxjava2.extensions)
-
     compileOnly(Deps.threeTenBp)
 
     testImplementation(projects.features.core.api.lib)
@@ -44,7 +42,6 @@ dependencies {
     testImplementation(projects.features.core.parsing.impl)
     testImplementation(projects.features.core.testUtils)
     testImplementation(projects.features.thirdParty.rxjava2.testUtils)
-    testImplementation(projects.features.core.api.testUtils)
     testImplementation(projects.features.core.logger.api.testUtils)
     testImplementation(projects.features.game.api.testUtils)
 }

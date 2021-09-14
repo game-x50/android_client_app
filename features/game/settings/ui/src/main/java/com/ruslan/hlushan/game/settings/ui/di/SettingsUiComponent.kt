@@ -1,7 +1,6 @@
 package com.ruslan.hlushan.game.settings.ui.di
 
 import com.ruslan.hlushan.core.api.di.ManagersProvider
-import com.ruslan.hlushan.core.api.di.SchedulersProvider
 import com.ruslan.hlushan.core.api.di.asType
 import com.ruslan.hlushan.core.error.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.language.api.di.LanguagesProvider
@@ -18,6 +17,7 @@ import com.ruslan.hlushan.game.settings.ui.languages.LanguagesViewModel
 import com.ruslan.hlushan.game.settings.ui.menu.SettingsMenuFragment
 import com.ruslan.hlushan.game.settings.ui.menu.SettingsMenuViewModel
 import com.ruslan.hlushan.game.settings.ui.theme.ThemesFragment
+import com.ruslan.hlushan.third_party.rxjava2.extensions.di.SchedulersManagerProvider
 import dagger.Component
 
 @SuppressWarnings("ComplexInterface", "MethodOverloading")
@@ -29,7 +29,7 @@ import dagger.Component
             UserErrorMapperProvider::class,
             ManagersProvider::class,
             LoggersProvider::class,
-            SchedulersProvider::class,
+            SchedulersManagerProvider::class,
             LanguagesProvider::class,
             SettingsOutScreenCreatorProvider::class
         ]
@@ -55,7 +55,7 @@ internal interface SettingsUiComponent {
                 userErrorMapperProvider: UserErrorMapperProvider,
                 managersProvider: ManagersProvider,
                 loggersProvider: LoggersProvider,
-                schedulersProvider: SchedulersProvider,
+                schedulersProvider: SchedulersManagerProvider,
                 languagesProvider: LanguagesProvider,
                 settingsOutScreenCreatorProvider: SettingsOutScreenCreatorProvider
         ): SettingsUiComponent

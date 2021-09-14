@@ -1,7 +1,6 @@
 package com.ruslan.hlushan.game.top.ui.di
 
 import com.ruslan.hlushan.core.api.di.ManagersProvider
-import com.ruslan.hlushan.core.api.di.SchedulersProvider
 import com.ruslan.hlushan.core.api.di.asType
 import com.ruslan.hlushan.core.error.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.logger.api.di.LoggersProvider
@@ -13,6 +12,7 @@ import com.ruslan.hlushan.game.api.di.providers.AuthInteractorProvider
 import com.ruslan.hlushan.game.api.di.providers.TopInteractorProvider
 import com.ruslan.hlushan.game.top.ui.games.TopGamesFragment
 import com.ruslan.hlushan.game.top.ui.games.TopGamesViewModel
+import com.ruslan.hlushan.third_party.rxjava2.extensions.di.SchedulersManagerProvider
 import dagger.Component
 
 @SuppressWarnings("ComplexInterface")
@@ -24,7 +24,7 @@ import dagger.Component
             UserErrorMapperProvider::class,
             ManagersProvider::class,
             LoggersProvider::class,
-            SchedulersProvider::class,
+            SchedulersManagerProvider::class,
             TopInteractorProvider::class,
             AuthInteractorProvider::class
         ]
@@ -44,7 +44,7 @@ internal interface TopUiComponent {
                 userErrorMapperProvider: UserErrorMapperProvider,
                 managersProvider: ManagersProvider,
                 loggersProvider: LoggersProvider,
-                schedulersProvider: SchedulersProvider,
+                schedulersProvider: SchedulersManagerProvider,
                 topInteractorProvider: TopInteractorProvider,
                 authInteractorProvider: AuthInteractorProvider
         ): TopUiComponent

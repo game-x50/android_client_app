@@ -1,4 +1,6 @@
-package com.ruslan.hlushan.core.api.managers
+@file:Suppress("PackageNaming")
+
+package com.ruslan.hlushan.third_party.rxjava2.extensions
 
 import io.reactivex.Scheduler
 

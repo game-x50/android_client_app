@@ -2,7 +2,6 @@ package com.ruslan.hlushan.game.play.ui.screens.game
 
 import androidx.annotation.CallSuper
 import com.github.terrakok.cicerone.Router
-import com.ruslan.hlushan.core.api.managers.SchedulersManager
 import com.ruslan.hlushan.core.command.CommandQueue
 import com.ruslan.hlushan.core.command.MutableCommandQueue
 import com.ruslan.hlushan.core.command.strategy.AddToEndSingleStrategy
@@ -17,6 +16,7 @@ import com.ruslan.hlushan.core.ui.viewmodel.BaseViewModel
 import com.ruslan.hlushan.game.api.play.PlayRecordsInteractor
 import com.ruslan.hlushan.game.api.play.dto.GameState
 import com.ruslan.hlushan.game.play.ui.screens.GameScopeMarkerRepository
+import com.ruslan.hlushan.third_party.rxjava2.extensions.SchedulersManager
 import com.ruslan.hlushan.third_party.rxjava2.extensions.safetyDispose
 import io.reactivex.Completable
 import io.reactivex.Observable

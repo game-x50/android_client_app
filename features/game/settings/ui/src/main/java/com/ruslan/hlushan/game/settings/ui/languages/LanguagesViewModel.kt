@@ -1,7 +1,6 @@
 package com.ruslan.hlushan.game.settings.ui.languages
 
 import com.github.terrakok.cicerone.Router
-import com.ruslan.hlushan.core.api.managers.SchedulersManager
 import com.ruslan.hlushan.core.api.managers.Settings
 import com.ruslan.hlushan.core.command.CommandQueue
 import com.ruslan.hlushan.core.command.MutableCommandQueue
@@ -16,6 +15,7 @@ import com.ruslan.hlushan.core.logger.api.AppLogger
 import com.ruslan.hlushan.core.thread.ThreadChecker
 import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.viewmodel.BaseViewModel
+import com.ruslan.hlushan.third_party.rxjava2.extensions.SchedulersManager
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject

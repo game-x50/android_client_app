@@ -1,9 +1,9 @@
 package com.ruslan.hlushan.game.auth.impl.di.interactor
 
-import com.ruslan.hlushan.core.api.di.SchedulersProvider
 import com.ruslan.hlushan.game.api.di.providers.AuthInteractorProvider
 import com.ruslan.hlushan.game.api.di.providers.RecordsUseCasesProvider
 import com.ruslan.hlushan.game.auth.impl.di.repo.AuthRepoHolder
+import com.ruslan.hlushan.third_party.rxjava2.extensions.di.SchedulersManagerProvider
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -13,7 +13,7 @@ import javax.inject.Singleton
         modules = [AuthInteractorModule::class],
         dependencies = [
             RecordsUseCasesProvider::class,
-            SchedulersProvider::class
+            SchedulersManagerProvider::class
         ]
 )
 interface AuthInteractorExportComponentProvider : AuthInteractorProvider {
@@ -23,7 +23,7 @@ interface AuthInteractorExportComponentProvider : AuthInteractorProvider {
         fun create(
                 @BindsInstance authRepoHolder: AuthRepoHolder,
                 recordsUseCasesProvider: RecordsUseCasesProvider,
-                schedulersProvider: SchedulersProvider
+                schedulersProvider: SchedulersManagerProvider
         ): AuthInteractorProvider
     }
 
@@ -31,7 +31,7 @@ interface AuthInteractorExportComponentProvider : AuthInteractorProvider {
         fun init(
                 recordsUseCasesProvider: RecordsUseCasesProvider,
                 authRepoHolder: AuthRepoHolder,
-                schedulersProvider: SchedulersProvider
+                schedulersProvider: SchedulersManagerProvider
         ): AuthInteractorProvider =
                 DaggerAuthInteractorExportComponentProvider.factory()
                         .create(

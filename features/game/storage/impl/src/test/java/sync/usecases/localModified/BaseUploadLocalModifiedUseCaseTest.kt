@@ -1,8 +1,8 @@
 package sync.usecases.localModified
 
-import com.ruslan.hlushan.core.api.test.utils.managers.CurrentThreadSchedulersManager
 import com.ruslan.hlushan.game.storage.impl.PlayRecordsInteractorImpl
 import com.ruslan.hlushan.game.storage.impl.UploadLocalModifiedUseCase
+import com.ruslan.hlushan.third_party.rxjava2.test.utils.CurrentThreadSchedulersManager
 import org.junit.Before
 import org.junit.Rule
 import sync.rule.TestLocalRecordsRepoCleanUpRule
@@ -11,9 +11,6 @@ import sync.stub.LocalRecordsRepoTestImpl
 import sync.stub.LocalRecordsRepositoryStorageMockImpl
 import sync.stub.SyncRemoteRepositoryMockImpl
 
-/**
- * @author Ruslan Hlushan on 2019-06-05
- */
 internal abstract class BaseUploadLocalModifiedUseCaseTest {
 
     protected lateinit var localRepo: LocalRecordsRepoTestImpl

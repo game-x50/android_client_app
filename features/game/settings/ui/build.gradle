@@ -36,6 +36,7 @@ dependencies {
     compileOnly(projects.features.core.command.lib)
     compileOnly(projects.features.core.ui.recycler.adapter)
     compileOnly(projects.features.core.ui.views)
+    compileOnly((projects.features.thirdParty.rxjava2.extensions))
 
     implementation(projects.features.core.ui.dimens)//todo: #check_compileOnly
     implementation(projects.features.core.ui.views)//todo: #check_compileOnly

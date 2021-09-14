@@ -18,6 +18,8 @@ android {
 }
 
 dependencies {
+    api(projects.features.thirdParty.rxjava2.extensions)
+
     compileOnly(projects.features.core.api.lib)
     compileOnly(projects.features.core.android.api)
     compileOnly(projects.features.core.extensions)
@@ -25,9 +27,6 @@ dependencies {
     compileOnly(projects.features.core.network.api)
     compileOnly(projects.features.core.android.storage)
     compileOnly(projects.features.core.error)
-
-    compileOnly(Deps.rxJava2)
-    compileOnly(projects.features.thirdParty.rxjava2.extensions)
 
     compileOnly(Deps.threeTenBp)
 

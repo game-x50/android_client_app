@@ -1,6 +1,6 @@
 package com.ruslan.hlushan.core.impl.managers
 
-import com.ruslan.hlushan.core.api.managers.SchedulersManager
+import com.ruslan.hlushan.third_party.rxjava2.extensions.SchedulersManager
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

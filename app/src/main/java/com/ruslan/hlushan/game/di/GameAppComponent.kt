@@ -4,7 +4,6 @@ import com.ruslan.hlushan.android.core.api.di.AppContextProvider
 import com.ruslan.hlushan.core.api.di.DatabaseViewInfoListProvider
 import com.ruslan.hlushan.core.api.di.IBaseInjector
 import com.ruslan.hlushan.core.api.di.ManagersProvider
-import com.ruslan.hlushan.core.api.di.SchedulersProvider
 import com.ruslan.hlushan.core.api.di.ToolsProvider
 import com.ruslan.hlushan.core.api.dto.DatabaseViewInfo
 import com.ruslan.hlushan.core.api.dto.InitAppConfig
@@ -36,6 +35,7 @@ import com.ruslan.hlushan.game.top.impl.di.TopInteractorExportComponentProvider
 import com.ruslan.hlushan.network.api.NetworkConfig
 import com.ruslan.hlushan.network.impl.di.NetworkImplExportComponent
 import com.ruslan.hlushan.third_party.androidx.work.manager.utils.CompositeWorkerFactory
+import com.ruslan.hlushan.third_party.rxjava2.extensions.di.SchedulersManagerProvider
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -47,7 +47,7 @@ import javax.inject.Singleton
             ManagersProvider::class,
             LoggersProvider::class,
             LanguagesProvider::class,
-            SchedulersProvider::class,
+            SchedulersManagerProvider::class,
             AppContextProvider::class,
             UiCoreProvider::class,
             UiRoutingProvider::class,
@@ -64,7 +64,7 @@ internal interface GameAppComponent : IBaseInjector,
                                       ManagersProvider,
                                       LoggersProvider,
                                       LanguagesProvider,
-                                      SchedulersProvider,
+                                      SchedulersManagerProvider,
                                       UiCoreProvider,
                                       UiRoutingProvider,
                                       ToolsProvider,
@@ -88,7 +88,7 @@ internal interface GameAppComponent : IBaseInjector,
                 managersProvider: ManagersProvider,
                 loggersProvider: LoggersProvider,
                 languagesProvider: LanguagesProvider,
-                schedulersProvider: SchedulersProvider,
+                schedulersProvider: SchedulersManagerProvider,
                 appContextProvider: AppContextProvider,
                 uiCoreProvider: UiCoreProvider,
                 uiRoutingProvider: UiRoutingProvider,

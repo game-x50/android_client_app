@@ -1,7 +1,6 @@
 package com.ruslan.hlushan.game.play.ui.screens.di
 
 import com.ruslan.hlushan.core.api.di.ManagersProvider
-import com.ruslan.hlushan.core.api.di.SchedulersProvider
 import com.ruslan.hlushan.core.api.di.asType
 import com.ruslan.hlushan.core.error.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.logger.api.di.LoggersProvider
@@ -20,6 +19,7 @@ import com.ruslan.hlushan.game.play.ui.screens.game.new_game.NewGameFragment
 import com.ruslan.hlushan.game.play.ui.screens.game.new_game.NewGameViewModel
 import com.ruslan.hlushan.game.play.ui.screens.records.GameRecordsListFragment
 import com.ruslan.hlushan.game.play.ui.screens.records.GameRecordsListViewModel
+import com.ruslan.hlushan.third_party.rxjava2.extensions.di.SchedulersManagerProvider
 import dagger.Component
 
 @PlayUiScope
@@ -33,7 +33,7 @@ import dagger.Component
             UserErrorMapperProvider::class,
             ManagersProvider::class,
             LoggersProvider::class,
-            SchedulersProvider::class,
+            SchedulersManagerProvider::class,
             GameSettingsProvider::class,
             PlayRecordsInteractorProvider::class,
             RecordsUseCasesProvider::class,
@@ -60,7 +60,7 @@ internal interface PlayUiComponent {
                 userErrorMapperProvider: UserErrorMapperProvider,
                 managersProvider: ManagersProvider,
                 loggersProvider: LoggersProvider,
-                schedulersProvider: SchedulersProvider,
+                schedulersProvider: SchedulersManagerProvider,
                 gameSettingsProvider: GameSettingsProvider,
                 playRecordsInteractorProvider: PlayRecordsInteractorProvider,
                 recordsUseCasesProvider: RecordsUseCasesProvider,

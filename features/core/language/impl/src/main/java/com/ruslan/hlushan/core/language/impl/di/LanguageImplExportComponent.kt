@@ -1,9 +1,9 @@
 package com.ruslan.hlushan.core.language.impl.di
 
 import com.ruslan.hlushan.core.api.di.ManagersProvider
-import com.ruslan.hlushan.core.api.di.SchedulersProvider
 import com.ruslan.hlushan.core.api.dto.InitAppConfig
 import com.ruslan.hlushan.core.language.api.di.LanguagesProvider
+import com.ruslan.hlushan.third_party.rxjava2.extensions.di.SchedulersManagerProvider
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -14,7 +14,7 @@ import javax.inject.Singleton
             LanguageModule::class
         ],
         dependencies = [
-            SchedulersProvider::class,
+            SchedulersManagerProvider::class,
             ManagersProvider::class
         ]
 )
@@ -24,7 +24,7 @@ interface LanguageImplExportComponent : LanguagesProvider {
     interface Factory {
         fun create(
                 @BindsInstance initAppConfig: InitAppConfig,
-                schedulersProvider: SchedulersProvider,
+                schedulersProvider: SchedulersManagerProvider,
                 managersProvider: ManagersProvider
         ): LanguageImplExportComponent
     }
@@ -33,7 +33,7 @@ interface LanguageImplExportComponent : LanguagesProvider {
 
         fun init(
                 initAppConfig: InitAppConfig,
-                schedulersProvider: SchedulersProvider,
+                schedulersProvider: SchedulersManagerProvider,
                 managersProvider: ManagersProvider
         ): LanguagesProvider =
                 DaggerLanguageImplExportComponent.factory()

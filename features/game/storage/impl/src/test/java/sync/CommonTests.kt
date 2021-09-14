@@ -1,6 +1,5 @@
 package sync
 
-import com.ruslan.hlushan.core.api.test.utils.managers.CurrentThreadSchedulersManager
 import com.ruslan.hlushan.core.logger.api.test.utils.EmptyAppLoggerImpl
 import com.ruslan.hlushan.game.api.play.dto.GameSize
 import com.ruslan.hlushan.game.api.play.dto.GameState
@@ -14,6 +13,7 @@ import com.ruslan.hlushan.game.storage.impl.remote.dto.LocalModifiedResponse
 import com.ruslan.hlushan.test.utils.generateFakeDuration
 import com.ruslan.hlushan.test.utils.generateFakeInstantTimestamp
 import com.ruslan.hlushan.test.utils.generateFakeStringId
+import com.ruslan.hlushan.third_party.rxjava2.test.utils.CurrentThreadSchedulersManager
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
@@ -26,9 +26,6 @@ import sync.stub.LocalRecordsRepoTestImpl
 import sync.stub.LocalRecordsRepositoryStorageMockImpl
 import sync.stub.SyncRemoteRepositoryMockImpl
 
-/**
- * @author Ruslan Hlushan on 2019-05-31
- */
 internal class CommonTests {
 
     private lateinit var localRepo: LocalRecordsRepoTestImpl

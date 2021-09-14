@@ -1,7 +1,6 @@
 package com.ruslan.hlushan.game.play.ui.screens.records
 
 import com.github.terrakok.cicerone.Router
-import com.ruslan.hlushan.core.api.managers.SchedulersManager
 import com.ruslan.hlushan.core.command.CommandQueue
 import com.ruslan.hlushan.core.command.MutableCommandQueue
 import com.ruslan.hlushan.core.command.strategy.AddToEndSingleStrategy
@@ -28,6 +27,7 @@ import com.ruslan.hlushan.game.api.sync.StartSyncUseCase
 import com.ruslan.hlushan.game.api.sync.observeSyncFinished
 import com.ruslan.hlushan.game.play.ui.screens.GameScopeMarkerRepository
 import com.ruslan.hlushan.game.play.ui.screens.game.continue_game.ContinueGameScreen
+import com.ruslan.hlushan.third_party.rxjava2.extensions.SchedulersManager
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
