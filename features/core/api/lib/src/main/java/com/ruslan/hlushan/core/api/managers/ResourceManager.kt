@@ -6,17 +6,11 @@ import androidx.annotation.StringRes
 import com.ruslan.hlushan.core.api.dto.ValueHolder
 import io.reactivex.Single
 
-/**
- * Created by User on 01.02.2018.
- */
-
 interface ResourceManager {
 
     fun getString(@StringRes strResId: Int): String
 
     fun getString(@StringRes strResId: Int, vararg formatArgs: Any): String
-
-    fun getNonTranslatableString(@StringRes strResId: Int): String
 
     fun getStringResourceByName(stringResName: String): String
 

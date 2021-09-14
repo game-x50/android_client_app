@@ -1,6 +1,6 @@
 package extensions.mock
 
-import com.ruslan.hlushan.core.api.utils.thread.ThreadChecker
+import com.ruslan.hlushan.core.thread.ThreadChecker
 import com.ruslan.hlushan.core.ui.lifecycle.LifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.viewbinding.extensions.AbstractViewLifecycleBinder
 

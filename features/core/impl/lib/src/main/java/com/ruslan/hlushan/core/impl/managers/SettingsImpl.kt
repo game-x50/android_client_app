@@ -1,10 +1,9 @@
 package com.ruslan.hlushan.core.impl.managers
 
 import android.content.SharedPreferences
+import com.ruslan.hlushan.core.api.dto.InitAppConfig
+import com.ruslan.hlushan.core.api.dto.ThemeMode
 import com.ruslan.hlushan.core.api.managers.Settings
-import com.ruslan.hlushan.core.api.utils.InitAppConfig
-import com.ruslan.hlushan.core.api.utils.ThemeMode
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.impl.di.annotations.SettingsPrefs
 import com.ruslan.hlushan.core.impl.utils.applyThemeModeToApp
 import com.ruslan.hlushan.core.impl.utils.geAvailableThemeModes
@@ -12,6 +11,7 @@ import com.ruslan.hlushan.core.impl.utils.getAppLangFullCode
 import com.ruslan.hlushan.core.impl.utils.getAppThemeMode
 import com.ruslan.hlushan.core.impl.utils.setAppLangFullCode
 import com.ruslan.hlushan.core.impl.utils.setAppThemeMode
+import com.ruslan.hlushan.core.thread.UiMainThread
 import java.util.concurrent.atomic.AtomicReference
 import javax.inject.Inject
 

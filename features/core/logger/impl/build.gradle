@@ -17,6 +17,7 @@ dependencies {
     api(projects.features.core.android.api)
     api(projects.features.core.logger.api.lib)
 
+    compileOnly(projects.features.core.thread.lib)
     compileOnly(projects.features.core.android.storage)
     compileOnly(projects.features.core.extensions)
 }

@@ -9,7 +9,7 @@ import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Lifecycle
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.api.utils.LockableHandler
 import com.ruslan.hlushan.core.ui.lifecycle.LifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.lifecycle.dispatchEventForAll

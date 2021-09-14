@@ -8,12 +8,12 @@ import com.ruslan.hlushan.core.api.di.IBaseInjector
 import com.ruslan.hlushan.core.api.di.InjectorHolder
 import com.ruslan.hlushan.core.api.managers.Settings
 import com.ruslan.hlushan.core.api.managers.appLanguageNotFullCode
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.impl.tools.initTools
 import com.ruslan.hlushan.core.impl.utils.SemEmergencyManagerLeakingActivity
 import com.ruslan.hlushan.core.impl.utils.exceptions.RxErrorHandlingUtil
 import com.ruslan.hlushan.core.impl.utils.getWrappedOrUpdateContext
 import com.ruslan.hlushan.core.logger.api.AppLogger
+import com.ruslan.hlushan.core.thread.UiMainThread
 import javax.inject.Inject
 
 private const val APP_INITIALIZATION_TAG: String = "APP_INITIALIZATION"

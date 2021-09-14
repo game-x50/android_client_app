@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.View
 import com.ruslan.hlushan.android.extensions.getLongOrNull
 import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.command.extensions.handleCommandQueue
 import com.ruslan.hlushan.core.extensions.formatWithLeadingZerosString
+import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.api.utils.BottomMenuHolder
 import com.ruslan.hlushan.core.ui.dialog.showSimpleProgress
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment

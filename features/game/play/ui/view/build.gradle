@@ -18,6 +18,7 @@ dependencies {
     compileOnly(projects.features.core.extensions)
     compileOnly(projects.features.core.android.extensions)
     compileOnly(projects.features.core.api.lib)
+    compileOnly(projects.features.core.thread.lib)
     compileOnly(projects.features.thirdParty.rxjava2.extensions)
 
     api(Deps.threeTenBp)

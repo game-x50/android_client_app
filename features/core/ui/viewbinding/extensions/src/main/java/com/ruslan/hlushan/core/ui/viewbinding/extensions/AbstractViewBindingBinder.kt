@@ -2,8 +2,8 @@ package com.ruslan.hlushan.core.ui.viewbinding.extensions
 
 import android.view.View
 import androidx.viewbinding.ViewBinding
-import com.ruslan.hlushan.core.api.utils.thread.SingleThreadSafety
-import com.ruslan.hlushan.core.api.utils.thread.ThreadChecker
+import com.ruslan.hlushan.core.thread.SingleThreadSafety
+import com.ruslan.hlushan.core.thread.ThreadChecker
 import com.ruslan.hlushan.core.ui.api.utils.UiMainThreadChecker
 import com.ruslan.hlushan.core.ui.lifecycle.LifecyclePluginObserver
 

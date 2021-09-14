@@ -7,9 +7,8 @@ import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Navigator
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.extensions.lazyUnsafe
-import com.ruslan.hlushan.core.ui.api.R
+import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.api.utils.OnBackPressedHandler
 import com.ruslan.hlushan.core.ui.routing.CiceroneOwner
 import com.ruslan.hlushan.core.ui.routing.FlowCiceronesHolder

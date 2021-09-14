@@ -10,18 +10,15 @@ import com.ruslan.hlushan.core.api.managers.ResourceManager
 import com.ruslan.hlushan.core.api.managers.SchedulersManager
 import com.ruslan.hlushan.core.api.managers.Settings
 import com.ruslan.hlushan.core.api.managers.appLanguageNotFullCode
-import com.ruslan.hlushan.core.api.utils.thread.ThreadPoolSpecification
-import com.ruslan.hlushan.core.api.utils.thread.ThreadPoolType
 import com.ruslan.hlushan.core.impl.utils.files.readRawTextFile
 import com.ruslan.hlushan.core.impl.utils.getDrawableResourceIdByName
 import com.ruslan.hlushan.core.impl.utils.getStringResourceByName
 import com.ruslan.hlushan.core.impl.utils.getWrappedOrUpdateContext
+import com.ruslan.hlushan.core.thread.ThreadPoolSpecification
+import com.ruslan.hlushan.core.thread.ThreadPoolType
 import io.reactivex.Single
 import javax.inject.Inject
 
-/**
- * @author Ruslan Hlushan on 10/18/18.
- */
 internal class ResourceManagerImpl
 @Inject
 constructor(
@@ -48,14 +45,6 @@ constructor(
     override fun getString(@StringRes strResId: Int, vararg formatArgs: Any): String =
             try {
                 wrappedResources.getString(strResId, *formatArgs)
-            } catch (e: Exception) {
-                ""
-            }
-
-    @SuppressWarnings("TooGenericExceptionCaught")
-    override fun getNonTranslatableString(@StringRes strResId: Int): String =
-            try {
-                appContext.getString(strResId)
             } catch (e: Exception) {
                 ""
             }

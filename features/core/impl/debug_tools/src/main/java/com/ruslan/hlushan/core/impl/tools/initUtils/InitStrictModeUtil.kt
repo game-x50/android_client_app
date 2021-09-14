@@ -2,7 +2,7 @@ package com.ruslan.hlushan.core.impl.tools.initUtils
 
 import android.os.StrictMode
 import android.os.StrictMode.VmPolicy
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.thread.UiMainThread
 
 @UiMainThread
 internal fun initStrictMode() {

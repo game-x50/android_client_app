@@ -1,7 +1,7 @@
 package viewmodel.stub
 
-import com.ruslan.hlushan.core.api.utils.thread.ThreadChecker
 import com.ruslan.hlushan.core.logger.api.test.utils.EmptyAppLoggerImpl
+import com.ruslan.hlushan.core.thread.ThreadChecker
 import com.ruslan.hlushan.core.ui.viewmodel.BaseViewModel
 import io.reactivex.disposables.Disposable
 

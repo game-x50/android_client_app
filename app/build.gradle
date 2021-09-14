@@ -90,6 +90,10 @@ dependencies {
 
     implementation(projects.features.core.logger.impl)
 
+    implementation(projects.features.core.language.impl)
+
+    implementation(projects.features.core.thread.lib)
+
     implementation(projects.features.core.ui.impl.lib)
 
     implementation(projects.features.core.ui.views)

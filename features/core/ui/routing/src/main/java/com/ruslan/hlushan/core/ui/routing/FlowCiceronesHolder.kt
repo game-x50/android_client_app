@@ -2,7 +2,7 @@ package com.ruslan.hlushan.core.ui.routing
 
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Router
-import com.ruslan.hlushan.core.api.utils.thread.SingleThreadSafety
+import com.ruslan.hlushan.core.thread.SingleThreadSafety
 
 //TODO: #write_unit_tests
 @SingleThreadSafety

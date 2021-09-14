@@ -3,9 +3,7 @@ package com.ruslan.hlushan.core.logger.impl
 import android.content.Context
 import com.ruslan.hlushan.android.storage.BoolPreferencesDelegate
 import com.ruslan.hlushan.android.storage.SharedPrefsProvider
-import com.ruslan.hlushan.core.api.utils.InitAppConfig
-import com.ruslan.hlushan.core.api.utils.thread.ThreadPoolSpecification
-import com.ruslan.hlushan.core.api.utils.thread.ThreadPoolType
+import com.ruslan.hlushan.core.api.dto.InitAppConfig
 import com.ruslan.hlushan.core.logger.api.FileLogger
 import com.ruslan.hlushan.core.logger.impl.utils.deleteAllFilesInFolder
 import com.ruslan.hlushan.core.logger.impl.utils.readListFromFileReversedBySpliterator
@@ -16,6 +14,8 @@ import com.ruslan.hlushan.core.pagination.api.PaginationPagesRequest
 import com.ruslan.hlushan.core.pagination.api.PaginationResponse
 import com.ruslan.hlushan.core.pagination.api.PreviousPageId
 import com.ruslan.hlushan.core.pagination.api.createPaginationResponseByLimits
+import com.ruslan.hlushan.core.thread.ThreadPoolSpecification
+import com.ruslan.hlushan.core.thread.ThreadPoolType
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers

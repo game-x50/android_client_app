@@ -2,8 +2,6 @@ package com.ruslan.hlushan.game.play.ui.screens.records
 
 import com.github.terrakok.cicerone.Router
 import com.ruslan.hlushan.core.api.managers.SchedulersManager
-import com.ruslan.hlushan.core.api.utils.thread.ThreadChecker
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.command.CommandQueue
 import com.ruslan.hlushan.core.command.MutableCommandQueue
 import com.ruslan.hlushan.core.command.strategy.AddToEndSingleStrategy
@@ -16,6 +14,8 @@ import com.ruslan.hlushan.core.pagination.api.PaginationResponse
 import com.ruslan.hlushan.core.pagination.api.PaginationState
 import com.ruslan.hlushan.core.pagination.api.itemsOrEmpty
 import com.ruslan.hlushan.core.pagination.api.map
+import com.ruslan.hlushan.core.thread.ThreadChecker
+import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.pagination.viewmodel.PaginationViewModel
 import com.ruslan.hlushan.game.api.GameSettings
 import com.ruslan.hlushan.game.api.auth.AuthInteractor

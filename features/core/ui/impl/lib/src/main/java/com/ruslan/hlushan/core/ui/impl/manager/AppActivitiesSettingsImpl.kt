@@ -8,10 +8,10 @@ import com.ruslan.hlushan.android.extensions.updateResourcesWithNewLanguage
 import com.ruslan.hlushan.android.storage.SharedPrefsProvider
 import com.ruslan.hlushan.core.api.managers.Settings
 import com.ruslan.hlushan.core.api.managers.appLanguageNotFullCode
-import com.ruslan.hlushan.core.api.utils.thread.ThreadChecker
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
-import com.ruslan.hlushan.core.api.utils.thread.checkThread
 import com.ruslan.hlushan.core.logger.api.AppLogger
+import com.ruslan.hlushan.core.thread.ThreadChecker
+import com.ruslan.hlushan.core.thread.UiMainThread
+import com.ruslan.hlushan.core.thread.checkThread
 import com.ruslan.hlushan.core.ui.api.manager.AppActivitiesSettings
 import com.ruslan.hlushan.core.ui.api.utils.UiMainThreadChecker
 import javax.inject.Inject

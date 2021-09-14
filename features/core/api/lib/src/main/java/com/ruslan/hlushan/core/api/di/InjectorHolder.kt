@@ -1,6 +1,6 @@
 package com.ruslan.hlushan.core.api.di
 
-import com.ruslan.hlushan.core.api.utils.InitAppConfig
+import com.ruslan.hlushan.core.api.dto.InitAppConfig
 import kotlin.reflect.KClass
 
 interface InjectorHolder {

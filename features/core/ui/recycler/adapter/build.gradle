@@ -16,7 +16,7 @@ dependencies {
     api(projects.features.core.ui.lifecycle.lib)
     api(projects.features.thirdParty.androidx.recyclerview.extensions)
 
-    compileOnly(projects.features.core.api.lib)
+    compileOnly(projects.features.core.thread.lib)
     compileOnly(projects.features.core.extensions)
 
     compileOnly(Deps.androidxCoreKtx)

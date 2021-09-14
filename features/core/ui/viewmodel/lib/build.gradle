@@ -12,14 +12,15 @@ android {
 }
 
 dependencies {
-    api(projects.features.core.api.lib)
     api(projects.features.core.logger.api.lib)
+
+    compileOnly(projects.features.core.thread.lib)
 
     api(Deps.rxJava2)
     api(Deps.androidxViewModel)
 
     testImplementation(projects.features.core.testUtils)
-    testImplementation(projects.features.core.api.testUtils)
+    testImplementation(projects.features.core.thread.testUtils)
     testImplementation(projects.features.core.logger.api.testUtils)
     testImplementation(projects.features.core.ui.viewmodel.testUtils)
     testImplementation(projects.features.thirdParty.rxjava2.extensions)

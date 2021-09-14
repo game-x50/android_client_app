@@ -1,12 +1,8 @@
 package com.ruslan.hlushan.core.api.managers
 
-import com.ruslan.hlushan.core.api.utils.ThemeMode
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.api.dto.ThemeMode
 import com.ruslan.hlushan.core.extensions.fullLangCodeToNotFull
-
-/**
- * Created by User on 01.02.2018.
- */
+import com.ruslan.hlushan.core.thread.UiMainThread
 
 interface Settings {
 

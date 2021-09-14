@@ -8,8 +8,8 @@ import androidx.annotation.LayoutRes
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.extensions.lazyUnsafe
+import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.dialog.BaseDialogFragment
 import com.ruslan.hlushan.core.ui.dialog.DialogBackgroundColorLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.dialog.command.DialogCommandsHandler

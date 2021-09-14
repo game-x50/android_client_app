@@ -1,0 +1,5 @@
+apply from: rootProject.ext[GradleExtraArgs.baseKotlinLibrary]
+
+dependencies {
+    testImplementation(projects.features.core.testUtils)
+}

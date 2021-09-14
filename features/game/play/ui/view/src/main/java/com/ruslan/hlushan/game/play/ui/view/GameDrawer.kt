@@ -5,7 +5,7 @@ import android.graphics.Paint
 import android.graphics.RectF
 import androidx.annotation.ColorInt
 import com.ruslan.hlushan.android.extensions.getPositionYForCenterY
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
+import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.game.play.api.RectangleArea
 import com.ruslan.hlushan.game.play.api.UndoButton
 import com.ruslan.hlushan.game.play.api.bottomY

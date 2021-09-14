@@ -2,10 +2,10 @@ package com.ruslan.hlushan.core.ui.dialog.command
 
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
-import com.ruslan.hlushan.core.api.utils.thread.ThreadChecker
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
-import com.ruslan.hlushan.core.api.utils.thread.checkThread
 import com.ruslan.hlushan.core.extensions.removeFirst
+import com.ruslan.hlushan.core.thread.ThreadChecker
+import com.ruslan.hlushan.core.thread.UiMainThread
+import com.ruslan.hlushan.core.thread.checkThread
 import com.ruslan.hlushan.core.ui.api.utils.UiMainThreadChecker
 import com.ruslan.hlushan.third_party.androidx.fragment.extensions.dismissNowSafety
 

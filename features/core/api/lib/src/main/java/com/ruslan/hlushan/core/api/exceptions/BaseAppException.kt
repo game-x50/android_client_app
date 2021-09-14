@@ -2,10 +2,6 @@ package com.ruslan.hlushan.core.api.exceptions
 
 import androidx.annotation.StringRes
 
-/**
- * Created by User on 31.01.2018.
- */
-
 class BaseAppException : RuntimeException {
 
     @get:StringRes

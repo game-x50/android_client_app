@@ -1,10 +1,10 @@
 package com.ruslan.hlushan.core.impl.tools
 
 import android.app.Application
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.impl.tools.initUtils.initStetho
 import com.ruslan.hlushan.core.impl.tools.initUtils.initStrictMode
 import com.ruslan.hlushan.core.logger.api.AppLogger
+import com.ruslan.hlushan.core.thread.UiMainThread
 
 @UiMainThread
 fun initDebugTools(app: Application, appLogger: AppLogger, logger: (String) -> Unit) {

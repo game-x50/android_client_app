@@ -2,8 +2,8 @@ package com.ruslan.hlushan.game.play.ui.screens.game
 
 import android.view.View
 import androidx.annotation.LayoutRes
-import com.ruslan.hlushan.core.api.utils.thread.UiMainThread
 import com.ruslan.hlushan.core.recycler.item.RecyclerItem
+import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.recycler.adapter.AdapterDelegate
 import com.ruslan.hlushan.core.ui.recycler.adapter.BaseItemViewHolder
 import com.ruslan.hlushan.game.play.ui.screens.R

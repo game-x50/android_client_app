@@ -3,7 +3,7 @@ package com.ruslan.hlushan.game
 import androidx.work.Configuration
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.ruslan.hlushan.core.api.di.ClassInstanceMap
-import com.ruslan.hlushan.core.api.utils.InitAppConfig
+import com.ruslan.hlushan.core.api.dto.InitAppConfig
 import com.ruslan.hlushan.core.extensions.lazyUnsafe
 import com.ruslan.hlushan.core.impl.BaseApplication
 import com.ruslan.hlushan.game.di.GameAppComponent

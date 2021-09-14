@@ -1,6 +1,6 @@
 package com.ruslan.hlushan.core.ui.lifecycle.utils
 
-import com.ruslan.hlushan.core.api.utils.thread.SingleThreadSafety
+import com.ruslan.hlushan.core.thread.SingleThreadSafety
 import com.ruslan.hlushan.core.ui.api.utils.LockableHandler
 import com.ruslan.hlushan.core.ui.lifecycle.LifecyclePluginObserver
 

@@ -1,6 +1,6 @@
 package com.ruslan.hlushan.game.play.api
 
-import com.ruslan.hlushan.core.api.utils.thread.SingleThreadSafety
+import com.ruslan.hlushan.core.thread.SingleThreadSafety
 import com.ruslan.hlushan.game.api.play.dto.GameSize
 import java.util.Random
 
