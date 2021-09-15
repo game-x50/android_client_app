@@ -3,30 +3,31 @@ package com.ruslan.hlushan.core.impl.utils
 import android.content.SharedPreferences
 import android.os.Build
 import androidx.appcompat.app.AppCompatDelegate
-import com.ruslan.hlushan.core.api.dto.ThemeMode
+import com.ruslan.hlushan.android.storage.ReferencePreferencesDelegate
+import com.ruslan.hlushan.core.manager.api.ThemeMode
 import com.ruslan.hlushan.core.thread.UiMainThread
 
 private const val KEY_APP_THEME_MODE = "KEY_APP_THEME_MODE"
 
-fun SharedPreferences.getAppThemeMode(): ThemeMode {
-    val stringValue: String? = this.getString(KEY_APP_THEME_MODE, null)
+@SuppressWarnings("FunctionNaming")
+@UiMainThread
+internal fun ThemeModePreferencesDelegate(
+        preferences: SharedPreferences
+): ReferencePreferencesDelegate<ThemeMode> = ReferencePreferencesDelegate(
+        preferences = preferences,
+        writer = { editor, newValue ->
+            editor.putString(KEY_APP_THEME_MODE, newValue.localName)
+        },
+        reader = { prefs ->
+            val stringValue: String? = prefs.getString(KEY_APP_THEME_MODE, null)
 
-    val valueFromPrefs: ThemeMode? = geAvailableThemeModes()
-            .firstOrNull { mode -> mode.localName == stringValue }
+            val valueFromPrefs: ThemeMode? = geAvailableThemeModes()
+                    .firstOrNull { mode -> mode.localName == stringValue }
 
-    return if (valueFromPrefs != null) {
-        valueFromPrefs
-    } else {
-        val defaultValue = getDefaultThemeMode()
-        setAppThemeMode(defaultValue)
-        defaultValue
-    }
-}
-
-internal fun SharedPreferences.setAppThemeMode(themeMode: ThemeMode) =
-        this.edit()
-                .putString(KEY_APP_THEME_MODE, themeMode.localName)
-                .apply()
+            valueFromPrefs ?: getDefaultThemeMode()
+        },
+        onValueSaved = ::applyThemeModeToApp
+)
 
 internal fun geAvailableThemeModes(): List<ThemeMode> =
         listOf(
@@ -36,7 +37,7 @@ internal fun geAvailableThemeModes(): List<ThemeMode> =
         )
 
 @UiMainThread
-fun applyThemeModeToApp(themeMode: ThemeMode) {
+private fun applyThemeModeToApp(themeMode: ThemeMode) {
     AppCompatDelegate.setDefaultNightMode(themeMode.androidValue)
 }
 

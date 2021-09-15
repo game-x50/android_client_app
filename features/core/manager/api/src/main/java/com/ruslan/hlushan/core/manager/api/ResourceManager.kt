@@ -1,4 +1,4 @@
-package com.ruslan.hlushan.core.api.managers
+package com.ruslan.hlushan.core.manager.api
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.RawRes

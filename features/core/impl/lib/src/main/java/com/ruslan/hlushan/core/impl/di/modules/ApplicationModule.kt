@@ -6,7 +6,6 @@ import android.content.SharedPreferences
 import com.ruslan.hlushan.android.extensions.wrapContextWithNewLanguage
 import com.ruslan.hlushan.android.storage.SharedPrefsProvider
 import com.ruslan.hlushan.core.api.dto.InitAppConfig
-import com.ruslan.hlushan.core.extensions.fullLangCodeToNotFull
 import com.ruslan.hlushan.core.impl.di.annotations.SettingsPrefs
 import com.ruslan.hlushan.core.impl.utils.getAppLangFullCode
 import dagger.Module
@@ -31,15 +30,9 @@ internal object ApplicationModule {
             @SettingsPrefs prefs: SharedPreferences,
             initAppConfig: InitAppConfig
     ): Context {
-        val appLangNotFullCode = fullLangCodeToNotFull(
-                prefs.getAppLangFullCode(
-                        initAppConfig.availableLanguagesFullCodes,
-                        initAppConfig.defaultLanguageFullCode
-                ),
-                initAppConfig.defaultLanguageFullCode
-        )
+        val appLangNonFullCode = prefs.getAppLangFullCode(initAppConfig).nonFullCode
         val appContext = app.applicationContext
 
-        return appContext.wrapContextWithNewLanguage(appLangNotFullCode)
+        return appContext.wrapContextWithNewLanguage(appLangNonFullCode)
     }
 }

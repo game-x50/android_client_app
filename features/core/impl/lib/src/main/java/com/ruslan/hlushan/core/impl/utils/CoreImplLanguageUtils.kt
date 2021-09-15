@@ -1,40 +1,33 @@
 package com.ruslan.hlushan.core.impl.utils
 
 import android.content.SharedPreferences
-import com.ruslan.hlushan.core.extensions.defIfEmpty
-import java.util.Locale
+import com.ruslan.hlushan.core.api.dto.InitAppConfig
+import com.ruslan.hlushan.core.api.dto.LangFullCode
+import com.ruslan.hlushan.core.api.dto.stringValue
 
 private const val KEY_APP_LANGUAGE_FULL_CODE = "KEY_APP_LANGUAGE_FULL_CODE"
 
 @SuppressWarnings("TooGenericExceptionCaught")
-fun SharedPreferences.getAppLangFullCode(
-        availableLanguagesFullCodes: List<String>,
-        defaultLanguageFullCode: String
-): String {
-    var lang = ""
-    try {
-        lang = this.getString(KEY_APP_LANGUAGE_FULL_CODE, lang) ?: lang
+fun SharedPreferences.getAppLangFullCode(initAppConfig: InitAppConfig): LangFullCode {
+
+    val fullCodeStringValueFromPrefs = try {
+        this.getString(KEY_APP_LANGUAGE_FULL_CODE, null)
     } catch (e: Exception) {
-        e.printStackTrace()
+        null
     }
-    if (!availableLanguagesFullCodes.contains(lang)) {
 
-        val locale: Locale? = Locale.getDefault()
-        val currentLocaleLang = defIfEmpty(locale?.language, defaultLanguageFullCode)
-        val defLang: String? = availableLanguagesFullCodes
-                .firstOrNull { aLangFullCode -> aLangFullCode.contains(currentLocaleLang) }
+    val fullCodeFromPrefs: LangFullCode? = initAppConfig.availableLanguagesFullCodes
+            .firstOrNull { singleCode -> singleCode.stringValue == fullCodeStringValueFromPrefs }
 
-        lang = defIfEmpty(defLang, defaultLanguageFullCode)
-    }
-    return lang
+    return (fullCodeFromPrefs ?: LangFullCode.getAppLangFullCodeByLocale(initAppConfig))
 }
 
 @SuppressWarnings("TooGenericExceptionCaught")
-fun SharedPreferences.setAppLangFullCode(languageFullCode: String, availableLanguagesFullCodes: List<String>) {
-    if (availableLanguagesFullCodes.contains(languageFullCode)) {
+fun SharedPreferences.setAppLangFullCode(code: LangFullCode, availableCoder: List<LangFullCode>) {
+    if (availableCoder.contains(code)) {
         try {
             this.edit()
-                    .putString(KEY_APP_LANGUAGE_FULL_CODE, languageFullCode)
+                    .putString(KEY_APP_LANGUAGE_FULL_CODE, code.stringValue)
                     .apply()
         } catch (e: Exception) {
             e.printStackTrace()

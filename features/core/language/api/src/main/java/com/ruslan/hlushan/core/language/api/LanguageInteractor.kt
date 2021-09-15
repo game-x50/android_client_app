@@ -14,6 +14,6 @@ fun LanguageInteractor.getWrappedLanguages(): Single<List<WrappedLanguage>> =
                 this.getLanguages(),
                 this.getCurrentLanguage(),
                 { allLanguages, currentLanguage ->
-                    allLanguages.toWrappedLanguages(currentLangFullCode = currentLanguage.fullCode)
+                    allLanguages.toWrappedLanguages(currentLang = currentLanguage.code)
                 }
         )

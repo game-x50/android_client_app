@@ -6,13 +6,12 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.RawRes
 import androidx.annotation.StringRes
 import com.ruslan.hlushan.core.api.dto.ValueHolder
-import com.ruslan.hlushan.core.api.managers.ResourceManager
-import com.ruslan.hlushan.core.api.managers.Settings
-import com.ruslan.hlushan.core.api.managers.appLanguageNotFullCode
 import com.ruslan.hlushan.core.impl.utils.files.readRawTextFile
 import com.ruslan.hlushan.core.impl.utils.getDrawableResourceIdByName
 import com.ruslan.hlushan.core.impl.utils.getStringResourceByName
 import com.ruslan.hlushan.core.impl.utils.getWrappedOrUpdateContext
+import com.ruslan.hlushan.core.manager.api.ResourceManager
+import com.ruslan.hlushan.core.manager.api.Settings
 import com.ruslan.hlushan.core.thread.ThreadPoolSpecification
 import com.ruslan.hlushan.core.thread.ThreadPoolType
 import com.ruslan.hlushan.third_party.rxjava2.extensions.SchedulersManager
@@ -64,8 +63,6 @@ constructor(
                     .subscribeOn(schedulersManager.io)
 
     private fun wrapContext() {
-        val nonNullContext = appContext
-        appContext = getWrappedOrUpdateContext(appContext, settings.appLanguageNotFullCode)
-                     ?: nonNullContext
+        appContext = getWrappedOrUpdateContext(appContext, settings.appLanguageFullCode.nonFullCode)
     }
 }

@@ -9,6 +9,7 @@ import androidx.annotation.StringDef
 import androidx.core.content.ContextCompat
 import com.ruslan.hlushan.android.extensions.currentLocale
 import com.ruslan.hlushan.android.extensions.wrapContextWithNewLanguage
+import com.ruslan.hlushan.core.api.dto.LangNonFullCode
 
 private const val STRING_DEF_TYPE: String = "string"
 private const val DRAWABLE_DEF_TYPE: String = "drawable"
@@ -17,12 +18,12 @@ private const val DRAWABLE_DEF_TYPE: String = "drawable"
 @StringDef(STRING_DEF_TYPE, DRAWABLE_DEF_TYPE)
 private annotation class ResDefType
 
-internal fun getWrappedOrUpdateContext(context: Context, currentAppLangNotFullCode: String): Context? {
-    val currentResourcesLang = context.resources.configuration.currentLocale.language
-    return if (currentResourcesLang == currentAppLangNotFullCode) {
+internal fun getWrappedOrUpdateContext(context: Context, currentAppLangCode: LangNonFullCode): Context {
+    val currentResourcesLang = LangNonFullCode.fromLocale(context.resources.configuration.currentLocale)
+    return if (currentResourcesLang == currentAppLangCode) {
         context
     } else {
-        context.wrapContextWithNewLanguage(currentAppLangNotFullCode)
+        context.wrapContextWithNewLanguage(currentAppLangCode)
     }
 }
 

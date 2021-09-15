@@ -1,3 +1,5 @@
+import kotlin.Pair
+
 apply from: rootProject.ext[GradleExtraArgs.baseAndroidApp]
 
 apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
@@ -10,6 +12,14 @@ apply from: rootProject.ext[GradleExtraArgs.projectPropertiesRead]
 
 apply plugin: Plugins.crashlytics
 
+private static String getPairStrings() {
+    return "kotlin.Pair<String, String>"
+}
+
+private static String createBuildConfigPairString(final Pair<String, String> pair) {
+    return "new ${getPairStrings()}(\"${pair.first}\", \"${pair.second}\")"
+}
+
 android {
 
     buildFeatures {
@@ -21,10 +31,20 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        buildConfigField("String", "DEFAULT_LANGUAGE_NON_FULL_CODE", "\"${ApplicationConfigs.defaultLanguageNonFullCode}\"")
-        buildConfigField("String[]", "AVAILABLE_LANGUAGES_FULL_CODES", "{" + ApplicationConfigs.availableLanguagesFullCodes.collect {
-            "\"${it}\""
-        }.join(",") + "}")
+        buildConfigField(
+                getPairStrings(),
+                "DEFAULT_LANGUAGE_FULL_CODE",
+                createBuildConfigPairString(ApplicationConfigs.defaultLanguageNonFullCode)
+        )
+        buildConfigField(
+                "java.util.List<" + getPairStrings() + ">",
+                "AVAILABLE_LANGUAGES_FULL_CODES",
+                "java.util.Arrays.asList("
+                        + ApplicationConfigs.availableLanguagesFullCodes.collect { pair ->
+                    createBuildConfigPairString(pair)
+                }.join(",")
+                        + ")"
+        )
 
         buildConfigField("String", "BASE_API_URL", getProjectProperty("BASE_API_URL"))
 

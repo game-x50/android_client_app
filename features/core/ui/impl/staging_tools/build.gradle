@@ -21,6 +21,7 @@ dependencies {
     compileOnly(projects.features.core.android.extensions)
     compileOnly(projects.features.thirdParty.androidx.insets)
     compileOnly(projects.features.core.api.lib)
+    compileOnly(projects.features.core.manager.api)
     compileOnly(projects.features.core.thread.lib)
     compileOnly(projects.features.core.android.api)
     compileOnly(projects.features.core.ui.activity)

@@ -19,6 +19,8 @@ include(
 
         ":features:core:error",
 
+        ":features:core:manager:api",
+
         ":features:core:logger:api:lib",
         ":features:core:logger:api:test_utils",
         ":features:core:logger:impl",

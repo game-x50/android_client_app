@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.google.android.material.radiobutton.MaterialRadioButton
-import com.ruslan.hlushan.core.api.dto.ThemeMode
-import com.ruslan.hlushan.core.api.managers.Settings
+import com.ruslan.hlushan.core.manager.api.Settings
+import com.ruslan.hlushan.core.manager.api.ThemeMode
 import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.core.ui.viewbinding.extensions.bindViewBinding

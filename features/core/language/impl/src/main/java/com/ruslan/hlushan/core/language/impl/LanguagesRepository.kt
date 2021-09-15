@@ -1,11 +1,11 @@
 package com.ruslan.hlushan.core.language.impl
 
 import com.ruslan.hlushan.core.api.dto.InitAppConfig
-import com.ruslan.hlushan.core.api.managers.ResourceManager
-import com.ruslan.hlushan.core.api.managers.Settings
 import com.ruslan.hlushan.core.language.api.Language
 import com.ruslan.hlushan.core.language.impl.dto.LanguageDTO
 import com.ruslan.hlushan.core.language.impl.dto.mapLanguage
+import com.ruslan.hlushan.core.manager.api.ResourceManager
+import com.ruslan.hlushan.core.manager.api.Settings
 import com.ruslan.hlushan.parsing.impl.utils.parsing.AppJson
 import com.ruslan.hlushan.third_party.rxjava2.extensions.SchedulersManager
 import io.reactivex.Single
@@ -24,7 +24,7 @@ constructor(
                     .observeOn(schedulersManager.computation)
                     .map { jsonStringWrapper -> AppJson.decodeFromString<List<LanguageDTO>>(jsonStringWrapper.value!!) }
                     .map { list ->
-                        list.map { dto -> mapLanguage(dto, resourceManager) }
+                        list.mapNotNull { dto -> mapLanguage(dto, resourceManager) }
                                 .sortedBy { language -> language.name }
                     }
 }
@@ -32,5 +32,5 @@ constructor(
 internal fun LanguagesRepository.getCurrentLanguage(settings: Settings): Single<Language> =
         getLanguages()
                 .map { list ->
-                    list.firstOrNull { language -> settings.appLanguageFullCode == language.fullCode }
+                    list.firstOrNull { language -> settings.appLanguageFullCode == language.code }
                 }

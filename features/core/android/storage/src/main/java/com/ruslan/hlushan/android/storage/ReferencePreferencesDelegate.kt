@@ -8,7 +8,8 @@ import kotlin.reflect.KProperty
 class ReferencePreferencesDelegate<T : Any?>(
         private val preferences: SharedPreferences,
         private val writer: (SharedPreferences.Editor, newValue: T) -> SharedPreferences.Editor,
-        reader: (SharedPreferences) -> T
+        reader: (SharedPreferences) -> T,
+        private val onValueSaved: ((T) -> Unit)? = null
 ) : ReadWriteProperty<Any?, T> {
 
     private val atomicValue = AtomicReference<T>(reader(preferences))
@@ -17,6 +18,7 @@ class ReferencePreferencesDelegate<T : Any?>(
         atomicValue.set(value)
         @Suppress("CommitPrefEdits")
         writer(preferences.edit(), value).apply()
+        onValueSaved?.invoke(value)
     }
 
     override fun getValue(thisRef: Any?, property: KProperty<*>): T = atomicValue.get()

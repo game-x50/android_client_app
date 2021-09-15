@@ -6,9 +6,9 @@ import android.content.SharedPreferences
 import com.ruslan.hlushan.android.extensions.currentLocale
 import com.ruslan.hlushan.android.extensions.updateResourcesWithNewLanguage
 import com.ruslan.hlushan.android.storage.SharedPrefsProvider
-import com.ruslan.hlushan.core.api.managers.Settings
-import com.ruslan.hlushan.core.api.managers.appLanguageNotFullCode
+import com.ruslan.hlushan.core.api.dto.LangNonFullCode
 import com.ruslan.hlushan.core.logger.api.AppLogger
+import com.ruslan.hlushan.core.manager.api.Settings
 import com.ruslan.hlushan.core.thread.ThreadChecker
 import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.thread.checkThread
@@ -39,14 +39,14 @@ constructor(
 
         threadChecker.checkThread()
 
-        val appLangNotFullCode = settings.appLanguageNotFullCode
+        val appLangNotFullCode = settings.appLanguageFullCode.nonFullCode
         val currentActivityLangNotFullCode = getActivityLanguageNonFullCode(activity)
         @Suppress("MaxLineLength")
         val message = ("appLangNotFullCode = " + appLangNotFullCode
                        + ", currentActivityLangNotFullCode = "
-                       + if (!currentActivityLangNotFullCode.isNullOrEmpty()) currentActivityLangNotFullCode else "null")
+                       + currentActivityLangNotFullCode)
         appLogger.log(activity, message)
-        if (!currentActivityLangNotFullCode.isNullOrEmpty() && (appLangNotFullCode != currentActivityLangNotFullCode)) {
+        if ((currentActivityLangNotFullCode != null) && (appLangNotFullCode != currentActivityLangNotFullCode)) {
             appLogger.log(activity, "recreate")
             activity.recreate()
         }
@@ -59,11 +59,11 @@ constructor(
         threadChecker.checkThread()
 
         val resources = activity.resources
-        val currentAppLangNotFullCode = settings.appLanguageNotFullCode
-        val currentActivityLocaleLangCode = resources.configuration.currentLocale.language
+        val currentAppLangNotFullCode = settings.appLanguageFullCode.nonFullCode
+        val currentActivityLocaleLangCode = LangNonFullCode.fromLocale(resources.configuration.currentLocale)
         val message = ("currentAppLangNotFullCode = " + currentAppLangNotFullCode
                        + ", currentActivityLocaleLangCode = " +
-                       if (!currentActivityLocaleLangCode.isNullOrEmpty()) currentActivityLocaleLangCode else "null")
+                       currentActivityLocaleLangCode)
         appLogger.log(activity, message)
         setActivityLanguageNonFullCode(activity, currentAppLangNotFullCode)
 
@@ -83,16 +83,16 @@ constructor(
     }
 
     @UiMainThread
-    private fun getActivityLanguageNonFullCode(activity: Activity): String? {
+    private fun getActivityLanguageNonFullCode(activity: Activity): LangNonFullCode? {
         val key = KEY_ACTIVITY_LANG + activity.javaClass.simpleName
-        return activitiesSettingsPrefs.getString(key, null)
+        return activitiesSettingsPrefs.getString(key, null)?.let(LangNonFullCode::createFrom)
     }
 
     @UiMainThread
-    private fun setActivityLanguageNonFullCode(activity: Activity, languageNonFullCode: String) {
+    private fun setActivityLanguageNonFullCode(activity: Activity, code: LangNonFullCode) {
         val key = KEY_ACTIVITY_LANG + activity.javaClass.simpleName
         activitiesSettingsPrefs.edit()
-                .putString(key, languageNonFullCode)
+                .putString(key, code.code)
                 .apply()
     }
 }

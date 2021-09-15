@@ -1,8 +1,8 @@
 package com.ruslan.hlushan.core.language.impl.di
 
-import com.ruslan.hlushan.core.api.di.ManagersProvider
 import com.ruslan.hlushan.core.api.dto.InitAppConfig
 import com.ruslan.hlushan.core.language.api.di.LanguagesProvider
+import com.ruslan.hlushan.core.manager.api.di.ManagersProvider
 import com.ruslan.hlushan.third_party.rxjava2.extensions.di.SchedulersManagerProvider
 import dagger.BindsInstance
 import dagger.Component

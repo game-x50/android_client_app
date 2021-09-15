@@ -1,4 +1,4 @@
-package com.ruslan.hlushan.core.api.dto
+package com.ruslan.hlushan.core.manager.api
 
 enum class ThemeMode {
     NIGHT,

@@ -9,6 +9,7 @@ android {
 }
 
 dependencies {
+    compileOnly(projects.features.core.api.lib)
     compileOnly(projects.features.core.extensions)
 
     compileOnly(Deps.androidxCoreKtx)

@@ -3,7 +3,6 @@ package com.ruslan.hlushan.game.di
 import com.ruslan.hlushan.android.core.api.di.AppContextProvider
 import com.ruslan.hlushan.core.api.di.DatabaseViewInfoListProvider
 import com.ruslan.hlushan.core.api.di.IBaseInjector
-import com.ruslan.hlushan.core.api.di.ManagersProvider
 import com.ruslan.hlushan.core.api.di.ToolsProvider
 import com.ruslan.hlushan.core.api.dto.DatabaseViewInfo
 import com.ruslan.hlushan.core.api.dto.InitAppConfig
@@ -14,6 +13,7 @@ import com.ruslan.hlushan.core.language.api.di.LanguagesProvider
 import com.ruslan.hlushan.core.language.impl.di.LanguageImplExportComponent
 import com.ruslan.hlushan.core.logger.api.di.LoggersProvider
 import com.ruslan.hlushan.core.logger.impl.di.LoggerImplExportComponent
+import com.ruslan.hlushan.core.manager.api.di.ManagersProvider
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
 import com.ruslan.hlushan.core.ui.impl.di.UiCoreImplExportComponent
 import com.ruslan.hlushan.core.ui.routing.di.UiRoutingProvider

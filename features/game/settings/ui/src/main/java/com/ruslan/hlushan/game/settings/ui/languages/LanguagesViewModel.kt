@@ -1,7 +1,6 @@
 package com.ruslan.hlushan.game.settings.ui.languages
 
 import com.github.terrakok.cicerone.Router
-import com.ruslan.hlushan.core.api.managers.Settings
 import com.ruslan.hlushan.core.command.CommandQueue
 import com.ruslan.hlushan.core.command.MutableCommandQueue
 import com.ruslan.hlushan.core.command.strategy.AddToEndSingleStrategy
@@ -12,6 +11,7 @@ import com.ruslan.hlushan.core.language.api.LanguageInteractor
 import com.ruslan.hlushan.core.language.api.WrappedLanguage
 import com.ruslan.hlushan.core.language.api.getWrappedLanguages
 import com.ruslan.hlushan.core.logger.api.AppLogger
+import com.ruslan.hlushan.core.manager.api.Settings
 import com.ruslan.hlushan.core.thread.ThreadChecker
 import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.viewmodel.BaseViewModel
@@ -51,7 +51,7 @@ constructor(
     @UiMainThread
     fun setApplicationLanguage(wrappedLanguage: WrappedLanguage) {
         if (!wrappedLanguage.isAppLanguage) {
-            settings.appLanguageFullCode = wrappedLanguage.language.fullCode
+            settings.appLanguageFullCode = wrappedLanguage.language.code
             router.exit()
         }
     }
