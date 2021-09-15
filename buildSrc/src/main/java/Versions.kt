@@ -41,7 +41,7 @@ object Versions {
 
     const val androidxLifecyclesVersion = "2.3.1"
 
-    const val ciceroneVersion = "7.0"
+    const val ciceroneVersion = "7.1"
 
     const val retrofit2Version = "2.9.0"
     const val okhttp3Version = "4.9.1"
