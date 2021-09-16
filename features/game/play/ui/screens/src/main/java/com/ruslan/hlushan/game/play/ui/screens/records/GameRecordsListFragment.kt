@@ -51,7 +51,7 @@ internal class GameRecordsListFragment :
             field = newValue
 
             val minDistance: Float = if (newValue) {
-                -resources.getDimension(com.ruslan.hlushan.core.ui.dimens.R.dimen.default_4_padding)
+                -resources.getDimension(com.ruslan.hlushan.core.ui.resources.dimens.R.dimen.default_4_padding)
             } else {
                 0f
             }

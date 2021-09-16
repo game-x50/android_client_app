@@ -25,7 +25,7 @@ dependencies {
     compileOnly(projects.features.core.ui.lifecycle.utils)
     compileOnly(projects.features.core.ui.layout.container)
 
-    implementation(projects.features.core.ui.colors)//todo: #check_compileOnly
+    implementation(projects.features.core.ui.resources.colors)//todo: #check_compileOnly
 
     api(Deps.androidxActivity)
 

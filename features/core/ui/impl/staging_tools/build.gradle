@@ -32,8 +32,8 @@ dependencies {
 
     compileOnly(projects.features.core.api.stagingTools)
 
-    implementation(projects.features.core.ui.dimens)//todo: #check_compileOnly
-    implementation(projects.features.core.ui.colors)//todo: #check_compileOnly
+    implementation(projects.features.core.ui.resources.dimens)//todo: #check_compileOnly
+    implementation(projects.features.core.ui.resources.colors)//todo: #check_compileOnly
 
     implementation(Deps.androidxAnnotations)//todo: #check_compileOnly
 

@@ -30,6 +30,7 @@ import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.sin
 import kotlin.math.tan
+import com.ruslan.hlushan.core.ui.resources.dimens.R as CoreUiResourcesDimensR
 
 private const val UNSPECIFIED_VALUE: Int = -1
 
@@ -175,7 +176,7 @@ constructor(
 
         @SuppressLint("ObsoleteSdkInt")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            elevation = context.resources.getDimension(com.ruslan.hlushan.core.ui.dimens.R.dimen.default_1_2_padding)
+            elevation = context.resources.getDimension(CoreUiResourcesDimensR.dimen.default_1_2_padding)
         }
         isFocusable = true
         isClickable = true

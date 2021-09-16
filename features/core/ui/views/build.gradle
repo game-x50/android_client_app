@@ -13,9 +13,9 @@ android {
 
 dependencies {
     compileOnly(projects.features.core.android.extensions)
-    compileOnly(projects.features.core.ui.dimens)
+    compileOnly(projects.features.core.ui.resources.dimens)
 
-    implementation(projects.features.core.ui.colors)//todo: #check_compileOnly
+    implementation(projects.features.core.ui.resources.colors)//todo: #check_compileOnly
 
     compileOnly(Deps.androidxCoreKtx)
     compileOnly(Deps.androidMaterial)

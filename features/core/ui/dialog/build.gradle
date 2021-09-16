@@ -24,7 +24,7 @@ dependencies {
     compileOnly(projects.features.core.android.extensions)
     compileOnly(projects.features.core.ui.views)
 
-    implementation(projects.features.core.ui.colors)//todo: #check_compileOnly
+    implementation(projects.features.core.ui.resources.colors)//todo: #check_compileOnly
 
     compileOnly(Deps.androidxAppCompat)
     compileOnly(Deps.androidMaterial)

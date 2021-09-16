@@ -78,7 +78,9 @@ fun View.addSystemPadding(
     }
 }
 
-private fun View.doOnApplyWindowInsets(block: (View, insets: WindowInsetsCompat, initialPadding: Rect) -> WindowInsetsCompat) {
+private fun View.doOnApplyWindowInsets(
+        block: (View, insets: WindowInsetsCompat, initialPadding: Rect) -> WindowInsetsCompat
+) {
     val initialPadding = recordInitialPaddingForView(this)
     ViewCompat.setOnApplyWindowInsetsListener(this) { v, insets ->
         block(v, insets, initialPadding)

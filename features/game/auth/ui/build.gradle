@@ -27,7 +27,7 @@ dependencies {
     compileOnly(projects.features.thirdParty.rxjava2.extensions)
     compileOnly(projects.features.thirdParty.androidx.material.extensions)
 
-    implementation(projects.features.core.ui.dimens)//todo: #check_compileOnly
+    implementation(projects.features.core.ui.resources.dimens)//todo: #check_compileOnly
 
     compileOnly(Deps.constraintLayout)
 
