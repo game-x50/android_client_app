@@ -20,11 +20,9 @@ android {
 dependencies {
     api(projects.features.core.api.lib)
     api(projects.features.core.logger.api.lib)
+    api(projects.features.game.api.lib)
     api(projects.features.thirdParty.rxjava2.extensions)
 
     compileOnly(projects.features.core.extensions)
-    compileOnly(projects.features.game.api.lib)
     compileOnly(projects.features.core.network.api)
-
-    compileOnly(Deps.threeTenBp)
 }

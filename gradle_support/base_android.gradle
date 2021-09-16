@@ -23,7 +23,7 @@ android {
     kotlinOptions {
         jvmTarget = ApplicationConfigs.JAVA_VERSION.toString()
         useIR = true
-//        allWarningsAsErrors = true
+//todo        allWarningsAsErrors = true
     }
 
     packagingOptions {

@@ -29,10 +29,8 @@ dependencies {
 
     implementation(projects.features.core.ui.dimens)//todo: #check_compileOnly
 
-    compileOnly(Deps.threeTenBp)
+    implementation(Deps.androidxAnnotations)//todo: #check_compileOnly
 
     compileOnly(Deps.androidMaterial)
     compileOnly(Deps.constraintLayout)
-
-    implementation(Deps.androidxAnnotations)//todo: #check_compileOnly
 }

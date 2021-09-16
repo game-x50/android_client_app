@@ -4,6 +4,6 @@ compileKotlin {
     //todo: duplication in base_android.gradle
     kotlinOptions {
         useIR = true//todo: experimental feature for kotlin version 1.4.30
-//        allWarningsAsErrors = true
+//todo        allWarningsAsErrors = true
     }
 }

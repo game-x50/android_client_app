@@ -2,17 +2,14 @@ apply from: rootProject.ext[GradleExtraArgs.baseKotlinLibrary]
 
 dependencies {
     api(projects.features.core.pagination.api)
+    api(projects.features.core.api.lib)
 
-    compileOnly(projects.features.core.api.lib)
     compileOnly(projects.features.core.extensions)
 
-    compileOnly(Deps.threeTenBp)
+    api(Deps.threeTenBp)
+    api(Deps.rxJava2)
 
-    compileOnly(Deps.rxJava2)
-
-    testImplementation(projects.features.core.api.lib)
     testImplementation(projects.features.core.extensions)
-    testImplementation(Deps.threeTenBp)
     testImplementation(projects.features.core.testUtils)
     testImplementation(projects.features.game.api.testUtils)
 }

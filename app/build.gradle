@@ -134,7 +134,6 @@ dependencies {
 
     runtimeOnly(projects.features.core.ui.pagination.view)
 
-    compileOnly(projects.features.core.network.api)//todo: compileOnly here instead of network_impl module because of some used extensions in network_impl, try to use implementation here and compileOnly in network_impl module
     implementation(projects.features.core.network.impl.lib)
 
     implementation(projects.features.core.android.storage)

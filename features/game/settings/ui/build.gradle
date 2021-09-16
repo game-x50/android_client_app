@@ -40,12 +40,9 @@ dependencies {
     compileOnly((projects.features.thirdParty.rxjava2.extensions))
 
     implementation(projects.features.core.ui.dimens)//todo: #check_compileOnly
-    implementation(projects.features.core.ui.views)//todo: #check_compileOnly
 
-    compileOnly(Deps.threeTenBp)
+    compileOnly(Deps.androidMaterial)
+    compileOnly(Deps.constraintLayout)
 
-    implementation(Deps.androidMaterial)//todo: #check_compileOnly
-    implementation(Deps.constraintLayout)//todo: #check_compileOnly
-
-    implementation(Deps.recyclerView)//todo: because of conflict deps, try to avoid as it transitively should be received from projects.features.core.ui.recycler.adapter
+    implementation(Deps.androidxAnnotations)//todo: #check_compileOnly
 }

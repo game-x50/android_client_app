@@ -15,7 +15,7 @@ android {
 }
 
 dependencies {
-    api(projects.features.thirdParty.rxjava2.extensions)
+    api(projects.features.core.android.api)
 
     compileOnly(projects.features.core.extensions)
     compileOnly(projects.features.core.android.extensions)
@@ -23,20 +23,20 @@ dependencies {
     compileOnly(projects.features.core.api.lib)
     compileOnly(projects.features.core.manager.api)
     compileOnly(projects.features.core.thread.lib)
-    compileOnly(projects.features.core.android.api)
     compileOnly(projects.features.core.ui.activity)
     compileOnly(projects.features.core.ui.pagination.view)
     compileOnly(projects.features.core.ui.viewmodel.extensions)
     compileOnly(projects.features.core.command.lib)
     compileOnly(projects.features.core.ui.recycler.adapter)
+    compileOnly(projects.features.thirdParty.rxjava2.extensions)
 
     compileOnly(projects.features.core.api.stagingTools)
 
     implementation(projects.features.core.ui.dimens)//todo: #check_compileOnly
     implementation(projects.features.core.ui.colors)//todo: #check_compileOnly
 
-    implementation(Deps.androidxAppCompat)// todo: implementation instead of compileOnly because of task ./gradlew assembleStaging failing on CI, try to use compileOnly
-    implementation(Deps.androidMaterial)// todo: implementation instead of compileOnly because of task ./gradlew assembleStaging failing on CI, try to use compileOnly
-    implementation(Deps.constraintLayout)// todo: implementation instead of compileOnly because of task ./gradlew assembleStaging failing on CI, try to use compileOnly
-    compileOnly(Deps.swipeRefreshLayout)
+    implementation(Deps.androidxAnnotations)//todo: #check_compileOnly
+
+    compileOnly(Deps.androidMaterial)
+    compileOnly(Deps.constraintLayout)
 }

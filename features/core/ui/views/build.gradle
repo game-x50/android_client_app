@@ -18,6 +18,6 @@ dependencies {
     implementation(projects.features.core.ui.colors)//todo: #check_compileOnly
 
     compileOnly(Deps.androidxCoreKtx)
-    compileOnly(Deps.androidMaterial)// todo: implementation instead of compileOnly because of task ./gradlew assembleStaging failing on CI, try to use compileOnly
-    compileOnly(Deps.constraintLayout)// todo: implementation instead of compileOnly because of task ./gradlew assembleStaging failing on CI, try to use compileOnly
+    compileOnly(Deps.androidMaterial)
+    compileOnly(Deps.constraintLayout)
 }

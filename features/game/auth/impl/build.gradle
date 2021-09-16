@@ -18,13 +18,13 @@ android {
 }
 
 dependencies {
+    api(projects.features.core.api.lib)
+    api(projects.features.core.network.api)
+    api(projects.features.game.api.lib)
     api(projects.features.thirdParty.rxjava2.extensions)
 
-    compileOnly(projects.features.core.api.lib)
     compileOnly(projects.features.core.android.api)
     compileOnly(projects.features.core.extensions)
-    compileOnly(projects.features.game.api.lib)
-    compileOnly(projects.features.core.network.api)
     compileOnly(projects.features.core.android.storage)
     compileOnly(projects.features.core.error)
 

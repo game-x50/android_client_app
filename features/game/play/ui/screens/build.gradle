@@ -29,14 +29,13 @@ dependencies {
     compileOnly(projects.features.thirdParty.threeTen.extensions)
     compileOnly(projects.features.thirdParty.rxjava2.extensions)
     compileOnly(projects.features.thirdParty.androidx.material.extensions)
+    compileOnly(projects.features.thirdParty.androidx.fragment.extensions)
 
     implementation(projects.features.core.ui.dimens)//todo: #check_compileOnly
 
     implementation(projects.features.game.play.ui.view)
 
     compileOnly(Deps.constraintLayout)
-
-    compileOnly(projects.features.thirdParty.androidx.fragment.extensions)
 
     implementation(Deps.androidxAnnotations)//todo: #check_compileOnly
 }

@@ -6,12 +6,9 @@ dependencies {
     compileOnly(projects.features.core.extensions)
     compileOnly(projects.features.core.thread.lib)
 
-    api(Deps.rxJava2)
-
     compileOnly(Deps.androidxAnnotations)
 
     testImplementation(projects.features.core.testUtils)
     testImplementation(projects.features.core.extensions)
-    testImplementation(projects.features.game.api.lib)
     testImplementation(projects.features.game.api.testUtils)
 }

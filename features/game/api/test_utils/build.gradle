@@ -1,8 +1,7 @@
 apply from: rootProject.ext[GradleExtraArgs.baseKotlinLibrary]
 
 dependencies {
-    compileOnly(projects.features.game.api.lib)
-    compileOnly(projects.features.core.testUtils)
+    api(projects.features.game.api.lib)
 
-    compileOnly(Deps.threeTenBp)
+    compileOnly(projects.features.core.testUtils)
 }
