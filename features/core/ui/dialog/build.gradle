@@ -23,8 +23,7 @@ dependencies {
     compileOnly(projects.features.core.ui.lifecycle.utils)
     compileOnly(projects.features.core.android.extensions)
     compileOnly(projects.features.core.ui.views)
-
-    implementation(projects.features.core.ui.resources.colors)//todo: #check_compileOnly
+    compileOnly(projects.features.core.ui.resources.colors)
 
     compileOnly(Deps.androidxAppCompat)
     compileOnly(Deps.androidMaterial)

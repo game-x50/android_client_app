@@ -24,8 +24,7 @@ dependencies {
     compileOnly(projects.features.core.logger.api.lib)
     compileOnly(projects.features.core.ui.lifecycle.utils)
     compileOnly(projects.features.core.ui.layout.container)
-
-    implementation(projects.features.core.ui.resources.colors)//todo: #check_compileOnly
+    compileOnly(projects.features.core.ui.resources.colors)
 
     api(Deps.androidxActivity)
 

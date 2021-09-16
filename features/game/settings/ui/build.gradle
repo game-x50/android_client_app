@@ -37,9 +37,8 @@ dependencies {
     compileOnly(projects.features.core.command.lib)
     compileOnly(projects.features.core.ui.recycler.adapter)
     compileOnly(projects.features.core.ui.views)
-    compileOnly((projects.features.thirdParty.rxjava2.extensions))
-
-    implementation(projects.features.core.ui.resources.dimens)//todo: #check_compileOnly
+    compileOnly(projects.features.thirdParty.rxjava2.extensions)
+    compileOnly(projects.features.core.ui.resources.dimens)
 
     compileOnly(Deps.androidMaterial)
     compileOnly(Deps.constraintLayout)

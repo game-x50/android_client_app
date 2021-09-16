@@ -29,11 +29,10 @@ dependencies {
     compileOnly(projects.features.core.command.lib)
     compileOnly(projects.features.core.ui.recycler.adapter)
     compileOnly(projects.features.thirdParty.rxjava2.extensions)
+    compileOnly(projects.features.core.ui.resources.dimens)
+    compileOnly(projects.features.core.ui.resources.colors)
 
     compileOnly(projects.features.core.api.stagingTools)
-
-    implementation(projects.features.core.ui.resources.dimens)//todo: #check_compileOnly
-    implementation(projects.features.core.ui.resources.colors)//todo: #check_compileOnly
 
     implementation(Deps.androidxAnnotations)//todo: #check_compileOnly
 
