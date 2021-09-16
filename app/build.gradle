@@ -101,8 +101,6 @@ android {
 
 dependencies {
     implementation(projects.features.core.extensions)
-    implementation(projects.features.core.api.lib)
-    implementation(projects.features.core.android.api)
     implementation(projects.features.core.impl.lib)
     implementation(projects.features.thirdParty.androidx.insets)
 
@@ -140,8 +138,6 @@ dependencies {
 
     implementation(projects.features.thirdParty.androidx.workManager.utils)
 
-    implementation(projects.features.game.api.lib)
-
     implementation(projects.features.game.auth.impl)
     implementation(projects.features.game.storage.impl)
     implementation(projects.features.game.top.impl)
@@ -156,20 +152,15 @@ dependencies {
 
     implementation(Deps.androidxAppCompat)
 
-    runtimeOnly(Deps.androidxFragment)
+    compileOnly(Deps.androidMaterial)
     runtimeOnly(projects.features.thirdParty.androidx.fragment.extensions)
 
-    implementation(Deps.androidMaterial)
     runtimeOnly(projects.features.thirdParty.androidx.material.extensions)
 
     implementation(Deps.androidxCoreKtx)
     implementation(projects.features.core.android.extensions)
 
-    runtimeOnly(Deps.swipeRefreshLayout)
     runtimeOnly(Deps.constraintLayout)
-
-    runtimeOnly(Deps.recyclerView)
-    runtimeOnly(projects.features.thirdParty.androidx.recyclerview.extensions)
 
     implementation(Deps.edgeToEdgeDecorator)
 

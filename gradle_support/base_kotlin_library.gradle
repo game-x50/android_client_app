@@ -1,7 +1,7 @@
 apply plugin: Plugins.kotlin
 
 compileKotlin {
-    //todo: duplication in base_android.gradle
+    //todo: duplication in base_android_executable.gradle
     kotlinOptions {
         useIR = true//todo: experimental feature for kotlin version 1.4.30
 //todo        allWarningsAsErrors = true

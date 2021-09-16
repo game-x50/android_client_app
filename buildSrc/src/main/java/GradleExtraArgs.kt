@@ -4,9 +4,11 @@ object GradleExtraArgs {
     const val localizationFolder = "localization"
     const val proguardConfigsFolder = "proguardConfigsFolder"
 
-    const val baseAndroid = "gradle_support_base_android"
-
     const val baseKotlinLibrary = "gradle_support_base_kotlin_library"
+
+    const val baseAndroidResources = "gradle_support_base_android_resources"
+    const val baseAndroidExecutable = "gradle_support_base_android_executable"
+    const val baseAndroidResourcesLibrary = "gradle_support_base_android_resources_library"
     const val baseAndroidLibrary = "gradle_support_base_android_library"
     const val baseAndroidApp = "gradle_support_base_android_app"
 

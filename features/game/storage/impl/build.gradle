@@ -24,7 +24,6 @@ dependencies {
     api(projects.features.game.api.lib)
     api(projects.features.thirdParty.rxjava2.extensions)
 
-    compileOnly(projects.features.core.api.lib)
     compileOnly(projects.features.core.extensions)
     compileOnly(projects.features.core.android.extensions)
     compileOnly(projects.features.core.network.api)
@@ -33,9 +32,7 @@ dependencies {
 
     implementation(Deps.workManagerRxJava2)
 
-    testImplementation(projects.features.core.api.lib)
     testImplementation(projects.features.core.extensions)
-    testImplementation(Deps.threeTenBp)
     testImplementation(projects.features.core.parsing.impl)
     testImplementation(projects.features.core.testUtils)
     testImplementation(projects.features.thirdParty.rxjava2.testUtils)

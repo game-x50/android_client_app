@@ -27,7 +27,6 @@ android {
 dependencies {
     api(projects.features.core.network.api)
 
-    compileOnly(projects.features.core.api.lib)
     compileOnly(projects.features.core.parsing.impl)
     compileOnly(projects.features.core.error)
 
@@ -35,8 +34,6 @@ dependencies {
     stagingImplementation(projects.features.core.network.impl.stagingTools)
 
     implementation(Deps.certificateTransparencyAndroid)
-
     implementation(Deps.retrofit2RxJava2Adapter)
-
     implementation(Deps.retrofit2KotlinxSerializationJsonConverter)
 }

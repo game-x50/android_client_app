@@ -1,8 +1,5 @@
 package com.ruslan.hlushan.network.api
 
-/**
- * @author Ruslan Hlushan on 11/5/18.
- */
 @SuppressWarnings("MagicNumber")
 data class NetworkConfig(
         val connectTimeoutSeconds: Long = 15,

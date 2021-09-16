@@ -14,8 +14,9 @@ android {
 }
 
 dependencies {
+    api(projects.features.core.android.api)
+
     compileOnly(projects.features.core.extensions)
-    compileOnly(projects.features.core.android.extensions)
     compileOnly(projects.features.core.api.lib)
     compileOnly(projects.features.core.manager.api)
     compileOnly(projects.features.core.error)
