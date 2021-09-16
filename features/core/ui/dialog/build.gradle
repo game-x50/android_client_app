@@ -24,10 +24,8 @@ dependencies {
     compileOnly(projects.features.core.android.extensions)
     compileOnly(projects.features.core.ui.views)
     compileOnly(projects.features.core.ui.resources.colors)
+    compileOnly(projects.features.thirdParty.androidx.fragment.extensions)
 
     compileOnly(Deps.androidxAppCompat)
     compileOnly(Deps.androidMaterial)
-
-    compileOnly(Deps.androidxFragment)
-    compileOnly(projects.features.thirdParty.androidx.fragment.extensions)
 }

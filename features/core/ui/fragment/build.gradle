@@ -28,8 +28,7 @@ dependencies {
     compileOnly(projects.features.core.logger.api.lib)
     compileOnly(projects.features.core.ui.lifecycle.utils)
     compileOnly(projects.features.core.ui.layout.container)
+    compileOnly(projects.features.thirdParty.androidx.material.extensions)
 
     api(Deps.androidxFragment)
-
-    compileOnly(projects.features.thirdParty.androidx.material.extensions)
 }

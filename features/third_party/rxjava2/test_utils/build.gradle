@@ -3,5 +3,5 @@ apply from: rootProject.ext[GradleExtraArgs.baseKotlinLibrary]
 dependencies {
     api(projects.features.thirdParty.rxjava2.extensions)
 
-    compileOnly(Deps.jUnit)
+    api(Deps.jUnit)
 }

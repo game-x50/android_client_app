@@ -11,8 +11,8 @@ android {
 }
 
 dependencies {
-    compileOnly(projects.features.core.android.extensions)
-
     implementation(Deps.binaryPrefs)
     implementation(Deps.tinkAndroid)
+
+    compileOnly(projects.features.core.android.extensions)
 }

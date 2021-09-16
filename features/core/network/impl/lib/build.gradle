@@ -27,11 +27,11 @@ android {
 dependencies {
     api(projects.features.core.network.api)
 
-    compileOnly(projects.features.core.parsing.impl)
-    compileOnly(projects.features.core.error)
-
     debugImplementation(projects.features.core.network.impl.debugTools)
     stagingImplementation(projects.features.core.network.impl.stagingTools)
+
+    compileOnly(projects.features.core.parsing.impl)
+    compileOnly(projects.features.core.error)
 
     implementation(Deps.certificateTransparencyAndroid)
     implementation(Deps.retrofit2RxJava2Adapter)

@@ -13,9 +13,9 @@ android {
 dependencies {
     api(projects.features.core.network.api)
 
-    compileOnly(projects.features.core.api.lib)
-
     implementation(projects.features.core.network.impl.stagingTools)
+
+    compileOnly(projects.features.core.api.lib)
 
     implementation(Deps.okHttp3Logging)
 }

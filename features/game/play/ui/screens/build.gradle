@@ -34,7 +34,7 @@ dependencies {
 
     implementation(projects.features.game.play.ui.view)
 
-    compileOnly(Deps.constraintLayout)
+    implementation(Deps.androidxAnnotations)//todo: #check_compileOnly: because of versions conflict, try to avoid at all or use compileOnly
 
-    implementation(Deps.androidxAnnotations)//todo: #check_compileOnly
+    compileOnly(Deps.constraintLayout)
 }

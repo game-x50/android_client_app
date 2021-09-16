@@ -29,13 +29,14 @@ dependencies {
     compileOnly(projects.features.core.command.lib)
     compileOnly(projects.features.core.ui.recycler.adapter)
     compileOnly(projects.features.thirdParty.rxjava2.extensions)
-    compileOnly(projects.features.core.ui.resources.dimens)
-    compileOnly(projects.features.core.ui.resources.colors)
+
+    implementation(projects.features.core.ui.resources.colors)//todo: #check_compileOnly: because of assembleStaging failing on CI, try to use compileOnly
+    implementation(projects.features.core.ui.resources.dimens)//todo: #check_compileOnly: because of assembleStaging failing on CI, try to use compileOnly
 
     compileOnly(projects.features.core.api.stagingTools)
 
-    implementation(Deps.androidxAnnotations)//todo: #check_compileOnly
+    implementation(Deps.androidxAnnotations)//todo: #check_compileOnly: because of versions conflict, try to avoid at all or use compileOnly
+    implementation(Deps.constraintLayout)//todo: #check_compileOnly: because of assembleStaging failling on CI, try to use compileOnly
 
-    compileOnly(Deps.androidMaterial)
-    compileOnly(Deps.constraintLayout)
+    implementation(Deps.androidMaterial)//todo: #check_compileOnly: because of assembleStaging failing on CI, try to use compileOnly
 }

@@ -28,7 +28,7 @@ dependencies {
     compileOnly(projects.features.thirdParty.androidx.material.extensions)
     compileOnly(projects.features.core.ui.resources.dimens)
 
-    compileOnly(Deps.constraintLayout)
+    implementation(Deps.androidxAnnotations)//todo: #check_compileOnly: because of versions conflict, try to avoid at all or use compileOnly
 
-    implementation(Deps.androidxAnnotations)//todo: #check_compileOnly
+    compileOnly(Deps.constraintLayout)
 }

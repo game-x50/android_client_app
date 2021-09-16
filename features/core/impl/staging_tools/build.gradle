@@ -26,8 +26,6 @@ dependencies {
 
     compileOnly(projects.features.core.api.stagingTools)
 
-    implementation(Deps.androidxAppCompat)//todo: implementation instead of compileOnly because ot some dependencies conflicts, try to use compileOnly
-
     implementation(Deps.blockCanary)
     implementation(Deps.tinyDancer)
     implementation(Deps.takt)
@@ -36,4 +34,6 @@ dependencies {
     implementation(Deps.chucker)
     implementation(Deps.leakCanary)
     implementation(Deps.rxDisposableWatcher)
+
+    implementation(Deps.androidxAppCompat)//todo: #check_compileOnly: because of versions conflict, try to avoid at all or use compileOnly
 }

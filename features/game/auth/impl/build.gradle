@@ -27,8 +27,6 @@ dependencies {
     compileOnly(projects.features.core.android.storage)
     compileOnly(projects.features.core.error)
 
-    compileOnly(Deps.threeTenBp)
-
     implementation platform(Deps.firebaseBom)
     implementation(Deps.firebaseAuth)
     implementation(Deps.firebaseFirestore)
