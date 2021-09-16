@@ -4,6 +4,7 @@ import androidx.work.Configuration
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.ruslan.hlushan.core.api.di.ClassInstanceMap
 import com.ruslan.hlushan.core.api.dto.InitAppConfig
+import com.ruslan.hlushan.core.api.dto.LangFullCode
 import com.ruslan.hlushan.core.extensions.lazyUnsafe
 import com.ruslan.hlushan.core.impl.BaseApplication
 import com.ruslan.hlushan.game.di.GameAppComponent
@@ -27,8 +28,10 @@ internal class GameApp : BaseApplication(), Configuration.Provider {
                 isLogcatEnabled = BuildConfig.IS_LOGCAT_ENABLED,
                 fileLogsFolder = File(this.applicationContext.cacheDir, "fileLogs"),
                 languagesJsonRawResId = com.ruslan.hlushan.game.settings.ui.R.raw.languages,
-                defaultLanguageFullCode = BuildConfig.DEFAULT_LANGUAGE_NON_FULL_CODE,
-                availableLanguagesFullCodes = BuildConfig.AVAILABLE_LANGUAGES_FULL_CODES.toList()
+                defaultLanguageFullCode = BuildConfig.DEFAULT_LANGUAGE_FULL_CODE
+                        .let { pair -> pair.toLangFullCode()!! },
+                availableLanguagesFullCodes = BuildConfig.AVAILABLE_LANGUAGES_FULL_CODES
+                        .mapNotNull { pair -> pair.toLangFullCode() }
         )
     }
 
@@ -50,3 +53,6 @@ internal class GameApp : BaseApplication(), Configuration.Provider {
                     .setWorkerFactory(compositeWorkerFactory)
                     .build()
 }
+
+private fun Pair<String, String>.toLangFullCode(): LangFullCode? =
+        LangFullCode.createFrom(this.first, this.second)

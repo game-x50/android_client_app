@@ -1,54 +1,63 @@
 [
   {
-    "fullCode": "en_GB",
+    "code": "en",
+    "countryCode": "GB",
     "defaultName": "English",
     "image": "ic_united_kingdom",
     "alphabet": "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z"
   },
   {
-    "fullCode": "ru_RU",
+    "code": "ru",
+    "countryCode": "RU",
     "defaultName": "Russian",
     "image": "ic_russia",
     "alphabet": "А Б В Г Д Е Ё Ж З И Й К Л М Н О П Р С Т У Ф К Ц Ч Ш Щ Ь Ы Ъ Э Ю Я"
   },
   {
-    "fullCode": "fr_FR",
+    "code": "fr",
+    "countryCode": "FR",
     "defaultName": "French",
     "image": "ic_france",
     "alphabet": "A Â À Œ B C Ç D E É Ê È Ë F G H I Î Ï J K L M N O Ô P Q R S T U Û Ù Ü V W X Y Ÿ Z"
   },
   {
-    "fullCode": "es_ES",
+    "code": "es",
+    "countryCode": "ES",
     "defaultName": "Spanish",
     "image": "ic_spain",
     "alphabet": "A Á B C Ç D E É F G H I Í J K L M N Ñ O P Q R S T U Ú Ü V W X Y Z"
   },
   {
-    "fullCode": "it_IT",
+    "code": "it",
+    "countryCode": "IT",
     "defaultName": "Italian",
     "image": "ic_italy",
     "alphabet": "A À B C D E È É F G H I Ì Í Î J K L M N O Ò Ó P Q R S T U Ù Ú V W X Y Z"
   },
   {
-    "fullCode": "pt_PT",
+    "code": "pt",
+    "countryCode": "PT",
     "defaultName": "Portuguese",
     "image": "ic_portugal",
     "alphabet": "A Á Â Ã À B C Ç D E É Ê F G H I Í J K L M N O Ó Ô Õ P Q R S T U Ú V W X Y Z"
   },
   {
-    "fullCode": "de_DE",
+    "code": "de",
+    "countryCode": "DE",
     "defaultName": "German",
     "image": "ic_germany",
     "alphabet": "A Ä B C D E F G H I J K L M N O Ö P Q R S ß T U Ü V W X Y Z"
   },
   {
-    "fullCode": "pl_PL",
+    "code": "pl",
+    "countryCode": "PL",
     "defaultName": "Polish",
     "image": "ic_poland",
     "alphabet": "A Ą B C Ć D E Ę F G H I J K L Ł M N Ń O Ó P Q R S Ś T U V W X Y Z Ź Ż"
   },
   {
-    "fullCode": "be_BY",
+    "code": "be",
+    "countryCode": "BY",
     "defaultName": "Belorussian",
     "image": "ic_belarus",
     "alphabet": "А Б В Г Д Е Ё Ж З І Й К Л М Н О П Р С Т У Ў Ф Х Ц Ч Ш Ы Ь Э Ю Я"

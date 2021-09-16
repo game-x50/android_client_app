@@ -26,13 +26,13 @@ android {
 }
 
 dependencies {
+    api(projects.features.core.manager.api)
     api(projects.features.core.ui.api.lib)
     api(projects.features.core.error)
     api(projects.features.core.logger.api.lib)
     api(projects.features.core.ui.routing)
 
     compileOnly(projects.features.core.android.extensions)
-    compileOnly(projects.features.core.api.lib)
     compileOnly(projects.features.core.thread.lib)
     compileOnly(projects.features.core.android.api)
     compileOnly(projects.features.core.android.storage)

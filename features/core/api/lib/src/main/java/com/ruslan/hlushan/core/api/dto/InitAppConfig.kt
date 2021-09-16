@@ -11,6 +11,6 @@ data class InitAppConfig(
         val isLogcatEnabled: Boolean,
         val fileLogsFolder: File,
         @RawRes val languagesJsonRawResId: Int,
-        val defaultLanguageFullCode: String,
-        val availableLanguagesFullCodes: List<String>
+        val defaultLanguageFullCode: LangFullCode,
+        val availableLanguagesFullCodes: List<LangFullCode>
 )

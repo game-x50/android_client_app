@@ -16,12 +16,11 @@ import com.google.android.material.snackbar.Snackbar
 import com.ruslan.hlushan.android.extensions.ViewLambdaListener
 import com.ruslan.hlushan.android.extensions.applicationLabel
 import com.ruslan.hlushan.android.extensions.executeHideKeyboard
-import com.ruslan.hlushan.core.api.managers.ResourceManager
 import com.ruslan.hlushan.core.error.CompositeUserErrorMapper
 import com.ruslan.hlushan.core.extensions.ifNotNull
 import com.ruslan.hlushan.core.logger.api.AppLogger
+import com.ruslan.hlushan.core.manager.api.ResourceManager
 import com.ruslan.hlushan.core.thread.UiMainThread
-import com.ruslan.hlushan.core.ui.api.R
 import com.ruslan.hlushan.core.ui.api.manager.AppActivitiesSettings
 import com.ruslan.hlushan.core.ui.api.utils.LockableHandler
 import com.ruslan.hlushan.core.ui.api.utils.NewIntentHandler
@@ -261,7 +260,7 @@ constructor(
     fun showError(error: Throwable) = this.showDialogMessage(
             title = context?.applicationLabel.orEmpty(),
             message = compositeUserErrorMapper.produceUserMessage(error = error),
-            buttonText = getString(R.string.cancel)
+            buttonText = getString(com.ruslan.hlushan.core.ui.api.R.string.cancel)
     )
 
     //This is android, baby!

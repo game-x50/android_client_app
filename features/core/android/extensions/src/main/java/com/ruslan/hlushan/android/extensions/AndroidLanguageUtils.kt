@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Build
+import com.ruslan.hlushan.core.api.dto.LangNonFullCode
+import com.ruslan.hlushan.core.api.dto.toLocale
 import java.util.Locale
 
 var Configuration.currentLocale: Locale
@@ -23,8 +25,8 @@ var Configuration.currentLocale: Locale
         }
     }
 
-fun Context.wrapContextWithNewLanguage(currentAppLangNotFullCode: String): Context {
-    val neededAppLocale = Locale(currentAppLangNotFullCode)
+fun Context.wrapContextWithNewLanguage(code: LangNonFullCode): Context {
+    val neededAppLocale = code.toLocale()
     Locale.setDefault(neededAppLocale)
 
     val res = resources
@@ -42,10 +44,9 @@ fun Context.wrapContextWithNewLanguage(currentAppLangNotFullCode: String): Conte
     }
 }
 
-fun Resources.updateResourcesWithNewLanguage(currentAppLangNotFullCode: String) {
+fun Resources.updateResourcesWithNewLanguage(code: LangNonFullCode) {
     val conf = configuration
-    val neededAppLocale = Locale(currentAppLangNotFullCode)
-    conf.currentLocale = neededAppLocale
+    conf.currentLocale = code.toLocale()
     @Suppress("Deprecation")
     updateConfiguration(conf, displayMetrics)
 }

@@ -6,9 +6,10 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
 import com.ruslan.hlushan.android.extensions.colorAttributeValue
 import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
-import com.ruslan.hlushan.core.api.managers.ResourceManager
+import com.ruslan.hlushan.core.api.dto.LangFullCode
 import com.ruslan.hlushan.core.extensions.ifNotNull
 import com.ruslan.hlushan.core.language.api.WrappedLanguage
+import com.ruslan.hlushan.core.manager.api.ResourceManager
 import com.ruslan.hlushan.core.recycler.item.RecyclerItem
 import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.recycler.adapter.AdapterDelegate
@@ -20,13 +21,13 @@ import com.ruslan.hlushan.game.settings.ui.databinding.GameSettingsUiItemLanguag
 internal class LanguagesAdapterDelegate(
         private val resourceManager: ResourceManager,
         private val onItemClick: OnItemClickListener<WrappedLanguage>
-) : AdapterDelegate<String, LanguageRecyclerItem, LanguageRecyclerItem> {
+) : AdapterDelegate<LangFullCode, LanguageRecyclerItem, LanguageRecyclerItem> {
 
     @get:LayoutRes
     override val layoutResId: Int
         get() = R.layout.game_settings_ui_item_language
 
-    override fun createViewHolder(itemView: View): BaseItemViewHolder<String, LanguageRecyclerItem> =
+    override fun createViewHolder(itemView: View): BaseItemViewHolder<LangFullCode, LanguageRecyclerItem> =
             LanguagesViewHolder(itemView, onItemClick, resourceManager)
 }
 
@@ -34,7 +35,7 @@ private class LanguagesViewHolder(
         itemView: View,
         private val onItemClick: OnItemClickListener<WrappedLanguage>,
         private val resourceManager: ResourceManager
-) : BaseItemViewHolder<String, LanguageRecyclerItem>(itemView) {
+) : BaseItemViewHolder<LangFullCode, LanguageRecyclerItem>(itemView) {
 
     private val binding = GameSettingsUiItemLanguageBinding.bind(itemView)
 
@@ -78,7 +79,7 @@ private class LanguagesViewHolder(
 
 internal class LanguageRecyclerItem(
         val wrappedLanguage: WrappedLanguage
-) : RecyclerItem<String> {
+) : RecyclerItem<LangFullCode> {
 
-    override val id: String get() = wrappedLanguage.language.fullCode
+    override val id: LangFullCode get() = wrappedLanguage.language.code
 }

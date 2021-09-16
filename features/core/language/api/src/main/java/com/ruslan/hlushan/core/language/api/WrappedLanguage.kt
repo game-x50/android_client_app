@@ -1,14 +1,16 @@
 package com.ruslan.hlushan.core.language.api
 
+import com.ruslan.hlushan.core.api.dto.LangFullCode
+
 data class WrappedLanguage(
         val language: Language,
         val isAppLanguage: Boolean
 )
 
-fun List<Language>.toWrappedLanguages(currentLangFullCode: String): List<WrappedLanguage> =
+fun List<Language>.toWrappedLanguages(currentLang: LangFullCode): List<WrappedLanguage> =
         this.map { language ->
             WrappedLanguage(
                     language = language,
-                    isAppLanguage = (currentLangFullCode == language.fullCode)
+                    isAppLanguage = (currentLang == language.code)
             )
         }

@@ -9,7 +9,18 @@ object ApplicationConfigs {
 
     const val defaultProguardFile: String = "proguard-android-optimize.txt"
 
-    const val defaultLanguageNonFullCode: String = "en"
-    val availableLanguagesFullCodes: List<String> = listOf("en_GB", "ru_RU", "fr_FR", "es_ES", "it_IT", "pt_PT", "de_DE", "pl_PL", "be_BY")
-    val applicationLanguagesNonFullCodes: List<String> = availableLanguagesFullCodes.map { fullCode -> fullCode.split("_").first() }
+    val defaultLanguageNonFullCode: Pair<String, String> = Pair("en", "GB")
+    val availableLanguagesFullCodes: List<Pair<String, String>> = listOf(
+            defaultLanguageNonFullCode,
+            Pair("ru", "RU"),
+            Pair("fr", "FR"),
+            Pair("es", "ES"),
+            Pair("it", "IT"),
+            Pair("pt", "PT"),
+            Pair("de", "DE"),
+            Pair("pl", "PL"),
+            Pair("be", "BY")
+    )
+    val applicationLanguagesNonFullCodes: List<String> = availableLanguagesFullCodes
+            .map { fullCode -> fullCode.first }
 }

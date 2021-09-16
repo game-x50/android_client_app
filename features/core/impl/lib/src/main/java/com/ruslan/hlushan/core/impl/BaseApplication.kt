@@ -6,13 +6,12 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.ruslan.hlushan.android.storage.SharedPrefsProvider
 import com.ruslan.hlushan.core.api.di.IBaseInjector
 import com.ruslan.hlushan.core.api.di.InjectorHolder
-import com.ruslan.hlushan.core.api.managers.Settings
-import com.ruslan.hlushan.core.api.managers.appLanguageNotFullCode
 import com.ruslan.hlushan.core.impl.tools.initTools
 import com.ruslan.hlushan.core.impl.utils.SemEmergencyManagerLeakingActivity
 import com.ruslan.hlushan.core.impl.utils.exceptions.RxErrorHandlingUtil
 import com.ruslan.hlushan.core.impl.utils.getWrappedOrUpdateContext
 import com.ruslan.hlushan.core.logger.api.AppLogger
+import com.ruslan.hlushan.core.manager.api.Settings
 import com.ruslan.hlushan.core.thread.UiMainThread
 import javax.inject.Inject
 
@@ -62,7 +61,7 @@ abstract class BaseApplication : Application(), InjectorHolder {
 
     @UiMainThread
     private fun initBaseContextLang() {
-        getWrappedOrUpdateContext(baseContext, settings.appLanguageNotFullCode)
+        getWrappedOrUpdateContext(baseContext, settings.appLanguageFullCode.nonFullCode)
     }
 
     private fun setAppErrorHandling() {
