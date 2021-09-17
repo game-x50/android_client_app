@@ -32,11 +32,11 @@ dependencies {
     api(projects.features.core.logger.api.lib)
     api(projects.features.core.ui.routing)
 
+    debugApi(projects.features.core.ui.impl.debugTools)
+    stagingApi(projects.features.core.ui.impl.stagingTools)
+
     compileOnly(projects.features.core.android.extensions)
     compileOnly(projects.features.core.thread.lib)
     compileOnly(projects.features.core.android.api)
     compileOnly(projects.features.core.android.storage)
-
-    debugApi(projects.features.core.ui.impl.debugTools)
-    stagingApi(projects.features.core.ui.impl.stagingTools)
 }

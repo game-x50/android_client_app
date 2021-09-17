@@ -10,5 +10,6 @@ android {
 
 dependencies {
     api(Deps.androidMaterial)
+
     compileOnly(Deps.androidxCoreKtx)
 }

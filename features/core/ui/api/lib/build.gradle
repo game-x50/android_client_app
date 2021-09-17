@@ -15,5 +15,7 @@ dependencies {
     compileOnly(projects.features.core.api.lib)
     compileOnly(projects.features.core.thread.lib)
 
+    compileOnly(Deps.androidxAnnotations)
+
     testImplementation(projects.features.core.testUtils)
 }

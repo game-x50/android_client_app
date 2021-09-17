@@ -19,26 +19,20 @@ android {
 }
 
 dependencies {
+    api(projects.features.core.android.api)
     api(projects.features.core.logger.api.lib)
+    api(projects.features.game.api.lib)
     api(projects.features.thirdParty.rxjava2.extensions)
 
-    compileOnly(projects.features.core.api.lib)
-    compileOnly(projects.features.core.android.api)
     compileOnly(projects.features.core.extensions)
     compileOnly(projects.features.core.android.extensions)
-    compileOnly(projects.features.game.api.lib)
     compileOnly(projects.features.core.network.api)
     compileOnly(projects.features.core.android.storage)
     compileOnly(projects.features.thirdParty.androidx.workManager.utils)
 
     implementation(Deps.workManagerRxJava2)
 
-    compileOnly(Deps.threeTenBp)
-
-    testImplementation(projects.features.core.api.lib)
     testImplementation(projects.features.core.extensions)
-    testImplementation(projects.features.game.api.lib)
-    testImplementation(Deps.threeTenBp)
     testImplementation(projects.features.core.parsing.impl)
     testImplementation(projects.features.core.testUtils)
     testImplementation(projects.features.thirdParty.rxjava2.testUtils)

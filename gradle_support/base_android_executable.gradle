@@ -1,0 +1,17 @@
+apply plugin: Plugins.kotlinAndroid
+
+apply from: rootProject.ext[GradleExtraArgs.baseAndroidResources]
+
+android {
+
+    //todo: duplication in base_kotlin_library.gradle
+    kotlinOptions {
+        jvmTarget = ApplicationConfigs.JAVA_VERSION.toString()
+        useIR = true
+//todo        allWarningsAsErrors = true
+    }
+
+    dexOptions {
+        javaMaxHeapSize = "4g"
+    }
+}

@@ -12,11 +12,10 @@ android {
 }
 
 dependencies {
-    api(projects.features.core.api.lib)
     api(projects.features.core.pagination.api)
     api(projects.features.core.ui.viewmodel.lib)
+    api(projects.features.thirdParty.rxjava2.extensions)
 
     compileOnly(projects.features.core.thread.lib)
     compileOnly(projects.features.core.extensions)
-    compileOnly(projects.features.thirdParty.rxjava2.extensions)
 }

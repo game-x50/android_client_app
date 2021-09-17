@@ -101,8 +101,6 @@ android {
 
 dependencies {
     implementation(projects.features.core.extensions)
-    implementation(projects.features.core.api.lib)
-    implementation(projects.features.core.android.api)
     implementation(projects.features.core.impl.lib)
     implementation(projects.features.thirdParty.androidx.insets)
 
@@ -125,8 +123,8 @@ dependencies {
 
     runtimeOnly(projects.features.core.ui.lifecycle.utils)
 
-    implementation(projects.features.core.ui.dimens)
-    implementation(projects.features.core.ui.colors)
+    implementation(projects.features.core.ui.resources.dimens)
+    implementation(projects.features.core.ui.resources.colors)
 
     implementation(projects.features.core.ui.viewmodel.extensions)
 
@@ -134,14 +132,11 @@ dependencies {
 
     runtimeOnly(projects.features.core.ui.pagination.view)
 
-    compileOnly(projects.features.core.network.api)//todo: compileOnly here instead of network_impl module because of some used extensions in network_impl, try to use implementation here and compileOnly in network_impl module
     implementation(projects.features.core.network.impl.lib)
 
     implementation(projects.features.core.android.storage)
 
     implementation(projects.features.thirdParty.androidx.workManager.utils)
-
-    implementation(projects.features.game.api.lib)
 
     implementation(projects.features.game.auth.impl)
     implementation(projects.features.game.storage.impl)
@@ -157,20 +152,15 @@ dependencies {
 
     implementation(Deps.androidxAppCompat)
 
-    runtimeOnly(Deps.androidxFragment)
+    compileOnly(Deps.androidMaterial)
     runtimeOnly(projects.features.thirdParty.androidx.fragment.extensions)
 
-    implementation(Deps.androidMaterial)
     runtimeOnly(projects.features.thirdParty.androidx.material.extensions)
 
     implementation(Deps.androidxCoreKtx)
     implementation(projects.features.core.android.extensions)
 
-    runtimeOnly(Deps.swipeRefreshLayout)
     runtimeOnly(Deps.constraintLayout)
-
-    runtimeOnly(Deps.recyclerView)
-    runtimeOnly(projects.features.thirdParty.androidx.recyclerview.extensions)
 
     implementation(Deps.edgeToEdgeDecorator)
 

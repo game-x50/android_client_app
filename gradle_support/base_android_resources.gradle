@@ -1,5 +1,3 @@
-apply plugin: Plugins.kotlinAndroid
-
 apply from: rootProject.ext[GradleExtraArgs.androidLinters]
 
 android {
@@ -17,13 +15,6 @@ android {
     compileOptions {
         sourceCompatibility = ApplicationConfigs.JAVA_VERSION
         targetCompatibility = ApplicationConfigs.JAVA_VERSION
-    }
-
-    //todo: duplication in base_kotlin_library.gradle
-    kotlinOptions {
-        jvmTarget = ApplicationConfigs.JAVA_VERSION.toString()
-        useIR = true
-//        allWarningsAsErrors = true
     }
 
     packagingOptions {

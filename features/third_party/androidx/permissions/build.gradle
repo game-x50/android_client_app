@@ -9,6 +9,6 @@ android {
 }
 
 dependencies {
-    compileOnly(Deps.androidxActivity)
-    compileOnly(Deps.androidxFragment)
+    api(Deps.androidxActivity)
+    api(Deps.androidxFragment)
 }

@@ -12,7 +12,6 @@ dependencies {
     compileOnly(projects.features.core.api.lib)
     compileOnly(projects.features.core.extensions)
 
+    compileOnly(Deps.androidxAnnotations)
     compileOnly(Deps.androidxCoreKtx)
-
-    api(Deps.androidxAnnotations)
 }

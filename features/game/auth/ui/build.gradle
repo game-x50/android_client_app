@@ -25,12 +25,10 @@ dependencies {
     compileOnly(projects.features.core.command.lib)
     compileOnly(projects.features.game.api.lib)
     compileOnly(projects.features.thirdParty.rxjava2.extensions)
+    compileOnly(projects.features.thirdParty.androidx.material.extensions)
+    compileOnly(projects.features.core.ui.resources.dimens)
 
-    implementation(projects.features.core.ui.dimens)//todo: #check_compileOnly
+    implementation(Deps.androidxAnnotations)//todo: #check_compileOnly: because of versions conflict, try to avoid at all or use compileOnly
 
-    compileOnly(Deps.threeTenBp)
-
-    implementation(projects.features.thirdParty.androidx.material.extensions)//todo: #check_compileOnly
-
-    implementation(Deps.constraintLayout)//todo: #check_compileOnly
+    compileOnly(Deps.constraintLayout)
 }

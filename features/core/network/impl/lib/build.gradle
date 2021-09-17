@@ -25,18 +25,15 @@ android {
 }
 
 dependencies {
-    compileOnly(projects.features.core.api.lib)
-    compileOnly(projects.features.core.parsing.impl)
-    compileOnly(projects.features.core.error)
-
-    implementation(projects.features.core.network.api)//todo: implementation here instead of app module because of because ot some used extensions, try to use compileOnly here and implementation in app module
+    api(projects.features.core.network.api)
 
     debugImplementation(projects.features.core.network.impl.debugTools)
     stagingImplementation(projects.features.core.network.impl.stagingTools)
 
+    compileOnly(projects.features.core.parsing.impl)
+    compileOnly(projects.features.core.error)
+
     implementation(Deps.certificateTransparencyAndroid)
-
     implementation(Deps.retrofit2RxJava2Adapter)
-
     implementation(Deps.retrofit2KotlinxSerializationJsonConverter)
 }

@@ -59,9 +59,11 @@ afterEvaluate {
     extra[GradleExtraArgs.localizationFolder] = "$rootProjectPath/localization"
     extra[GradleExtraArgs.proguardConfigsFolder] = "$rootProjectPath/proguard_configs"
 
-    extra[GradleExtraArgs.baseAndroid] = "${gradleSupportFolder}base_android.gradle"
-
     extra[GradleExtraArgs.baseKotlinLibrary] = "${gradleSupportFolder}base_kotlin_library.gradle"
+
+    extra[GradleExtraArgs.baseAndroidResources] = "${gradleSupportFolder}base_android_resources.gradle"
+    extra[GradleExtraArgs.baseAndroidExecutable] = "${gradleSupportFolder}base_android_executable.gradle"
+    extra[GradleExtraArgs.baseAndroidResourcesLibrary] = "${gradleSupportFolder}base_android_resources_library.gradle"
     extra[GradleExtraArgs.baseAndroidLibrary] = "${gradleSupportFolder}base_android_library.gradle"
     extra[GradleExtraArgs.baseAndroidApp] = "${gradleSupportFolder}base_android_app.gradle"
 

@@ -51,8 +51,6 @@ include(
         ":features:core:ui:fragment",
         ":features:core:ui:dialog",
         ":features:core:ui:routing",
-        ":features:core:ui:colors",
-        ":features:core:ui:dimens",
         ":features:core:ui:views",
         ":features:core:ui:lifecycle:lib",
         ":features:core:ui:lifecycle:test_utils",
@@ -65,6 +63,9 @@ include(
         ":features:core:ui:pagination:view",
         ":features:core:ui:layout:container",
         ":features:core:ui:viewbinding:extensions",
+
+        ":features:core:ui:resources:colors",
+        ":features:core:ui:resources:dimens",
 
         ":features:core:ui:impl:lib",
         ":features:core:ui:impl:debug_tools",

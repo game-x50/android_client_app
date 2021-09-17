@@ -3,7 +3,6 @@ apply from: rootProject.ext[GradleExtraArgs.baseKotlinLibrary]
 dependencies {
     compileOnly(projects.features.core.extensions)
 
-    api(Deps.androidxAnnotations)
-
+    compileOnly(Deps.androidxAnnotations)
     compileOnly(Deps.rxJava2)
 }

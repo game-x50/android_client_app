@@ -37,15 +37,11 @@ dependencies {
     compileOnly(projects.features.core.command.lib)
     compileOnly(projects.features.core.ui.recycler.adapter)
     compileOnly(projects.features.core.ui.views)
-    compileOnly((projects.features.thirdParty.rxjava2.extensions))
+    compileOnly(projects.features.thirdParty.rxjava2.extensions)
+    compileOnly(projects.features.core.ui.resources.dimens)
 
-    implementation(projects.features.core.ui.dimens)//todo: #check_compileOnly
-    implementation(projects.features.core.ui.views)//todo: #check_compileOnly
+    implementation(Deps.androidxAnnotations)//todo: #check_compileOnly: because of versions conflict, try to avoid at all or use compileOnly
 
-    compileOnly(Deps.threeTenBp)
-
-    implementation(Deps.androidMaterial)//todo: #check_compileOnly
-    implementation(Deps.constraintLayout)//todo: #check_compileOnly
-
-    implementation(Deps.recyclerView)//todo: because of conflict deps, try to avoid as it transitively should be received from projects.features.core.ui.recycler.adapter
+    compileOnly(Deps.androidMaterial)
+    compileOnly(Deps.constraintLayout)
 }
