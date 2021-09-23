@@ -1,7 +1,7 @@
-package com.ruslan.hlushan.game.auth.impl.repo
+package com.ruslan.hlushan.game.auth.impl.repo.remote
 
-import com.ruslan.hlushan.game.auth.impl.repo.dto.server.UniqueDataResponse
-import com.ruslan.hlushan.game.auth.impl.repo.dto.server.UserNameRequest
+import com.ruslan.hlushan.game.auth.impl.repo.remote.dto.server.UniqueDataResponse
+import com.ruslan.hlushan.game.auth.impl.repo.remote.dto.server.UserNameRequest
 import com.ruslan.hlushan.network.api.GzipMarker
 import io.reactivex.Single
 import retrofit2.http.Body

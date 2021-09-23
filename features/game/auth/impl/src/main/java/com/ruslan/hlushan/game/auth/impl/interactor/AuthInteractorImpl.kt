@@ -18,6 +18,7 @@ import javax.inject.Inject
 private const val WAIT_UNTIL_TOKEN_CHANGE_DELAY_SECONDS = 10L
 private const val WAIT_UNTIL_TOKEN_CHANGE_RETRY_COUNT = 6L
 
+//TODO: #write_unit_tests
 internal class AuthInteractorImpl
 @Inject
 constructor(

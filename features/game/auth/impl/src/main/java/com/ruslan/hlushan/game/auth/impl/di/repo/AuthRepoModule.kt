@@ -3,9 +3,13 @@ package com.ruslan.hlushan.game.auth.impl.di.repo
 import com.ruslan.hlushan.game.api.network.GameNetworkParams
 import com.ruslan.hlushan.game.api.network.NonAuthorizedNetworkApiCreator
 import com.ruslan.hlushan.game.auth.impl.network.NonAuthorizedNetworkApiCreatorImpl
-import com.ruslan.hlushan.game.auth.impl.repo.AuthHttpsApi
 import com.ruslan.hlushan.game.auth.impl.repo.AuthRepository
 import com.ruslan.hlushan.game.auth.impl.repo.AuthRepositoryImpl
+import com.ruslan.hlushan.game.auth.impl.repo.local.AuthLocalDataSource
+import com.ruslan.hlushan.game.auth.impl.repo.local.AuthLocalDataSourceImpl
+import com.ruslan.hlushan.game.auth.impl.repo.remote.AuthHttpsApi
+import com.ruslan.hlushan.game.auth.impl.repo.remote.AuthRemoteDataSource
+import com.ruslan.hlushan.game.auth.impl.repo.remote.AuthRemoteRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -39,4 +43,12 @@ internal object AuthRepoModule {
     @Provides
     @Singleton
     fun provideAuthRepository(impl: AuthRepositoryImpl): AuthRepository = impl
+
+    @JvmStatic
+    @Provides
+    fun provideAuthLocalDataSource(impl: AuthLocalDataSourceImpl): AuthLocalDataSource = impl
+
+    @JvmStatic
+    @Provides
+    fun provideAuthRemoteDataSource(impl: AuthRemoteRepositoryImpl): AuthRemoteDataSource = impl
 }
