@@ -54,7 +54,7 @@ fun Context.createExternalReportsFile(fileName: String): File {
     }
 }
 
-@SuppressWarnings("squid:S5324")
+@SuppressWarnings("kotlin:S5324")
 private fun Context.getExternalReportsDir(): File = this.getExternalFilesDir("reports")!!
 
 fun Context.getUriForFile(

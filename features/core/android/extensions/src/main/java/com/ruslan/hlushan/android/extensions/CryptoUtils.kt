@@ -38,7 +38,7 @@ object CryptoUtils {
     fun base64Decode(string: String): ByteArray =
             Base64.decode(string, Base64.DEFAULT)
 
-    @SuppressWarnings("squid:S4790")
+    @SuppressWarnings("kotlin:S4790")
     private fun getFallbackMessageDigest(): MessageDigest =
             MessageDigest.getInstance("SHA")
 }
