@@ -18,6 +18,7 @@ object Plugins {
     const val leakCanaryDeobfuscation = "com.squareup.leakcanary.deobfuscation"
 
     const val jacoco = "jacoco"
+    const val sonarqube = "org.sonarqube"
 
     const val kotlinxSerilizationPluginPath = "plugin.serialization"
     const val kotlinParcelizePluginPath = "org.jetbrains.kotlin.plugin.parcelize"

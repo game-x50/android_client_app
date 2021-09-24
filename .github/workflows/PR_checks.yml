@@ -10,6 +10,7 @@ env:
   RELEASE_STORE_PASSWORD: ${{ secrets.RELEASE_STORE_PASSWORD }}
   RELEASE_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
   RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
+  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
 jobs:
 
@@ -65,7 +66,7 @@ jobs:
           path: app
 
       - name: Unit tests
-        run: ./gradlew test
+        run: ./gradlew test jacocoTestReport sonarqube
 
   build_release_apk:
     needs: [ detekt, android_lint, unit_tests, dependency_check ]

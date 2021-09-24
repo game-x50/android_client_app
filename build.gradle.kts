@@ -24,6 +24,7 @@ plugins {
     id(Plugins.owaspDependencyCheck).version(Versions.owaspDependencyCheckVersion)
     id(Plugins.gradleDoctor).version(Versions.gradleDoctorVersion)
     id(Plugins.dependencyUpdates).version(Versions.dependencyUpdatesVersion)
+    id(Plugins.sonarqube).version(Versions.sonarqubePluginVersion)
 
     kotlin(Plugins.kotlinxSerilizationPluginPath).version(Versions.kotlinVersion)
     id(Plugins.kotlinParcelizePluginPath).version(Versions.kotlinVersion)
@@ -95,6 +96,7 @@ tasks.register("clean", Delete::class) {
 }
 
 apply(from = "${getGradleSupportFolder(project)}linters.gradle")
+apply(from = "${getGradleSupportFolder(project)}sonarqube.gradle")
 
 tasks.named(
         "dependencyUpdates",

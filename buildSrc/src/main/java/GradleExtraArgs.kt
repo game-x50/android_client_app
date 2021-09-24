@@ -3,6 +3,7 @@ object GradleExtraArgs {
     const val lintersConfigFolder = "lintersConfigFolder"
     const val localizationFolder = "localization"
     const val proguardConfigsFolder = "proguardConfigsFolder"
+    const val coverageReportFolder = "coverage-report"
 
     const val baseKotlinLibrary = "gradle_support_base_kotlin_library"
 

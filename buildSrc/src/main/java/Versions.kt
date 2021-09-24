@@ -71,5 +71,6 @@ object Versions {
     const val rxDisposableWatcherVersion = "1.0.0"//version 2.0.0 is for rxjava3
 
     const val jacocoPluginVersion = "0.8.7"
+    const val sonarqubePluginVersion = "3.3"
     const val jUnitVersion = "4.13.2"
 }
