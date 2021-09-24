@@ -96,28 +96,13 @@ private fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, Id : Any> reduceS
 private fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, Id : Any> reduceStateActivePartiallyLoadedDefault(
         state: PaginationState.Active.PartiallyLoaded.Default<F, ItemId, RI, Id>,
         action: PaginationAction<F, ItemId, RI, Id>
-): ReduceResult<F, ItemId, RI, Id> =
-        when (action) {
-            is PaginationAction.UI.Refresh     -> {
-                reduceActionRefresh(action)
-            }
-            is PaginationAction.UI.LoadMore    -> {
-                reduceActionLoadMoreForActivePartiallyLoadedDefaultOrWithError(action = action, state = state)
-            }
-            is PaginationAction.Change         -> {
-                reduceActionChangeForNonEmptyList(
-                        state = state,
-                        copyStateWithNewItems = { updatedItems, updatedCurrentPages ->
-                            state.copy(items = updatedItems, currentPages = updatedCurrentPages)
-                        },
-                        action = action
-                )
-            }
-            is PaginationAction.Response.Success,
-            is PaginationAction.Response.Error -> {
-                ReduceResult(state)
-            }
+): ReduceResult<F, ItemId, RI, Id> = reduceStateActivePartiallyLoadedDefaultOrWithError(
+        state = state,
+        action = action,
+        copyStateWithNewItems = { updatedItems, updatedCurrentPages ->
+            state.copy(items = updatedItems, currentPages = updatedCurrentPages)
         }
+)
 
 private fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, Id : Any> reduceStateActivePartiallyLoadedAndLoading(
         state: PaginationState.Active.PartiallyLoaded.AndLoading<F, ItemId, RI, Id>,
@@ -165,6 +150,18 @@ private fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, Id : Any> reduceS
 private fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, Id : Any> reduceStateActivePartiallyLoadedWithError(
         state: PaginationState.Active.PartiallyLoaded.WithError<F, ItemId, RI, Id>,
         action: PaginationAction<F, ItemId, RI, Id>
+): ReduceResult<F, ItemId, RI, Id> = reduceStateActivePartiallyLoadedDefaultOrWithError(
+        state = state,
+        action = action,
+        copyStateWithNewItems = { updatedItems, updatedCurrentPages ->
+            state.copy(items = updatedItems, currentPages = updatedCurrentPages)
+        }
+)
+
+private fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, Id : Any> reduceStateActivePartiallyLoadedDefaultOrWithError(
+        state: PaginationState.Active.PartiallyLoaded<F, ItemId, RI, Id>,
+        action: PaginationAction<F, ItemId, RI, Id>,
+        copyStateWithNewItems: (List<RI>, List<PageRelation<Id, ItemId>>) -> PaginationState<F, ItemId, RI, Id>,
 ): ReduceResult<F, ItemId, RI, Id> =
         when (action) {
             is PaginationAction.UI.Refresh     -> {
@@ -176,9 +173,7 @@ private fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, Id : Any> reduceS
             is PaginationAction.Change         -> {
                 reduceActionChangeForNonEmptyList(
                         state = state,
-                        copyStateWithNewItems = { updatedItems, updatedCurrentPages ->
-                            state.copy(items = updatedItems, currentPages = updatedCurrentPages)
-                        },
+                        copyStateWithNewItems = copyStateWithNewItems,
                         action = action
                 )
             }

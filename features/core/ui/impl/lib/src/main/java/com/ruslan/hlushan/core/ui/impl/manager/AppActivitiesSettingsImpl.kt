@@ -79,7 +79,7 @@ constructor(
 
         threadChecker.checkThread()
 
-        //required
+        @SuppressWarnings("kotlin:S1656")
         settings.themeMode = settings.themeMode
     }
 
