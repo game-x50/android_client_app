@@ -25,8 +25,7 @@ object CryptoUtils {
         val digest = try {
             MessageDigest.getInstance("SHA-256")
         } catch (e: NoSuchAlgorithmException) {
-            @Suppress("squid:S4790")
-            MessageDigest.getInstance("SHA")
+            getFallbackMessageDigest()
         }
 
         digest.update(byteArray)
@@ -38,4 +37,8 @@ object CryptoUtils {
 
     fun base64Decode(string: String): ByteArray =
             Base64.decode(string, Base64.DEFAULT)
+
+    @SuppressWarnings("squid:S4790")
+    private fun getFallbackMessageDigest(): MessageDigest =
+            MessageDigest.getInstance("SHA")
 }
