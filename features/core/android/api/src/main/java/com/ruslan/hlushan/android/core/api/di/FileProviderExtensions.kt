@@ -42,6 +42,7 @@ class FileWithUri(
 )
 
 fun Context.createExternalReportsFile(fileName: String): File {
+    @SuppressWarnings("squid:S5324")
     val reportsPath = this.getExternalFilesDir("reports")!!
     if (!reportsPath.exists()) {
         reportsPath.mkdirs()

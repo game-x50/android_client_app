@@ -2,10 +2,10 @@ package com.ruslan.hlushan.test.utils
 
 import org.threeten.bp.Duration
 import org.threeten.bp.Instant
-import java.util.Random
+import java.security.SecureRandom
 import kotlin.math.absoluteValue
 
-private val random = Random()
+private val random = SecureRandom()
 
 fun generateFakeBool(): Boolean = random.nextBoolean()
 
