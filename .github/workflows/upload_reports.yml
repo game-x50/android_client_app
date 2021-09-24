@@ -8,6 +8,7 @@ on:
 env:
   BASE_API_URL: ${{ secrets.BASE_API_URL }}
   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
 
