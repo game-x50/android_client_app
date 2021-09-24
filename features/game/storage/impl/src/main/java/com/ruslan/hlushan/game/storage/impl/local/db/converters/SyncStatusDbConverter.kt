@@ -3,6 +3,7 @@ package com.ruslan.hlushan.game.storage.impl.local.db.converters
 import androidx.room.TypeConverter
 import com.ruslan.hlushan.game.api.play.dto.SyncStatus
 
+//TODO: #write_unit_tests
 internal class SyncStatusDbConverter {
 
     @TypeConverter

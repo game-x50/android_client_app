@@ -7,9 +7,6 @@ import com.ruslan.hlushan.game.storage.impl.workers.SyncWorker
 import io.reactivex.Observable
 import javax.inject.Inject
 
-/**
- * @author Ruslan Hlushan on 2019-06-21
- */
 internal class StartSyncUseCaseImpl
 @Inject
 constructor(

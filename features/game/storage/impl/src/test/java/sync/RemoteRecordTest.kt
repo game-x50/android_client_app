@@ -7,9 +7,6 @@ import generateFakeRemoteRecord
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-/**
- * @author Ruslan Hlushan on 2019-05-31
- */
 class RemoteRecordTest {
 
     @Test

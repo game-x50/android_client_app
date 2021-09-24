@@ -20,10 +20,6 @@ import org.threeten.bp.Duration
 import org.threeten.bp.Instant
 import sync.stub.LocalRecordsRepoTestImpl
 
-/**
- * @author Ruslan Hlushan on 2019-05-31
- */
-
 internal fun generateFakeRemoteRecord(
         remoteInfo: RemoteInfo = generateFakeRemoteInfo(),
         lastLocalModifiedTimestamp: Instant = generateFakeInstantTimestamp(),

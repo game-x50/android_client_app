@@ -13,10 +13,6 @@ import org.junit.Test
 import org.threeten.bp.Instant
 import kotlin.math.min
 
-/**
- * @author Ruslan Hlushan on 2019-06-07
- */
-
 internal class UpdateLocalSyncedUseCaseListTest : BaseUpdateLocalSyncedUseCaseTest() {
 
     @Test

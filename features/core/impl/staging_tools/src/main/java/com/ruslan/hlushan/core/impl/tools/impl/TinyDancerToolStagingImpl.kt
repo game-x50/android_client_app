@@ -8,9 +8,6 @@ import com.ruslan.hlushan.core.api.tools.TinyDancerTool
 import java.util.concurrent.atomic.AtomicBoolean
 import javax.inject.Inject
 
-/**
- * @author Ruslan Hlushan on 2019-07-18
- */
 internal class TinyDancerToolStagingImpl
 @Inject
 constructor(

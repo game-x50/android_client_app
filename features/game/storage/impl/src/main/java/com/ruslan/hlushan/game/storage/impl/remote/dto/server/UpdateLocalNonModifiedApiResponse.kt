@@ -6,10 +6,6 @@ import kotlinx.serialization.Serializable
 import org.threeten.bp.Instant
 import java.lang.IllegalStateException
 
-/**
- * @author Ruslan Hlushan on 2019-06-21
- */
-
 @Serializable
 internal data class UpdateLocalNonModifiedApiResponse(
         val id: String,

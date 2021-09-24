@@ -9,9 +9,6 @@ import com.ruslan.hlushan.game.storage.impl.remote.dto.toSyncLocalUpdateRequest
 import io.reactivex.Completable
 import javax.inject.Inject
 
-/**
- * @author Ruslan Hlushan on 2019-05-22
- */
 @SuppressWarnings("MaxLineLength")
 internal class DownloadNewRemoteCreatedUseCase
 @Inject

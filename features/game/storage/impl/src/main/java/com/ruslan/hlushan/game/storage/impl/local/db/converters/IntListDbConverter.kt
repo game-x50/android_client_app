@@ -4,6 +4,7 @@ import androidx.room.TypeConverter
 
 private const val SEPARATOR = ","
 
+//TODO: #write_unit_tests
 internal class IntListDbConverter {
 
     @TypeConverter
