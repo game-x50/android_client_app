@@ -1,4 +1,4 @@
-name: merge_actions
+name: upload_reports
 
 on:
   push:
