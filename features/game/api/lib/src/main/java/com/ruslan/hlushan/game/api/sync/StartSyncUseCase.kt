@@ -2,9 +2,6 @@ package com.ruslan.hlushan.game.api.sync
 
 import io.reactivex.Observable
 
-/**
- * @author Ruslan Hlushan on 2019-06-21
- */
 interface StartSyncUseCase {
 
     fun observeIsSynchronizing(): Observable<Boolean>

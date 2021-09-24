@@ -20,9 +20,6 @@ import org.junit.Test
 import org.threeten.bp.Instant
 import com.ruslan.hlushan.game.api.test.utils.generateFakeGameState as generateFakeGameState1
 
-/**
- * @author Ruslan Hlushan on 2019-05-31
- */
 internal class UploadLocalModifiedUseCaseLocallyModifiedTest : BaseUploadLocalModifiedUseCaseTest() {
 
     @Test

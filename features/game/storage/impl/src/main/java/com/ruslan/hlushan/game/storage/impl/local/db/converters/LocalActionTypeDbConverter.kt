@@ -3,6 +3,7 @@ package com.ruslan.hlushan.game.storage.impl.local.db.converters
 import androidx.room.TypeConverter
 import com.ruslan.hlushan.game.storage.impl.local.db.entities.LocalActionTypeDb
 
+//TODO: #write_unit_tests
 internal class LocalActionTypeDbConverter {
 
     @TypeConverter

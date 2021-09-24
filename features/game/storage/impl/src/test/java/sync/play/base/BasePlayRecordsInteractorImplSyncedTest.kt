@@ -12,9 +12,6 @@ import com.ruslan.hlushan.test.utils.generateFakeInstantTimestamp
 import generateAndAddLocalSyncedToLocalRepo
 import org.junit.Assert.assertNotEquals
 
-/**
- * @author Ruslan Hlushan on 2019-06-10
- */
 internal abstract class BasePlayRecordsInteractorImplSyncedTest : BasePlayRecordsInteractorImplTest() {
 
     protected fun baseTestSyncedUpdateAndGetRecordForPlaying(syncingNow: Boolean) {

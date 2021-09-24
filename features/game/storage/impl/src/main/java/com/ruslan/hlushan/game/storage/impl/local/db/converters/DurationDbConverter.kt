@@ -3,6 +3,7 @@ package com.ruslan.hlushan.game.storage.impl.local.db.converters
 import androidx.room.TypeConverter
 import org.threeten.bp.Duration
 
+//TODO: #write_unit_tests
 internal class DurationDbConverter {
 
     @TypeConverter

@@ -21,9 +21,6 @@ import io.reactivex.Single
 import org.threeten.bp.Instant
 import javax.inject.Inject
 
-/**
- * @author Ruslan Hlushan on 2019-05-22
- */
 @SuppressWarnings("MaxLineLength")
 internal class UpdateLocalSyncedUseCase
 @Inject

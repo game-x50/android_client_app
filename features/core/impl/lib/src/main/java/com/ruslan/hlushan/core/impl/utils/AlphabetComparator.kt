@@ -4,10 +4,6 @@ import androidx.annotation.IntRange
 import java.lang.IllegalArgumentException
 import kotlin.math.min
 
-/**
- * Created by mac-131 on 4/9/18.
- */
-
 //TODO: #write_unit_tests
 class AlphabetComparator(private val alphabet: String?) : Comparator<String?> {
 

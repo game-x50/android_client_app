@@ -1,8 +1,5 @@
 package com.ruslan.hlushan.game.api.play.dto
 
-/**
- * @author Ruslan Hlushan on 10/15/18.
- */
 data class ImmutableNumbersMatrix(
         val numbers: List<Int?>,
         val gameSize: GameSize,

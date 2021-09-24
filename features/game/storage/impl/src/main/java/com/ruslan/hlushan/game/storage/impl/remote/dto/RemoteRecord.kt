@@ -7,10 +7,6 @@ import com.ruslan.hlushan.game.storage.impl.local.LocalUpdateRequest
 import org.threeten.bp.Duration
 import org.threeten.bp.Instant
 
-/**
- * @author Ruslan Hlushan on 2019-05-31
- */
-
 internal data class RemoteRecord(
         val remoteInfo: RemoteInfo,
         val lastLocalModifiedTimestamp: Instant,

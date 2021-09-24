@@ -6,9 +6,6 @@ import com.ruslan.hlushan.test.utils.generateFakeDuration
 import com.ruslan.hlushan.test.utils.generateFakeInstantTimestamp
 import generateAndAddLocalDeletedToLocalRepo
 
-/**
- * @author Ruslan Hlushan on 2019-06-10
- */
 internal abstract class BasePlayRecordsInteractorImplLocallyDeletedTest : BasePlayRecordsInteractorImplTest() {
 
     protected fun baseTestLocallyDeletedUpdateAndGetRecordForPlaying(syncingNow: Boolean) {

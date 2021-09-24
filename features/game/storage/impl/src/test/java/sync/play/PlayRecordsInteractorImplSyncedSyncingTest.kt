@@ -3,9 +3,6 @@ package sync.play
 import org.junit.Test
 import sync.play.base.BasePlayRecordsInteractorImplSyncedTest
 
-/**
- * @author Ruslan Hlushan on 2019-06-10
- */
 internal class PlayRecordsInteractorImplSyncedSyncingTest : BasePlayRecordsInteractorImplSyncedTest() {
 
     @Test

@@ -23,9 +23,6 @@ import io.reactivex.Single
 import java.util.UUID
 import javax.inject.Inject
 
-/**
- * @author Ruslan Hlushan on 2019-05-22
- */
 @SuppressWarnings("MaxLineLength")
 internal class UploadLocalModifiedUseCase
 @Inject

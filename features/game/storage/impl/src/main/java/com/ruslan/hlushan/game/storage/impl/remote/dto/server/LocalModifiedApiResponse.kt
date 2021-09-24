@@ -7,9 +7,6 @@ import kotlinx.serialization.Serializable
 import org.threeten.bp.Instant
 import java.lang.IllegalStateException
 
-/**
- * @author Ruslan Hlushan on 2019-06-21
- */
 @SuppressWarnings("LongParameterList")
 @Serializable
 internal data class LocalModifiedApiResponse(

@@ -18,9 +18,6 @@ import generateFakeRemoteRecord
 import org.junit.Test
 import org.threeten.bp.Instant
 
-/**
- * @author Ruslan Hlushan on 2019-05-31
- */
 internal class UploadLocalModifiedUseCaseLocallyDeletedTest : BaseUploadLocalModifiedUseCaseTest() {
 
     @Test

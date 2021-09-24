@@ -6,9 +6,6 @@ import com.ruslan.hlushan.game.storage.impl.remote.SyncRemoteHttpApi
 import dagger.Module
 import dagger.Provides
 
-/**
- * @author Ruslan Hlushan on 2019-07-26
- */
 @Module
 internal object SyncRemoteHttpApiModule {
 
