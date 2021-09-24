@@ -79,6 +79,7 @@ constructor(
 
         threadChecker.checkThread()
 
+        //required
         settings.themeMode = settings.themeMode
     }
 

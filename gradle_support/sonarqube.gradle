@@ -1,0 +1,21 @@
+apply plugin: Plugins.sonarqube
+
+sonarqube {
+    properties {
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.organization", "game-x50"
+        property "sonar.projectKey","game-x50_android_client_app"
+        property "sonar.tests", ""
+        property "sonar.java.coveragePlugin", "jacoco"
+        property "sonar.coverage.exclusions", "**/test/**,**/androidTest/**,**/R.class,**/BuildConfig.*,**/Manifest*.*,**/*Test*.*,**/com/example/databinding/*,**/com/example/generated/callback/*,**/*Dto*.*,**/android/databinding/*,**/androidx/databinding/*,**/di/module/*,**/*MapperImpl*.*,**/BuildConfig.*,**/*Component*.*,**/*BR*.*,**/Manifest*.*,**/*Companion*.*,**/*Module.*,**/*Dagger*.*,**/*MembersInjector*.*,**/InputMethodManagerLeaks.*,**/*_Factory*.*,**/*_Provide*Factory*.*"
+    }
+}
+
+subprojects {
+    apply plugin: Plugins.sonarqube
+    sonarqube {
+        properties {
+            property "sonar.coverage.jacoco.xmlReportPaths", GradleExtraArgs.getCoverageReportPath(buildDir)
+        }
+    }
+}

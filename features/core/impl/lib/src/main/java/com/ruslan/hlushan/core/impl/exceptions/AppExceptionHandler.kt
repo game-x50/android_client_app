@@ -82,7 +82,7 @@ internal class AppExceptionHandler(
     private fun isSameException(originalException: Throwable?, lastException: Throwable?): Boolean =
             (lastException != null && originalException != null
              && originalException.javaClass == lastException.javaClass
-             && originalException.stackTrace[0] == originalException.stackTrace[0]
+             && originalException.stackTrace[0] == lastException.stackTrace[0]
              && (originalException.message.isNullOrEmpty() && lastException.message.isNullOrEmpty()
                  || originalException.message == lastException.message))
 

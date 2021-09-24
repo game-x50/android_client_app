@@ -12,6 +12,10 @@ private static boolean isKotlinLibraryModule(final Project project) {
     return project.plugins.hasPlugin(Plugins.kotlin)
 }
 
+jacoco {
+    toolVersion = Versions.jacocoPluginVersion
+}
+
 afterEvaluate { project ->
     if (isAndroidModule(project)) {
         setupAndroidReporting()
@@ -25,10 +29,10 @@ def setupKotlinReporting() {
         dependsOn test
         reports {
             csv.enabled false // change if needed
-            xml.enabled false // change if needed
-            html {
+            html.enabled false // change if needed
+            xml {
                 enabled true
-                destination file("${buildDir}/coverage-report")
+                destination file(GradleExtraArgs.getCoverageReportPath(buildDir))
             }
         }
         afterEvaluate {
@@ -153,10 +157,10 @@ def setupAndroidReporting() {
 
         reports {
             csv.enabled false // change if needed
-            xml.enabled false // change if needed
-            html {
+            html.enabled false // change if needed
+            xml {
                 enabled true
-                destination file("${buildDir}/coverage-report")
+                destination file(GradleExtraArgs.getCoverageReportPath(buildDir))
             }
         }
     }

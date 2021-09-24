@@ -1,3 +1,5 @@
+import java.io.File
+
 object GradleExtraArgs {
 
     const val lintersConfigFolder = "lintersConfigFolder"
@@ -35,4 +37,7 @@ object GradleExtraArgs {
     const val applicationLeakCanaryTool = "gradle_support_application_leak_canary_tool"
 
     const val projectPropertiesRead = "gradle_support_project_properties_read"
+
+    @JvmStatic
+    fun getCoverageReportPath(projectBuildDir: File): String = "${projectBuildDir}/reports/jacocoCoverage.xml"
 }
