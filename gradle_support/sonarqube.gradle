@@ -15,7 +15,7 @@ subprojects {
     apply plugin: Plugins.sonarqube
     sonarqube {
         properties {
-            property "sonar.coverage.jacoco.xmlReportPaths", "$projectDir/build/${GradleExtraArgs.coverageReportFolder}/index.xml"
+            property "sonar.coverage.jacoco.xmlReportPaths", GradleExtraArgs.getCoverageReportPath(buildDir)
         }
     }
 }

@@ -4,13 +4,15 @@ on:
   pull_request:
     branches:
       - 'master'
+  push:
+    branches:
+      - 'master'
 
 env:
   BASE_API_URL: ${{ secrets.BASE_API_URL }}
   RELEASE_STORE_PASSWORD: ${{ secrets.RELEASE_STORE_PASSWORD }}
   RELEASE_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
   RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
-  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
 jobs:
 
@@ -19,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
-        with: {java-version: 1.11}
+        with: {java-version: 1.8}
 
       - name: Detekt
         run: ./gradlew detekt
@@ -29,7 +31,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
-        with: {java-version: 1.11}
+        with: {java-version: 1.8}
 
       - name: Dependency Check Analyze
         run: ./gradlew dependencyCheckAnalyze
@@ -39,7 +41,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
-        with: {java-version: 1.11}
+        with: {java-version: 1.8}
 
       - name: Download secret files repo
         uses: actions/checkout@v2
@@ -56,7 +58,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
-        with: {java-version: 1.11}
+        with: {java-version: 1.8}
 
       - name: Download secret files repo
         uses: actions/checkout@v2
@@ -66,7 +68,7 @@ jobs:
           path: app
 
       - name: Unit tests
-        run: ./gradlew test jacocoTestReport sonarqube
+        run: ./gradlew test
 
   build_release_apk:
     needs: [ detekt, android_lint, unit_tests, dependency_check ]
@@ -74,7 +76,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
-        with: {java-version: 1.11}
+        with: {java-version: 1.8}
 
       - name: Download secret files repo
         uses: actions/checkout@v2
@@ -92,7 +94,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
-        with: {java-version: 1.11}
+        with: {java-version: 1.8}
 
       - name: Download secret files repo
         uses: actions/checkout@v2
