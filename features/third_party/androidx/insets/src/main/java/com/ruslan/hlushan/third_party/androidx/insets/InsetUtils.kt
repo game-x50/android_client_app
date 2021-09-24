@@ -66,17 +66,26 @@ fun View.addSystemPadding(
     targetView.updatePadding(left = leftPadding, top = topPadding, right = rightPadding, bottom = bottomPadding)
     if (isConsumed) {
         insets.withReplacedSystemWindowInsets(
-                Rect(
-                        if (left) 0 else systemBarsInsets.left,
-                        if (top) 0 else systemBarsInsets.top,
-                        if (right) 0 else systemBarsInsets.right,
-                        if (bottom) 0 else systemBarsInsets.bottom
+                createInsetsRect(
+                        systemBarsInsets = systemBarsInsets,
+                        left = left,
+                        top = top,
+                        right = right,
+                        bottom = bottom
                 )
         )
     } else {
         insets
     }
 }
+
+private fun createInsetsRect(systemBarsInsets: Insets, left: Boolean, top: Boolean, right: Boolean, bottom: Boolean): Rect =
+        Rect(
+                if (left) 0 else systemBarsInsets.left,
+                if (top) 0 else systemBarsInsets.top,
+                if (right) 0 else systemBarsInsets.right,
+                if (bottom) 0 else systemBarsInsets.bottom
+        )
 
 private fun View.doOnApplyWindowInsets(
         block: (View, insets: WindowInsetsCompat, initialPadding: Rect) -> WindowInsetsCompat

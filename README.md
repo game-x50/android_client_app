@@ -4,13 +4,13 @@
 ## Master branch status:
 ![PR_checks for master](https://github.com/game-x50/android_client_app/workflows/PR_checks/badge.svg?branch=master)
 
-## sonarcloud
+## [SonarCloud](https://sonarcloud.io/dashboard?id=game-x50_android_client_app)
 
 Upload Report Status:\
 ![Upload Report Status](https://github.com/game-x50/android_client_app/workflows/upload_reports/badge.svg?branch=master)
 
 Quality Gate Status:\
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=game-x50_android_client_app&metric=alert_status)](https://sonarcloud.io/dashboard?id=game-x50_android_client_app)
+![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=game-x50_android_client_app&metric=alert_status)
 
 Checks:\
 ![Bugs Status](https://sonarcloud.io/api/project_badges/measure?project=game-x50_android_client_app&metric=bugs)

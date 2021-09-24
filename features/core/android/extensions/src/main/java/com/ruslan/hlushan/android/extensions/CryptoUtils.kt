@@ -25,6 +25,7 @@ object CryptoUtils {
         val digest = try {
             MessageDigest.getInstance("SHA-256")
         } catch (e: NoSuchAlgorithmException) {
+            @Suppress("squid:S4790")
             MessageDigest.getInstance("SHA")
         }
 

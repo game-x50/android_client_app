@@ -2,7 +2,7 @@ package com.ruslan.hlushan.game.play.api
 
 import com.ruslan.hlushan.core.thread.SingleThreadSafety
 import com.ruslan.hlushan.game.api.play.dto.GameSize
-import java.util.Random
+import java.security.SecureRandom
 
 //todo
 @SingleThreadSafety
@@ -11,7 +11,7 @@ internal class GameNumbersGenerator(
         private var sum: Int
 ) {
 
-    private val random = Random()
+    private val random = SecureRandom()
 
     private var tempCounter = 1
 
