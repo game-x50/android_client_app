@@ -24,7 +24,7 @@ internal fun ThemeModePreferencesDelegate(
             val valueFromPrefs: ThemeMode? = geAvailableThemeModes()
                     .firstOrNull { mode -> mode.localName == stringValue }
 
-            valueFromPrefs ?: getDefaultThemeMode()
+            (valueFromPrefs ?: getDefaultThemeMode())
         },
         onValueSaved = ::applyThemeModeToApp
 )
@@ -37,7 +37,7 @@ internal fun geAvailableThemeModes(): List<ThemeMode> =
         )
 
 @UiMainThread
-private fun applyThemeModeToApp(themeMode: ThemeMode) {
+internal fun applyThemeModeToApp(themeMode: ThemeMode) {
     AppCompatDelegate.setDefaultNightMode(themeMode.androidValue)
 }
 
