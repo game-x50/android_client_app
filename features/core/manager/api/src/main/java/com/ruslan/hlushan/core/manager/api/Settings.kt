@@ -12,4 +12,6 @@ interface Settings {
         set
 
     val availableThemeModes: List<ThemeMode>
+
+    fun reInitThemeMode()
 }

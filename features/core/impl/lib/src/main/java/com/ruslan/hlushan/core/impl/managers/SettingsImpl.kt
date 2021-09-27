@@ -5,6 +5,7 @@ import com.ruslan.hlushan.core.api.dto.InitAppConfig
 import com.ruslan.hlushan.core.api.dto.LangFullCode
 import com.ruslan.hlushan.core.impl.di.annotations.SettingsPrefs
 import com.ruslan.hlushan.core.impl.utils.ThemeModePreferencesDelegate
+import com.ruslan.hlushan.core.impl.utils.applyThemeModeToApp
 import com.ruslan.hlushan.core.impl.utils.geAvailableThemeModes
 import com.ruslan.hlushan.core.impl.utils.getAppLangFullCode
 import com.ruslan.hlushan.core.impl.utils.setAppLangFullCode
@@ -35,4 +36,6 @@ constructor(
     override var themeMode: ThemeMode by ThemeModePreferencesDelegate(preferences = sharedPreferences)
 
     override val availableThemeModes: List<ThemeMode> get() = geAvailableThemeModes()
+
+    override fun reInitThemeMode() = applyThemeModeToApp(this.themeMode)
 }
