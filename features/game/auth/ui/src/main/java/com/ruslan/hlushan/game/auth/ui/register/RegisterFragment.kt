@@ -66,7 +66,7 @@ internal class RegisterFragment : BaseFragment(
                 is RegisterViewModel.Command.ShowNickNameInputError -> showNickNameInputError()
                 is RegisterViewModel.Command.ShowEmailInputError    -> showEmailInputError()
                 is RegisterViewModel.Command.ShowPasswordInputError -> showPasswordInputError()
-                is RegisterViewModel.Command.ShowAuthError          -> showAuthError(command.error)
+                is RegisterViewModel.Command.ShowLoginError         -> showAuthError(command.error)
                 is RegisterViewModel.Command.ShowError              -> showError(command.error)
             }
 

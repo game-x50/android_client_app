@@ -1,8 +1,14 @@
 package com.ruslan.hlushan.game.api.auth.dto
 
-sealed class AuthError : Throwable() {
+sealed interface AuthError {
 
-    class UserWithSuchCredentialsExists : AuthError()
+    sealed interface Register : AuthError
 
-    class InvalidUserCredentials : AuthError()
+    sealed interface Login : AuthError
+
+    object UserWithSuchCredentialsExists : AuthError.Register
+
+    object InvalidUserCredentials : AuthError.Login
+
+    object Unknown : AuthError.Register, AuthError.Login
 }

@@ -49,7 +49,7 @@ constructor(
             nickname: User.Nickname,
             email: User.Email,
             password: User.Password
-    ): Single<VoidOperationResult<AuthError.UserWithSuchCredentialsExists>> =
+    ): Single<VoidOperationResult<AuthError.Register>> =
             remoteDataSource.createNewUser(nickname, email, password)
                     .flatMapCompletableSuccess { user -> localDataSource.storeUser(user) }
                     .mapSuccess { Unit }
@@ -57,7 +57,7 @@ constructor(
     override fun logIn(
             email: User.Email,
             password: User.Password
-    ): Single<VoidOperationResult<AuthError.InvalidUserCredentials>> =
+    ): Single<VoidOperationResult<AuthError.Login>> =
             remoteDataSource.logIn(email, password)
                     .flatMapCompletableSuccess { user -> localDataSource.storeUser(user) }
                     .mapSuccess { Unit }

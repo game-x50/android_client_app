@@ -32,13 +32,13 @@ constructor(
             nickname: User.Nickname,
             email: User.Email,
             password: User.Password
-    ): Single<VoidOperationResult<AuthError.UserWithSuchCredentialsExists>> =
+    ): Single<VoidOperationResult<AuthError.Register>> =
             waitUntilTokenChangeAndStartSyncUseCase(authRepository.createNewUser(nickname, email, password))
 
     override fun logIn(
             email: User.Email,
             password: User.Password
-    ): Single<VoidOperationResult<AuthError.InvalidUserCredentials>> =
+    ): Single<VoidOperationResult<AuthError.Login>> =
             waitUntilTokenChangeAndStartSyncUseCase(authRepository.logIn(email, password))
 
     override fun sendPasswordResetEmail(email: User.Email): Completable =
