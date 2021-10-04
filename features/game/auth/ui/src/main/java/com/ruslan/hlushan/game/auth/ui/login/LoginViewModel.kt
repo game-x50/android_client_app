@@ -70,10 +70,10 @@ constructor(
     }
 
     @UiMainThread
-    private fun handleLoginResult(result: VoidOperationResult<AuthError.InvalidUserCredentials>) =
+    private fun handleLoginResult(result: VoidOperationResult<AuthError.Login>) =
             when (result) {
                 is OperationResult.Success -> router.replaceScreen(UserProfileScreen())
-                is OperationResult.Error -> mutableCommandsQueue.add(Command.ShowAuthError(result.result))
+                is OperationResult.Error -> mutableCommandsQueue.add(Command.ShowLoginError(result.result))
             }
 
     sealed class Command : StrategyCommand {
@@ -90,7 +90,7 @@ constructor(
             override fun produceStrategy(): HandleStrategy = SkipStrategy()
         }
 
-        class ShowAuthError(val error: AuthError) : Command() {
+        class ShowLoginError(val error: AuthError.Login) : Command() {
             override fun produceStrategy(): HandleStrategy = OneExecutionStateStrategy()
         }
 

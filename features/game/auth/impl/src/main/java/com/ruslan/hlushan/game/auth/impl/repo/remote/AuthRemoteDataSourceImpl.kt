@@ -52,7 +52,7 @@ constructor(
             nickname: User.Nickname,
             email: User.Email,
             password: User.Password
-    ): Single<OperationResult<User, AuthError.UserWithSuchCredentialsExists>> =
+    ): Single<OperationResult<User, AuthError.Register>> =
             provideErrorIfUserNameExists(nickname)
                     .flatMapNestedSuccess { createNewUserAndReturnUid(email, password) }
                     .mapSuccess { userUid ->
@@ -63,14 +63,14 @@ constructor(
     override fun logIn(
             email: User.Email,
             password: User.Password
-    ): Single<OperationResult<User, AuthError.InvalidUserCredentials>> =
+    ): Single<OperationResult<User, AuthError.Login>> =
             firebaseAuth.signInWithEmailAndPasswordRx(email, password)
-                    .toOperationResult<FirebaseUser, AuthError.InvalidUserCredentials>()
-                    .onErrorResumeNext { error ->
+                    .toOperationResult<FirebaseUser, AuthError.Login>()
+                    .onErrorReturn { error ->
                         if (error.isFirebaseInvalidUserCredentialsError()) {
-                            Single.just(OperationResult.Error(AuthError.InvalidUserCredentials()))
+                            OperationResult.Error(AuthError.InvalidUserCredentials)
                         } else {
-                            Single.error(error)
+                            OperationResult.Error(AuthError.Unknown)
                         }
                     }
                     .subscribeOn(schedulersManager.io)
@@ -136,24 +136,24 @@ constructor(
                         if (response.unique) {
                             OperationResultVoid()
                         } else {
-                            OperationResult.Error(AuthError.UserWithSuchCredentialsExists())
+                            OperationResult.Error(AuthError.UserWithSuchCredentialsExists)
                         }
                     }
 
     private fun createNewUserAndReturnUid(
             email: User.Email,
             password: User.Password
-    ): Single<OperationResult<String, AuthError.UserWithSuchCredentialsExists>> =
+    ): Single<OperationResult<String, AuthError.Register>> =
             firebaseAuth.createUserWithEmailAndPasswordRx(email.value, password.value)
                     .subscribeOn(schedulersManager.io)
-                    .map<OperationResult<String, AuthError.UserWithSuchCredentialsExists>> { firebaseUser ->
+                    .map<OperationResult<String, AuthError.Register>> { firebaseUser ->
                         OperationResult.Success(firebaseUser.uid)
                     }
-                    .onErrorResumeNext { error ->
+                    .onErrorReturn { error ->
                         if (error is FirebaseAuthUserCollisionException) {
-                            Single.just(OperationResult.Error(AuthError.UserWithSuchCredentialsExists()))
+                            OperationResult.Error(AuthError.UserWithSuchCredentialsExists)
                         } else {
-                            Single.error(error)
+                            OperationResult.Error(AuthError.Unknown)
                         }
                     }
 

@@ -15,12 +15,12 @@ internal interface AuthRemoteDataSource {
             nickname: User.Nickname,
             email: User.Email,
             password: User.Password
-    ): Single<OperationResult<User, AuthError.UserWithSuchCredentialsExists>>
+    ): Single<OperationResult<User, AuthError.Register>>
 
     fun logIn(
             email: User.Email,
             password: User.Password
-    ): Single<OperationResult<User, AuthError.InvalidUserCredentials>>
+    ): Single<OperationResult<User, AuthError.Login>>
 
     fun sendPasswordResetEmail(email: User.Email): Completable
 

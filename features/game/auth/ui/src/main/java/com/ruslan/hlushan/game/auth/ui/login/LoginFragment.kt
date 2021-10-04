@@ -68,7 +68,7 @@ internal class LoginFragment : BaseFragment(
                 is LoginViewModel.Command.ShowSimpleProgress     -> showSimpleProgress(command.show)
                 is LoginViewModel.Command.ShowEmailInputError    -> showEmailInputError()
                 is LoginViewModel.Command.ShowPasswordInputError -> showPasswordInputError()
-                is LoginViewModel.Command.ShowAuthError          -> showAuthError(command.error)
+                is LoginViewModel.Command.ShowLoginError         -> showAuthError(command.error)
                 is LoginViewModel.Command.ShowError              -> showError(command.error)
             }
 

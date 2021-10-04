@@ -18,6 +18,7 @@
     <string name="game_auth_ui_update_user_profile">Update profile</string>
     <string name="game_auth_ui_user_with_such_credentials_already_exists">User with such credentials already exists.</string>
     <string name="game_auth_ui_invalid_user_credentials">Invalid user credentials.</string>
+    <string name="game_auth_ui_unknown_error">Unknown error.</string>
     <string name="game_auth_ui_nick_name_input_error">nick_name_input_error</string><!--TODO-->
     <string name="game_auth_ui_email_input_error">email_input_error</string><!--TODO-->
     <string name="game_auth_ui_password_input_error">password_input_error</string><!--TODO-->

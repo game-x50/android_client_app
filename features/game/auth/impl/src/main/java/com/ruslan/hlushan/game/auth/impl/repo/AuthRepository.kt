@@ -14,12 +14,12 @@ internal interface AuthRepository {
             nickname: User.Nickname,
             email: User.Email,
             password: User.Password
-    ): Single<VoidOperationResult<AuthError.UserWithSuchCredentialsExists>>
+    ): Single<VoidOperationResult<AuthError.Register>>
 
     fun logIn(
             email: User.Email,
             password: User.Password
-    ): Single<VoidOperationResult<AuthError.InvalidUserCredentials>>
+    ): Single<VoidOperationResult<AuthError.Login>>
 
     fun sendPasswordResetEmail(email: User.Email): Completable
 
