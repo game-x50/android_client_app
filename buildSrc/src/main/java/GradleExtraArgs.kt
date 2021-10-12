@@ -38,6 +38,8 @@ object GradleExtraArgs {
 
     const val projectPropertiesRead = "gradle_support_project_properties_read"
 
+    const val licenseValidation = "gradle_support_license_validation"
+
     @JvmStatic
     fun getCoverageReportPath(projectBuildDir: File): String = "${projectBuildDir}/reports/jacocoCoverage.xml"
 }

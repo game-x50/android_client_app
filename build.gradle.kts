@@ -13,6 +13,7 @@ buildscript {
         classpath(PluginClasspath.kotlin)
         classpath(PluginClasspath.leakCanaryDeobfuscation)
         classpath(PluginClasspath.jacoco)
+        classpath(PluginClasspath.licensee)
     }
 }
 
@@ -83,6 +84,7 @@ afterEvaluate {
     extra[GradleExtraArgs.kotlinxSerilization] = "${gradleSupportFolder}kotlinx_serilization.gradle"
     extra[GradleExtraArgs.applicationLeakCanaryTool] = "${gradleSupportFolder}application_leak_canary_tool.gradle"
     extra[GradleExtraArgs.projectPropertiesRead] = "${gradleSupportFolder}project_properties_read.gradle"
+    extra[GradleExtraArgs.licenseValidation] = "${gradleSupportFolder}license_validation.gradle"
 }
 
 subprojects {

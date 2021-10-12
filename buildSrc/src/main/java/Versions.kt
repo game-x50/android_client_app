@@ -15,6 +15,7 @@ object Versions {
     const val dependencyUpdatesVersion = "0.39.0"
     const val owaspDependencyCheckVersion = "6.2.0"
     const val gradleDoctorVersion = "0.7.0"
+    const val licenseeVersion = "1.2.0"
 
     const val rxJava2Version = "2.2.21"
     const val rxJava2AndroidVersion = "2.1.1"

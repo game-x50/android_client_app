@@ -2,3 +2,5 @@ apply plugin: Plugins.androidApp
 
 apply from: rootProject.ext[GradleExtraArgs.baseAndroidExecutable]
 apply from: rootProject.ext[GradleExtraArgs.applicationBuildVariants]
+
+apply from: rootProject.ext[GradleExtraArgs.licenseValidation]

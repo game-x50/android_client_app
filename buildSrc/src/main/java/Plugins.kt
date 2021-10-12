@@ -13,6 +13,7 @@ object Plugins {
     const val dependencyUpdates = "com.github.ben-manes.versions"
     const val owaspDependencyCheck = "org.owasp.dependencycheck"
     const val gradleDoctor = "com.osacky.doctor"
+    const val licensee = "app.cash.licensee"
     const val kotlinxSerilization = "kotlinx-serialization"
     const val kotlinParcelize = "kotlin-parcelize"
     const val leakCanaryDeobfuscation = "com.squareup.leakcanary.deobfuscation"
