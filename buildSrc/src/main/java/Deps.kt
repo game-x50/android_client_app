@@ -26,7 +26,7 @@ object Deps {
 
     const val viewBinding = "androidx.databinding:viewbinding:${Versions.gradleVersion}"
 
-    const val edgeToEdgeDecorator = "com.redmadrobot:edge-to-edge-decorator:${Versions.edgeToEdgeDecoratorVersion}"
+    const val edgeToEdgeDecorator = "${DepsDetails.redmadrobotGroup}:${DepsDetails.edgeToEdgeDecorator}:${Versions.edgeToEdgeDecoratorVersion}"
 
     const val androidxLifecycle = "androidx.lifecycle:lifecycle-common:${Versions.androidxLifecyclesVersion}"
     const val androidxLifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.androidxLifecyclesVersion}"
@@ -44,7 +44,7 @@ object Deps {
     const val okHttp3 = "com.squareup.okhttp3:okhttp:${Versions.okhttp3Version}"
     const val okHttp3Logging = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp3Version}"
 
-    const val certificateTransparencyAndroid = "com.babylon.certificatetransparency:certificatetransparency-android:${Versions.certificateTransparencyAndroidVersion}"
+    const val certificateTransparencyAndroid = "${DepsDetails.certificateTransparencyGroup}:${DepsDetails.certificateTransparencyAndroid}:${Versions.certificateTransparencyAndroidVersion}"
 
     const val retrofit2 = "com.squareup.retrofit2:retrofit:${Versions.retrofit2Version}"
     const val retrofit2KotlinxSerializationJsonConverter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.retrofit2KotlinxSerializationJsonConverterVersion}"
@@ -69,7 +69,7 @@ object Deps {
     const val lynx = "com.github.pedrovgs:lynx:${Versions.lynxVersion}"
     const val chucker = "com.github.ChuckerTeam.Chucker:library:${Versions.chuckerVersion}"
     const val roomExplorer = "com.wajahatkarim3:roomexplorer:${Versions.roomExplorerVersion}"
-    const val rxDisposableWatcher = "ru.fomenkov:rx-disposable-watcher:${Versions.rxDisposableWatcherVersion}"
+    const val rxDisposableWatcher = "${DepsDetails.fomenkovGroup}:${DepsDetails.rxDisposableWatcher}:${Versions.rxDisposableWatcherVersion}"
 
     const val jUnit = "junit:junit:${Versions.jUnitVersion}"
 }

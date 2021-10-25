@@ -36,6 +36,16 @@ jobs:
       - name: Dependency Check Analyze
         run: ./gradlew dependencyCheckAnalyze
 
+  license_check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with: {java-version: 1.8}
+
+      - name: Dependency licenses check
+        run: ./gradlew  app:licensee
+
   android_lint:
     runs-on: ubuntu-latest
     steps:
@@ -71,7 +81,7 @@ jobs:
         run: ./gradlew test
 
   build_release_apk:
-    needs: [ detekt, android_lint, unit_tests, dependency_check ]
+    needs: [ detekt, android_lint, unit_tests, dependency_check, license_check ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -89,7 +99,7 @@ jobs:
         run: ./gradlew assembleRelease
 
   build_staging_apk:
-    needs: [ detekt, android_lint, unit_tests, dependency_check ]
+    needs: [ detekt, android_lint, unit_tests, dependency_check, license_check ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
