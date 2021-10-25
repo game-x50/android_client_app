@@ -2,12 +2,11 @@ apply from: rootProject.ext[GradleExtraArgs.androidLinters]
 
 android {
 
-    compileSdkVersion = ApplicationConfigs.compileSdkVersion
-    buildToolsVersion = ApplicationConfigs.buildToolsVersion
+    compileSdk = ApplicationConfigs.compileSdk
 
     defaultConfig {
-        targetSdkVersion(ApplicationConfigs.targetSdkVersion)
-        minSdkVersion(ApplicationConfigs.minSdkVersion)
+        targetSdk(ApplicationConfigs.targetSdk)
+        minSdk(ApplicationConfigs.minSdk)
 
         vectorDrawables.useSupportLibrary = true
     }
