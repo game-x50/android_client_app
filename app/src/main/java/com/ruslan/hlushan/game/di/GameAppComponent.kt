@@ -7,6 +7,7 @@ import com.ruslan.hlushan.core.api.di.ToolsProvider
 import com.ruslan.hlushan.core.api.dto.DatabaseViewInfo
 import com.ruslan.hlushan.core.api.dto.InitAppConfig
 import com.ruslan.hlushan.core.error.di.UserErrorMapperProvider
+import com.ruslan.hlushan.core.foreground.observer.impl.di.AppForegroundObserverImplExportComponent
 import com.ruslan.hlushan.core.impl.di.CoreImplExportComponent
 import com.ruslan.hlushan.core.impl.tools.createToolsProvider
 import com.ruslan.hlushan.core.language.api.di.LanguagesProvider
@@ -115,6 +116,10 @@ internal interface GameAppComponent : IBaseInjector,
                     initAppConfig = initAppConfig
             )
 
+            val appForegroundObserverProvider = AppForegroundObserverImplExportComponent.Initializer.init(
+                    schedulersProvider = coreImplProvider
+            )
+
             val loggersProvider = LoggerImplExportComponent.Initializer.init(
                     initAppConfig = initAppConfig,
                     errorLogger = ErrorLoggerImpl(),
@@ -167,6 +172,7 @@ internal interface GameAppComponent : IBaseInjector,
                     appContextProvider = coreImplProvider,
                     loggersProvider = loggersProvider,
                     schedulersProvider = coreImplProvider,
+                    appForegroundObserverProvider = appForegroundObserverProvider,
                     authorizedNetworkApiCreatorProvider = authorizedNetworkApiCreatorProvider
             )
 

@@ -36,7 +36,7 @@ object Versions {
 
     const val androidCoreVersion = "1.5.0"
 
-    const val workManagerVersion = "2.6.0"//please check release notes, related to expedited jobs and WorkerFactory init
+    const val workManagerVersion = "2.7.0"//please check release notes, related to expedited jobs and WorkerFactory init
 
     const val edgeToEdgeDecoratorVersion = "1.0.0"
 

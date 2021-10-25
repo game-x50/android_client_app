@@ -3,7 +3,11 @@
     package="com.ruslan.hlushan.core.ui.impl.tools">
 
     <application>
-        <activity android:name=".file.FileLogsActivity" />
+
+        <activity
+            android:name=".file.FileLogsActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

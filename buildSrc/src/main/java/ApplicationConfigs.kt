@@ -2,7 +2,7 @@ import org.gradle.api.JavaVersion
 
 object ApplicationConfigs {
     const val minSdk: Int = 21// don't forget about proguard
-    const val targetSdk: Int = 30
+    const val targetSdk: Int = 31
     const val compileSdk: Int = targetSdk
     val JAVA_VERSION: JavaVersion = JavaVersion.VERSION_11
 
