@@ -5,7 +5,7 @@ object ApplicationConfigs {
     const val targetSdkVersion: Int = 30
     const val compileSdkVersion: Int = targetSdkVersion
     const val buildToolsVersion: String = "30.0.2"
-    val JAVA_VERSION: JavaVersion = JavaVersion.VERSION_1_8
+    val JAVA_VERSION: JavaVersion = JavaVersion.VERSION_11
 
     const val defaultProguardFile: String = "proguard-android-optimize.txt"
 

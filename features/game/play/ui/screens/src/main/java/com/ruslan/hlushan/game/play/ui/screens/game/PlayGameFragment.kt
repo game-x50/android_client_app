@@ -31,7 +31,7 @@ internal abstract class PlayGameFragment<VM : PlayGameViewModel> : BaseFragment(
 
     protected val binding by bindViewBinding(GamePlayUiPlayScreenBinding::bind)
 
-    private val totalSumChangedListener = TotalSumChangedListener { totalSum ->
+    private val totalSumChangedListener = TotalSumChangedListener { totalSum: Int ->
         @SuppressWarnings("StringFormatMatches")
         binding?.playScreenTotalScoreText?.text = getString(R.string.game_play_ui_total_score_template, totalSum)
     }
