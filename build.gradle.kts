@@ -30,7 +30,7 @@ plugins {
     kotlin(Plugins.kotlinxSerilizationPluginPath).version(Versions.kotlinVersion)
     id(Plugins.kotlinParcelizePluginPath).version(Versions.kotlinVersion)
 }
-extra["androidJar"] = androidjar.find(ApplicationConfigs.targetSdkVersion)
+extra["androidJar"] = androidjar.find(ApplicationConfigs.targetSdk)
 
 val gradleSupportFolderName: String = "gradle_support"
 fun getRootProjectPath(project: Project): String = project.rootProject.projectDir.path

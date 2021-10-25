@@ -1,10 +1,9 @@
 import org.gradle.api.JavaVersion
 
 object ApplicationConfigs {
-    const val minSdkVersion: Int = 21// don't forget about proguard
-    const val targetSdkVersion: Int = 30
-    const val compileSdkVersion: Int = targetSdkVersion
-    const val buildToolsVersion: String = "30.0.2"
+    const val minSdk: Int = 21// don't forget about proguard
+    const val targetSdk: Int = 30
+    const val compileSdk: Int = targetSdk
     val JAVA_VERSION: JavaVersion = JavaVersion.VERSION_11
 
     const val defaultProguardFile: String = "proguard-android-optimize.txt"
