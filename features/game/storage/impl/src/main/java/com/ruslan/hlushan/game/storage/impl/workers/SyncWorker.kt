@@ -93,8 +93,8 @@ internal class SyncWorker(
                     16, TimeUnit.HOURS
             )
                     .setConstraints(constraints)
-                    //todo: test without this line on android 12
-                    // .setExpedited(OutOfQuotaPolicy.RUN_AS_NON_EXPEDITED_WORK_REQUEST)
+                    // Expedited policy not applied to run job first time immediatly
+                    //.setExpedited(OutOfQuotaPolicy.RUN_AS_NON_EXPEDITED_WORK_REQUEST)
                     .build()
 
             WorkManager.getInstance(appContext)
