@@ -17,9 +17,7 @@ dependencies {
     api(projects.features.core.impl.stagingTools)
 
     compileOnly(projects.features.core.extensions)
-    compileOnly(projects.features.core.android.api)
     compileOnly(projects.features.core.thread.lib)
-    compileOnly(projects.features.core.logger.api.lib)
 
     compileOnly(projects.features.core.api.debugTools)
 
