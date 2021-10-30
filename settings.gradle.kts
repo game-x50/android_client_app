@@ -28,13 +28,20 @@ include(
         ":features:core:logger:api:test_utils",
         ":features:core:logger:impl",
 
+        ":features:core:language:code",
         ":features:core:language:api",
         ":features:core:language:impl",
 
         ":features:core:thread:lib",
         ":features:core:thread:test_utils",
 
-        ":features:core:api:lib",
+        ":features:core:result",
+        ":features:core:value:holder",
+
+        ":features:core:config:app",
+
+        ":features:core:di",
+
         ":features:core:api:debug_tools",
         ":features:core:api:staging_tools",
 

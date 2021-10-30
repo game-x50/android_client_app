@@ -1,8 +1,6 @@
 package com.ruslan.hlushan.game.auth.ui.login
 
 import com.github.terrakok.cicerone.Router
-import com.ruslan.hlushan.core.api.dto.OperationResult
-import com.ruslan.hlushan.core.api.dto.VoidOperationResult
 import com.ruslan.hlushan.core.command.CommandQueue
 import com.ruslan.hlushan.core.command.MutableCommandQueue
 import com.ruslan.hlushan.core.command.strategy.AddToEndSingleStrategy
@@ -11,6 +9,8 @@ import com.ruslan.hlushan.core.command.strategy.OneExecutionStateStrategy
 import com.ruslan.hlushan.core.command.strategy.SkipStrategy
 import com.ruslan.hlushan.core.command.strategy.StrategyCommand
 import com.ruslan.hlushan.core.logger.api.AppLogger
+import com.ruslan.hlushan.core.result.OpResult
+import com.ruslan.hlushan.core.result.VoidOperationResult
 import com.ruslan.hlushan.core.thread.ThreadChecker
 import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.viewmodel.BaseViewModel
@@ -72,8 +72,8 @@ constructor(
     @UiMainThread
     private fun handleLoginResult(result: VoidOperationResult<AuthError.Login>) =
             when (result) {
-                is OperationResult.Success -> router.replaceScreen(UserProfileScreen())
-                is OperationResult.Error -> mutableCommandsQueue.add(Command.ShowLoginError(result.result))
+                is OpResult.Success -> router.replaceScreen(UserProfileScreen())
+                is OpResult.Error   -> mutableCommandsQueue.add(Command.ShowLoginError(result.result))
             }
 
     sealed class Command : StrategyCommand {

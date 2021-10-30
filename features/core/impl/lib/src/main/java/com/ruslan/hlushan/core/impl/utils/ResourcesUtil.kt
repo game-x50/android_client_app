@@ -9,7 +9,7 @@ import androidx.annotation.StringDef
 import androidx.core.content.ContextCompat
 import com.ruslan.hlushan.android.extensions.currentLocale
 import com.ruslan.hlushan.android.extensions.wrapContextWithNewLanguage
-import com.ruslan.hlushan.core.api.dto.LangNonFullCode
+import com.ruslan.hlushan.core.language.code.LangNonFullCode
 
 private const val STRING_DEF_TYPE: String = "string"
 private const val DRAWABLE_DEF_TYPE: String = "drawable"

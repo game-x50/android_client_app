@@ -1,9 +1,9 @@
 package com.ruslan.hlushan.core.language.impl.dto
 
-import com.ruslan.hlushan.core.api.dto.LangFullCode
-import com.ruslan.hlushan.core.api.dto.LangNonFullCode
-import com.ruslan.hlushan.core.api.dto.stringValue
 import com.ruslan.hlushan.core.language.api.Language
+import com.ruslan.hlushan.core.language.code.LangFullCode
+import com.ruslan.hlushan.core.language.code.LangNonFullCode
+import com.ruslan.hlushan.core.language.code.stringValue
 import com.ruslan.hlushan.core.manager.api.ResourceManager
 import kotlinx.serialization.Serializable
 

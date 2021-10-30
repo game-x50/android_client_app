@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.ruslan.hlushan.android.extensions.wrapContextWithNewLanguage
 import com.ruslan.hlushan.android.storage.SharedPrefsProvider
-import com.ruslan.hlushan.core.api.dto.InitAppConfig
+import com.ruslan.hlushan.core.config.app.InitAppConfig
 import com.ruslan.hlushan.core.impl.di.annotations.SettingsPrefs
 import com.ruslan.hlushan.core.impl.utils.getAppLangFullCode
 import dagger.Module

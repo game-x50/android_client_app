@@ -1,6 +1,6 @@
 package com.ruslan.hlushan.core.manager.api
 
-import com.ruslan.hlushan.core.api.dto.LangFullCode
+import com.ruslan.hlushan.core.language.code.LangFullCode
 import com.ruslan.hlushan.core.thread.UiMainThread
 
 interface Settings {

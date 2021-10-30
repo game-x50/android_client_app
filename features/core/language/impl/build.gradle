@@ -18,6 +18,7 @@ android {
 }
 
 dependencies {
+    api(projects.features.core.config.app)
     api(projects.features.core.manager.api)
     api(projects.features.core.language.api)
     api(projects.features.thirdParty.rxjava2.extensions)

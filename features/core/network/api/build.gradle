@@ -12,7 +12,7 @@ android {
 
 dependencies {
     api(projects.features.core.logger.api.lib)
-    api(projects.features.core.api.lib)
+    api(projects.features.core.config.app)
 
     api(Deps.okHttp3)
     api(Deps.retrofit2)

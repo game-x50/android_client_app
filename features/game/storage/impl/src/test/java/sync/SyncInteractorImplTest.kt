@@ -1,8 +1,8 @@
 package sync
 
 import assertRecordsWithSyncStateInLocalRepo
-import com.ruslan.hlushan.core.api.dto.OperationResult
 import com.ruslan.hlushan.core.logger.api.test.utils.EmptyAppLoggerImpl
+import com.ruslan.hlushan.core.result.OpResult
 import com.ruslan.hlushan.game.api.play.dto.GameRecord
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
@@ -126,7 +126,7 @@ internal class SyncInteractorImplTest {
         testCompleteObserver.assertNotCompleteNoErrorsNoValues()
         localRepo.assertRecordsWithSyncStateInLocalRepo(listOf(originalCreated, originalSynced))
 
-        remoteRepo.returnTimestampResult = OperationResult.Success(timestampOfStart)
+        remoteRepo.returnTimestampResult = OpResult.Success(timestampOfStart)
         remoteRepo.advanceTimeToEndDelay()
 
         val originalCreatedLocalCreateId: String = localRepo.getAll().first().syncState.localCreateId!!
@@ -275,7 +275,7 @@ internal class SyncInteractorImplTest {
 
         val error = IllegalStateException("error")
 
-        remoteRepo.returnTimestampResult = OperationResult.Error(error)
+        remoteRepo.returnTimestampResult = OpResult.Error(error)
         testCompleteObserver.assertNotCompleteNoErrorsNoValues()
 
         remoteRepo.advanceTimeToEndDelay()

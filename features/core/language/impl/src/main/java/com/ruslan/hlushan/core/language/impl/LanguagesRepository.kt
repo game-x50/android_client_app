@@ -1,6 +1,6 @@
 package com.ruslan.hlushan.core.language.impl
 
-import com.ruslan.hlushan.core.api.dto.InitAppConfig
+import com.ruslan.hlushan.core.config.app.InitAppConfig
 import com.ruslan.hlushan.core.language.api.Language
 import com.ruslan.hlushan.core.language.impl.dto.LanguageDTO
 import com.ruslan.hlushan.core.language.impl.dto.mapLanguage

@@ -11,17 +11,17 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.internal.InternalTokenResult
-import com.ruslan.hlushan.core.api.dto.OperationResult
-import com.ruslan.hlushan.core.api.dto.OperationResultVoid
-import com.ruslan.hlushan.core.api.dto.ValueHolder
-import com.ruslan.hlushan.core.api.dto.VoidOperationResult
-import com.ruslan.hlushan.core.api.dto.flatMapCompletableSuccess
-import com.ruslan.hlushan.core.api.dto.flatMapNestedSuccess
-import com.ruslan.hlushan.core.api.dto.flatMapSuccess
-import com.ruslan.hlushan.core.api.dto.mapSuccess
-import com.ruslan.hlushan.core.api.dto.toOperationResult
 import com.ruslan.hlushan.core.error.NetworkException
 import com.ruslan.hlushan.core.error.mapError
+import com.ruslan.hlushan.core.result.OpResult
+import com.ruslan.hlushan.core.result.OperationResultVoid
+import com.ruslan.hlushan.core.result.VoidOperationResult
+import com.ruslan.hlushan.core.result.flatMapCompletableSuccess
+import com.ruslan.hlushan.core.result.flatMapNestedSuccess
+import com.ruslan.hlushan.core.result.flatMapSuccess
+import com.ruslan.hlushan.core.result.mapSuccess
+import com.ruslan.hlushan.core.result.toOperationResult
+import com.ruslan.hlushan.core.value.holder.ValueHolder
 import com.ruslan.hlushan.game.api.auth.dto.AuthError
 import com.ruslan.hlushan.game.api.auth.dto.User
 import com.ruslan.hlushan.game.auth.impl.repo.remote.dto.server.UserNameRequest
@@ -52,7 +52,7 @@ constructor(
             nickname: User.Nickname,
             email: User.Email,
             password: User.Password
-    ): Single<OperationResult<User, AuthError.Register>> =
+    ): Single<OpResult<User, AuthError.Register>> =
             provideErrorIfUserNameExists(nickname)
                     .flatMapNestedSuccess { createNewUserAndReturnUid(email, password) }
                     .mapSuccess { userUid ->
@@ -63,14 +63,14 @@ constructor(
     override fun logIn(
             email: User.Email,
             password: User.Password
-    ): Single<OperationResult<User, AuthError.Login>> =
+    ): Single<OpResult<User, AuthError.Login>> =
             firebaseAuth.signInWithEmailAndPasswordRx(email, password)
                     .toOperationResult<FirebaseUser, AuthError.Login>()
                     .onErrorReturn { error ->
                         if (error.isFirebaseInvalidUserCredentialsError()) {
-                            OperationResult.Error(AuthError.InvalidUserCredentials)
+                            OpResult.Error(AuthError.InvalidUserCredentials)
                         } else {
-                            OperationResult.Error(AuthError.Unknown)
+                            OpResult.Error(AuthError.Unknown)
                         }
                     }
                     .subscribeOn(schedulersManager.io)
@@ -81,7 +81,7 @@ constructor(
             newPassword: User.Password,
             currentUser: User,
             oldPassword: User.Password
-    ): Single<OperationResult<User, AuthError>> =
+    ): Single<OpResult<User, AuthError>> =
             logIn(email = currentUser.email, password = oldPassword)
                     .flatMapCompletableSuccess<User, AuthError> {
                         updateUserPassword(oldPassword = oldPassword, newPassword = newPassword)
@@ -128,7 +128,7 @@ constructor(
 
     private fun provideErrorIfUserNameExists(
             nickname: User.Nickname
-    ): Single<OperationResult<Unit, AuthError.UserWithSuchCredentialsExists>> =
+    ): Single<OpResult<Unit, AuthError.UserWithSuchCredentialsExists>> =
             Single.fromCallable { UserNameRequest(userName = nickname.value) }
                     .flatMap { request -> authHttpsApi.checkUniqueUserName(request) }
                     .subscribeOn(schedulersManager.io)
@@ -136,24 +136,24 @@ constructor(
                         if (response.unique) {
                             OperationResultVoid()
                         } else {
-                            OperationResult.Error(AuthError.UserWithSuchCredentialsExists)
+                            OpResult.Error(AuthError.UserWithSuchCredentialsExists)
                         }
                     }
 
     private fun createNewUserAndReturnUid(
             email: User.Email,
             password: User.Password
-    ): Single<OperationResult<String, AuthError.Register>> =
+    ): Single<OpResult<String, AuthError.Register>> =
             firebaseAuth.createUserWithEmailAndPasswordRx(email.value, password.value)
                     .subscribeOn(schedulersManager.io)
-                    .map<OperationResult<String, AuthError.Register>> { firebaseUser ->
-                        OperationResult.Success(firebaseUser.uid)
+                    .map<OpResult<String, AuthError.Register>> { firebaseUser ->
+                        OpResult.Success(firebaseUser.uid)
                     }
                     .onErrorReturn { error ->
                         if (error is FirebaseAuthUserCollisionException) {
-                            OperationResult.Error(AuthError.UserWithSuchCredentialsExists)
+                            OpResult.Error(AuthError.UserWithSuchCredentialsExists)
                         } else {
-                            OperationResult.Error(AuthError.Unknown)
+                            OpResult.Error(AuthError.Unknown)
                         }
                     }
 

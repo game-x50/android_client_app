@@ -1,7 +1,7 @@
 package com.ruslan.hlushan.game.auth.impl.network
 
 import android.content.Context
-import com.ruslan.hlushan.core.api.dto.InitAppConfig
+import com.ruslan.hlushan.core.config.app.InitAppConfig
 import com.ruslan.hlushan.core.logger.api.AppLogger
 import com.ruslan.hlushan.game.api.network.NonAuthorizedNetworkApiCreator
 import com.ruslan.hlushan.network.api.NetworkBuildHelper

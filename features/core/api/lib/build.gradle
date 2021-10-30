@@ -1,8 +1,5 @@
 apply from: rootProject.ext[GradleExtraArgs.baseKotlinLibrary]
 
 dependencies {
-    compileOnly(projects.features.core.extensions)
-
     compileOnly(Deps.androidxAnnotations)
-    compileOnly(Deps.rxJava2)
 }

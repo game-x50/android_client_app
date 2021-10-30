@@ -4,8 +4,8 @@ import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Build
-import com.ruslan.hlushan.core.api.dto.LangNonFullCode
-import com.ruslan.hlushan.core.api.dto.toLocale
+import com.ruslan.hlushan.core.language.code.LangNonFullCode
+import com.ruslan.hlushan.core.language.code.toLocale
 import java.util.Locale
 
 var Configuration.currentLocale: Locale

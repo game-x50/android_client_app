@@ -1,7 +1,7 @@
 package sync.stub
 
-import com.ruslan.hlushan.core.api.dto.OperationResult
-import com.ruslan.hlushan.core.api.dto.getOrThrow
+import com.ruslan.hlushan.core.result.OpResult
+import com.ruslan.hlushan.core.result.getOrThrow
 import com.ruslan.hlushan.game.storage.impl.remote.SyncRemoteRepository
 import com.ruslan.hlushan.game.storage.impl.remote.dto.LocalModifiedResponse
 import com.ruslan.hlushan.game.storage.impl.remote.dto.RemoteRecord
@@ -22,7 +22,7 @@ internal class SyncRemoteRepositoryMockImpl : SyncRemoteRepository {
 
     private val testScheduler = TestScheduler()
 
-    lateinit var returnTimestampResult: OperationResult<Instant, Throwable>
+    lateinit var returnTimestampResult: OpResult<Instant, Throwable>
 
     var receivedUploadLocalModifiedRequests: List<UploadLocalModifiedRequest>? = null
         private set

@@ -2,7 +2,8 @@ apply from: rootProject.ext[GradleExtraArgs.baseKotlinLibrary]
 
 dependencies {
     api(projects.features.core.pagination.api)
-    api(projects.features.core.api.lib)
+    api(projects.features.core.result)
+    api(projects.features.core.value.holder)
 
     compileOnly(projects.features.core.extensions)
 

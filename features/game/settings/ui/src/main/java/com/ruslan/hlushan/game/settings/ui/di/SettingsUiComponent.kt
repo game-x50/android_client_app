@@ -1,8 +1,8 @@
 package com.ruslan.hlushan.game.settings.ui.di
 
-import com.ruslan.hlushan.core.api.di.asType
+import com.ruslan.hlushan.core.di.asType
 import com.ruslan.hlushan.core.error.di.UserErrorMapperProvider
-import com.ruslan.hlushan.core.language.api.di.LanguagesProvider
+import com.ruslan.hlushan.core.language.api.di.LanguagesInteractorProvider
 import com.ruslan.hlushan.core.logger.api.di.LoggersProvider
 import com.ruslan.hlushan.core.manager.api.di.ManagersProvider
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
@@ -30,7 +30,7 @@ import dagger.Component
             ManagersProvider::class,
             LoggersProvider::class,
             SchedulersManagerProvider::class,
-            LanguagesProvider::class,
+            LanguagesInteractorProvider::class,
             SettingsOutScreenCreatorProvider::class
         ]
 )
@@ -56,7 +56,7 @@ internal interface SettingsUiComponent {
                 managersProvider: ManagersProvider,
                 loggersProvider: LoggersProvider,
                 schedulersProvider: SchedulersManagerProvider,
-                languagesProvider: LanguagesProvider,
+                languagesInteractorProvider: LanguagesInteractorProvider,
                 settingsOutScreenCreatorProvider: SettingsOutScreenCreatorProvider
         ): SettingsUiComponent
     }
@@ -73,7 +73,7 @@ internal fun BaseFragment.getSettingsUiComponent(): SettingsUiComponent {
                         managersProvider = fragmentInjectorHolder.iBaseInjector.asType(),
                         loggersProvider = fragmentInjectorHolder.iBaseInjector.asType(),
                         schedulersProvider = fragmentInjectorHolder.iBaseInjector.asType(),
-                        languagesProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        languagesInteractorProvider = fragmentInjectorHolder.iBaseInjector.asType(),
                         settingsOutScreenCreatorProvider = fragmentInjectorHolder.iBaseInjector.asType()
                 )
     }

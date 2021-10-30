@@ -1,14 +1,16 @@
 package com.ruslan.hlushan.game.di
 
 import com.ruslan.hlushan.android.core.api.di.AppContextProvider
-import com.ruslan.hlushan.core.api.di.IBaseInjector
 import com.ruslan.hlushan.core.api.di.ToolsProvider
-import com.ruslan.hlushan.core.api.dto.InitAppConfig
+import com.ruslan.hlushan.core.config.app.InitAppConfig
+import com.ruslan.hlushan.core.config.app.di.InitAppConfigProvider
+import com.ruslan.hlushan.core.di.IBaseInjector
 import com.ruslan.hlushan.core.error.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.foreground.observer.impl.di.AppForegroundObserverImplExportComponent
 import com.ruslan.hlushan.core.impl.di.CoreImplExportComponent
 import com.ruslan.hlushan.core.impl.tools.createToolsProvider
-import com.ruslan.hlushan.core.language.api.di.LanguagesProvider
+import com.ruslan.hlushan.core.language.api.di.LanguagesInteractorProvider
+import com.ruslan.hlushan.core.language.code.LangFullCode
 import com.ruslan.hlushan.core.language.impl.di.LanguageImplExportComponent
 import com.ruslan.hlushan.core.logger.api.di.LoggersProvider
 import com.ruslan.hlushan.core.logger.impl.di.LoggerImplExportComponent
@@ -39,6 +41,7 @@ import com.ruslan.hlushan.third_party.androidx.work.manager.utils.CompositeWorke
 import com.ruslan.hlushan.third_party.rxjava2.extensions.di.SchedulersManagerProvider
 import dagger.BindsInstance
 import dagger.Component
+import java.io.File
 import javax.inject.Singleton
 
 @Singleton
@@ -47,7 +50,7 @@ import javax.inject.Singleton
         dependencies = [
             ManagersProvider::class,
             LoggersProvider::class,
-            LanguagesProvider::class,
+            LanguagesInteractorProvider::class,
             SchedulersManagerProvider::class,
             AppContextProvider::class,
             UiCoreProvider::class,
@@ -62,9 +65,10 @@ import javax.inject.Singleton
         ]
 )
 internal interface GameAppComponent : IBaseInjector,
+                                      InitAppConfigProvider,
                                       ManagersProvider,
                                       LoggersProvider,
-                                      LanguagesProvider,
+                                      LanguagesInteractorProvider,
                                       SchedulersManagerProvider,
                                       UiCoreProvider,
                                       UiRoutingProvider,
@@ -84,11 +88,12 @@ internal interface GameAppComponent : IBaseInjector,
     interface Factory {
         @SuppressWarnings("LongParameterList")
         fun create(
+                @BindsInstance initAppConfig: InitAppConfig,
                 @BindsInstance allAppDatabases: List<DatabaseViewInfo>,
                 @BindsInstance compositeWorkerFactory: CompositeWorkerFactory,
                 managersProvider: ManagersProvider,
                 loggersProvider: LoggersProvider,
-                languagesProvider: LanguagesProvider,
+                languagesInteractorProvider: LanguagesInteractorProvider,
                 schedulersProvider: SchedulersManagerProvider,
                 appContextProvider: AppContextProvider,
                 uiCoreProvider: UiCoreProvider,
@@ -106,7 +111,20 @@ internal interface GameAppComponent : IBaseInjector,
     companion object Initializer {
 
         @SuppressWarnings("LongMethod")
-        fun init(app: GameApp, initAppConfig: InitAppConfig): GameAppComponent {
+        fun init(app: GameApp): GameAppComponent {
+
+            val initAppConfig = InitAppConfig(
+                    appTag = app.APP_TAG,
+                    versionCode = BuildConfig.VERSION_CODE,
+                    versionName = BuildConfig.VERSION_NAME,
+                    isLogcatEnabled = BuildConfig.IS_LOGCAT_ENABLED,
+                    fileLogsFolder = File(app.cacheDir, "fileLogs"),
+                    languagesJsonRawResId = com.ruslan.hlushan.game.settings.ui.R.raw.languages,
+                    defaultLanguageFullCode = BuildConfig.DEFAULT_LANGUAGE_FULL_CODE
+                            .let { pair -> pair.toLangFullCode()!! },
+                    availableLanguagesFullCodes = BuildConfig.AVAILABLE_LANGUAGES_FULL_CODES
+                            .mapNotNull { pair -> pair.toLangFullCode() }
+            )
 
             val networkConfig = NetworkConfig()
             val gameNetworkParams = GameNetworkParams(baseApiUrl = BuildConfig.BASE_API_URL)
@@ -126,7 +144,7 @@ internal interface GameAppComponent : IBaseInjector,
                     appContextProvider = coreImplProvider
             )
 
-            val languagesProvider = LanguageImplExportComponent.Initializer.init(
+            val languagesInteractorProvider = LanguageImplExportComponent.Initializer.init(
                     initAppConfig = initAppConfig,
                     schedulersProvider = coreImplProvider,
                     managersProvider = coreImplProvider
@@ -197,11 +215,12 @@ internal interface GameAppComponent : IBaseInjector,
 
             return DaggerGameAppComponent.factory()
                     .create(
+                            initAppConfig = initAppConfig,
                             allAppDatabases = allAppDatabases,
                             compositeWorkerFactory = compositeWorkerFactory,
                             managersProvider = coreImplProvider,
                             loggersProvider = loggersProvider,
-                            languagesProvider = languagesProvider,
+                            languagesInteractorProvider = languagesInteractorProvider,
                             schedulersProvider = coreImplProvider,
                             appContextProvider = coreImplProvider,
                             uiCoreProvider = uiCoreProvider,
@@ -217,3 +236,6 @@ internal interface GameAppComponent : IBaseInjector,
         }
     }
 }
+
+private fun Pair<String, String>.toLangFullCode(): LangFullCode? =
+        LangFullCode.createFrom(this.first, this.second)

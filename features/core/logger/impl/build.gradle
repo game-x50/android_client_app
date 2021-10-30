@@ -13,7 +13,7 @@ android {
 }
 
 dependencies {
-    api(projects.features.core.api.lib)
+    api(projects.features.core.config.app)
     api(projects.features.core.android.api)
     api(projects.features.core.logger.api.lib)
 

@@ -1,6 +1,6 @@
 package com.ruslan.hlushan.core.language.api
 
-import com.ruslan.hlushan.core.api.dto.LangFullCode
+import com.ruslan.hlushan.core.language.code.LangFullCode
 
 data class WrappedLanguage(
         val language: Language,
