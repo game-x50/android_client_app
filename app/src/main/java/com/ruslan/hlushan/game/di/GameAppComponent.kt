@@ -1,10 +1,8 @@
 package com.ruslan.hlushan.game.di
 
 import com.ruslan.hlushan.android.core.api.di.AppContextProvider
-import com.ruslan.hlushan.core.api.di.DatabaseViewInfoListProvider
 import com.ruslan.hlushan.core.api.di.IBaseInjector
 import com.ruslan.hlushan.core.api.di.ToolsProvider
-import com.ruslan.hlushan.core.api.dto.DatabaseViewInfo
 import com.ruslan.hlushan.core.api.dto.InitAppConfig
 import com.ruslan.hlushan.core.error.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.foreground.observer.impl.di.AppForegroundObserverImplExportComponent
@@ -35,6 +33,8 @@ import com.ruslan.hlushan.game.storage.impl.di.RecordsExportComponentProvider
 import com.ruslan.hlushan.game.top.impl.di.TopInteractorExportComponentProvider
 import com.ruslan.hlushan.network.api.NetworkConfig
 import com.ruslan.hlushan.network.impl.di.NetworkImplExportComponent
+import com.ruslan.hlushan.third_party.androidx.room.utils.DatabaseViewInfo
+import com.ruslan.hlushan.third_party.androidx.room.utils.di.DatabaseViewInfoListProvider
 import com.ruslan.hlushan.third_party.androidx.work.manager.utils.CompositeWorkerFactory
 import com.ruslan.hlushan.third_party.rxjava2.extensions.di.SchedulersManagerProvider
 import dagger.BindsInstance

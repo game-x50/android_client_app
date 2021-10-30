@@ -1,6 +1,5 @@
 package com.ruslan.hlushan.core.ui.impl.tools.di
 
-import com.ruslan.hlushan.core.api.di.DatabaseViewInfoListProvider
 import com.ruslan.hlushan.core.api.di.StagingToolsProvider
 import com.ruslan.hlushan.core.api.di.asType
 import com.ruslan.hlushan.core.api.dto.InitAppConfig
@@ -12,6 +11,7 @@ import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.core.ui.fragment.injectorHolder
 import com.ruslan.hlushan.core.ui.impl.tools.StagingSettingsFragment
 import com.ruslan.hlushan.core.ui.routing.di.UiRoutingProvider
+import com.ruslan.hlushan.third_party.androidx.room.utils.di.DatabaseViewInfoListProvider
 import dagger.BindsInstance
 import dagger.Component
 

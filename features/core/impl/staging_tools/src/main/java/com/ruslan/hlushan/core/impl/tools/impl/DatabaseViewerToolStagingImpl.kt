@@ -2,8 +2,8 @@ package com.ruslan.hlushan.core.impl.tools.impl
 
 import android.content.Context
 import android.content.Intent
-import com.ruslan.hlushan.core.api.dto.DatabaseViewInfo
 import com.ruslan.hlushan.core.api.tools.DatabaseViewerTool
+import com.ruslan.hlushan.third_party.androidx.room.utils.DatabaseViewInfo
 import com.wajahatkarim3.roomexplorer.RoomExplorerActivity
 import javax.inject.Inject
 

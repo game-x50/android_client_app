@@ -24,6 +24,7 @@ dependencies {
     api(projects.features.core.foreground.observer.api)
     api(projects.features.game.api.lib)
     api(projects.features.thirdParty.rxjava2.extensions)
+    api(projects.features.thirdParty.androidx.room.utils)
 
     compileOnly(projects.features.core.extensions)
     compileOnly(projects.features.core.android.extensions)
