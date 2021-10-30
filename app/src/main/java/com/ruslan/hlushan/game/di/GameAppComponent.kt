@@ -1,10 +1,10 @@
 package com.ruslan.hlushan.game.di
 
 import com.ruslan.hlushan.android.core.api.di.AppContextProvider
-import com.ruslan.hlushan.core.di.IBaseInjector
 import com.ruslan.hlushan.core.api.di.ToolsProvider
 import com.ruslan.hlushan.core.config.app.InitAppConfig
 import com.ruslan.hlushan.core.config.app.di.InitAppConfigProvider
+import com.ruslan.hlushan.core.di.IBaseInjector
 import com.ruslan.hlushan.core.error.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.foreground.observer.impl.di.AppForegroundObserverImplExportComponent
 import com.ruslan.hlushan.core.impl.di.CoreImplExportComponent

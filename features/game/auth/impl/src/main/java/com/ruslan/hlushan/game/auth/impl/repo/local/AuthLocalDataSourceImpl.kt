@@ -3,8 +3,8 @@ package com.ruslan.hlushan.game.auth.impl.repo.local
 import android.content.Context
 import android.content.SharedPreferences
 import com.ruslan.hlushan.android.storage.SharedPrefsProvider
-import com.ruslan.hlushan.core.value.holder.ValueHolder
 import com.ruslan.hlushan.core.extensions.ifNotNull
+import com.ruslan.hlushan.core.value.holder.ValueHolder
 import com.ruslan.hlushan.game.api.auth.dto.User
 import com.ruslan.hlushan.third_party.rxjava2.extensions.SchedulersManager
 import io.reactivex.Completable

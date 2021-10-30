@@ -4,7 +4,6 @@ import android.app.Application
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import com.ruslan.hlushan.android.storage.SharedPrefsProvider
-import com.ruslan.hlushan.core.di.IBaseInjector
 import com.ruslan.hlushan.core.di.InjectorHolder
 import com.ruslan.hlushan.core.impl.tools.initTools
 import com.ruslan.hlushan.core.impl.utils.SemEmergencyManagerLeakingActivity

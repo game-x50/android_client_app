@@ -4,7 +4,7 @@ import androidx.annotation.RawRes
 import com.ruslan.hlushan.core.language.code.LangFullCode
 import com.ruslan.hlushan.core.language.code.LangNonFullCode
 import java.io.File
-import java.util.*
+import java.util.Locale
 
 @SuppressWarnings("LongParameterList")
 data class InitAppConfig(

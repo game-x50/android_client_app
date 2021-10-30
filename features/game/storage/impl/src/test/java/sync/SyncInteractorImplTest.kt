@@ -1,8 +1,8 @@
 package sync
 
 import assertRecordsWithSyncStateInLocalRepo
-import com.ruslan.hlushan.core.result.OpResult
 import com.ruslan.hlushan.core.logger.api.test.utils.EmptyAppLoggerImpl
+import com.ruslan.hlushan.core.result.OpResult
 import com.ruslan.hlushan.game.api.play.dto.GameRecord
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
