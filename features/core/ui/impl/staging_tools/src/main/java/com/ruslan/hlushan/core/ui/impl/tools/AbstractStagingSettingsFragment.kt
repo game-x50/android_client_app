@@ -8,7 +8,7 @@ import com.ruslan.hlushan.android.extensions.applyDrawableOverlay
 import com.ruslan.hlushan.android.extensions.clearOverlay
 import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
 import com.ruslan.hlushan.android.extensions.toPx
-import com.ruslan.hlushan.core.api.dto.InitAppConfig
+import com.ruslan.hlushan.core.config.app.InitAppConfig
 import com.ruslan.hlushan.core.api.tools.BlockCanaryTool
 import com.ruslan.hlushan.core.api.tools.ChuckTool
 import com.ruslan.hlushan.core.api.tools.DatabaseViewerTool

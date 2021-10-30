@@ -1,6 +1,6 @@
 package com.ruslan.hlushan.game.top.ui.di
 
-import com.ruslan.hlushan.core.api.di.asType
+import com.ruslan.hlushan.core.di.asType
 import com.ruslan.hlushan.core.error.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.logger.api.di.LoggersProvider
 import com.ruslan.hlushan.core.manager.api.di.ManagersProvider

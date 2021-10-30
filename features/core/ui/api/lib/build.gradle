@@ -12,7 +12,7 @@ android {
 }
 
 dependencies {
-    compileOnly(projects.features.core.api.lib)
+    compileOnly(projects.features.core.di)
     compileOnly(projects.features.core.thread.lib)
 
     compileOnly(Deps.androidxAnnotations)

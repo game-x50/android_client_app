@@ -4,8 +4,8 @@ import android.app.Application
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import com.ruslan.hlushan.android.storage.SharedPrefsProvider
-import com.ruslan.hlushan.core.api.di.IBaseInjector
-import com.ruslan.hlushan.core.api.di.InjectorHolder
+import com.ruslan.hlushan.core.di.IBaseInjector
+import com.ruslan.hlushan.core.di.InjectorHolder
 import com.ruslan.hlushan.core.impl.tools.initTools
 import com.ruslan.hlushan.core.impl.utils.SemEmergencyManagerLeakingActivity
 import com.ruslan.hlushan.core.impl.utils.exceptions.RxErrorHandlingUtil
@@ -24,7 +24,6 @@ abstract class BaseApplication : Application(), InjectorHolder {
 
     @get:SuppressWarnings("VariableNaming")
     abstract val APP_TAG: String
-    abstract override val iBaseInjector: IBaseInjector
 
     override fun onCreate() {
         logMessage("before super.onCreate()")

@@ -3,7 +3,7 @@ package com.ruslan.hlushan.core.logger.impl
 import android.content.Context
 import com.ruslan.hlushan.android.storage.BoolPreferencesDelegate
 import com.ruslan.hlushan.android.storage.SharedPrefsProvider
-import com.ruslan.hlushan.core.api.dto.InitAppConfig
+import com.ruslan.hlushan.core.config.app.InitAppConfig
 import com.ruslan.hlushan.core.logger.api.FileLogger
 import com.ruslan.hlushan.core.logger.impl.utils.deleteAllFilesInFolder
 import com.ruslan.hlushan.core.logger.impl.utils.readListFromFileReversedBySpliterator

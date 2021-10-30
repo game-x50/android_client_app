@@ -6,7 +6,7 @@ import android.content.SharedPreferences
 import com.ruslan.hlushan.android.extensions.currentLocale
 import com.ruslan.hlushan.android.extensions.updateResourcesWithNewLanguage
 import com.ruslan.hlushan.android.storage.SharedPrefsProvider
-import com.ruslan.hlushan.core.api.dto.LangNonFullCode
+import com.ruslan.hlushan.core.language.code.LangNonFullCode
 import com.ruslan.hlushan.core.logger.api.AppLogger
 import com.ruslan.hlushan.core.manager.api.Settings
 import com.ruslan.hlushan.core.thread.ThreadChecker

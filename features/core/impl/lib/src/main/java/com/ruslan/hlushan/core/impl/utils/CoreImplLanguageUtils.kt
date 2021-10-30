@@ -1,9 +1,10 @@
 package com.ruslan.hlushan.core.impl.utils
 
 import android.content.SharedPreferences
-import com.ruslan.hlushan.core.api.dto.InitAppConfig
-import com.ruslan.hlushan.core.api.dto.LangFullCode
-import com.ruslan.hlushan.core.api.dto.stringValue
+import com.ruslan.hlushan.core.config.app.InitAppConfig
+import com.ruslan.hlushan.core.config.app.getAppLangFullCodeByLocale
+import com.ruslan.hlushan.core.language.code.LangFullCode
+import com.ruslan.hlushan.core.language.code.stringValue
 
 private const val KEY_APP_LANGUAGE_FULL_CODE = "KEY_APP_LANGUAGE_FULL_CODE"
 
@@ -19,7 +20,7 @@ fun SharedPreferences.getAppLangFullCode(initAppConfig: InitAppConfig): LangFull
     val fullCodeFromPrefs: LangFullCode? = initAppConfig.availableLanguagesFullCodes
             .firstOrNull { singleCode -> singleCode.stringValue == fullCodeStringValueFromPrefs }
 
-    return (fullCodeFromPrefs ?: LangFullCode.getAppLangFullCodeByLocale(initAppConfig))
+    return (fullCodeFromPrefs ?: initAppConfig.getAppLangFullCodeByLocale())
 }
 
 @SuppressWarnings("TooGenericExceptionCaught")

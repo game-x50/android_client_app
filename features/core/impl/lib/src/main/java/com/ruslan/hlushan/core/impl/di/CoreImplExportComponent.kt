@@ -2,7 +2,7 @@ package com.ruslan.hlushan.core.impl.di
 
 import android.app.Application
 import com.ruslan.hlushan.android.core.api.di.AppContextProvider
-import com.ruslan.hlushan.core.api.dto.InitAppConfig
+import com.ruslan.hlushan.core.config.app.InitAppConfig
 import com.ruslan.hlushan.core.impl.di.modules.ApplicationModule
 import com.ruslan.hlushan.core.impl.di.modules.ManagerModule
 import com.ruslan.hlushan.core.impl.di.modules.SchedulersModule

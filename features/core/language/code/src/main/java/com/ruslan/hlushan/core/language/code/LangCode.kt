@@ -1,4 +1,4 @@
-package com.ruslan.hlushan.core.api.dto
+package com.ruslan.hlushan.core.language.code
 
 import java.util.Locale
 
@@ -8,7 +8,7 @@ value class LangNonFullCode private constructor(val code: String) {
     companion object {
 
         fun fromLocale(locale: Locale): LangNonFullCode? =
-                LangNonFullCode.createFrom(code = locale.language)
+                createFrom(code = locale.language)
 
         fun createFrom(code: String?): LangNonFullCode? =
                 if (code.isNullOrBlank()) {
@@ -27,21 +27,6 @@ data class LangFullCode(
 ) {
 
     companion object {
-
-        fun getAppLangFullCodeByLocale(initAppConfig: InitAppConfig): LangFullCode {
-            val currentLocaleLangNonFullCode: LangNonFullCode? = LangNonFullCode.fromLocale(Locale.getDefault())
-
-            return if (currentLocaleLangNonFullCode == null) {
-                initAppConfig.defaultLanguageFullCode
-            } else {
-                val fullCodeFromLocale: LangFullCode? = initAppConfig.availableLanguagesFullCodes
-                        .firstOrNull { singleCode ->
-                            singleCode.nonFullCode.code.contains(currentLocaleLangNonFullCode.code)
-                        }
-
-                (fullCodeFromLocale ?: initAppConfig.defaultLanguageFullCode)
-            }
-        }
 
         fun createFrom(code: String?, countryCode: String?): LangFullCode? =
                 if (countryCode != null) {

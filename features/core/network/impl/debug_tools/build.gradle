@@ -15,7 +15,5 @@ dependencies {
 
     implementation(projects.features.core.network.impl.stagingTools)
 
-    compileOnly(projects.features.core.api.lib)
-
     implementation(Deps.okHttp3Logging)
 }

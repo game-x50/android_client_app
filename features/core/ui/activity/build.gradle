@@ -19,7 +19,7 @@ dependencies {
     api(projects.features.core.ui.routing)
     api(projects.features.core.ui.lifecycle.lib)
 
-    compileOnly(projects.features.core.api.lib)
+    compileOnly(projects.features.core.di)
     compileOnly(projects.features.core.thread.lib)
     compileOnly(projects.features.core.logger.api.lib)
     compileOnly(projects.features.core.ui.lifecycle.utils)
