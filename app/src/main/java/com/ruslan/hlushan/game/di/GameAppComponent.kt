@@ -8,7 +8,7 @@ import com.ruslan.hlushan.core.error.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.foreground.observer.impl.di.AppForegroundObserverImplExportComponent
 import com.ruslan.hlushan.core.impl.di.CoreImplExportComponent
 import com.ruslan.hlushan.core.impl.tools.createToolsProvider
-import com.ruslan.hlushan.core.language.api.di.LanguagesProvider
+import com.ruslan.hlushan.core.language.api.di.LanguagesInteractorProvider
 import com.ruslan.hlushan.core.language.impl.di.LanguageImplExportComponent
 import com.ruslan.hlushan.core.logger.api.di.LoggersProvider
 import com.ruslan.hlushan.core.logger.impl.di.LoggerImplExportComponent
@@ -41,13 +41,14 @@ import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
+//TODO: #write_unit_tests: that GameAppComponent extends all reqiured providers
 @Singleton
 @Component(
         modules = [GameAppModule::class],
         dependencies = [
             ManagersProvider::class,
             LoggersProvider::class,
-            LanguagesProvider::class,
+            LanguagesInteractorProvider::class,
             SchedulersManagerProvider::class,
             AppContextProvider::class,
             UiCoreProvider::class,
@@ -64,7 +65,7 @@ import javax.inject.Singleton
 internal interface GameAppComponent : IBaseInjector,
                                       ManagersProvider,
                                       LoggersProvider,
-                                      LanguagesProvider,
+                                      LanguagesInteractorProvider,
                                       SchedulersManagerProvider,
                                       UiCoreProvider,
                                       UiRoutingProvider,
@@ -88,7 +89,7 @@ internal interface GameAppComponent : IBaseInjector,
                 @BindsInstance compositeWorkerFactory: CompositeWorkerFactory,
                 managersProvider: ManagersProvider,
                 loggersProvider: LoggersProvider,
-                languagesProvider: LanguagesProvider,
+                languagesInteractorProvider: LanguagesInteractorProvider,
                 schedulersProvider: SchedulersManagerProvider,
                 appContextProvider: AppContextProvider,
                 uiCoreProvider: UiCoreProvider,
@@ -126,7 +127,7 @@ internal interface GameAppComponent : IBaseInjector,
                     appContextProvider = coreImplProvider
             )
 
-            val languagesProvider = LanguageImplExportComponent.Initializer.init(
+            val languagesInteractorProvider = LanguageImplExportComponent.Initializer.init(
                     initAppConfig = initAppConfig,
                     schedulersProvider = coreImplProvider,
                     managersProvider = coreImplProvider
@@ -201,7 +202,7 @@ internal interface GameAppComponent : IBaseInjector,
                             compositeWorkerFactory = compositeWorkerFactory,
                             managersProvider = coreImplProvider,
                             loggersProvider = loggersProvider,
-                            languagesProvider = languagesProvider,
+                            languagesInteractorProvider = languagesInteractorProvider,
                             schedulersProvider = coreImplProvider,
                             appContextProvider = coreImplProvider,
                             uiCoreProvider = uiCoreProvider,

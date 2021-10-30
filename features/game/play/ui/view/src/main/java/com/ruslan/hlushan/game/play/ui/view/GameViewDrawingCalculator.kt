@@ -3,7 +3,7 @@ package com.ruslan.hlushan.game.play.ui.view
 import android.graphics.Paint
 import android.graphics.Rect
 import android.view.View
-import com.ruslan.hlushan.core.api.dto.MutableValueHolder
+import com.ruslan.hlushan.core.value.holder.MutableValueHolder
 import com.ruslan.hlushan.core.extensions.countDigits
 import com.ruslan.hlushan.core.extensions.divRoundingUpToLargerInt
 import com.ruslan.hlushan.core.extensions.ifNotNull

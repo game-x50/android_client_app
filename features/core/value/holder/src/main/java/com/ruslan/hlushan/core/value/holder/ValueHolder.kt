@@ -1,4 +1,4 @@
-package com.ruslan.hlushan.core.api.dto
+package com.ruslan.hlushan.core.value.holder
 
 interface ValueHolder<out T : Any?> {
     val value: T

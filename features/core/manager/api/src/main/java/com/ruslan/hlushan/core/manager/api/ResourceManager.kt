@@ -3,7 +3,7 @@ package com.ruslan.hlushan.core.manager.api
 import androidx.annotation.DrawableRes
 import androidx.annotation.RawRes
 import androidx.annotation.StringRes
-import com.ruslan.hlushan.core.api.dto.ValueHolder
+import com.ruslan.hlushan.core.value.holder.ValueHolder
 import io.reactivex.Single
 
 interface ResourceManager {

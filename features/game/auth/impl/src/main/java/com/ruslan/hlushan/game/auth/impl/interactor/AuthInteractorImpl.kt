@@ -1,6 +1,6 @@
 package com.ruslan.hlushan.game.auth.impl.interactor
 
-import com.ruslan.hlushan.core.api.dto.ValueHolder
+import com.ruslan.hlushan.core.value.holder.ValueHolder
 import com.ruslan.hlushan.core.result.VoidOperationResult
 import com.ruslan.hlushan.game.api.auth.AuthInteractor
 import com.ruslan.hlushan.game.api.auth.dto.AuthError

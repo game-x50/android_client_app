@@ -11,7 +11,7 @@ import android.view.View
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import com.ruslan.hlushan.android.extensions.colorAttributeValue
-import com.ruslan.hlushan.core.api.dto.MutableValueHolder
+import com.ruslan.hlushan.core.value.holder.MutableValueHolder
 import com.ruslan.hlushan.core.extensions.ifNotNull
 import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.game.api.play.dto.GameSize

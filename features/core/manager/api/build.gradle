@@ -2,6 +2,7 @@ apply from: rootProject.ext[GradleExtraArgs.baseKotlinLibrary]
 
 dependencies {
     api(projects.features.core.api.lib)
+    api(projects.features.core.value.holder)
 
     compileOnly(projects.features.core.thread.lib)
 

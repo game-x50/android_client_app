@@ -13,7 +13,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.internal.InternalTokenResult
 import com.ruslan.hlushan.core.result.OpResult
 import com.ruslan.hlushan.core.result.OperationResultVoid
-import com.ruslan.hlushan.core.api.dto.ValueHolder
+import com.ruslan.hlushan.core.value.holder.ValueHolder
 import com.ruslan.hlushan.core.result.VoidOperationResult
 import com.ruslan.hlushan.core.result.flatMapCompletableSuccess
 import com.ruslan.hlushan.core.result.flatMapNestedSuccess

@@ -1,7 +1,7 @@
 package com.ruslan.hlushan.game.auth.impl.repo.remote
 
 import com.ruslan.hlushan.core.result.OpResult
-import com.ruslan.hlushan.core.api.dto.ValueHolder
+import com.ruslan.hlushan.core.value.holder.ValueHolder
 import com.ruslan.hlushan.game.api.auth.dto.AuthError
 import com.ruslan.hlushan.game.api.auth.dto.User
 import io.reactivex.Completable

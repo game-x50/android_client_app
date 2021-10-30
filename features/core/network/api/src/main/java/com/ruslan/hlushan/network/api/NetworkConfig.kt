@@ -1,5 +1,6 @@
 package com.ruslan.hlushan.network.api
 
+//todo: avoid default values here: make them = null
 @SuppressWarnings("MagicNumber")
 data class NetworkConfig(
         val connectTimeoutSeconds: Long = 15,

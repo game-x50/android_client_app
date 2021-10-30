@@ -5,7 +5,7 @@ import android.content.res.Resources
 import androidx.annotation.DrawableRes
 import androidx.annotation.RawRes
 import androidx.annotation.StringRes
-import com.ruslan.hlushan.core.api.dto.ValueHolder
+import com.ruslan.hlushan.core.value.holder.ValueHolder
 import com.ruslan.hlushan.core.impl.utils.files.readRawTextFile
 import com.ruslan.hlushan.core.impl.utils.getDrawableResourceIdByName
 import com.ruslan.hlushan.core.impl.utils.getStringResourceByName

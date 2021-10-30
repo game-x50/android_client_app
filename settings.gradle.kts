@@ -35,6 +35,7 @@ include(
         ":features:core:thread:test_utils",
 
         ":features:core:result",
+        ":features:core:value:holder",
 
         ":features:core:api:lib",
         ":features:core:api:debug_tools",

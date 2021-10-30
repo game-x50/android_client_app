@@ -1,6 +1,6 @@
 package com.ruslan.hlushan.game.api.play
 
-import com.ruslan.hlushan.core.api.dto.ValueHolder
+import com.ruslan.hlushan.core.value.holder.ValueHolder
 import com.ruslan.hlushan.core.pagination.api.PaginationPagesRequest
 import com.ruslan.hlushan.core.pagination.api.PaginationResponse
 import com.ruslan.hlushan.game.api.play.dto.GameRecord
