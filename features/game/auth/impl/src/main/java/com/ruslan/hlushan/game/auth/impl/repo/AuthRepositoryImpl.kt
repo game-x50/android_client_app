@@ -1,10 +1,10 @@
 package com.ruslan.hlushan.game.auth.impl.repo
 
 import com.ruslan.hlushan.core.api.dto.ValueHolder
-import com.ruslan.hlushan.core.api.dto.VoidOperationResult
-import com.ruslan.hlushan.core.api.dto.flatMapCompletableSuccess
-import com.ruslan.hlushan.core.api.dto.flatMapSuccess
-import com.ruslan.hlushan.core.api.dto.mapSuccess
+import com.ruslan.hlushan.core.result.VoidOperationResult
+import com.ruslan.hlushan.core.result.flatMapCompletableSuccess
+import com.ruslan.hlushan.core.result.flatMapSuccess
+import com.ruslan.hlushan.core.result.mapSuccess
 import com.ruslan.hlushan.core.logger.api.AppLogger
 import com.ruslan.hlushan.game.api.auth.dto.AuthError
 import com.ruslan.hlushan.game.api.auth.dto.User

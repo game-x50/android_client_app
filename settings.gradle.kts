@@ -34,6 +34,8 @@ include(
         ":features:core:thread:lib",
         ":features:core:thread:test_utils",
 
+        ":features:core:result",
+
         ":features:core:api:lib",
         ":features:core:api:debug_tools",
         ":features:core:api:staging_tools",
