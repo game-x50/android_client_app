@@ -44,7 +44,6 @@ import dagger.Component
 import java.io.File
 import javax.inject.Singleton
 
-//TODO: #write_unit_tests: that GameAppComponent extends all reqiured providers
 @Singleton
 @Component(
         modules = [GameAppModule::class],

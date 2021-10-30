@@ -171,6 +171,8 @@ dependencies {
     implementation platform(Deps.firebaseBom)
     runtimeOnly(Deps.firebaseAnalytics)//todo because of firebaseAuth, crashlytics require
     implementation(Deps.firebaseCrashlytics)
+
+    testImplementation(projects.features.core.testUtils)
 }
 
 apply plugin: Plugins.googleServices
