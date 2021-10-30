@@ -8,7 +8,6 @@ import com.ruslan.hlushan.android.extensions.applyDrawableOverlay
 import com.ruslan.hlushan.android.extensions.clearOverlay
 import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
 import com.ruslan.hlushan.android.extensions.toPx
-import com.ruslan.hlushan.core.api.dto.DatabaseViewInfo
 import com.ruslan.hlushan.core.api.dto.InitAppConfig
 import com.ruslan.hlushan.core.api.tools.BlockCanaryTool
 import com.ruslan.hlushan.core.api.tools.ChuckTool
@@ -27,6 +26,7 @@ import com.ruslan.hlushan.core.ui.impl.tools.file.FileLogsActivity
 import com.ruslan.hlushan.core.ui.impl.tools.utils.GridDrawable
 import com.ruslan.hlushan.core.ui.viewbinding.extensions.bindViewBinding
 import com.ruslan.hlushan.third_party.androidx.insets.addSystemPadding
+import com.ruslan.hlushan.third_party.androidx.room.utils.DatabaseViewInfo
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 

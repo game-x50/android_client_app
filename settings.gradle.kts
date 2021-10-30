@@ -104,6 +104,7 @@ include(
         ":features:third_party:androidx:recyclerview:extensions",
         ":features:third_party:androidx:insets",
         ":features:third_party:androidx:work_manager:utils",
+        ":features:third_party:androidx:room:utils",
 
         ":features:third_party:three_ten:extensions",
 

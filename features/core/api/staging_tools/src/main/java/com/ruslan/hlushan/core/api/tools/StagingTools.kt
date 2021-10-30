@@ -1,6 +1,6 @@
 package com.ruslan.hlushan.core.api.tools
 
-import com.ruslan.hlushan.core.api.dto.DatabaseViewInfo
+import com.ruslan.hlushan.third_party.androidx.room.utils.DatabaseViewInfo
 
 interface BlockCanaryTool {
     fun start()

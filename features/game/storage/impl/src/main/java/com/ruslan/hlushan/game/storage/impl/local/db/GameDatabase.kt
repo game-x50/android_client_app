@@ -5,7 +5,6 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.ruslan.hlushan.core.api.dto.DatabaseViewInfo
 import com.ruslan.hlushan.game.storage.impl.local.db.converters.DurationDbConverter
 import com.ruslan.hlushan.game.storage.impl.local.db.converters.GameSizeDbConverter
 import com.ruslan.hlushan.game.storage.impl.local.db.converters.InstantDbConverter
@@ -16,6 +15,7 @@ import com.ruslan.hlushan.game.storage.impl.local.db.converters.SyncStatusDbConv
 import com.ruslan.hlushan.game.storage.impl.local.db.dao.GameRecordsDAO
 import com.ruslan.hlushan.game.storage.impl.local.db.entities.GameStateDb
 import com.ruslan.hlushan.game.storage.impl.local.db.entities.MatrixAndNewItemsStateDb
+import com.ruslan.hlushan.third_party.androidx.room.utils.DatabaseViewInfo
 
 @SuppressWarnings("UnnecessaryAbstractClass")
 @Database(
