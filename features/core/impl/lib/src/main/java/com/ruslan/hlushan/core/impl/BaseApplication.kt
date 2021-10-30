@@ -52,8 +52,6 @@ abstract class BaseApplication : Application(), InjectorHolder {
         logMessage("after setAppErrorHandling()")
         initBaseContextLang()
         logMessage("after initBaseContextLang()")
-        initCrashlytics()
-        logMessage("after initCrashlytics()")
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         logMessage("after AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)")
         initTools(this, appLogger, this::logMessage)

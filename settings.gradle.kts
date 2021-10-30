@@ -13,6 +13,9 @@ include(
 
         ":features:core:pagination:api",
 
+        ":features:core:foreground:observer:api",
+        ":features:core:foreground:observer:impl",
+
         ":features:core:test_utils",
 
         ":features:core:command:lib",

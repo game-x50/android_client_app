@@ -29,6 +29,7 @@ object Deps {
     const val edgeToEdgeDecorator = "${DepsDetails.redmadrobotGroup}:${DepsDetails.edgeToEdgeDecorator}:${Versions.edgeToEdgeDecoratorVersion}"
 
     const val androidxLifecycle = "androidx.lifecycle:lifecycle-common:${Versions.androidxLifecyclesVersion}"
+    const val androidxLifecycleProcess = "androidx.lifecycle:lifecycle-process:${Versions.androidxLifecyclesVersion}"
     const val androidxLifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.androidxLifecyclesVersion}"
 
     const val androidxViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.androidxLifecyclesVersion}"

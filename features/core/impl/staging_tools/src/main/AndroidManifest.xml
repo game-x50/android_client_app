@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.ruslan.hlushan.core.impl.tools">
 
     <application>
-        <activity android:name="com.github.pedrovgs.lynx.LynxActivity" />
+
+        <activity
+            android:name="com.github.pedrovgs.lynx.LynxActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.github.moduth.blockcanary.ui.DisplayActivity"
+            android:exported="false"
+            tools:node="merge" />
+
     </application>
+
 </manifest>

@@ -1,6 +1,7 @@
 package com.ruslan.hlushan.game.storage.impl.workers
 
 import android.content.Context
+import android.os.Build
 import androidx.annotation.StringRes
 import androidx.work.Constraints
 import androidx.work.ExistingPeriodicWorkPolicy
@@ -15,6 +16,7 @@ import androidx.work.WorkerParameters
 import com.ruslan.hlushan.android.extensions.AndroidNotification
 import com.ruslan.hlushan.android.extensions.AndroidNotificationAction
 import com.ruslan.hlushan.android.extensions.AndroidNotificationChannel
+import com.ruslan.hlushan.core.foreground.observer.api.AppForegroundObserver
 import com.ruslan.hlushan.game.storage.impl.R
 import com.ruslan.hlushan.game.storage.impl.SyncInteractor
 import io.reactivex.Completable
@@ -27,14 +29,15 @@ import javax.inject.Provider
 internal class SyncWorker(
         context: Context,
         params: WorkerParameters,
-        private val syncInteractor: SyncInteractor
+        private val syncInteractor: SyncInteractor,
+        private val appForegroundObserver: AppForegroundObserver
 ) : RxWorker(context, params) {
 
     override fun createWork(): Single<Result> =
             Completable.fromAction {
-//                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.R) {
-                setForegroundAsync(createForegroundInfo(applicationContext, id))
-//                }
+                if ((Build.VERSION.SDK_INT <= Build.VERSION_CODES.R) || (appForegroundObserver.isInForeground)) {
+                    setForegroundAsync(createForegroundInfo(applicationContext, id))
+                }
             }
                     .andThen(syncInteractor.sync())
                     .toSingleDefault(Result.success())
@@ -49,7 +52,8 @@ internal class SyncWorker(
     class Factory
     @Inject
     constructor(
-            private val syncInteractorProvider: Provider<SyncInteractor>
+            private val syncInteractorProvider: Provider<SyncInteractor>,
+            private val appForegroundObserverProvider: Provider<AppForegroundObserver>
     ) : WorkerFactory() {
 
         override fun createWorker(
@@ -58,7 +62,12 @@ internal class SyncWorker(
                 workerParameters: WorkerParameters
         ): ListenableWorker? =
                 if (workerClassName == SyncWorker::class.java.name) {
-                    SyncWorker(appContext, workerParameters, syncInteractorProvider.get())
+                    SyncWorker(
+                            context = appContext,
+                            params = workerParameters,
+                            syncInteractor = syncInteractorProvider.get(),
+                            appForegroundObserver = appForegroundObserverProvider.get()
+                    )
                 } else {
                     null
                 }
@@ -84,7 +93,8 @@ internal class SyncWorker(
                     16, TimeUnit.HOURS
             )
                     .setConstraints(constraints)
-//                    .setExpedited(OutOfQuotaPolicy.RUN_AS_NON_EXPEDITED_WORK_REQUEST)
+                    // Expedited policy not applied to run job first time immediatly
+                    //.setExpedited(OutOfQuotaPolicy.RUN_AS_NON_EXPEDITED_WORK_REQUEST)
                     .build()
 
             WorkManager.getInstance(appContext)

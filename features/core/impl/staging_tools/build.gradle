@@ -18,13 +18,12 @@ android {
 }
 
 dependencies {
-    compileOnly(projects.features.core.extensions)
-    compileOnly(projects.features.core.android.api)
-    compileOnly(projects.features.core.api.lib)
-    compileOnly(projects.features.core.thread.lib)
-    compileOnly(projects.features.core.logger.api.lib)
+    api(projects.features.core.api.stagingTools)
+    api(projects.features.core.android.api)
+    api(projects.features.core.logger.api.lib)
 
-    compileOnly(projects.features.core.api.stagingTools)
+    compileOnly(projects.features.core.extensions)
+    compileOnly(projects.features.core.thread.lib)
 
     implementation(Deps.blockCanary)
     implementation(Deps.tinyDancer)
@@ -36,4 +35,5 @@ dependencies {
     implementation(Deps.rxDisposableWatcher)
 
     implementation(Deps.androidxAppCompat)//todo: #check_compileOnly: because of versions conflict, try to avoid at all or use compileOnly
+    implementation(Deps.okHttp3)//todo: #check_compileOnly: because of versions conflict, try to avoid at all or use compileOnly
 }

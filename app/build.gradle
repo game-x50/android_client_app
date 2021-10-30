@@ -105,6 +105,8 @@ dependencies {
     implementation(projects.features.thirdParty.androidx.insets)
 
     implementation(projects.features.core.parsing.impl)
+    
+    implementation(projects.features.core.foreground.observer.impl)
 
     implementation(projects.features.core.logger.impl)
 

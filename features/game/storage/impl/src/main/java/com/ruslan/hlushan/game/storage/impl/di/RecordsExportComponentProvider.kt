@@ -2,6 +2,7 @@ package com.ruslan.hlushan.game.storage.impl.di
 
 import com.ruslan.hlushan.android.core.api.di.AppContextProvider
 import com.ruslan.hlushan.core.api.di.DatabaseViewInfoListProvider
+import com.ruslan.hlushan.core.foreground.observer.api.di.AppForegroundObserverProvider
 import com.ruslan.hlushan.core.logger.api.di.LoggersProvider
 import com.ruslan.hlushan.game.api.di.providers.AuthorizedNetworkApiCreatorProvider
 import com.ruslan.hlushan.game.api.di.providers.GameSettingsProvider
@@ -24,6 +25,7 @@ import javax.inject.Singleton
             AppContextProvider::class,
             LoggersProvider::class,
             SchedulersManagerProvider::class,
+            AppForegroundObserverProvider::class,
             AuthorizedNetworkApiCreatorProvider::class
         ]
 )
@@ -35,21 +37,25 @@ interface RecordsExportComponentProvider : GameSettingsProvider,
 
     @Component.Factory
     interface Factory {
+        @SuppressWarnings("LongParameterList")
         fun create(
                 @BindsInstance gameNetworkParams: GameNetworkParams,
                 appContextProvider: AppContextProvider,
                 loggersProvider: LoggersProvider,
                 schedulersProvider: SchedulersManagerProvider,
+                appForegroundObserverProvider: AppForegroundObserverProvider,
                 authorizedNetworkApiCreatorProvider: AuthorizedNetworkApiCreatorProvider
         ): RecordsExportComponentProvider
     }
 
     object Initializer {
+        @SuppressWarnings("LongParameterList")
         fun init(
                 gameNetworkParams: GameNetworkParams,
                 appContextProvider: AppContextProvider,
                 loggersProvider: LoggersProvider,
                 schedulersProvider: SchedulersManagerProvider,
+                appForegroundObserverProvider: AppForegroundObserverProvider,
                 authorizedNetworkApiCreatorProvider: AuthorizedNetworkApiCreatorProvider
         ): RecordsExportComponentProvider =
                 DaggerRecordsExportComponentProvider.factory()
@@ -58,6 +64,7 @@ interface RecordsExportComponentProvider : GameSettingsProvider,
                                 appContextProvider = appContextProvider,
                                 loggersProvider = loggersProvider,
                                 schedulersProvider = schedulersProvider,
+                                appForegroundObserverProvider = appForegroundObserverProvider,
                                 authorizedNetworkApiCreatorProvider = authorizedNetworkApiCreatorProvider
                         )
     }

@@ -4,22 +4,17 @@ apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
 apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
 
 android {
-
     defaultConfig {
         versionCode = 1
         versionName = "1.0"
     }
 
-    resourcePrefix("core_impl_debug_tools_")
+//    resourcePrefix("foreground_observer_impl")
 }
 
 dependencies {
-    api(projects.features.core.impl.stagingTools)
+    api(projects.features.core.foreground.observer.api)
+    api(projects.features.thirdParty.rxjava2.extensions)
 
-    compileOnly(projects.features.core.extensions)
-    compileOnly(projects.features.core.thread.lib)
-
-    compileOnly(projects.features.core.api.debugTools)
-
-    implementation(Deps.stetho)
+    implementation(Deps.androidxLifecycleProcess)
 }

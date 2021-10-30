@@ -36,7 +36,7 @@ object Versions {
 
     const val androidCoreVersion = "1.5.0"
 
-    const val workManagerVersion = "2.6.0"//please check release notes, related to expedited jobs and WorkerFactory init
+    const val workManagerVersion = "2.7.0"
 
     const val edgeToEdgeDecoratorVersion = "1.0.0"
 
@@ -45,7 +45,7 @@ object Versions {
     const val ciceroneVersion = "7.1"
 
     const val retrofit2Version = "2.9.0"
-    const val okhttp3Version = "4.9.1"
+    const val okhttp3Version = "4.9.2"
 
     const val certificateTransparencyAndroidVersion = "0.3.0"
 
@@ -67,7 +67,7 @@ object Versions {
     const val tinyDancerVersion = "0.1.2"
     const val taktVersion = "2.1.1"
     const val lynxVersion = "1.6"
-    const val chuckerVersion = "3.4.0"
+    const val chuckerVersion = "3.5.2"
     const val roomExplorerVersion = "0.0.2"
     const val rxDisposableWatcherVersion = "1.0.0"//version 2.0.0 is for rxjava3
 

@@ -21,6 +21,7 @@ android {
 dependencies {
     api(projects.features.core.android.api)
     api(projects.features.core.logger.api.lib)
+    api(projects.features.core.foreground.observer.api)
     api(projects.features.game.api.lib)
     api(projects.features.thirdParty.rxjava2.extensions)
 
