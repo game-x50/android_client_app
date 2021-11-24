@@ -1,8 +1,8 @@
 object Versions {
 
-    const val gradleVersion = "7.0.1"
+    const val gradleVersion = "7.0.3"
 
-    const val kotlinVersion = "1.5.10"
+    const val kotlinVersion = "1.6.0"
 
     const val googlePluginServicesVersion = "4.3.8"
 
@@ -20,7 +20,7 @@ object Versions {
     const val rxJava2Version = "2.2.21"
     const val rxJava2AndroidVersion = "2.1.1"
 
-    const val dagger2Version = "2.36"
+    const val dagger2Version = "2.40.2"
 
     const val firebaseBomVersion = "28.0.1"
 
@@ -49,7 +49,7 @@ object Versions {
 
     const val certificateTransparencyAndroidVersion = "0.3.0"
 
-    const val kotlinxSerializationVersion = "1.2.1"
+    const val kotlinxSerializationVersion = "1.3.1"
     const val retrofit2KotlinxSerializationJsonConverterVersion = "0.8.0"
 
     const val roomVersion = "2.3.0"

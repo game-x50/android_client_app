@@ -1,5 +1,5 @@
-apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
-apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
+apply from: GradleExtraArgs.getBaseAndroidLibrary(rootProject)
+apply from: GradleExtraArgs.getAndroidSingleBuildVariant(rootProject)
 
 apply plugin: Plugins.kotlinParcelize
 

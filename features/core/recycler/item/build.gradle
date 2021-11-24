@@ -1,1 +1,1 @@
-apply from: rootProject.ext[GradleExtraArgs.baseKotlinLibrary]
+apply from: GradleExtraArgs.getBaseKotlinLibrary(rootProject)

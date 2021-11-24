@@ -1,44 +1,88 @@
+import org.gradle.api.Project
 import java.io.File
 
 object GradleExtraArgs {
 
-    const val lintersConfigFolder = "lintersConfigFolder"
-    const val localizationFolder = "localization"
-    const val proguardConfigsFolder = "proguardConfigsFolder"
+    @JvmStatic
+    fun getRootProjectPath(project: Project): String = project.rootProject.projectDir.path
 
-    const val baseKotlinLibrary = "gradle_support_base_kotlin_library"
+    @JvmStatic
+    fun getGradleSupportFolder(project: Project): String = "${getRootProjectPath(project)}/gradle_support/"
 
-    const val baseAndroidResources = "gradle_support_base_android_resources"
-    const val baseAndroidExecutable = "gradle_support_base_android_executable"
-    const val baseAndroidResourcesLibrary = "gradle_support_base_android_resources_library"
-    const val baseAndroidLibrary = "gradle_support_base_android_library"
-    const val baseAndroidApp = "gradle_support_base_android_app"
+    @JvmStatic
+    fun getLintersConfigFolder(project: Project): String = "${getRootProjectPath(project)}/linters/"
 
-    const val androidMinifyDisabled = "gradle_support_android_minify_disabled"
+    @JvmStatic
+    fun getLocalizationFolder(project: Project): String = "${getRootProjectPath(project)}/localization/"
 
-    const val apkSigning = "gradle_support_apk_signing"
+    @JvmStatic
+    fun getProguardConfigsFolder(project: Project): String = "${getRootProjectPath(project)}/proguard_configs/"
 
-    const val androidSingleBuildVariant = "gradle_support_android_single_build_variant"
-    const val androidAllBuildVariants = "gradle_support_android_all_build_variants"
-    const val applicationBuildVariants = "gradle_support_application_build_variants"
+    @JvmStatic
+    fun getBaseKotlinLibrary(project: Project): String = "${getGradleSupportFolder(project)}base_kotlin_library.gradle"
 
-    const val androidLinters = "gradle_support_android_linters"
+    @JvmStatic
+    fun getBaseAndroidResources(project: Project): String = "${getGradleSupportFolder(project)}base_android_resources.gradle"
 
-    const val kapt = "gradle_support_kapt"
-    const val dagger2Kapt = "gradle_support_dagger2_kapt"
-    const val room = "gradle_support_room"
+    @JvmStatic
+    fun getBaseAndroidExecutable(project: Project): String = "${getGradleSupportFolder(project)}base_android_executable.gradle"
 
-    const val viewBinding = "gradle_support_android_view_binding"
-    const val androidLibraryViewBindingWithExtensions = "gradle_support_android_library_view_binding_with_extensions"
-    const val androidAppViewBindingWithExtensions = "gradle_support_android_app_view_binding_with_extensions"
+    @JvmStatic
+    fun getBaseAndroidResourcesLibrary(project: Project): String = "${getGradleSupportFolder(project)}base_android_resources_library.gradle"
 
-    const val kotlinxSerilization = "gradle_support_kotlinx_serilization"
+    @JvmStatic
+    fun getBaseAndroidLibrary(project: Project): String = "${getGradleSupportFolder(project)}base_android_library.gradle"
 
-    const val applicationLeakCanaryTool = "gradle_support_application_leak_canary_tool"
+    @JvmStatic
+    fun getBaseAndroidApp(project: Project): String = "${getGradleSupportFolder(project)}base_android_app.gradle"
 
-    const val projectPropertiesRead = "gradle_support_project_properties_read"
+    @JvmStatic
+    fun getAndroidMinifyDisabled(project: Project): String = "${getGradleSupportFolder(project)}android_minify_disabled.gradle"
 
-    const val licenseValidation = "gradle_support_license_validation"
+    @JvmStatic
+    fun getApkSigning(project: Project): String = "${getGradleSupportFolder(project)}apk-signing.gradle"
+
+    @JvmStatic
+    fun getAndroidSingleBuildVariant(project: Project): String = "${getGradleSupportFolder(project)}android_single_build_variant.gradle"
+
+    @JvmStatic
+    fun getAndroidAllBuildVariants(project: Project): String = "${getGradleSupportFolder(project)}android_all_build_variants.gradle"
+
+    @JvmStatic
+    fun getApplicationBuildVariants(project: Project): String = "${getGradleSupportFolder(project)}application_build_variants.gradle"
+
+    @JvmStatic
+    fun getAndroidLinters(project: Project): String = "${getGradleSupportFolder(project)}android_linters.gradle"
+
+    @JvmStatic
+    fun getKapt(project: Project): String = "${getGradleSupportFolder(project)}kapt.gradle"
+
+    @JvmStatic
+    fun getDagger2Kapt(project: Project): String = "${getGradleSupportFolder(project)}dagger2_kapt.gradle"
+
+    @JvmStatic
+    fun getRoom(project: Project): String = "${getGradleSupportFolder(project)}room.gradle"
+
+    @JvmStatic
+    fun getViewBinding(project: Project): String = "${getGradleSupportFolder(project)}android_view_binding.gradle"
+
+    @JvmStatic
+    fun getAndroidLibraryViewBindingWithExtensions(project: Project): String = "${getGradleSupportFolder(project)}android_library_view_binding_with_extensions.gradle"
+
+    @JvmStatic
+    fun getAndroidAppViewBindingWithExtensions(project: Project): String = "${getGradleSupportFolder(project)}android_app_view_binding_with_extensions.gradle"
+
+    @JvmStatic
+    fun getKotlinxSerilization(project: Project): String = "${getGradleSupportFolder(project)}kotlinx_serilization.gradle"
+
+    @JvmStatic
+    fun getApplicationLeakCanaryTool(project: Project): String = "${getGradleSupportFolder(project)}application_leak_canary_tool.gradle"
+
+    @JvmStatic
+    fun getProjectPropertiesRead(project: Project): String = "${getGradleSupportFolder(project)}project_properties_read.gradle"
+
+    @JvmStatic
+    fun getLicenseValidation(project: Project): String = "${getGradleSupportFolder(project)}license_validation.gradle"
 
     @JvmStatic
     fun getCoverageReportPath(projectBuildDir: File): String = "${projectBuildDir}/reports/jacocoCoverage.xml"

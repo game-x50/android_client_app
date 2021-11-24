@@ -1,14 +1,14 @@
 import kotlin.Pair
 
-apply from: rootProject.ext[GradleExtraArgs.baseAndroidApp]
+apply from: GradleExtraArgs.getBaseAndroidApp(rootProject)
 
-apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
-apply from: rootProject.ext[GradleExtraArgs.androidAppViewBindingWithExtensions]
-apply from: rootProject.ext[GradleExtraArgs.applicationLeakCanaryTool]
+apply from: GradleExtraArgs.getDagger2Kapt(rootProject)
+apply from: GradleExtraArgs.getAndroidAppViewBindingWithExtensions(rootProject)
+apply from: GradleExtraArgs.getApplicationLeakCanaryTool(rootProject)
 
-apply from: rootProject.ext[GradleExtraArgs.apkSigning]
+apply from: GradleExtraArgs.getApkSigning(rootProject)
 
-apply from: rootProject.ext[GradleExtraArgs.projectPropertiesRead]
+apply from: GradleExtraArgs.getProjectPropertiesRead(rootProject)
 
 apply plugin: Plugins.crashlytics
 
@@ -69,7 +69,7 @@ android {
 
         release {
             proguardFiles(getDefaultProguardFile(ApplicationConfigs.defaultProguardFile))
-            proguardFiles(fileTree(rootProject.ext[GradleExtraArgs.proguardConfigsFolder]).asList().toArray())
+            proguardFiles(fileTree(GradleExtraArgs.getProguardConfigsFolder(rootProject)).asList().toArray())
 
             buildConfigField("String", "APP_TAG", "\"GAME_APP_RELEASE\"")
             buildConfigField("boolean", "IS_LOGCAT_ENABLED", "false")

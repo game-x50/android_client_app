@@ -1,3 +1,7 @@
+![License Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg?style=flat)
+![Public Yes](https://img.shields.io/badge/Public-yes-green.svg?style=flat)
+![Open source Yes](https://img.shields.io/badge/Open_source-yes-green.svg?style=flat)
+
 ## Feature branch status:
 ![PR_checks](https://github.com/game-x50/android_client_app/workflows/PR_checks/badge.svg)
 

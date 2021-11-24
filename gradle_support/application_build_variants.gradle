@@ -1,4 +1,4 @@
-apply from: rootProject.ext[GradleExtraArgs.androidAllBuildVariants]
+apply from: GradleExtraArgs.getAndroidAllBuildVariants(rootProject)
 
 android {
 
