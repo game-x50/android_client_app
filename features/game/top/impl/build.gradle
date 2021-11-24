@@ -1,8 +1,8 @@
-apply from: rootProject.ext[GradleExtraArgs.baseAndroidLibrary]
-apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
+apply from: GradleExtraArgs.getBaseAndroidLibrary(rootProject)
+apply from: GradleExtraArgs.getAndroidSingleBuildVariant(rootProject)
 
-apply from: rootProject.ext[GradleExtraArgs.dagger2Kapt]
-apply from: rootProject.ext[GradleExtraArgs.kotlinxSerilization]
+apply from: GradleExtraArgs.getDagger2Kapt(rootProject)
+apply from: GradleExtraArgs.getKotlinxSerilization(rootProject)
 
 def proguardRulesFile = "proguard-rules-game_top_impl.pro"
 

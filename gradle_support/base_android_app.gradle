@@ -1,6 +1,6 @@
 apply plugin: Plugins.androidApp
 
-apply from: rootProject.ext[GradleExtraArgs.baseAndroidExecutable]
-apply from: rootProject.ext[GradleExtraArgs.applicationBuildVariants]
+apply from: GradleExtraArgs.getBaseAndroidExecutable(rootProject)
+apply from: GradleExtraArgs.getApplicationBuildVariants(rootProject)
 
-apply from: rootProject.ext[GradleExtraArgs.licenseValidation]
+apply from: GradleExtraArgs.getLicenseValidation(rootProject)

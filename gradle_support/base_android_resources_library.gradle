@@ -1,4 +1,4 @@
 apply plugin: Plugins.androidLibrary
 
-apply from: rootProject.ext[GradleExtraArgs.baseAndroidResources]
-apply from: rootProject.ext[GradleExtraArgs.androidMinifyDisabled]
+apply from: GradleExtraArgs.getBaseAndroidResources(rootProject)
+apply from: GradleExtraArgs.getAndroidMinifyDisabled(rootProject)

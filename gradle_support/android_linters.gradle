@@ -1,4 +1,4 @@
-def lintersConfigFolder = rootProject.ext[GradleExtraArgs.lintersConfigFolder]
+def lintersConfigFolder = GradleExtraArgs.getLintersConfigFolder(rootProject)
 
 android {
 

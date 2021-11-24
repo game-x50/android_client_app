@@ -1,5 +1,5 @@
-apply from: rootProject.ext[GradleExtraArgs.baseAndroidResourcesLibrary]
-apply from: rootProject.ext[GradleExtraArgs.androidSingleBuildVariant]
+apply from: GradleExtraArgs.getBaseAndroidResourcesLibrary(rootProject)
+apply from: GradleExtraArgs.getAndroidSingleBuildVariant(rootProject)
 
 android {
 
