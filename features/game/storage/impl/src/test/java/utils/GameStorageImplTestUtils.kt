@@ -1,4 +1,4 @@
-@file:Suppress("InvalidPackageDeclaration")
+package utils
 
 import com.ruslan.hlushan.game.api.play.dto.GameRecord
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState

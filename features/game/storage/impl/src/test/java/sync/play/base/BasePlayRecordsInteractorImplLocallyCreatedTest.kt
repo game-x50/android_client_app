@@ -1,6 +1,5 @@
 package sync.play.base
 
-import assertRecordsWithSyncStateInLocalRepo
 import com.ruslan.hlushan.game.api.play.dto.GameRecord
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.api.play.dto.toModifyingNowOrThrow
@@ -8,8 +7,9 @@ import com.ruslan.hlushan.game.api.play.dto.toNextModifiedAfterModifyingOrThrow
 import com.ruslan.hlushan.game.api.test.utils.generateFakeGameState
 import com.ruslan.hlushan.test.utils.generateFakeDuration
 import com.ruslan.hlushan.test.utils.generateFakeInstantTimestamp
-import generateAndAddLocalCreatedToLocalRepo
 import org.junit.Assert.assertNotEquals
+import utils.assertRecordsWithSyncStateInLocalRepo
+import utils.generateAndAddLocalCreatedToLocalRepo
 
 internal abstract class BasePlayRecordsInteractorImplLocallyCreatedTest : BasePlayRecordsInteractorImplTest() {
 

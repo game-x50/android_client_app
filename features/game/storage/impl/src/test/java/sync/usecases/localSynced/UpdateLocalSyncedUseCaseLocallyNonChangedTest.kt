@@ -1,15 +1,15 @@
 package sync.usecases.localSynced
 
-import assertRecordsWithSyncStateInLocalRepo
 import com.ruslan.hlushan.game.api.play.dto.GameRecord
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
 import com.ruslan.hlushan.game.api.test.utils.generateFakeRemoteInfo
 import com.ruslan.hlushan.game.storage.impl.remote.dto.UpdateLocalNonModifiedResponse
-import generateAndAddLocalSyncedToLocalRepo
-import generateFakeRemoteRecord
 import org.junit.Test
 import org.threeten.bp.Instant
+import utils.assertRecordsWithSyncStateInLocalRepo
+import utils.generateAndAddLocalSyncedToLocalRepo
+import utils.generateFakeRemoteRecord
 
 internal class UpdateLocalSyncedUseCaseLocallyNonChangedTest : BaseUpdateLocalSyncedUseCaseTest() {
 

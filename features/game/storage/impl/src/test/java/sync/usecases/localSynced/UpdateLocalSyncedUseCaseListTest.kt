@@ -4,13 +4,13 @@ import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.api.play.dto.SyncStatus
 import com.ruslan.hlushan.game.api.test.utils.generateFakeRemoteInfo
 import com.ruslan.hlushan.game.storage.impl.remote.dto.UpdateLocalNonModifiedResponse
-import generateAndAddLocalSyncedToLocalRepo
-import generateFakeRemoteRecord
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.threeten.bp.Instant
+import utils.generateAndAddLocalSyncedToLocalRepo
+import utils.generateFakeRemoteRecord
 import kotlin.math.min
 
 internal class UpdateLocalSyncedUseCaseListTest : BaseUpdateLocalSyncedUseCaseTest() {

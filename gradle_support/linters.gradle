@@ -3,6 +3,19 @@ apply plugin: Plugins.detekt
 def lintersConfigFolder = GradleExtraArgs.getLintersConfigFolder(rootProject)
 def reportsFolder = "build/reports/"
 
+tasks.named("detekt").configure {
+    reports {
+        xml.required.set(false)
+        html.required.set(false)
+        sarif.required.set(false)
+
+        txt {
+            outputLocation.set(file("${reportsFolder}detekt.txt"))
+            required.set(true) // reports can also be enabled and disabled at the task level as needed
+        }
+    }
+}
+
 detekt {
     parallel = true
     failFast = false
@@ -22,15 +35,6 @@ detekt {
                         ]
                     }
     )
-
-    reports {
-        xml.enabled = false
-        html.enabled = false
-        txt {
-            enabled = true
-            destination = file("${reportsFolder}detekt.txt")
-        }
-    }
 }
 
 dependencies {

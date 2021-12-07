@@ -560,9 +560,8 @@ class RecordSyncStateTest {
         val localCreatedSyncingStateOriginal = RecordSyncState.forLocalCreated(
                 localActionId = localActionId1,
                 modifyingNow = false,
-                localCreatedTimestamp = lastLocalModifiedTimestamp1)
-
-                .copy(localCreateId = localCreateId, syncStatus = SyncStatus.SYNCHRONIZING)
+                localCreatedTimestamp = lastLocalModifiedTimestamp1
+        ).copy(localCreateId = localCreateId, syncStatus = SyncStatus.SYNCHRONIZING)
 
         val localActionId2 = "2"
         val localCreatedSyncingDeletedState = localCreatedSyncingStateOriginal.toLocalDeletedOrThrow(

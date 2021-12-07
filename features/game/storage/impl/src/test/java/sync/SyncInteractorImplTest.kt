@@ -1,6 +1,5 @@
 package sync
 
-import assertRecordsWithSyncStateInLocalRepo
 import com.ruslan.hlushan.core.logger.api.test.utils.EmptyAppLoggerImpl
 import com.ruslan.hlushan.core.result.OpResult
 import com.ruslan.hlushan.game.api.play.dto.GameRecord
@@ -21,9 +20,6 @@ import com.ruslan.hlushan.game.storage.impl.remote.dto.server.toUpdateLocalSynce
 import com.ruslan.hlushan.test.utils.generateFakeInstantTimestamp
 import com.ruslan.hlushan.third_party.rxjava2.test.utils.CurrentThreadSchedulersManager
 import com.ruslan.hlushan.third_party.rxjava2.test.utils.assertNotCompleteNoErrorsNoValues
-import generateAndAddLocalCreatedToLocalRepo
-import generateAndAddLocalSyncedToLocalRepo
-import generateFakeRemoteRecord
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
@@ -33,6 +29,10 @@ import sync.rule.TestSyncRemoteRepositoryMockCleanUpRule
 import sync.stub.LocalRecordsRepoTestImpl
 import sync.stub.LocalRecordsRepositoryStorageMockImpl
 import sync.stub.SyncRemoteRepositoryMockImpl
+import utils.assertRecordsWithSyncStateInLocalRepo
+import utils.generateAndAddLocalCreatedToLocalRepo
+import utils.generateAndAddLocalSyncedToLocalRepo
+import utils.generateFakeRemoteRecord
 
 internal class SyncInteractorImplTest {
 
