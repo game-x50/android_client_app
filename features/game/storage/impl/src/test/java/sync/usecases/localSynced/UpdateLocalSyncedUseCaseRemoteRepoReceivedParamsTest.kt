@@ -1,13 +1,13 @@
 package sync.usecases.localSynced
 
-import assertRecordsWithSyncStateInLocalRepo
 import com.ruslan.hlushan.game.storage.impl.remote.dto.server.toUpdateLocalSyncedRequest
-import generateAndAddLocalSyncedToLocalRepo
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.threeten.bp.Instant
+import utils.assertRecordsWithSyncStateInLocalRepo
+import utils.generateAndAddLocalSyncedToLocalRepo
 
 internal class UpdateLocalSyncedUseCaseRemoteRepoReceivedParamsTest : BaseUpdateLocalSyncedUseCaseTest() {
 

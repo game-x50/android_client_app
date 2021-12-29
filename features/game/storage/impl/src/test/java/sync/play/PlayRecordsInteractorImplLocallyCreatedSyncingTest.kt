@@ -1,11 +1,11 @@
 package sync.play
 
-import assertRecordsWithSyncStateInLocalRepo
 import com.ruslan.hlushan.game.api.play.dto.toLocalDeletedOrThrow
-import generateAndAddLocalCreatedToLocalRepo
 import org.junit.Assert.assertNotEquals
 import org.junit.Test
 import sync.play.base.BasePlayRecordsInteractorImplLocallyCreatedTest
+import utils.assertRecordsWithSyncStateInLocalRepo
+import utils.generateAndAddLocalCreatedToLocalRepo
 
 internal class PlayRecordsInteractorImplLocallyCreatedSyncingTest : BasePlayRecordsInteractorImplLocallyCreatedTest() {
 

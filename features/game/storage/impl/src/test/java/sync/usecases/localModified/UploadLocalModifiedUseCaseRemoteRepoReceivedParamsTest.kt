@@ -1,15 +1,15 @@
 package sync.usecases.localModified
 
-import assertRecordsWithSyncStateInLocalRepo
 import com.ruslan.hlushan.game.api.play.dto.LocalAction
 import com.ruslan.hlushan.game.storage.impl.remote.dto.UploadLocalModifiedRequest
-import generateAndAddLocalCreatedToLocalRepo
-import generateAndAddLocalDeletedToLocalRepo
-import generateAndAddLocalUpdatedToLocalRepo
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import utils.assertRecordsWithSyncStateInLocalRepo
+import utils.generateAndAddLocalCreatedToLocalRepo
+import utils.generateAndAddLocalDeletedToLocalRepo
+import utils.generateAndAddLocalUpdatedToLocalRepo
 
 internal class UploadLocalModifiedUseCaseRemoteRepoReceivedParamsTest : BaseUploadLocalModifiedUseCaseTest() {
 

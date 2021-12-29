@@ -3,9 +3,9 @@ package sync
 import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
 import com.ruslan.hlushan.game.storage.impl.local.LocalUpdateRequest
 import com.ruslan.hlushan.game.storage.impl.remote.dto.toSyncLocalUpdateRequest
-import generateFakeRemoteRecord
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import utils.generateFakeRemoteRecord
 
 class RemoteRecordTest {
 

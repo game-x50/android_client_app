@@ -1,15 +1,15 @@
 package sync.usecases.downloadNewRemoteCreated
 
-import assertRecordsWithSyncStateInLocalRepo
 import com.ruslan.hlushan.game.api.play.dto.SyncStatus
 import com.ruslan.hlushan.game.storage.impl.local.LastCreatedTimestampWithExcludedRemoteIds
 import com.ruslan.hlushan.game.storage.impl.remote.dto.RemoteRecord
-import generateAndAddLocalSyncedToLocalRepo
-import generateFakeRemoteRecord
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import utils.assertRecordsWithSyncStateInLocalRepo
+import utils.generateAndAddLocalSyncedToLocalRepo
+import utils.generateFakeRemoteRecord
 
 internal class DownloadNewRemoteCreatedUseCaseTest : BaseDownloadNewRemoteCreatedUseCaseTest() {
 

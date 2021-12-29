@@ -5,10 +5,6 @@ import com.ruslan.hlushan.game.api.play.ClearAllLocalGamesInfoUseCase
 import com.ruslan.hlushan.game.storage.impl.ClearAllLocalGamesInfoUseCaseImpl
 import com.ruslan.hlushan.test.utils.generateFakeInstantTimestamp
 import com.ruslan.hlushan.third_party.rxjava2.test.utils.CurrentThreadSchedulersManager
-import generateAndAddLocalCreatedToLocalRepo
-import generateAndAddLocalDeletedToLocalRepo
-import generateAndAddLocalSyncedToLocalRepo
-import generateAndAddLocalUpdatedToLocalRepo
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
@@ -19,6 +15,10 @@ import sync.rule.TestLocalRecordsRepoCleanUpRule
 import sync.stub.LocalRecordsRepoTestImpl
 import sync.stub.LocalRecordsRepositoryStorageMockImpl
 import sync.stub.StartSyncUseCaseStubImpl
+import utils.generateAndAddLocalCreatedToLocalRepo
+import utils.generateAndAddLocalDeletedToLocalRepo
+import utils.generateAndAddLocalSyncedToLocalRepo
+import utils.generateAndAddLocalUpdatedToLocalRepo
 
 internal class ClearAllLocalGamesInfoUseCaseTest {
 

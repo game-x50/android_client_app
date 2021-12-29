@@ -1,6 +1,5 @@
 package sync.usecases.localModified
 
-import assertRecordsWithSyncStateInLocalRepo
 import com.ruslan.hlushan.game.api.play.dto.GameRecord
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.api.play.dto.LocalAction
@@ -13,11 +12,12 @@ import com.ruslan.hlushan.game.storage.impl.remote.dto.LocalModifiedResponse
 import com.ruslan.hlushan.test.utils.generateFakeDuration
 import com.ruslan.hlushan.test.utils.generateFakeInstantTimestamp
 import com.ruslan.hlushan.test.utils.generateFakeStringId
-import generateAndAddLocalCreatedToLocalRepo
-import generateAndAddLocalUpdatedToLocalRepo
-import generateFakeRemoteRecord
 import org.junit.Test
 import org.threeten.bp.Instant
+import utils.assertRecordsWithSyncStateInLocalRepo
+import utils.generateAndAddLocalCreatedToLocalRepo
+import utils.generateAndAddLocalUpdatedToLocalRepo
+import utils.generateFakeRemoteRecord
 
 @Suppress("MaxLineLength")
 internal class UploadLocalModifiedUseCaseLocallyModifiedAndStartedModifyingAgainTest : BaseUploadLocalModifiedUseCaseTest() {
