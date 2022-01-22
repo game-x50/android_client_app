@@ -20,7 +20,7 @@ dependencies {
     compileOnly(projects.features.core.extensions)
     compileOnly(projects.features.core.android.extensions)
     compileOnly(projects.features.thirdParty.androidx.insets)
-    compileOnly(projects.features.core.ui.fragment)
+    compileOnly(projects.features.core.ui.fragment.lib)
     compileOnly(projects.features.core.ui.viewmodel.extensions)
     compileOnly(projects.features.core.command.lib)
     compileOnly(projects.features.game.api.lib)
