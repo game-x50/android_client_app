@@ -5,26 +5,39 @@ https://github.com/autonomousapps/dependency-analysis-android-gradle-plugin
 run
     ./gradlew buildHealt
 
-and check ../build/reports/dependency-analysis/advice-holistic-strict-pretty.json
+and check <buildDir>/reports/dependency-analysis/advice-holistic-strict-pretty.json
 -----------------------------------------------------------------------------------
 https://github.com/jeremylong/dependency-check-gradle
 
 run
     ./gradlew dependencyCheckAnalyze
 
-and check ../build/reports/dependency-check-report.html
+and check <buildDir>/reports/dependency-check-report.html
 -----------------------------------------------------------------------------------
 for full project run
     ./gradlew jacocoTestReport
 
-and check ../build/coverage-report/index.html FOR EACH MODULE
+and check <buildDir>/coverage-report/index.html FOR EACH MODULE
 -----------------------------------------------------------------------------------
 https://github.com/ben-manes/gradle-versions-plugin
 
 run
     ./gradlew dependencyUpdates
 
-and check ../build/dependencyUpdates/report.txt
+and check .<buildDir>/dependencyUpdates/report.txt
+-----------------------------------------------------------------------------------
+https://github.com/cashapp/licensee
+
+run
+    ./gradlew  app:licensee
+
+and check
+for Android modules:
+<buildDir>/reports/licensee/<variant name>/
+for other modules:
+<buildDir>/reports/licensee
+
+best way is to check app module
 -----------------------------------------------------------------------------------
 run
     ./gradlew app:assembleDebug --scan
