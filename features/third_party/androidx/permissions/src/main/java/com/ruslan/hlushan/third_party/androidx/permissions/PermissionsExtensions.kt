@@ -11,17 +11,17 @@ import androidx.fragment.app.FragmentManager
 
 fun <F> F.askPermissions(
         requestCode: Int,
-        vararg permissions: String
+        permissions: Array<String>
 ) where F : Fragment, F : PermissionResultListener =
-        this.childFragmentManager.askPermissions(requestCode, *permissions)
+        this.childFragmentManager.askPermissions(requestCode, permissions)
 
 fun <A> A.askPermissions(
         requestCode: Int,
-        vararg permissions: String
+        permissions: Array<String>
 ) where A : FragmentActivity, A : PermissionResultListener =
-        this.supportFragmentManager.askPermissions(requestCode, *permissions)
+        this.supportFragmentManager.askPermissions(requestCode, permissions)
 
-private fun FragmentManager.askPermissions(requestCode: Int, vararg permissions: String) {
+private fun FragmentManager.askPermissions(requestCode: Int, permissions: Array<String>) {
     val fragmentTag = "PERMISSIONS_HANDLER_FRAGMENT_TAG"
 
     val fragmentInsideFragmentManager = (this.findFragmentByTag(fragmentTag) as? PermissionsHandlerFragment)
@@ -36,7 +36,7 @@ private fun FragmentManager.askPermissions(requestCode: Int, vararg permissions:
         newCreatedFragment
     }
 
-    fragment.askPermissions(requestCode, *permissions)
+    fragment.askPermissions(requestCode, permissions)
 }
 
 internal class PermissionsHandlerFragment : Fragment() {
@@ -64,7 +64,7 @@ internal class PermissionsHandlerFragment : Fragment() {
                  ?: (activity as? PermissionResultListener))
 
     @Suppress("MandatoryBracesIfStatements")
-    fun askPermissions(requestCode: Int, vararg permissions: String) {
+    fun askPermissions(requestCode: Int, permissions: Array<String>) {
         val alreadyAsked = askedRequestCodes[requestCode]
 
         return if ((alreadyAsked != null) && alreadyAsked.isPending) {

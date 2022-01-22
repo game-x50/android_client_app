@@ -56,9 +56,10 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
             abstract val previousPageId: PreviousPageId<Id>
             abstract val nextPageId: NextPageId<Id>
 
+            //TODO: #write_unit_tests
             init {
                 when (previousPageId) {
-                    is PreviousPageId.NoPage -> {
+                    is PreviousPageId.NoPage   -> {
                         if (currentPages.first().pageId !is PageId.First) {
                             throw IllegalArgumentException("For first page pageId should be ${PageId.First}")
                         }
@@ -103,6 +104,7 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
 
                 override val additional: Additional.Loading get() = Additional.Loading
 
+                //TODO: #write_unit_tests
                 init {
                     this.checkPartiallyLoadedLoadingState(direction = direction)
                 }
@@ -126,6 +128,7 @@ sealed class PaginationState<out F : Any, out ItemId : Any, out RI : RecyclerIte
                     currentPages = currentPages
             ), PaginationState.WithError {
 
+                //TODO: #write_unit_tests
                 @SuppressWarnings("LongParameterList")
                 constructor(
                         items: List<RI>,
@@ -204,6 +207,7 @@ fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, Id : Any> PaginationState
 fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, Id : Any> PaginationState<F, ItemId, RI, Id>.itemsCount(): Int =
         itemsOrEmpty().size
 
+//TODO: #write_unit_tests
 @Suppress("MaxLineLength")
 fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, Id : Any>
         PaginationState.Active.PartiallyLoaded<F, ItemId, RI, Id>.createPaginationRequestFor(
@@ -230,6 +234,7 @@ fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, Id : Any>
     }
 }
 
+//TODO: #write_unit_tests
 private fun <F : Any, ItemId : Any, RI : RecyclerItem<ItemId>, Id : Any>
         PaginationState.Active.PartiallyLoaded<F, ItemId, RI, Id>.checkPartiallyLoadedLoadingState(
         direction: PaginationPagesRequest.Direction
