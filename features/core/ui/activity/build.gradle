@@ -18,6 +18,7 @@ dependencies {
     api(projects.features.core.ui.dialog)
     api(projects.features.core.ui.routing)
     api(projects.features.core.ui.lifecycle.lib)
+    api(projects.features.core.ui.fragment.manager.api)
 
     compileOnly(projects.features.core.di)
     compileOnly(projects.features.core.thread.lib)
@@ -28,5 +29,5 @@ dependencies {
 
     api(Deps.androidxActivity)
 
-    compileOnly(Deps.androidMaterial)
+    implementation(Deps.androidMaterial)//todo: #check_compileOnly: assemble failing because of some deps conflict, try to use compileOnly
 }

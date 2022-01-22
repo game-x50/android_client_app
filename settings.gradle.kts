@@ -9,7 +9,7 @@ include(
         ":features:core:android:extensions",
         ":features:core:android:storage",
         ":features:core:android:strict:mode:lib",
-//        ":features:core:android:strict:mode:fragment",
+        ":features:core:android:strict:mode:fragment",
 
         ":features:core:recycler:item",
 
@@ -61,7 +61,7 @@ include(
         ":features:core:ui:api:lib",
         ":features:core:ui:activity",
         ":features:core:ui:fragment:lib",
-//        ":features:core:ui:fragment:manager:api",
+        ":features:core:ui:fragment:manager:api",
         ":features:core:ui:dialog",
         ":features:core:ui:routing",
         ":features:core:ui:views",

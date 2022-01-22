@@ -7,6 +7,7 @@ import com.ruslan.hlushan.core.manager.api.di.ManagersProvider
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
 import com.ruslan.hlushan.core.ui.fragment.injectorHolder
+import com.ruslan.hlushan.core.ui.fragment.manager.FragmentManagerConfiguratorProvider
 import com.ruslan.hlushan.core.ui.routing.di.UiRoutingProvider
 import com.ruslan.hlushan.game.api.di.providers.AuthInteractorProvider
 import com.ruslan.hlushan.game.api.di.providers.GameSettingsProvider
@@ -29,6 +30,7 @@ import dagger.Component
         ],
         dependencies = [
             UiCoreProvider::class,
+            FragmentManagerConfiguratorProvider::class,
             UiRoutingProvider::class,
             UserErrorMapperProvider::class,
             ManagersProvider::class,
@@ -56,6 +58,7 @@ internal interface PlayUiComponent {
         @SuppressWarnings("LongParameterList")
         fun create(
                 uiCoreProvider: UiCoreProvider,
+                fragmentManagerConfiguratorProvider: FragmentManagerConfiguratorProvider,
                 uiRoutingProvider: UiRoutingProvider,
                 userErrorMapperProvider: UserErrorMapperProvider,
                 managersProvider: ManagersProvider,
@@ -75,6 +78,7 @@ internal fun BaseFragment.gamePlayUiComponent(): PlayUiComponent {
         DaggerPlayUiComponent.factory()
                 .create(
                         uiCoreProvider = fragmentInjectorHolder.iBaseInjector.asType(),
+                        fragmentManagerConfiguratorProvider = fragmentInjectorHolder.iBaseInjector.asType(),
                         uiRoutingProvider = fragmentInjectorHolder.iBaseInjector.asType(),
                         userErrorMapperProvider = fragmentInjectorHolder.iBaseInjector.asType(),
                         managersProvider = fragmentInjectorHolder.iBaseInjector.asType(),

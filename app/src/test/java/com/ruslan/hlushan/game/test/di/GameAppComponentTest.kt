@@ -8,6 +8,7 @@ import com.ruslan.hlushan.core.language.api.di.LanguagesInteractorProvider
 import com.ruslan.hlushan.core.logger.api.di.LoggersProvider
 import com.ruslan.hlushan.core.manager.api.di.ManagersProvider
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
+import com.ruslan.hlushan.core.ui.fragment.manager.FragmentManagerConfiguratorProvider
 import com.ruslan.hlushan.core.ui.routing.di.UiRoutingProvider
 import com.ruslan.hlushan.game.api.di.providers.AuthInteractorProvider
 import com.ruslan.hlushan.game.api.di.providers.GameSettingsProvider
@@ -32,6 +33,7 @@ class GameAppComponentTest {
         assertTrue(LanguagesInteractorProvider::class.java.isAssignableFrom(GameAppComponent::class.java))
         assertTrue(SchedulersManagerProvider::class.java.isAssignableFrom(GameAppComponent::class.java))
         assertTrue(UiCoreProvider::class.java.isAssignableFrom(GameAppComponent::class.java))
+        assertTrue(FragmentManagerConfiguratorProvider::class.java.isAssignableFrom(GameAppComponent::class.java))
         assertTrue(UiRoutingProvider::class.java.isAssignableFrom(GameAppComponent::class.java))
         assertTrue(ToolsProvider::class.java.isAssignableFrom(GameAppComponent::class.java))
         assertTrue(DatabaseViewInfoListProvider::class.java.isAssignableFrom(GameAppComponent::class.java))

@@ -6,7 +6,11 @@ import dagger.Binds
 import dagger.Module
 import dagger.Reusable
 
-@Module(includes = [TopRemoteHttpApiModule::class])
+@Module(
+        includes = [
+            TopRemoteHttpApiModule::class
+        ]
+)
 internal interface TopModule {
 
     @Binds

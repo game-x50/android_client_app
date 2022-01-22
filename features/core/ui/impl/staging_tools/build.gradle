@@ -17,6 +17,8 @@ android {
 dependencies {
     api(projects.features.core.android.api)
 
+    implementation(projects.features.core.android.strict.mode.fragment)
+
     compileOnly(projects.features.core.extensions)
     compileOnly(projects.features.core.android.extensions)
     compileOnly(projects.features.thirdParty.androidx.insets)
