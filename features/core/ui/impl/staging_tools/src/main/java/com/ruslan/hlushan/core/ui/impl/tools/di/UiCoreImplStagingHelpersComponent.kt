@@ -7,6 +7,7 @@ import com.ruslan.hlushan.core.logger.api.di.LoggersProvider
 import com.ruslan.hlushan.core.manager.api.di.ManagersProvider
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
 import com.ruslan.hlushan.core.ui.api.extensions.injectorHolder
+import com.ruslan.hlushan.core.ui.fragment.manager.FragmentManagerConfiguratorProvider
 import com.ruslan.hlushan.core.ui.impl.tools.file.FileLogsActivity
 import com.ruslan.hlushan.core.ui.impl.tools.file.FileLogsViewModel
 import com.ruslan.hlushan.third_party.rxjava2.extensions.di.SchedulersManagerProvider
@@ -16,6 +17,7 @@ import dagger.Component
 @Component(
         dependencies = [
             UiCoreProvider::class,
+            FragmentManagerConfiguratorProvider::class,
             UserErrorMapperProvider::class,
             ManagersProvider::class,
             LoggersProvider::class,
@@ -33,6 +35,7 @@ internal interface UiCoreImplStagingHelpersComponent {
         @SuppressWarnings("LongParameterList")
         fun create(
                 uiCoreProvider: UiCoreProvider,
+                fragmentManagerConfiguratorProvider: FragmentManagerConfiguratorProvider,
                 userErrorMapperProvider: UserErrorMapperProvider,
                 managersProvider: ManagersProvider,
                 loggersProvider: LoggersProvider,
@@ -47,6 +50,7 @@ internal fun Activity.getUiCoreImplStagingHelpersComponent(): UiCoreImplStagingH
         DaggerUiCoreImplStagingHelpersComponent.factory()
                 .create(
                         uiCoreProvider = activityInjectorHolder.iBaseInjector.asType(),
+                        fragmentManagerConfiguratorProvider = activityInjectorHolder.iBaseInjector.asType(),
                         userErrorMapperProvider = activityInjectorHolder.iBaseInjector.asType(),
                         managersProvider = activityInjectorHolder.iBaseInjector.asType(),
                         loggersProvider = activityInjectorHolder.iBaseInjector.asType(),

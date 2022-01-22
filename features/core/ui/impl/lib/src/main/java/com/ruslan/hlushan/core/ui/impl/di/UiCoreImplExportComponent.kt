@@ -6,6 +6,7 @@ import com.ruslan.hlushan.core.error.di.UserErrorMapperProvider
 import com.ruslan.hlushan.core.logger.api.di.LoggersProvider
 import com.ruslan.hlushan.core.manager.api.di.ManagersProvider
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
+import com.ruslan.hlushan.core.ui.fragment.manager.FragmentManagerConfiguratorProvider
 import com.ruslan.hlushan.core.ui.impl.tools.di.UiToolsModule
 import com.ruslan.hlushan.core.ui.routing.di.UiRoutingProvider
 import dagger.BindsInstance
@@ -28,6 +29,7 @@ import javax.inject.Singleton
         ]
 )
 interface UiCoreImplExportComponent : UiCoreProvider,
+                                      FragmentManagerConfiguratorProvider,
                                       UiRoutingProvider,
                                       UserErrorMapperProvider {
 

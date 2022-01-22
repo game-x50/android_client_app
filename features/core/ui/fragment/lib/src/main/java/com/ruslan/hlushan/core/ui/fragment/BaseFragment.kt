@@ -28,6 +28,8 @@ import com.ruslan.hlushan.core.ui.api.utils.OnBackPressedHandler
 import com.ruslan.hlushan.core.ui.dialog.DialogCommandsHandlerLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.dialog.command.DialogCommandsHandler
 import com.ruslan.hlushan.core.ui.dialog.showDialogMessage
+import com.ruslan.hlushan.core.ui.fragment.manager.FragmentManagerConfigurator
+import com.ruslan.hlushan.core.ui.fragment.manager.FragmentManagerConfiguratorPluginObserver
 import com.ruslan.hlushan.core.ui.lifecycle.LifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.lifecycle.dispatchEventForAll
 import com.ruslan.hlushan.core.ui.lifecycle.utils.LockableHandlerLifecyclePluginObserver
@@ -61,6 +63,9 @@ constructor(
 
     @Inject
     protected lateinit var compositeUserErrorMapper: CompositeUserErrorMapper
+
+    @Inject
+    protected lateinit var fragmentManagerConfigurator: FragmentManagerConfigurator
 
     @Suppress("UnsafeCast")
     protected val parentRouter: Router
@@ -206,15 +211,34 @@ constructor(
     @CallSuper
     @UiMainThread
     protected open fun initLifecyclePluginObservers() {
-        addLifecyclePluginObserver(LoggerLifecyclePluginObserver(owner = this, appLogger = appLogger))
-        addLifecyclePluginObserver(DialogCommandsHandlerLifecyclePluginObserver(
-                dialogCommandsHandler = dialogCommandsHandler
-        ))
-        addLifecyclePluginObserver(LockableHandlerLifecyclePluginObserver(viewsHandler = viewsHandler))
-        addLifecyclePluginObserver(AppActivitiesSettingsLifecyclePluginObserver(
-                owner = this,
-                appActivitiesSettings = appActivitiesSettings
-        ))
+        addLifecyclePluginObserver(
+                LoggerLifecyclePluginObserver(
+                        owner = this,
+                        appLogger = appLogger
+                )
+        )
+        addLifecyclePluginObserver(
+                DialogCommandsHandlerLifecyclePluginObserver(
+                        dialogCommandsHandler = dialogCommandsHandler
+                )
+        )
+        addLifecyclePluginObserver(
+                LockableHandlerLifecyclePluginObserver(
+                        viewsHandler = viewsHandler
+                )
+        )
+        addLifecyclePluginObserver(
+                AppActivitiesSettingsLifecyclePluginObserver(
+                        owner = this,
+                        appActivitiesSettings = appActivitiesSettings
+                )
+        )
+        addLifecyclePluginObserver(
+                FragmentManagerConfiguratorPluginObserver(
+                        configurator = fragmentManagerConfigurator,
+                        fragmentManager = this.childFragmentManager
+                )
+        )
     }
 
     @UiMainThread

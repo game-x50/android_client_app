@@ -31,6 +31,8 @@ dependencies {
     compileOnly(projects.features.core.ui.recycler.adapter)
     compileOnly(projects.features.thirdParty.rxjava2.extensions)
 
+    implementation(projects.features.core.android.strict.mode.fragment)
+
     implementation(projects.features.core.ui.resources.colors)//todo: #check_compileOnly: because of assembleStaging failing on CI, try to use compileOnly
     implementation(projects.features.core.ui.resources.dimens)//todo: #check_compileOnly: because of assembleStaging failing on CI, try to use compileOnly
 

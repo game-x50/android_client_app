@@ -16,6 +16,7 @@ import com.ruslan.hlushan.core.logger.api.di.LoggersProvider
 import com.ruslan.hlushan.core.logger.impl.di.LoggerImplExportComponent
 import com.ruslan.hlushan.core.manager.api.di.ManagersProvider
 import com.ruslan.hlushan.core.ui.api.di.UiCoreProvider
+import com.ruslan.hlushan.core.ui.fragment.manager.FragmentManagerConfiguratorProvider
 import com.ruslan.hlushan.core.ui.impl.di.UiCoreImplExportComponent
 import com.ruslan.hlushan.core.ui.routing.di.UiRoutingProvider
 import com.ruslan.hlushan.game.BuildConfig
@@ -71,6 +72,7 @@ internal interface GameAppComponent : IBaseInjector,
                                       LanguagesInteractorProvider,
                                       SchedulersManagerProvider,
                                       UiCoreProvider,
+                                      FragmentManagerConfiguratorProvider,
                                       UiRoutingProvider,
                                       ToolsProvider,
                                       DatabaseViewInfoListProvider,
@@ -97,6 +99,7 @@ internal interface GameAppComponent : IBaseInjector,
                 schedulersProvider: SchedulersManagerProvider,
                 appContextProvider: AppContextProvider,
                 uiCoreProvider: UiCoreProvider,
+                fragmentManagerConfiguratorProvider: FragmentManagerConfiguratorProvider,
                 uiRoutingProvider: UiRoutingProvider,
                 toolsProvider: ToolsProvider,
                 userErrorMapperProvider: UserErrorMapperProvider,
@@ -224,6 +227,7 @@ internal interface GameAppComponent : IBaseInjector,
                             schedulersProvider = coreImplProvider,
                             appContextProvider = coreImplProvider,
                             uiCoreProvider = uiCoreProvider,
+                            fragmentManagerConfiguratorProvider = uiCoreProvider,
                             uiRoutingProvider = uiCoreProvider,
                             toolsProvider = toolsProvider,
                             userErrorMapperProvider = uiCoreProvider,

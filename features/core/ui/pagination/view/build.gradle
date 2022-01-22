@@ -13,7 +13,7 @@ android {
 
 dependencies {
     api(projects.features.core.ui.pagination.viewmodel)
-    api(projects.features.core.ui.fragment)
+    api(projects.features.core.ui.fragment.lib)
     api(projects.features.core.ui.recycler.adapter)
 
     compileOnly(projects.features.core.thread.lib)

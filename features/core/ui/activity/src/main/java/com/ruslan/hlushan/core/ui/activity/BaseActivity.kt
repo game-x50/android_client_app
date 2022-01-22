@@ -9,6 +9,8 @@ import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.api.manager.AppActivitiesSettings
 import com.ruslan.hlushan.core.ui.dialog.DialogCommandsHandlerLifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.dialog.command.DialogCommandsHandler
+import com.ruslan.hlushan.core.ui.fragment.manager.FragmentManagerConfigurator
+import com.ruslan.hlushan.core.ui.fragment.manager.FragmentManagerConfiguratorPluginObserver
 import com.ruslan.hlushan.core.ui.lifecycle.LifecyclePluginObserver
 import com.ruslan.hlushan.core.ui.lifecycle.dispatchEventForAll
 import com.ruslan.hlushan.core.ui.lifecycle.utils.LoggerLifecyclePluginObserver
@@ -26,6 +28,9 @@ abstract class BaseActivity : AppCompatActivity(),
 
     @Inject
     protected lateinit var appLogger: AppLogger
+
+    @Inject
+    protected lateinit var fragmentManagerConfigurator: FragmentManagerConfigurator
 
     override val currentState: Lifecycle.State get() = lifecycle.currentState
 
@@ -145,10 +150,23 @@ abstract class BaseActivity : AppCompatActivity(),
     @CallSuper
     @UiMainThread
     protected open fun initLifecyclePluginObservers() {
-        addLifecyclePluginObserver(LoggerLifecyclePluginObserver(owner = this, appLogger = appLogger))
-        addLifecyclePluginObserver(DialogCommandsHandlerLifecyclePluginObserver(
-                dialogCommandsHandler = dialogCommandsHandler
-        ))
+        addLifecyclePluginObserver(
+                LoggerLifecyclePluginObserver(
+                        owner = this,
+                        appLogger = appLogger
+                )
+        )
+        addLifecyclePluginObserver(
+                DialogCommandsHandlerLifecyclePluginObserver(
+                        dialogCommandsHandler = dialogCommandsHandler
+                )
+        )
+        addLifecyclePluginObserver(
+                FragmentManagerConfiguratorPluginObserver(
+                        configurator = fragmentManagerConfigurator,
+                        fragmentManager = this.supportFragmentManager
+                )
+        )
     }
 
     @UiMainThread

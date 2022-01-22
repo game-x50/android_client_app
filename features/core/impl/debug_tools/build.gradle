@@ -16,6 +16,8 @@ android {
 dependencies {
     api(projects.features.core.impl.stagingTools)
 
+    implementation(projects.features.core.android.strict.mode.lib)
+
     compileOnly(projects.features.core.extensions)
     compileOnly(projects.features.core.thread.lib)
 

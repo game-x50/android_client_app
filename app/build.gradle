@@ -119,7 +119,7 @@ dependencies {
     implementation(projects.features.core.ui.views)
 
     implementation(projects.features.core.ui.activity)
-    implementation(projects.features.core.ui.fragment)
+    implementation(projects.features.core.ui.fragment.lib)
 
     runtimeOnly(projects.features.core.ui.layout.container)
 
