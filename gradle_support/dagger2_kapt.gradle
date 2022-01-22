@@ -1,5 +1,14 @@
 apply from: GradleExtraArgs.getKapt(rootProject)
 
+android {
+    kapt {
+        arguments {
+            arg("dagger.fastInit", "enabled")
+            arg("dagger.fullBindingGraphValidattion", "ERROR")
+        }
+    }
+}
+
 dependencies {
     kapt(Deps.dagger2Compiler)
     compileOnly(Deps.dagger2)

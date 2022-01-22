@@ -56,7 +56,13 @@ https://appsweep.guardsquare.com/
 
 Guardsquare tool for scanning apps to find security issues.
 -----------------------------------------------------------------------------------
+https://github.com/jraska/modules-graph-assert
+
+A Gradle plugin that helps keep your module graph healthy and lean.
+-----------------------------------------------------------------------------------
+https://github.com/dropbox/AffectedModuleDetector
 https://github.com/ismaeldivita/change-tracker-plugin
+https://live.jugru.org/video?v=MTAwMTA4iiM3MjM0ijA
 
 Check to run unit tests and lint just for affected modules.
 -----------------------------------------------------------------------------------
@@ -68,6 +74,7 @@ but potential problem with room schema: without changing schema version number a
 schema json file won't be updated.
 -----------------------------------------------------------------------------------
 https://github.com/dipien/releases-hub-gradle-plugin
+https://akjaw.com/keeping-gradle-dependencies-up-to-date-with-github-actions-and-refreshversions/
 
 Automatically upgrade your java gradle project dependencies and send a GitHub pull request with the changes.
 -----------------------------------------------------------------------------------

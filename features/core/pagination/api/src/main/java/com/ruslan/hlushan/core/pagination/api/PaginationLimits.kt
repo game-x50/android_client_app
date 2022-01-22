@@ -8,6 +8,7 @@ class PaginationLimits(
         @IntRange(from = MIN_PAGINATION_LIMITS_VALUE) val itemsOffsetToBorder: Int = 6,
         @IntRange(from = MIN_PAGINATION_LIMITS_VALUE) val maxStoredItemsCount: Int = 1_000
 ) {
+    //TODO: #write_unit_tests
     init {
         if ((itemsOffsetToBorder < MIN_PAGINATION_LIMITS_VALUE)
             || (maxStoredItemsCount < MIN_PAGINATION_LIMITS_VALUE)) {
