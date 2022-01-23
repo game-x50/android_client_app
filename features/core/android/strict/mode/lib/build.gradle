@@ -1,0 +1,16 @@
+apply from: GradleExtraArgs.getBaseAndroidLibrary(rootProject)
+apply from: GradleExtraArgs.getAndroidSingleBuildVariant(rootProject)
+
+android {
+
+    defaultConfig {
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    resourcePrefix("core_android_strict_mode_")
+}
+
+dependencies {
+    compileOnly(projects.features.core.thread.lib)
+}

@@ -28,6 +28,7 @@ android {
 dependencies {
     api(projects.features.core.manager.api)
     api(projects.features.core.ui.api.lib)
+    api(projects.features.core.ui.fragment.manager.api)
     api(projects.features.core.error)
     api(projects.features.core.logger.api.lib)
     api(projects.features.core.ui.routing)

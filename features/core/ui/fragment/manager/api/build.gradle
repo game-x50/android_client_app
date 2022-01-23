@@ -1,0 +1,18 @@
+apply from: GradleExtraArgs.getBaseAndroidLibrary(rootProject)
+apply from: GradleExtraArgs.getAndroidSingleBuildVariant(rootProject)
+
+android {
+
+    defaultConfig {
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    resourcePrefix("core_ui_fragment_manager_api_")
+}
+
+dependencies {
+    api(projects.features.core.ui.lifecycle.lib)
+
+    api(Deps.androidxFragment)
+}

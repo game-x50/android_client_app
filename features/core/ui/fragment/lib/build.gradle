@@ -19,6 +19,7 @@ dependencies {
     api(projects.features.core.ui.routing)
     api(projects.features.core.ui.lifecycle.lib)
     api(projects.features.core.error)
+    api(projects.features.core.ui.fragment.manager.api)
 
     compileOnly(projects.features.core.extensions)
     compileOnly(projects.features.core.android.extensions)

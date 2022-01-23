@@ -21,7 +21,12 @@ import dagger.Module
 import dagger.Reusable
 import javax.inject.Singleton
 
-@Module(includes = [GameDatabaseModule::class, SyncRemoteHttpApiModule::class])
+@Module(
+        includes = [
+            GameDatabaseModule::class,
+            SyncRemoteHttpApiModule::class
+        ]
+)
 internal interface RecordsModule {
 
     @Binds
