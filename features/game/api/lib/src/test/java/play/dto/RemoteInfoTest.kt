@@ -11,10 +11,10 @@ class RemoteInfoTest {
     fun `constructor not valid - remoteCreatedTimestamp can't be grater then lastRemoteSyncedTimestamp`() {
         val nowTimestamp = Instant.now()
         RemoteInfo(
-                remoteId = "",
-                remoteActionId = "",
-                remoteCreatedTimestamp = nowTimestamp,
-                lastRemoteSyncedTimestamp = nowTimestamp.minusMillis(10)
+                remoteId = RemoteInfo.Id(""),
+                remoteActionId = RemoteInfo.ActionId(""),
+                remoteCreatedTimestamp = RemoteInfo.CreatedTimestamp(nowTimestamp),
+                lastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp(nowTimestamp.minusMillis(10))
         )
     }
 }

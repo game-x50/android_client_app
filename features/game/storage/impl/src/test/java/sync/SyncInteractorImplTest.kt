@@ -5,6 +5,7 @@ import com.ruslan.hlushan.core.result.OpResult
 import com.ruslan.hlushan.game.api.play.dto.GameRecord
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
+import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
 import com.ruslan.hlushan.game.api.play.dto.SyncStatus
 import com.ruslan.hlushan.game.api.test.utils.generateFakeRemoteInfo
 import com.ruslan.hlushan.game.storage.impl.DownloadNewRemoteCreatedUseCase
@@ -94,7 +95,9 @@ internal class SyncInteractorImplTest {
         val timestampOfStart = lastCreatedTimestamp.plusMillis(1)
         val timestampAfterStart = timestampOfStart.plusMillis(1)
 
-        localRecordsRepositoryStorage.lastCreatedTimestamp = lastCreatedTimestamp
+        val wrappedTimestampOfStart = RemoteInfo.LastSyncedTimestamp(timestampOfStart)
+
+        localRecordsRepositoryStorage.lastCreatedTimestamp = RemoteInfo.CreatedTimestamp(lastCreatedTimestamp)
 
         val originalCreated = localRepo.generateAndAddLocalCreatedToLocalRepo(
                 syncingNow = false,
@@ -126,10 +129,10 @@ internal class SyncInteractorImplTest {
         testCompleteObserver.assertNotCompleteNoErrorsNoValues()
         localRepo.assertRecordsWithSyncStateInLocalRepo(listOf(originalCreated, originalSynced))
 
-        remoteRepo.returnTimestampResult = OpResult.Success(timestampOfStart)
+        remoteRepo.returnTimestampResult = OpResult.Success(wrappedTimestampOfStart)
         remoteRepo.advanceTimeToEndDelay()
 
-        val originalCreatedLocalCreateId: String = localRepo.getAll().first().syncState.localCreateId!!
+        val originalCreatedLocalCreateId = localRepo.getAll().first().syncState.localCreateId!!
 
         isSynchronizingObserver
                 .assertNotComplete()
@@ -155,8 +158,8 @@ internal class SyncInteractorImplTest {
         val createdSuccessResponse = LocalModifiedResponse.Create.Success(
                 id = originalCreated.record.id,
                 remoteInfo = generateFakeRemoteInfo().copy(
-                        remoteCreatedTimestamp = timestampAfterStart,
-                        lastRemoteSyncedTimestamp = timestampAfterStart
+                        remoteCreatedTimestamp = RemoteInfo.CreatedTimestamp(timestampAfterStart),
+                        lastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp(timestampAfterStart)
                 )
         )
 
@@ -183,7 +186,7 @@ internal class SyncInteractorImplTest {
                 .assertNoErrors()
                 .assertValues(false, true)
         testCompleteObserver.assertNotCompleteNoErrorsNoValues()
-        assertEquals(timestampOfStart, localRepo.maxLastRemoteSyncedTimestampRequest)
+        assertEquals(wrappedTimestampOfStart, localRepo.maxLastRemoteSyncedTimestampRequest)
         assertEquals(
                 listOf(originalSynced.syncState.remoteInfo!!.toUpdateLocalSyncedRequest()),
                 remoteRepo.receivedUpdateLocalSyncedRequest
@@ -191,7 +194,7 @@ internal class SyncInteractorImplTest {
 
         val updateLocalNonModifiedResponse = UpdateLocalNonModifiedResponse.NoChanges(
                 remoteId = originalSynced.syncState.remoteInfo!!.remoteId,
-                lastRemoteSyncedTimestamp = timestampAfterStart
+                lastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp(timestampAfterStart)
         )
         remoteRepo.returnListUpdateLocalNonModifiedResponses = listOf(updateLocalNonModifiedResponse)
         remoteRepo.advanceTimeToEndDelay()
@@ -213,7 +216,10 @@ internal class SyncInteractorImplTest {
         assertEquals(
                 GetNewRemoteCreatedRequest(
                         lastCreatedTimestamp = lastCreatedTimestamp,
-                        excludedRemoteIds = listOf(createdSuccessResponse.remoteInfo.remoteId, originalSynced.syncState.remoteInfo!!.remoteId),
+                        excludedRemoteIds = listOf(
+                                createdSuccessResponse.remoteInfo.remoteId,
+                                originalSynced.syncState.remoteInfo!!.remoteId
+                        ).map(RemoteInfo.Id::value),
                         limit = limit
                 ),
                 remoteRepo.receivedGetNewRemoteCreatedRequest
@@ -221,7 +227,10 @@ internal class SyncInteractorImplTest {
 
         val maxTimestampAfter = timestampAfterStart.plusMillis(1)
         val remoteRecord = generateFakeRemoteRecord(
-                remoteInfo = generateFakeRemoteInfo().copy(remoteCreatedTimestamp = maxTimestampAfter, lastRemoteSyncedTimestamp = maxTimestampAfter)
+                remoteInfo = generateFakeRemoteInfo().copy(
+                        remoteCreatedTimestamp = RemoteInfo.CreatedTimestamp(maxTimestampAfter),
+                        lastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp(maxTimestampAfter)
+                )
         )
 
         remoteRepo.returnListRemoteRecords = listOf(remoteRecord)
@@ -229,7 +238,11 @@ internal class SyncInteractorImplTest {
 
         localRepo.getLastCreatedTimestampWithExcludedRemoteIds()
                 .test()
-                .assertValue(LastCreatedTimestampWithExcludedRemoteIds(maxTimestampAfter, listOf(remoteRecord.remoteInfo.remoteId)))
+                .assertValue(
+                        LastCreatedTimestampWithExcludedRemoteIds(
+                                lastCreatedTimestamp = RemoteInfo.CreatedTimestamp(maxTimestampAfter),
+                                excludedRemoteIds = listOf(remoteRecord.remoteInfo.remoteId))
+                )
         val additional = GameRecordWithSyncState(
                 record = GameRecord(
                         id = originalSynced.record.id.inc(),

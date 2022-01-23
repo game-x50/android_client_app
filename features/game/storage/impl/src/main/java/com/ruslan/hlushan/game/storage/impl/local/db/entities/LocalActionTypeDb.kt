@@ -16,7 +16,7 @@ internal val LocalAction.typeDb: LocalActionTypeDb
     }
 
 internal fun LocalActionTypeDb.toLocalAction(
-        actionId: String
+        actionId: LocalAction.Id
 ): LocalAction = when (this) {
     LocalActionTypeDb.CREATE -> LocalAction.Create(actionId = actionId)
     LocalActionTypeDb.UPDATE -> LocalAction.Update(actionId = actionId)

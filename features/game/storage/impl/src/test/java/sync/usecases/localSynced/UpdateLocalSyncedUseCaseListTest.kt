@@ -1,6 +1,7 @@
 package sync.usecases.localSynced
 
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
+import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
 import com.ruslan.hlushan.game.api.play.dto.SyncStatus
 import com.ruslan.hlushan.game.api.test.utils.generateFakeRemoteInfo
 import com.ruslan.hlushan.game.storage.impl.remote.dto.UpdateLocalNonModifiedResponse
@@ -17,7 +18,7 @@ internal class UpdateLocalSyncedUseCaseListTest : BaseUpdateLocalSyncedUseCaseTe
 
     @Test
     fun testUpdateAllEmptyList() {
-        val disposable = updateLocalSyncedUseCase.updateAll(Instant.now(), 100)
+        val disposable = updateLocalSyncedUseCase.updateAll(RemoteInfo.LastSyncedTimestamp.now(), 100)
                 .subscribe()
 
         assertEquals(null, remoteRepo.receivedUpdateLocalSyncedRequest)
@@ -59,7 +60,10 @@ internal class UpdateLocalSyncedUseCaseListTest : BaseUpdateLocalSyncedUseCaseTe
 
         assertEquals(countRecords, localRepo.getAll().size)
 
-        val disposable = updateLocalSyncedUseCase.updateAll(searchParamLastRemoteSyncedTimestamp, countRecords)
+        val disposable = updateLocalSyncedUseCase.updateAll(
+                maxLastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp(searchParamLastRemoteSyncedTimestamp),
+                stepCount = countRecords
+        )
                 .subscribe()
 
         assertEquals((1..countRecords).map { SyncStatus.SYNCED },
@@ -84,7 +88,7 @@ internal class UpdateLocalSyncedUseCaseListTest : BaseUpdateLocalSyncedUseCaseTe
                      localRepo.getAll().map { item -> item.syncState.syncStatus })
 
         val disposable = updateLocalSyncedUseCase.updateAll(
-                maxLastRemoteSyncedTimestamp = searchParamLastRemoteSyncedTimestamp,
+                maxLastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp(searchParamLastRemoteSyncedTimestamp),
                 stepCount = count
         )
                 .subscribe()
@@ -113,7 +117,7 @@ internal class UpdateLocalSyncedUseCaseListTest : BaseUpdateLocalSyncedUseCaseTe
                 .map { original ->
                     UpdateLocalNonModifiedResponse.NoChanges(
                             remoteId = original.syncState.remoteInfo!!.remoteId,
-                            lastRemoteSyncedTimestamp = Instant.now()
+                            lastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp.now()
                     )
                 }
 
@@ -143,7 +147,7 @@ internal class UpdateLocalSyncedUseCaseListTest : BaseUpdateLocalSyncedUseCaseTe
                      localRepo.getAll().map { item -> item.syncState.syncStatus })
 
         val disposable = updateLocalSyncedUseCase.updateAll(
-                maxLastRemoteSyncedTimestamp = searchParamLastRemoteSyncedTimestamp,
+                maxLastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp(searchParamLastRemoteSyncedTimestamp),
                 stepCount = count
         )
                 .subscribe()
@@ -178,7 +182,7 @@ internal class UpdateLocalSyncedUseCaseListTest : BaseUpdateLocalSyncedUseCaseTe
                      localRepo.getAll().map { item -> item.syncState.syncStatus })
 
         val disposable = updateLocalSyncedUseCase.updateAll(
-                maxLastRemoteSyncedTimestamp = searchParamLastRemoteSyncedTimestamp,
+                maxLastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp(searchParamLastRemoteSyncedTimestamp),
                 stepCount = count
         )
                 .subscribe()
@@ -214,7 +218,10 @@ internal class UpdateLocalSyncedUseCaseListTest : BaseUpdateLocalSyncedUseCaseTe
         assertEquals((1..count).map { SyncStatus.SYNCED },
                      localRepo.getAll().map { item -> item.syncState.syncStatus })
 
-        val disposable = updateLocalSyncedUseCase.updateAll(searchParamLastRemoteSyncedTimestamp, step)
+        val disposable = updateLocalSyncedUseCase.updateAll(
+                maxLastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp(searchParamLastRemoteSyncedTimestamp),
+                stepCount = step
+        )
                 .subscribe()
 
         (1..count step step).forEach { stepCounter ->
@@ -259,7 +266,7 @@ internal class UpdateLocalSyncedUseCaseListTest : BaseUpdateLocalSyncedUseCaseTe
             dbRecordsLastRemoteSyncedTimestamp: Instant
     ): List<Pair<GameRecordWithSyncState, UpdateLocalNonModifiedResponse>> {
 
-        val lastRemoteSyncedTimestamp: Instant = Instant.now().plusMillis(129301)
+        val lastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp(Instant.now().plusMillis(129301))
 
         return (1..count).map { index ->
 

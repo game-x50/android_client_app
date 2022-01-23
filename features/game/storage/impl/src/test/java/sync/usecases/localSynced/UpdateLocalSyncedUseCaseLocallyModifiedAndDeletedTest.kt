@@ -3,14 +3,14 @@ package sync.usecases.localSynced
 import com.ruslan.hlushan.game.api.play.dto.GameRecord
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
+import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
 import com.ruslan.hlushan.game.api.play.dto.toLocalDeletedOrThrow
 import com.ruslan.hlushan.game.api.test.utils.generateFakeGameState
+import com.ruslan.hlushan.game.api.test.utils.generateFakeRecordSyncStateLastLocalModifiedTimestamp
 import com.ruslan.hlushan.game.api.test.utils.generateFakeRemoteInfo
 import com.ruslan.hlushan.game.storage.impl.remote.dto.UpdateLocalNonModifiedResponse
 import com.ruslan.hlushan.test.utils.generateFakeDuration
-import com.ruslan.hlushan.test.utils.generateFakeInstantTimestamp
 import org.junit.Test
-import org.threeten.bp.Instant
 import utils.assertRecordsWithSyncStateInLocalRepo
 import utils.generateAndAddLocalSyncedToLocalRepo
 import utils.generateFakeRemoteRecord
@@ -24,7 +24,7 @@ internal class UpdateLocalSyncedUseCaseLocallyModifiedAndDeletedTest : BaseUpdat
 
         val updatedGameState = generateFakeGameState()
         val updatedTotalPlayed = generateFakeDuration()
-        val localModifiedTimestamp = generateFakeInstantTimestamp()
+        val localModifiedTimestamp = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         playRecordsInteractor.updateAndGetRecordForPlaying(localSyncedRecordId)
                 .flatMapCompletable { playing ->
@@ -44,7 +44,7 @@ internal class UpdateLocalSyncedUseCaseLocallyModifiedAndDeletedTest : BaseUpdat
                 .localAction!!
                 .actionId
 
-        val lastRemoteSyncedTimestamp = Instant.now()
+        val lastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp.now()
 
         val response = UpdateLocalNonModifiedResponse.NoChanges(
                 remoteId = original.syncState.remoteInfo!!.remoteId,
@@ -74,7 +74,7 @@ internal class UpdateLocalSyncedUseCaseLocallyModifiedAndDeletedTest : BaseUpdat
     fun testLocalLocallySyncedChangedModifiedAndDeleted() {
         val original = localRepo.generateAndAddLocalSyncedToLocalRepo(syncingNow = true, modifyingNow = false)
         val localSyncedRecordId = original.record.id
-        val localModifiedTimestamp = generateFakeInstantTimestamp()
+        val localModifiedTimestamp = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         playRecordsInteractor.updateAndGetRecordForPlaying(localSyncedRecordId)
                 .flatMapCompletable { playing ->
@@ -92,7 +92,7 @@ internal class UpdateLocalSyncedUseCaseLocallyModifiedAndDeletedTest : BaseUpdat
                 remoteId = original.syncState.remoteInfo!!.remoteId
         )
 
-        val localModifiedTimestampFromRemote = generateFakeInstantTimestamp()
+        val localModifiedTimestampFromRemote = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         val remoteRecord = generateFakeRemoteRecord(
                 remoteInfo = remoteInfo,
@@ -137,7 +137,7 @@ internal class UpdateLocalSyncedUseCaseLocallyModifiedAndDeletedTest : BaseUpdat
                             id = playing.id,
                             gameState = generateFakeGameState(),
                             totalPlayed = generateFakeDuration(),
-                            localModifiedTimestamp = generateFakeInstantTimestamp()
+                            localModifiedTimestamp = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
                     )
                 }
                 .andThen(playRecordsInteractor.removeRecordById(localSyncedRecordId))
@@ -158,7 +158,7 @@ internal class UpdateLocalSyncedUseCaseLocallyModifiedAndDeletedTest : BaseUpdat
 
         val updatedGameState = generateFakeGameState()
         val updatedTotalPlayed = generateFakeDuration()
-        val updatedLocalModifiedTimestamp = generateFakeInstantTimestamp()
+        val updatedLocalModifiedTimestamp = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         playRecordsInteractor.updateAndGetRecordForPlaying(localSyncedRecordId)
                 .flatMapCompletable { playing ->

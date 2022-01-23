@@ -10,6 +10,7 @@ import com.ruslan.hlushan.game.api.play.dto.GameRecord
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.api.play.dto.LocalAction
 import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
+import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
 import com.ruslan.hlushan.game.api.play.dto.SyncStatus
 import com.ruslan.hlushan.game.api.play.dto.createNewStateToStoreAfterUnknownSyncResult
 import com.ruslan.hlushan.game.storage.impl.local.LocalUpdateRequest
@@ -17,6 +18,7 @@ import com.ruslan.hlushan.game.storage.impl.local.db.entities.GameRecordDb
 import com.ruslan.hlushan.game.storage.impl.local.db.entities.GameStateDb
 import com.ruslan.hlushan.game.storage.impl.local.db.entities.LocalActionTypeDb
 import com.ruslan.hlushan.game.storage.impl.local.db.entities.MatrixAndNewItemsStateDb
+import com.ruslan.hlushan.game.storage.impl.local.db.entities.fromDbRecord
 import com.ruslan.hlushan.game.storage.impl.local.db.entities.toDbGameState
 import com.ruslan.hlushan.game.storage.impl.local.db.entities.toMatricesList
 import com.ruslan.hlushan.game.storage.impl.local.db.entities.typeDb
@@ -73,7 +75,7 @@ internal abstract class GameRecordsDAO {
     abstract fun getRecordsExcludeOrderByLastModifiedDesc(
             localActionType: LocalActionTypeDb,
             excludedIds: List<Long>,
-            maxLastModified: Instant?,
+            maxLastModified: Instant/*todo: room_db_converter: RecordSyncState.LastLocalModifiedTimestamp*/?,
             @IntRange(from = 1) limit: Int
     ): Single<List<GameRecordDb>>
 
@@ -86,7 +88,7 @@ internal abstract class GameRecordsDAO {
     abstract fun getRecordsExcludeOrderByLastModifiedAsc(
             localActionType: LocalActionTypeDb,
             excludedIds: List<Long>,
-            minLastModified: Instant?,
+            minLastModified: Instant/*todo: room_db_converter: RecordSyncState.LastLocalModifiedTimestamp*/?,
             @IntRange(from = 1) limit: Int
     ): Single<List<GameRecordDb>>
 
@@ -151,7 +153,10 @@ internal abstract class GameRecordsDAO {
         SET ${GameStateDb.LOCAL_CREATE_ID} = :localCreatedId
         WHERE ${GameStateDb.RECORD_ID} = :id
         """)
-    abstract fun setLocalCreatedIdById(id: Long, localCreatedId: String)
+    abstract fun setLocalCreatedIdById(
+            id: Long,
+            localCreatedId: String/*todo: room_db_converter: RecordSyncState.LocalCreateId*/
+    )
 
     @Transaction
     @Query("DELETE FROM ${GameStateDb.GAME_RECORDS_TABLE}")
@@ -170,7 +175,7 @@ internal abstract class GameRecordsDAO {
     @Transaction
     open fun updateSyncStatusOnSyncFail(ids: List<Long>) {
         getRecordsByIds(ids)
-                .map(GameRecordDb::fromDbRecord)
+                .map { dbRec -> dbRec.fromDbRecord() }
                 .forEach { rec ->
                     updateSyncStatusOnSyncFail(rec.record.id, rec.syncState)
                 }
@@ -189,7 +194,7 @@ internal abstract class GameRecordsDAO {
     @Transaction
     open fun markAsSyncingAndGetWaitingRecords(
             @IntRange(from = 1) limit: Int,
-            createIdGenerator: (GameRecord) -> String
+            createIdGenerator: (GameRecord) -> RecordSyncState.LocalCreateId
     ): List<GameRecordWithSyncState> {
         val records = getRecordsWithSyncAndPlayingStatus(
                 syncStatus = SyncStatus.WAITING,
@@ -204,11 +209,11 @@ internal abstract class GameRecordsDAO {
                            })
 
         return records
-                .map(GameRecordDb::fromDbRecord)
+                .map { dbRec -> dbRec.fromDbRecord() }
                 .map { rec ->
                     if ((rec.syncState.localAction is LocalAction.Create) && (rec.syncState.localCreateId == null)) {
                         val generatedLocalCreatedIdById = createIdGenerator(rec.record)
-                        setLocalCreatedIdById(rec.record.id, generatedLocalCreatedIdById)
+                        setLocalCreatedIdById(rec.record.id, generatedLocalCreatedIdById.value)
                         rec.copy(syncState = rec.syncState.copy(localCreateId = generatedLocalCreatedIdById,
                                                                 syncStatus = SyncStatus.SYNCHRONIZING))
                     } else {
@@ -219,13 +224,13 @@ internal abstract class GameRecordsDAO {
 
     @Transaction
     open fun markAsSyncingAndGetSyncedWhereLastRemoteSyncSmallerThen(
-            maxLastRemoteSyncedTimestamp: Instant,
+            maxLastRemoteSyncedTimestamp: RemoteInfo.LastSyncedTimestamp,
             @IntRange(from = 1) limit: Int
     ): List<GameRecordDb> {
         val records = getWhereLastRemoteSyncSmallerThen(
                 syncStatus = SyncStatus.SYNCED,
                 modifying = false,
-                maxLastRemoteSyncedTimestamp = maxLastRemoteSyncedTimestamp,
+                maxLastRemoteSyncedTimestamp = maxLastRemoteSyncedTimestamp.value,
                 limit = limit
         )
 
@@ -247,20 +252,20 @@ internal abstract class GameRecordsDAO {
         WHERE ${GameStateDb.REMOTE_CREATED_TIMESTAMP} >= :minRemoteCreatedTimestamp
         """)
     abstract fun getRemoteIdsWhereCreatedTimestampGraterOrEqual(
-            minRemoteCreatedTimestamp: Instant
-    ): Single<List<String>>
+            minRemoteCreatedTimestamp: Instant/*todo: room_db_converter: RemoteInfo.CreatedTimestamp*/
+    ): Single<List<String/*todo: room_db_converter: RemoteInfo.Id*/>>
 
     fun updateSyncStateById(recordId: Long, updatedSyncState: RecordSyncState) =
             updateSyncStateById(
                     id = recordId,
-                    remoteId = updatedSyncState.remoteInfo?.remoteId,
-                    remoteActionId = updatedSyncState.remoteInfo?.remoteActionId,
-                    remoteCreatedTimestamp = updatedSyncState.remoteInfo?.remoteCreatedTimestamp,
-                    lastRemoteSyncedTimestamp = updatedSyncState.remoteInfo?.lastRemoteSyncedTimestamp,
+                    remoteId = updatedSyncState.remoteInfo?.remoteId?.value,
+                    remoteActionId = updatedSyncState.remoteInfo?.remoteActionId?.value,
+                    remoteCreatedTimestamp = updatedSyncState.remoteInfo?.remoteCreatedTimestamp?.value,
+                    lastRemoteSyncedTimestamp = updatedSyncState.remoteInfo?.lastRemoteSyncedTimestamp?.value,
                     localActionType = updatedSyncState.localAction?.typeDb,
-                    lastLocalModifiedTimestamp = updatedSyncState.lastLocalModifiedTimestamp,
-                    localActionId = updatedSyncState.localAction?.actionId,
-                    localCreateId = updatedSyncState.localCreateId,
+                    lastLocalModifiedTimestamp = updatedSyncState.lastLocalModifiedTimestamp.value,
+                    localActionId = updatedSyncState.localAction?.actionId?.value,
+                    localCreateId = updatedSyncState.localCreateId?.value,
                     modifyingNow = updatedSyncState.modifyingNow,
                     syncStatus = updatedSyncState.syncStatus
             )
@@ -282,14 +287,14 @@ internal abstract class GameRecordsDAO {
            """)
     protected abstract fun updateSyncStateById(
             id: Long,
-            remoteId: String?,
-            remoteActionId: String?,
-            remoteCreatedTimestamp: Instant?,
-            lastRemoteSyncedTimestamp: Instant?,
+            remoteId: String/*todo: room_db_converter: RemoteInfo.Id*/?,
+            remoteActionId: String/*todo: room_db_converter: RemoteInfo.ActionId*/?,
+            remoteCreatedTimestamp: Instant/*todo: room_db_converter: RemoteInfo.CreatedTimestamp*/?,
+            lastRemoteSyncedTimestamp: Instant/*todo: room_db_converter: RemoteInfo.LastSyncedTimestamp*/?,
             localActionType: LocalActionTypeDb?,
-            lastLocalModifiedTimestamp: Instant,
-            localActionId: String?,
-            localCreateId: String?,
+            lastLocalModifiedTimestamp: Instant/*todo: room_db_converter: RecordSyncState.LastLocalModifiedTimestamp*/,
+            localActionId: String/*todo: room_db_converter: LocalAction.Id*/?,
+            localCreateId: String/*todo: room_db_converter: RecordSyncState.LocalCreateId*/?,
             modifyingNow: Boolean,
             syncStatus: SyncStatus
     )
@@ -332,7 +337,7 @@ internal abstract class GameRecordsDAO {
     protected abstract fun getWhereLastRemoteSyncSmallerThen(
             syncStatus: SyncStatus,
             modifying: Boolean,
-            maxLastRemoteSyncedTimestamp: Instant,
+            maxLastRemoteSyncedTimestamp: Instant/*todo: room_db_converter: RemoteInfo.LastSyncedTimestamp*/,
             @IntRange(from = 1) limit: Int
     ): List<GameRecordDb>
 

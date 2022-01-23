@@ -2,14 +2,15 @@ package sync.usecases.localSynced
 
 import com.ruslan.hlushan.game.api.play.dto.GameRecord
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
+import com.ruslan.hlushan.game.api.play.dto.LocalAction
 import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
+import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
 import com.ruslan.hlushan.game.api.play.dto.SyncStatus
 import com.ruslan.hlushan.game.api.test.utils.copyWithNewId
 import com.ruslan.hlushan.game.api.test.utils.generateFakeRemoteInfo
 import com.ruslan.hlushan.game.storage.impl.remote.dto.UpdateLocalNonModifiedResponse
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import org.threeten.bp.Instant
 import utils.assertRecordsWithSyncStateInLocalRepo
 import utils.generateAndAddLocalSyncedToLocalRepo
 import utils.generateFakeRemoteRecord
@@ -24,7 +25,7 @@ internal class UpdateLocalSyncedUseCaseLocallyStartedModifyingTest : BaseUpdateL
         playRecordsInteractor.updateAndGetRecordForPlaying(localSyncedRecordId)
                 .subscribe()
 
-        val lastRemoteSyncedTimestamp = Instant.now()
+        val lastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp.now()
 
         val response = UpdateLocalNonModifiedResponse.NoChanges(
                 remoteId = original.syncState.remoteInfo!!.remoteId,
@@ -70,7 +71,7 @@ internal class UpdateLocalSyncedUseCaseLocallyStartedModifyingTest : BaseUpdateL
         updateLocalSyncedUseCase.handleResponse(original = original, response = response)
                 .subscribe()
 
-        val expectedLocalActionId = "1234567890"
+        val expectedLocalActionId = LocalAction.Id("1234567890")
 
         val expectedFinalSyncState = RecordSyncState.forLocalCreated(
                 localActionId = expectedLocalActionId,
@@ -118,7 +119,7 @@ internal class UpdateLocalSyncedUseCaseLocallyStartedModifyingTest : BaseUpdateL
         updateLocalSyncedUseCase.handleResponse(original = original, response = response)
                 .subscribe()
 
-        val expectedLocalActionId = "1234567890"
+        val expectedLocalActionId = LocalAction.Id("1234567890")
 
         val expectedFinalSyncState = RecordSyncState.forLocalCreated(
                 localActionId = expectedLocalActionId,

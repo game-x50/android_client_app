@@ -106,6 +106,7 @@
             "columnNames": [
               "remote_created_timestamp"
             ],
+            "orders": [],
             "createSql": "CREATE INDEX IF NOT EXISTS `GameStateDbLastRemoteCreatedTimestampIndex` ON `${TABLE_NAME}` (`remote_created_timestamp`)"
           },
           {
@@ -114,6 +115,7 @@
             "columnNames": [
               "last_remote_synced_timestamp"
             ],
+            "orders": [],
             "createSql": "CREATE INDEX IF NOT EXISTS `GameStateDbLastRemoteSyncedTimestampIndex` ON `${TABLE_NAME}` (`last_remote_synced_timestamp`)"
           },
           {
@@ -122,6 +124,7 @@
             "columnNames": [
               "last_local_modified_timestamp"
             ],
+            "orders": [],
             "createSql": "CREATE INDEX IF NOT EXISTS `GameStateDbLastLocalModifiedTimestampIndex` ON `${TABLE_NAME}` (`last_local_modified_timestamp`)"
           },
           {
@@ -130,6 +133,7 @@
             "columnNames": [
               "sync_status"
             ],
+            "orders": [],
             "createSql": "CREATE INDEX IF NOT EXISTS `GameStateDbSyncStatusTimestampIndex` ON `${TABLE_NAME}` (`sync_status`)"
           },
           {
@@ -138,6 +142,7 @@
             "columnNames": [
               "total_sum"
             ],
+            "orders": [],
             "createSql": "CREATE INDEX IF NOT EXISTS `GameStateDbTotalSumIndex` ON `${TABLE_NAME}` (`total_sum`)"
           }
         ],
@@ -192,6 +197,7 @@
             "columnNames": [
               "record_id"
             ],
+            "orders": [],
             "createSql": "CREATE INDEX IF NOT EXISTS `MatrixAndNewItemsStateTableRecordIdIndex` ON `${TABLE_NAME}` (`record_id`)"
           }
         ],

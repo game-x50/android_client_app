@@ -2,15 +2,15 @@ package sync.usecases
 
 import com.ruslan.hlushan.core.extensions.addAsFirstTo
 import com.ruslan.hlushan.game.api.play.ClearAllLocalGamesInfoUseCase
+import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
+import com.ruslan.hlushan.game.api.test.utils.generateFakeRemoteInfoCreatedTimestamp
 import com.ruslan.hlushan.game.storage.impl.ClearAllLocalGamesInfoUseCaseImpl
-import com.ruslan.hlushan.test.utils.generateFakeInstantTimestamp
 import com.ruslan.hlushan.third_party.rxjava2.test.utils.CurrentThreadSchedulersManager
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.threeten.bp.Instant
 import sync.rule.TestLocalRecordsRepoCleanUpRule
 import sync.stub.LocalRecordsRepoTestImpl
 import sync.stub.LocalRecordsRepositoryStorageMockImpl
@@ -137,7 +137,10 @@ internal class ClearAllLocalGamesInfoUseCaseTest {
         val expectedAfterCanceledCounter = (expectedInitCanceledCounter + 1)
         assertEquals(expectedAfterCanceledCounter, startSyncUseCase.canceledCounter)
 
-        assertEquals(Instant.ofEpochMilli(0), localRecordsRepositoryStorage.lastCreatedTimestamp)
+        assertEquals(
+                RemoteInfo.CreatedTimestamp.min(),
+                localRecordsRepositoryStorage.lastCreatedTimestamp
+        )
     }
 
     private fun generateAndDataToLocalRepo() {
@@ -150,6 +153,6 @@ internal class ClearAllLocalGamesInfoUseCaseTest {
             }
         }
 
-        localRecordsRepositoryStorage.lastCreatedTimestamp = generateFakeInstantTimestamp()
+        localRecordsRepositoryStorage.lastCreatedTimestamp = generateFakeRemoteInfoCreatedTimestamp()
     }
 }

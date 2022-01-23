@@ -23,13 +23,13 @@ import com.ruslan.hlushan.game.api.test.utils.copyWithNewId
 import com.ruslan.hlushan.game.api.test.utils.createLocalUpdatedState
 import com.ruslan.hlushan.game.api.test.utils.createSyncedState
 import com.ruslan.hlushan.game.api.test.utils.createSynchronizingState
+import com.ruslan.hlushan.game.api.test.utils.generateFakeRecordSyncStateLastLocalModifiedTimestamp
 import com.ruslan.hlushan.test.utils.assertThrows
 import com.ruslan.hlushan.test.utils.generateFakeInstantTimestamp
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
-import org.threeten.bp.Instant
 
 @SuppressWarnings("LargeClass")
 class RecordSyncStateTest {
@@ -38,13 +38,13 @@ class RecordSyncStateTest {
     fun `constructor not valid - if localAction == CREATE, all remote actions should be null`() {
         RecordSyncState(
                 remoteInfo = RemoteInfo(
-                        remoteId = "",
-                        remoteActionId = "",
-                        remoteCreatedTimestamp = Instant.now(),
-                        lastRemoteSyncedTimestamp = Instant.now()
+                        remoteId = RemoteInfo.Id(""),
+                        remoteActionId = RemoteInfo.ActionId(""),
+                        remoteCreatedTimestamp = RemoteInfo.CreatedTimestamp.now(),
+                        lastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp.now()
                 ),
-                localAction = LocalAction.Create(actionId = ""),
-                lastLocalModifiedTimestamp = Instant.now(),
+                localAction = LocalAction.Create(actionId = LocalAction.Id("")),
+                lastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now(),
                 localCreateId = null,
                 modifyingNow = false,
                 syncStatus = SyncStatus.WAITING
@@ -55,14 +55,14 @@ class RecordSyncStateTest {
     fun `constructor not valid - for synced record localCreateId should be null`() {
         RecordSyncState(
                 remoteInfo = RemoteInfo(
-                        remoteId = "",
-                        remoteActionId = "",
-                        remoteCreatedTimestamp = Instant.now(),
-                        lastRemoteSyncedTimestamp = Instant.now()
+                        remoteId = RemoteInfo.Id(""),
+                        remoteActionId = RemoteInfo.ActionId(""),
+                        remoteCreatedTimestamp = RemoteInfo.CreatedTimestamp.now(),
+                        lastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp.now()
                 ),
                 localAction = null,
-                lastLocalModifiedTimestamp = Instant.now(),
-                localCreateId = "",
+                lastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now(),
+                localCreateId = RecordSyncState.LocalCreateId(""),
                 modifyingNow = false,
                 syncStatus = SyncStatus.SYNCED
         )
@@ -72,14 +72,14 @@ class RecordSyncStateTest {
     fun `constructor not valid - for non local created record localCreateId should be null`() {
         RecordSyncState(
                 remoteInfo = RemoteInfo(
-                        remoteId = "",
-                        remoteActionId = "",
-                        remoteCreatedTimestamp = Instant.now(),
-                        lastRemoteSyncedTimestamp = Instant.now()
+                        remoteId = RemoteInfo.Id(""),
+                        remoteActionId = RemoteInfo.ActionId(""),
+                        remoteCreatedTimestamp = RemoteInfo.CreatedTimestamp.now(),
+                        lastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp.now()
                 ),
-                localAction = LocalAction.Update(actionId = ""),
-                lastLocalModifiedTimestamp = Instant.now(),
-                localCreateId = "",
+                localAction = LocalAction.Update(actionId = LocalAction.Id("")),
+                lastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now(),
+                localCreateId = RecordSyncState.LocalCreateId(""),
                 modifyingNow = false,
                 syncStatus = SyncStatus.WAITING
         )
@@ -90,8 +90,8 @@ class RecordSyncStateTest {
     fun `constructor not valid - for local created record with syncStatus == SINCHRONIZING  localCreateId should be not null`() {
         RecordSyncState(
                 remoteInfo = null,
-                localAction = LocalAction.Create(actionId = ""),
-                lastLocalModifiedTimestamp = Instant.now(),
+                localAction = LocalAction.Create(actionId = LocalAction.Id("")),
+                lastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now(),
                 localCreateId = null,
                 modifyingNow = false,
                 syncStatus = SyncStatus.SYNCHRONIZING
@@ -102,8 +102,8 @@ class RecordSyncStateTest {
     fun `constructor not valid - for local created record and deleted while sync localCreateId should be not null`() {
         RecordSyncState(
                 remoteInfo = null,
-                localAction = LocalAction.Delete(actionId = ""),
-                lastLocalModifiedTimestamp = Instant.now(),
+                localAction = LocalAction.Delete(actionId = LocalAction.Id("")),
+                lastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now(),
                 localCreateId = null,
                 modifyingNow = false,
                 syncStatus = SyncStatus.WAITING
@@ -114,8 +114,8 @@ class RecordSyncStateTest {
     fun `constructor not valid - for local modified record all remote fields should be not null`() {
         RecordSyncState(
                 remoteInfo = null,
-                localAction = LocalAction.Update(actionId = ""),
-                lastLocalModifiedTimestamp = Instant.now(),
+                localAction = LocalAction.Update(actionId = LocalAction.Id("")),
+                lastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now(),
                 localCreateId = null,
                 modifyingNow = false,
                 syncStatus = SyncStatus.WAITING
@@ -126,13 +126,13 @@ class RecordSyncStateTest {
     fun `constructor not valid - local deleted record can't be modified`() {
         RecordSyncState(
                 remoteInfo = RemoteInfo(
-                        remoteId = "",
-                        remoteActionId = "",
-                        remoteCreatedTimestamp = Instant.now(),
-                        lastRemoteSyncedTimestamp = Instant.now()
+                        remoteId = RemoteInfo.Id(""),
+                        remoteActionId = RemoteInfo.ActionId(""),
+                        remoteCreatedTimestamp = RemoteInfo.CreatedTimestamp.now(),
+                        lastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp.now()
                 ),
-                localAction = LocalAction.Delete(actionId = ""),
-                lastLocalModifiedTimestamp = Instant.now(),
+                localAction = LocalAction.Delete(actionId = LocalAction.Id("")),
+                lastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now(),
                 localCreateId = null,
                 modifyingNow = true,
                 syncStatus = SyncStatus.WAITING
@@ -143,8 +143,8 @@ class RecordSyncStateTest {
     fun `constructor not valid - for local created record syncStatus can't be SYNCED`() {
         RecordSyncState(
                 remoteInfo = null,
-                localAction = LocalAction.Create(actionId = ""),
-                lastLocalModifiedTimestamp = Instant.now(),
+                localAction = LocalAction.Create(actionId = LocalAction.Id("")),
+                lastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now(),
                 localCreateId = null,
                 modifyingNow = false,
                 syncStatus = SyncStatus.SYNCED
@@ -155,13 +155,13 @@ class RecordSyncStateTest {
     fun `constructor not valid - for local updated record syncStatus can't be SYNCED`() {
         RecordSyncState(
                 remoteInfo = RemoteInfo(
-                        remoteId = "",
-                        remoteActionId = "",
-                        remoteCreatedTimestamp = Instant.now(),
-                        lastRemoteSyncedTimestamp = Instant.now()
+                        remoteId = RemoteInfo.Id(""),
+                        remoteActionId = RemoteInfo.ActionId(""),
+                        remoteCreatedTimestamp = RemoteInfo.CreatedTimestamp.now(),
+                        lastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp.now()
                 ),
-                localAction = LocalAction.Update(actionId = ""),
-                lastLocalModifiedTimestamp = Instant.now(),
+                localAction = LocalAction.Update(actionId = LocalAction.Id("")),
+                lastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now(),
                 localCreateId = null,
                 modifyingNow = false,
                 syncStatus = SyncStatus.SYNCED
@@ -172,13 +172,13 @@ class RecordSyncStateTest {
     fun `constructor not valid - for local deleted record syncStatus can't be SYNCED`() {
         RecordSyncState(
                 remoteInfo = RemoteInfo(
-                        remoteId = "",
-                        remoteActionId = "",
-                        remoteCreatedTimestamp = Instant.now(),
-                        lastRemoteSyncedTimestamp = Instant.now()
+                        remoteId = RemoteInfo.Id(""),
+                        remoteActionId = RemoteInfo.ActionId(""),
+                        remoteCreatedTimestamp = RemoteInfo.CreatedTimestamp.now(),
+                        lastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp.now()
                 ),
-                localAction = LocalAction.Delete(actionId = ""),
-                lastLocalModifiedTimestamp = Instant.now(),
+                localAction = LocalAction.Delete(actionId = LocalAction.Id("")),
+                lastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now(),
                 localCreateId = null,
                 modifyingNow = false,
                 syncStatus = SyncStatus.SYNCED
@@ -189,13 +189,13 @@ class RecordSyncStateTest {
     fun `constructor not valid - for synced record syncStatus can't be WAITING`() {
         RecordSyncState(
                 remoteInfo = RemoteInfo(
-                        remoteId = "",
-                        remoteActionId = "",
-                        remoteCreatedTimestamp = Instant.now(),
-                        lastRemoteSyncedTimestamp = Instant.now()
+                        remoteId = RemoteInfo.Id(""),
+                        remoteActionId = RemoteInfo.ActionId(""),
+                        remoteCreatedTimestamp = RemoteInfo.CreatedTimestamp.now(),
+                        lastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp.now()
                 ),
                 localAction = null,
-                lastLocalModifiedTimestamp = Instant.now(),
+                lastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now(),
                 localCreateId = null,
                 modifyingNow = false,
                 syncStatus = SyncStatus.WAITING
@@ -205,8 +205,8 @@ class RecordSyncStateTest {
     @Test
     fun createLocalCreated() {
         val modifyingNow = false
-        val localActionId = "1"
-        val localCreatedTimestamp = generateFakeInstantTimestamp()
+        val localActionId = LocalAction.Id("1")
+        val localCreatedTimestamp = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         val localCreatedState = RecordSyncState.forLocalCreated(
                 localActionId = localActionId,
@@ -229,15 +229,15 @@ class RecordSyncStateTest {
         assertTrue(localCreatedState.canBeFullyDeletedOnLocalDelete())
 
         assertThrows(IllegalStateException::class) {
-            localCreatedState.toLocalDeletedOrThrow(newLocalActionId = "fail")
+            localCreatedState.toLocalDeletedOrThrow(newLocalActionId = LocalAction.Id("fail"))
         }
 
         assertEquals(localCreatedState.copy(modifyingNow = true), localCreatedState.toModifyingNowOrThrow())
 
         assertThrows(IllegalStateException::class) {
             localCreatedState.toNextModifiedAfterModifyingOrThrow(
-                    newLocalActionId = "fail",
-                    newLastLocalModifiedTimestamp = Instant.now()
+                    newLocalActionId = LocalAction.Id("fail"),
+                    newLastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now()
             )
         }
 
@@ -246,8 +246,8 @@ class RecordSyncStateTest {
 
     @Test
     fun testLocalCreated() {
-        val localActionId = "1"
-        val localCreatedTimestamp = generateFakeInstantTimestamp()
+        val localActionId = LocalAction.Id("1")
+        val localCreatedTimestamp = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         val localCreatedState = RecordSyncState.forLocalCreated(
                 localActionId = localActionId,
@@ -255,29 +255,31 @@ class RecordSyncStateTest {
                 localCreatedTimestamp = localCreatedTimestamp
         )
 
-        assertEquals(RecordSyncState(
-                remoteInfo = null,
-                localAction = LocalAction.Create(actionId = localActionId),
-                lastLocalModifiedTimestamp = localCreatedTimestamp,
-                localCreateId = null,
-                modifyingNow = false,
-                syncStatus = SyncStatus.WAITING
-        ),
-                     localCreatedState)
+        assertEquals(
+                RecordSyncState(
+                        remoteInfo = null,
+                        localAction = LocalAction.Create(actionId = localActionId),
+                        lastLocalModifiedTimestamp = localCreatedTimestamp,
+                        localCreateId = null,
+                        modifyingNow = false,
+                        syncStatus = SyncStatus.WAITING
+                ),
+                localCreatedState
+        )
 
         assertOriginalAndChanged(localCreatedState, localCreatedState.copy())
         assertTrue(localCreatedState.canBeFullyDeletedOnLocalDelete())
 
         assertThrows(IllegalStateException::class) {
-            localCreatedState.toLocalDeletedOrThrow(newLocalActionId = "fail")
+            localCreatedState.toLocalDeletedOrThrow(newLocalActionId = LocalAction.Id("fail"))
         }
 
         assertEquals(localCreatedState.copy(modifyingNow = true), localCreatedState.toModifyingNowOrThrow())
 
         assertThrows(IllegalStateException::class) {
             localCreatedState.toNextModifiedAfterModifyingOrThrow(
-                    newLocalActionId = "fail",
-                    newLastLocalModifiedTimestamp = Instant.now()
+                    newLocalActionId = LocalAction.Id("fail"),
+                    newLastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now()
             )
         }
 
@@ -286,8 +288,8 @@ class RecordSyncStateTest {
 
     @Test
     fun testLocalCreatedStartedModifying() {
-        val localActionId1 = "1"
-        val lastLocalModifiedTimestamp1 = generateFakeInstantTimestamp()
+        val localActionId1 = LocalAction.Id("1")
+        val lastLocalModifiedTimestamp1 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         val localCreatedStateOriginal = RecordSyncState.forLocalCreated(
                 localActionId = localActionId1,
@@ -305,7 +307,7 @@ class RecordSyncStateTest {
         assertFalse(localCreatedStartedModifyingState.canBeFullyDeletedOnLocalDelete())
 
         assertThrows(IllegalStateException::class) {
-            localCreatedStartedModifyingState.toLocalDeletedOrThrow(newLocalActionId = "fail")
+            localCreatedStartedModifyingState.toLocalDeletedOrThrow(newLocalActionId = LocalAction.Id("fail"))
         }
 
         assertEquals(
@@ -313,8 +315,8 @@ class RecordSyncStateTest {
                 localCreatedStartedModifyingState.toModifyingNowOrThrow()
         )
 
-        val localActionId2 = "2"
-        val lastLocalModifiedTimestamp2 = generateFakeInstantTimestamp()
+        val localActionId2 = LocalAction.Id("2")
+        val lastLocalModifiedTimestamp2 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         assertEquals(
                 localCreatedStartedModifyingState.copy(
@@ -338,8 +340,8 @@ class RecordSyncStateTest {
 
     @Test
     fun testLocalCreatedDeleted() {
-        val localActionId1 = "1"
-        val lastLocalModifiedTimestamp1 = generateFakeInstantTimestamp()
+        val localActionId1 = LocalAction.Id("1")
+        val lastLocalModifiedTimestamp1 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         val localCreatedStateOriginal = RecordSyncState.forLocalCreated(
                 localActionId = localActionId1,
@@ -348,14 +350,14 @@ class RecordSyncStateTest {
         )
 
         assertThrows(IllegalStateException::class) {
-            localCreatedStateOriginal.toLocalDeletedOrThrow("fail")
+            localCreatedStateOriginal.toLocalDeletedOrThrow(newLocalActionId = LocalAction.Id("fail"))
         }
     }
 
     @Test
     fun testLocalCreatedModified() {
-        val localActionId1 = "1"
-        val lastLocalModifiedTimestamp1 = generateFakeInstantTimestamp()
+        val localActionId1 = LocalAction.Id("1")
+        val lastLocalModifiedTimestamp1 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         val localCreatedStateOriginal = RecordSyncState.forLocalCreated(
                 localActionId = localActionId1,
@@ -363,8 +365,8 @@ class RecordSyncStateTest {
                 localCreatedTimestamp = lastLocalModifiedTimestamp1
         )
 
-        val localActionId2 = "2"
-        val lastLocalModifiedTimestamp2 = generateFakeInstantTimestamp()
+        val localActionId2 = LocalAction.Id("2")
+        val lastLocalModifiedTimestamp2 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         val localCreatedModifiedState = localCreatedStateOriginal.toModifyingNowOrThrow()
                 .toNextModifiedAfterModifyingOrThrow(
@@ -376,7 +378,7 @@ class RecordSyncStateTest {
         assertTrue(localCreatedModifiedState.canBeFullyDeletedOnLocalDelete())
 
         assertThrows(IllegalStateException::class) {
-            localCreatedModifiedState.toLocalDeletedOrThrow(newLocalActionId = "fail")
+            localCreatedModifiedState.toLocalDeletedOrThrow(newLocalActionId = LocalAction.Id("fail"))
         }
 
         assertEquals(
@@ -386,8 +388,8 @@ class RecordSyncStateTest {
 
         assertThrows(IllegalStateException::class) {
             localCreatedModifiedState.toNextModifiedAfterModifyingOrThrow(
-                    newLocalActionId = "fail",
-                    newLastLocalModifiedTimestamp = Instant.now()
+                    newLocalActionId = LocalAction.Id("fail"),
+                    newLastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now()
             )
         }
 
@@ -399,8 +401,8 @@ class RecordSyncStateTest {
 
     @Test
     fun testLocalCreatedModifiedAndStartedModifyingAgain() {
-        val localActionId1 = "1"
-        val lastLocalModifiedTimestamp1 = generateFakeInstantTimestamp()
+        val localActionId1 = LocalAction.Id("1")
+        val lastLocalModifiedTimestamp1 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         val localCreatedStateOriginal = RecordSyncState.forLocalCreated(
                 localActionId = localActionId1,
@@ -408,8 +410,8 @@ class RecordSyncStateTest {
                 localCreatedTimestamp = lastLocalModifiedTimestamp1
         )
 
-        val localActionId2 = "2"
-        val lastLocalModifiedTimestamp2 = generateFakeInstantTimestamp()
+        val localActionId2 = LocalAction.Id("2")
+        val lastLocalModifiedTimestamp2 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         val localCreatedModifiedAndStartedModifyingAgainState = localCreatedStateOriginal.toModifyingNowOrThrow()
                 .toNextModifiedAfterModifyingOrThrow(
@@ -426,7 +428,9 @@ class RecordSyncStateTest {
         assertFalse(localCreatedModifiedAndStartedModifyingAgainState.canBeFullyDeletedOnLocalDelete())
 
         assertThrows(IllegalStateException::class) {
-            localCreatedModifiedAndStartedModifyingAgainState.toLocalDeletedOrThrow(newLocalActionId = "fail")
+            localCreatedModifiedAndStartedModifyingAgainState.toLocalDeletedOrThrow(
+                    newLocalActionId = LocalAction.Id("fail")
+            )
         }
 
         assertEquals(
@@ -434,8 +438,8 @@ class RecordSyncStateTest {
                 localCreatedModifiedAndStartedModifyingAgainState.toModifyingNowOrThrow()
         )
 
-        val localActionId3 = "3"
-        val lastLocalModifiedTimestamp3 = generateFakeInstantTimestamp()
+        val localActionId3 = LocalAction.Id("3")
+        val lastLocalModifiedTimestamp3 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         assertEquals(
                 localCreatedModifiedAndStartedModifyingAgainState.copy(
@@ -459,9 +463,9 @@ class RecordSyncStateTest {
 
     @Test
     fun testLocalCreatedSyncing() {
-        val localActionId1 = "1"
-        val localCreateId = "lC1"
-        val lastLocalModifiedTimestamp1 = generateFakeInstantTimestamp()
+        val localActionId1 = LocalAction.Id("1")
+        val localCreateId = RecordSyncState.LocalCreateId("lC1")
+        val lastLocalModifiedTimestamp1 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         val localCreatedSyncingState = RecordSyncState.forLocalCreated(
                 localActionId = localActionId1,
@@ -473,7 +477,7 @@ class RecordSyncStateTest {
         assertOriginalAndChanged(localCreatedSyncingState, localCreatedSyncingState.copy())
         assertFalse(localCreatedSyncingState.canBeFullyDeletedOnLocalDelete())
 
-        val localActionId2 = "2"
+        val localActionId2 = LocalAction.Id("2")
         assertEquals(
                 localCreatedSyncingState.copy(localAction = LocalAction.Delete(actionId = localActionId2)),
                 localCreatedSyncingState.toLocalDeletedOrThrow(newLocalActionId = localActionId2)
@@ -486,8 +490,8 @@ class RecordSyncStateTest {
 
         assertThrows(IllegalStateException::class) {
             localCreatedSyncingState.toNextModifiedAfterModifyingOrThrow(
-                    newLocalActionId = "fail",
-                    newLastLocalModifiedTimestamp = Instant.now()
+                    newLocalActionId = LocalAction.Id("fail"),
+                    newLastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now()
             )
         }
 
@@ -499,9 +503,9 @@ class RecordSyncStateTest {
 
     @Test
     fun testLocalCreatedSyncingStartedModifying() {
-        val localActionId1 = "1"
-        val localCreateId = "lC1"
-        val lastLocalModifiedTimestamp1 = generateFakeInstantTimestamp()
+        val localActionId1 = LocalAction.Id("1")
+        val localCreateId = RecordSyncState.LocalCreateId("lC1")
+        val lastLocalModifiedTimestamp1 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         val localCreatedSyncingStateOriginal = RecordSyncState.forLocalCreated(
                 localActionId = localActionId1,
@@ -520,7 +524,7 @@ class RecordSyncStateTest {
         assertFalse(localCreatedSyncingStartedModifyingState.canBeFullyDeletedOnLocalDelete())
 
         assertThrows(IllegalStateException::class) {
-            localCreatedSyncingStartedModifyingState.toLocalDeletedOrThrow(newLocalActionId = "fail")
+            localCreatedSyncingStartedModifyingState.toLocalDeletedOrThrow(newLocalActionId = LocalAction.Id("fail"))
         }
 
         assertEquals(
@@ -528,8 +532,8 @@ class RecordSyncStateTest {
                 localCreatedSyncingStartedModifyingState.toModifyingNowOrThrow()
         )
 
-        val localActionId2 = "2"
-        val lastLocalModifiedTimestamp2 = generateFakeInstantTimestamp()
+        val localActionId2 = LocalAction.Id("2")
+        val lastLocalModifiedTimestamp2 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         assertEquals(
                 localCreatedSyncingStartedModifyingState.copy(
@@ -553,9 +557,9 @@ class RecordSyncStateTest {
 
     @Test
     fun testLocalCreatedSyncingDeleted() {
-        val localActionId1 = "1"
-        val localCreateId = "lC1"
-        val lastLocalModifiedTimestamp1 = generateFakeInstantTimestamp()
+        val localActionId1 = LocalAction.Id("1")
+        val localCreateId = RecordSyncState.LocalCreateId("lC1")
+        val lastLocalModifiedTimestamp1 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         val localCreatedSyncingStateOriginal = RecordSyncState.forLocalCreated(
                 localActionId = localActionId1,
@@ -563,7 +567,7 @@ class RecordSyncStateTest {
                 localCreatedTimestamp = lastLocalModifiedTimestamp1
         ).copy(localCreateId = localCreateId, syncStatus = SyncStatus.SYNCHRONIZING)
 
-        val localActionId2 = "2"
+        val localActionId2 = LocalAction.Id("2")
         val localCreatedSyncingDeletedState = localCreatedSyncingStateOriginal.toLocalDeletedOrThrow(
                 newLocalActionId = localActionId2
         )
@@ -577,7 +581,7 @@ class RecordSyncStateTest {
         assertFalse(localCreatedSyncingDeletedState.canBeFullyDeletedOnLocalDelete())
 
         assertThrows(IllegalStateException::class) {
-            localCreatedSyncingDeletedState.toLocalDeletedOrThrow(newLocalActionId = "fail")
+            localCreatedSyncingDeletedState.toLocalDeletedOrThrow(newLocalActionId = LocalAction.Id("fail"))
         }
 
         assertThrows(IllegalStateException::class) {
@@ -586,8 +590,8 @@ class RecordSyncStateTest {
 
         assertThrows(IllegalStateException::class) {
             localCreatedSyncingDeletedState.toNextModifiedAfterModifyingOrThrow(
-                    newLocalActionId = "fail",
-                    newLastLocalModifiedTimestamp = Instant.now()
+                    newLocalActionId = LocalAction.Id("fail"),
+                    newLastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now()
             )
         }
 
@@ -596,9 +600,9 @@ class RecordSyncStateTest {
 
     @Test
     fun testLocalCreatedSyncingModified() {
-        val localActionId1 = "1"
-        val localCreateId = "lC1"
-        val lastLocalModifiedTimestamp1 = generateFakeInstantTimestamp()
+        val localActionId1 = LocalAction.Id("1")
+        val localCreateId = RecordSyncState.LocalCreateId("lC1")
+        val lastLocalModifiedTimestamp1 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         val localCreatedSyncingStateOriginal = RecordSyncState.forLocalCreated(
                 localActionId = localActionId1,
@@ -607,8 +611,8 @@ class RecordSyncStateTest {
         )
                 .copy(localCreateId = localCreateId, syncStatus = SyncStatus.SYNCHRONIZING)
 
-        val localActionId2 = "2"
-        val lastLocalModifiedTimestamp2 = generateFakeInstantTimestamp()
+        val localActionId2 = LocalAction.Id("2")
+        val lastLocalModifiedTimestamp2 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         val localCreatedSyncingModifiedState = localCreatedSyncingStateOriginal
                 .toModifyingNowOrThrow()
@@ -624,7 +628,7 @@ class RecordSyncStateTest {
         )
         assertFalse(localCreatedSyncingModifiedState.canBeFullyDeletedOnLocalDelete())
 
-        val localActionId3 = "3"
+        val localActionId3 = LocalAction.Id("3")
         assertEquals(
                 localCreatedSyncingModifiedState.copy(localAction = LocalAction.Delete(actionId = localActionId3)),
                 localCreatedSyncingModifiedState.toLocalDeletedOrThrow(newLocalActionId = localActionId3)
@@ -637,8 +641,8 @@ class RecordSyncStateTest {
 
         assertThrows(IllegalStateException::class) {
             localCreatedSyncingModifiedState.toNextModifiedAfterModifyingOrThrow(
-                    newLocalActionId = "fail",
-                    newLastLocalModifiedTimestamp = Instant.now()
+                    newLocalActionId = LocalAction.Id("fail"),
+                    newLastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now()
             )
         }
 
@@ -650,9 +654,9 @@ class RecordSyncStateTest {
 
     @Test
     fun testLocalCreatedSyncingModifiedAndStartedModifyingAgain() {
-        val localActionId1 = "1"
-        val localCreateId = "lC1"
-        val lastLocalModifiedTimestamp1 = generateFakeInstantTimestamp()
+        val localActionId1 = LocalAction.Id("1")
+        val localCreateId = RecordSyncState.LocalCreateId("lC1")
+        val lastLocalModifiedTimestamp1 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         val localCreatedSyncingStateOriginal = RecordSyncState.forLocalCreated(
                 localActionId = localActionId1,
@@ -661,8 +665,8 @@ class RecordSyncStateTest {
         )
                 .copy(localCreateId = localCreateId, syncStatus = SyncStatus.SYNCHRONIZING)
 
-        val localActionId2 = "2"
-        val lastLocalModifiedTimestamp2 = generateFakeInstantTimestamp()
+        val localActionId2 = LocalAction.Id("2")
+        val lastLocalModifiedTimestamp2 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         val localCreatedSyncingModifiedAndStartedModifyingAgainState = localCreatedSyncingStateOriginal
                 .toModifyingNowOrThrow()
@@ -680,11 +684,13 @@ class RecordSyncStateTest {
         assertFalse(localCreatedSyncingModifiedAndStartedModifyingAgainState.canBeFullyDeletedOnLocalDelete())
 
         assertThrows(IllegalStateException::class) {
-            localCreatedSyncingModifiedAndStartedModifyingAgainState.toLocalDeletedOrThrow(newLocalActionId = "fail")
+            localCreatedSyncingModifiedAndStartedModifyingAgainState.toLocalDeletedOrThrow(
+                    newLocalActionId = LocalAction.Id("fail")
+            )
         }
 
-        val localActionId3 = "3"
-        val lastLocalModifiedTimestamp3 = generateFakeInstantTimestamp()
+        val localActionId3 = LocalAction.Id("3")
+        val lastLocalModifiedTimestamp3 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         assertEquals(
                 localCreatedSyncingModifiedAndStartedModifyingAgainState.copy(
@@ -708,15 +714,15 @@ class RecordSyncStateTest {
     @Test
     fun testLocalUpdated() {
         val remoteCreatedTimestamp = generateFakeInstantTimestamp()
-        val newLastLocalModifiedTimestamp = generateFakeInstantTimestamp()
+        val newLastLocalModifiedTimestamp = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
         val remoteInfo = RemoteInfo(
-                remoteId = "123",
-                remoteActionId = "12345",
-                remoteCreatedTimestamp = remoteCreatedTimestamp,
-                lastRemoteSyncedTimestamp = remoteCreatedTimestamp
+                remoteId = RemoteInfo.Id("123"),
+                remoteActionId = RemoteInfo.ActionId("12345"),
+                remoteCreatedTimestamp = RemoteInfo.CreatedTimestamp(remoteCreatedTimestamp),
+                lastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp(remoteCreatedTimestamp)
         )
 
-        val localActionId1 = "1"
+        val localActionId1 = LocalAction.Id("1")
 
         val localUpdatedState = createLocalUpdatedState(
                 remoteInfo = remoteInfo,
@@ -739,7 +745,7 @@ class RecordSyncStateTest {
         assertOriginalAndChanged(localUpdatedState, localUpdatedState.copy())
         assertFalse(localUpdatedState.canBeFullyDeletedOnLocalDelete())
 
-        val localActionId2 = "2"
+        val localActionId2 = LocalAction.Id("2")
 
         assertEquals(
                 localUpdatedState.copy(localAction = LocalAction.Delete(actionId = localActionId2)),
@@ -750,8 +756,8 @@ class RecordSyncStateTest {
 
         assertThrows(IllegalStateException::class) {
             localUpdatedState.toNextModifiedAfterModifyingOrThrow(
-                    newLocalActionId = "fail",
-                    newLastLocalModifiedTimestamp = Instant.now()
+                    newLocalActionId = LocalAction.Id("fail"),
+                    newLastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now()
             )
         }
 
@@ -772,7 +778,7 @@ class RecordSyncStateTest {
         assertFalse(localUpdatedStartedModifyingState.canBeFullyDeletedOnLocalDelete())
 
         assertThrows(IllegalStateException::class) {
-            localUpdatedStartedModifyingState.toLocalDeletedOrThrow(newLocalActionId = "fail")
+            localUpdatedStartedModifyingState.toLocalDeletedOrThrow(newLocalActionId = LocalAction.Id("fail"))
         }
 
         assertEquals(
@@ -780,8 +786,8 @@ class RecordSyncStateTest {
                 localUpdatedStartedModifyingState.toModifyingNowOrThrow()
         )
 
-        val localActionId2 = "2"
-        val lastLocalModifiedTimestamp2 = generateFakeInstantTimestamp()
+        val localActionId2 = LocalAction.Id("2")
+        val lastLocalModifiedTimestamp2 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         assertEquals(
                 localUpdatedStartedModifyingState.copy(
@@ -807,7 +813,7 @@ class RecordSyncStateTest {
     fun testLocalUpdatedDeleted() {
         val localUpdatedStateOriginal = createLocalUpdatedState()
 
-        val localActionId2 = "2"
+        val localActionId2 = LocalAction.Id("2")
         val localUpdatedDeletedState = localUpdatedStateOriginal.toLocalDeletedOrThrow(
                 newLocalActionId = localActionId2
         )
@@ -816,7 +822,7 @@ class RecordSyncStateTest {
         assertFalse(localUpdatedDeletedState.canBeFullyDeletedOnLocalDelete())
 
         assertThrows(IllegalStateException::class) {
-            localUpdatedDeletedState.toLocalDeletedOrThrow(newLocalActionId = "fail")
+            localUpdatedDeletedState.toLocalDeletedOrThrow(newLocalActionId = LocalAction.Id("fail"))
         }
 
         assertThrows(IllegalStateException::class) {
@@ -825,8 +831,8 @@ class RecordSyncStateTest {
 
         assertThrows(IllegalStateException::class) {
             localUpdatedDeletedState.toNextModifiedAfterModifyingOrThrow(
-                    newLocalActionId = "fail",
-                    newLastLocalModifiedTimestamp = Instant.now()
+                    newLocalActionId = LocalAction.Id("fail"),
+                    newLastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now()
             )
         }
 
@@ -840,8 +846,8 @@ class RecordSyncStateTest {
     fun testLocalUpdatedModified() {
         val localUpdatedStateOriginal = createLocalUpdatedState()
 
-        val localActionId2 = "2"
-        val lastLocalModifiedTimestamp2 = generateFakeInstantTimestamp()
+        val localActionId2 = LocalAction.Id("2")
+        val lastLocalModifiedTimestamp2 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         val localUpdatedModifiedState = localUpdatedStateOriginal
                 .toModifyingNowOrThrow()
@@ -853,7 +859,7 @@ class RecordSyncStateTest {
         assertOriginalAndChanged(localUpdatedStateOriginal, localUpdatedModifiedState, userModifiedRecord = true)
         assertFalse(localUpdatedModifiedState.canBeFullyDeletedOnLocalDelete())
 
-        val localActionId3 = "3"
+        val localActionId3 = LocalAction.Id("3")
         assertEquals(
                 localUpdatedModifiedState.copy(localAction = LocalAction.Delete(actionId = localActionId3)),
                 localUpdatedModifiedState.toLocalDeletedOrThrow(newLocalActionId = localActionId3)
@@ -866,8 +872,8 @@ class RecordSyncStateTest {
 
         assertThrows(IllegalStateException::class) {
             localUpdatedModifiedState.toNextModifiedAfterModifyingOrThrow(
-                    newLocalActionId = "fail",
-                    newLastLocalModifiedTimestamp = Instant.now()
+                    newLocalActionId = LocalAction.Id("fail"),
+                    newLastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now()
             )
         }
 
@@ -881,8 +887,8 @@ class RecordSyncStateTest {
     fun testLocalUpdatedModifiedAndStartedModifyingAgain() {
         val localUpdatedStateOriginal = createLocalUpdatedState()
 
-        val localActionId2 = "2"
-        val lastLocalModifiedTimestamp2 = generateFakeInstantTimestamp()
+        val localActionId2 = LocalAction.Id("2")
+        val lastLocalModifiedTimestamp2 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         val localUpdatedModifiedAndStartedModifyingAgainState = localUpdatedStateOriginal
                 .toModifyingNowOrThrow()
@@ -901,7 +907,9 @@ class RecordSyncStateTest {
         assertFalse(localUpdatedModifiedAndStartedModifyingAgainState.canBeFullyDeletedOnLocalDelete())
 
         assertThrows(IllegalStateException::class) {
-            localUpdatedModifiedAndStartedModifyingAgainState.toLocalDeletedOrThrow(newLocalActionId = "fail")
+            localUpdatedModifiedAndStartedModifyingAgainState.toLocalDeletedOrThrow(
+                    newLocalActionId = LocalAction.Id("fail")
+            )
         }
 
         assertEquals(
@@ -909,8 +917,8 @@ class RecordSyncStateTest {
                 localUpdatedModifiedAndStartedModifyingAgainState.toModifyingNowOrThrow()
         )
 
-        val localActionId3 = "3"
-        val lastLocalModifiedTimestamp3 = generateFakeInstantTimestamp()
+        val localActionId3 = LocalAction.Id("3")
+        val lastLocalModifiedTimestamp3 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         assertEquals(
                 localUpdatedModifiedAndStartedModifyingAgainState.copy(
@@ -937,7 +945,7 @@ class RecordSyncStateTest {
 
         assertFalse(localUpdatedStateSyncing.canBeFullyDeletedOnLocalDelete())
 
-        val localActionId2 = "2"
+        val localActionId2 = LocalAction.Id("2")
         assertEquals(
                 localUpdatedStateSyncing.copy(localAction = LocalAction.Delete(actionId = localActionId2)),
                 localUpdatedStateSyncing.toLocalDeletedOrThrow(newLocalActionId = localActionId2)
@@ -950,8 +958,8 @@ class RecordSyncStateTest {
 
         assertThrows(IllegalStateException::class) {
             localUpdatedStateSyncing.toNextModifiedAfterModifyingOrThrow(
-                    newLocalActionId = "fail",
-                    newLastLocalModifiedTimestamp = Instant.now()
+                    newLocalActionId = LocalAction.Id("fail"),
+                    newLastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now()
             )
         }
 
@@ -973,7 +981,7 @@ class RecordSyncStateTest {
         assertFalse(localUpdatedStateSyncingStartedModifying.canBeFullyDeletedOnLocalDelete())
 
         assertThrows(IllegalStateException::class) {
-            localUpdatedStateSyncingStartedModifying.toLocalDeletedOrThrow(newLocalActionId = "fail")
+            localUpdatedStateSyncingStartedModifying.toLocalDeletedOrThrow(newLocalActionId = LocalAction.Id("fail"))
         }
 
         assertEquals(
@@ -981,8 +989,8 @@ class RecordSyncStateTest {
                 localUpdatedStateSyncingStartedModifying.toModifyingNowOrThrow()
         )
 
-        val localAction2 = "2"
-        val lastLocalModifiedTimestamp2 = generateFakeInstantTimestamp()
+        val localAction2 = LocalAction.Id("2")
+        val lastLocalModifiedTimestamp2 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         assertEquals(
                 localUpdatedStateSyncingStartedModifying.copy(
@@ -1008,7 +1016,7 @@ class RecordSyncStateTest {
     fun testLocalUpdatedSyncingDeleted() {
         val localUpdatedStateSyncingOriginal = createLocalUpdatedState().copy(syncStatus = SyncStatus.SYNCHRONIZING)
 
-        val localAction2 = "2"
+        val localAction2 = LocalAction.Id("2")
 
         val localUpdatedStateSyncingDeleted = localUpdatedStateSyncingOriginal.toLocalDeletedOrThrow(
                 newLocalActionId = localAction2
@@ -1023,7 +1031,7 @@ class RecordSyncStateTest {
         assertFalse(localUpdatedStateSyncingDeleted.canBeFullyDeletedOnLocalDelete())
 
         assertThrows(IllegalStateException::class) {
-            localUpdatedStateSyncingDeleted.toLocalDeletedOrThrow(newLocalActionId = "fail")
+            localUpdatedStateSyncingDeleted.toLocalDeletedOrThrow(newLocalActionId = LocalAction.Id("fail"))
         }
 
         assertThrows(IllegalStateException::class) {
@@ -1032,8 +1040,8 @@ class RecordSyncStateTest {
 
         assertThrows(IllegalStateException::class) {
             localUpdatedStateSyncingDeleted.toNextModifiedAfterModifyingOrThrow(
-                    newLocalActionId = "fail",
-                    newLastLocalModifiedTimestamp = Instant.now()
+                    newLocalActionId = LocalAction.Id("fail"),
+                    newLastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now()
             )
         }
 
@@ -1047,8 +1055,8 @@ class RecordSyncStateTest {
     fun testLocalUpdatedSyncingModified() {
         val localUpdatedStateSyncingOriginal = createLocalUpdatedState().copy(syncStatus = SyncStatus.SYNCHRONIZING)
 
-        val localAction2 = "2"
-        val lastLocalModifiedTimestamp2 = generateFakeInstantTimestamp()
+        val localAction2 = LocalAction.Id("2")
+        val lastLocalModifiedTimestamp2 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         val localUpdatedStateSyncingModified = localUpdatedStateSyncingOriginal
                 .toModifyingNowOrThrow()
@@ -1065,7 +1073,7 @@ class RecordSyncStateTest {
 
         assertFalse(localUpdatedStateSyncingModified.canBeFullyDeletedOnLocalDelete())
 
-        val localAction3 = "3"
+        val localAction3 = LocalAction.Id("3")
         assertEquals(
                 localUpdatedStateSyncingModified.copy(localAction = LocalAction.Delete(actionId = localAction3)),
                 localUpdatedStateSyncingModified.toLocalDeletedOrThrow(newLocalActionId = localAction3)
@@ -1078,8 +1086,8 @@ class RecordSyncStateTest {
 
         assertThrows(IllegalStateException::class) {
             localUpdatedStateSyncingModified.toNextModifiedAfterModifyingOrThrow(
-                    newLocalActionId = "fail",
-                    newLastLocalModifiedTimestamp = Instant.now()
+                    newLocalActionId = LocalAction.Id("fail"),
+                    newLastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now()
             )
         }
 
@@ -1093,8 +1101,8 @@ class RecordSyncStateTest {
     fun testLocalUpdatedSyncingModifiedAndStartedModifyingAgain() {
         val localUpdatedStateSyncingOriginal = createLocalUpdatedState().copy(syncStatus = SyncStatus.SYNCHRONIZING)
 
-        val localAction2 = "2"
-        val lastLocalModifiedTimestamp2 = generateFakeInstantTimestamp()
+        val localAction2 = LocalAction.Id("2")
+        val lastLocalModifiedTimestamp2 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         val localUpdatedStateSyncingModifiedAndStartedModifyingAgain = localUpdatedStateSyncingOriginal
                 .toModifyingNowOrThrow()
@@ -1113,7 +1121,9 @@ class RecordSyncStateTest {
         assertFalse(localUpdatedStateSyncingModifiedAndStartedModifyingAgain.canBeFullyDeletedOnLocalDelete())
 
         assertThrows(IllegalStateException::class) {
-            localUpdatedStateSyncingModifiedAndStartedModifyingAgain.toLocalDeletedOrThrow(newLocalActionId = "fail")
+            localUpdatedStateSyncingModifiedAndStartedModifyingAgain.toLocalDeletedOrThrow(
+                    newLocalActionId = LocalAction.Id("fail")
+            )
         }
 
         assertEquals(
@@ -1121,8 +1131,8 @@ class RecordSyncStateTest {
                 localUpdatedStateSyncingModifiedAndStartedModifyingAgain.toModifyingNowOrThrow()
         )
 
-        val localAction3 = "3"
-        val lastLocalModifiedTimestamp3 = generateFakeInstantTimestamp()
+        val localAction3 = LocalAction.Id("3")
+        val lastLocalModifiedTimestamp3 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         assertEquals(
                 localUpdatedStateSyncingModifiedAndStartedModifyingAgain.copy(
@@ -1147,12 +1157,12 @@ class RecordSyncStateTest {
     fun testSynced() {
         val remoteCreatedTimestamp = generateFakeInstantTimestamp()
         val remoteInfo = RemoteInfo(
-                remoteId = "123",
-                remoteActionId = "12345",
-                remoteCreatedTimestamp = remoteCreatedTimestamp,
-                lastRemoteSyncedTimestamp = remoteCreatedTimestamp
+                remoteId = RemoteInfo.Id("123"),
+                remoteActionId = RemoteInfo.ActionId("12345"),
+                remoteCreatedTimestamp = RemoteInfo.CreatedTimestamp(remoteCreatedTimestamp),
+                lastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp(remoteCreatedTimestamp)
         )
-        val lastLocalModifiedTimestamp = generateFakeInstantTimestamp()
+        val lastLocalModifiedTimestamp = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         val syncedState = createSyncedState(
                 remoteInfo = remoteInfo,
@@ -1172,7 +1182,7 @@ class RecordSyncStateTest {
         assertOriginalAndChanged(syncedState, syncedState.copy())
         assertFalse(syncedState.canBeFullyDeletedOnLocalDelete())
 
-        val localActionId2 = "2"
+        val localActionId2 = LocalAction.Id("2")
 
         assertEquals(
                 syncedState.copy(
@@ -1186,8 +1196,8 @@ class RecordSyncStateTest {
 
         assertThrows(IllegalStateException::class) {
             syncedState.toNextModifiedAfterModifyingOrThrow(
-                    newLocalActionId = "fail",
-                    newLastLocalModifiedTimestamp = Instant.now()
+                    newLocalActionId = LocalAction.Id("fail"),
+                    newLastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now()
             )
         }
 
@@ -1204,13 +1214,13 @@ class RecordSyncStateTest {
         assertFalse(syncedStateStartedModifying.canBeFullyDeletedOnLocalDelete())
 
         assertThrows(IllegalStateException::class) {
-            syncedStateStartedModifying.toLocalDeletedOrThrow(newLocalActionId = "fail")
+            syncedStateStartedModifying.toLocalDeletedOrThrow(newLocalActionId = LocalAction.Id("fail"))
         }
 
         assertEquals(syncedStateStartedModifying.copy(), syncedStateStartedModifying.toModifyingNowOrThrow())
 
-        val localActionId3 = "3"
-        val lastLocalModifiedTimestamp3 = generateFakeInstantTimestamp()
+        val localActionId3 = LocalAction.Id("3")
+        val lastLocalModifiedTimestamp3 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         assertEquals(
                 syncedStateStartedModifying.copy(
@@ -1235,14 +1245,14 @@ class RecordSyncStateTest {
     fun testSyncedDeleted() {
         val syncedStateOriginal = createSyncedState()
 
-        val localActionId2 = "2"
+        val localActionId2 = LocalAction.Id("2")
         val syncedStateDeleted = syncedStateOriginal.toLocalDeletedOrThrow(newLocalActionId = localActionId2)
 
         assertOriginalAndChanged(syncedStateOriginal, syncedStateDeleted, userLocallyDeleted = true)
         assertFalse(syncedStateDeleted.canBeFullyDeletedOnLocalDelete())
 
         assertThrows(IllegalStateException::class) {
-            syncedStateDeleted.toLocalDeletedOrThrow(newLocalActionId = "fail")
+            syncedStateDeleted.toLocalDeletedOrThrow(newLocalActionId = LocalAction.Id("fail"))
         }
 
         assertThrows(IllegalStateException::class) {
@@ -1251,8 +1261,8 @@ class RecordSyncStateTest {
 
         assertThrows(IllegalStateException::class) {
             syncedStateDeleted.toNextModifiedAfterModifyingOrThrow(
-                    newLocalActionId = "fail",
-                    newLastLocalModifiedTimestamp = Instant.now()
+                    newLocalActionId = LocalAction.Id("fail"),
+                    newLastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now()
             )
         }
 
@@ -1263,8 +1273,8 @@ class RecordSyncStateTest {
     fun testSyncedModified() {
         val syncedStateOriginal = createSyncedState()
 
-        val localActionId2 = "2"
-        val lastLocalModifiedTimestamp2 = generateFakeInstantTimestamp()
+        val localActionId2 = LocalAction.Id("2")
+        val lastLocalModifiedTimestamp2 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         val syncedStateModified = syncedStateOriginal
                 .toModifyingNowOrThrow()
@@ -1276,7 +1286,7 @@ class RecordSyncStateTest {
         assertOriginalAndChanged(syncedStateOriginal, syncedStateModified, userModifiedRecord = true)
         assertFalse(syncedStateModified.canBeFullyDeletedOnLocalDelete())
 
-        val localActionId3 = "3"
+        val localActionId3 = LocalAction.Id("3")
 
         assertEquals(
                 syncedStateModified.copy(localAction = LocalAction.Delete(actionId = localActionId3)),
@@ -1287,8 +1297,8 @@ class RecordSyncStateTest {
 
         assertThrows(IllegalStateException::class) {
             syncedStateModified.toNextModifiedAfterModifyingOrThrow(
-                    newLocalActionId = "fail",
-                    newLastLocalModifiedTimestamp = Instant.now()
+                    newLocalActionId = LocalAction.Id("fail"),
+                    newLastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now()
             )
         }
 
@@ -1299,8 +1309,8 @@ class RecordSyncStateTest {
     fun testSyncedModifiedAndStartedModifyingAgain() {
         val syncedStateOriginal = createSyncedState()
 
-        val localActionId2 = "2"
-        val lastLocalModifiedTimestamp2 = generateFakeInstantTimestamp()
+        val localActionId2 = LocalAction.Id("2")
+        val lastLocalModifiedTimestamp2 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         val syncedStateModifiedAndStartedModifyingAgain = syncedStateOriginal
                 .toModifyingNowOrThrow()
@@ -1319,7 +1329,7 @@ class RecordSyncStateTest {
         assertFalse(syncedStateModifiedAndStartedModifyingAgain.canBeFullyDeletedOnLocalDelete())
 
         assertThrows(IllegalStateException::class) {
-            syncedStateModifiedAndStartedModifyingAgain.toLocalDeletedOrThrow(newLocalActionId = "fail")
+            syncedStateModifiedAndStartedModifyingAgain.toLocalDeletedOrThrow(newLocalActionId = LocalAction.Id("fail"))
         }
 
         assertEquals(
@@ -1327,8 +1337,8 @@ class RecordSyncStateTest {
                 syncedStateModifiedAndStartedModifyingAgain.toModifyingNowOrThrow()
         )
 
-        val localActionId3 = "3"
-        val lastLocalModifiedTimestamp3 = generateFakeInstantTimestamp()
+        val localActionId3 = LocalAction.Id("3")
+        val lastLocalModifiedTimestamp3 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         assertEquals(
                 syncedStateModifiedAndStartedModifyingAgain.copy(
@@ -1358,7 +1368,7 @@ class RecordSyncStateTest {
 
         assertFalse(syncedStateSyncing.canBeFullyDeletedOnLocalDelete())
 
-        val localActionId2 = "2"
+        val localActionId2 = LocalAction.Id("2")
 
         assertEquals(
                 syncedStateSyncing.copy(localAction = LocalAction.Delete(actionId = localActionId2)),
@@ -1369,8 +1379,8 @@ class RecordSyncStateTest {
 
         assertThrows(IllegalStateException::class) {
             syncedStateSyncing.toNextModifiedAfterModifyingOrThrow(
-                    newLocalActionId = "fail",
-                    newLastLocalModifiedTimestamp = Instant.now()
+                    newLocalActionId = LocalAction.Id("fail"),
+                    newLastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now()
             )
         }
 
@@ -1395,7 +1405,7 @@ class RecordSyncStateTest {
         assertFalse(syncedStateSyncingStartedModifying.canBeFullyDeletedOnLocalDelete())
 
         assertThrows(IllegalStateException::class) {
-            syncedStateSyncingStartedModifying.toLocalDeletedOrThrow(newLocalActionId = "fail")
+            syncedStateSyncingStartedModifying.toLocalDeletedOrThrow(newLocalActionId = LocalAction.Id("fail"))
         }
 
         assertEquals(
@@ -1403,8 +1413,8 @@ class RecordSyncStateTest {
                 syncedStateSyncingStartedModifying.toModifyingNowOrThrow()
         )
 
-        val localActionId2 = "2"
-        val lastLocalModifiedTimestamp2 = generateFakeInstantTimestamp()
+        val localActionId2 = LocalAction.Id("2")
+        val lastLocalModifiedTimestamp2 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         assertEquals(
                 syncedStateSyncingStartedModifying.copy(
@@ -1428,7 +1438,7 @@ class RecordSyncStateTest {
     fun testSyncedSyncingDeleted() {
         val syncedStateSyncingOriginal = createSynchronizingState()
 
-        val localActionId2 = "2"
+        val localActionId2 = LocalAction.Id("2")
 
         val syncedStateSyncingDeleted = syncedStateSyncingOriginal.toLocalDeletedOrThrow(
                 newLocalActionId = localActionId2
@@ -1439,7 +1449,7 @@ class RecordSyncStateTest {
         assertFalse(syncedStateSyncingDeleted.canBeFullyDeletedOnLocalDelete())
 
         assertThrows(IllegalStateException::class) {
-            syncedStateSyncingDeleted.toLocalDeletedOrThrow(newLocalActionId = "fail")
+            syncedStateSyncingDeleted.toLocalDeletedOrThrow(newLocalActionId = LocalAction.Id("fail"))
         }
 
         assertThrows(IllegalStateException::class) {
@@ -1448,8 +1458,8 @@ class RecordSyncStateTest {
 
         assertThrows(IllegalStateException::class) {
             syncedStateSyncingDeleted.toNextModifiedAfterModifyingOrThrow(
-                    newLocalActionId = "fail",
-                    newLastLocalModifiedTimestamp = Instant.now()
+                    newLocalActionId = LocalAction.Id("fail"),
+                    newLastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now()
             )
         }
 
@@ -1463,8 +1473,8 @@ class RecordSyncStateTest {
     fun testSyncedSyncingModified() {
         val syncedStateSyncingOriginal = createSynchronizingState()
 
-        val localActionId2 = "2"
-        val lastLocalModifiedTimestamp2 = generateFakeInstantTimestamp()
+        val localActionId2 = LocalAction.Id("2")
+        val lastLocalModifiedTimestamp2 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         val syncedStateSyncingModified = syncedStateSyncingOriginal
                 .toModifyingNowOrThrow()
@@ -1477,7 +1487,7 @@ class RecordSyncStateTest {
 
         assertFalse(syncedStateSyncingModified.canBeFullyDeletedOnLocalDelete())
 
-        val localActionId3 = "3"
+        val localActionId3 = LocalAction.Id("3")
 
         assertEquals(
                 syncedStateSyncingModified.copy(localAction = LocalAction.Delete(actionId = localActionId3)),
@@ -1491,8 +1501,8 @@ class RecordSyncStateTest {
 
         assertThrows(IllegalStateException::class) {
             syncedStateSyncingModified.toNextModifiedAfterModifyingOrThrow(
-                    newLocalActionId = "fail",
-                    newLastLocalModifiedTimestamp = Instant.now()
+                    newLocalActionId = LocalAction.Id("fail"),
+                    newLastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now()
             )
         }
 
@@ -1506,8 +1516,8 @@ class RecordSyncStateTest {
     fun testSyncedSyncingModifiedAndStartedModifyingAgain() {
         val syncedStateSyncingOriginal = createSynchronizingState()
 
-        val localActionId2 = "2"
-        val lastLocalModifiedTimestamp2 = generateFakeInstantTimestamp()
+        val localActionId2 = LocalAction.Id("2")
+        val lastLocalModifiedTimestamp2 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         val syncedStateSyncingModifiedAndStartedModifyingAgain = syncedStateSyncingOriginal
                 .toModifyingNowOrThrow()
@@ -1523,14 +1533,16 @@ class RecordSyncStateTest {
         assertFalse(syncedStateSyncingModifiedAndStartedModifyingAgain.canBeFullyDeletedOnLocalDelete())
 
         assertThrows(IllegalStateException::class) {
-            syncedStateSyncingModifiedAndStartedModifyingAgain.toLocalDeletedOrThrow(newLocalActionId = "fail")
+            syncedStateSyncingModifiedAndStartedModifyingAgain.toLocalDeletedOrThrow(
+                    newLocalActionId = LocalAction.Id("fail")
+            )
         }
 
         assertEquals(syncedStateSyncingModifiedAndStartedModifyingAgain.copy(),
                      syncedStateSyncingModifiedAndStartedModifyingAgain.toModifyingNowOrThrow())
 
-        val localActionId3 = "3"
-        val lastLocalModifiedTimestamp3 = generateFakeInstantTimestamp()
+        val localActionId3 = LocalAction.Id("3")
+        val lastLocalModifiedTimestamp3 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         assertEquals(
                 syncedStateSyncingModifiedAndStartedModifyingAgain.copy(

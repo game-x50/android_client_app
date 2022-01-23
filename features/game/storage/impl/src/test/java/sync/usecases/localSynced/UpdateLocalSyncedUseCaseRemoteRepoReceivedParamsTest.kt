@@ -1,5 +1,6 @@
 package sync.usecases.localSynced
 
+import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
 import com.ruslan.hlushan.game.storage.impl.remote.dto.server.toUpdateLocalSyncedRequest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -57,7 +58,7 @@ internal class UpdateLocalSyncedUseCaseRemoteRepoReceivedParamsTest : BaseUpdate
                 .map { rec -> rec.syncState.remoteInfo!!.toUpdateLocalSyncedRequest() }
 
         val disposable = updateLocalSyncedUseCase.updateAll(
-                maxLastRemoteSyncedTimestamp = searchParamLastRemoteSyncedTimestamp,
+                maxLastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp(searchParamLastRemoteSyncedTimestamp),
                 stepCount = stepCount
         )
                 .subscribe()

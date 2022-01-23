@@ -8,19 +8,19 @@ import com.ruslan.hlushan.core.value.holder.ValueHolder
 import com.ruslan.hlushan.game.api.play.dto.GameRecord
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
+import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
 import com.ruslan.hlushan.game.api.play.dto.RequestParams
 import com.ruslan.hlushan.game.api.play.dto.SyncStatus
 import com.ruslan.hlushan.game.api.play.dto.combineToRequestParams
 import com.ruslan.hlushan.game.api.play.dto.createPaginationResponseFor
 import com.ruslan.hlushan.game.storage.impl.local.db.dao.GameRecordsDAO
-import com.ruslan.hlushan.game.storage.impl.local.db.entities.GameRecordDb
 import com.ruslan.hlushan.game.storage.impl.local.db.entities.LocalActionTypeDb
+import com.ruslan.hlushan.game.storage.impl.local.db.entities.fromDbRecord
 import com.ruslan.hlushan.third_party.rxjava2.extensions.SchedulersManager
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.subjects.BehaviorSubject
-import org.threeten.bp.Instant
 import javax.inject.Inject
 
 //TODO: #write_unit_tests
@@ -68,7 +68,7 @@ constructor(
                                 gameRecordsDAO.getRecordsExcludeOrderByLastModifiedAsc(
                                         localActionType = LocalActionTypeDb.DELETE,
                                         excludedIds = requestParams.excludedIds,
-                                        minLastModified = requestParams.minLastModifiedTimestamp,
+                                        minLastModified = requestParams.minLastModifiedTimestamp?.value,
                                         limit = limit
                                 )
                             }
@@ -76,14 +76,14 @@ constructor(
                                 gameRecordsDAO.getRecordsExcludeOrderByLastModifiedDesc(
                                         localActionType = LocalActionTypeDb.DELETE,
                                         excludedIds = requestParams.excludedIds,
-                                        maxLastModified = requestParams.maxLastModifiedTimestamp,
+                                        maxLastModified = requestParams.maxLastModifiedTimestamp?.value,
                                         limit = limit
                                 )
                             }
                         }.map { dbRecords -> Pair(requestParams, dbRecords) }
                     }
                     .map { (requestParams, dbRecords) ->
-                        requestParams to dbRecords.map(GameRecordDb::fromDbRecord)
+                        requestParams to dbRecords.map { dbRec -> dbRec.fromDbRecord() }
                     }
                     .map { (requestParams, pageResult) ->
                         createPaginationResponseFor(pageResult, pagesRequest, requestParams, limit = limit)
@@ -98,7 +98,7 @@ constructor(
 
     override fun getFullRecordData(id: Long): Single<GameRecordWithSyncState> =
             gameRecordsDAO.getRecordById(id)
-                    .map(GameRecordDb::fromDbRecord)
+                    .map { dbRec -> dbRec.fromDbRecord() }
                     .subscribeOn(schedulersManager.io)
 
     override fun addNewRecord(request: LocalUpdateRequest): Completable =
@@ -141,13 +141,13 @@ constructor(
 
     override fun markAsSyncingAndGetWaitingRecords(
             limit: Int,
-            createIdGenerator: (GameRecord) -> String
+            createIdGenerator: (GameRecord) -> RecordSyncState.LocalCreateId
     ): Single<List<GameRecordWithSyncState>> =
             Single.fromCallable { gameRecordsDAO.markAsSyncingAndGetWaitingRecords(limit, createIdGenerator) }
                     .subscribeOn(schedulersManager.io)
 
     override fun markAsSyncingAndGetSyncedWhereLastRemoteSyncSmallerThen(
-            maxLastRemoteSyncedTimestamp: Instant,
+            maxLastRemoteSyncedTimestamp: RemoteInfo.LastSyncedTimestamp,
             @IntRange(from = 1) limit: Int
     ): Single<List<GameRecordWithSyncState>> =
             Single.fromCallable {
@@ -156,20 +156,23 @@ constructor(
                         limit = limit
                 )
             }
-                    .map { dbRecords -> dbRecords.map(GameRecordDb::fromDbRecord) }
+                    .map { dbRecords -> dbRecords.map { dbRec -> dbRec.fromDbRecord() } }
                     .subscribeOn(schedulersManager.io)
 
     override fun getLastCreatedTimestampWithExcludedRemoteIds(): Single<LastCreatedTimestampWithExcludedRemoteIds> =
             Single.fromCallable { localRecordsRepositoryStorage.lastCreatedTimestamp }
                     .flatMap { lastCreatedTimestamp ->
-                        gameRecordsDAO.getRemoteIdsWhereCreatedTimestampGraterOrEqual(lastCreatedTimestamp)
+                        gameRecordsDAO.getRemoteIdsWhereCreatedTimestampGraterOrEqual(lastCreatedTimestamp?.value)
                                 .map { excludedRemoteIds ->
-                                    LastCreatedTimestampWithExcludedRemoteIds(lastCreatedTimestamp, excludedRemoteIds)
+                                    LastCreatedTimestampWithExcludedRemoteIds(
+                                            lastCreatedTimestamp = lastCreatedTimestamp,
+                                            excludedRemoteIds = excludedRemoteIds.map(RemoteInfo::Id)
+                                    )
                                 }
                     }
                     .subscribeOn(schedulersManager.io)
 
-    override fun storeLastCreatedTimestamp(newLastCreatedTimestamp: Instant): Completable =
+    override fun storeLastCreatedTimestamp(newLastCreatedTimestamp: RemoteInfo.CreatedTimestamp): Completable =
             localRecordsRepositoryStorage.storeLastCreatedTimestamp(newLastCreatedTimestamp)
 
     private fun updateOrCreateRecord(id: Long?, request: LocalUpdateRequest): Completable =

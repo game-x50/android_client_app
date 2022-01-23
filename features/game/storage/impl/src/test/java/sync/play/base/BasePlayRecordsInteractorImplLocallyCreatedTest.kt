@@ -5,8 +5,8 @@ import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.api.play.dto.toModifyingNowOrThrow
 import com.ruslan.hlushan.game.api.play.dto.toNextModifiedAfterModifyingOrThrow
 import com.ruslan.hlushan.game.api.test.utils.generateFakeGameState
+import com.ruslan.hlushan.game.api.test.utils.generateFakeRecordSyncStateLastLocalModifiedTimestamp
 import com.ruslan.hlushan.test.utils.generateFakeDuration
-import com.ruslan.hlushan.test.utils.generateFakeInstantTimestamp
 import org.junit.Assert.assertNotEquals
 import utils.assertRecordsWithSyncStateInLocalRepo
 import utils.generateAndAddLocalCreatedToLocalRepo
@@ -99,7 +99,7 @@ internal abstract class BasePlayRecordsInteractorImplLocallyCreatedTest : BasePl
                 id = original.record.id,
                 gameState = generateFakeGameState(),
                 totalPlayed = generateFakeDuration(),
-                localModifiedTimestamp = generateFakeInstantTimestamp()
+                localModifiedTimestamp = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
         )
                 .test()
                 .assertNotComplete()
@@ -113,7 +113,7 @@ internal abstract class BasePlayRecordsInteractorImplLocallyCreatedTest : BasePl
 
         val updatedGameState = generateFakeGameState()
         val updatedTotalPlayed = generateFakeDuration()
-        val localModifiedTimestamp = generateFakeInstantTimestamp()
+        val localModifiedTimestamp = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         playRecordsInteractor.updateRecordAfterPlaying(
                 id = original.record.id,

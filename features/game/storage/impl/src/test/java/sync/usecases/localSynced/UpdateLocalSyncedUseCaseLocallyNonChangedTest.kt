@@ -3,10 +3,10 @@ package sync.usecases.localSynced
 import com.ruslan.hlushan.game.api.play.dto.GameRecord
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
+import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
 import com.ruslan.hlushan.game.api.test.utils.generateFakeRemoteInfo
 import com.ruslan.hlushan.game.storage.impl.remote.dto.UpdateLocalNonModifiedResponse
 import org.junit.Test
-import org.threeten.bp.Instant
 import utils.assertRecordsWithSyncStateInLocalRepo
 import utils.generateAndAddLocalSyncedToLocalRepo
 import utils.generateFakeRemoteRecord
@@ -17,7 +17,7 @@ internal class UpdateLocalSyncedUseCaseLocallyNonChangedTest : BaseUpdateLocalSy
     fun testLocalLocallySyncedNoChangesNonChanged() {
         val original = localRepo.generateAndAddLocalSyncedToLocalRepo(syncingNow = true, modifyingNow = false)
 
-        val lastRemoteSyncedTimestamp = Instant.now()
+        val lastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp.now()
 
         val response = UpdateLocalNonModifiedResponse.NoChanges(
                 remoteId = original.syncState.remoteInfo!!.remoteId,

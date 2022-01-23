@@ -1,5 +1,6 @@
 package sync.usecases.downloadNewRemoteCreated
 
+import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
 import com.ruslan.hlushan.game.storage.impl.remote.dto.server.GetNewRemoteCreatedRequest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -29,7 +30,7 @@ internal class DownloadNewRemoteCreatedUseCaseRemoteRepoReceivedParamsTest : Bas
         val lastCreatedTimestamp = Instant.ofEpochMilli(1_231_123)
         val localCreatedTimestamp = lastCreatedTimestamp.plusMillis(1)
 
-        storage.lastCreatedTimestamp = lastCreatedTimestamp
+        storage.lastCreatedTimestamp = RemoteInfo.CreatedTimestamp(lastCreatedTimestamp)
 
         val originals = (1..count).map {
             localRepo.generateAndAddLocalSyncedToLocalRepo(
@@ -49,7 +50,7 @@ internal class DownloadNewRemoteCreatedUseCaseRemoteRepoReceivedParamsTest : Bas
                 GetNewRemoteCreatedRequest(
                         lastCreatedTimestamp = lastCreatedTimestamp,
                         excludedRemoteIds = originals.map { recordWithSyncState ->
-                            recordWithSyncState.syncState.remoteInfo!!.remoteId
+                            recordWithSyncState.syncState.remoteInfo!!.remoteId.value
                         },
                         limit = stepLimit
                 ),

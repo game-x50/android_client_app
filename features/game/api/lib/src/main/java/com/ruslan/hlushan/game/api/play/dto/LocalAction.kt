@@ -2,13 +2,16 @@ package com.ruslan.hlushan.game.api.play.dto
 
 sealed class LocalAction {
 
-    abstract val actionId: String
+    @JvmInline
+    value class Id(val value: String)
 
-    data class Create(override val actionId: String) : LocalAction()
+    abstract val actionId: LocalAction.Id
 
-    data class Update(override val actionId: String) : LocalAction()
+    data class Create(override val actionId: LocalAction.Id) : LocalAction()
 
-    data class Delete(override val actionId: String) : LocalAction()
+    data class Update(override val actionId: LocalAction.Id) : LocalAction()
+
+    data class Delete(override val actionId: LocalAction.Id) : LocalAction()
 }
 
 fun LocalAction.isSameType(other: LocalAction?): Boolean =

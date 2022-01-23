@@ -6,12 +6,12 @@ import com.ruslan.hlushan.core.value.holder.ValueHolder
 import com.ruslan.hlushan.game.api.play.dto.GameRecord
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.api.play.dto.GameState
+import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
 import com.ruslan.hlushan.game.api.play.dto.RequestParams
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
 import org.threeten.bp.Duration
-import org.threeten.bp.Instant
 
 interface PlayRecordsInteractor {
 
@@ -35,13 +35,13 @@ interface PlayRecordsInteractor {
             id: Long,
             gameState: GameState,
             totalPlayed: Duration,
-            localModifiedTimestamp: Instant
+            localModifiedTimestamp: RecordSyncState.LastLocalModifiedTimestamp
     ): Completable
 
     fun addNewRecordAfterPlaying(
             gameState: GameState,
             totalPlayed: Duration,
-            localCreatedTimestamp: Instant
+            localCreatedTimestamp: RecordSyncState.LastLocalModifiedTimestamp
     ): Completable
 
     fun getCountOfNotSynchronizedRecords(): Single<Int>

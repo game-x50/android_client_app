@@ -1,5 +1,6 @@
 package com.ruslan.hlushan.game.storage.impl.remote.dto.server
 
+import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
 import com.ruslan.hlushan.game.storage.impl.remote.dto.UpdateLocalNonModifiedResponse
 import com.ruslan.hlushan.parsing.impl.utils.parsing.InstantAsEpochMillisSerializer
 import kotlinx.serialization.Serializable
@@ -27,15 +28,15 @@ internal fun UpdateLocalNonModifiedApiResponse.toUpdateLocalNonModifiedResponse(
              && this.lastSyncedTimestamp != null
              && this.game == null) -> {
                 UpdateLocalNonModifiedResponse.NoChanges(
-                        remoteId = this.id,
-                        lastRemoteSyncedTimestamp = this.lastSyncedTimestamp
+                        remoteId = RemoteInfo.Id(this.id),
+                        lastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp(this.lastSyncedTimestamp)
                 )
             }
             (this.status == UpdateLocalNonModifiedApiResponse.ChangedStatus.CHANGED
              && this.lastSyncedTimestamp == null
              && this.game != null) -> {
                 UpdateLocalNonModifiedResponse.Changed(
-                        remoteId = this.id,
+                        remoteId = RemoteInfo.Id(this.id),
                         remoteRecord = this.game.toRemoteRecord()
                 )
             }
@@ -43,12 +44,12 @@ internal fun UpdateLocalNonModifiedApiResponse.toUpdateLocalNonModifiedResponse(
             (this.status == UpdateLocalNonModifiedApiResponse.ChangedStatus.DELETED
              && this.lastSyncedTimestamp == null
              && this.game == null) -> {
-                UpdateLocalNonModifiedResponse.Deleted(remoteId = this.id)
+                UpdateLocalNonModifiedResponse.Deleted(remoteId = RemoteInfo.Id(this.id))
             }
             (this.status == null
              && this.lastSyncedTimestamp == null
              && this.game == null) -> {
-                UpdateLocalNonModifiedResponse.Fail(remoteId = this.id)
+                UpdateLocalNonModifiedResponse.Fail(remoteId = RemoteInfo.Id(this.id))
             }
             else                   -> throw  IllegalStateException("Can't be mapped: $this")
         }

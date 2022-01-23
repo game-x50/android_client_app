@@ -98,7 +98,7 @@ private class GameRecordViewHolder(
 
     @UiMainThread
     private fun redraw(item: GameRecordRecyclerItem) {
-        val zonedDateTime = item.gameRecord.syncState.lastLocalModifiedTimestamp.atZone(ZoneId.systemDefault())
+        val zonedDateTime = item.gameRecord.syncState.lastLocalModifiedTimestamp.value.atZone(ZoneId.systemDefault())
         @Suppress("MaxLineLength")
         binding.gameRecordItemTitle.text = (item.gameRecord.record.gameState.current.immutableNumbersMatrix.totalSum.toString()
                                             + "\n" + item.gameRecord.syncState.syncStatus

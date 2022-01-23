@@ -1,13 +1,14 @@
 package sync.stub
 
+import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
 import com.ruslan.hlushan.game.storage.impl.local.LocalRecordsRepositoryStorage
 import io.reactivex.Completable
-import org.threeten.bp.Instant
 
 class LocalRecordsRepositoryStorageMockImpl : LocalRecordsRepositoryStorage {
 
-    override var lastCreatedTimestamp: Instant = Instant.ofEpochMilli(0)
+    override var lastCreatedTimestamp: RemoteInfo.CreatedTimestamp =
+            RemoteInfo.CreatedTimestamp.min()
 
-    override fun storeLastCreatedTimestamp(newLastCreatedTimestamp: Instant): Completable =
+    override fun storeLastCreatedTimestamp(newLastCreatedTimestamp: RemoteInfo.CreatedTimestamp): Completable =
             Completable.fromAction { lastCreatedTimestamp = newLastCreatedTimestamp }
 }

@@ -1,13 +1,13 @@
 package sync.stub
 
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
+import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
 import com.ruslan.hlushan.game.storage.impl.local.LocalRecordsRepositoryImpl
 import com.ruslan.hlushan.game.storage.impl.local.LocalRecordsRepositoryStorage
-import com.ruslan.hlushan.game.storage.impl.local.db.entities.GameRecordDb
+import com.ruslan.hlushan.game.storage.impl.local.db.entities.fromDbRecord
 import com.ruslan.hlushan.third_party.rxjava2.extensions.SchedulersManager
 import io.reactivex.Completable
 import io.reactivex.Single
-import org.threeten.bp.Instant
 
 internal class LocalRecordsRepoTestImpl(
         localRecordsRepositoryStorage: LocalRecordsRepositoryStorage,
@@ -20,17 +20,17 @@ internal class LocalRecordsRepoTestImpl(
         com.ruslan.hlushan.core.logger.api.test.utils.EmptyAppLoggerImpl
 ) {
 
-    var maxLastRemoteSyncedTimestampRequest: Instant? = null
+    var maxLastRemoteSyncedTimestampRequest: RemoteInfo.LastSyncedTimestamp? = null
         private set
 
     var deleteAllGamesError: Throwable? = null
 
     fun getAll(): List<GameRecordWithSyncState> =
             gameRecordsDAOStubImpl.getAll()
-                    .map(GameRecordDb::fromDbRecord)
+                    .map { dbRec -> dbRec.fromDbRecord() }
 
     override fun markAsSyncingAndGetSyncedWhereLastRemoteSyncSmallerThen(
-            maxLastRemoteSyncedTimestamp: Instant,
+            maxLastRemoteSyncedTimestamp: RemoteInfo.LastSyncedTimestamp,
             limit: Int
     ): Single<List<GameRecordWithSyncState>> {
         maxLastRemoteSyncedTimestampRequest = maxLastRemoteSyncedTimestamp

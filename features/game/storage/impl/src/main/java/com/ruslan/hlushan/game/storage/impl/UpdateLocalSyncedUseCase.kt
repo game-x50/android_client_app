@@ -5,6 +5,7 @@ import androidx.annotation.VisibleForTesting
 import com.ruslan.hlushan.core.logger.api.AppLogger
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
+import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
 import com.ruslan.hlushan.game.api.play.dto.SyncStatus
 import com.ruslan.hlushan.game.api.play.dto.userLocallyDeleted
 import com.ruslan.hlushan.game.api.play.dto.userModifiedRecord
@@ -18,7 +19,6 @@ import com.ruslan.hlushan.game.storage.impl.remote.dto.toSyncLocalUpdateRequest
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
-import org.threeten.bp.Instant
 import javax.inject.Inject
 
 @SuppressWarnings("MaxLineLength")
@@ -30,8 +30,14 @@ constructor(
         private val appLogger: AppLogger
 ) {
 
-    fun updateAll(maxLastRemoteSyncedTimestamp: Instant, @IntRange(from = 1) stepCount: Int): Completable =
-            localRepository.markAsSyncingAndGetSyncedWhereLastRemoteSyncSmallerThen(maxLastRemoteSyncedTimestamp, stepCount)
+    fun updateAll(
+            maxLastRemoteSyncedTimestamp: RemoteInfo.LastSyncedTimestamp,
+            @IntRange(from = 1) stepCount: Int
+    ): Completable =
+            localRepository.markAsSyncingAndGetSyncedWhereLastRemoteSyncSmallerThen(
+                    maxLastRemoteSyncedTimestamp = maxLastRemoteSyncedTimestamp,
+                    limit = stepCount
+            )
                     .flatMap { list ->
                         if (list.isNotEmpty()) {
                             uploadLocalSyncedRecords(list)
