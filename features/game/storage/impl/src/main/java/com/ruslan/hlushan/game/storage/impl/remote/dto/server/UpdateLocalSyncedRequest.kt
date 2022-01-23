@@ -11,6 +11,6 @@ internal data class UpdateLocalSyncedRequest(
 
 internal fun RemoteInfo.toUpdateLocalSyncedRequest(): UpdateLocalSyncedRequest =
         UpdateLocalSyncedRequest(
-                remoteId = this.remoteId,
-                remoteActionId = this.remoteActionId
+                remoteId = this.remoteId.value,
+                remoteActionId = this.remoteActionId.value
         )

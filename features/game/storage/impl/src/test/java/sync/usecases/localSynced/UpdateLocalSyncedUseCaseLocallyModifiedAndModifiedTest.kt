@@ -4,14 +4,14 @@ import com.ruslan.hlushan.game.api.play.dto.GameRecord
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.api.play.dto.LocalAction
 import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
+import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
 import com.ruslan.hlushan.game.api.play.dto.SyncStatus
 import com.ruslan.hlushan.game.api.test.utils.generateFakeGameState
+import com.ruslan.hlushan.game.api.test.utils.generateFakeRecordSyncStateLastLocalModifiedTimestamp
 import com.ruslan.hlushan.game.api.test.utils.generateFakeRemoteInfo
 import com.ruslan.hlushan.game.storage.impl.remote.dto.UpdateLocalNonModifiedResponse
 import com.ruslan.hlushan.test.utils.generateFakeDuration
-import com.ruslan.hlushan.test.utils.generateFakeInstantTimestamp
 import org.junit.Test
-import org.threeten.bp.Instant
 import utils.assertRecordsWithSyncStateInLocalRepo
 import utils.generateAndAddLocalSyncedToLocalRepo
 import utils.generateFakeRemoteRecord
@@ -25,7 +25,7 @@ internal class UpdateLocalSyncedUseCaseLocallyModifiedAndModifiedTest : BaseUpda
 
         val updatedGameState2 = generateFakeGameState()
         val updatedTotalPlayed2 = generateFakeDuration()
-        val updatedLastLocalModifiedTimestamp2 = generateFakeInstantTimestamp()
+        val updatedLastLocalModifiedTimestamp2 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         playRecordsInteractor.updateAndGetRecordForPlaying(localSyncedRecordId)
                 .flatMapCompletable { playing ->
@@ -33,7 +33,7 @@ internal class UpdateLocalSyncedUseCaseLocallyModifiedAndModifiedTest : BaseUpda
                             id = playing.id,
                             gameState = generateFakeGameState(),
                             totalPlayed = generateFakeDuration(),
-                            localModifiedTimestamp = generateFakeInstantTimestamp()
+                            localModifiedTimestamp = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
                     )
                 }
                 .andThen(playRecordsInteractor.updateAndGetRecordForPlaying(localSyncedRecordId))
@@ -53,7 +53,7 @@ internal class UpdateLocalSyncedUseCaseLocallyModifiedAndModifiedTest : BaseUpda
                 .localAction!!
                 .actionId
 
-        val lastRemoteSyncedTimestamp = Instant.now()
+        val lastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp.now()
 
         val response = UpdateLocalNonModifiedResponse.NoChanges(
                 remoteId = original.syncState.remoteInfo!!.remoteId,
@@ -86,7 +86,7 @@ internal class UpdateLocalSyncedUseCaseLocallyModifiedAndModifiedTest : BaseUpda
 
         val updatedGameState2 = generateFakeGameState()
         val updatedTotalPlayed2 = generateFakeDuration()
-        val updatedLastLocalModifiedTimestamp2 = generateFakeInstantTimestamp()
+        val updatedLastLocalModifiedTimestamp2 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         playRecordsInteractor.updateAndGetRecordForPlaying(localSyncedRecordId)
                 .flatMapCompletable { playing ->
@@ -94,7 +94,7 @@ internal class UpdateLocalSyncedUseCaseLocallyModifiedAndModifiedTest : BaseUpda
                             id = playing.id,
                             gameState = generateFakeGameState(),
                             totalPlayed = generateFakeDuration(),
-                            localModifiedTimestamp = generateFakeInstantTimestamp()
+                            localModifiedTimestamp = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
                     )
                 }
                 .andThen(playRecordsInteractor.updateAndGetRecordForPlaying(localSyncedRecordId))
@@ -161,7 +161,7 @@ internal class UpdateLocalSyncedUseCaseLocallyModifiedAndModifiedTest : BaseUpda
 
         val updatedGameState2 = generateFakeGameState()
         val updatedTotalPlayed2 = generateFakeDuration()
-        val updatedLastLocalModifiedTimestamp2 = generateFakeInstantTimestamp()
+        val updatedLastLocalModifiedTimestamp2 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         playRecordsInteractor.updateAndGetRecordForPlaying(localSyncedRecordId)
                 .flatMapCompletable { playing ->
@@ -169,7 +169,7 @@ internal class UpdateLocalSyncedUseCaseLocallyModifiedAndModifiedTest : BaseUpda
                             id = playing.id,
                             gameState = generateFakeGameState(),
                             totalPlayed = generateFakeDuration(),
-                            localModifiedTimestamp = generateFakeInstantTimestamp()
+                            localModifiedTimestamp = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
                     )
                 }
                 .andThen(playRecordsInteractor.updateAndGetRecordForPlaying(localSyncedRecordId))
@@ -216,7 +216,7 @@ internal class UpdateLocalSyncedUseCaseLocallyModifiedAndModifiedTest : BaseUpda
 
         val updatedGameState2 = generateFakeGameState()
         val updatedTotalPlayed2 = generateFakeDuration()
-        val updatedLastLocalModifiedTimestamp2 = generateFakeInstantTimestamp()
+        val updatedLastLocalModifiedTimestamp2 = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         playRecordsInteractor.updateAndGetRecordForPlaying(localSyncedRecordId)
                 .flatMapCompletable { playing ->
@@ -224,7 +224,7 @@ internal class UpdateLocalSyncedUseCaseLocallyModifiedAndModifiedTest : BaseUpda
                             id = playing.id,
                             gameState = generateFakeGameState(),
                             totalPlayed = generateFakeDuration(),
-                            localModifiedTimestamp = generateFakeInstantTimestamp()
+                            localModifiedTimestamp = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
                     )
                 }
                 .andThen(playRecordsInteractor.updateAndGetRecordForPlaying(localSyncedRecordId))

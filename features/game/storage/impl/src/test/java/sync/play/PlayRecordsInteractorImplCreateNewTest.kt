@@ -4,8 +4,8 @@ import com.ruslan.hlushan.game.api.play.dto.GameRecord
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
 import com.ruslan.hlushan.game.api.test.utils.generateFakeGameState
+import com.ruslan.hlushan.game.api.test.utils.generateFakeRecordSyncStateLastLocalModifiedTimestamp
 import com.ruslan.hlushan.test.utils.generateFakeDuration
-import com.ruslan.hlushan.test.utils.generateFakeInstantTimestamp
 import org.junit.Test
 import sync.play.base.BasePlayRecordsInteractorImplTest
 import utils.assertRecordsWithSyncStateInLocalRepo
@@ -16,7 +16,7 @@ internal class PlayRecordsInteractorImplCreateNewTest : BasePlayRecordsInteracto
     fun testCreateNew() {
         val gameState = generateFakeGameState()
         val totalPlayed = generateFakeDuration()
-        val localCreatedTimestamp = generateFakeInstantTimestamp()
+        val localCreatedTimestamp = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         playRecordsInteractor.addNewRecordAfterPlaying(
                 gameState = gameState,
@@ -52,7 +52,7 @@ internal class PlayRecordsInteractorImplCreateNewTest : BasePlayRecordsInteracto
 
             val gameState = generateFakeGameState()
             val totalPlayed = generateFakeDuration()
-            val localCreatedTimestamp = generateFakeInstantTimestamp()
+            val localCreatedTimestamp = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
             playRecordsInteractor.addNewRecordAfterPlaying(
                     gameState = gameState,

@@ -26,27 +26,27 @@ private constructor(
                             type = LocalActionTypeApi.CREATE,
                             localId = request.record.id,
                             id = null,
-                            createdId = request.localCreateId,
-                            lastLocalModifiedTimestamp = request.lastLocalModifiedTimestamp,
+                            createdId = request.localCreateId.value,
+                            lastLocalModifiedTimestamp = request.lastLocalModifiedTimestamp.value,
                             lastActionId = null,
                             baseGameInfo = request.record.toBaseRemoteApiGameInfo()
                     )
                     is UploadLocalModifiedRequest.Updated -> UploadModifiedApiRequest(
                             type = LocalActionTypeApi.UPDATE,
                             localId = request.record.id,
-                            id = request.remoteId,
+                            id = request.remoteId.value,
                             createdId = null,
-                            lastLocalModifiedTimestamp = request.lastLocalModifiedTimestamp,
-                            lastActionId = request.remoteActionId,
+                            lastLocalModifiedTimestamp = request.lastLocalModifiedTimestamp.value,
+                            lastActionId = request.remoteActionId.value,
                             baseGameInfo = request.record.toBaseRemoteApiGameInfo()
                     )
                     is UploadLocalModifiedRequest.Deleted -> UploadModifiedApiRequest(
                             type = LocalActionTypeApi.DELETE,
                             localId = request.localRecordId,
-                            id = request.remoteId,
+                            id = request.remoteId.value,
                             createdId = null,
                             lastLocalModifiedTimestamp = null,
-                            lastActionId = request.remoteActionId,
+                            lastActionId = request.remoteActionId.value,
                             baseGameInfo = null
                     )
                 }

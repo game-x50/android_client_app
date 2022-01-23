@@ -1,5 +1,6 @@
 package com.ruslan.hlushan.game.storage.impl.remote
 
+import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
 import com.ruslan.hlushan.game.storage.impl.remote.dto.LocalModifiedResponse
 import com.ruslan.hlushan.game.storage.impl.remote.dto.RemoteRecord
 import com.ruslan.hlushan.game.storage.impl.remote.dto.UpdateLocalNonModifiedResponse
@@ -7,11 +8,10 @@ import com.ruslan.hlushan.game.storage.impl.remote.dto.UploadLocalModifiedReques
 import com.ruslan.hlushan.game.storage.impl.remote.dto.server.GetNewRemoteCreatedRequest
 import com.ruslan.hlushan.game.storage.impl.remote.dto.server.UpdateLocalSyncedRequest
 import io.reactivex.Single
-import org.threeten.bp.Instant
 
 internal interface SyncRemoteRepository {
 
-    fun getRemoteTimestamp(): Single<Instant>
+    fun getRemoteTimestamp(): Single<RemoteInfo.LastSyncedTimestamp>
 
     fun uploadLocalModified(requests: List<UploadLocalModifiedRequest>): Single<List<LocalModifiedResponse>>
 

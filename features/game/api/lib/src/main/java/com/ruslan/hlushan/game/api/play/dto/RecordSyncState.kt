@@ -5,8 +5,8 @@ import org.threeten.bp.Instant
 data class RecordSyncState(
         val remoteInfo: RemoteInfo?,
         val localAction: LocalAction?,
-        val localCreateId: String?,
-        val lastLocalModifiedTimestamp: Instant,
+        val localCreateId: RecordSyncState.LocalCreateId?,
+        val lastLocalModifiedTimestamp: RecordSyncState.LastLocalModifiedTimestamp,
         val modifyingNow: Boolean,
         val syncStatus: SyncStatus
 ) {
@@ -43,12 +43,25 @@ data class RecordSyncState(
         }
     }
 
+    @JvmInline
+    value class LocalCreateId(val value: String)
+
+    @JvmInline
+    value class LastLocalModifiedTimestamp(val value: Instant) {
+        companion object {
+            fun now(): LastLocalModifiedTimestamp =
+                    LastLocalModifiedTimestamp(
+                            value = Instant.now()
+                    )
+        }
+    }
+
     companion object {
 
         fun forLocalCreated(
-                localActionId: String,
+                localActionId: LocalAction.Id,
                 modifyingNow: Boolean,
-                localCreatedTimestamp: Instant
+                localCreatedTimestamp: RecordSyncState.LastLocalModifiedTimestamp
         ): RecordSyncState =
                 RecordSyncState(
                         remoteInfo = null,
@@ -61,7 +74,7 @@ data class RecordSyncState(
 
         fun forSync(
                 remoteInfo: RemoteInfo,
-                lastLocalModifiedTimestamp: Instant,
+                lastLocalModifiedTimestamp: RecordSyncState.LastLocalModifiedTimestamp,
                 modifyingNow: Boolean
         ): RecordSyncState =
                 RecordSyncState(
@@ -140,8 +153,8 @@ fun RecordSyncState.toModifyingNowOrThrow(): RecordSyncState =
 
 @Throws(IllegalStateException::class)
 fun RecordSyncState.toNextModifiedAfterModifyingOrThrow(
-        newLocalActionId: String,
-        newLastLocalModifiedTimestamp: Instant
+        newLocalActionId: LocalAction.Id,
+        newLastLocalModifiedTimestamp: RecordSyncState.LastLocalModifiedTimestamp
 ): RecordSyncState {
     if (!this.modifyingNow) {
         throw IllegalStateException("Can't move to next modified state that was is not modifying now: $this.")
@@ -180,7 +193,9 @@ fun RecordSyncState.canBeFullyDeletedOnLocalDelete(): Boolean =
 
 @SuppressWarnings("ThrowsCount")
 @Throws(IllegalStateException::class)
-fun RecordSyncState.toLocalDeletedOrThrow(newLocalActionId: String): RecordSyncState {
+fun RecordSyncState.toLocalDeletedOrThrow(
+        newLocalActionId: LocalAction.Id
+): RecordSyncState {
     if (this.localAction is LocalAction.Delete) {
         throw IllegalStateException("Record with localAction = ${this.localAction} can't be deleted again.")
     }

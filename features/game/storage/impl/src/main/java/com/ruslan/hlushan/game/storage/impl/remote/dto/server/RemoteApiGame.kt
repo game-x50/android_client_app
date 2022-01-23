@@ -3,6 +3,7 @@ package com.ruslan.hlushan.game.storage.impl.remote.dto.server
 import com.ruslan.hlushan.game.api.play.dto.GameSize
 import com.ruslan.hlushan.game.api.play.dto.GameState
 import com.ruslan.hlushan.game.api.play.dto.MatrixAndNewItemsState
+import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
 import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
 import com.ruslan.hlushan.game.storage.impl.remote.dto.RemoteRecord
 import com.ruslan.hlushan.parsing.impl.utils.parsing.DurationAsSecondsSerializer
@@ -37,13 +38,13 @@ internal fun RemoteApiGame.toRemoteRecord(): RemoteRecord {
             .map { remoteValue -> remoteValue.toMatrixAndNewItemsState(gameSize) }
     return RemoteRecord(
             remoteInfo = RemoteInfo(
-                    remoteId = this.uid,
-                    remoteActionId = this.lastActionId,
-                    remoteCreatedTimestamp = this.createdTimestamp,
-                    lastRemoteSyncedTimestamp = this.lastSyncedTimestamp
+                    remoteId = RemoteInfo.Id(this.uid),
+                    remoteActionId = RemoteInfo.ActionId(this.lastActionId),
+                    remoteCreatedTimestamp = RemoteInfo.CreatedTimestamp(this.createdTimestamp),
+                    lastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp(this.lastSyncedTimestamp)
             ),
             totalPlayed = this.totalPlayedSeconds,
-            lastLocalModifiedTimestamp = this.lastLocalModifiedTimestamp,
+            lastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp(this.lastLocalModifiedTimestamp),
             gameState = GameState(current = current, stack = stack)
     )
 }

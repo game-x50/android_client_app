@@ -10,6 +10,7 @@ import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.game.api.play.PlayRecordsInteractor
 import com.ruslan.hlushan.game.api.play.dto.GameRecord
 import com.ruslan.hlushan.game.api.play.dto.GameState
+import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
 import com.ruslan.hlushan.game.play.ui.screens.GameScopeMarkerRepository
 import com.ruslan.hlushan.game.play.ui.screens.game.PlayGameViewModel
 import com.ruslan.hlushan.third_party.rxjava2.extensions.SchedulersManager
@@ -18,7 +19,6 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import org.threeten.bp.Duration
-import org.threeten.bp.Instant
 
 internal class ContinueGameViewModel
 @SuppressWarnings("LongParameterList")
@@ -50,7 +50,7 @@ constructor(
                     id = oldRecord.id,
                     gameState = result,
                     totalPlayed = (oldRecord.totalPlayed + playedDuration),
-                    localModifiedTimestamp = Instant.now()
+                    localModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now()
             )
                     .handleSavingRecord(result)
         }

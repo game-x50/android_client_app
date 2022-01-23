@@ -1,7 +1,5 @@
 package com.ruslan.hlushan.game.api.play.dto
 
-import org.threeten.bp.Instant
-
 class IllegalCreateStatusAndRemoteActionsException(
         localAction: LocalAction?,
         remoteInfo: RemoteInfo
@@ -12,7 +10,7 @@ class IllegalCreateStatusAndRemoteActionsException(
 
 class IllegalCreateStatusAndLocalCreateIdException(
         localAction: LocalAction?,
-        localCreateId: String?,
+        localCreateId: RecordSyncState.LocalCreateId?,
         syncStatus: SyncStatus
 ) : IllegalArgumentException(
         "For local created record with syncStatus == ${SyncStatus.SYNCHRONIZING}," +
@@ -22,7 +20,7 @@ class IllegalCreateStatusAndLocalCreateIdException(
 
 class IllegalLocalCreatedIdValueException(
         localAction: LocalAction?,
-        localCreateId: String?
+        localCreateId: RecordSyncState.LocalCreateId?
 ) : IllegalArgumentException(
         "For non local created record localCreateId should be null," +
         " but localAction = $localAction, localCreateId = $localCreateId."
@@ -44,8 +42,8 @@ class IllegalSyncStatusException(
 )
 
 class IllegalRemoteTimestampsException(
-        remoteCreatedTimestamp: Instant?,
-        lastRemoteSyncedTimestamp: Instant?
+        remoteCreatedTimestamp: RemoteInfo.CreatedTimestamp?,
+        lastRemoteSyncedTimestamp: RemoteInfo.LastSyncedTimestamp?
 ) : IllegalArgumentException(
         "remoteCreatedTimestamp can't be grater then lastRemoteSyncedTimestamp, but current:" +
         " remoteCreatedTimestamp= $remoteCreatedTimestamp, lastRemoteSyncedTimestamp = $lastRemoteSyncedTimestamp"

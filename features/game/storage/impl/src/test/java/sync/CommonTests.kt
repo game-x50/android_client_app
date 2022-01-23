@@ -7,12 +7,12 @@ import com.ruslan.hlushan.game.api.play.dto.ImmutableNumbersMatrix
 import com.ruslan.hlushan.game.api.play.dto.MatrixAndNewItemsState
 import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
 import com.ruslan.hlushan.game.api.play.dto.SyncStatus
+import com.ruslan.hlushan.game.api.test.utils.generateFakeLocalActionId
+import com.ruslan.hlushan.game.api.test.utils.generateFakeRecordSyncStateLastLocalModifiedTimestamp
 import com.ruslan.hlushan.game.storage.impl.UploadLocalModifiedUseCase
 import com.ruslan.hlushan.game.storage.impl.local.LocalUpdateRequest
 import com.ruslan.hlushan.game.storage.impl.remote.dto.LocalModifiedResponse
 import com.ruslan.hlushan.test.utils.generateFakeDuration
-import com.ruslan.hlushan.test.utils.generateFakeInstantTimestamp
-import com.ruslan.hlushan.test.utils.generateFakeStringId
 import com.ruslan.hlushan.third_party.rxjava2.test.utils.CurrentThreadSchedulersManager
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
@@ -58,8 +58,8 @@ internal class CommonTests {
     @SuppressWarnings("LongMethod")
     @Test
     fun testLocalCreateId() {
-        val localActionId = generateFakeStringId()
-        val localCreatedTimestamp = generateFakeInstantTimestamp()
+        val localActionId = generateFakeLocalActionId()
+        val localCreatedTimestamp = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
         val syncState = RecordSyncState.forLocalCreated(
                 localActionId = localActionId,
@@ -118,9 +118,9 @@ internal class CommonTests {
         val disposable = uploadLocalModifiedUseCase.uploadAll(10)
                 .subscribe()
 
-        val localCreateId: String = localRepo.getAll().first().syncState.localCreateId!!
+        val localCreateId: RecordSyncState.LocalCreateId = localRepo.getAll().first().syncState.localCreateId!!
 
-        val splited = localCreateId.split("_")
+        val splited = localCreateId.value.split("_")
 
         assertEquals(stack.size.toString(), splited[splited.size - 1])
         assertEquals(currentNewItems.sum().toString(), splited[splited.size - 2])

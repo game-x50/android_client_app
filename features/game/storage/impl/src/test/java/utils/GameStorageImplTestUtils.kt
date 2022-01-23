@@ -9,12 +9,16 @@ import com.ruslan.hlushan.game.api.play.dto.SyncStatus
 import com.ruslan.hlushan.game.api.play.dto.toLocalDeletedOrThrow
 import com.ruslan.hlushan.game.api.test.utils.createLocalUpdatedState
 import com.ruslan.hlushan.game.api.test.utils.generateFakeGameState
+import com.ruslan.hlushan.game.api.test.utils.generateFakeLocalActionId
+import com.ruslan.hlushan.game.api.test.utils.generateFakeRecordSyncStateLastLocalModifiedTimestamp
+import com.ruslan.hlushan.game.api.test.utils.generateFakeRecordSyncStateLocalCreateId
 import com.ruslan.hlushan.game.api.test.utils.generateFakeRemoteInfo
+import com.ruslan.hlushan.game.api.test.utils.generateFakeRemoteInfoActionId
+import com.ruslan.hlushan.game.api.test.utils.generateFakeRemoteInfoId
 import com.ruslan.hlushan.game.storage.impl.local.LocalUpdateRequest
 import com.ruslan.hlushan.game.storage.impl.remote.dto.RemoteRecord
 import com.ruslan.hlushan.test.utils.generateFakeDuration
 import com.ruslan.hlushan.test.utils.generateFakeInstantTimestamp
-import com.ruslan.hlushan.test.utils.generateFakeStringId
 import org.junit.Assert.assertEquals
 import org.threeten.bp.Duration
 import org.threeten.bp.Instant
@@ -22,7 +26,8 @@ import sync.stub.LocalRecordsRepoTestImpl
 
 internal fun generateFakeRemoteRecord(
         remoteInfo: RemoteInfo = generateFakeRemoteInfo(),
-        lastLocalModifiedTimestamp: Instant = generateFakeInstantTimestamp(),
+        lastLocalModifiedTimestamp: RecordSyncState.LastLocalModifiedTimestamp =
+                generateFakeRecordSyncStateLastLocalModifiedTimestamp(),
         gameState: GameState = generateFakeGameState(),
         totalPlayed: Duration = generateFakeDuration()
 ): RemoteRecord = RemoteRecord(
@@ -41,13 +46,13 @@ internal fun LocalRecordsRepoTestImpl.generateAndAddLocalCreatedToLocalRepo(
         localCreatedTimestamp: Instant = generateFakeInstantTimestamp()
 ): GameRecordWithSyncState {
 
-    val localActionId = generateFakeStringId()
-    val localCreateId = generateFakeStringId()
+    val localActionId = generateFakeLocalActionId()
+    val localCreateId = generateFakeRecordSyncStateLocalCreateId()
 
     var syncState = RecordSyncState.forLocalCreated(
             localActionId = localActionId,
             modifyingNow = modifyingNow,
-            localCreatedTimestamp = localCreatedTimestamp
+            localCreatedTimestamp = RecordSyncState.LastLocalModifiedTimestamp(localCreatedTimestamp)
     )
 
     if (syncingNow) {
@@ -85,9 +90,9 @@ internal fun LocalRecordsRepoTestImpl.generateAndAddLocalUpdatedToLocalRepo(
 ): GameRecordWithSyncState {
 
     val remoteInfo = generateFakeRemoteInfo()
-    val lastLocalModifiedTimestamp = generateFakeInstantTimestamp()
+    val lastLocalModifiedTimestamp = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 
-    val localActionId1 = generateFakeStringId()
+    val localActionId1 = generateFakeLocalActionId()
 
     var localUpdatedState = createLocalUpdatedState(
             remoteInfo = remoteInfo,
@@ -131,7 +136,7 @@ internal fun LocalRecordsRepoTestImpl.generateAndAddLocalUpdatedToLocalRepo(
 internal fun LocalRecordsRepoTestImpl.generateAndAddLocalDeletedToLocalRepo(
         syncingNow: Boolean
 ): GameRecordWithSyncState {
-    val localActionId1 = generateFakeStringId()
+    val localActionId1 = generateFakeLocalActionId()
 
     var localDeletedState = createLocalUpdatedState()
             .toLocalDeletedOrThrow(newLocalActionId = localActionId1)
@@ -172,18 +177,18 @@ internal fun LocalRecordsRepoTestImpl.generateAndAddLocalSyncedToLocalRepo(
         lastRemoteSyncedTimestamp: Instant = Instant.now(),
         lastLocalModifiedTimestamp: Instant = Instant.now()
 ): GameRecordWithSyncState {
-    val remoteId = generateFakeStringId()
-    val remoteActionId = generateFakeStringId()
+    val remoteId = generateFakeRemoteInfoId()
+    val remoteActionId = generateFakeRemoteInfoActionId()
 
     var localUpdatedState = RecordSyncState.forSync(
             remoteInfo = RemoteInfo(
                     remoteId = remoteId,
                     remoteActionId = remoteActionId,
-                    remoteCreatedTimestamp = remoteCreatedTimestamp,
-                    lastRemoteSyncedTimestamp = lastRemoteSyncedTimestamp
+                    remoteCreatedTimestamp = RemoteInfo.CreatedTimestamp(remoteCreatedTimestamp),
+                    lastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp(lastRemoteSyncedTimestamp)
             ),
             modifyingNow = modifyingNow,
-            lastLocalModifiedTimestamp = lastLocalModifiedTimestamp
+            lastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp(lastLocalModifiedTimestamp)
     )
 
     if (syncingNow) {

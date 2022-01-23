@@ -2,6 +2,7 @@ package sync.stub
 
 import com.ruslan.hlushan.core.result.OpResult
 import com.ruslan.hlushan.core.result.getOrThrow
+import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
 import com.ruslan.hlushan.game.storage.impl.remote.SyncRemoteRepository
 import com.ruslan.hlushan.game.storage.impl.remote.dto.LocalModifiedResponse
 import com.ruslan.hlushan.game.storage.impl.remote.dto.RemoteRecord
@@ -12,7 +13,6 @@ import com.ruslan.hlushan.game.storage.impl.remote.dto.server.UpdateLocalSyncedR
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.schedulers.TestScheduler
-import org.threeten.bp.Instant
 import java.util.concurrent.TimeUnit
 
 internal class SyncRemoteRepositoryMockImpl : SyncRemoteRepository {
@@ -22,7 +22,7 @@ internal class SyncRemoteRepositoryMockImpl : SyncRemoteRepository {
 
     private val testScheduler = TestScheduler()
 
-    lateinit var returnTimestampResult: OpResult<Instant, Throwable>
+    lateinit var returnTimestampResult: OpResult<RemoteInfo.LastSyncedTimestamp, Throwable>
 
     var receivedUploadLocalModifiedRequests: List<UploadLocalModifiedRequest>? = null
         private set
@@ -36,7 +36,7 @@ internal class SyncRemoteRepositoryMockImpl : SyncRemoteRepository {
         private set
     lateinit var returnListRemoteRecords: List<RemoteRecord>
 
-    override fun getRemoteTimestamp(): Single<Instant> =
+    override fun getRemoteTimestamp(): Single<RemoteInfo.LastSyncedTimestamp> =
             createDelay()
                     .map { returnTimestampResult.getOrThrow() }
 

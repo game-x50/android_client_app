@@ -4,8 +4,9 @@ import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.api.play.dto.LocalAction
 import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
 import com.ruslan.hlushan.game.api.play.dto.SyncStatus
+import com.ruslan.hlushan.game.api.test.utils.generateFakeRemoteInfoActionId
+import com.ruslan.hlushan.game.api.test.utils.generateFakeRemoteInfoId
 import com.ruslan.hlushan.game.storage.impl.remote.dto.LocalModifiedResponse
-import com.ruslan.hlushan.test.utils.generateFakeStringId
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
@@ -308,15 +309,15 @@ internal class UploadLocalModifiedUseCaseListTest : BaseUploadLocalModifiedUseCa
     private fun generateFakeResponseForLocalModified(
             recordWithSyncState: GameRecordWithSyncState
     ): LocalModifiedResponse {
-        val remoteCreatedTimestamp = Instant.now()
-        val lastRemoteSyncedTimestamp = Instant.now()
+        val remoteCreatedTimestamp = RemoteInfo.CreatedTimestamp(Instant.now())
+        val lastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp(Instant.now())
 
         return when (recordWithSyncState.syncState.localAction!!) {
             is LocalAction.Create -> LocalModifiedResponse.Create.Success(
                     id = recordWithSyncState.record.id,
                     remoteInfo = RemoteInfo(
-                            remoteId = generateFakeStringId(),
-                            remoteActionId = generateFakeStringId(),
+                            remoteId = generateFakeRemoteInfoId(),
+                            remoteActionId = generateFakeRemoteInfoActionId(),
                             remoteCreatedTimestamp = remoteCreatedTimestamp,
                             lastRemoteSyncedTimestamp = lastRemoteSyncedTimestamp
                     )
@@ -325,7 +326,7 @@ internal class UploadLocalModifiedUseCaseListTest : BaseUploadLocalModifiedUseCa
                     id = recordWithSyncState.record.id,
                     remoteInfo = RemoteInfo(
                             remoteId = recordWithSyncState.syncState.remoteInfo!!.remoteId,
-                            remoteActionId = generateFakeStringId(),
+                            remoteActionId = generateFakeRemoteInfoActionId(),
                             remoteCreatedTimestamp = remoteCreatedTimestamp,
                             lastRemoteSyncedTimestamp = lastRemoteSyncedTimestamp
                     )

@@ -94,10 +94,10 @@ private fun LocalModifiedApiResponse.createRemoteInfo(): RemoteInfo? =
             && (this.createdTimestamp != null)
             && (this.lastSyncedTimestamp != null)) {
             RemoteInfo(
-                    remoteId = this.id,
-                    remoteActionId = this.lastActionId,
-                    remoteCreatedTimestamp = this.createdTimestamp,
-                    lastRemoteSyncedTimestamp = this.lastSyncedTimestamp
+                    remoteId = RemoteInfo.Id(this.id),
+                    remoteActionId = RemoteInfo.ActionId(this.lastActionId),
+                    remoteCreatedTimestamp = RemoteInfo.CreatedTimestamp(this.createdTimestamp),
+                    lastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp(this.lastSyncedTimestamp)
             )
         } else {
             null

@@ -8,8 +8,9 @@ import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
 import com.ruslan.hlushan.game.api.play.dto.SyncStatus
 import com.ruslan.hlushan.game.api.play.dto.toModifyingNowOrThrow
 import com.ruslan.hlushan.game.api.test.utils.generateFakeRemoteInfo
+import com.ruslan.hlushan.game.api.test.utils.generateFakeRemoteInfoActionId
+import com.ruslan.hlushan.game.api.test.utils.generateFakeRemoteInfoId
 import com.ruslan.hlushan.game.storage.impl.remote.dto.LocalModifiedResponse
-import com.ruslan.hlushan.test.utils.generateFakeStringId
 import org.junit.Test
 import org.threeten.bp.Instant
 import utils.assertRecordsWithSyncStateInLocalRepo
@@ -134,10 +135,10 @@ internal class UploadLocalModifiedUseCaseLocallyStartedModifyingTest : BaseUploa
         val response = LocalModifiedResponse.Update(
                 id = localUpdatedRecordId,
                 remoteInfo = RemoteInfo(
-                        remoteId = generateFakeStringId(),
-                        remoteActionId = generateFakeStringId(),
-                        remoteCreatedTimestamp = Instant.now().plusSeconds(10_000),
-                        lastRemoteSyncedTimestamp = Instant.now().plusSeconds(10_000)
+                        remoteId = generateFakeRemoteInfoId(),
+                        remoteActionId = generateFakeRemoteInfoActionId(),
+                        remoteCreatedTimestamp = RemoteInfo.CreatedTimestamp(Instant.now().plusSeconds(10_000)),
+                        lastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp(Instant.now().plusSeconds(10_000))
                 )
         )
 

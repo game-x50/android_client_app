@@ -8,6 +8,7 @@ import com.ruslan.hlushan.core.thread.ThreadChecker
 import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.game.api.play.PlayRecordsInteractor
 import com.ruslan.hlushan.game.api.play.dto.GameState
+import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
 import com.ruslan.hlushan.game.api.play.dto.wasPlayed
 import com.ruslan.hlushan.game.play.ui.screens.GameScopeMarkerRepository
 import com.ruslan.hlushan.game.play.ui.screens.game.PlayGameViewModel
@@ -16,7 +17,6 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import org.threeten.bp.Duration
-import org.threeten.bp.Instant
 
 internal class NewGameViewModel
 @AssistedInject
@@ -45,7 +45,7 @@ constructor(
         playRecordsInteractor.addNewRecordAfterPlaying(
                 gameState = result,
                 totalPlayed = playedDuration,
-                localCreatedTimestamp = Instant.now()
+                localCreatedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.now()
         )
                 .handleSavingRecord(result)
     }

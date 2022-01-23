@@ -6,7 +6,6 @@ import com.ruslan.hlushan.core.pagination.api.PaginationPagesRequest
 import com.ruslan.hlushan.core.pagination.api.PaginationResponse
 import com.ruslan.hlushan.core.pagination.api.PreviousPageId
 import com.ruslan.hlushan.core.pagination.api.createPaginationResponseByLimits
-import org.threeten.bp.Instant
 
 sealed class RequestParams {
 
@@ -29,12 +28,12 @@ sealed class RequestParams {
 
         class Asc(
                 override val excludedIds: List<Long>,
-                val minLastModifiedTimestamp: Instant?
+                val minLastModifiedTimestamp: RecordSyncState.LastLocalModifiedTimestamp?
         ) : RequestParams.OrderLastModified()
 
         class Desc(
                 override val excludedIds: List<Long>,
-                val maxLastModifiedTimestamp: Instant?
+                val maxLastModifiedTimestamp: RecordSyncState.LastLocalModifiedTimestamp?
         ) : RequestParams.OrderLastModified()
     }
 }
@@ -45,7 +44,7 @@ private val RequestParams.OrderTotalSum.boundarySum: Int?
         is RequestParams.OrderTotalSum.Desc -> this.maxTotalSum
     }
 
-private val RequestParams.OrderLastModified.boundaryTimestamp: Instant?
+private val RequestParams.OrderLastModified.boundaryTimestamp: RecordSyncState.LastLocalModifiedTimestamp?
     get() = when (this) {
         is RequestParams.OrderLastModified.Asc  -> this.minLastModifiedTimestamp
         is RequestParams.OrderLastModified.Desc -> this.maxLastModifiedTimestamp
@@ -170,7 +169,7 @@ private fun createOrderedByLastModifiedRequestInitParams(
 ): RequestParams.OrderLastModified {
 
     val excludedIds = emptyList<Long>()
-    val boundaryLastModifiedTimestamp: Instant? = null
+    val boundaryLastModifiedTimestamp: RecordSyncState.LastLocalModifiedTimestamp? = null
 
     return when (orderType) {
         OrderType.ASC  -> RequestParams.OrderLastModified.Asc(
@@ -216,13 +215,14 @@ private fun createPaginationResponseForOrderLastModified(
         direction: PaginationPagesRequest.Direction
 ): RequestParams.OrderLastModified {
 
-    val (boundaryItemTimestamp: Instant, allExcludedIds: List<Long>) = createBoundaryItemValueWithAllExcludedIds(
-            pageResult = pageResult,
-            direction = direction,
-            fieldGetter = { item -> item.syncState.lastLocalModifiedTimestamp },
-            previousRequestParamsBoundary = previousRequestParams.boundaryTimestamp,
-            previousRequestParamsExcludedIds = previousRequestParams.excludedIds
-    )
+    val (boundaryItemTimestamp: RecordSyncState.LastLocalModifiedTimestamp, allExcludedIds: List<Long>) =
+            createBoundaryItemValueWithAllExcludedIds(
+                    pageResult = pageResult,
+                    direction = direction,
+                    fieldGetter = { item -> item.syncState.lastLocalModifiedTimestamp },
+                    previousRequestParamsBoundary = previousRequestParams.boundaryTimestamp,
+                    previousRequestParamsExcludedIds = previousRequestParams.excludedIds
+            )
 
     return when (previousRequestParams) {
         is RequestParams.OrderLastModified.Asc  -> RequestParams.OrderLastModified.Asc(

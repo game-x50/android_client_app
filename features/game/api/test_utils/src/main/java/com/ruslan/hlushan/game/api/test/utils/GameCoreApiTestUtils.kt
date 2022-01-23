@@ -15,6 +15,36 @@ import com.ruslan.hlushan.test.utils.generateFakePositiveInt
 import com.ruslan.hlushan.test.utils.generateFakeStringId
 import org.threeten.bp.Instant
 
+fun generateFakeLocalActionId(): LocalAction.Id =
+        LocalAction.Id(
+                value = generateFakeStringId()
+        )
+
+fun generateFakeRecordSyncStateLastLocalModifiedTimestamp(): RecordSyncState.LastLocalModifiedTimestamp =
+        RecordSyncState.LastLocalModifiedTimestamp(
+                value = generateFakeInstantTimestamp()
+        )
+
+fun generateFakeRecordSyncStateLocalCreateId(): RecordSyncState.LocalCreateId =
+        RecordSyncState.LocalCreateId(
+                value = generateFakeStringId()
+        )
+
+fun generateFakeRemoteInfoId(): RemoteInfo.Id =
+        RemoteInfo.Id(
+                value = generateFakeStringId()
+        )
+
+fun generateFakeRemoteInfoActionId(): RemoteInfo.ActionId =
+        RemoteInfo.ActionId(
+                value = generateFakeStringId()
+        )
+
+fun generateFakeRemoteInfoCreatedTimestamp(): RemoteInfo.CreatedTimestamp =
+        RemoteInfo.CreatedTimestamp(
+                value = generateFakeInstantTimestamp()
+        )
+
 fun generateFakeMatrixAndNewItemsState(): MatrixAndNewItemsState {
     val size = GameSize.values()[(generateFakePositiveInt() % GameSize.values().size)]
     val newItems = listOf(generateFakePositiveInt(), generateFakePositiveInt())
@@ -22,7 +52,7 @@ fun generateFakeMatrixAndNewItemsState(): MatrixAndNewItemsState {
 }
 
 fun LocalAction.copyWithNewId(
-        actionId: String
+        actionId: LocalAction.Id
 ): LocalAction = when (this) {
     is LocalAction.Create -> this.copy(actionId = actionId)
     is LocalAction.Update -> this.copy(actionId = actionId)
@@ -36,21 +66,22 @@ fun generateFakeGameState(): GameState =
         )
 
 fun generateFakeRemoteInfo(
-        remoteId: String = generateFakeStringId(),
-        remoteActionId: String = generateFakeStringId(),
+        remoteId: RemoteInfo.Id = generateFakeRemoteInfoId(),
+        remoteActionId: RemoteInfo.ActionId = generateFakeRemoteInfoActionId(),
         remoteCreatedTimestamp: Instant = Instant.now(),
         lastRemoteSyncedTimestamp: Instant = Instant.now()
 ): RemoteInfo =
         RemoteInfo(
                 remoteId = remoteId,
                 remoteActionId = remoteActionId,
-                remoteCreatedTimestamp = remoteCreatedTimestamp,
-                lastRemoteSyncedTimestamp = lastRemoteSyncedTimestamp
+                remoteCreatedTimestamp = RemoteInfo.CreatedTimestamp(remoteCreatedTimestamp),
+                lastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp(lastRemoteSyncedTimestamp)
         )
 
 fun createSyncedState(
         remoteInfo: RemoteInfo = generateFakeRemoteInfo(),
-        lastLocalModifiedTimestamp: Instant = Instant.now()
+        lastLocalModifiedTimestamp: RecordSyncState.LastLocalModifiedTimestamp =
+                generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 ): RecordSyncState =
         RecordSyncState.forSync(
                 remoteInfo = remoteInfo,
@@ -60,7 +91,8 @@ fun createSyncedState(
 
 fun createSynchronizingState(
         remoteInfo: RemoteInfo = generateFakeRemoteInfo(),
-        lastLocalModifiedTimestamp: Instant = Instant.now()
+        lastLocalModifiedTimestamp: RecordSyncState.LastLocalModifiedTimestamp =
+                generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 ): RecordSyncState =
         createSyncedState(
                 remoteInfo = remoteInfo,
@@ -69,12 +101,13 @@ fun createSynchronizingState(
 
 fun createLocalUpdatedState(
         remoteInfo: RemoteInfo = generateFakeRemoteInfo(),
-        newLocalActionId: String = generateFakeStringId(),
-        newLastLocalModifiedTimestamp: Instant = generateFakeInstantTimestamp()
+        newLocalActionId: LocalAction.Id = generateFakeLocalActionId(),
+        newLastLocalModifiedTimestamp: RecordSyncState.LastLocalModifiedTimestamp =
+                generateFakeRecordSyncStateLastLocalModifiedTimestamp()
 ): RecordSyncState =
         RecordSyncState.forSync(
                 remoteInfo = remoteInfo,
-                lastLocalModifiedTimestamp = Instant.MIN,
+                lastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp(Instant.MIN),
                 modifyingNow = false
         )
                 .toModifyingNowOrThrow()

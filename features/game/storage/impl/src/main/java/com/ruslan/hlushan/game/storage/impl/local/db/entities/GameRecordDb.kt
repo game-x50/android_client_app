@@ -33,25 +33,24 @@ internal data class GameRecordDb(
         ),
         @Relation(parentColumn = GameStateDb.RECORD_ID, entityColumn = GameStateDb.RECORD_ID)
         var matrices: List<MatrixAndNewItemsStateDb> = emptyList()
-) {
+)
 
-    fun fromDbRecord(): GameRecordWithSyncState {
-        val recordId: Long = (this.stateDb.recordId
-                              ?: throw IllegalStateException("recordId should't be null: ${this@GameRecordDb}"))
+internal fun GameRecordDb.fromDbRecord(): GameRecordWithSyncState {
+    val recordId: Long = (this.stateDb.recordId
+                          ?: throw IllegalStateException("recordId shouldn't be null: $this"))
 
-        val current: MatrixAndNewItemsState = this.matrices.last().fromDbModel(this.stateDb.gameSize)
-        val stack: List<MatrixAndNewItemsState> = this.matrices.dropLast(1)
-                .map { matrixStateDb -> matrixStateDb.fromDbModel(this.stateDb.gameSize) }
+    val current: MatrixAndNewItemsState = this.matrices.last().fromDbModel(this.stateDb.gameSize)
+    val stack: List<MatrixAndNewItemsState> = this.matrices.dropLast(1)
+            .map { matrixStateDb -> matrixStateDb.fromDbModel(this.stateDb.gameSize) }
 
-        val record = GameRecord(
-                id = recordId,
-                gameState = GameState(current = current, stack = stack),
-                totalPlayed = this.stateDb.totalPlayed
-        )
+    val record = GameRecord(
+            id = recordId,
+            gameState = GameState(current = current, stack = stack),
+            totalPlayed = this.stateDb.totalPlayed
+    )
 
-        val syncState = this.stateDb.toSyncState()
-        return GameRecordWithSyncState(record = record, syncState = syncState)
-    }
+    val syncState = this.stateDb.toSyncState()
+    return GameRecordWithSyncState(record = record, syncState = syncState)
 }
 
 internal fun LocalUpdateRequest.toDbGameState(localRecordId: Long?): GameStateDb =
@@ -60,14 +59,14 @@ internal fun LocalUpdateRequest.toDbGameState(localRecordId: Long?): GameStateDb
                 gameSize = this.gameState.current.immutableNumbersMatrix.gameSize,
                 totalSum = this.gameState.current.immutableNumbersMatrix.totalSum,
                 totalPlayed = this.totalPlayed,
-                remoteId = this.syncState.remoteInfo?.remoteId,
-                remoteActionId = this.syncState.remoteInfo?.remoteActionId,
-                remoteCreatedTimestamp = this.syncState.remoteInfo?.remoteCreatedTimestamp,
-                lastRemoteSyncedTimestamp = this.syncState.remoteInfo?.lastRemoteSyncedTimestamp,
+                remoteId = this.syncState.remoteInfo?.remoteId?.value,
+                remoteActionId = this.syncState.remoteInfo?.remoteActionId?.value,
+                remoteCreatedTimestamp = this.syncState.remoteInfo?.remoteCreatedTimestamp?.value,
+                lastRemoteSyncedTimestamp = this.syncState.remoteInfo?.lastRemoteSyncedTimestamp?.value,
                 localActionType = this.syncState.localAction?.typeDb,
-                lastLocalModifiedTimestamp = this.syncState.lastLocalModifiedTimestamp,
-                localActionId = this.syncState.localAction?.actionId,
-                localCreateId = this.syncState.localCreateId,
+                lastLocalModifiedTimestamp = this.syncState.lastLocalModifiedTimestamp.value,
+                localActionId = this.syncState.localAction?.actionId?.value,
+                localCreateId = this.syncState.localCreateId?.value,
                 modifyingNow = this.syncState.modifyingNow,
                 syncStatus = this.syncState.syncStatus
         )

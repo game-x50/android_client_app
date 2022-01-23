@@ -2,6 +2,7 @@ package com.ruslan.hlushan.game.storage.impl
 
 import androidx.annotation.IntRange
 import com.ruslan.hlushan.core.logger.api.AppLogger
+import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
 import com.ruslan.hlushan.game.storage.impl.local.LocalRecordsRepository
 import com.ruslan.hlushan.game.storage.impl.remote.SyncRemoteRepository
 import com.ruslan.hlushan.game.storage.impl.remote.dto.server.GetNewRemoteCreatedRequest
@@ -20,6 +21,9 @@ constructor(
 
     fun downloadNew(@IntRange(from = 0) stepLimit: Int): Completable =
             localRepository.getLastCreatedTimestampWithExcludedRemoteIds()
+                    .map { (lastCreatedTimestamp, excludedRemoteIds) ->
+                        lastCreatedTimestamp.value to excludedRemoteIds.map(RemoteInfo.Id::value)
+                    }
                     .map { (lastCreatedTimestamp, excludedRemoteIds) -> GetNewRemoteCreatedRequest(lastCreatedTimestamp, excludedRemoteIds, stepLimit) }
                     .flatMap { request -> remoteSyncRepository.getNewRemoteCreated(request) }
                     .map { newRecords -> newRecords.map { rec -> rec.toSyncLocalUpdateRequest(modifyingNow = false) } }

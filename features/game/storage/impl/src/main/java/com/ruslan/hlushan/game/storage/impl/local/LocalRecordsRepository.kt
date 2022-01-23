@@ -8,12 +8,12 @@ import com.ruslan.hlushan.game.api.play.dto.GameRecord
 import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.api.play.dto.GameState
 import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
+import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
 import com.ruslan.hlushan.game.api.play.dto.RequestParams
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
 import org.threeten.bp.Duration
-import org.threeten.bp.Instant
 
 @SuppressWarnings("ComplexInterface", "TooManyFunctions")
 internal interface LocalRecordsRepository {
@@ -30,7 +30,10 @@ internal interface LocalRecordsRepository {
 
     fun addNewRecord(request: LocalUpdateRequest): Completable
 
-    fun updateRecord(id: Long, request: LocalUpdateRequest): Completable
+    fun updateRecord(
+            id: Long,
+            request: LocalUpdateRequest
+    ): Completable
 
     fun addNewAndUpdateSyncState(
             addRequest: LocalUpdateRequest,
@@ -40,29 +43,40 @@ internal interface LocalRecordsRepository {
 
     fun addNewRecordsList(requests: List<LocalUpdateRequest>): Completable
 
-    fun setPlayingById(id: Long, playing: Boolean): Completable
+    fun setPlayingById(
+            id: Long,
+            playing: Boolean
+    ): Completable
 
-    fun updateRecordSyncState(id: Long, syncState: RecordSyncState): Completable
+    fun updateRecordSyncState(
+            id: Long,
+            syncState: RecordSyncState
+    ): Completable
 
     fun removeRecordById(id: Long): Completable
 
     fun updateSyncStatusOnSyncFail(ids: List<Long>): Completable
 
-    fun updateSyncStatusOnSyncFail(id: Long, actualStateDb: RecordSyncState): Completable
+    fun updateSyncStatusOnSyncFail(
+            id: Long,
+            actualStateDb: RecordSyncState
+    ): Completable
 
     fun markAsSyncingAndGetWaitingRecords(
             limit: Int,
-            createIdGenerator: (GameRecord) -> String
+            createIdGenerator: (GameRecord) -> RecordSyncState.LocalCreateId
     ): Single<List<GameRecordWithSyncState>>
 
     fun markAsSyncingAndGetSyncedWhereLastRemoteSyncSmallerThen(
-            maxLastRemoteSyncedTimestamp: Instant,
+            maxLastRemoteSyncedTimestamp: RemoteInfo.LastSyncedTimestamp,
             @IntRange(from = 1) limit: Int
     ): Single<List<GameRecordWithSyncState>>
 
     fun getLastCreatedTimestampWithExcludedRemoteIds(): Single<LastCreatedTimestampWithExcludedRemoteIds>
 
-    fun storeLastCreatedTimestamp(newLastCreatedTimestamp: Instant): Completable
+    fun storeLastCreatedTimestamp(
+            newLastCreatedTimestamp: RemoteInfo.CreatedTimestamp
+    ): Completable
 
     fun deleteAllGames(): Completable
 
@@ -80,8 +94,8 @@ internal fun LocalRecordsRepository.markSynchronizingFinished() =
         this.setIsSynchronizing(isSynchronizing = false)
 
 internal data class LastCreatedTimestampWithExcludedRemoteIds(
-        val lastCreatedTimestamp: Instant,
-        val excludedRemoteIds: List<String>
+        val lastCreatedTimestamp: RemoteInfo.CreatedTimestamp,
+        val excludedRemoteIds: List<RemoteInfo.Id>
 )
 
 internal data class LocalUpdateRequest(

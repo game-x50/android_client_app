@@ -21,7 +21,6 @@ import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
 import org.threeten.bp.Duration
-import org.threeten.bp.Instant
 import javax.inject.Inject
 
 internal class PlayRecordsInteractorImpl
@@ -96,7 +95,7 @@ constructor(
             id: Long,
             gameState: GameState,
             totalPlayed: Duration,
-            localModifiedTimestamp: Instant
+            localModifiedTimestamp: RecordSyncState.LastLocalModifiedTimestamp
     ): Completable =
             localRepository.getFullRecordData(id)
                     .map { recordWithSyncState ->
@@ -119,7 +118,7 @@ constructor(
     override fun addNewRecordAfterPlaying(
             gameState: GameState,
             totalPlayed: Duration,
-            localCreatedTimestamp: Instant
+            localCreatedTimestamp: RecordSyncState.LastLocalModifiedTimestamp
     ): Completable =
             Single.fromCallable {
                 RecordSyncState.forLocalCreated(

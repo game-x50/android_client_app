@@ -1,6 +1,7 @@
 package sync.usecases.localModified
 
 import com.ruslan.hlushan.game.api.play.dto.LocalAction
+import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
 import com.ruslan.hlushan.game.storage.impl.remote.dto.UploadLocalModifiedRequest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -93,7 +94,7 @@ internal class UploadLocalModifiedUseCaseRemoteRepoReceivedParamsTest : BaseUplo
         val requests = originalsCreated
                 .filter { rec -> !rec.syncState.modifyingNow }
                 .map { rec ->
-                    val localCreateId: String = recordIdToLocalCreateIdPairs
+                    val localCreateId: RecordSyncState.LocalCreateId = recordIdToLocalCreateIdPairs
                             .first { (recordId, localCreateId) -> recordId == rec.record.id }
                             .second
 
@@ -168,7 +169,7 @@ internal class UploadLocalModifiedUseCaseRemoteRepoReceivedParamsTest : BaseUplo
                 .map { rec ->
                     when (rec.syncState.localAction!!) {
                         is LocalAction.Create -> {
-                            val localCreateId: String = recordIdToLocalCreateIdPairs
+                            val localCreateId: RecordSyncState.LocalCreateId = recordIdToLocalCreateIdPairs
                                     .first { (recordId, localCreateId) -> recordId == rec.record.id }
                                     .second
 

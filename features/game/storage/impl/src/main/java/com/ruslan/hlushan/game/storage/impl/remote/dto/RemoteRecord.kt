@@ -5,11 +5,10 @@ import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
 import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
 import com.ruslan.hlushan.game.storage.impl.local.LocalUpdateRequest
 import org.threeten.bp.Duration
-import org.threeten.bp.Instant
 
 internal data class RemoteRecord(
         val remoteInfo: RemoteInfo,
-        val lastLocalModifiedTimestamp: Instant,
+        val lastLocalModifiedTimestamp: RecordSyncState.LastLocalModifiedTimestamp,
         val gameState: GameState,
         val totalPlayed: Duration
 )

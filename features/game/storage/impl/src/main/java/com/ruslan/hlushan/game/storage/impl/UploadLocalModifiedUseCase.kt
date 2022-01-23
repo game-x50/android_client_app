@@ -33,7 +33,7 @@ constructor(
 ) {
 
     fun uploadAll(@IntRange(from = 1) stepCount: Int): Completable =
-            localRepository.markAsSyncingAndGetWaitingRecords(stepCount, this::generateCreateId)
+            localRepository.markAsSyncingAndGetWaitingRecords(stepCount, ::generateCreateId)
                     .flatMap { list ->
                         if (list.isNotEmpty()) {
                             uploadLocalModifiedRecords(list)
@@ -153,7 +153,7 @@ constructor(
                                                           ))
                 }
                 else                                                                             -> Completable.error(UnexpectedAfterUpdateException(original, actualFromDb))
-            }.doOnError { error ->  appLogger.logErrorFor(this, original, actualFromDb, response, error) }
+            }.doOnError { error -> appLogger.logErrorFor(this, original, actualFromDb, response, error) }
 
     private fun updateLocalRecordAfterRemoteDelete(
             original: GameRecordWithSyncState,
@@ -168,7 +168,7 @@ constructor(
                 is LocalModifiedResponse.Delete.WasChanged -> {
                     localRepository.updateRecord(original.record.id, response.remoteRecord.toSyncLocalUpdateRequest(modifyingNow = false))
                 }
-            }.doOnError { error ->  appLogger.logErrorFor(this, original, actualFromDb, response, error) }
+            }.doOnError { error -> appLogger.logErrorFor(this, original, actualFromDb, response, error) }
 
     private fun updateLocalRecordAfterRemoteCreateSuccess(
             original: GameRecordWithSyncState,
@@ -206,7 +206,7 @@ constructor(
                     )
                 }
                 else                                                                             -> Completable.error(UnexpectedAfterUpdateException(original, actualFromDb))
-            }.doOnError { error ->  appLogger.logErrorFor(this, original, actualFromDb, response, error) }
+            }.doOnError { error -> appLogger.logErrorFor(this, original, actualFromDb, response, error) }
 
     private fun updateLocalRecordAfterRemoteCreateWasChanged(
             original: GameRecordWithSyncState,
@@ -228,15 +228,17 @@ constructor(
                     )
                 }
                 else                                                                             -> Completable.error(UnexpectedAfterUpdateException(original, actualFromDb))
-            }.doOnError { error ->  appLogger.logErrorFor(this, original, actualFromDb, response, error) }
-
-    private fun generateCreateId(gameRecord: GameRecord): String =
-            "${UUID.randomUUID()}" +
-            "${UUID.randomUUID()}" +
-            "_${gameRecord.gameState.current.immutableNumbersMatrix.totalSum}" +
-            "_${gameRecord.totalPlayed.seconds}" +
-            "_${gameRecord.gameState.current.immutableNumbersMatrix.gameSize.countRowsAndColumns}" +
-            "_${gameRecord.gameState.current.immutableNumbersMatrix.numbers.count { number -> number != null }}" +
-            "_${gameRecord.gameState.current.newItems.sum()}" +
-            "_${gameRecord.gameState.stack.size}"
+            }.doOnError { error -> appLogger.logErrorFor(this, original, actualFromDb, response, error) }
 }
+
+private fun generateCreateId(gameRecord: GameRecord): RecordSyncState.LocalCreateId =
+        RecordSyncState.LocalCreateId(
+                "${UUID.randomUUID()}" +
+                "${UUID.randomUUID()}" +
+                "_${gameRecord.gameState.current.immutableNumbersMatrix.totalSum}" +
+                "_${gameRecord.totalPlayed.seconds}" +
+                "_${gameRecord.gameState.current.immutableNumbersMatrix.gameSize.countRowsAndColumns}" +
+                "_${gameRecord.gameState.current.immutableNumbersMatrix.numbers.count { number -> number != null }}" +
+                "_${gameRecord.gameState.current.newItems.sum()}" +
+                "_${gameRecord.gameState.stack.size}"
+        )

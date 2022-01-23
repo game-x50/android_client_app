@@ -1,8 +1,8 @@
 package sync.play.base
 
 import com.ruslan.hlushan.game.api.test.utils.generateFakeGameState
+import com.ruslan.hlushan.game.api.test.utils.generateFakeRecordSyncStateLastLocalModifiedTimestamp
 import com.ruslan.hlushan.test.utils.generateFakeDuration
-import com.ruslan.hlushan.test.utils.generateFakeInstantTimestamp
 import utils.assertRecordsWithSyncStateInLocalRepo
 import utils.generateAndAddLocalDeletedToLocalRepo
 
@@ -56,7 +56,7 @@ internal abstract class BasePlayRecordsInteractorImplLocallyDeletedTest : BasePl
                 id = original.record.id,
                 gameState = generateFakeGameState(),
                 totalPlayed = generateFakeDuration(),
-                localModifiedTimestamp = generateFakeInstantTimestamp()
+                localModifiedTimestamp = generateFakeRecordSyncStateLastLocalModifiedTimestamp()
         )
                 .test()
                 .assertNotComplete()
