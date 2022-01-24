@@ -53,6 +53,11 @@ data class RecordSyncState(
                     LastLocalModifiedTimestamp(
                             value = Instant.now()
                     )
+
+            fun min(): LastLocalModifiedTimestamp =
+                    LastLocalModifiedTimestamp(
+                            value = Instant.ofEpochMilli(0)
+                    )
         }
     }
 

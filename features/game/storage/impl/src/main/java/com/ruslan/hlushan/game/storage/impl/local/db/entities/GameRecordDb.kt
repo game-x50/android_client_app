@@ -7,10 +7,10 @@ import com.ruslan.hlushan.game.api.play.dto.GameRecordWithSyncState
 import com.ruslan.hlushan.game.api.play.dto.GameSize
 import com.ruslan.hlushan.game.api.play.dto.GameState
 import com.ruslan.hlushan.game.api.play.dto.MatrixAndNewItemsState
+import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
 import com.ruslan.hlushan.game.api.play.dto.SyncStatus
 import com.ruslan.hlushan.game.storage.impl.local.LocalUpdateRequest
 import org.threeten.bp.Duration
-import org.threeten.bp.Instant
 
 @SuppressWarnings("DataClassShouldBeImmutable")
 internal data class GameRecordDb(
@@ -25,7 +25,7 @@ internal data class GameRecordDb(
                 remoteCreatedTimestamp = null,
                 lastRemoteSyncedTimestamp = null,
                 localActionType = null,
-                lastLocalModifiedTimestamp = Instant.MIN,
+                lastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp.min(),
                 localActionId = null,
                 localCreateId = null,
                 modifyingNow = false,
@@ -59,14 +59,14 @@ internal fun LocalUpdateRequest.toDbGameState(localRecordId: Long?): GameStateDb
                 gameSize = this.gameState.current.immutableNumbersMatrix.gameSize,
                 totalSum = this.gameState.current.immutableNumbersMatrix.totalSum,
                 totalPlayed = this.totalPlayed,
-                remoteId = this.syncState.remoteInfo?.remoteId?.value,
-                remoteActionId = this.syncState.remoteInfo?.remoteActionId?.value,
-                remoteCreatedTimestamp = this.syncState.remoteInfo?.remoteCreatedTimestamp?.value,
-                lastRemoteSyncedTimestamp = this.syncState.remoteInfo?.lastRemoteSyncedTimestamp?.value,
+                remoteId = this.syncState.remoteInfo?.remoteId,
+                remoteActionId = this.syncState.remoteInfo?.remoteActionId,
+                remoteCreatedTimestamp = this.syncState.remoteInfo?.remoteCreatedTimestamp,
+                lastRemoteSyncedTimestamp = this.syncState.remoteInfo?.lastRemoteSyncedTimestamp,
                 localActionType = this.syncState.localAction?.typeDb,
-                lastLocalModifiedTimestamp = this.syncState.lastLocalModifiedTimestamp.value,
-                localActionId = this.syncState.localAction?.actionId?.value,
-                localCreateId = this.syncState.localCreateId?.value,
+                lastLocalModifiedTimestamp = this.syncState.lastLocalModifiedTimestamp,
+                localActionId = this.syncState.localAction?.actionId,
+                localCreateId = this.syncState.localCreateId,
                 modifyingNow = this.syncState.modifyingNow,
                 syncStatus = this.syncState.syncStatus
         )

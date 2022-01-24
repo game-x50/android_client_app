@@ -68,7 +68,7 @@ constructor(
                                 gameRecordsDAO.getRecordsExcludeOrderByLastModifiedAsc(
                                         localActionType = LocalActionTypeDb.DELETE,
                                         excludedIds = requestParams.excludedIds,
-                                        minLastModified = requestParams.minLastModifiedTimestamp?.value,
+                                        minLastModified = requestParams.minLastModifiedTimestamp,
                                         limit = limit
                                 )
                             }
@@ -76,7 +76,7 @@ constructor(
                                 gameRecordsDAO.getRecordsExcludeOrderByLastModifiedDesc(
                                         localActionType = LocalActionTypeDb.DELETE,
                                         excludedIds = requestParams.excludedIds,
-                                        maxLastModified = requestParams.maxLastModifiedTimestamp?.value,
+                                        maxLastModified = requestParams.maxLastModifiedTimestamp,
                                         limit = limit
                                 )
                             }
@@ -162,11 +162,11 @@ constructor(
     override fun getLastCreatedTimestampWithExcludedRemoteIds(): Single<LastCreatedTimestampWithExcludedRemoteIds> =
             Single.fromCallable { localRecordsRepositoryStorage.lastCreatedTimestamp }
                     .flatMap { lastCreatedTimestamp ->
-                        gameRecordsDAO.getRemoteIdsWhereCreatedTimestampGraterOrEqual(lastCreatedTimestamp?.value)
+                        gameRecordsDAO.getRemoteIdsWhereCreatedTimestampGraterOrEqual(lastCreatedTimestamp)
                                 .map { excludedRemoteIds ->
                                     LastCreatedTimestampWithExcludedRemoteIds(
                                             lastCreatedTimestamp = lastCreatedTimestamp,
-                                            excludedRemoteIds = excludedRemoteIds.map(RemoteInfo::Id)
+                                            excludedRemoteIds = excludedRemoteIds
                                     )
                                 }
                     }
