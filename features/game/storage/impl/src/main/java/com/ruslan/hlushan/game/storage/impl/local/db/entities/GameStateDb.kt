@@ -10,7 +10,6 @@ import com.ruslan.hlushan.game.api.play.dto.RecordSyncState
 import com.ruslan.hlushan.game.api.play.dto.RemoteInfo
 import com.ruslan.hlushan.game.api.play.dto.SyncStatus
 import org.threeten.bp.Duration
-import org.threeten.bp.Instant
 
 @SuppressWarnings("LongParameterList")
 @Entity(
@@ -50,21 +49,15 @@ internal data class GameStateDb(
         @ColumnInfo(name = TOTAL_SUM) val totalSum: Int,
         val totalPlayed: Duration,
         // sync state
-        // todo: room_db_converter: RemoteInfo.Id?
-        @ColumnInfo(name = REMOTE_RECORD_ID) val remoteId: String?,
-        // todo: room_db_converter: RemoteInfo.ActionId?
-        @ColumnInfo(name = REMOTE_ACTION_ID) val remoteActionId: String?,
-        // todo: room_db_converter: RemoteInfo.CreatedTimestamp?
-        @ColumnInfo(name = REMOTE_CREATED_TIMESTAMP) val remoteCreatedTimestamp: Instant?,
-        // todo: room_db_converter: RemoteInfo.LastSyncedTimestamp?
-        @ColumnInfo(name = LAST_REMOTE_SYNCED_TIMESTAMP) val lastRemoteSyncedTimestamp: Instant?,
+        @ColumnInfo(name = REMOTE_RECORD_ID) val remoteId: RemoteInfo.Id?,
+        @ColumnInfo(name = REMOTE_ACTION_ID) val remoteActionId: RemoteInfo.ActionId?,
+        @ColumnInfo(name = REMOTE_CREATED_TIMESTAMP) val remoteCreatedTimestamp: RemoteInfo.CreatedTimestamp?,
+        @ColumnInfo(name = LAST_REMOTE_SYNCED_TIMESTAMP) val lastRemoteSyncedTimestamp: RemoteInfo.LastSyncedTimestamp?,
         @ColumnInfo(name = LOCAL_ACTION_TYPE) val localActionType: LocalActionTypeDb?,
-        // todo: room_db_converter: RecordSyncState.LastLocalModifiedTimestamp
-        @ColumnInfo(name = LAST_LOCAL_MODIFIED_TIMESTAMP) val lastLocalModifiedTimestamp: Instant,
-        // todo: room_db_converter: LocalAction.Id?
-        @ColumnInfo(name = LOCAL_ACTION_ID) val localActionId: String?,
-        // todo: room_db_converter: RecordSyncState.LocalCreateId?
-        @ColumnInfo(name = LOCAL_CREATE_ID) val localCreateId: String?,
+        @Suppress("MaxLineLength")
+        @ColumnInfo(name = LAST_LOCAL_MODIFIED_TIMESTAMP) val lastLocalModifiedTimestamp: RecordSyncState.LastLocalModifiedTimestamp,
+        @ColumnInfo(name = LOCAL_ACTION_ID) val localActionId: LocalAction.Id?,
+        @ColumnInfo(name = LOCAL_CREATE_ID) val localCreateId: RecordSyncState.LocalCreateId?,
         @ColumnInfo(name = MODIFYING_NOW) val modifyingNow: Boolean,
         @ColumnInfo(name = SYNC_STATUS) val syncStatus: SyncStatus
 ) {
@@ -97,17 +90,17 @@ internal fun GameStateDb.toSyncState(): RecordSyncState {
                          && (this.remoteCreatedTimestamp != null)
                          && (this.lastRemoteSyncedTimestamp != null)) {
         RemoteInfo(
-                remoteId = RemoteInfo.Id(this.remoteId),
-                remoteActionId = RemoteInfo.ActionId(this.remoteActionId),
-                remoteCreatedTimestamp = RemoteInfo.CreatedTimestamp(this.remoteCreatedTimestamp),
-                lastRemoteSyncedTimestamp = RemoteInfo.LastSyncedTimestamp(this.lastRemoteSyncedTimestamp)
+                remoteId = this.remoteId,
+                remoteActionId = this.remoteActionId,
+                remoteCreatedTimestamp = this.remoteCreatedTimestamp,
+                lastRemoteSyncedTimestamp = this.lastRemoteSyncedTimestamp
         )
     } else {
         null
     }
 
     val localAction = if ((this.localActionType != null) && (this.localActionId != null)) {
-        this.localActionType.toLocalAction(actionId = LocalAction.Id(this.localActionId))
+        this.localActionType.toLocalAction(actionId = this.localActionId)
     } else {
         null
     }
@@ -115,8 +108,8 @@ internal fun GameStateDb.toSyncState(): RecordSyncState {
     return RecordSyncState(
             remoteInfo = remoteInfo,
             localAction = localAction,
-            lastLocalModifiedTimestamp = RecordSyncState.LastLocalModifiedTimestamp(this.lastLocalModifiedTimestamp),
-            localCreateId = this.localCreateId?.let(RecordSyncState::LocalCreateId),
+            lastLocalModifiedTimestamp = this.lastLocalModifiedTimestamp,
+            localCreateId = this.localCreateId,
             modifyingNow = this.modifyingNow,
             syncStatus = this.syncStatus
     )
