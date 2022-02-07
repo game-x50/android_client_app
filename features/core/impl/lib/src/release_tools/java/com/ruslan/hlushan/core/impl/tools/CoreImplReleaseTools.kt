@@ -10,8 +10,7 @@ import com.ruslan.hlushan.core.logger.api.di.LoggersProvider
 @UiMainThread
 internal fun initTools(
         application: BaseApplication,
-        appLogger: AppLogger,
-        logger: (String) -> Unit
+        appLogger: AppLogger
 ) = Unit
 
 fun createToolsProvider(

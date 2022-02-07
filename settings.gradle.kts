@@ -28,7 +28,10 @@ include(
 
         ":features:core:logger:api:lib",
         ":features:core:logger:api:test_utils",
-        ":features:core:logger:impl",
+        ":features:core:logger:impl:lib",
+        ":features:core:logger:impl:debug_tools",
+        ":features:core:logger:impl:staging_tools",
+        ":features:core:logger:impl:release_tools",
 
         ":features:core:language:code",
         ":features:core:language:api",

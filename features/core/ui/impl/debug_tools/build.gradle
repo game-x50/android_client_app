@@ -2,6 +2,7 @@ apply from: GradleExtraArgs.getBaseAndroidLibrary(rootProject)
 apply from: GradleExtraArgs.getAndroidSingleBuildVariant(rootProject)
 
 apply from: GradleExtraArgs.getDagger2Kapt(rootProject)
+apply from: GradleExtraArgs.getAndroidLibraryViewBindingWithExtensions(rootProject)
 
 android {
 

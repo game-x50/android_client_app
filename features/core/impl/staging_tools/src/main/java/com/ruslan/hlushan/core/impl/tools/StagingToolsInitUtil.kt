@@ -8,11 +8,11 @@ import com.ruslan.hlushan.core.logger.api.AppLogger
 import com.ruslan.hlushan.core.thread.UiMainThread
 
 @UiMainThread
-fun initStagingTools(app: Application, appLogger: AppLogger, logger: (String) -> Unit) {
+fun initStagingTools(app: Application, appLogger: AppLogger) {
     initSkippedFramesWarning(appLogger)
-    logger("after ChoreographerSkippedFramesWarningThreshold()")
+    appLogger.log("after ChoreographerSkippedFramesWarningThreshold()")
     initLeakCanary(appLogger)
-    logger("after initLeakCanary()")
+    appLogger.log("after initLeakCanary()")
     initBlockCanary(app, appLogger)
-    logger("after initBlockCanary()")
+    appLogger.log("after initBlockCanary()")
 }

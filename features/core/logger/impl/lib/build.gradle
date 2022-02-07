@@ -1,0 +1,36 @@
+apply from: GradleExtraArgs.getBaseAndroidLibrary(rootProject)
+apply from: GradleExtraArgs.getAndroidAllBuildVariants(rootProject)
+
+apply from: GradleExtraArgs.getDagger2Kapt(rootProject)
+
+android {
+    defaultConfig {
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    sourceSets {
+        debug {
+            java.srcDirs += "src/debug_tools/java"
+        }
+        staging {
+            java.srcDirs += "src/staging_tools/java"
+        }
+        release {
+            java.srcDirs += "src/release_tools/java"
+        }
+    }
+
+//    resourcePrefix("logger_impl")
+}
+
+dependencies {
+    api(projects.features.core.config.app)
+    api(projects.features.core.logger.api.lib)
+
+    debugImplementation(projects.features.core.logger.impl.debugTools)
+    stagingImplementation(projects.features.core.logger.impl.stagingTools)
+    releaseImplementation(projects.features.core.logger.impl.releaseTools)
+
+    compileOnly(projects.features.core.extensions)
+}

@@ -1,7 +1,6 @@
 package com.ruslan.hlushan.core.impl
 
 import android.app.Application
-import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import com.ruslan.hlushan.android.storage.SharedPrefsProvider
 import com.ruslan.hlushan.core.di.InjectorHolder
@@ -18,30 +17,60 @@ private const val APP_INITIALIZATION_TAG: String = "APP_INITIALIZATION"
 
 abstract class BaseApplication : Application(), InjectorHolder {
 
-    @Inject protected lateinit var settings: Settings
-    @Inject protected lateinit var appLogger: AppLogger
-
     @get:SuppressWarnings("VariableNaming")
-    abstract val APP_TAG: String
+    protected abstract val APP_TAG: String
 
-    override fun onCreate() {
-        logMessage("before super.onCreate()")
-        super.onCreate()
-        initCrashlytics()
-        SharedPrefsProvider.init()
-        logMessage("after super.onCreate()")
-        SemEmergencyManagerLeakingActivity.applyFix(this)
-        logMessage("after SemEmergencyManagerLeakingActivity.applyFix()")
-        initDagger2AndInject()
-        logMessage("after initDagger2AndInject()")
-        initSecond()
-    }
+    protected abstract val appLogger: AppLogger
+
+    @Inject protected lateinit var settings: Settings
 
     @UiMainThread
     protected abstract fun initCrashlytics()
 
     @UiMainThread
     protected abstract fun initDagger2AndInject()
+
+    @UiMainThread
+    protected abstract fun areAppLoggersInitialized(): Boolean
+
+    override fun onCreate() {
+        val timestampBeforeSuperOnCreate = System.currentTimeMillis()
+
+        super.onCreate()
+
+        val timestampAfterSuperOnCreate = System.currentTimeMillis()
+
+        initCrashlytics()
+
+        val timestampAfterInitCrashlytics = System.currentTimeMillis()
+
+        SharedPrefsProvider.init()
+
+        val timestampAfterSharedPrefsProviderInit = System.currentTimeMillis()
+
+        /**
+         * Init crashlytics first of all, to not miss any startup crash;
+         *
+         * Tink used inside [SharedPrefsProvider] should be also initialized before,
+         * as it used in loggers for persistent storage;
+         */
+        require(!areAppLoggersInitialized()) {
+            "App Loggers should not be initialized here"
+        }
+        logMessage("After Loggers init")
+        val onCreateTimestampsMessage = "onCreate timestamps: " +
+                                        "BeforeSuperOnCreate = $timestampBeforeSuperOnCreate, " +
+                                        "AfterSuperOnCreate = $timestampAfterSuperOnCreate, " +
+                                        "AfterInitCrashlytics = $timestampAfterInitCrashlytics, " +
+                                        "AfterSharedPrefsProviderInit = $timestampAfterSharedPrefsProviderInit"
+        logMessage(onCreateTimestampsMessage)
+
+        SemEmergencyManagerLeakingActivity.applyFix(this)
+        logMessage("after SemEmergencyManagerLeakingActivity.applyFix()")
+        initDagger2AndInject()
+        logMessage("after initDagger2AndInject()")
+        initSecond()
+    }
 
     @UiMainThread
     private fun initSecond() {
@@ -52,7 +81,7 @@ abstract class BaseApplication : Application(), InjectorHolder {
         logMessage("after initBaseContextLang()")
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         logMessage("after AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)")
-        initTools(this, appLogger, this::logMessage)
+        initTools(this, appLogger)
     }
 
     @UiMainThread
@@ -67,5 +96,5 @@ abstract class BaseApplication : Application(), InjectorHolder {
     }
 
     private fun logMessage(message: String) =
-            Log.i(APP_TAG, "$APP_INITIALIZATION_TAG -> $message")
+            appLogger.log("$APP_TAG -> $APP_INITIALIZATION_TAG -> $message")
 }
