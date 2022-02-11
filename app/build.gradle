@@ -56,7 +56,6 @@ android {
     buildTypes {
         debug {
             buildConfigField("String", "APP_TAG", "\"GAME_APP_DEBUG\"")
-            buildConfigField("boolean", "IS_LOGCAT_ENABLED", "true")
             buildConfigField("boolean", "IS_CRASHLYTICS_ENABLED", "false")
 
             firebaseCrashlytics.mappingFileUploadEnabled = false
@@ -72,7 +71,6 @@ android {
             proguardFiles(fileTree(GradleExtraArgs.getProguardConfigsFolder(rootProject)).asList().toArray())
 
             buildConfigField("String", "APP_TAG", "\"GAME_APP_RELEASE\"")
-            buildConfigField("boolean", "IS_LOGCAT_ENABLED", "false")
             buildConfigField("boolean", "IS_CRASHLYTICS_ENABLED", "true")
 
             firebaseCrashlytics.mappingFileUploadEnabled = true
@@ -108,7 +106,7 @@ dependencies {
     
     implementation(projects.features.core.foreground.observer.impl)
 
-    implementation(projects.features.core.logger.impl)
+    implementation(projects.features.core.logger.impl.lib)
 
     implementation(projects.features.core.language.impl)
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/default_padding"
+    android:paddingRight="@dimen/default_padding"
+    tools:ignore="HardcodedText">
+
+    <LinearLayout style="@style/DeveloperSettingsItemContainer">
+
+        <TextView
+            style="@style/DeveloperSettingsItemTitle"
+            android:text="Logcat Logs" />
+
+        <Switch
+            android:id="@+id/fragment_dev_settings_logcat_logs_enabled_switch"
+            style="@style/DeveloperSettingsItemControl"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    </LinearLayout>
+
+</LinearLayout>

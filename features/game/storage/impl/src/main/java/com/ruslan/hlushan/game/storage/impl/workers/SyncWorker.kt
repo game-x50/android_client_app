@@ -93,8 +93,10 @@ internal class SyncWorker(
                     16, TimeUnit.HOURS
             )
                     .setConstraints(constraints)
-                    // Expedited policy not applied to run job first time immediatly
-                    //.setExpedited(OutOfQuotaPolicy.RUN_AS_NON_EXPEDITED_WORK_REQUEST)
+                    /**
+                     * [PeriodicWorkRequest] cannot be expedited
+                     * check [PeriodicWorkRequest.Builder.buildInternal]
+                     */
                     .build()
 
             WorkManager.getInstance(appContext)

@@ -11,10 +11,9 @@ import com.ruslan.hlushan.core.impl.tools.di.CoreImplDebugToolsExportComponent
 @UiMainThread
 internal fun initTools(
         application: BaseApplication,
-        appLogger: AppLogger,
-        logger: (String) -> Unit
+        appLogger: AppLogger
 ) =
-        initDebugTools(application, appLogger, logger)
+        initDebugTools(application, appLogger)
 
 fun createToolsProvider(
         appContextProvider: AppContextProvider,

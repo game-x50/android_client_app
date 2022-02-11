@@ -21,3 +21,28 @@ interface FileLogger {
 
     fun copyAllExistingLogsToSingleFile(destination: File): Completable
 }
+
+object EmptyFileLoggerImpl : FileLogger {
+
+    override var enabled: Boolean
+        get() = false
+        set(value) {}
+
+    override fun logToFile(message: String) = Unit
+
+    override fun deleteLogFiles(): Single<Boolean> =
+            Single.just(false)
+
+    override fun readNextFileLogs(
+            pagesRequest: PaginationPagesRequest<String>,
+            limitFiles: Int
+    ): Single<PaginationResponse<String, String>> =
+            Single.just(
+                    PaginationResponse.SinglePage(
+                            result = emptyList()
+                    )
+            )
+
+    override fun copyAllExistingLogsToSingleFile(destination: File): Completable =
+            Completable.complete()
+}

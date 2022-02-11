@@ -4,6 +4,9 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
+import androidx.annotation.CallSuper
+import androidx.annotation.ContentView
+import androidx.annotation.LayoutRes
 import com.ruslan.hlushan.android.extensions.applyDrawableOverlay
 import com.ruslan.hlushan.android.extensions.clearOverlay
 import com.ruslan.hlushan.android.extensions.setThrottledOnClickListener
@@ -21,10 +24,9 @@ import com.ruslan.hlushan.core.extensions.ifNotNull
 import com.ruslan.hlushan.core.logger.api.FileLogger
 import com.ruslan.hlushan.core.thread.UiMainThread
 import com.ruslan.hlushan.core.ui.fragment.BaseFragment
-import com.ruslan.hlushan.core.ui.impl.tools.databinding.CoreUiImplStagingToolsDeveloperSettingsScreenBinding
+import com.ruslan.hlushan.core.ui.impl.tools.databinding.CoreUiImplStagingToolsDeveloperSettingsBinding
 import com.ruslan.hlushan.core.ui.impl.tools.file.FileLogsActivity
 import com.ruslan.hlushan.core.ui.impl.tools.utils.GridDrawable
-import com.ruslan.hlushan.core.ui.viewbinding.extensions.bindViewBinding
 import com.ruslan.hlushan.third_party.androidx.insets.addSystemPadding
 import com.ruslan.hlushan.third_party.androidx.room.utils.DatabaseViewInfo
 import java.util.concurrent.TimeUnit
@@ -32,11 +34,12 @@ import javax.inject.Inject
 
 private const val DEFAULT_GRID_DISTANCE_DP: Int = 16
 
-abstract class AbstractStagingSettingsFragment : BaseFragment(
-        layoutResId = R.layout.core_ui_impl_staging_tools_developer_settings_screen
-) {
-
-    private val binding by bindViewBinding(CoreUiImplStagingToolsDeveloperSettingsScreenBinding::bind)
+@Suppress("MaxLineLength")
+abstract class AbstractStagingSettingsFragment
+@ContentView
+constructor(
+        @LayoutRes layoutResId: Int
+) : BaseFragment(layoutResId = layoutResId) {
 
     @Inject lateinit var initAppConfig: InitAppConfig
     @Inject lateinit var leakCanaryTool: LeakCanaryTool
@@ -54,6 +57,8 @@ abstract class AbstractStagingSettingsFragment : BaseFragment(
 
     private var needRecreateOverlay: Boolean = false
 
+    protected abstract val stagingSettingsBinding: CoreUiImplStagingToolsDeveloperSettingsBinding?
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -68,65 +73,66 @@ abstract class AbstractStagingSettingsFragment : BaseFragment(
     override fun onResume() {
         super.onResume()
 
-        binding?.fragmentDevSettingsTinyDancerSwitch?.isChecked = tinyDancerTool.show
-        binding?.fragmentDevSettingsTaktSwitch?.isChecked = taktTool.show
-        binding?.fragmentDevSettingsLeakCanarySwitch?.isChecked = leakCanaryTool.enabled
-        binding?.fragmentDevSettingsFileLogsEnabledSwitch?.isChecked = fileLogger.enabled
+        stagingSettingsBinding?.fragmentDevSettingsTinyDancerSwitch?.isChecked = tinyDancerTool.show
+        stagingSettingsBinding?.fragmentDevSettingsTaktSwitch?.isChecked = taktTool.show
+        stagingSettingsBinding?.fragmentDevSettingsLeakCanarySwitch?.isChecked = leakCanaryTool.enabled
+        stagingSettingsBinding?.fragmentDevSettingsFileLogsEnabledSwitch?.isChecked = fileLogger.enabled
 
         recreateOverlayIfNeeded()
     }
 
     @UiMainThread
     private fun setUpViews() {
-        binding?.fragmentDevSettingsVersionCodeTextView?.text = initAppConfig.versionCode.toString()
-        binding?.fragmentDevSettingsVersionNameTextView?.text = initAppConfig.versionName
+        stagingSettingsBinding?.fragmentDevSettingsVersionCodeTextView?.text = initAppConfig.versionCode.toString()
+        stagingSettingsBinding?.fragmentDevSettingsVersionNameTextView?.text = initAppConfig.versionName
 
         setUpSpinnerDatabase()
     }
 
     @UiMainThread
-    private fun setUpViewListeners() {
-        binding?.fragmentDevSettingsTinyDancerSwitch?.setOnCheckedChangeListener { buttonView, isChecked ->
+    @CallSuper
+    protected open fun setUpViewListeners() {
+        stagingSettingsBinding?.fragmentDevSettingsTinyDancerSwitch?.setOnCheckedChangeListener { buttonView, isChecked ->
             tinyDancerTool.show = isChecked
         }
-        binding?.fragmentDevSettingsTaktSwitch?.setOnCheckedChangeListener { buttonView, isChecked ->
+        stagingSettingsBinding?.fragmentDevSettingsTaktSwitch?.setOnCheckedChangeListener { buttonView, isChecked ->
             taktTool.show = isChecked
         }
-        binding?.fragmentDevSettingsLeakCanarySwitch?.setOnCheckedChangeListener { buttonView, isChecked ->
+        stagingSettingsBinding?.fragmentDevSettingsLeakCanarySwitch?.setOnCheckedChangeListener { buttonView, isChecked ->
             leakCanaryTool.enabled = isChecked
         }
-        binding?.fragmentDevSettingsFileLogsEnabledSwitch?.setOnCheckedChangeListener { buttonView, isChecked ->
+        stagingSettingsBinding?.fragmentDevSettingsFileLogsEnabledSwitch?.setOnCheckedChangeListener { buttonView, isChecked ->
             fileLogger.enabled = isChecked
         }
-        binding?.fragmentDevSettingsDrawGridSwitch?.setOnCheckedChangeListener { buttonView, isChecked ->
+        stagingSettingsBinding?.fragmentDevSettingsDrawGridSwitch?.setOnCheckedChangeListener { buttonView, isChecked ->
             setUpDrawGrid(isChecked)
         }
 
-        binding?.fragmentDevSettingsStartBlockCanaryBtn?.setThrottledOnClickListener { blockCanaryTool.start() }
-        binding?.fragmentDevSettingsStopBlockCanaryBtn?.setThrottledOnClickListener { blockCanaryTool.stop() }
+        stagingSettingsBinding?.fragmentDevSettingsStartBlockCanaryBtn?.setThrottledOnClickListener { blockCanaryTool.start() }
+        stagingSettingsBinding?.fragmentDevSettingsStopBlockCanaryBtn?.setThrottledOnClickListener { blockCanaryTool.stop() }
 
-        binding?.fragmentDevSettingsOpenChuckBtn?.setThrottledOnClickListener { chuckTool.openScreen() }
-        binding?.fragmentDevSettingsRxDisposableWatcherReportBtn?.setThrottledOnClickListener {
+        stagingSettingsBinding?.fragmentDevSettingsOpenChuckBtn?.setThrottledOnClickListener { chuckTool.openScreen() }
+        stagingSettingsBinding?.fragmentDevSettingsRxDisposableWatcherReportBtn?.setThrottledOnClickListener {
             rxDisposableWatcherTool.showReport()
         }
-        binding?.fragmentDevSettingsOpenLeakCanaryBtn?.setThrottledOnClickListener { leakCanaryTool.openScreen() }
-        binding?.fragmentDevSettingsOpenBlockCanaryBtn?.setThrottledOnClickListener { blockCanaryTool.openScreen() }
-        binding?.fragmentDevSettingsOpenLynxBtn?.setThrottledOnClickListener { lynxTool.openScreen() }
-        binding?.fragmentDevSettingsOpenFileLogsBtn?.setThrottledOnClickListener {
+        stagingSettingsBinding?.fragmentDevSettingsOpenLeakCanaryBtn?.setThrottledOnClickListener { leakCanaryTool.openScreen() }
+        stagingSettingsBinding?.fragmentDevSettingsOpenBlockCanaryBtn?.setThrottledOnClickListener { blockCanaryTool.openScreen() }
+        stagingSettingsBinding?.fragmentDevSettingsOpenLynxBtn?.setThrottledOnClickListener { lynxTool.openScreen() }
+        stagingSettingsBinding?.fragmentDevSettingsOpenFileLogsBtn?.setThrottledOnClickListener {
             ifNotNull(activity) { nonNullActivity ->
                 nonNullActivity.startActivity(FileLogsActivity.newIntent(nonNullActivity))
             }
         }
 
-        binding?.fragmentDevSettingsOpenDatabaseBtn?.setThrottledOnClickListener {
-            val database = (binding?.fragmentDevSettingsDatabaseSpinner?.selectedItem as DatabaseViewInfo)
+        stagingSettingsBinding?.fragmentDevSettingsOpenDatabaseBtn?.setThrottledOnClickListener {
+            val database = (stagingSettingsBinding?.fragmentDevSettingsDatabaseSpinner?.selectedItem as DatabaseViewInfo)
             databaseViewerTool.showDatabase(database)
         }
     }
 
     @UiMainThread
     private fun setUpSpinnerDatabase() {
-        binding?.fragmentDevSettingsDatabaseSpinner?.adapter = ArrayAdapter<DatabaseViewInfo>(
+        stagingSettingsBinding?.fragmentDevSettingsDatabaseSpinner?.adapter = ArrayAdapter<DatabaseViewInfo>(
                 requireContext(),
                 R.layout.core_ui_impl_staging_tools_developer_settings_spinner_item,
                 databases
@@ -137,7 +143,7 @@ abstract class AbstractStagingSettingsFragment : BaseFragment(
     private fun setUpDrawGrid(draw: Boolean) {
         if (isResumed) {
             if (draw) {
-                val distance = (binding?.fragmentDevSettingsDrawGridDistanceInput?.text?.toString()?.toIntOrNull()
+                val distance = (stagingSettingsBinding?.fragmentDevSettingsDrawGridDistanceInput?.text?.toString()?.toIntOrNull()
                                 ?: DEFAULT_GRID_DISTANCE_DP)
                 val distancePx = distance.toFloat().toPx().toInt()
 
@@ -156,7 +162,7 @@ abstract class AbstractStagingSettingsFragment : BaseFragment(
         @Suppress("MagicNumber")
         viewsHandler.postDelayed(100, TimeUnit.MILLISECONDS) {
             if (needRecreateOverlay) {
-                ifNotNull(binding?.fragmentDevSettingsDrawGridSwitch?.isChecked) { isChecked ->
+                ifNotNull(stagingSettingsBinding?.fragmentDevSettingsDrawGridSwitch?.isChecked) { isChecked ->
                     setUpDrawGrid(isChecked)
                 }
                 needRecreateOverlay = false

@@ -7,10 +7,10 @@ import com.ruslan.hlushan.core.logger.api.AppLogger
 import com.ruslan.hlushan.core.thread.UiMainThread
 
 @UiMainThread
-fun initDebugTools(app: Application, appLogger: AppLogger, logger: (String) -> Unit) {
-    initStagingTools(app, appLogger, logger)
+fun initDebugTools(app: Application, appLogger: AppLogger) {
+    initStagingTools(app, appLogger)
     initStetho(app)
-    logger("after initStetho()")
+    appLogger.log("after initStetho()")
     StrictModeUtil.init()
-    logger("after StrictModeUtil.init()")
+    appLogger.log("after StrictModeUtil.init()")
 }

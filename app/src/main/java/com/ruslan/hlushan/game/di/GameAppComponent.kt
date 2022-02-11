@@ -114,21 +114,38 @@ internal interface GameAppComponent : IBaseInjector,
 
     companion object Initializer {
 
-        @SuppressWarnings("LongMethod")
-        fun init(app: GameApp): GameAppComponent {
+        fun buildInitAppConfig(
+                app: GameApp,
+                appTag: String
+        ): InitAppConfig =
+                InitAppConfig(
+                        appTag = appTag,
+                        versionCode = BuildConfig.VERSION_CODE,
+                        versionName = BuildConfig.VERSION_NAME,
+                        fileLogsFolder = File(app.cacheDir, "fileLogs"),
+                        languagesJsonRawResId = com.ruslan.hlushan.game.settings.ui.R.raw.languages,
+                        defaultLanguageFullCode = BuildConfig.DEFAULT_LANGUAGE_FULL_CODE
+                                .let { pair -> pair.toLangFullCode()!! },
+                        availableLanguagesFullCodes = BuildConfig.AVAILABLE_LANGUAGES_FULL_CODES
+                                .mapNotNull { pair -> pair.toLangFullCode() }
+                )
 
-            val initAppConfig = InitAppConfig(
-                    appTag = app.APP_TAG,
-                    versionCode = BuildConfig.VERSION_CODE,
-                    versionName = BuildConfig.VERSION_NAME,
-                    isLogcatEnabled = BuildConfig.IS_LOGCAT_ENABLED,
-                    fileLogsFolder = File(app.cacheDir, "fileLogs"),
-                    languagesJsonRawResId = com.ruslan.hlushan.game.settings.ui.R.raw.languages,
-                    defaultLanguageFullCode = BuildConfig.DEFAULT_LANGUAGE_FULL_CODE
-                            .let { pair -> pair.toLangFullCode()!! },
-                    availableLanguagesFullCodes = BuildConfig.AVAILABLE_LANGUAGES_FULL_CODES
-                            .mapNotNull { pair -> pair.toLangFullCode() }
-            )
+        fun buildLoggersProvider(
+                app: GameApp,
+                initAppConfig: InitAppConfig
+        ): LoggersProvider =
+                LoggerImplExportComponent.Initializer.init(
+                        initAppConfig = initAppConfig,
+                        errorLogger = ErrorLoggerImpl(),
+                        appContext = app
+                )
+
+        @SuppressWarnings("LongMethod")
+        fun init(
+                app: GameApp,
+                initAppConfig: InitAppConfig,
+                loggersProvider: LoggersProvider
+        ): GameAppComponent {
 
             val networkConfig = NetworkConfig()
             val gameNetworkParams = GameNetworkParams(baseApiUrl = BuildConfig.BASE_API_URL)
@@ -140,12 +157,6 @@ internal interface GameAppComponent : IBaseInjector,
 
             val appForegroundObserverProvider = AppForegroundObserverImplExportComponent.Initializer.init(
                     schedulersProvider = coreImplProvider
-            )
-
-            val loggersProvider = LoggerImplExportComponent.Initializer.init(
-                    initAppConfig = initAppConfig,
-                    errorLogger = ErrorLoggerImpl(),
-                    appContextProvider = coreImplProvider
             )
 
             val languagesInteractorProvider = LanguageImplExportComponent.Initializer.init(
