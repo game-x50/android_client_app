@@ -1,3 +1,4 @@
+@Suppress("CONSTANT_UPPERCASE")
 object BuildTypes {
     const val single = "single"
 

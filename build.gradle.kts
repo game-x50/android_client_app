@@ -26,6 +26,7 @@ plugins {
     id(Plugins.gradleDoctor).version(Versions.gradleDoctorVersion)
     id(Plugins.dependencyUpdates).version(Versions.dependencyUpdatesVersion)
     id(Plugins.sonarqube).version(Versions.sonarqubePluginVersion)
+    id(Plugins.diktat).version(Versions.diktatVersion)
 
     kotlin(Plugins.kotlinxSerilizationPluginPath).version(Versions.kotlinVersion)
 }
@@ -55,6 +56,16 @@ tasks.register("clean", Delete::class) {
 }
 
 apply(from = "${GradleExtraArgs.getGradleSupportFolder(project)}linters.gradle")
+
+apply(plugin = Plugins.diktat)
+diktat {
+    inputs {
+        include("**/src/**/*.kt")
+    }
+    diktatConfigFile = file("${GradleExtraArgs.getLintersConfigFolder(rootProject)}diktat-analysis.yml")
+    output = "${GradleExtraArgs.getReportsFolder(rootProject)}diktat.txt"
+}
+
 apply(from = "${GradleExtraArgs.getGradleSupportFolder(project)}sonarqube.gradle")
 
 tasks.named(

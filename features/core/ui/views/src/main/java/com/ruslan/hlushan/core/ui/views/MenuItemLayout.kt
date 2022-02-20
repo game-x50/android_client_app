@@ -20,6 +20,7 @@ import com.ruslan.hlushan.android.extensions.colorAttributeValue
 
 private const val INVALID_RESOURCE_ID = 0
 
+@Suppress("VARIABLE_HAS_PREFIX")
 class MenuItemLayout
 @JvmOverloads
 constructor(

@@ -1,5 +1,6 @@
 import org.gradle.api.JavaVersion
 
+@Suppress("CONSTANT_UPPERCASE")
 object ApplicationConfigs {
     const val minSdk: Int = 21// don't forget about proguard
     const val targetSdk: Int = 31

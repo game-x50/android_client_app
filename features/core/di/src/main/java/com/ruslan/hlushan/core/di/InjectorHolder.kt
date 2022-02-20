@@ -4,6 +4,7 @@ import kotlin.reflect.KClass
 
 interface InjectorHolder {
 
+    @Suppress("VARIABLE_HAS_PREFIX")
     val iBaseInjector: IBaseInjector
 
     val components: ClassInstanceMap

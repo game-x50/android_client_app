@@ -1,7 +1,7 @@
 apply plugin: Plugins.detekt
 
 def lintersConfigFolder = GradleExtraArgs.getLintersConfigFolder(rootProject)
-def reportsFolder = "build/reports/"
+def reportsFolder = GradleExtraArgs.getReportsFolder(rootProject)
 
 tasks.named("detekt").configure {
     reports {

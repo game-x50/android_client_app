@@ -7,6 +7,9 @@ object GradleExtraArgs {
     fun getRootProjectPath(project: Project): String = project.rootProject.projectDir.path
 
     @JvmStatic
+    fun getRootProjectBuildDirPath(project: Project): String = project.rootProject.buildDir.path
+
+    @JvmStatic
     fun getGradleSupportFolder(project: Project): String = "${getRootProjectPath(project)}/gradle_support/"
 
     @JvmStatic
@@ -83,6 +86,9 @@ object GradleExtraArgs {
 
     @JvmStatic
     fun getLicenseValidation(project: Project): String = "${getGradleSupportFolder(project)}license_validation.gradle"
+
+    @JvmStatic
+    fun getReportsFolder(project: Project): String = "${getRootProjectBuildDirPath(project)}/reports/"
 
     @JvmStatic
     fun getCoverageReportPath(projectBuildDir: File): String = "${projectBuildDir}/reports/jacocoCoverage.xml"

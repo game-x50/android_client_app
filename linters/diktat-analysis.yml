@@ -1,0 +1,51 @@
+- name: TOO_MANY_BLANK_LINES
+  enabled: false
+# Checks that properties with comments are separated by a blank line
+- name: BLANK_LINE_BETWEEN_PROPERTIES
+  enabled: false
+# Checks that indentation is correct
+- name: WRONG_INDENTATION
+  enabled: false
+  configuration:
+    # Is newline at the end of a file needed
+    newlineAtEnd: false
+    # If true: in parameter list when parameters are split by newline they are indented with two indentations instead of one
+    extendedIndentOfParameters: true
+    # If true: if first parameter in parameter list is on the same line as opening parenthesis, then other parameters can be aligned with it
+    alignedParameters: true
+    # If true: if expression is split by newline after operator like +/-/`*`, then the next line is indented with two indentations instead of one
+    extendedIndentAfterOperators: true
+    # The indentation size for each file
+    indentationSize: 4
+# Checks that usage of horizontal spaces doesn't violate code style guide
+- name: WRONG_WHITESPACE
+  enabled: false
+# Checks that functions have kdoc
+- name: MISSING_KDOC_ON_FUNCTION
+  enabled: false
+# Checks that on file level internal or public class or function has missing KDoc
+- name: MISSING_KDOC_TOP_LEVEL
+  enabled: false
+# Checks that accessible internal elements (protected, public, internal) in a class are documented
+- name: MISSING_KDOC_CLASS_ELEMENTS
+  enabled: false
+# Checks that no custom getters and setters are used for properties. It is a more wide rule than TRIVIAL_ACCESSORS_ARE_NOT_RECOMMENDED
+# Kotlin compiler automatically generates `get` and `set` methods for properties and also lets the possibility to override it.
+# But in all cases it is very confusing when `get` and `set` are overridden for a developer who uses this particular class.
+# Developer expects to get the value of the property, but receives some unknown value and some extra side effect hidden by the custom getter/setter.
+# Use extra functions for it instead.
+- name: CUSTOM_GETTERS_SETTERS
+  enabled: false
+# Inspection that checks if there are blank lines between code and comment and between code start token and comment's text
+- name: COMMENT_WHITE_SPACE
+  enabled: false
+  configuration:
+    maxSpacesBeforeComment: 2
+    maxSpacesInComment: 1
+# Checks that line breaks follow code style guide: rule 3.6
+- name: WRONG_NEWLINES
+  enabled: false
+  configuration:
+    # If the number of parameters on one line is more than this threshold, all parameters will be placed on separate lines.
+    maxParametersInOneLine: 2
+    # 3 by default.

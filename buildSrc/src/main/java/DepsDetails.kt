@@ -1,3 +1,4 @@
+@Suppress("CONSTANT_UPPERCASE")
 object DepsDetails {
 
     const val certificateTransparencyGroup = "com.babylon.certificatetransparency"
