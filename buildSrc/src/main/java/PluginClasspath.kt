@@ -1,3 +1,4 @@
+@Suppress("CONSTANT_UPPERCASE")
 object PluginClasspath {
 
     const val androidGradle = "com.android.tools.build:gradle:${Versions.gradleVersion}"

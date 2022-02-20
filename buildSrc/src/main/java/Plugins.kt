@@ -1,3 +1,4 @@
+@Suppress("CONSTANT_UPPERCASE")
 object Plugins {
     const val kotlin = "kotlin"
     const val kotlinAndroid = "kotlin-android"
@@ -7,6 +8,7 @@ object Plugins {
 
     const val androidJar = "com.stepango.androidjar"
     const val detekt = "io.gitlab.arturbosch.detekt"
+    const val diktat = "org.cqfn.diktat.diktat-gradle-plugin"
     const val crashlytics = "com.google.firebase.crashlytics"
     const val googleServices = "com.google.gms.google-services"
     const val dependencyAnalysis = "com.autonomousapps.dependency-analysis"

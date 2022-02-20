@@ -1,3 +1,4 @@
+@Suppress("CONSTANT_UPPERCASE")
 object Deps {
     const val rxJava2 = "io.reactivex.rxjava2:rxjava:${Versions.rxJava2Version}"
     const val rxJava2Android = "io.reactivex.rxjava2:rxandroid:${Versions.rxJava2AndroidVersion}"

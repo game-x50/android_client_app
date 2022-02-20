@@ -1,4 +1,17 @@
+-----------------------------------------------------------------------------------
+https://github.com/detekt/detekt
 
+run
+    ./gradlew detekt
+
+and check <buildDir>/reports/detekt.txt
+-----------------------------------------------------------------------------------
+https://github.com/analysis-dev/diktat
+
+run
+    ./gradlew diktatCheck
+
+and check <buildDir>/reports/diktat.txt
 -----------------------------------------------------------------------------------
 https://github.com/autonomousapps/dependency-analysis-android-gradle-plugin
 
@@ -90,4 +103,9 @@ https://github.com/dipien/releases-hub-gradle-plugin
 https://akjaw.com/keeping-gradle-dependencies-up-to-date-with-github-actions-and-refreshversions/
 
 Automatically upgrade your java gradle project dependencies and send a GitHub pull request with the changes.
+-----------------------------------------------------------------------------------
+https://github.com/spotify/ruler
+
+Ruler is a Gradle plugin which helps you analyze the size of your Android apps.
+Ruler provides a convenient way to find out how much each module and dependency contributes to the total size of your app by running a single Gradle task.
 -----------------------------------------------------------------------------------

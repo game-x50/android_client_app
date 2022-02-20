@@ -60,21 +60,19 @@ constructor(
         )
         val defaultGameSize = GameSize.SMALL
 
-        var ta: TypedArray? = null
         val (@ColorInt textColorOnTransparent: Int, @ColorInt gridColor: Int, gameSize: GameSize) = try {
-            ta = context.obtainStyledAttributes(attrs, R.styleable.GameView)
-            Triple(
-                    ta.getColor(R.styleable.GameView_textColorOnTransparent, colorOnBackground),
-                    ta.getColor(R.styleable.GameView_gridColor, colorOnBackground),
-                    GameSize.fromCountRowsAndColumns(
-                            ta.getInt(R.styleable.GameView_gameSize, defaultGameSize.countRowsAndColumns)
-                    )
-            )
+            context.obtainStyledAttributes(attrs, R.styleable.GameView).use { ta ->
+                Triple(
+                        ta.getColor(R.styleable.GameView_textColorOnTransparent, colorOnBackground),
+                        ta.getColor(R.styleable.GameView_gridColor, colorOnBackground),
+                        GameSize.fromCountRowsAndColumns(
+                                ta.getInt(R.styleable.GameView_gameSize, defaultGameSize.countRowsAndColumns)
+                        )
+                )
+            }
         } catch (e: Exception) {
             e.printStackTrace()
             Triple(colorOnBackground, colorOnBackground, defaultGameSize)
-        } finally {
-            ta?.recycle()
         }
 
         gameDrawer = GameDrawer(

@@ -1,3 +1,4 @@
+@Suppress("CONSTANT_UPPERCASE")
 object Versions {
 
     const val gradleVersion = "7.0.4"
@@ -9,6 +10,7 @@ object Versions {
     const val crashlyticsPluginVersion = "2.8.1"
 
     const val detektVersion = "1.19.0"
+    const val diktatVersion = "1.0.3"
     const val androidJarPluginVersion = "0.1"
 
     const val dependencyAnalysisPluginVersion = "0.80.0"
