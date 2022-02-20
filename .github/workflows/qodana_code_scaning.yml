@@ -1,0 +1,24 @@
+name: Qodana
+
+on:
+  pull_request:
+    branches:
+      - 'master'
+
+env:
+  BASE_API_URL: ${{ secrets.BASE_API_URL }}
+
+jobs:
+
+  qodana_scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Qodana Scan
+        uses: JetBrains/qodana-action@v4.2.2
+        with:
+          linter: jetbrains/qodana-jvm-android  # pick the needed linter – https://www.jetbrains.com/help/qodana/docker-images.html
+
+      - uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: ${{ runner.temp }}/qodana/results/qodana.sarif.json
