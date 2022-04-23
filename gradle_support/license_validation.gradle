@@ -52,4 +52,12 @@ licensee {
     ) {
         because "Artifact declares no licenses!"
     }
+
+    allowDependency(
+            "org.checkerframework",
+            "checker-compat-qual",
+            "2.5.5"
+    ) {
+        because 'GPL-2.0-with-classpath-exception is used'
+    }
 }

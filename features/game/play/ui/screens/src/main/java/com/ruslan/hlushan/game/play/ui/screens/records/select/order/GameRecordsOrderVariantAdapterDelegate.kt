@@ -18,11 +18,9 @@ import com.ruslan.hlushan.game.play.ui.screens.databinding.GamePlayUiGameRecords
 
 internal class GameRecordsOrderVariantAdapterDelegate(
         private val onItemClick: OnItemClickListener<GameRecordsOrderVariantRecyclerItem>
-) : AdapterDelegate<
-        GameRecordWithSyncState.Order.Variant,
+) : AdapterDelegate<GameRecordWithSyncState.Order.Variant,
         GameRecordsOrderVariantRecyclerItem,
-        GameRecordsOrderVariantRecyclerItem
-        > {
+        GameRecordsOrderVariantRecyclerItem> {
 
     @get:LayoutRes
     override val layoutResId: Int
@@ -63,8 +61,8 @@ private class GameRecordsOrderVariantViewHolder(
 
     @UiMainThread
     override fun onViewDetachedFromWindow() {
-        super.onViewDetachedFromWindow()
         itemView.setOnClickListener(null)
+        super.onViewDetachedFromWindow()
     }
 
     @UiMainThread

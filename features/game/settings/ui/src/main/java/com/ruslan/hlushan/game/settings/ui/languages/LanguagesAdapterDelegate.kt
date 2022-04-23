@@ -72,8 +72,8 @@ private class LanguagesViewHolder(
 
     @UiMainThread
     override fun onViewDetachedFromWindow() {
-        super.onViewDetachedFromWindow()
         itemView.setOnClickListener(null)
+        super.onViewDetachedFromWindow()
     }
 }
 

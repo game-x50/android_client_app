@@ -49,8 +49,8 @@ private class GameLevelViewHolder(
 
     @UiMainThread
     override fun onViewDetachedFromWindow() {
-        super.onViewDetachedFromWindow()
         itemView.setOnClickListener(null)
+        super.onViewDetachedFromWindow()
     }
 
     @UiMainThread

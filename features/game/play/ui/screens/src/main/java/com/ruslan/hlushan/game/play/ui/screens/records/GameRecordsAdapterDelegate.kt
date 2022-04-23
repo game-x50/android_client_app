@@ -78,10 +78,10 @@ private class GameRecordViewHolder(
 
     @UiMainThread
     override fun onViewDetachedFromWindow() {
-        super.onViewDetachedFromWindow()
         clearUpdatesDisposable()
         itemView.setOnClickListener(null)
         binding.gameRecordItemDeleteBtn.setOnClickListener(null)
+        super.onViewDetachedFromWindow()
     }
 
     @UiMainThread
@@ -99,7 +99,7 @@ private class GameRecordViewHolder(
     @UiMainThread
     private fun redraw(item: GameRecordRecyclerItem) {
         val zonedDateTime = item.gameRecord.syncState.lastLocalModifiedTimestamp.value.atZone(ZoneId.systemDefault())
-        @Suppress("MaxLineLength")
+        @Suppress("MaxLineLength", "SetTextI18n")
         binding.gameRecordItemTitle.text = (item.gameRecord.record.gameState.current.immutableNumbersMatrix.totalSum.toString()
                                             + "\n" + item.gameRecord.syncState.syncStatus
                                             + "\n" + zonedDateTime)

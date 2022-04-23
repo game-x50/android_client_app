@@ -195,6 +195,7 @@ private fun `assert handleCommandQueue will be called between onAfterSuperStart 
         expectedState.removeFirst()
     }
 
+    @Suppress("VariableNaming")
     val subscribedAfter_onAfterSuperStart_or_startStopProcess = arrayOf(
             LifecyclePluginObserverOwnerFragmentStub.DetailState.AFTER_START_STOP_PROCESS,
             LifecyclePluginObserverOwnerFragmentStub.DetailState.AFTER_ON_AFTER_SUPER_START

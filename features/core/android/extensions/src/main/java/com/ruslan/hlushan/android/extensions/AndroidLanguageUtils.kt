@@ -16,7 +16,7 @@ var Configuration.currentLocale: Locale
         locale
     }
     set(newValue) {
-        @Suppress("ObsoleteSdkInt")
+        @Suppress("ObsoleteSdkInt", "AppBundleLocaleChanges")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             setLocale(newValue)
         } else {

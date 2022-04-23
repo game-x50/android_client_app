@@ -40,7 +40,7 @@ abstract class BaseViewModel(
 
         threadChecker.checkThread()
 
-        checkVmStateAndSet(requiredCurrentState = VmState.CREATED, newState = VmState.ATTACHED)
+        compareVmStateAndSet(requiredCurrentState = VmState.CREATED, newState = VmState.ATTACHED)
 
         mutableAttachedViewLifecycleRestartableDisposable.set(CompositeDisposable())
 
@@ -58,7 +58,7 @@ abstract class BaseViewModel(
 
         threadChecker.checkThread()
 
-        checkVmStateAndSet(requiredCurrentState = VmState.ATTACHED, newState = VmState.CREATED)
+        compareVmStateAndSet(requiredCurrentState = VmState.ATTACHED, newState = VmState.CREATED)
 
         clearLiteCompositeDisposable()
     }
@@ -70,7 +70,7 @@ abstract class BaseViewModel(
 
         threadChecker.checkThread()
 
-        checkVmStateAndSet(requiredCurrentState = VmState.CREATED, newState = VmState.DESTROYED)
+        compareVmStateAndSet(requiredCurrentState = VmState.CREATED, newState = VmState.DESTROYED)
 
         clearAttachedViewLifecycleRestartableDisposable()
 
@@ -97,7 +97,7 @@ abstract class BaseViewModel(
     }
 
     @UiMainThread
-    private fun checkVmStateAndSet(requiredCurrentState: VmState, newState: VmState) {
+    private fun compareVmStateAndSet(requiredCurrentState: VmState, newState: VmState) {
         if (vmState == requiredCurrentState) {
             vmState = newState
         } else {
