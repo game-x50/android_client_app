@@ -1,3 +1,5 @@
+@file:Suppress("PackageNaming")
+
 package com.ruslan.hlushan.third_party.rxjava2.test.utils
 
 import io.reactivex.observers.TestObserver

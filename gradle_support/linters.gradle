@@ -21,7 +21,7 @@ detekt {
     failFast = false
     buildUponDefaultConfig = true
 
-    config = files("${lintersConfigFolder}detekt-config.yml")
+    config = files("${lintersConfigFolder}detekt-config.yml", "${lintersConfigFolder}detekt-formatting-config.yml")
 
     source = files(
             subprojects
